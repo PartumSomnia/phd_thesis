@@ -1,0 +1,72 @@
+\documentclass[11pt,a4paper,headinclude=true,DIV=14,BCOR=8mm,chapterprefix,listof=totoc,twoside,openright,abstracton]{scrbook}
+
+\usepackage[headsepline]{scrpage2}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[intlimits]{amsmath}
+% \usepackage{siunitx}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{hyperref}
+\usepackage{hyperref}
+% \usepackage[style=authoryear]{biblatex}
+\usepackage{natbib}
+% \usepackage{newtxtext}
+% \usepackage{newtxmath}
+% \usepackage{harvard}
+\setcitestyle{aysep={}} 
+\bibliographystyle{apalike}
+\usepackage{xr}
+\usepackage{wrapfig}
+% \bibliographystyle{agsm}
+%\usepackage{feynmf}
+
+\setlength{\parindent}{0pt}
+\geometry{a4paper, tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm, headheight=3em, headsep=2em, footskip=1cm}
+
+\setcitestyle{citesep={,}}
+
+\newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
+
+\geometry{a4paper, tmargin=2cm, bmargin=2cm, lmargin=1cm, rmargin=1cm, headheight=2em, headsep=2em, footskip=1cm}
+
+\title{PhD thesis}
+\author{Vsevolod Nedora}
+\date{today}
+
+\begin{document}
+    
+    \maketitle
+
+%% --------------- 
+%%
+%% Theory
+%%
+%% ---------------
+
+\chapter{General-Relativistic Hydrodynamics}
+
+This chapter is meant to sketch several important parts of the mathematical background. We focus on the aspects relevant for the tools and methods employed in out discussion. We do not aim to provide a comprehensive overview. 
+The chapter is divided into \todo{list the parts and their content}
+
+\section{The Cauchy Problem in General Relativity}
+
+In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to
+evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+
+
+%% --------------- 
+%%
+%% References
+%%
+%% ---------------
+
+\bibliography{references}
+
+\end{document}
