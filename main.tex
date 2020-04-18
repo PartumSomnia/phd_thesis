@@ -60,6 +60,55 @@ The chapter is divided into \todo{list the parts and their content}
 In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to
 evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
 
+\subsection{Euler-Lagrange equations}
+
+Let the $\alpha$ be the totally antisymmetric symbol that expresses through coordinates $x^{\mu}$ as
+\begin{equation}
+    \alpha = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
+\end{equation}
+where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the spacetime is
+
+\begin{equation}
+    \varepsilon = \sqrt{-g}\aleph,
+\end{equation}
+where $g$ denotes the determinant of the spacetime metric. \\
+
+In GR, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$, the Loretzian metric. \\
+
+The action principle of the Lagrangian field theory on the spacetime $(\mathcal{M}; \boldsymbol{g})$ is
+\begin{equation}
+    S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int_{\mathcal{M}}\alpha\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}),
+\end{equation}
+where $\boldsymbol{q}$ are a set of generalized coordinates for the fields described by the theory, $\nabla$ is the Levi-Civita connection, $\mathcal{L}$ is a scalar density of a scalar quantity $\lambda$ as $\lambda(\boldsymbol{q},\nabla\boldsymbol{q})$. 
+
+Varying the action with respect to the $\boldsymbol{q}$
+\begin{equation}
+    \delta S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \delta\int\alpha\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\alpha\Big(\frac{\partial\mathcal{L}}{\partial\boldsymbol{q}}\delta\boldsymbol{q}+\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\nabla\boldsymbol{q}\Big)
+\end{equation}
+
+As $\delta$ and $\nabla$ commute, and partially integrating $\nabla$, we obtain
+
+\begin{equation}
+    \partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\alpha\Big(\frac{\mathcal{L}}{\partial\boldsymbol{q}}-\nabla\frac{\partial \mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big)\delta\boldsymbol{q} + \int_{\mathcal{M}}\alpha\nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\boldsymbol{q}\Big)
+\end{equation}
+
+The last term is a boundary term and in order to vanish we impose boundary condition. Assume that the fields are defined over only a compact domain. \\
+As the choice of $\partial\boldsymbol{q}$ is arbitrary, the 
+
+\begin{equation}
+    \partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = 0
+\end{equation}
+
+and the Euler-Lagrange equations are
+
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0
+\end{equation}
+
+
+
+
+
 
 %% --------------- 
 %%
