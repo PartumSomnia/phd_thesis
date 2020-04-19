@@ -69,7 +69,7 @@ Let the $\alpha$ be the totally antisymmetric symbol that expresses through coor
 where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the spacetime is
 
 \begin{equation}
-    \varepsilon = \sqrt{-g}\aleph,
+    \varepsilon = \sqrt{-g}\alpha,
 \end{equation}
 where $g$ denotes the determinant of the spacetime metric. \\
 
@@ -105,11 +105,60 @@ and the Euler-Lagrange equations are
     \frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0
 \end{equation}
 
+% ----------------------------------------------- 
+\subsection{The Hilbert Action}
 
+The Einstein–Hilbert action allows to obtain an Einstein field equations through ad principle of least action. Here we briefly underline the procedure.
 
+Introduce action that describes the graviatational field, and a matter field $\mathcal{L}_m$:
+\begin{align}
+    S_g &= \int\frac{1}{2\kappa}R\epsilon, \\
+    S_m &= \int\mathcal{L}_{m}\epsilon,
+\end{align}
+where $R$ is the Ricci scalar and $\kappa$ is the  Einstein's constant. \\
 
+The full action then:
+\begin{equation}
+    S = \int\Big(\frac{1}{2\kappa}R+\mathcal{L}_m\Big)\epsilon
+\end{equation}
 
+The action principle dicatates, that $\delta S = 0$  with respect to the inverse metric $g^{\mu\nu}$. 
 
+\begin{equation}
+    \int\Bigg[\frac{1}{2\kappa}\Big(\frac{\delta R}{\delta g^{\mu\nu}}+\frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}}\Big) + \frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}}\Bigg]\delta g^{\mu\nu}\epsilon
+\end{equation}
+
+Owing to the arbitrariness of $\delta g^{\mu\nu}$, the integrant must be zero. 
+
+\begin{equation}
+    \frac{\delta R}{\delta g^{\mu\nu}} + \frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -2\kappa\frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}} := \kappa T_{\mu\nu},
+    \label{eq:theory:action1}
+\end{equation}
+where we introduced the stress-energy tensor $T_{\mu\nu}$.
+
+The continuation of this deriviation requires taking variation of the Riccia scalar $R$ and the determinantof the metric $\sqrt{-g}$. As this is a length procedure, we provide here the result. 
+
+\begin{equation}
+    \frac{\delta R}{\delta g^{\mu\nu}} = R_{\mu\nu},
+    \label{eq:theory:deltaR}
+\end{equation}
+where the $R_{\mu\nu}$ is the Ricci curvature tensor.
+
+\begin{equation}
+    \frac{1}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -\frac{1}{2}g_{\mu\nu}.
+    \label{eq:theory:deltagmuny}
+\end{equation}
+
+Substituting Eq. \ref{eq:theory:deltaR} and Eq. \ref{eq:theory:deltagmuny} into equation of motion Eq.  \ref{eq:theory:action1} we obtain the Einstein's field equation 
+
+\begin{equation}
+    R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
+\end{equation}
+where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$.
+
+\subsection{3+1 Decomposition of Spacetime}
+
+ 
 %% --------------- 
 %%
 %% References
