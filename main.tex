@@ -105,7 +105,7 @@ and the Euler-Lagrange equations are
     \frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0
 \end{equation}
 
-% ----------------------------------------------- 
+%% ----------------------------------------------- 
 \subsection{The Hilbert Action}
 
 The Einstein–Hilbert action allows to obtain an Einstein field equations through ad principle of least action. Here we briefly underline the procedure.
@@ -153,10 +153,51 @@ Substituting Eq. \ref{eq:theory:deltaR} and Eq. \ref{eq:theory:deltagmuny} into 
 
 \begin{equation}
     R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
+    \label{eq:theory:EFE}
 \end{equation}
 where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$.
 
-\subsection{3+1 Decomposition of Spacetime}
+%% ----------------
+\subsection{3+1 Decomposition of Einstein field equations}
+
+The Einstein field equations (\ref{eq:theory:EFE}) represent a set of 10 non-linear partial differential equations. These equations can be defeined on a while metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter, the boundary conditions on $\partial\Omega$ are required. \\
+It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. This, however, requires the spacetime to be strongly hyperbolic, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
+
+\subsubsection{Spacelike Foliations}
+Let the $t$ be the global smooth functions such that, 
+
+\begin{equation}
+    \Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\},
+\end{equation}
+
+and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. This the $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the Lie derivative of the $\boldsymbol{q}$ along the vector $\vec{t}$. \\
+
+Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a pert normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the diretion to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ can be written as 
+
+\begin{equation}
+    \vec{t} = \alpha\vec{n}+\vec{\beta}.
+\end{equation}
+
+$\vec{\beta}$ is called shift vector and $\alpha$ is called lapse-function. \\
+
+The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, Riemannian metric $\boldsymbol{\gamma}$  as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the 1-form associated to the vector $\vec{n}$. The Levi-Civita connection can be computed by projecting the $\nabla$ on the space tangent to the hypersurface $\Sigma_t$.
+
+There are exist coordinates that are adapted to the foliation, namely $\{t, x^i\}$ with $\vec{\partial}_i\cdot \vec{n} = 0$. In these coordiantes the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$. 
+
+The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ and can be expressed in terms of $\alpha$ and $\vec{\beta}$ as
+
+\begin{align}
+    \text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
+    \text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
+    \text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i.
+\end{align}
+
+The line-element can be thus written as
+\begin{equation}
+    ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k
+\end{equation}
+
+
 
  
 %% --------------- 
