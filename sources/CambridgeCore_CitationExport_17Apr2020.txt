@@ -1,0 +1,1 @@
+@book{poisson_2004, place={Cambridge}, title={A Relativist's Toolkit: The Mathematics of Black-Hole Mechanics}, DOI={10.1017/CBO9780511606601}, publisher={Cambridge University Press}, author={Poisson, Eric}, year={2004}}

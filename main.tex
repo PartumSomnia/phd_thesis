@@ -26,6 +26,7 @@
 \usepackage{wrapfig}
 % \bibliographystyle{agsm}
 %\usepackage{feynmf}
+%\usepackage{tensor}
 
 \setlength{\parindent}{0pt}
 \geometry{a4paper, tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm, headheight=3em, headsep=2em, footskip=1cm}
@@ -62,14 +63,26 @@ evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1
 
 \subsection{Euler-Lagrange equations}
 
-Let the $\alpha$ be the totally antisymmetric symbol that expresses through coordinates $x^{\mu}$ as
+We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature (-,+,+,+). The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. \\
+We use the convection that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$. \\
+The $\nabla\boldsymbol{T}$ denotes the covariant derivative of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.\\
+The scalar product of two vectors then 
 \begin{equation}
-    \alpha = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
+    \boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}
+\end{equation}
+The action of a linear form on a vector however is represented as 
+\begin{equation}
+    \langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}
+\end{equation}
+
+Let the $\boldsymbol{\alpha}$ be the totally antisymmetric symbol that expresses through coordinates $x^{\mu}$ as
+\begin{equation}
+    \boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
 \end{equation}
 where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the spacetime is
 
 \begin{equation}
-    \varepsilon = \sqrt{-g}\alpha,
+    \boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha},
 \end{equation}
 where $g$ denotes the determinant of the spacetime metric. \\
 
@@ -77,19 +90,19 @@ In GR, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$
 
 The action principle of the Lagrangian field theory on the spacetime $(\mathcal{M}; \boldsymbol{g})$ is
 \begin{equation}
-    S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int_{\mathcal{M}}\alpha\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}),
+    S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int_{\mathcal{M}}\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}),
 \end{equation}
 where $\boldsymbol{q}$ are a set of generalized coordinates for the fields described by the theory, $\nabla$ is the Levi-Civita connection, $\mathcal{L}$ is a scalar density of a scalar quantity $\lambda$ as $\lambda(\boldsymbol{q},\nabla\boldsymbol{q})$. 
 
 Varying the action with respect to the $\boldsymbol{q}$
 \begin{equation}
-    \delta S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \delta\int\alpha\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\alpha\Big(\frac{\partial\mathcal{L}}{\partial\boldsymbol{q}}\delta\boldsymbol{q}+\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\nabla\boldsymbol{q}\Big)
+    \delta S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \delta\int\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\partial\mathcal{L}}{\partial\boldsymbol{q}}\delta\boldsymbol{q}+\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\nabla\boldsymbol{q}\Big)
 \end{equation}
 
 As $\delta$ and $\nabla$ commute, and partially integrating $\nabla$, we obtain
 
 \begin{equation}
-    \partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\alpha\Big(\frac{\mathcal{L}}{\partial\boldsymbol{q}}-\nabla\frac{\partial \mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big)\delta\boldsymbol{q} + \int_{\mathcal{M}}\alpha\nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\boldsymbol{q}\Big)
+    \partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\mathcal{L}}{\partial\boldsymbol{q}}-\nabla\frac{\partial \mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big)\delta\boldsymbol{q} + \int_{\mathcal{M}}\boldsymbol{\alpha}\nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\boldsymbol{q}\Big)
 \end{equation}
 
 The last term is a boundary term and in order to vanish we impose boundary condition. Assume that the fields are defined over only a compact domain. \\
@@ -189,17 +202,66 @@ The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}
 \begin{align}
     \text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
     \text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
-    \text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i.
+    \text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i,
 \end{align}
+we we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
 
 The line-element can be thus written as
 \begin{equation}
     ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
 \end{equation}
 
+\subsubsection{Extrinsic Curvature and Constraint equations}
+
+We define the \textit{extrinsic curvature} of a $D-1$-suface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$. Note, that the $\boldsymbol{K}$ thus does not depend on $\alpha$ and $\vec{\beta}$, it is a purely spatial tensor. The components of the extrinsic curvature are \\
+
+\begin{equation}
+    K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
+    \label{eq:theory:extrcurvdef}
+\end{equation}
+where $\mathcal{L}_{\vec{n}}$ is the Lie derivative along the vector field $\vec{n}$. \\
+From the (\ref{eq:theory:extrcurvdef}) the extrinsic curvature can be interprated as a "speed of the $\vec{n}$ during the parallel transport along the hypersurface $\Sigma_t$".
+
+Codazzi equations relate the $4D$ Ricci tensor to the extrinsic curvature as
+
+\begin{equation}
+    D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta}=R_{\gamma\delta}n^{\delta}{\gamma^{\gamma}}_{\beta},
+    \label{eq:theory:formomentum}
+\end{equation}
+
+here $K$ is a trace of the tensor $\boldsymbol{K}$. \\
+
+Gauss equation realtes the $3D$ Riemann tensor $^3{R_{\alpha\beta\gamma}}^{\delta}$ to the $4D$ one and the $\boldsymbol{K}$ as
+
+\begin{equation}
+    ^3{R_{\alpha\beta\gamma}}^{\delta} = {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}{\gamma^{\lambda}}_{\gamma}{\gamma^{\delta}}_{\sigma}{R_{\mu\nu\lambda}}^{\delta}-K_{\alpha\gamma}{K_{\beta}}^{\delta}+K_{\beta\gamma}{K^{\delta}}_{\alpha}.
+    \label{eq:theory:forhamiltconst}
+\end{equation}
+
+The \textit{momentum constraint} thus cab be obtained by substituting the (\ref{eq:theory:EFE}) into  (\ref{eq:theory:formomentum}) which yields
+
+\begin{equation}
+    D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} = -8\pi{\gamma^{\alpha}}_{\beta} n^{\gamma}T_{\alpha\gamma}=:8\pi j_{\beta},
+    \label{eq:theory:momconstraint}
+\end{equation}
+where $j^{\alpha}$ is the ADM momentum density. \\
+
+The \textit{Hamiltonian constrant} can be obtained by substituting EFE (\ref{eq:theory:EFE}) into the (\ref{eq:theory:forhamiltconst}), yielding 
+
+\begin{equation}
+    ^3 R+ K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2G^{\alpha\beta}n_{\alpha}n_{\beta} = 16\pi n_{\alpha}n_{\beta} T^{\alpha\beta} =: 16\pi E,
+    \label{eq:theory:hamilconstraint}
+\end{equation}
+where $E$ is the ADM energy density. \\
+
+The obtained constraint equations represent a set of elliptic equations that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. It is however, possible to show that Eistein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future. 
+
+\subsection{The ADM Formulation}
 
 
- 
+
+
+
 %% --------------- 
 %%
 %% References
