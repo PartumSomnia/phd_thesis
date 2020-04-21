@@ -116,6 +116,7 @@ and the Euler-Lagrange equations are
 
 \begin{equation}
     \frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0
+    \label{eq:theory:eulerlagrange}
 \end{equation}
 
 %% ----------------------------------------------- 
@@ -256,10 +257,74 @@ where $E$ is the ADM energy density. \\
 
 The obtained constraint equations represent a set of elliptic equations that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. It is however, possible to show that Eistein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future. 
 
-\subsection{The ADM Formulation}
+\subsubsection{Hamiltonian Field Theory}
 
+First we recall the generalized coordinates $\boldsymbol{q}$ and their covariant derivatives $\nabla\boldsymbol{q}$. \\
+In light of the spacetime decomposition discussed above, we divide the $\boldsymbol{\alpha}$ into the time $dt$ and spatial parts represented by the antisymmetric symbol ${^{(3)}\boldsymbol{\alpha}}$ as 
 
+\begin{equation}
+    \boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3 = dt \wedge {^{(3)}\boldsymbol{\alpha}}.
+\end{equation}
 
+Next, we introduce the "time derivative" as a Lie derivative along the vector field $\vec{t}$ as 
+
+\begin{equation}
+    \dot{\boldsymbol{q}} := \mathcal{L}_{\vec{t}}\boldsymbol{q}.
+\end{equation}
+
+As the $\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q})$ is the Lagrangian density, a conjugate momentum can be defined as 
+
+\begin{equation}
+    \boldsymbol{p} := \frac{\partial\Lambda}{\partial\dot{\boldsymbol{q}}},
+\end{equation}
+
+Assuming that $\boldsymbol{p}$ and $\nabla\boldsymbol{q}$ can be expressed as a function of $\boldsymbol{q}$ and $\boldsymbol{p}$, inspired by the Legendre transformation, we define the Hamiltonian and its density density as
+
+\begin{align}
+    \mathcal{H} &= \boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) \\
+    H &= \int_{\Sigma}\mathcal{H}{^{(3)}\boldsymbol{\alpha}}
+\end{align}
+
+Additionally we define the quantity 
+
+\begin{equation}
+    J = \int_{0}^{t}H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt\int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q},\nabla\boldsymbol{q})\Big).
+\end{equation}
+
+Consider the variation of the $J$ with respect to the $\delta\boldsymbol{p}$ and $\delta\boldsymbol{q}$ as
+
+\begin{equation}
+    \delta J = \int_{0}^{t}\delta H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt (\dot{\boldsymbol{q}}\delta\boldsymbol{p}+\boldsymbol{p}\delta\dot{\boldsymbol{q}}) - \int_{0}^{t}dt\delta\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q}).
+\end{equation}
+
+Consider the last term, the variation of the Lagrangian 
+
+\begin{equation}
+    \delta\Lambda = \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Bigg[\frac{\delta\Lambda}{\delta\dot{\boldsymbol{q}}}\delta\dot{\boldsymbol{q}}+\frac{\delta\Lambda}{\delta\boldsymbol{q}}\delta\boldsymbol{q}\Bigg],
+\end{equation}
+
+The first term in the square brackets can be reduced to $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$, suingthe definition of the conjugate momentum. The second term can be treated, applying the Euler-Lagrange equations (\ref{eq:theory:eulerlagrange}). These manipulations result in
+
+\begin{equation}
+    \delta\Lambda = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\boldsymbol{p}\delta\dot{\boldsymbol{q}} + \dot{\boldsymbol{p}}\delta\boldsymbol{q}).
+\end{equation}
+
+Thus we obtain that 
+
+\begin{equation}
+    \int_{0}^{t} \delta H(\boldsymbol{q},\boldsymbol{p})dt =   \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\dot{\boldsymbol{q}}\cdot\delta\boldsymbol{p}-\dot{\boldsymbol{p}}\cdot\delta\boldsymbol{q}),
+\end{equation}
+
+and as $\delta\boldsymbol{p}$ and $\delta\boldsymbol{p}$ are arbitrary, the Hamilton equations read
+
+\begin{equation}
+    \dot{\boldsymbol{q}}=\frac{\delta H}{\delta\boldsymbol{p}}, \hspace{5mm} \dot{\boldsymbol{p}} = -\frac{\delta H}{\delta\boldsymbol{q}}.
+    \label{eq:theory:hamiltoneqs}
+\end{equation}
+
+The Hamiltonian formalism can be used to redirive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution.
+
+\subsubsection{The Hamiltonian Formulation of the Einstein Equations}
 
 
 %% --------------- 
