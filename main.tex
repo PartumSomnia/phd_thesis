@@ -326,6 +326,76 @@ The Hamiltonian formalism can be used to redirive the field-equations in a from 
 
 \subsubsection{The Hamiltonian Formulation of the Einstein Equations}
 
+Here we briefly sketch to path of derivation of the Einstein field equations in the Hamiltonian framework. We will elude most of the intimidate and computationally extensive steps, as well as derivation of the boundary terms. For this we refer to \cite{Poisson:2004}.\\
+First it is useful to note that determinant of the three-metric $\sqrt{\gamma}$ can be expressed as $\sqrt{\gamma}=\sqrt{-g}/\alpha$. The $p$ is the trace of the canonical momentum $\boldsymbol{p}$.
+
+Now, consider the scalar curvature, R
+
+\begin{equation}
+    R=2(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu}).
+\end{equation}
+
+The derived above momentum constraint (\ref{eq:theory:momconstraint}) gives that 
+
+\begin{equation}
+    2G_{\mu\nu}n^{\mu}n^{\nu} = {^{(3)}R} + K^2 - K_{\mu\nu}K^{\mu\nu}.
+\end{equation}
+
+The $R_{\mu\nu}n^{\mu}n^{\nu})$ can be expressed as a combination of extrinsic curvature and total divergences as 
+
+\begin{equation}
+    R_{\mu\nu}n^{\mu}n^{\nu}={R_{\mu\gamma\nu}}^{\gamma}n^{\mu}n^{\nu} = -n^{\mu}(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\mu})n^{\gamma} = K^2 - K_{\mu\nu}K^{\mu\nu}-\nabla_{\mu}(n^{\mu}\nabla_{\nu}n^{\nu})+\nabla_{\mu}(n^{\nu}\nabla_{\nu}n^{\mu}).
+\end{equation}
+
+In case of variations with compact support, that we are interested in, the total divergences. last two terms, can be neglected.
+The Lagrangian density then is
+
+\begin{equation}
+    \Lambda = \Lambda_g+\Lambda_m= \frac{1}{16\pi}\alpha({^{(3)}R} + K_{\mu\nu}K^{\mu\nu} - K^2)\sqrt{\gamma}+\Lambda_m
+\end{equation}
+where $\Lambda_m$ is the Lagrangian density of the matter. \\
+
+Next we note that the extinsic curvature can be written as a Lie-derivative of the three-metric ac
+
+\begin{equation}
+    K_{\mu\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu}=-\frac{1}{2\alpha}(\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu})
+\end{equation}
+
+which us to express the canonical momentum $p^{\mu\nu}$ as
+
+\begin{equation}
+    p^{\mu\nu} = \frac{\partial\Lambda}{\partial\dot{\gamma}_{\mu\nu}}=\frac{\sqrt{\gamma}}{16\pi}(K\gamma^{\mu\nu} - K^{\mu\nu}),
+\end{equation}
+assuming that there is no explicit dependency of the $\Lambda$ on $dot{\gamma}_{\mu\nu}$.
+
+Since, $\alpha$ and $\vec{\beta}$ are related to the the gauge freedom, as there are many ways manifold $\mathcal{M}$ can be split into hypersurfaces, the momenta associated with these function and vector is zero. 
+
+Thus, the Hamiltonian density is
+
+\begin{equation}
+    \mathcal{H} = \frac{\gamma^{1/2}}{16\pi}\Bigg\{\alpha\Big[ -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2\Big] +  2\beta_{\nu}\Big[D_{\mu}(\gamma^{-1/2}p^{\mu\nu})\Big] - 2D_{\mu}(\gamma^{-1/2}\beta_{\nu}p^{\mu\nu}) \Bigg\} - \Lambda_m.
+\end{equation}
+
+As the we consider variations with compact suppot, the last boundary term, can be neglected. \\
+
+Now we consider the variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$
+
+\begin{align}
+    \frac{\delta S_m}{\delta \alpha} &=-\alpha\frac{\delta S_m}{\delta g_{00}} = -\alpha\sqrt{-g}T^{00} = -\alpha^2\sqrt{\gamma}T^{00} = -\sqrt{\gamma}T^{\mu\nu}n_{\mu}n_{\nu} \\
+    \frac{\delta S_m}{\delta \beta_{\mu}} &= \frac{\delta S_m}{\delta g_{\mu 0}} =\frac{1}{2}\sqrt{-g}T^{\mu 0} = -\frac{1}{2} \sqrt{\gamma}T^{\mu\nu}n_{\nu}.
+\end{align}
+
+As the variation of the Hamiltonian $H$ with respect to a quantity with vanishing canonical momentum is zero, we obtain two equations 
+
+\begin{align}
+    \frac{\delta H}{\delta \alpha} &= 0 = -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2 + 16\pi T^{\mu\nu}n_{\mu}n_{\nu} \\
+    \frac{\delta H}{\delta \beta_{\mu}} &= 0 = - D_{\mu}(\gamma^{-1/2}p^{\mu\nu}) + 8\pi{\gamma^{\mu}}_{\nu}n_{\gamma}T^{\nu\gamma}.
+\end{align}
+
+Note, that the $\delta H / \detla\beta_{\mu}$ is actually a Frech{e}t diderential of
+the functional H
+
+
 
 %% --------------- 
 %%
