@@ -390,11 +390,60 @@ As the variation of the Hamiltonian $H$ with respect to a quantity with vanishin
 \begin{align}
     \frac{\delta H}{\delta \alpha} &= 0 = -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2 + 16\pi T^{\mu\nu}n_{\mu}n_{\nu} \\
     \frac{\delta H}{\delta \beta_{\mu}} &= 0 = - D_{\mu}(\gamma^{-1/2}p^{\mu\nu}) + 8\pi{\gamma^{\mu}}_{\nu}n_{\gamma}T^{\nu\gamma}.
+    \label{eq:theory:hamiltonianvariation}
 \end{align}
 
-Note, that the $\delta H / \detla\beta_{\mu}$ is actually a Frech{e}t diderential of
-the functional H
 
+Note, that the $\delta H / \delta\beta_{\mu}$ is actually a Frech\'et differential $dH$, $\delta \beta_{\mu}$, which is writes as
+\begin{equation}
+    \langle dH,\delta\beta \rangle = \delta\beta_{\mu}\big[-D_{\nu}(\gamma^{-1/2}p^{\mu\nu})+8\pi n_{\gamma}T^{\mu\nu}\big], 
+\end{equation}
+containing $\delta\beta_{\mu}$ which is spatial. Thus only the spatial part is being constrained in the equation above. To account for that the procector ${\gamma^{\mu}}_{\nu}$ is added to the $\delta H/\delta \beta_{\mu}$. \\
+
+The pair of equations (\ref{eq:theory:hamiltonianvariation}) is in fact the constraint equations derived before, namely the (\ref{eq:theory:momconstraint}) and (\ref{eq:theory:hamilconstraint}), and as we now see, they are related to the coordinate freedom of $\mathcal{M}$ decomposition and a coodrinate freedom on hypersurfaces. \\
+
+Proceeding with the Hamiltinan formalism we note that equation \ref{eq:theory:hamiltoneqs} leads to the evolution equations for the three-metric, assuming that $\Lambda$ explicitly does not depend on the momentum
+
+\begin{equation}
+    \dot{\gamma}_{\mu\nu} =\frac{\delta H}{\delta p^{\mu\nu}} = 2\gamma^{-1/2}\alpha\big(p_{\mu\nu}-\frac{1}{2}\gamma_{\mu\nu}p\big)-2D_{(\mu}\beta_{\nu)},
+    \label{eq:theory:_adm_metric_evo}
+\end{equation}
+where $A_{(\mu\nu)} = 0.5(A_{\mu\nu}+A_{\nu\mu})$ the convention was used. \\
+
+The evolution equations for the canonical momentum can read
+
+\begin{align}
+    \dot{p}^{\mu\nu} = -\frac{\delta H}{\delta \gamma_{\mu\nu}} = &+ \alpha\gamma^{1/2}\big({^{(3)}R}^{\mu\nu}-\frac{1}{2}{^{(3)}R\gamma^{\mu\nu}}\big) \\
+    & - \frac{1}{2}\alpha\gamma^{-1/2}\gamma^{\mu\nu}\big(p_{\gamma\delta}p^{\gamma\delta}-\frac{1}{2}p^2\big) \\
+    & + 2\alpha\gamma^{-1/2}\big(p^{\mu\gamma}{p^{\nu}}_{\gamma}-\frac{1}{2}pp^{\mu\nu}\big) \\
+    & - \gamma^{1/2}\big(D^{\mu}D^{\nu}\alpha-\gamma^{\mu\nu}D^{\gamma}D_{\gamma}\alpha\big) \\
+    & - \gamma^{1/2}D_{\gamma}\big(\gamma^{-1/2}\beta^{\gamma}p^{\mu\nu}\big) \\
+    &+ 2p^{\gamma(\mu}D_{\gamma}\beta^{\nu)} + 8\pi \alpha \gamma^{1/2}S^{\mu\nu}
+    \label{eq:theory:_adm_mom_evo}
+\end{align}
+
+
+where $S^{\mu\nu}={\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}T^{\alpha\beta}$. 
+Taking the variation of the matter field we noted that 
+
+
+\begin{equation}
+    \frac{\delta S}{\delta \gamma_{ik}} = \frac{\delta S_m}{\delta g_{ik}} = \frac{1}{2}\sqrt{-g}T^{ik}
+\end{equation}
+
+The set of equations (\ref{eq:theory:hamiltonianvariation}), (\ref{eq:theory:_adm_metric_evo}) and (\ref{eq:theory:_adm_mom_evo}) comprise the ADM system. A more widely used from of these equations is in turns of $\gamma_{ij}$ and $K_{ij}$ that reads
+
+\begin{align}
+    (\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} &= -2\alpha K_{ik}; \\
+    (\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} &= -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
+    {^{(3)}R} + K^2 - K_{ik}K^{ik} &= 16\pi E; \\
+    D_{i}K-D_{k}{K^k}_i &= 8\pi j_i,
+    \label{eq:theory:adm}
+\end{align}
+where $S = \gamma^{ij}S_{ij}$.
+These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
+
+\subsubsection{Strongly Hyperbolic Formulations of the Einstein Equations}
 
 
 %% --------------- 
