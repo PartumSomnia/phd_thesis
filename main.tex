@@ -503,7 +503,47 @@ The set of equations (\ref{eq:theory:hamiltonianvariation}), (\ref{eq:theory:_ad
 where $S = \gamma^{ij}S_{ij}$.
 These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
 
+\todo{make sure that the coefficients in formuals are consistent, $16\pi$ might me missing or $-$}
+\todo{Makse sure that $\Lambda$ stands for largangian density and $\mathcal{L}$ for lie derivative}
+
 \subsubsection{Strongly Hyperbolic Formulations of the Einstein Equations}
+
+It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only weekly hyperbolic \cite{Baumgarte:2002jma}. It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}.  \\
+In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. In particular, the the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} and and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of Einstein equations for numerical applications is ongoing. We limit ourselves to sketching only the conformal-covariant variant of the Z4 formulation, also known as Z4c. The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
+
+
+\subsubsection*{The CCZ4 Formulation}
+
+One starts with the covariant Lagrangian
+\begin{equation}
+    \Lambda = g^{\mu\nu}[R_{\mu\nu} + 2\nabla_{\mu}Z_{\nu}]\sqrt{g} + \Lambda_m.
+\end{equation}
+
+The Z4 formulation is derived using the Palatini-type variational principle \cite{Bona:2010is}. The result are the field equations 
+
+\begin{equation}
+    R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
+\end{equation}
+
+and two sets of constraint equations
+
+\begin{align}
+    \nabla_{\rho} g^{\mu\nu} &= 0, \\
+    Z_{\mu} &= 0,
+\end{align}
+
+where the latter is called an algebraic constraint 
+
+
+
+
+
+
+
+
+
+
+
 
 
 %% --------------- 
