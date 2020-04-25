@@ -508,7 +508,7 @@ These equations constitute the IVP for Einstein field equations and are known as
 
 \subsubsection{Strongly Hyperbolic Formulations of the Einstein Equations}
 
-It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only weekly hyperbolic \cite{Baumgarte:2002jma}. It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}.  \\
+It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only weekly hyperbolic \cite{Baumgarte:2002jm}. It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}.  \\
 In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. In particular, the the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} and and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of Einstein equations for numerical applications is ongoing. We limit ourselves to sketching only the conformal-covariant variant of the Z4 formulation, also known as Z4c. The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
 
 
@@ -596,6 +596,12 @@ A class of slicing conditions in form of hyperbolic equations that are more favo
 \label{eq:theory:gauge_onepluslog}
 \end{equation}
 
+which in CCZ4 reads 
+
+\begin{equation}
+    (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+\end{equation}
+
 where $f(\alpha)$ is a positive function. For many numerical applications, including those that are discussed in this work, the "1 + log" slicing is adopted, the $\beta_i=0$. Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
 
 \begin{equation}
@@ -608,25 +614,53 @@ This condition is numerically more favorable and as $f\rightarrow\infty$ in the 
 
 \paragraph{Spatial gauge conditions}
 
+The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution.  
 
+One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
 
+\begin{align}
+    \partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
+    \partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
+\end{align}
 
+where $\eta$ is a dumping coefficient. \\
 
+This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
 
+A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes:
 
+\begin{align}
+    (\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
+    (\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
+\end{align}
 
+was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
 
+\subsection{The Equations of General-Relativistic Hydrodynamics}
 
+In this section we discuss the equations of general relativistic hydrodynamics. We consider the fluid on a Lorentzian manifold and how its flow affects the spacetime. \\ 
 
+The topics that we are going to touch are:
+\begin{itemize}
+    \item fluid kinematics,
+    \item equations of motion for perfect fluids (assuming that there is no thermal conduction or viscosity)
+    \item the “Valencia formulation” of the hydrodynamic equations.
+\end{itemize}
 
+We note that the following description is very brief and is based on the following works: \cite{Misner:1973},\cite{Schutz:2009a},\cite{Gourgoulhon:2006bn},\cite{Andersson:2006nr},\cite{Rezzolla:2013} to which we refer the reader for more details.  
 
+\subsubsection{Kinematics of a Relativistic Fluid}
 
+pass
 
+Schutz
 %% --------------- 
 %%
 %% References
 %%
 %% ---------------
+
+\newpage
 
 \bibliography{references}
 
