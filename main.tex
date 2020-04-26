@@ -10,7 +10,8 @@
 \usepackage{float}
 \usepackage[intlimits]{amsmath}
 % \usepackage{siunitx}
-\usepackage{color}
+% \usepackage{color}
+\usepackage{xcolor}
 \usepackage{verbatim}
 \usepackage{appendix}
 \usepackage{hyperref}
@@ -145,10 +146,12 @@ The action principle dicatates, that $\delta S = 0$  with respect to the inverse
 Owing to the arbitrariness of $\delta g^{\mu\nu}$, the integrant must be zero. 
 
 \begin{equation}
-    \frac{\delta R}{\delta g^{\mu\nu}} + \frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -2\kappa\frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}} := \kappa T_{\mu\nu},
+    \frac{\delta R}{\delta g^{\mu\nu}} + \frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -2\kappa\frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}} = -\frac{2\kappa}{\sqrt{-g}}\frac{\delta S_m}{\delta g_{\mu\nu}} := \kappa T_{\mu\nu},
     \label{eq:theory:action1}
 \end{equation}
-where we introduced the stress-energy tensor $T_{\mu\nu}$.
+where we introduced the stress-energy tensor $T_{\mu\nu}$ and te matter action $S_m$ for future use. \\
+
+\todo{this matter action is used in deriving the $T_{\mu} ^{\nu}$ i the invariant fluid formalisn}
 
 The continuation of this deriviation requires taking variation of the Riccia scalar $R$ and the determinantof the metric $\sqrt{-g}$. As this is a length procedure, we provide here the result. 
 
@@ -656,14 +659,102 @@ In Newtonian physics, a fluid is an "entity" whose dynamics is described by flow
 Consider the classical mass density, a scalar $\rho$, usually defined as total umber of particles $N$ of rest-mass $m$ in the volume $V$. Then, the total mass is given by
 
 \begin{equation}
-    \int_V \rho d^3x = m\int_V n d^3 x = mN.
+    \int_V \rho \text{d}^3x = m\int_V n \text{d}^3 x = mN.
 \end{equation}
 
-However, while the number of particles $N$ would be the same regardless of the observer, the $d^3x$ would be measured differently by observers moving in relation to each other. Hence, the $n$ would differ. One of the solutions is to chose a frame of reference, say comoving with the fluid and define the $\rho$ there. However, this would hinder our ability to generalize to other reference frames.\\ A better soution is to construct a \textit{covariant description in terms of invariant quantities}. 
+However, while the number of particles $N$ would be the same regardless of the observer, the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. Hence, the $n$ would differ. One of the solutions is to chose a frame of reference, say comoving with the fluid and define the $\rho$ there. However, this would hinder our ability to generalize to other reference frames.\\ A better soution is to construct a \textit{covariant description in terms of invariant quantities}. 
  
-We start by defining the flow of the fluid density in space-time, the 3 pseudo-form $\boldsymbol{\rho}$ that on any three dimensional submanifold describes the flow of mass transverse to the submanifold.
+We start by defining the flow of the fluid density in space-time, the 3 pseudo-form $\boldsymbol{\rho}$ that on any three dimensional submanifold describes the flow of mass transverse to the submanifold as
 
-Let $\Sigma$ be a spacelike hypersurface and $\vec{n}$ -- the normal vector, directed as $\vec{t}$. 
+\begin{equation}
+    \int_{\Sigma} \boldsymbol{\rho},
+\end{equation}
+
+where $\Sigma$ be a spacelike hypersurface,  $\vec{n}$ -- the future-oriented normal vector. This is the density measured by an observer with 4-velocity $\vec{n}$. 
+
+To define a mass flow measured by an Eulerian observer across any spacelike surface $\Omega\subset\Sigma$, we need to construct a two-form $\boldsymbol{\rho}(\vec{n}, \cdot, \cdot)$ given by the interior product between the 3 pseudo-form $\boldsymbol{\rho}$ and $\vec{n}$. Then the mass flow is 
+
+\begin{equation}
+\int_{\Omega} i_{\vec{n}}\boldsymbol{\rho}.
+\end{equation}
+
+The conservation of the number of particles of the fluid is expressed by the vanishing exterior product of the density form, i.e. $\text{d}\boldsymbol{\rho}=0$, or in an integral form 
+
+\begin{equation}
+\int_{\partial\Omega} \boldsymbol{\rho} = \int_{\Omega}\text{d}\boldsymbol{\rho} = 0,
+\end{equation}
+
+that reads as the following: the net flow across any sufficiently regular surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
+
+Next we define a flux. First, let us reintroduce the volume pseudo-form
+
+\begin{equation}
+\text{Vol}_x ^4 = \sqrt{-g}dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
+\end{equation}
+
+where $g$ is the determinant of the spacetime metric. \\
+On a on the submanifold $\Sigma$, the intrinsic volume then would be defined as 
+
+\begin{equation}
+\text{Vol}_x ^3 = i_{\vec{n}} \text{Vol}_x ^4.
+\end{equation}
+
+A flux of a vector field can be described by a three-form, for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
+
+A vector field associated with density is called \textit{rest-mass density four-vector} and is denoted by $\vec{j}$.
+
+It is constructed from the one-form by rasing indexes, $\vec{j} = {^{\#}\underline{j}}$. The one-form $\underline{j}$ is obtained as $\underline{j}\star\boldsymbol{\rho}$, where $\star$ is the Hodge dual operator (see \textit{e.g.,} \cite{Frankel:1982dva}). 
+
+Then if the $\boldsymbol{\rho} = i_{\vec{j}}\text{Vol}_x ^4$ the flux of $\vec{j}$ can be shown as 
+
+\begin{equation}
+\int_{\Sigma} \boldsymbol{\rho} = - \int_{\Sigma}\vec{j}\cdot\vec{n}\text{Vol}_x ^3,
+\end{equation}
+
+where $\vec{n}$ is the future-oriented unit-timelike normal to $\Sigma$.
+
+
+\textcolor{gray}{
+[Direct copy... maybe not needed] More generally the flux associated with a flow defined by a vector field, $\vec{X}$, across a hypersurface, $\Sigma$, transverse to it and with normal $\vec{\nu}$ (with appropriate sign depending on the signature of the metric and on $\Sigma$), is given 
+\begin{equation}
+\int_{\Sigma} \star\underline{X} = \int_{\Sigma}i_{\vec{X}}\text{Vold}^n = \int_{\sigma}i_{\vec{X}}\big[\underline{\nu}\wedge\text{Vol}^{n-1}\big] = \int_{\Sigma}\vec{X}\cdot\vec{\nu}\text{Vol}^{n-1}
+\end{equation}
+}
+
+We note that $\vec{j}$ is time like (or null). It is given by the the flux of particles across any future-oriented spacelike hypersurface is positive (or zero). If $\vec{j}$ is timelike, there exists a unique decomposition 
+
+\begin{equation}
+\vec{j} = \rho \vec{u},
+\end{equation}
+where the scalar $\rho$ can be seen as density in the comoving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.\\
+
+The divergence of vecotor $j$ then gives a familiar mass conservation expression
+
+\begin{equation}
+0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
+\end{equation}
+
+\textcolor{gray}{Similarly energy and momentum of a fluid can be defined, using the Cartan formalism... but this is a PAIN! and is done to show that div(T)=0 is not really energy/momentum conservation...}
+
+Next, let us introduce the mixed tensor $\boldsymbol{T}$. Since the three-forms are equivalent to vectors, we can define a flow of the $\nu$ momentum across the volume element orthogonal to $dx^{\mu}$ as 
+
+\begin{equation}
+{T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu}).
+\end{equation}
+
+${T^{\mu}}_{\nu}$ is the stress energy tensor that was already introduced earlier \ref{eq:theory:action1}. 
+
+Note, that if the Einstein equation are satisfied the Bianchi identities dictate that the $\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
+
+\begin{equation}
+\nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
+\end{equation}
+
+However, this statement does not imply the conservation of the energy and momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires $\vec{\partial}_{\nu}$ to be a Killing vector.
+
+
+
+
 
 \todo{define somewhere an eulerian observer}
 
