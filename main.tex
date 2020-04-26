@@ -651,9 +651,22 @@ We note that the following description is very brief and is based on the followi
 
 \subsubsection{Kinematics of a Relativistic Fluid}
 
-pass
+In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities such as energy density, mass, momentum density. However, in general and special relativity, the these quantities are not well defined and depend on the observer. In other words, different observers perceive the the same fluid being in different thermodynamic state. Hence, a description of the fluid dynamics in relativity requires a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, that are observer-dependent, but implicitly by a "flow" in spacetime. These are \textit{flux-conservative formulations} of hydrodynamics.
 
-Schutz
+Consider the classical mass density, a scalar $\rho$, usually defined as total umber of particles $N$ of rest-mass $m$ in the volume $V$. Then, the total mass is given by
+
+\begin{equation}
+    \int_V \rho d^3x = m\int_V n d^3 x = mN.
+\end{equation}
+
+However, while the number of particles $N$ would be the same regardless of the observer, the $d^3x$ would be measured differently by observers moving in relation to each other. Hence, the $n$ would differ. One of the solutions is to chose a frame of reference, say comoving with the fluid and define the $\rho$ there. However, this would hinder our ability to generalize to other reference frames.\\ A better soution is to construct a \textit{covariant description in terms of invariant quantities}. 
+ 
+We start by defining the flow of the fluid density in space-time, the 3 pseudo-form $\boldsymbol{\rho}$ that on any three dimensional submanifold describes the flow of mass transverse to the submanifold.
+
+Let $\Sigma$ be a spacelike hypersurface and $\vec{n}$ -- the normal vector, directed as $\vec{t}$. 
+
+\todo{define somewhere an eulerian observer}
+
 %% --------------- 
 %%
 %% References
