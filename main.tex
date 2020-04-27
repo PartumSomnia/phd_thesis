@@ -725,6 +725,7 @@ We note that $\vec{j}$ is time like (or null). It is given by the the flux of pa
 
 \begin{equation}
 \vec{j} = \rho \vec{u},
+\label{eq:theory:defofjandu}
 \end{equation}
 where the scalar $\rho$ can be seen as density in the comoving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.\\
 
@@ -732,6 +733,7 @@ The divergence of vecotor $j$ then gives a familiar mass conservation expression
 
 \begin{equation}
 0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
+\label{eq:theory:nablamu_jmu}
 \end{equation}
 
 \textcolor{gray}{Similarly energy and momentum of a fluid can be defined, using the Cartan formalism... but this is a PAIN! and is done to show that div(T)=0 is not really energy/momentum conservation...}
@@ -748,15 +750,57 @@ Note, that if the Einstein equation are satisfied the Bianchi identities dictate
 
 \begin{equation}
 \nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
+\label{eq:theory:nablamu_tmunu}
 \end{equation}
 
 However, this statement does not imply the conservation of the energy and momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires $\vec{\partial}_{\nu}$ to be a Killing vector.
 
 
-
-
-
 \todo{define somewhere an eulerian observer}
+
+\subsubsection{Dynamics of a Relativistic Fluid}
+
+In the previous subsection we have introduced the fluid kinematic, and defined the important quantities such as mass, energy and momentum and their "conservation" in \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}.
+
+In this thesis we consider only the \textit{perfect fluid}, meaning that in the co-moving frame, there is not heat conduction and there is no viscosity. \todo{actually we do have a viscous part -- you have to add this...}. The former criterion implies that the fluid is in local thermodynamic equilibrium (LTE). The latter however requires more explanation. There is still no consensus on the correct mathematical formulation, especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in general-relativity (see e.g., \cite{Andersson:2006nr} and references therein). \textcolor{blue}{however in recent youers there have been some progress GRELS models and David's implementation I must add!}. \\
+
+Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. To construct it, we return to the fluid's four velocity $\vec{u}$ from (\ref{eq:theory:defofjandu}). If $e_{i}$ is the basis vector, the scalar product $\vec{u}\cdot\vec{e}_i=0$ and $\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$. then the orthonormal tetrad $\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. \\
+Tensor $\boldsymbol{T}$ is the stress-energy tensor with the following components: 
+
+\begin{itemize}
+    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$
+    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction.
+    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
+\end{itemize}
+
+Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively desibed by a scalar $p$, that we call pressure as
+
+\begin{equation}
+    \boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k,
+\end{equation}
+
+Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
+
+\begin{equation}
+\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
+\end{equation}
+
+Defining the enthalpy of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, we rewrite $\boldsymbol{T}$ as 
+
+\begin{equation}
+\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
+\label{eq:theory:stressenergytensor}
+\end{equation}
+
+In addition to the fluid kinematics (eqs. \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}) and the description of motion (eq. \ref{eq:theory:stressenergytensor}), the relation between the pressure, internal energy and density is needed to fully describe the dynamics of the fluid. This relation is usually called the equation of state.
+
+The commonly adopted equations (EoS) of state are the the ideal-gas, or gamma-law EoS $\rho = (\Gamma-1)\rho\epsilon$, where $\Gamma$ is the polytropic index of the gas, the polytropic EoS $p = K\rho^{\Gamma}$ and the microphysical equation of state \todo{that you need to discuss more..., as we use only it.}
+
+Combined with an EoS, equations \ref{eq:theory:adm}, \ref{eq:theory:nablamu_jmu}, \ref{eq:theory:nablamu_tmunu} and \ref{eq:theory:stressenergytensor} form a hyperbolic
+system of equations that can be evolved, once initial data is prescribed. The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
+
+\subsubsection{Conservative Formulations}
+
 
 %% --------------- 
 %%
