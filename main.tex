@@ -818,10 +818,55 @@ It was shown to be especially well suited for use with numerical methods that ta
 
 Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods (\textit{e.g.,} \cite{Giacomazzo:2010bx} [274]\cite{Rezzolla:2011da} and references therein \todo{add recolla/bernuzzi/radice/shibata}).
 
-There are other conservative formulations and methods (see \textit{e.g.,} \cite{Papadopoulos:1999kt}). However, we will limit our focus to the "Valencia formulation". 
+There are other conservative formulations and methods (see \textit{e.g.,} \cite{Papadopoulos:1999kt}). However, we will limit our focus to the "Valencia formulation". \\
 
+To begin we split the four-velocity $\vec{u}$ into the component parallel to the normal vector $\vec{n}$ and a purely spatial component as
 
+\begin{equation}
+    \vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon}),
+\end{equation}
 
+where naturally the Lorentz factor, measured by theEulerian observer $W = (-\vec{u}\cdot\vec{n})$ emerges, and the $\upsilon$ is the fluid three-velocity measured by the Eulerian observer, 
+
+\begin{equation}
+    \vec{\upsilon} = \frac{\vec{u}}{W} -\vec{n},
+\end{equation}
+
+components of which are
+
+\begin{equation}
+    \upsilon^i = \frac{u^i}{W}+ \frac{\beta^i}{\alpha}, \hspace{10mm} \upsilon_i= \frac{u_{i}}{W}.
+\end{equation}
+
+Divergence of the rest-mass density four-vector $j$, (\ref{eq:theory:nablamu_jmu}) can easily be cast as 
+
+\begin{eqnarray}
+    0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{t}[\sqrt{\gamma}\rho W] + \frac{1}{\sqrt{-g}}\partial_{i}[\sqrt{\gamma}\rho(\alpha \upsilon^{i} - \beta^{i})]
+\end{eqnarray}
+
+where $D=\rho W = -\vec{j}\cdot \vec{n}$ is the conserved density.
+
+To write the energy and momentum equations we note that for any vector field $\vec{p} $ \cite{Rezzolla:2013}, 
+
+\begin{equation}
+    \nabla_{\mu}[{T^{\mu}}_{\nu}p^{\nu}].
+\end{equation}
+
+To obtain the Valencia formulation we set $\vec{p}$ to have zeroth component $-\vec{n}$ and spatial components $\vec{\partial}_i$. Then the
+
+\begin{itemize}
+    \item ${T^0}_{\nu}p^{\nu}$ represent the conserved quantities,
+    \item ${T^i}_{\nu}p^{\nu}$ are associated fluxes,
+    \item ${T^{\mu}}_{\nu}p^{\nu}$ are sources
+\end{itemize}
+
+with the former being 
+
+\begin{equation}
+    S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i), \hspace{10mm} E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})
+\end{equation}
+
+for numerical reasons we define the difference between the total internal energy density and the rest-mass density, $\tau = E-D$
 
 
 [130]\cite{Font:2008fka} [36]\cite{Banyuls:1997} [210]\cite{Marti:1991wi} [146]\cite{Giacomazzo:2010bx} [274]\cite{Rezzolla:2011da} [248]\cite{Papadopoulos:1999kt} [275]\cite{Rezzolla:2013}
