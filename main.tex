@@ -808,6 +808,7 @@ An important example of the conservation formulation that is adopted to $3 + 1$ 
 
 \begin{equation}
     \frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
+    \label{eq:theory:valencia_formalism}
 \end{equation}
 
 where $u$ is a “vector” of \textit{primitive quantities}, such as the rest-mass density or the specific internal energy, $\boldsymbol{F}^0$ is a “vector” of \textit{conserved quantities} and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ are their fluxes and sources respectively. \\
@@ -866,10 +867,75 @@ with the former being
     S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i), \hspace{10mm} E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})
 \end{equation}
 
-for numerical reasons we define the difference between the total internal energy density and the rest-mass density, $\tau = E-D$
+for numerical reasons we will replace the total internal energy density $E$ with $\tau = E-D$, where $D$ is the rest mass density. This is done to avid errors emerging due to $E$ being much smaller then $D$. 
+
+Now we can combine the obtained expressions for the conserved quantities, associated fluxes and sources with eq. (\ref{eq:theory:valencia_formalism}) and obtain
+
+\begin{equation}
+    \frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}),
+\end{equation}
+
+where primitive quantities being
+
+\begin{equation}
+    \boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon],
+\end{equation}
+
+conserved quantities: 
+
+\begin{equation}
+    \boldsymbol{F}^0(\boldsymbol{u}) = [D,\: S_j,\: \tau] = [\rho W,\: \rho h W^2 \upsilon_j,\: \rho h W^2 - p - \rho W],
+\end{equation}
+
+associated fluxes
+
+\begin{equation}
+    \boldsymbol{F}^i(\boldsymbol{u})=\Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg]
+\end{equation}
+
+and sources 
+
+\begin{equation}
+    \boldsymbol{S}(\boldsymbol{u}) = \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
+\end{equation}
+
+The from of the obtained general relativistic hydrodynamics equations resemble the one of the Newtonian gas dynamics. If the latter is adopted for numerical solutions. \\
+There are however several complications. In particular there is no explicit inverse relation between the primitive quantities and the conserved ones. Thus one has to resort to the root-finding algorithms to reconstruct them (More on this in later chapters). In addition, it was pointed out that the $W$ cpuples the equation for the momenta in different direction \cite{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. This leads to the fact that the dynamics of the shock wave can be affected by the non-zero tangential velocity. Hence, the increased complexity if he problem of GR hydrodynamics \cite{Mignone:2005ns,Zhang:2005qy}.
 
 
-[130]\cite{Font:2008fka} [36]\cite{Banyuls:1997} [210]\cite{Marti:1991wi} [146]\cite{Giacomazzo:2010bx} [274]\cite{Rezzolla:2011da} [248]\cite{Papadopoulos:1999kt} [275]\cite{Rezzolla:2013}
+\subsection{The General-Relativistic Boltzmann Equation}
+
+
+
+
+%[130]\cite{Font:2008fka}
+%[36]\cite{Banyuls:1997}
+%[210]\cite{Marti:1991wi}
+%[146]\cite{Giacomazzo:2010bx}
+%[274]\cite{Rezzolla:2011da}
+%[248]\cite{Papadopoulos:1999kt}
+%[275]\cite{Rezzolla:2013}
+%[257]\cite{Pons:2000}
+%[272]\cite{Rezzolla:2002ra} 
+%[273]\cite{Rezzolla:2002cc}
+%[15]\cite{Aloy:2006rd}
+%[224]\cite{Mignone:2005ns}
+%[339]\cite{Zhang:2005qy}
+[311]\cite{Synge:1957}
+[315]\cite{Tauber:1961}
+[84]\cite{Chernikov:1962}
+[174]\cite{Israel:1963}
+[173]\cite{Israel:1979wp}
+[201]\cite{Lindquist:1966}
+[321]\cite{Thorne:1981}
+[67]\cite{Bruenn:1985}
+[79]\cite{Cercignani:2002}
+[108]\cite{Debbasch:2009a}
+[109]\cite{Debbasch:2009b}
+[124]\cite{Ehlers:1971}
+[284]\cite{Sasaki:1958}
+[285]\cite{Sasaki:1962}
+
 
 
 \chapter{Numerical methods}
