@@ -915,7 +915,7 @@ Here we recall the detailed derivation of the general relativistic Boltzmann equ
 
 \subsubsection{The geometry of the tangent bundle}
 
-Let the $\mathcal{M}$ be $4$ dimensional differential manifold such that $(\mathcal{M},\: g_{\alpha\beta})$ form the $C^2$ spacetime. The set of tangent vectors of $\mathcal{M}$ constitutes \textit{tangent bundle} of $\mathcal{M}$, the we denote as $T\mathcal{M}$. The set of all unit vectors of $\mathcal{M}$ constitute the \teextit{subbundle} of $T\mathcal{M}$. \\
+Let the $\mathcal{M}$ be $4$ dimensional differential manifold such that $(\mathcal{M},\: g_{\alpha\beta})$ form the $C^2$ spacetime. The set of tangent vectors of $\mathcal{M}$ constitutes \textit{tangent bundle} of $\mathcal{M}$, the we denote as $T\mathcal{M}$. The set of all unit vectors of $\mathcal{M}$ constitute the \textit{subbundle} of $T\mathcal{M}$. \\
 \textcolor{gray}{incompressible vector field}\\
 \textit{Every Killing vector field of $\mathcal{M}$ is in incompressible vector field}
 
@@ -923,7 +923,53 @@ Let the $\mathcal{M}$ be $4$ dimensional differential manifold such that $(\math
 
 Let the $T\mathcal{M}$ be the set of all the tangent vectors of $\mathcal{M}$. The $T\mathcal{M}$ has a natural topology, bundle structure with $\mathcal{M}$ and the base - linear vector space $E^i$. We call $T\mathcal{M}$ the \textit{tangent bundle} of $\mathcal{M}$. Natural projection, or a projection map $\pi:\: T\mathcal{M}\rightarrow\mathcal{M}$.  \\
 
-Let $U$ be a coordinate neighborhood of \mathcal{M} 
+Let $U$ be a coordinate neighborhood, or a coordinate patch of $\mathcal{M}$ with $n$ variables $x^{\alpha}$ as coordinates. Then, every tangent vector of $\mathcal{M}$ at a point $p\in U$ with $2n$ variables $(x^i,\upsilon^{\alpha})$. Here $x^{\alpha}$ are coordinates of $p$ with respect to the coordinate patch ${x^{\alpha}}$ and $\upsilon^{\alpha}$ are components of a tangent vector in the natural frame that constitutes by the vectors $\partial/\partial x^4$ at $q$. Thus, the vector $\vec{p}$ at $q$ can be written as:
+
+\begin{equation}
+    \vec{p} = p^{\alpha}\frac{\partial}{\partial^{\alpha}}
+\end{equation}
+
+and its dual as 
+
+\begin{equation}
+    \underline{p} = p_{\alpha}dx^{\alpha}:=g_{\alpha\beta}p^{\beta}dx^{\alpha}
+\end{equation}
+
+In addition we introduce a coordiante patch $TU$, $\{z^A\}$, where $A$ runs from $0$ to $7$ of $T\mathcal{M}$ as 
+
+\begin{equation}
+    z^{\alpha} = z^{\alpha}, \hspace{10mm} z^{\alpha+4} = p^{\alpha}.
+\end{equation}
+
+Now, let the $U(x^{\alpha})$ and $\hat{U}(\hat{x}^{\alpha})$ be the two coordinate patches of $\mathcal{M}$ such that $U\cap\hat{U}$ is not empty. Then the intersection of the coordinate patches is also not empty. 
+for every coordinate transformation of $\mathcal{M}$, there is a corresponding matrix $\frac{\partial \hat{x}^{\alpha}}{\partial x^{\beta}}$.
+The coordinate transformation is then
+
+\begin{equation}
+    \hat{x}^{\mu} = \hat{x}^{\mu}(x), \hspace{5mm} \hat{p}^{\mu} = \frac{\partial\hat{x}^{\mu}}{\partial x^{\nu}}p^{\nu}
+\end{equation}
+
+which denotes the extended transforation of the $\hat{x}^{\mu} = \hat{x}^{\mu}(x)$. \\
+
+
+The corresponding Jacobian matrix is 
+\renewcommand\arraystretch{1.6} %% it stretches the matrix
+\begin{equation}
+\frac{\partial\hat{z}^A}{\partial z^B} = 
+    \begin{pmatrix}
+    \frac{\partial\hat{x}^{\alpha}}{\partial x^{\beta}} & 0 \\
+    \frac{\partial^2\hat{x}^{\alpha}}{\partial x^{\beta} \partial x^{\gamma}}p^{\gamma} & \frac{\partial\hat{x}^{\alpha}}{\partial x^{\beta}} 
+    \end{pmatrix}
+\end{equation}
+\renewcommand\arraystretch{1.0}
+
+
+
+
+\paragraph{Vectors on $T\mathcal{M}$}
+
+
+
 
 
 %[130]\cite{Font:2008fka}
