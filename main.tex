@@ -991,8 +991,58 @@ As there is no unique way to perform a parallel transport, the linear connection
     \mathcal{O}_b\oplus \mathcal{V}_p = T_b T\mathcal{M}.
 \end{equation}
 
-This connection is called an Ehresmann connection. It allows in particular to 
+Having the connection allows to prescribe a manner of lifting curves from the base manifold $T\mathcal{M}$ into the $T_b T\mathcal{M}$ \textcolor{red}{I need to fix this and understand}. A lift is the unique horizontal vector $\vec{X}\in T_bT\mathcal{M}$ whose projection is a vector $\vec{x}\in T_q\mathcal{M}$.\\ 
+\textcolor{red}{fill it}
+Let us now define a \textit{connection vector basis} adopted to the aforementioned split of $T_b T\mathcal{M}$ $\{\text{D}/\partial x^A \}:=\{\text{D}/\partial x^{\alpha}, \partial/\partial p^{\alpha} \}$ where 
 
+\begin{equation}
+    \frac{\text{D}}{den}{\partial x^{\alpha}} := \frac{\partial}{\partial x^{\alpha}} - {\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}}.
+\end{equation}
+
+Similarly a connection can be build for differential forms. Using the pull-back $\pi^*$ the dual basis $\{ \text{D}z^{A} \}:=\{\text{d}x^{\alpha}, \text{D}p^{\alpha}\}$ that satisfies 
+
+\begin{equation}
+    \text{D} = \text{d} p ^{\alpha} + {Gamma^{\alpha}}_{\beta\gamma}p^{\gamma}\text{d}x^{\beta}.
+\end{equation}
+
+\paragraph{Metric on $T\mathcal{M}$}
+
+Note that 
+
+\begin{equation}
+    \frac{\partial^2 \hat{x}^{\mu}}{\partial x^{\nu}\partial x^{\lambda}}p^{\lambda} = {\hat{\Gamma}^{\mu}}_{\delta\gamma}p^{\lambda}\frac{\partial\hat{x}^{\delta}}{\partial x^{\nu}}.
+\end{equation}
+
+Let us assume that for any point $b\in T\mathcal{M}$ there exist an open set $TU$, such that $b\in TU$ with a coordinate system on $TU$ that satisfies
+
+\begin{equation}
+    G_{AB} = (\boldsymbol{\eta}\otimes\boldsymbol{\eta})_{AB},
+\end{equation}
+
+where $\boldsymbol{\eta} = \text{diag}(-1, 1, 1, 1)$. \\
+Let the $\hat{x}^A$ denote the generic coordinate system on $TU$. Then the metric in this coordinate system can be expressed as
+
+\begin{align}
+    \hat{G}_{\mu\nu} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}\eta_{\alpha\beta} + \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}{\hat{\Gamma}^{\gamma}}_{\:\:\:\alpha\lambda}p^{\lambda}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}{\hat{\Gamma}^{\delta}}_{\:\:\:\beta\xi}p^{\xi}\eta_{\gamma\delta}; \\
+    \hat{G}_{\mu\: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\gamma}}{\partial x^{\nu}}{\hat{\Gamma}^{\beta}}_{\:\:\:\gamma\lambda}p^{\lambda}\eta_{\alpha\beta}; \\
+    \hat{G}_{\mu+4 \: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}} \eta_{\alpha\beta}
+\end{align}
+
+and the line element 
+
+\begin{align}
+    dS^2 &= \hat{G}_{AB}d\hat{z}^A d\hat{z}^B = \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}[\text{d}p^{\mu} + {\hat{\Gamma}^{\mu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] [\text{d}p^{\nu} + {\hat{\Gamma}^{\nu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] \\
+    &= \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}\text{D}\hat{x}^{\mu}\text{D}\hat{x}^{\nu}
+\end{align}
+
+It is possible to show that the determinant $|\text{det}\boldsymbol{G}| = g^{2}$ as the transformation from the natural frame to the connection frame is unimodular \cite{Lindquist:1966}. Thus the volume pseudo-form on $T\mathcal{M}$ is in the coordiante patch $TU$
+
+\begin{align}
+    \text{Vol}^8 &:= -g \text{d}x^{0} \wedge \text{d}x^{1} \wedge ... \wedge \text{d}p^{3} := - g\text{d}^{4}x \text{d}^{4}p, \\
+    &:= -g \text{d}x^{0} \wedge \text{d}x^{0} \wedge ... \wedge \text{D}p^{3} :=-g \text{d}^{4}x\text{D}^4 p
+\end{align}
+
+\textcolor{red}{I kinda gave up here and just copied.}
 
 %[130]\cite{Font:2008fka}
 %[36]\cite{Banyuls:1997}
