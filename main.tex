@@ -995,8 +995,10 @@ Having the connection allows to prescribe a manner of lifting curves from the ba
 \textcolor{red}{fill it}
 Let us now define a \textit{connection vector basis} adopted to the aforementioned split of $T_b T\mathcal{M}$ $\{\text{D}/\partial x^A \}:=\{\text{D}/\partial x^{\alpha}, \partial/\partial p^{\alpha} \}$ where 
 
+\textcolor{red}{I did not find where this is derived from... difficult}
+
 \begin{equation}
-    \frac{\text{D}}{den}{\partial x^{\alpha}} := \frac{\partial}{\partial x^{\alpha}} - {\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}}.
+    \frac{\text{D}}{\partial x^{\alpha}}{\partial x^{\alpha}} := \frac{\partial}{\partial x^{\alpha}} - {\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}}.
 \end{equation}
 
 Similarly a connection can be build for differential forms. Using the pull-back $\pi^*$ the dual basis $\{ \text{D}z^{A} \}:=\{\text{d}x^{\alpha}, \text{D}p^{\alpha}\}$ that satisfies 
@@ -1043,6 +1045,47 @@ It is possible to show that the determinant $|\text{det}\boldsymbol{G}| = g^{2}$
 \end{align}
 
 \textcolor{red}{I kinda gave up here and just copied.}
+
+
+\paragraph{the Liuville theorem}
+
+Let us start by introducing a \textit{cotangent bundle}. Let $\mathcal{M}$ be a differentiable manifold. Similarly to the construction of the tangent bundle, we can make a set of covectors on a given manifold into a vector bundle over $\mathcal{M}$, denoted $T^*\mathcal{M}$ and called \textit{cotangent bundle} of $\mathcal{M}$.  Similarly we can define a contangent bundle of a tangent one $T^*T\mathcal{M}$. The contangent bundle $T^*\mathcal{M}$ is the vector bundle dual to the tangent bundle $T\mathcal{M}$. 
+
+Let us start by defining \textit{Poincar\'e} 1-form on $T\mathcal{M}$, $\underline{\lambda}\in T^* T\mathcal{M}$. Consider point $q$ on a manifold $\mathcal{M}$ and a point $A$ associated with $q$ on a tangent bundle $T\mathcal{M}$. Let there be a 1-form $\underline{\alpha}\in T^* _q\mathcal{M}$. The $\underline{\lambda}$ and $\underline{\alpha}$ are uniquely connected $\underline{\lambda} = \pi^* \alpha$, and the former is called the \textit{Poincar\'e} 1-form. In local coordinate patch, $TU$ it is expressed as
+
+\begin{equation}
+    \underline{\lambda} = p_{\alpha} \text{d}x^{\alpha}.
+\end{equation}
+
+the associated vector is 
+
+\begin{equation}
+    \vec{\lambda} = p^{\alpha} \frac{\text{D}}{\partial x^{\alpha}} = p^{\alpha}\frac{\partial}{\partial x^{\alpha}} - p^{\alpha}{\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}},
+\end{equation}
+
+is called the $\textit{geodesic flow field}$. \\
+This flow represents a phase-space flow of particles moving along geodesics. \\
+
+Consider a mass shell, that at a point $q\in U$can be defined as a set:
+\textcolor{red}{remider: I have no idea how is this possible...}
+\begin{equation}
+    \mathcal{S}_m = \big\{ p^{\alpha}\in T_q\mathcal{M}: p_{\mu}p^{\mu}+m^2 =:f(p) = 0 \big\}.
+\end{equation}
+
+For a massless particle the normal to the to the shell is given by $\underline{\pi}:=(1/2)\text{d}f$. If $m\neq 0$, however, the normal to the mass-shell is given by
+
+\begin{equation}
+    \underline{\pi}:=\frac{q}{2m}\text{d}f, \hspace{5mm} \text{d}f = \frac{\partial f}{\partial x^{\mu}} + \frac{\partial f}{\partial p^{\mu}}\text{d}p^{\mu} = 2p_{\mu}\text{d}p^{\mu},
+\end{equation}
+
+Next, we introduce a unique form $\underline{\nu}$ whose restriction on $T_q\mathcal{M}$ is equal to $\underline{\pi}$. In case of a massive particle it is given by:
+
+\begin{equation}
+    \underbrace{\nu} = \frac{1}{m}p_{\alpha}\text{D}p^{\alpha}
+\end{equation} 
+
+and in the massless case as $\underbrace{\nu} = p_{\alpha}\text{D}p^{\alpha}$
+
 
 %[130]\cite{Font:2008fka}
 %[36]\cite{Banyuls:1997}
