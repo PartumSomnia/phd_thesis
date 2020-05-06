@@ -1131,8 +1131,96 @@ Consider coordinates adopted to the mass-shell, where $\underline{\nu} = (p_0/m)
     \text{Vol}^3 _p =\frac{\sqrt{-g}}{-p_0}\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3
 \end{equation}
 
-In the cntext...
+Now we have a three-form $\text{Vol}^3 _p$ and a four-form $\text{Vol}_x ^4$. In the context of the ADM foliation, we split spacetime manifold as $\mathcal{M}=\mathcal{R}\times\Sigma$, with $x^0 = \text{const}$ being constant hypersurfaces with normal $\underline{n} = - \alpha\text{d}x^0$ and $\alpha$ -- the lapse function. We can now simplify the $\boldsymbol{\omega}$, splitting $\text{Vol}_x ^3$ as 
 
+\begin{align}
+    \text{Vol}_x ^4 &= -\underline{n}\wedge\text{Vol}_x ^3 \hspace{5mm} \text{where,} \\
+    \text{Vol}_x ^3 &= i_{\vec{n}}\text{Vol}_x ^4 = \sqrt{\gamma}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3
+\end{align}
+
+and the $\boldsymbol{\gamma}$ is the three-metric induced on the slices.  \\
+The resulted coordinates, adapted to the mass shell and the spacetime foliation read
+
+\begin{align}
+    \boldsymbol{\omega} &=-(\vec{p}\cdot\vec{n})\frac{1}{-p_0}\sqrt{\gamma}\sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3 \\
+    &= \frac{p^0}{-p_0}|g|\text{d}x^1 \wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3
+\end{align}
+
+Now, consider a six-vector, $\delta_i x \delta_i p$ with $i\in\{1,2,3\}$. The $\delta_i x$ are tangent vectors to the slice $\Sigma$ and the $\delta_i p$ are tangent to mass shell $S_m$. \\
+The action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$ yields
+
+\begin{align}
+    \boldsymbol{\omega}(\delta_1 x,...,\delta_3 p) =& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
+    & \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) \\
+    & \hspace{2mm} -\frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}p,\delta_{2}p,\delta_{3}p)\times \\
+    & \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 x, \delta_2 x, \delta_3 x) = \\
+    =& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
+    & \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) = \\
+    =& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
+    & \hspace{10mm} \Big[\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p), \\
+\end{align}
+
+where we used that $\text{d}x^i(\delta_j p)=0$ and the relation
+
+\begin{equation}
+    \text{D}p^{i}(\delta_j p) = \text{d}p^{i}(\delta_j p) - {\Gamma^i}_{\alpha\beta}p^{\alpha}\text{d}x^{\beta}(\delta_j p) = \text{d}p^i(\delta_j p)
+\end{equation}
+
+Thus, on the space-like hypersurface $\Sigma$ and on the mass shell we have
+
+\begin{equation}
+    \boldsymbol{\omega} = \frac{p^0}{-p_0}|g|\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\wedge\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3 =: \boldsymbol{\Omega}
+\end{equation}
+
+The $\boldsymbol{Omega}$ can be split as 
+
+\begin{align}
+    \boldsymbol{\Omega} &= \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}, \hspace{5mm} \text{where} \\
+    \boldsymbol{\Lambda} &= p^0 \sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \\
+    \boldsymbol{\Pi} &=  \frac{1}{-p_0}\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3
+\end{align}
+
+The defined forms $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ can be written in a coordinate-independent way at any point $q\in\mathcal{M}$ as 
+
+\begin{equation}
+    \boldsymbol{\Lambda} = \star_{\mathcal{M}}\underline{\lambda}, \hspace{5mm} \boldsymbol{\Pi} = \star_{T_q\mathcal{M}}\underline{\pi}
+\end{equation}
+
+and this are intrinsic forms in $T\mathcal{M}$. In addition, the $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the proper geodesics flux
+volume form on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively. \\
+
+Let us now consider the geodesic flow $\vec{\lambda}$. It generates a "tube" in a phase space, that we limit with $S_1$ and $S_2$ sections. Then the flux of points in phase space associated with geodesic flow is $\int_{S}\boldsymbol{\omega}$. It is possible to show that the flux satisfies
+
+\begin{equation}
+    \int_{S_1}\boldsymbol{\omega} = \int_{S_2}\boldsymbol{\omega}
+    \label{eq:theory:liuville}
+\end{equation}
+
+which is the \textit{Liouville’s Theorem} in the relativistic case. \\
+
+To see taht this is indeed the case, consider the exterior differential of $\boldsymbol{\omega}$
+
+\begin{equation}
+    \star\text{d}\omega = \text{d}^{\star}(\underline{\nu}\wedge\underline{\lambda}) = d^{\star}\underline{\nu}\wedge\underline{\lambda} + \underline{\nu}\wedge\text{d}^{\star}\underline{\lambda}.
+\end{equation}
+
+The $\text{d}^{\star}=\text{const}=k$ as $\text{dd}^{\star}\underline{\nu}=0$. In addition, the $\text{d}^{\star}\underline{\lambda}=0$. This allow us to write 
+
+\begin{equation}
+    \text{d}\omega = -k(\star\lambda).
+\end{equation}
+
+We note the $\star\underline{\lambda}$ is the volume form of the hypersurfaces orthogonal to $\vec{\lambda}$. Hence, the $\star\underline{\lambda}[\vec{\lambda},...]=0$ along the "tube" in phase space. 
+
+\begin{equation}
+    \int_S\text{d}\boldsymbol{\omega} = 0.
+\end{equation}
+
+the \ref{eq:theory:liuville} is recovered, if we use the Stoke’s Theorem, and using the fact that the $\boldsymbol{\omega}$ vanishes along the part of the boundary tangent to $\vec{\lambda}$.
+
+\textcolor{red}{Note that I still have no Idea what I have written. I need to go through the original materal, which I could not find... at least I could not find what I could read and understand. }
+
+\subsubsection{The Boltzmann equation}
 
 %[130]\cite{Font:2008fka}
 %[36]\cite{Banyuls:1997}
