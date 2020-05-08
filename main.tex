@@ -1222,6 +1222,109 @@ the \ref{eq:theory:liuville} is recovered, if we use the Stoke’s Theorem, and 
 
 \subsubsection{The Boltzmann equation}
 
+Let us introduce the phase space version of the mass flux, the 6-form representing the number of phase-space trajectories crossing $S$ of the phase tube between $S_1$ and $S_2$ cross sections. \\
+In the absence of collisions we obtain 
+
+\begin{equation}
+    \int_{S_1}\boldsymbol{\mu} = \int_{S_2}\boldsymbol{\mu}.
+\end{equation}
+
+Remembering that $\boldsymbol{\omega}$ represents the density of states in phase space of particles moving along geodesics, we obtain 
+
+\begin{equation}
+    \boldsymbol{\mu} = F\boldsymbol{\omega},
+\end{equation}
+
+where $F$ is \textit{invariant distribution function}, \textcolor{gray}{i.e. F is the Radon-Nikodym derivative of $\boldsymbol{\mu}$ with re $\boldsymbol{\omega}$}. \\
+
+Consider now that collisions change the number of phase trajectories as 
+
+\begin{equation}
+    \delta N = \int_{S_2} \boldsymbol{\mu} - \int_{S_1}\boldsymbol{\mu} = \int_S \text{d}\boldsymbol{\mu} = \int_S \text{d}F\wedge\boldsymbol{\omega}.
+\end{equation}
+
+where 
+
+\begin{equation}
+    \text{d}F\wedge\boldsymbol{\omega} = \text{d}F\wedge\star (\underline{\nu}\wedge\underline{\lambda}) = \langle\text{d}F,\underline{\lambda}\rangle\star\underline{\nu} - \langle\text{d}F,\underline{\nu}\rangle\star\underline{\lambda},
+\end{equation}
+
+where $\langle\cdot,\cdot\rangle$ is a scalar product between forms and can be written as
+
+\begin{equation}
+    \langle\boldsymbol{\alpha},\boldsymbol{\beta}\rangle\text{Vol}^8 := \boldsymbol{\alpha}\wedge\star\boldsymbol{\beta},
+\end{equation}
+
+and with the $\star\underline{\lambda}=0$ on $S$ we obtain 
+
+\begin{equation}
+    \delta N = \int_S\langle\text{d}F\underline{\lambda}\rangle\star\underline{\nu} = \int_S\mathcal{C}[F]\star\underline{\nu},
+\end{equation}
+
+where we denoted the effect of collisions as
+
+\begin{equation}
+    \langle\text{d}F\underline{\lambda}\rangle = \mathcal{C}[F].
+\end{equation}
+
+This is the Boltzmann equation. In component from it reads as 
+
+\begin{equation}
+    p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{\gamma}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{\gamma}} =\mathcal{C}[F].
+\end{equation}
+
+In the coordinate system adapted to the equation, when $P^0 = p^0(p^i)$, the equation reads \cite{Cercignani:2002}:
+
+\begin{equation}
+p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{i}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{i}} =\mathcal{C}[F].
+\end{equation}
+
+Remembering that that the $\underline{\lambda}$ is incompressible, we can write
+
+\begin{equation}
+    \langle\text{d}F,\underline{\lambda}\rangle = \text{d}^{\star}[F,\underline{\lambda}],
+\end{equation}
+
+This allows to obtain a conservative formulation of the Boltzmann equation, that indicates the conservation of the number of particles \cite{Cardall:2002bp}
+
+\begin{equation}
+    \text{d}^{\star}[F\underline{\lambda}] = \mathcal{C}[F].
+\end{equation}
+
+Next, we re-introduce the Levi Civita connection $\nabla$ in phase space. For incompressible $\underline{\lambda}$ it gives
+
+\begin{equation}
+    \nabla_A\lambda^A=0,
+\end{equation}
+
+while the Boltzmann equation becomes 
+
+\begin{equation}
+    \lambda^A\partial_A F=\mathcal{C}[F]
+\end{equation}
+
+and its conservative form 
+
+\begin{equation}
+    \nabla_A[Fp^{A}] = \mathcal{C}[F],
+\end{equation}
+
+or in component form
+
+\begin{equation}
+    \frac{1}{|g|}\frac{\partial}{\partial x^{\mu}}\Bigg[|g|Fp^{\mu}\Bigg] + \frac{p_0}{|g|}\frac{\partial}{\partial p^{k}}\Bigg[\frac{|g|}{-p_0}{\Gamma^k}_{\alpha\beta}p^{\alpha}p^{\beta}F\Bigg] = \mathcal{C}[F].
+\end{equation}
+
+\subsubsection{From the Boltzmann Equation to the Euler Equation}
+
+In order to derive from the Boltzmann equation the equations of hydrodynamics, we need to first define the needed varaibles of the kinetic description, such as mass and energy fluxes. We not that the density flux can easly be obtained from $\boldsymbol{\mu}$. We write the mass flow then as 
+
+\begin{equation}
+    \boldsymbol{\rho} = \int_{S_m} \boldsymbol{\mu},
+\end{equation}
+
+
+
 %[130]\cite{Font:2008fka}
 %[36]\cite{Banyuls:1997}
 %[210]\cite{Marti:1991wi}
@@ -1244,6 +1347,7 @@ the \ref{eq:theory:liuville} is recovered, if we use the Stoke’s Theorem, and 
 %[321]\cite{Thorne:1981}
 %[67]\cite{Bruenn:1985}
 %[79]\cite{Cercignani:2002}
+%[77]\cite{Cardall:2002bp}
 %[108]\cite{Debbasch:2009a}
 %[109]\cite{Debbasch:2009b}
 %[124]\cite{Ehlers:1971}
