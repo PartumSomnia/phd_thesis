@@ -28,6 +28,7 @@
 % \bibliographystyle{agsm}
 %\usepackage{feynmf}
 %\usepackage{tensor}
+\usepackage[framemethod=tikz]{mdframed} % for a block of text
 
 \setlength{\parindent}{0pt}
 \geometry{a4paper, tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm, headheight=3em, headsep=2em, footskip=1cm}
@@ -35,6 +36,9 @@
 \setcitestyle{citesep={,}}
 
 \newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
+
+\newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
+
 
 \geometry{a4paper, tmargin=2cm, bmargin=2cm, lmargin=1cm, rmargin=1cm, headheight=2em, headsep=2em, footskip=1cm}
 
@@ -62,10 +66,89 @@ The chapter is divided into \todo{list the parts and their content}
 In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to
 evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
 
+
+\begin{sidenote}
+    \textbf{Note on the exterior algebra} \\
+    \textit{Understanding the exterior product, Wedge product} \\
+    If $\phi$ and $\psi$ are the 2-forms given for example as 
+    \begin{equation}
+        \phi = x dx - y dy \hspace{5mm} \text{and} \hspace{5mm}\psi = z dx + x dz
+    \end{equation}
+    Then the exterior produce is given by 
+    \begin{align}
+        \phi\wedge\psi &= (x dx - y dy)\wedge(zdx + xdz) = \\
+        &=xzdxdx+x^2dxdz-yzdydx-yxdydz= \\
+        &=yzdxdy + x^2 dx dz - xydydz
+    \end{align}
+    as $dxdx=0$ and $dydx=-dxdy$. The product of two 1-forms is a 2-form.
+    In general, the wedge product of a$p$-form and $q$-form is a $(p+q)$-form. \\
+    
+    Next, consider a surface $\mathcal{M}$ and two 1-forms on it $\phi$ and $\psi$ Then the wedge product is 
+    \begin{equation}
+        (\phi\wedge\psi)(v,w)=\phi(v)\psi(w) - \phi(w)\psi(v)
+    \end{equation}
+    for any $v$ and $w$ tangent vectors to $\mathcal{M}$. \\
+    
+    The central idea in exterior algebra is that the operations are designed to create the permutational antisymmetry. Let the $dx_i$ be the basis 1-from $\omega_j$ are the orbitrary $p$-form (of order $p_j$), $a$ and $b$ are arbitrary scalars. Then the wedge product is defined to have properties:
+    
+    \begin{align}
+        (a\omega_1+b\omega_2)\wedge\omega_3 &= a\omega_1\wedge\omega_3+b\omega_2\wedge\omega_3 \hspace{5mm} (p_1 = p_2), \\
+        (\omega_1\wedge\omega_2)\wedge\omega_3 &= \omega_1\wedge(\omega_2\wedge\omega_3), \hspace{5mm} a(\omega_1\wedge\omega_2) =  (a\omega_1)\wedge\omega_2\\
+        dx_i\wedge dx_j &= -dx_j\wedge dx_i
+    \end{align}
+    Thus, any arbitrary differential form can be reduced to a coefficient multiplying $dx_i$ or a wedge produce of the generic form 
+    \begin{equation}
+        dx_i\wedge dx_j \wedge...\wedge dx_p
+    \end{equation}
+    with the properties allowing to put all coefficients together as 
+    \begin{equation}
+        a dx_1 \wedge b dx_2 = - a(b dx_2 \wedge dx_1) = -ab(dx_2 \wedge dx_1) = ab(dx_1 \wedge dx_2)
+    \end{equation}
+    
+    The exterior or wedge product acts on tangent vectors. The $\wedge$ or two tangent vectors $\boldsymbol{u}\wedge\boldsymbol{v}$, ($\boldsymbol{u}, \boldsymbol{v}\in T_p(\mathcal{M})$) is an antisymmetric tensor product that in addition to bilinarity requires antisymmetry. 
+    \begin{align}
+        \boldsymbol{v} =& v^1e_1 + v^2 e_2 + v^3 e_3 \\
+        \boldsymbol{u} =& u^1e_1 + u^2 e_2 + u^3 e_3 \\
+        \boldsymbol{v}\wedge\boldsymbol{u} =& (v^1u^1 - v^2u^1)(e_1\wedge e_2) + \\
+        & + (v^1u^3 - v^3u^1)(e_1\wedge e_1) + \\
+        & + (v^2u^3 - v^3u^2)(e_2\wedge e_1)
+    \end{align}
+    mimicing the behaviour of the cross product. However, this can easly be extended to higher dimensions. \\
+    Important, that the resulting object of $\boldsymbol{v}\wedge\boldsymbol{u}$ does not belong to $T_p M$. It is called and alternating bivector and is an element of the vector space $\Lambda^2 T_p (\mathcal{M})$ ,that is called -- second exterior power of $T_p \mathcal{M}$. \\
+    Generally one obtains $\Lambda^k T_p (\mathcal{M})$ that is a linear subspace of $T_p ^k (\mathcal{M})$\\
+    Consider a cotangent space $T_p ^* \mathcal{M}$. The exterior product on this space is copativle with wedge product on $T_p\mathcal{M}$ and is usually denoted with the same symbol and yeilds: $(\boldsymbol{\alpha}\wedge\boldsymbol{\beta})\in\Lambda^2 T_p ^* \mathcal{M}$.
+\end{sidenote}
+
+\begin{sidenote}
+    \textbf{Differentia form} \\
+    Used for multivariable calculus independent of coordinates. Used for integrands over curves, manifolds. For example, differential form can be used to define a volume element as $f(x,y,z)dx \wedge dy \wedge dz$.\\
+    Albegra of diff.forms is organized to reflect the orientation of the domain of integration. For instance: the exterior product $d$ that converts $k$-from into $k+1$-form. This operation is similar to the divergence and the curl of a vector field. \\
+    Differential 1-forms are naturally dual to vector field on a manifold. Pairing is done via inner product. \\
+    If there are two manifolds, then the albegra of diff.forms and their exterior derivatives is preserved by the \textit{pullblack} under the smooth function. This allows geometrically invariant information to be moved from one space to another via the pullback. \\
+    Let $\mathcal{M}$ be an orientated $m$-dimentional manifold and $\mathcal{M}'$ is the same manifold with the opposite orientation and $\omega$ is an $m$-form, then 
+    \begin{equation}
+        \int_{\mathcal{M}}\omega = -\int_{\mathcal{M}'}\omega.
+    \end{equation}
+    
+    The \textit{exterior algebra} is used to make the notion of an oriented density precise.
+    The basic $1$-forms are \textit{differentials} ofthe coordiantes $dx^1,...,dx^n$. Each of them is a \textit{covector} that measures a small displacement in the corresponding coordinate direction. A general $1$-form thus is the combination  of these differentials 
+    \begin{equation}
+        f_1dx^1\cdot\cdot\cdot f_ndx^n
+    \end{equation}
+    where $f_k=f_k(x^1,...,x^n)$ are functions of all the coordiantes. \\
+    Wedge product is similar to cross product, and is used to be higher diff. forms out of lower ones, as the cross product in vector calculus. \\
+    
+    The \textit{Exterior derivative}, operator $d$, which is a generalisation of a differential of a function. Let $\omega=fdx^I$ being a simple $k$-form. Then its exterior derivative $d\omega$ is a $(k+1)$-form set by taking differential of the doefficient functions
+    \begin{equation}
+        d\omega = \sum_{i=1}^n \frac{\partial f}{\partial x^i}dx^i \wedge dx^I
+    \end{equation}
+    
+\end{sidenote}
+
 \subsection{Euler-Lagrange equations}
 
 We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature (-,+,+,+). The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. \\
-We use the convection that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$. \\
+We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$. \\
 The $\nabla\boldsymbol{T}$ denotes the covariant derivative of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.\\
 The scalar product of two vectors then 
 \begin{equation}
@@ -1307,6 +1390,7 @@ and its conservative form
 
 \begin{equation}
     \nabla_A[Fp^{A}] = \mathcal{C}[F],
+    \label{eq:theory:liouvilletheorem}
 \end{equation}
 
 or in component form
@@ -1320,10 +1404,77 @@ or in component form
 In order to derive from the Boltzmann equation the equations of hydrodynamics, we need to first define the needed varaibles of the kinetic description, such as mass and energy fluxes. We not that the density flux can easly be obtained from $\boldsymbol{\mu}$. We write the mass flow then as 
 
 \begin{equation}
-    \boldsymbol{\rho} = \int_{S_m} \boldsymbol{\mu},
+    \boldsymbol{\rho} = \int_{S_m} \boldsymbol{\mu}.
 \end{equation}
 
+Recalling the definition of the rest-mass denisty four-vector $J$, we note that
 
+\begin{equation}
+    \int_{\Sigma}(-J^{\mu}n_{\mu})\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} Fp^0\boldsymbol{\Pi}\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} F\boldsymbol{\Omega} = \int_{\Sigma}\boldsymbol{\rho}
+\end{equation}
+
+Thus, the $J$ can be written as 
+\textcolor{red}{this is not clear how it was obtain. Must go through again.}
+
+\begin{equation}
+J^{\mu} = \int_{S_m}Fp^{\mu}\boldsymbol{\Pi}
+\end{equation}
+
+The second moment of the distribution function $F$ in a similar way gives the stress energy tensor 
+
+\begin{equation}
+    T^{\mu\nu} = \int_{S_m} F p^{\mu}p^{\nu}\boldsymbol{\Pi}
+\end{equation}
+
+the components of which in the frame comoving with the fluid are
+
+\begin{equation}
+    T^{\mu\nu} = 
+    \begin{pmatrix}
+    E & \vec{F} \\
+    \vec{F} & \boldsymbol{P} \\
+    \end{pmatrix}
+\end{equation}
+
+where $E$ and $\vec{F}$ are the energy density and flux respectively, and $\boldsymbol{P}$ is the stress tensor. 
+
+The nature of the collisional operation ultimately defines the equilibrium configuration distribution function $F$ \cite{Cercignani:2002}, and thus the form of the stress-energy tenor. 
+
+Now we use the Liouville Theorem to obtain the equations of hydrodynamics. 
+To accomplish that we insert the $\boldsymbol{\Psi}$, a tensorial funcition of $\pagebreak^i$, into the theorem, eqiation \ref{eq:theory:liouvilletheorem} on both sides and integrate with respect to $\boldsymbol{\Pi}$ as
+
+\begin{equation}
+    \int_{\text{I\!R}}\nabla_{A}[F\lambda^A\boldsymbol{\Psi}]\boldsymbol{\Pi}=\int_{\text{I\!R}}\mathbb{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi}
+\end{equation}
+
+where we used that $\lambda^A\nabla_{A}\boldsymbol{\Psi}=0$ as $\vec{\lambda}$ is the geodesic flow. \\
+
+Letting the $F$ decay for large momenta we obtain the transfer equation \cite{Israel:1963,Cercignani:2002}:
+
+\begin{equation}
+    \nabla_{\mu}\int_{\text{I\!R}} F\boldsymbol{\Psi}p^{\mu}\boldsymbol{\Pi} =\int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi},
+    \label{eq:theory:transferequation}
+\end{equation}
+
+\textcolor{red}{check the sources. White intermediate steps}
+
+In a particular case of a simple gas $\Psi$ can be shown to be one of the $\{1,p^0,p^1,p^2,p^3\}$ \cite{Cercignani:2002}. Then the right hand side of the transfer equation becomes 
+
+\begin{equation}
+    \int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi} = 0.
+\end{equation}
+
+These $\boldsymbol{\Psi}$ are related to the quantities conserved by the collisional operator and are called \textit{collisional invariants}. Choice of $1$ would yield the mass conservation, while $p^{\mu}$ -- the energy and momentum conservation. \\
+
+Now, having cancelled the R.H.S of the eq. \ref{eq:theory:transferequation}, we obtain the conservation laws in a following form
+
+\begin{equation}
+    \nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
+\end{equation}
+
+\subsection{Overview}
+
+\chapter{Numerical Approximation of Conservation Laws}
 
 %[130]\cite{Font:2008fka}
 %[36]\cite{Banyuls:1997}
