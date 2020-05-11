@@ -61,12 +61,6 @@
 This chapter is meant to sketch several important parts of the mathematical background. We focus on the aspects relevant for the tools and methods employed in out discussion. We do not aim to provide a comprehensive overview. 
 The chapter is divided into \todo{list the parts and their content}
 
-\section{The Cauchy Problem in General Relativity}
-
-In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to
-evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
-
-
 \begin{sidenote}
     \textbf{Note on the exterior algebra} \\
     \textit{Understanding the exterior product, Wedge product} \\
@@ -248,6 +242,11 @@ evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1
     
 \end{sidenote}
 
+\section{The Cauchy Problem in General Relativity}
+
+In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to
+evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+
 \subsection{Euler-Lagrange equations}
 
 We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature (-,+,+,+). The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. \\
@@ -366,6 +365,75 @@ where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$.
 The Einstein field equations (\ref{eq:theory:EFE}) represent a set of 10 non-linear partial differential equations. These equations can be defeined on a while metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter, the boundary conditions on $\partial\Omega$ are required. \\
 It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. This, however, requires the spacetime to be strongly hyperbolic, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
 
+
+\subsubsection{Ex-curse: Hamiltonian Field Theory}
+
+First we recall the generalized coordinates $\boldsymbol{q}$ and their covariant derivatives $\nabla\boldsymbol{q}$. \\
+In light of the spacetime decomposition discussed above, we divide the $\boldsymbol{\alpha}$ into the time $dt$ and spatial parts represented by the antisymmetric symbol ${^{(3)}\boldsymbol{\alpha}}$ as 
+
+\begin{equation}
+\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3 = dt \wedge {^{(3)}\boldsymbol{\alpha}}.
+\end{equation}
+
+Next, we introduce the "time derivative" as a Lie derivative along the vector field $\vec{t}$ as 
+
+\begin{equation}
+\dot{\boldsymbol{q}} := \mathcal{L}_{\vec{t}}\boldsymbol{q}.
+\end{equation}
+
+As the $\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q})$ is the Lagrangian density, a conjugate momentum can be defined as 
+
+\begin{equation}
+\boldsymbol{p} := \frac{\partial\Lambda}{\partial\dot{\boldsymbol{q}}},
+\end{equation}
+
+Assuming that $\boldsymbol{p}$ and $\nabla\boldsymbol{q}$ can be expressed as a function of $\boldsymbol{q}$ and $\boldsymbol{p}$, inspired by the Legendre transformation, we define the Hamiltonian and its density density as
+
+\begin{align}
+\mathcal{H} &= \boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) \\
+H &= \int_{\Sigma}\mathcal{H}{^{(3)}\boldsymbol{\alpha}}
+\end{align}
+
+Additionally we define the quantity 
+
+\begin{equation}
+J = \int_{0}^{t}H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt\int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q},\nabla\boldsymbol{q})\Big).
+\end{equation}
+
+Consider the variation of the $J$ with respect to the $\delta\boldsymbol{p}$ and $\delta\boldsymbol{q}$ as
+
+\begin{equation}
+\delta J = \int_{0}^{t}\delta H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt (\dot{\boldsymbol{q}}\delta\boldsymbol{p}+\boldsymbol{p}\delta\dot{\boldsymbol{q}}) - \int_{0}^{t}dt\delta\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q}).
+\end{equation}
+
+Consider the last term, the variation of the Lagrangian 
+
+\begin{equation}
+\delta\Lambda = \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Bigg[\frac{\delta\Lambda}{\delta\dot{\boldsymbol{q}}}\delta\dot{\boldsymbol{q}}+\frac{\delta\Lambda}{\delta\boldsymbol{q}}\delta\boldsymbol{q}\Bigg],
+\end{equation}
+
+The first term in the square brackets can be reduced to $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$, suingthe definition of the conjugate momentum. The second term can be treated, applying the Euler-Lagrange equations (\ref{eq:theory:eulerlagrange}). These manipulations result in
+
+\begin{equation}
+\delta\Lambda = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\boldsymbol{p}\delta\dot{\boldsymbol{q}} + \dot{\boldsymbol{p}}\delta\boldsymbol{q}).
+\end{equation}
+
+Thus we obtain that 
+
+\begin{equation}
+\int_{0}^{t} \delta H(\boldsymbol{q},\boldsymbol{p})dt =   \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\dot{\boldsymbol{q}}\cdot\delta\boldsymbol{p}-\dot{\boldsymbol{p}}\cdot\delta\boldsymbol{q}),
+\end{equation}
+
+and as $\delta\boldsymbol{p}$ and $\delta\boldsymbol{p}$ are arbitrary, the Hamilton equations read
+
+\begin{equation}
+\dot{\boldsymbol{q}}=\frac{\delta H}{\delta\boldsymbol{p}}, \hspace{5mm} \dot{\boldsymbol{p}} = -\frac{\delta H}{\delta\boldsymbol{q}}.
+\label{eq:theory:hamiltoneqs}
+\end{equation}
+
+The Hamiltonian formalism can be used to redirive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution.
+
+
 \subsubsection{Spacelike Foliations}
 Let the $t$ be the global smooth functions such that, 
 
@@ -446,72 +514,9 @@ where $E$ is the ADM energy density. \\
 
 The obtained constraint equations represent a set of elliptic equations that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. It is however, possible to show that Eistein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future. 
 
-\subsubsection{Hamiltonian Field Theory}
 
-First we recall the generalized coordinates $\boldsymbol{q}$ and their covariant derivatives $\nabla\boldsymbol{q}$. \\
-In light of the spacetime decomposition discussed above, we divide the $\boldsymbol{\alpha}$ into the time $dt$ and spatial parts represented by the antisymmetric symbol ${^{(3)}\boldsymbol{\alpha}}$ as 
 
-\begin{equation}
-    \boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3 = dt \wedge {^{(3)}\boldsymbol{\alpha}}.
-\end{equation}
 
-Next, we introduce the "time derivative" as a Lie derivative along the vector field $\vec{t}$ as 
-
-\begin{equation}
-    \dot{\boldsymbol{q}} := \mathcal{L}_{\vec{t}}\boldsymbol{q}.
-\end{equation}
-
-As the $\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q})$ is the Lagrangian density, a conjugate momentum can be defined as 
-
-\begin{equation}
-    \boldsymbol{p} := \frac{\partial\Lambda}{\partial\dot{\boldsymbol{q}}},
-\end{equation}
-
-Assuming that $\boldsymbol{p}$ and $\nabla\boldsymbol{q}$ can be expressed as a function of $\boldsymbol{q}$ and $\boldsymbol{p}$, inspired by the Legendre transformation, we define the Hamiltonian and its density density as
-
-\begin{align}
-    \mathcal{H} &= \boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) \\
-    H &= \int_{\Sigma}\mathcal{H}{^{(3)}\boldsymbol{\alpha}}
-\end{align}
-
-Additionally we define the quantity 
-
-\begin{equation}
-    J = \int_{0}^{t}H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt\int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q},\nabla\boldsymbol{q})\Big).
-\end{equation}
-
-Consider the variation of the $J$ with respect to the $\delta\boldsymbol{p}$ and $\delta\boldsymbol{q}$ as
-
-\begin{equation}
-    \delta J = \int_{0}^{t}\delta H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt (\dot{\boldsymbol{q}}\delta\boldsymbol{p}+\boldsymbol{p}\delta\dot{\boldsymbol{q}}) - \int_{0}^{t}dt\delta\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q}).
-\end{equation}
-
-Consider the last term, the variation of the Lagrangian 
-
-\begin{equation}
-    \delta\Lambda = \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Bigg[\frac{\delta\Lambda}{\delta\dot{\boldsymbol{q}}}\delta\dot{\boldsymbol{q}}+\frac{\delta\Lambda}{\delta\boldsymbol{q}}\delta\boldsymbol{q}\Bigg],
-\end{equation}
-
-The first term in the square brackets can be reduced to $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$, suingthe definition of the conjugate momentum. The second term can be treated, applying the Euler-Lagrange equations (\ref{eq:theory:eulerlagrange}). These manipulations result in
-
-\begin{equation}
-    \delta\Lambda = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\boldsymbol{p}\delta\dot{\boldsymbol{q}} + \dot{\boldsymbol{p}}\delta\boldsymbol{q}).
-\end{equation}
-
-Thus we obtain that 
-
-\begin{equation}
-    \int_{0}^{t} \delta H(\boldsymbol{q},\boldsymbol{p})dt =   \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\dot{\boldsymbol{q}}\cdot\delta\boldsymbol{p}-\dot{\boldsymbol{p}}\cdot\delta\boldsymbol{q}),
-\end{equation}
-
-and as $\delta\boldsymbol{p}$ and $\delta\boldsymbol{p}$ are arbitrary, the Hamilton equations read
-
-\begin{equation}
-    \dot{\boldsymbol{q}}=\frac{\delta H}{\delta\boldsymbol{p}}, \hspace{5mm} \dot{\boldsymbol{p}} = -\frac{\delta H}{\delta\boldsymbol{q}}.
-    \label{eq:theory:hamiltoneqs}
-\end{equation}
-
-The Hamiltonian formalism can be used to redirive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution.
 
 \subsubsection{The Hamiltonian Formulation of the Einstein Equations}
 
@@ -1576,6 +1581,20 @@ Now, having cancelled the R.H.S of the eq. \ref{eq:theory:transferequation}, we 
 \end{equation}
 
 \subsection{Overview}
+
+We start this section by revisiting the fundamental concepts, such as manifold, tangent and cotangent bundles, with vectors and differential forms defined on them, and operations such ans exterior, Wedge product and Hodge star operator. \\
+
+Then we set ourselves a goal to obtain the general form of general relativistic hydrodynamics. This includes the equations for space-time evolution adopted adopted for use in numerical applications and Euler equations for the fluid, which we aim to obtain through the Liuville's theorem and Boltzmann equations. \\
+
+To derive the Einstein field equations we perform the variation of the so-called Hilbert action, applying the Euler-Lagrange equation. Thus we start by briefly deriving the Euler-Lagrange equations, using the fact that the fields we are interested in are defined over only a compact domain and that the choice of the variation of coordinates is arbitrary, i.e. $\partial S(\boldsymbol{q}, \nabla \boldsymbol{q}) = 0$. Then, in a similar way, the variation of the Hilbert action, yields the Einstein Field equation. \\
+
+For practical applications it is useful to express the EFE as a initial value boundary problem. The hamiltonian formalism allows to do that, which we briefly review. We then sketch the $3+1$ decomposition procedure, introducing the spacelike foliation and extrinsic curvature that allow us to obtain the constraint equations, that has to be satisfied on every hyper-surface of the hypersurface. Then, emplying the EFE and Gauss-Codacci equations we write the Hamiltonian density, whose variation with respcet to the variables of folliation $\alpha$ and $\beta$ yileds constraint equation. The evolution equations then are obtained through the variation of the Hamiltinan with respect to the three-metric and momentum. \\
+
+The obtained ADM system is however not well suited for numerical applications, being only weekly hyperbolic. We thus briefly touch on a strongly hyperbolic formulation, the Z4 formulation, that exhibit such usefull for numercs properties as constraint violation dumpening (constrain preservation) and its evolution, the CCZ4 formulation that is furhter adopted for BH evolution.
+
+After, we briefly touch on the gauge conditions, as in the 3+1 we are left with the freedom on how to do the foliation, namely, chosing the lapse function and shift vector.
+
+However, to derive the evolution equations for the space time we first
 
 \chapter{Numerical Approximation of Conservation Laws}
 
