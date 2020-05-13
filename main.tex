@@ -1613,10 +1613,20 @@ From Boltzmann equation we can now obtain an equations of hydrodynamics. For tha
 Next we use the Liouville Theorem to obtain the equations of hydrodynamics introducing a tensorial function of the momenta, that is related to the quantities conserved by the collisional operator and are called collisional invariants into the integral form onf the theorem. Letting the distribution function decay for large momenta we obtain the transfer equation. For as simple gas this can be reduced to already familiar equations where divergence of the rest mass vector J and stress energy tensor is zero. 
 
 
-
-
-
 \chapter{Numerical Approximation of Conservation Laws}
+
+In this chapter we aim to briefly remark on the theory of the numerical approximation of conservational laws. Owing to its key importance in physics, there is quite an extensive amount of literature concerning the topic. We therefore select the aspects that are of relevance to this work, namely high-order, state-of-the-art numerical methods for the solution of conservation laws. For the sake of compactness we would refrain from stating complete descritions of these schemes, focusing on key ideas behind them, their advantages and drawbacks in the context of general-relativistic hydrodynamics. \\
+
+This chapter is structured as following. In Section \ref{sec:theory:conserv_laws:theorback} we state the basics behind the theory of conservation laws and their numerical approximation. In Section \textcolor{red}{[??]} we give a brief overview of the Godunov-like finite-volume schemes. Next, in Section \textcolor{red}{[??]} we focus on the high-resolution shock-capturing (HRSC) finite-difference schemes. \textcolor{gray}{Finally, in Section [??????] we present discontinuous Galerkin methods.}
+
+\textcolor{red}{note that here section is capital 'S'}
+
+\section{Theoretical Background}
+\label{sec:theory:conserv_laws:theorback}
+
+In this section we briefly recall the basics behind the mathematical theory of conservational laws and subsequently, their numerical application. We start by defining the weak and entropic solutions, and present certain results regarding existence and uniqueness of these solutions for conservation laws. We then proceed with reviewing numerical approximation to conservation laws, as well as concepts of consistency, stability and convergence, \textcolor{gray}{briefly stating the Lax-Richtmeyer theorem}. Then we conclude with reviewing the extension to the case of non-linear equations. This section is based on the descriptions provided in \cite{LeVeque:1992,Tadmor1998}, and we refer the reader to these sources for more in-depth discussion. \\
+
+\subsection{Conservation Laws}
 
 %[130]\cite{Font:2008fka}
 %[36]\cite{Banyuls:1997}
@@ -1646,7 +1656,8 @@ Next we use the Liouville Theorem to obtain the equations of hydrodynamics intro
 %[124]\cite{Ehlers:1971}
 %[284]\cite{Sasaki:1958}
 %[285]\cite{Sasaki:1962}
-
+%[196]\cite{LeVeque:1992}
+%[312]\cite{Tadmor1998}
 
 
 \chapter{Numerical methods}
