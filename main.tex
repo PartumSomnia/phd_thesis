@@ -16,6 +16,7 @@
 \usepackage{appendix}
 \usepackage{hyperref}
 \usepackage{hyperref}
+\usepackage{mathtools}
 % \usepackage[style=authoryear]{biblatex}
 \usepackage{natbib}
 % \usepackage{newtxtext}
@@ -1628,36 +1629,137 @@ In this section we briefly recall the basics behind the mathematical theory of c
 
 \subsection{Conservation Laws}
 
-%[130]\cite{Font:2008fka}
+Let us consider the consercation laws in the following form
+
+\begin{align}
+    \partial_t\boldsymbol{u} + \nabla\cdot\boldsymbol{f}(\boldsymbol{u}) = 0, \hspace{10mm} &(t,x)\in \text{I\!R}_{+}\times\text{I\!R}^d , \\
+    \boldsymbol{u}(0, x) = \boldsymbol{u}(x), \hspace{18mm} &x\in \text{ I\!R},
+    \label{eq:theory:conservlaws}
+\end{align}
+
+where $\boldsymbol{u}$ is the vector of $m$ unknowns, $\boldsymbol{f}=(\boldsymbol{\boldsymbol{f}^1,...,\boldsymbol{f}^m})$ is a $d$-dimensional flux and $\boldsymbol{u_0}\in\big[L^{\infty}(\text{I\!R}^d)\big]^m$ is the initial data. \\
+
+Investigations of the system \ref{eq:theory:conservlaws} showed irrespective of the initial data, the solution can develop discontinuities (shocks) in a finite time. Thus, the system should be viewed in distribution formalism. There, if for all test functions $\upsilon\in C_0 ^1 (\text{I\!R}^{d+1})$ and $i=1,2,...,m$  we obtain
+
+\begin{equation}
+    \int_{0}^{\infty}\text{d}t\int_{\text{I\!R}^d}\big[u^i \partial_t\upsilon + \boldsymbol{f}^i(\boldsymbol{u})\cdot\nabla\upsilon\big]\text{d}x = \int_{\text{I\!R}^d} u_0 ^i \upsilon \text{d}x,
+\end{equation}
+
+then, the vector $\boldsymbol{u}\in\big[\text{I\!R}_{+}\times\text{I\!R}^d\big]^m$ is a \textit{weak solution} of \ref{eq:theory:conservlaws}.\\
+
+It can be shown that that multiple weak solutions are allowed even for a scalar conservation law. Let us then consider the concept of the entropic solution. A convex function \textcolor{red}{what is it?}, $\eta(\boldsymbol{u})$, is said to be an entropy function if its Hesian \textcolor{red}{what is it???}, $\nabla_{\boldsymbol{u}}^2\eta$, symmetrizes the spatial Jacobian, $\nabla_{\boldsymbol{u}}f^i$ \textcolor{red}{WHAT IS IT?!},
+
+\begin{equation}
+    \nabla_{\boldsymbol{u}}^2\eta\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{f}^i]^{T}\cdot\nabla_{\boldsymbol{u}}^2\eta, \hspace{10mm} i = 1, ... , m.
+\end{equation}
+
+Here we infer the compatibility relation, introducing the entropy flux $\boldsymbol{\psi} = (\boldsymbol{\psi}^1,...,\boldsymbol{\psi}^m)$, as 
+
+\begin{equation}
+    [\nabla_{\boldsymbol{u}}\eta]^T\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{\psi}^i]^T, \hspace{15mm} i = 1,...,m.
+\end{equation}
+
+The pair $\eta\boldsymbol{\psi}$ is referred to as \textit{entropy pair}. \\
+
+Then, the \textit{entropic solution} is a weak solution that for any $(\eta\boldsymbol{\psi})$, in the sense of   admits
+
+\begin{equation}
+    \partial_t\eta(\boldsymbol{u}) + \nabla\cdot\boldsymbol{\psi}(\boldsymbol{u})\leq 0.
+\end{equation}
+
+Concerning distributions, the \textit{entropic solution} requires that for any positive test function $\upsilon\in C_0 ^1 (\text{I\!R}_+\times\text{I\!R}^d)$ that 
+
+\begin{equation}
+    \int_{\text{I\!R}_+\times\text{I\!R}^d} \big[\eta(\boldsymbol{u})\partial_t\upsilon + \boldsymbol{\psi}(\boldsymbol{u}) \cdot \nabla\upsilon \big]\text{d}t\text{d}x = 0
+\end{equation}
+
+It is possible to show \cite{LeVeque:1992}, that this condition in a scalar cast is equivalent to making characteristic line impinged into shock waves. This constitutes the the process that resulted in a shock forming is irreversible and that the time-symmetry is not longer applies. \\
+
+Considering the scalar case, where $m=1$, it is possible to prove the existence and uniqueness of the entropic solution under very general conditions \cite{Kruzkov:1970}. It s is also can be extended to measure-valued solutions \cite{DiPerna:1985} and to the case of conservation laws on manifolds \cite{Benartzi:2007}. \\
+
+On the other hand, uniqueness and stability of entropic solutions is not well understood in case of systems of conservation laws, as not even the existence of $(\eta\boldsymbol{\psi})$ for the general system of equation has been proven. In \cite{Chen:2009} a novel approach has been employed, based on divergence-measure vector fields. For one dimensional
+Riemann problem, where the initial data in a form 
+
+
+\begin{equation}
+    \boldsymbol{u}_0(x) = 
+    \begin{dcases}
+        \boldsymbol{u}^L, \hspace{5mm} \text{if } x<0; \\
+        \boldsymbol{u}^R, \hspace{5mm} \text{if } x>0.
+    \end{dcases}
+\end{equation}
+
+it allowed to prove the existence, uniqueness and stability of the entropic solution of the Euler equations for a classical ideal-gas \cite{Chen:2003}. \\
+
+However the mere exestiance of the weak solution to the Riemann problem for general equation of state is not guaranteed \cite{Curtis:1972}. (for more recent results regarding classical Euler equations, see the review \cite{Chen:2006}). \\
+
+On the other hand, using Glimm’s method \cite{Glimm:1965} in the existence of solutions to the Riemann problem was shown in the relativistic case but for the ultrarelativistic equation of state \cite{Smoller:1993}. \\
+
+For \textit{strictly hyperbolic systems} \textit{i.e.,} when $\nabla_{\boldsymbol{u}}\boldsymbol{f}$ has a complete set of real eigenvalues and eigenvectors, the existence of weak solutions was was proven in case when the initial data had small enough initial jump \cite{Lax:1957}.
+
+\subsection{Consistency, Stability and Convergence}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%[15]\cite{Aloy:2006rd}
 %[36]\cite{Banyuls:1997}
-%[210]\cite{Marti:1991wi}
+%[40]\cite{Benartzi:2007}
+%[67]\cite{Bruenn:1985}
+%[77]\cite{Cardall:2002bp}
+%[79]\cite{Cercignani:2002}
+%[81]\cite{Chen:2006}
+%[82]\cite{Chen:2003}
+%[83]\cite{Chen:2009}
+%[84]\cite{Chernikov:1962}
+%[108]\cite{Debbasch:2009a}
+%[109]\cite{Debbasch:2009b}
+%[114]\cite{DiPerna:1985}
+%[124]\cite{Ehlers:1971}
+%[130]\cite{Font:2008fka}
 %[146]\cite{Giacomazzo:2010bx}
-%[274]\cite{Rezzolla:2011da}
+%[147]\cite{Glimm:1965}
+%[173]\cite{Israel:1979wp}
+%[174]\cite{Israel:1963}
+%[188]\cite{Kruzkov:1970}
+%[192]\cite{Lax:1957}
+%[196]\cite{LeVeque:1992}
+%[201]\cite{Lindquist:1966}
+%[210]\cite{Marti:1991wi}
+%[222]\cite{Curtis:1972}
+%[224]\cite{Mignone:2005ns}
 %[248]\cite{Papadopoulos:1999kt}
-%[275]\cite{Rezzolla:2013}
 %[257]\cite{Pons:2000}
 %[272]\cite{Rezzolla:2002ra} 
 %[273]\cite{Rezzolla:2002cc}
-%[15]\cite{Aloy:2006rd}
-%[224]\cite{Mignone:2005ns}
-%[339]\cite{Zhang:2005qy}
-%[311]\cite{Synge:1957}
-%[315]\cite{Tauber:1961}
-%[84]\cite{Chernikov:1962}
-%[174]\cite{Israel:1963}
-%[173]\cite{Israel:1979wp}
-%[201]\cite{Lindquist:1966}
-%[321]\cite{Thorne:1981}
-%[67]\cite{Bruenn:1985}
-%[79]\cite{Cercignani:2002}
-%[77]\cite{Cardall:2002bp}
-%[108]\cite{Debbasch:2009a}
-%[109]\cite{Debbasch:2009b}
-%[124]\cite{Ehlers:1971}
+%[274]\cite{Rezzolla:2011da}
+%[275]\cite{Rezzolla:2013}
 %[284]\cite{Sasaki:1958}
 %[285]\cite{Sasaki:1962}
-%[196]\cite{LeVeque:1992}
+%[304]\cite{Smoller:1993}
+%[311]\cite{Synge:1957}
 %[312]\cite{Tadmor1998}
+%[315]\cite{Tauber:1961}
+%[321]\cite{Thorne:1981}
+%[339]\cite{Zhang:2005qy}
+
+
+
+
+
+
 
 
 \chapter{Numerical methods}
