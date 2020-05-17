@@ -1695,14 +1695,84 @@ However the mere exestiance of the weak solution to the Riemann problem for gene
 
 On the other hand, using Glimm’s method \cite{Glimm:1965} in the existence of solutions to the Riemann problem was shown in the relativistic case but for the ultrarelativistic equation of state \cite{Smoller:1993}. \\
 
-For \textit{strictly hyperbolic systems} \textit{i.e.,} when $\nabla_{\boldsymbol{u}}\boldsymbol{f}$ has a complete set of real eigenvalues and eigenvectors, the existence of weak solutions was was proven in case when the initial data had small enough initial jump \cite{Lax:1957}.
+For \textit{strictly hyperbolic systems} \textit{i.e.,} when $\nabla_{\boldsymbol{u}}\boldsymbol{f}$ has a complete set of real eigenvalues and eigenvectors, the existence of weak solutions was proven in case when the initial data having small enough initial jump \cite{Lax:1957}.
 
 \subsection{Consistency, Stability and Convergence}
 
+Now we consider how the conservation laws can be treated numerically. We limit the discussion to the $m=1$ case, as the non-linear theory is well established only for the scalar fields. Thus we define a problem as 
 
+\begin{align}
+    \partial_t u + \nabla\cdot\boldmath(u) = 0&, \hspace{10mm} (t,x) \in I\!R_{+}\times I\! R^d \\ 
+    u(0, x) = u_o(x)&, \hspace{15mm} x\in I\!R^{d},
+\end{align}
 
+where $u$ is now just a scalar function. \\
 
+Let us introduce the following notation. The form of equations \ref{eq:theory:conservlaws} allows us to view the solution to this system in a form of a "curve" in an infinite dimensional vector sapce $L^{\infty}I\!(R^d)$, or as a sequence of bounded functions $u(t,\cdot)\in L^{\infty}(I\! R^d)$, that we can consider only being functions of time $u(t)$ with values in the vector space. Owing to the curve being bounded in $L^{\infty}(I\!R^d)$, the sequence of bounded functions read $u(t)\in L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$. Then the system  \ref{eq:theory:conservlaws} can be seen as a system of ordinary differential equations (ODEs), which can be represented as 
 
+\begin{equation}
+    \frac{\text{d}u(t)}{\text{d}t} = \mathcal{L}[u(t)], \hspace{10mm} u(0) = u_0,
+    \label{eq:theory:conservlawsode}
+\end{equation}
+
+where we associate the operator $\mathcal{L}(\cdot)$ with the $-\nabla\cdot\boldsymbol{f}(\cdot)$. It is important to remember, that as the $u(t)$ is not a smooth function of time, the equation \ref{eq:theory:conservlawsode} should be considered from a point of view of distributions. In addition, we note that stating $u(0) = u_0$ is in all mathematical rigor is a restriction of general functions $L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$ to the set of zero Lebesgue measure, which is not define. For the purpose of keeping the discssion brief we refer to the \cite{Kruzkov:1970} for the related discussion. For the numerical applications we further restrict $u(t)$ to be a smooth function of time, and leave the mathematical subtleties out of discussion.  \\
+
+Transitioning from general formulation \ref{eq:theory:conservlaws} to one adopted for a scalar function $u(t)$ \ref{eq:theory:conservlawsode}, we can introduce the numerical approximation, that is depended in a discrimination parameter $\Delta$. This approximation reads
+
+\begin{equation}
+    \frac{\text{d}u^{\Delta}(t)}{\text{d}t} = L^{\Delta}[u^{\Delta}(t)], \hspace{10mm} u^{\Delta}(0) = P^{\Delta}[u_0],
+\end{equation}
+
+where $u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \textit{i.e.,} $u^{\delta}\approxeq u u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator. However, as the error associated with it is negable in comparison with other errors arizing in discritisation of conservation laws, we will ignore it, effectively assinging that $u^{\Delta}(0) = u_0$. One of such errors is the trucaction error. \\
+The \textit{ local truncation error} can be defined as 
+
+\begin{equation}
+    r^{\Delta} = L^{\Delta}[u(t)] - \mathcal{L}[u(t)],
+\end{equation}
+
+where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. We call a numerical scheme \textit{consistent} if the $r^{\Delta}\rightarrow 0$ when $\Delta\rightarrow 0$ in a given norm for all possible initial data $u_0$. Note, however, that the choice of norm is problem- and method- dependent and may limit the allowable initial data. \\
+
+We then call a scheme to be of order $r$ if 
+
+\begin{equation}
+    || r^{\Delta}(t) || = \mathcal{O}(\Delta^r).
+\end{equation}
+
+\begin{sidenote}
+    \textbf{Infimum and Supremum} \\
+    Im math, the \textit{infimum (inf)} of a subset $S$ of a partially ordered set $T$ is the greatest element of $T$ that is less than or equal to all elements of $S$. \\
+    The \textit{supremum (sup)} of a subset $S$ of a partially ordered set $T$ is the least element in $T$ that is greater than or equatl to all elements of $S$. The upper bound of a subset $S$ of a partially ordered set (P,$\leq$) is an element $b$ of $P$ such that $b\geq x$ for all $x$ in $S$. If a supremum of a subset $S$ exhists it is unique. The supremum of a subset $S$ of partially ordered set $P$ does not necessearly belongs to $S$. But if it does, it is the maximum, or the greatest element of $S$. \\
+    Examples of suprema.
+    The supremum of a set of real numbers of $\{1,2,3\}$ is $3$. The number $4$ is an upper bound but it is not the least upper bound and hence not the supremum. \\
+    \begin{align}
+        \sup\{x\in\text{I\!R}|0<x<1\} = 1. \\
+        \sup\{(-1)^n - 1/n | n = 1,2,3,... \} = 1. \\
+        \sup\{x\in\mathbb{Q} | x^2 < 2\} = \sqrt{2}
+    \end{align}
+\end{sidenote}
+
+A scheme is considered to be \textit{stable} if the norm $L^{\Delta}$ is limited 
+
+\begin{equation}
+    |||L^{\Delta}||| := \sup \frac{||L^{\Delta}||}{||\upsilon||}\leq C,
+\end{equation}
+
+where $C\geq 0$ is a constant independent of $\upsilon$. \\
+A scheme is considered to be \textit{convergent} if 
+
+\begin{equation}
+    \lim_{\Delta\rightarrow 0} ||u^{\Delta}(t)-u(t)|| = 0, \hspace{10mm} \text{a.e. } t\in \text{I\!R}_{+}.
+\end{equation}
+
+The relation between the consistency, stability and convergence is given by the Lax-Richtmeyer equivalence theorem \cite{Lax:1956}. It states that the numerical approximation of well-posed problems is convergent if and only if the scheme is stable and consistent. In addition, consider a scheme of the order $r$, then
+
+\begin{equation}
+    || u^{\Delta}(t) - u(t) || = \mathcal{O}(\Delta^r).
+\end{equation}
+
+However, in the non-linear case, the \textit{non-linear stability} is required in addition to the stability and consistency are to assure convergence. 
+
+\subsection{Non-Linear Equations and Non-Linear Stability}
 
 
 
@@ -1735,6 +1805,7 @@ For \textit{strictly hyperbolic systems} \textit{i.e.,} when $\nabla_{\boldsymbo
 %[174]\cite{Israel:1963}
 %[188]\cite{Kruzkov:1970}
 %[192]\cite{Lax:1957}
+%[193]\cite{Lax:1956}
 %[196]\cite{LeVeque:1992}
 %[201]\cite{Lindquist:1966}
 %[210]\cite{Marti:1991wi}
