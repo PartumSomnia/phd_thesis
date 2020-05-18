@@ -1721,6 +1721,7 @@ Transitioning from general formulation \ref{eq:theory:conservlaws} to one adopte
 
 \begin{equation}
     \frac{\text{d}u^{\Delta}(t)}{\text{d}t} = L^{\Delta}[u^{\Delta}(t)], \hspace{10mm} u^{\Delta}(0) = P^{\Delta}[u_0],
+    \label{eq:theory:conservlawsodepde}
 \end{equation}
 
 where $u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \textit{i.e.,} $u^{\delta}\approxeq u u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator. However, as the error associated with it is negable in comparison with other errors arizing in discritisation of conservation laws, we will ignore it, effectively assinging that $u^{\Delta}(0) = u_0$. One of such errors is the trucaction error. \\
@@ -1774,7 +1775,9 @@ However, in the non-linear case, the \textit{non-linear stability} is required i
 
 \subsection{Non-Linear Equations and Non-Linear Stability}
 
+The system \ref{eq:theory:conservlawsodepde} is a system of ordinary differential equations, where the discritisation of time has to made as well as space. However, up to now we were discussing only the latter, introducing the operator $\mathcal{L}$ and its approximation $L^{\Delta}$. The reason for that is the following. The spatial discritisation introduces much more prominent truncation error than the time descritisation, which allowed us to limit the discussion of non-linear conseravation laws to different choices in constructing $L^{\Delta}$. However, the properties of the time discritisation start to play an important role in the context of non-linear stability and convergence of numerical schemes in the non-linear case. Thus, we shall discuss a \textit{fulli descrete} schemes. \\
 
+Let us start by introducing 
 
 
 
@@ -1785,6 +1788,7 @@ However, in the non-linear case, the \textit{non-linear stability} is required i
 
 
 %[15]\cite{Aloy:2006rd}
+%[16]\cite{Luigi:2002}
 %[36]\cite{Banyuls:1997}
 %[40]\cite{Benartzi:2007}
 %[67]\cite{Bruenn:1985}
@@ -1793,7 +1797,10 @@ However, in the non-linear case, the \textit{non-linear stability} is required i
 %[81]\cite{Chen:2006}
 %[82]\cite{Chen:2003}
 %[83]\cite{Chen:2009}
+%[97]\cite{Conway:1966}
 %[84]\cite{Chernikov:1962}
+%[100]\cite{Crandall:1980}
+%[101]\cite{Crandall:1980proc}
 %[108]\cite{Debbasch:2009a}
 %[109]\cite{Debbasch:2009b}
 %[114]\cite{DiPerna:1985}
@@ -1801,12 +1808,17 @@ However, in the non-linear case, the \textit{non-linear stability} is required i
 %[130]\cite{Font:2008fka}
 %[146]\cite{Giacomazzo:2010bx}
 %[147]\cite{Glimm:1965}
+%[151]\cite{Goodman:1985}
+%[161]\cite{Harten:1976}
 %[173]\cite{Israel:1979wp}
 %[174]\cite{Israel:1963}
 %[188]\cite{Kruzkov:1970}
+%[190]\cite{Kurganov:2000}
 %[192]\cite{Lax:1957}
 %[193]\cite{Lax:1956}
+%[194]\cite{Lax:1960}
 %[196]\cite{LeVeque:1992}
+%[197]\cite{LeVeque:2002}
 %[201]\cite{Lindquist:1966}
 %[210]\cite{Marti:1991wi}
 %[222]\cite{Curtis:1972}
@@ -1825,7 +1837,7 @@ However, in the non-linear case, the \textit{non-linear stability} is required i
 %[315]\cite{Tauber:1961}
 %[321]\cite{Thorne:1981}
 %[339]\cite{Zhang:2005qy}
-
+%[341]\cite{Zhang:2011}
 
 
 
