@@ -1777,11 +1777,120 @@ However, in the non-linear case, the \textit{non-linear stability} is required i
 
 The system \ref{eq:theory:conservlawsodepde} is a system of ordinary differential equations, where the discritisation of time has to made as well as space. However, up to now we were discussing only the latter, introducing the operator $\mathcal{L}$ and its approximation $L^{\Delta}$. The reason for that is the following. The spatial discritisation introduces much more prominent truncation error than the time descritisation, which allowed us to limit the discussion of non-linear conseravation laws to different choices in constructing $L^{\Delta}$. However, the properties of the time discritisation start to play an important role in the context of non-linear stability and convergence of numerical schemes in the non-linear case. Thus, we shall discuss a \textit{fulli descrete} schemes. \\
 
-Let us start by introducing 
+Let us start by introducing a one-parameter family of evolution operators $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$. Following \cite{Kruzkov:1970}, the $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$ allows an operation of composition that forms a semi-group and the $\mathcal{T}_t(u_0)$ yields a solution \ref{eq:theory:conservlaws} at a time $t$, given the initial data $u_0$, \textit{i.e.,}
 
+\begin{equation}
+    u(t) = \mathcal{T}_t(u_0), \hspace{10mm} \mathcal{T}\circ\mathcal{T}_t = \mathcal{T}_{t+s}.
+\end{equation}
 
+Its descrete version then
 
+\begin{equation}
+    u^{\Delta}(k\Delta t) = T^{\Delta}_{\Delta t}(u_0), \hspace{10mm} T^{\Delta}_s\circ T^{\Delta}_t = T^{\Delta} _{t+s}
+\end{equation}
 
+\textit{i.e.,}
+
+\begin{equation}
+    u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)]
+\end{equation}
+
+in a fully desrete form. \\
+
+Importantly, there is only one discretization parameter $\Delta$ for time and space. This is allows due to the  Courant–Friedrichs–Lewy (CFL) condition, which is in essence a linear stability condition of a time-integrator, that links two discretizations. \\
+
+For a fully-discrete from, the truncation error reads 
+
+\begin{equation}
+    r^{\Delta}(t) = T^{\Delta}_{\Delta t}[u(t)] - u(t + \Delta t) = T^{\Delta}_{\Delta t}[u(t)] - \mathcal{T}_{\Delta t}[u(t)],
+\end{equation}
+
+where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. \\
+For the consistency, it is required that the norm $||\cdot||$, $||r^{\Delta}(t)||\rightarrow 0$ when $\Delta\rightarrow 0$. \\
+A scheme is said to be of an order $r$ if $||r^{\Delta}(t) = \mathcal{O}(\Delta^r)||$. \\
+A scheme is regarded to be linearly stable if 
+
+\begin{equation}
+    |||T^{\Delta}_{\Delta t}||| \leq C,
+\end{equation}
+
+where $C$ is a constant. \\
+
+Let us consider how a numerical scheme in a non0-linear case then can be constructed. The Lax-Wendroff theorem \cite{Lax:1960} reads, that for a function $u$ to be a weak solution of \ref{eq:theory:conservlaws}, the numerically approximated solution $u^{\Delta}$ to the \ref{eq:theory:conservlawsode} obtained via conservative and consistent scheme should converge strongly. By conservative we understand a scheme such that 
+
+\begin{equation}
+    \int_{\text{I\!R}^d} T^{\Delta}_s(\upsilon)\text{d}x = \int_{\text{I\!R}^d}\upsilon\text{d}x, \hspace{10mm} \text{for any } \upsilon\in L^1(\text{I\!R}^d),
+\end{equation}
+
+where $L^1$ is norm and the strong convergence implies that this $L^1$ is the norm to the function $u$. \\
+
+Thus, the important point is to obtain a conditions that is sufficient for a scheme to be convergent. Then, the ax-Wendroff theorem will ensure that this solution is a weak solution. It is however important to note that the theorem does not guarantee that the solution also entropic, and an additional criterion of satisfying the entropy inequality, then has to be imposed. \\
+
+\begin{sidenote}
+    \textbf{$L^p$ space} \\
+    The $L^p$ spaces are function spaces defined using a natural generalisation of the $p-$form for a fintie-dimensitiona vector space. They are also called \textit{Lebesgue spaces}. $L^p$ spaces form an important class of \textit{Banach spaces} in functional analysis, and of topological vector spaces. \\
+    \textit{$p-$form in finite dimensions} \\
+    Consider a length vector $x=(x-1, x_2...,x_n)$ in the $n-$ dimensional real vector space $R^n$ is usually bien by the Euclidean norm 
+    \begin{equation}
+        ||x||_2 = (x_1 ^2 + ... + x_n ^2)^{1/2}.
+    \end{equation}
+    For real numbers the $p-$norm or $L^p$-norm of $x$ is defined by
+    \begin{equation}
+        ||x||_p = (|x_1|^p + ... + |x_n|^p)^{1/p}.
+    \end{equation}
+    \textit{$l^p$ spaces}
+    an $L^p$ space may be defined as a space of measurable functions for which the $p-$th power of an absolute value is  Lebesgue integrable where functions which agree almost everywhere are identified.
+    \textbf{Total variation.} \\
+    The total variation of a real-valued function $f$ defined on an interval $[a,b]\subset R$ is the quantity 
+    \begin{equation}
+        V_b ^a (f) = \sup_{\mathcal{P}}\sum_{i=0}^{n_p -1}|f(x_{i+1} - f(x_i)|,
+    \end{equation}
+    where the supremum runs over the set of all partitions $\mathcal{P} = \{\mathcal{P}=\{x_0,...,x_{np}\}|P\text{ is the partition of }[a,b]\}$ of the given interval. \\
+    \textit{total variation for function of $n>1$ real variables} \\
+    Let $\Omega$ be an open subset of $\mathbb{R}^n$. Given a function $f$ belonging to $L^1(\Omega)$, the total variation of $f$ in $\Omega$ is defined as 
+    \begin{equation}
+        V(f,\Omega):=\sup\Bigg\{\int_{\Omega}f(x)\text{div}\phi(x)\text{d}x:\phi\in C_{c}^1(\Omega, \mathbb{R}), ||\phi||_{L^{\infty}(\Omega)}\leq 1\Bigg\}
+    \end{equation}
+    where $C_c ^1(\Omega, \mathbb{R}^n)$ is the set of continuously differentiable vector functions of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
+    \textbf{Bounded variation} \\
+    A function of bounded variation also known as $BV$ dunction is a real valued function whose total variation $TV$ is bounded or finite. \\
+    In case of a continous function of one variable, for that function to be of  bounded variation implies taht the distance along the direction of the $y-$axis, neglecting the $x-$axis motion contribution, traversed by a point, moving along the grap, has a finite value. \\
+    In case of several variables a function $f$ defined on an open subset $\Omega$ of $\mathbb{R}^n$ is staid to have bounded variation it its distributional derivative is a vector-valued finite Radon measure.\\
+    Importantly, functions of bounded variation form an algebra of dinsontinous functions whose first derivative exists almost everywhere. Thus, they can be used to define generalized solutions of nonlinear problems involving functionals. ODE, PDE.\\
+    Returning to the definition of the total variation $TV$ for a function of one variable, $V_a ^b (f)$. If $f$ is differentiable and its derivative is Reimann-integrable, its total variation is the verical component of the arc-length of its graph, \textit{i.e.,}
+    \begin{equation}
+        VC_a ^b(f) - \int_a ^b |f'(x)|\text{d}x.
+    \end{equation}
+    A condinous real-valued function $f$ on the real line is said to be of bounded variation \textit{BV function} on a chosen interval $[a, b]\subset \mathbb{R}$ if its total variation is finitie, \textit{i.e.,}
+    \begin{equation}
+        f\in\text{BV}([a,b]) \leftrightarrows V_a ^b (f) < +\infty
+    \end{equation}
+    The space of bounded varaition (BV functions) can be defined as 
+    \begin{equation}
+        \text{BV}(\Omega) = \{u\in L^1(\Omega): V(u, \Omega) < +\infty\}
+    \end{equation}
+\end{sidenote}
+
+Let us then proceed with derivation of the conditions that is sufficient for convergence. We start by introducing the total-variation of a function $u$, belonging to $L^1(\Omega)$ in a domain $\Omega$
+
+\begin{equation}
+    \text{TV}(\upsilon;\Omega):=\sup\Bigg\{ \int_{\Omega} \upsilon\nabla\cdot\boldsymbol{\phi}\text{d}x: \boldsymbol{\phi}\in [C_0 ^1 (\Omega)]^d, ||\boldsymbol{\phi}||_{L^{\infty}(\Omega)}\leq 1 \Bigg\}, \hspace{5mm} \text{ for any }\boldsymbol{\phi} \in C_0 ^1 (\Omega)
+\end{equation}
+
+where $C_0 ^1(\Omega)$ is the space of continuously differentiable vector functions $\boldsymbol{\phi}$ of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. \\
+
+It is possible to show that (\textit{e.g.,} \cite{Luigi:2002}) if $\text{TV}(\upsilon ; \Omega) < \infty$, then $\text{TV}(\upsilon ; \Omega) = |D\upsilon|(\Omega)$ where $|\cdot|$ stands for the vector-valued measure $D\upsilon$ or 
+
+\begin{equation}
+    \text{TV}(\upsilon; \Omega) = \int_{\Omega}|D\upsilon|\text{d}x
+\end{equation}
+
+where $D\upsilon$ is a gradient of $\upsilon$ is a sense of distributions. \\
+Further we introduce the vector space BV, $\text{BV}(\Omega)$, that is the spce of all functions in $L^1(\Omega)$ with finite total variation. This is a Banach space with respect to the norm 
+
+\begin{equation}
+    || \upsilon ||_{\text{BV}(\Omega)} = \int_{\Omega}\big(|\upsilon| + |D\upsilon|\big)\text{d}x.
+\end{equation}
 
 
 
