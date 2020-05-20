@@ -1827,6 +1827,24 @@ where $L^1$ is norm and the strong convergence implies that this $L^1$ is the no
 Thus, the important point is to obtain a conditions that is sufficient for a scheme to be convergent. Then, the ax-Wendroff theorem will ensure that this solution is a weak solution. It is however important to note that the theorem does not guarantee that the solution also entropic, and an additional criterion of satisfying the entropy inequality, then has to be imposed. \\
 
 \begin{sidenote}
+    \textbf{Meaasure in mathematics} \\
+    measure of a set is a systematic way to assign a number to each suitable subset of that set intuitively interpreted as its size. Thus, a measure is a generalisation of length, area, volume. Example: \textit{Lebesgue measure on a Euclidean space} that assignes the conventional length area and volume to Eucledian geometry to the suitable subsets of the $n-$dimensional Eucledian space $\mathbb{R}^n$. For instance the Lebesgue measure of the interval $[0,1]$ in the real numbers is this length. \\
+    Measure is a function, that assigns a non-negative real number to certain subsets of a set $X$. It mist be countably addictive. \\
+    The formal defitinion: let $X$ be a set and $\Sigma$ a $\sigma$-algebra over $X$. A function $\mu$ from $\Sigma$ to the extended real number line is called measure if it sutisfies the following property:
+    \begin{itemize}
+        \item Non negativity: For all $E$ in $\Sigma$ we have $\mu(E)\geq 0$
+        \item Null empty set: $\mu(\emptyset) = 0$.
+        \item Countable addictivity or $\sigma$ addictivity: for all countable collections $\{E_k\}_{k=1}^{\infty}$ of pairwise disjoint sets in $\Sigma$: $\mu\Big(U_{k=1}^{\infty}E_k\Big) = \sum_{k=1}^{\infty}\mu(E_k)$.
+    \end{itemize}
+    \textbf{Lebesgue measure} \\
+    This is a standart way of assigning a measure to subset of $n-$dimensional Eucledian space. For $n=1,2,3$ it coinsides with simply length, area and volume. In general it is also called a $n-$dimensional volume or $n-$volume. Usually a measure of the Lebesgue-measurable set $A$ is denoted with $\lambda(A)$. \\
+    Formal definition: \\
+    Given a subset $E\subseteq\mathbb{R}$ with the length of interval $I=[a,b]$ (or $I=(a,b)$) given by $l(I) = b-a$ Lebesgue outer measure $\lambda^*(E)$ is defined as 
+    \begin{equation}
+        \lambda^*(E) = \inf\Bigg\{\sum_{k=1}^{\infty}l(I_k):(I_k)_{k\in N} \text{ is a sequence of open intervals with } \subseteq U_{k=1}^{\infty}I_k\Bigg\}
+    \end{equation}
+    The first part of the definition states that the subset $E$ of the real numbers is reduced to its outer measure by coverage by sets of open intervals. Each of these sets of intervals $I$ covers $E$E in the sense that when the intervals are combined together by union, they contain $E$. The total length of any covering interval set can easily overestimate the measure of $E$, because $E$ is a subset of the union of the intervals, and so the intervals may include points which are not in $E$. The Lebesgue outer measure emerges as the greatest lower bound (infimum) of the lengths from among all possible such sets. Intuitively, it is the total length of those interval sets which fit $E$ most tightly and do not overlap.\\
+    That characterizes the Lebesgue outer measure. Whether this outer measure translates to the Lebesgue measure proper depends on an additional condition. This condition is tested by taking subsets $A$ of the real numbers using $E$ as an instrument to split $A$ into two partitions: the part of $A$ which intersects with $E$ and the remaining part of $A$ which is not in $E$: the set difference of $A$ and $E$. These partitions of $A$ are subject to the outer measure. If for all possible such subsets $A$ of the real numbers, the partitions of $A$ cut apart by $E$ have outer measures whose sum is the outer measure of $A$, then the outer Lebesgue measure of $E$ gives its Lebesgue measure. Intuitively, this condition means that the set $E$ must not have some curious properties which causes a discrepancy in the measure of another set when $E$ is used as a "mask" to "clip" that set, hinting at the existence of sets for which the Lebesgue outer measure does not give the Lebesgue measure. (Such sets are, in fact, not Lebesgue-measurable.)\\
     \textbf{$L^p$ space} \\
     The $L^p$ spaces are function spaces defined using a natural generalisation of the $p-$form for a fintie-dimensitiona vector space. They are also called \textit{Lebesgue spaces}. $L^p$ spaces form an important class of \textit{Banach spaces} in functional analysis, and of topological vector spaces. \\
     \textit{$p-$form in finite dimensions} \\
@@ -1892,7 +1910,21 @@ Further we introduce the vector space BV, $\text{BV}(\Omega)$, that is the spce 
     || \upsilon ||_{\text{BV}(\Omega)} = \int_{\Omega}\big(|\upsilon| + |D\upsilon|\big)\text{d}x.
 \end{equation}
 
+The importance of BV spaces lies in the following. It was shown \cite{Conway:1966} that for any $t\geq 0$ $u(t)\in \text{BV}(\text{I\!R}^d)$, and if the initial data $u_o\in \text{BV}(\text{I\!R}^d)$, then the function $u \ in \text{BV}(\text{I\!R}\times\text{I\!R}^d)$. This constitutes the invariance property of the BV spaces. It is important to note, however, that the validity is confirmed only for scalar conservation laws. A system of conversational laws on the other can have a solution that is not BV even if the initial data was in BV space. Consider for example and Euler equation in Lagrangian coordinates. It was shown the the solution can develop vacuum regions, \textit{i.e.,} not BV, if the initial data exhibit sufficiently large variations, while still being in BV space.  Such a solution becomes an $L^1$ function or a Radon measure \cite{Chen:2006}. Another reason why BV are important is that boudned sets in BV$(\Omega)$ are sequentially compact in $L^1 _{\text{loc}}(\Omega)$ \textit{e.g.,} \cite{Luigi:2002}. This implies that for any sequence of functions $[\upsilon_n]\in\text{BV}(\Omega)$ there is a subsequence converging in the $L^1$-norm to a function $L^1 _{\text{loc}}(\omega)$. \\
 
+Then, the goal is to construct a numerical scheme that is able to mimic the BV-invariance of the exact conservation laws. Then the Lax-Wendroff Theorem would assure that the numerical scheme that is $L^1$ stable if consistent produces a sequence of solutions, for different discritisation parameter $\Delta$, that will converge in $L^1$-norm to a weak solution as we decrease $\Delta$. It is however important to note, that not a sequence of solutions, but a union of subsequences $[u^{\Delta}]$ is produced, each of which is converging to a possible different weak solution. If this is not the case, then there exist a sequence $\{u^{\Delta_i}\}$ and $\epsilon > 0$ such that $\Delta_i\rightarrow 0 $ when $i\rightarrow \infty$ and $\text{dist}(W,u^{\Delta_i})>\epsilon$ for any $i$. Such schemes are called \textit{TV-stable}. The important propery of such scheme is, that for all initial data $u_0\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d)$ there exist $\Delta_0 > 0$ and $C\geq 0$ such that 
+
+\begin{equation}
+    \text{TV}(T_s ^{\Delta}(u_0); \text{I\!R}^d)\leq C \text{ for any } \Delta < \Delta_0.
+\end{equation}
+
+For example, if a scheme shows the property 
+
+\begin{equation}
+    \text{TV}(T_{\Delta t} ^{\Delta}(\upsilon_0); \text{I\!R}^d) \leq \text{TV}(\upsilon,  \text{I\!R}^d), \text{ for any } \upsilon\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d),
+\end{equation}
+
+it is one of the \textit{total-variation diminishing} (TVD) schemes. 
 
 
 
