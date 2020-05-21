@@ -1926,6 +1926,30 @@ For example, if a scheme shows the property
 
 it is one of the \textit{total-variation diminishing} (TVD) schemes. 
 
+In the context of non-linear scalar conservation laws, an example of a convergent scheme is a \textit{monotone} scheme \textit{i.e.,}
+
+\begin{equation}
+    u \geq \upsilon \text{ a.e. } \rightarrow \hspace{5mm} T_{s}^{\Delta}(u) \geq T_{s}^{\Delta}(\upsilon).,
+\end{equation}
+
+and if $T_{s}^{\Delta}$ is conservative and monotone, it does satisfy the strong stability condition 
+
+\begin{equation}
+    || T^{\Delta} _{\Delta t} - T^{\Delta} _{\Delta t}(\upsilon)||_{L^1(\text{I\!R}^d)}, \text{  for any  } u.\upsilon\in L^1(\text{I\!R}^d),
+\end{equation}
+
+\textit{i.e.,} it is an $L^1$-contraction \cite{Crandall:1980proc}, which in implies that the method is TVD \cite{LeVeque:1992}. Crandall and Majda \cite{Crandall:1980} has shown that numerical solution thus, obtained with a consistent stable and momotone scheme converges to a weak solution of \ref{eq:theory:conservlaws}. In addition authors showed that the entropy inequality is satisfied by these schemes and hence the numerical solution converges to an entropic (unique) solution of the \ref{eq:theory:conservlaws}. The accuracy of the scheme has however been shown to be limited to the first order by Harten et al. \cite{Harten:1976}. Thus, while requireing a scheme to be monotonic allows for a non-linear stability, it prohibits the higher order accuracy.\\
+
+The solution to the problem was first to use the non-linear dissipation methods that reduces convergence only locally to the tirst order in the vicinity of the dinsintiniuties. These schemes are high-order accuracy, high resolution shock-capturing (HRSC) schemes. They are not monotone, while being TVD in one dimentional case. And Goodman and LeVeque \cite{Goodman:1985} has shown that this is a limitation of TVD schemes. Than can be desigend to be any ordder of accuracy in 1D but can only but in multidminsinal caes they are at most first-order accuracy. \\
+
+Multuple other high order accuracy schemes have been proposed whith however weaker conditions of non-linear stability and not yet fully explored convergence. For example, schemes that satisfy the maximum-principle \textit{i.e.,} such that if $m < u_0 < M$ then $u^{\Delta}(t,\cdot)\in[m, M]$. Such is the second-order central-scheme by Kurganov and Tadmor \cite{Kurganov:2000}. \\
+
+It is however remains that the commonly used modern multidimensional HRSC schemes are not TVD or even has been shown to be TV-stable. Numerical evidence to support a hypothesis that these schemes converge to the entropic solution of conservation laws, how the mathematical proof is yet to be provided. Additionally, even the stabolity and convergence in one-dimensional case has not been forven for a general system of non-linear conservation laws, \cite{LeVeque:2002}, while there also numerical evidence for the convergence of these schemes. \\
+
+It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}. Similarly, to prove the convergence of their numerical approximation likely requiresa  better understanding of the mathematical properties of systems of conservation laws. In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
+
+
+\subsection{Finite-Volume Methods}
 
 
 %[15]\cite{Aloy:2006rd}
