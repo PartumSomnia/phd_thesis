@@ -1948,20 +1948,37 @@ It is however remains that the commonly used modern multidimensional HRSC scheme
 
 It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}. Similarly, to prove the convergence of their numerical approximation likely requiresa  better understanding of the mathematical properties of systems of conservation laws. In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
 
-
 \subsection{Finite-Volume Methods}
+
+
+The finite-volume method, the Godunov scheme \cite{Godunov:1959}, was one of the fist \textit{monotonicity-preserving schemes}\footnote{Different from the monotonic schemes discussed above} that was able to yield solutions with discontinuities without spurious numerical extrema and with minimum numerical dissipation. There is a plethora of variations of Godunov-type, methods for conservation laws, built on top of the original method, see \textit{e.g.,} \cite{Toro:1999} for an up-to-date overview of the subject. \\
+In this section we consider the basic Godunov method for the first order schemes. Then, we iterate on the second-order Godunov-type schemes, that are the most widely used in the field of relativistic hydrodynamics. In the end of the subsetion, we elaborate on the extension of FV methods to even higher orders, and pint out the difficulties arising in application to the relativistic hydrodynamics 
+
+\subsubsection{The Godunov Method}
+
+The pioneer work by Godunov \cite{Godunov:1959}, established principles that most modern hock-capturing methods are based upon. Studying the numerical approaches to linear-advection equation, the author showed that all monotonicity-preserving schemes for this equation are at most first-order accurate. The linearity the discrimination scheme was a basic assumption in this proof. As it was shown later, this assumtion has to be lifted to create a higher-order, monotonicity preserving schemes can be constructed. Boris \cite{Boris:1971} and van Leer \cite{vanLeer:1973} showed that a higer order scheme necessarily have to be nonlinear, even for linear equations. \\
+
+In his work, Godunov has elaborated on the advantages of using the first-order upwind algorithm for the advection equation. In addition, author suggested a way to extend the method to non-linear case, establishing the Godunov scheme. \\
+
+Let us consider a simple case of the one dimensional scalar hyperbolic equation, the advection equation
 
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
+%[33]\cite{Baiotti:2004wn}
+%[35]\cite{Balsara:2000}
 %[36]\cite{Banyuls:1997}
 %[40]\cite{Benartzi:2007}
+%[59]\cite{Borges:2008}
+%[60]\cite{Boris:1971}
 %[67]\cite{Bruenn:1985}
 %[77]\cite{Cardall:2002bp}
 %[79]\cite{Cercignani:2002}
 %[81]\cite{Chen:2006}
 %[82]\cite{Chen:2003}
 %[83]\cite{Chen:2009}
+%[94]\cite{Colella:2008}
+%[96]\cite{Colella:1984}
 %[97]\cite{Conway:1966}
 %[84]\cite{Chernikov:1962}
 %[100]\cite{Crandall:1980}
@@ -1969,14 +1986,25 @@ It is believed that a more precise characterization of piecewise-regular entropi
 %[108]\cite{Debbasch:2009a}
 %[109]\cite{Debbasch:2009b}
 %[114]\cite{DiPerna:1985}
+%[115]\cite{Donat:1996}
+%[122]\cite{Dumbser:2007}
 %[124]\cite{Ehlers:1971}
+%[125]\cite{Einfeldt:1988}
 %[130]\cite{Font:2008fka}
+%[139]\cite{Gassner:2011}
+%[141]\cite{Gerolymos:2009}
+%[144]\cite{Giacomazzo:2005jy}
 %[146]\cite{Giacomazzo:2010bx}
 %[147]\cite{Glimm:1965}
+%[149]\cite{Godunov:1959}
 %[151]\cite{Goodman:1985}
 %[161]\cite{Harten:1976}
+%[162]\cite{Harten:1983}
+%[163]\cite{Harten:1987}
+%[166]\cite{Henrick:2005}
 %[173]\cite{Israel:1979wp}
 %[174]\cite{Israel:1963}
+%[176]\cite{Jiang:1996}
 %[188]\cite{Kruzkov:1970}
 %[190]\cite{Kurganov:2000}
 %[192]\cite{Lax:1957}
@@ -1985,7 +2013,11 @@ It is believed that a more precise characterization of piecewise-regular entropi
 %[196]\cite{LeVeque:1992}
 %[197]\cite{LeVeque:2002}
 %[201]\cite{Lindquist:1966}
+%[202]\cite{Liu:1994}
+%[207]\cite{Marquina:1994}
+%[208]\cite{Marti:1994}
 %[210]\cite{Marti:1991wi}
+%[211]\cite{Martin:2006}
 %[222]\cite{Curtis:1972}
 %[224]\cite{Mignone:2005ns}
 %[248]\cite{Papadopoulos:1999kt}
@@ -1993,14 +2025,22 @@ It is believed that a more precise characterization of piecewise-regular entropi
 %[272]\cite{Rezzolla:2002ra} 
 %[273]\cite{Rezzolla:2002cc}
 %[274]\cite{Rezzolla:2011da}
-%[275]\cite{Rezzolla:2013}
+%[275]\cite{Rezzolla:2013}\
+%[277]\cite{Roe:1981}
 %[284]\cite{Sasaki:1958}
 %[285]\cite{Sasaki:1962}
+%[298]\cite{Shu:1989}
+%[299]\cite{Shu:1988}
 %[304]\cite{Smoller:1993}
+%[310]\cite{Suresh:1997}
 %[311]\cite{Synge:1957}
 %[312]\cite{Tadmor1998}
 %[315]\cite{Tauber:1961}
+%[316]\cite{Taylor:2007}
+%[317]\cite{Tchekhovskoy:2007zn}
 %[321]\cite{Thorne:1981}
+%[323]\cite{Toro:1999}
+%[325]\cite{vanLeer:1973}
 %[339]\cite{Zhang:2005qy}
 %[341]\cite{Zhang:2011}
 
