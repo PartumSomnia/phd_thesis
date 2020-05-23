@@ -2024,8 +2024,70 @@ Let us summarize the the Godunov scheme
 
 It is important to underline, that the assumption that the solution can be represented as a piece-wise constant in each control-volume, is the sole approximation of the Godunov scheme. \textcolor{red}{grphical representation... do I need it?} \\
 
+Let us now focus on the r.h.s. of the equation \ref{eq:theory:fv:intadveq}. The solution $u(t, x_{i-1/2})$ depends on $U_{i-1} ^n$ and $U_{i} ^n$ as $u(t, x_{1/2}) =: u^* (U_{i-1}^{n}, U_{i}^n)$. It is convenient to express this dependence via \textit{numerical flux} $F(U_{i-1}^{n}):=f[u^*(U_{i-1}^{n}, U_{i}^{n})]$. The Godunov scheme is them reads
+
+\begin{equation}
+    \frac{U_{j}^{n+1} - U_{j}^{n}}{\Delta^0} = \frac{1}{\Delta^1}[F(U_{i-1}^{n}) - F(U_{i}^{n}, U_{i+1}^{n})].
+    \label{eq:theory:fv:discrete}
+\end{equation}
+
+or, in the semi-descrete form:
+
+\begin{equation}
+    \frac{\text{d}U_i}{\text{d} t} = \frac{1}{\Delta^1}[F(U_{i-1}, U_{i}) - F(U_i, U_{i+1})].
+    \label{eq:theory:fv:semi-discrete}
+\end{equation}
+
+To compute \ref{eq:theory:fv:semi-discrete}, a time integrator has to be chosen. The simplest option is the Euler method, which incidentally, transforms \ref{eq:theory:fv:semi-discrete} into its origignal form \ref{eq:theory:fv:discrete}. Time integrators of higher orders are not needed in this case, as the Godunov method is already exact with respect to time-update. \\
+
+The semi-discrete form is overall useful in contracting higher order FV schemes as well as in discussing a coupling between hydrodynamic equations with some other system of equations \textit{e.g.,} the spacetime evolution equations, that is not solved using a FV scheme. We thus shall restrain ourselved to the discussion in semi-discrete form, leaving a complete discussion of FV methods for the sake of brevity. We refer the reader to \textit{e.g.,} \cite{Toro:1999} for a comprehensive description of FV methods and to \cite{Gassner:2011} for a more recent discussion regarding the higher order time discretization methods for FV. \\ 
+
+Now, let us consider three dimensional Cartesian grid 
+
+\begin{equation}
+    \boldsymbol{x}_{i,j,k} = (i\Delta^1,j\Delta^2,k\Delta^3), \hspace{5mm} i, j, k \in \mathbb{Z},
+\end{equation}
+
+there the integral from of the FV scheme of the advection equation reads
+
+\begin{align}
+    \frac{\text{d}U_{i,j,k}}{\text{d}t} &= \frac{1}{\Delta^1}[F^1(U_{i-1,j,k}, U_{i,j,k}) - F^1(U_{i,j,k}, U_{i+1,j,k})] \\
+    &+ \frac{1}{\Delta^2}[F^2(U_{i,j-1,k}, U_{i,j,k}) - F^2(U_{i,j,k}, U_{i,j+1,k})] \\
+    &+ \frac{1}{\Delta^3}[F^3(U_{i,j,k-1}, U_{i,j,k}) - F^3(U_{i,j,k}, U_{i,j,k+1})]
+\end{align}
+
+where $F^1$, $F^2$ and $F^3$ are the numerical fluxes associated with $f^1$, $f^2$ and $f^3$ respectively. \\
 
 
+Extending the FV scheme to the multi-dimensional case and to a general unstructured grid, in a semi-discrete from we gain
+
+\begin{equation}
+    \frac{\text{d}U_a}{\text{d}t} = \frac{1}{|\Omega|}\int_{\partial\Omega}\boldsymbol{g}\cdot\boldsymbol{\nu}\text{d}\Sigma,
+\end{equation}
+
+where$\Omega_a$ is a control volume, $\boldsymbol{\nu}$ is the inwards pointing normal to $\Omega$.
+
+As long as the solution of the Riemann problem can be constructed, the FV scheme can be applied to a system of equations. \\
+
+%It is important to mention, that as at every time step we average the solution, $U^n(x) = \Sigma_i U_i ^n \chi_i(x)$, we destroy most of the information regarding full solution of the Riemann problem at every interface. Thus, a construction of a monotone FV scheme would required increasing the diffusivity of the method, even with the approximate Reimann solvers \cite{Harten:1983}. In case of a relativistic Euler equations, where the solution of the Reimann problem is complex, requiring iterative procedure, this property as shown be very usefull \cite{Marti:1994,Pons:2000,Giacomazzo:2005jy}. 
+A popular examples or such solvers are HLLE solver \cite{Roe:1981}, the Marquina flux-formula \cite{Donat:1996} and HLLE solver \cite{Einfeldt:1988}. However, not all the flux-formulas constructed starting from an approximate solution of the original Reimann problem, \textit{i.e.},
+
+\begin{equation}
+    F(U_L, U_R) = f(u^*(U_L, U_R)), 
+\end{equation}
+
+even through being often called "approximate Riemann solvers". In certain cases there is a they approximate the flux-function directly. It has been further show by Harten et al. \cite{Harten:1983}, that a scheme is consistent and conservative\footnote{In particular the Lax-Wendroff theorem holds.} even if it is constructed via approximating numerical flux instead of the Godunov one, if the collowing criterion is satisfied by the flux formula
+
+\begin{equation}
+    F(u, u) = f(u) \text{ for any } u\in \mathbb{R}.
+\end{equation}
+
+Thus, a scheme converges to the correct entropic solution of the conservation law if it is non-linearly stable and the flux-formula is compatible with the entropy inequality. \\
+
+Notably, higher order schemes have lower numerical dissipation. Thus, in high order FV schemes use of approximate flux is more justified.
+
+
+\subsubsection{TVD Finite-Volume Methods}
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
