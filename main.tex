@@ -2076,7 +2076,7 @@ A popular examples or such solvers are HLLE solver \cite{Roe:1981}, the Marquina
     F(U_L, U_R) = f(u^*(U_L, U_R)), 
 \end{equation}
 
-even through being often called "approximate Riemann solvers". In certain cases there is a they approximate the flux-function directly. It has been further show by Harten et al. \cite{Harten:1983}, that a scheme is consistent and conservative\footnote{In particular the Lax-Wendroff theorem holds.} even if it is constructed via approximating numerical flux instead of the Godunov one, if the collowing criterion is satisfied by the flux formula
+even through being often called "approximate Riemann solvers". The $U_L$ and $U_R$ here are the left and right states across the interface. In certain cases there is a they approximate the flux-function directly. It has been further show by Harten et al. \cite{Harten:1983}, that a scheme is consistent and conservative\footnote{In particular the Lax-Wendroff theorem holds.} even if it is constructed via approximating numerical flux instead of the Godunov one, if the collowing criterion is satisfied by the flux formula
 
 \begin{equation}
     F(u, u) = f(u) \text{ for any } u\in \mathbb{R}.
@@ -2088,6 +2088,64 @@ Notably, higher order schemes have lower numerical dissipation. Thus, in high or
 
 
 \subsubsection{TVD Finite-Volume Methods}
+
+The loss of information regarding the solution of the Reimann problem in the averaging procedure prevents us from constracting higher order FV scheme. However, it was shown, that the information on the solution can be \textit{reconstructed} from the averages $\{U_i ^n\}_{i\in\mathbb{Z}}$ using non-linear reconstruction procedure. This prevents spurious oscillations from arising. The procedure can be outlined as a following. Consider a solution withing a given control volume $U(x)$. Instead of setting $U(x) = U_i$ when $x\in[x_{i-1/2},x_{i+1/2}]$, the second order approximation of $u$ is used as 
+
+\begin{equation}
+    U_i(x) = U_i + \sigma_i(x-x_i), \hspace{10mm}x\in[x_{i-1/2},x_{i+1/2}]
+\end{equation}
+
+where $\sigma_i$ is the reconstructed slope in $[x_{i-1/2},x_{i+1/2}]$. \\
+
+The $U_i(x)$ is essentially a profile of the solution $U$. We however set it with index $i$ as the profiles of two different control volumes might not agree at the interface between them. It is thus conveneitn to introduce the $\pm$ to indicate the from what side the slope is considered, talking about the inteface \textit{i.e.,} $U^{\pm} _{i-1/2}$ stands for $U_{i-1}(x_{i-1/2})$ and $U_i(x_{i-1/2})$. Applying this to the semi-discrete FV scheme we obtain 
+
+\begin{equation}
+    \frac{\text{d} U_i}{\text{d}t} = \frac{1}{\Delta^1}\big[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})\big]
+    \label{eq:theory:fv:semi-disc-2ord}
+\end{equation}
+
+This is allowed as long as we are considering a semi-discrete formulation, as in this case the the instantaneous flux is given by $F(U_L, U_R)$, \textit{i.e.,} the solution at the interface between two cells at time $t_n ^+$ depends only on the jump between the two state $U_L$ and $U_R$. Thus, the second order scheme in time and space can be constructed, if a second order time-integrator is used in \ref{eq:theory:fv:semi-disc-2ord}. This is no longer the case in a fully descrete scheme, as $u(t, x_{i-1/2})$ is no longer time-independent. There, a solution of a generalized Riemann problem\footnote{A problem, with initial data having a piecewise linear profile} a use of predictor-corrector approach to compute the fluxes with second-order accuracy in time. \\
+
+Now let us consider the choice of $\sigma_i$. It can be shown that if 
+
+\begin{equation}
+    \text{TV}\Bigg[\sum_{i}U_{i}(x)\chi_{i};\mathbb{R}\Bigg] \leq \text{TV}\Bigg[\sum_{i}U_{i}\chi_{i}(x);\mathbb{R}\Bigg]
+\end{equation}
+
+then the scheme \ref{eq:theory:fv:semi-disc-2ord} is TVD \cite{LeVeque:1992}. To satisfy this condition a special limiter, \textit{slope-limiter} has to be employed. The reason for that is that the scheme has to be limited to the first order near shocks to prevent oscillations. Consider an example a of a particular limiter, the \textit{minmod} limiter
+
+\begin{equation}
+    \sigma_i = \frac{1}{\Delta^1}\text{minmod}(U_{i+1} - U_{i}, U_{i}-U_{i-1}),
+\end{equation}
+
+where
+
+\begin{equation}
+    \text{minmod}(z_1,...,z_n) = 
+    \begin{cases}
+        \text{min}_i z_i \text{ if } z_i > 0 \text{ for any } i, \\
+        \text{max}_i z_i \text{ if } z_i < 0 \text{ for any } i, \\
+        0,  \text{               otherwise }.
+    \end{cases}
+\end{equation}
+
+The minmod$2$ reconstruction is an another example 
+
+\begin{equation}
+    \sigma_i = \frac{1}{\Delta^1}\text{minmod}\Big[2(U_{i+1} - U_i), \frac{U_{i+1} - U_{i-1}}{2}, 2(U_i - U_{i-1})\Big].
+\end{equation}
+
+Notably, most of the slop-limiting techniques are only first order accurate at extrema. \\
+
+The extension of a TVD FV scheme to a multi-dimensions is a Cartesian grids is done via a direction-by-direction approach. For an unstructured grid, however, the reconstruction in barycentric coordinates has to be performed. 
+
+To extend the sheme to a system of equations the reconstraction can be performed component-vise. In case of the the relativistic Euler equation, the fact that $\bar{u}_i = u(x_i)$ is of second order accuracy is often unitized. It is usually conventient and less computationally expensive to perform the reconsturction in primitive variables, as the vallues at the interface are less likely to be unphysical. 
+
+\textcolor{red}{what is actually reconstraction?..}
+
+\subsubsection{Higher-Order Finite-Volume Methods}
+
+
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
