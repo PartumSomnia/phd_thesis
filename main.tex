@@ -2145,6 +2145,45 @@ To extend the sheme to a system of equations the reconstraction can be performed
 
 \subsubsection{Higher-Order Finite-Volume Methods}
 
+In the previous subsection we showed that the extension of the Godunov scheme to second order can be achieved via introducing the profile $\sigma_i$, or a slope. This we effectively performed a linear regression of the solution $u$. This can be extended to a polynomial regression, to express the solution $u$ as a piecewise polynomial. The reconstruction however, becomes more involved.
+
+\paragraph{Reconstruction Operators}
+
+Let us beging with a simple one-dimensional case and expand on it later. Let $\upsilon(x)$ be a generic function whose volume average is 
+
+\begin{equation}
+    \widetilde{\upsilon}_i := \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i+1/2}}\upsilon(x)\text{d}x.
+\end{equation}
+
+and consider how it can be reconstructed at higher orders. A non-linear operator  $\mathcal{R}$ that allows that returns a high-order approximation of $\upsilon$ at a given point $x$ from $\widetilde{\upsilon}$ volume averages, is a reconstruction operator. As, in general, function $\upsilon(x)$ can contain discontinuities, lift-biased ($\mathcal{R}^-$) and right-biased ($\mathcal{R}^+$) reconstruction operators. Consider an $\mathcal{R}$ reconstraction operator of order $r$, that acts on a set of averages $\{\widetilde{\upsilon}_i\}$, then
+
+\begin{align}
+    [\mathcal{R}^{-}(\{\widetilde{\upsilon}_{i}\})](x) &= \lim_{y\rightarrow x^{-}} \upsilon(y) + \mathcal{O}(\Delta^r), \\
+    [\mathcal{R}^{+}(\{\widetilde{\upsilon}_{i}\})](x) &= \lim_{y\rightarrow x^{+}} \upsilon(y) + \mathcal{O}(\Delta^r).
+\end{align}
+
+The result of acting with $\mathcal{R}^-$ ($\mathcal{R}^+$) on the $\upsilon$ is then at $x_{i+1/2}$ is $\upsilon^{-}_{i+1/2}$ ($\upsilon^{+}_{i+1/2}$). Examples of reconstruction operators are: the piecewise parabolic method (PPM) \cite{Colella:1984,Colella:2008}, the piecewise hyperbolic method (PHM) \cite{Marquina:1994}, the essentially nonoscillatory (ENO) \cite{Harten:1987,Shu:1988,Shu:1989}, weighted essentially non-oscillatory (WENO) \cite{Liu:1994,Jiang:1996} and monotonicity-preserving (MP5) \cite{Suresh:1997} algorithms. \\
+The PPM reconstruction is based on the piece-wise parabolic interpolation, that extends the slope-limiter approach. Series of limiters used in PPM have been extensively investigated for the presence of spurious oscillations, and even though this method has not been shown to be TVD, it is widely used in many FV schemes and in numerical relativistic hydrodynamics \cite{Baiotti:2004wn,Mignone:2005ns}\\
+The ENO reconstruction scheme employs standard Lagrange interpolation. It can, in principle  be extended to any order of as it utilizes the recursive procedure. By selecting a stencil that yields the smoothest solution it allows to avoid Gibbs oscillations due to interpolation across discontinuities. And while the ENO scheme is not TVD, it was shown that 
+
+\begin{equation}
+    \text{TV}[\mathcal{R}(\{\widetilde{\upsilon}_i\}); \text{I\!R}] \leq \text{TV}[\{\widetilde{\upsilon}; \text{I\!R}\}] + \mathcal{O}\big((\Delta^1)^r\big)
+\end{equation}
+
+where $r$ is thge order of reconstruction \cite{Harten:1987}. \\
+
+In the WENO scheme a weighted average of the reconstructed polynomial on each stencil is taken instead of selecting the one with which yields smoothest solution. The order of accuracy is maximized in smooth regions, while non-smooth stencils are suppressed through small weights. Thus, by combining results from multiple reconstructions, it achieves the $2r-1$ order of accuracy (where $r$ is an order of accuracy of ENO scheme). This is a modified ENO approach that considerably reduces the computational resources needed, as the conditional statements are removed. Generally, WENO schemes of order below 7 ($r\leq 4$) are used. Higher order schemes have shown to be unstable without special order-reducing techniques \cite{Gerolymos:2009,Tchekhovskoy:2007zn} or additional limiters \cite{Balsara:2000}.\\
+Examples of the WENO schemes,with respect to how the weights are constructed are the following. In mapped-WENO scheme reduced dissipation is achieved via mapping procedure \cite{Henrick:2005}. In WENOZ scheme, improved non-linear weights are prescribed, that yields a results comparable with the fifth order mapped-WENO scheme, while being less computationally expensive. 
+
+In a extensive study, Gerolymos et al. \cite{Gerolymos:2009} have compared various WENO schemes, providing tabulated coefficients and implementation details.\\
+
+The basic WENO reconstruction yilelds the smoothosts soluton, utililizing the smoothness indicator, that, in case of the smooth solution maximizes the order of accuracy, while minimizing it when the discontinuities are detected. The final solution is then an weighted average of a set of lower order reconstructions of $\widetilde{\upsilon}_i '$ on numerous overlapping stencils. A different approach in employed in a bandwidth-optimized WENO schemes, where wieghts are adjusted to minimize the attenuation of high-frequency modes, instead of maximising the smopoothness of the solution. \\
+In the basic WENO scheme, the smooth function is constructed in a ways as to much as many terms as possible in a Teylor decomposition of a target function. In a bandwidth-optimized WENO scheme, the function is constracted in a way as to provide the best approximation to the Fourier coefficients of the targeted function. In addition, "over-adaptation" is prevented by using the modified non-linear smoothness indicators. This allows to reduce the numerical dissipation. We refer the reader to \cite{Martin:2006} and \cite{Taylor:2007} for more detailed discussion. \\
+
+The MP5 scheme utilizes the fifth order reconstraction alongside with flattening prcedure, that prevents the artificial extrema in the targeted function from arising. Esseincially, it is a monotonicity-preserving PPM scheme, extended to fifth order. By design, the reconstraction sheme, does not introduce spurious oscillations. This is hiwever, not certain in case of WENO schemes. Meanwhile, the MP5 scheme contains multiple conditional stataemtens in limiting procedure, that are absent in WENO.
+
+\paragraph{Very-High-Order Finite-Volume Schemes}
+
 
 
 %[15]\cite{Aloy:2006rd}
