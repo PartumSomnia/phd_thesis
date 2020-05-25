@@ -1950,6 +1950,19 @@ It is believed that a more precise characterization of piecewise-regular entropi
 
 \subsection{Finite-Volume Methods}
 
+\begin{sidenote}
+    \textbf{Reimann problem} \\
+    Reimann problem is a specifit initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuituy in the domain of interest. Innumerical analysis it appears naturally in finite volume method for the solution of conservation law equations due to the discreteness of the grid. 
+    \textbf{Reimann solver} \\
+    A Reimann solver is a numerical method used to solve a Reimann problem. Generally speaking, Reimann solvers ar especific methods for computing the numerical flux across a discontinuityin the Riemann problem. They are wifely used in high resolution schemes. Usually, left and right states for the reimann Problem are calculated using some form on non-linear reconstraction, such as flux limiteror WENO method, and then used as inut for the reimann solver. \\
+    An iterative solution to the RP is too costly, especially in MHD. Popular approximations are:
+    \begin{itemize}
+        \item Roe solver - using linearisation of the Jacobian, which then is solved exactly \\
+        \item HLLE solver - approximate solution to the RP which is only based on the integral form of the conservational las and the largest and smallest signal velocities at the interface.
+        \item HLLC solver - resotores the missing Rarefaction wave by some estiamtes, line linearesations. Efficient, But more diffusive. 
+        \item Rotated-hybrid Riemann solvers. 
+    \end{itemize}
+\end{sidenote}
 
 The finite-volume method, the Godunov scheme \cite{Godunov:1959}, was one of the fist \textit{monotonicity-preserving schemes}\footnote{Different from the monotonic schemes discussed above} that was able to yield solutions with discontinuities without spurious numerical extrema and with minimum numerical dissipation. There is a plethora of variations of Godunov-type, methods for conservation laws, built on top of the original method, see \textit{e.g.,} \cite{Toro:1999} for an up-to-date overview of the subject. \\
 In this section we consider the basic Godunov method for the first order schemes. Then, we iterate on the second-order Godunov-type schemes, that are the most widely used in the field of relativistic hydrodynamics. In the end of the subsetion, we elaborate on the extension of FV methods to even higher orders, and pint out the difficulties arising in application to the relativistic hydrodynamics 
@@ -2054,6 +2067,7 @@ there the integral from of the FV scheme of the advection equation reads
     \frac{\text{d}U_{i,j,k}}{\text{d}t} &= \frac{1}{\Delta^1}[F^1(U_{i-1,j,k}, U_{i,j,k}) - F^1(U_{i,j,k}, U_{i+1,j,k})] \\
     &+ \frac{1}{\Delta^2}[F^2(U_{i,j-1,k}, U_{i,j,k}) - F^2(U_{i,j,k}, U_{i,j+1,k})] \\
     &+ \frac{1}{\Delta^3}[F^3(U_{i,j,k-1}, U_{i,j,k}) - F^3(U_{i,j,k}, U_{i,j,k+1})]
+    \label{eq:theory:fv:1storder3dscheme}
 \end{align}
 
 where $F^1$, $F^2$ and $F^3$ are the numerical fluxes associated with $f^1$, $f^2$ and $f^3$ respectively. \\
@@ -2184,7 +2198,33 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 
 \paragraph{Very-High-Order Finite-Volume Schemes}
 
+A high order version of FV method in 1D can be constracted following the procedure we outlined in desiging the second-order FV scheme. Making use of high order, non-oscillatory reconstruction operators $\mathcal{R}$, that we split into $\mathcal{R}^+$ and $\mathcal{R}^-$, that when acting on a suluition $U$ yield $U^+$ and $U^-$, we write 
 
+\begin{equation}
+    \frac{\text{d}U_i}{\text{d}_t} = \frac{1}{\Delta^1}[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})],
+\end{equation}
+
+in semi-discrete form. \\
+An such a scheme would have the order of accuracy equal to the one of the reconstruction algorithm. However, as the algorithms always fall to the first order near in the vicinity of discontinuities, the actual accuracy order would depend on the solution. \\
+
+A seemingly simple approach of extending high order FV to multi-dimensional case, however, faces a serious challenge. In the formula \ref{eq:theory:fv:1storder3dscheme} we have use simple fluxes, which for a high order schemes have to be computed via suitable quadrature formulas. This makes the sheme complex. \\
+
+In addition, with respect to the system of equations, to avoid spurious oscillations in higher order schemes, the reconstruction needs to be performed on local characteristic variables, instead of previously mentioned, component-vise approach. \\
+
+Moreover, as it is generally not possible to preserve higher order accuracy in conversion from volume-averaged conserved variables to volume-averaged primitive ones. Thus, the reconstruction have to be done in terms of the former. \\
+
+The high-order FV schemes coupled with general relativity become numerically very expensive. The reason for that is that they require high-order quadrature of the metric source terms as well as high-order
+schemes to interpolate the metric at the quadrature points for the calculation of the fluxes. \\
+
+Overall, even though considerable complexities involved, high order FV schemes, due to their unmached accuracy in compariosn with other second-order schemes, make them partular usefull in multiple applications in Newtonian and relativistic hydrodynamics, (see \textit{e.g.} \cite{Tchekhovskoy:2007zn}) and in unstractured grid applications, using generalized WENO scheme (see \textit{e.g.,} \cite{Dumbser:2007})
+
+\subsection{Central Methods}
+
+A central scheme, is a scheme that does not require any Reimann solver. The first such scheme was proposed by Lax and Friedrichs (LxF) 
+
+Let us consider monotone schemes. 
+
+The first one, albeit with much higher numerical dissipation then the Godunov scheme but having an advantage of 
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
@@ -2192,14 +2232,27 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 %[35]\cite{Balsara:2000}
 %[36]\cite{Banyuls:1997}
 %[40]\cite{Benartzi:2007}
+%[44]\cite{Berger:1989}
+%[45]\cite{Berger:1984}
+%[50]\cite{Biswas:1994}
 %[59]\cite{Borges:2008}
 %[60]\cite{Boris:1971}
+%[62]\cite{Boyd:2001}
 %[67]\cite{Bruenn:1985}
+%[75]\cite{Canuto:2008}
 %[77]\cite{Cardall:2002bp}
 %[79]\cite{Cercignani:2002}
 %[81]\cite{Chen:2006}
 %[82]\cite{Chen:2003}
 %[83]\cite{Chen:2009}
+%[86]\cite{Cockburn:1998v}
+%[87]\cite{Cockburn:2003}
+%[88]\cite{Cockburn:1989ii}
+%[89]\cite{Cockburn:1989iii}
+%[90]\cite{Cockburn:1990iv}
+%[91]\cite{Cockburn:2000}
+%[92]\cite{Cockburn:1991}
+%[93]\cite{Cockburn:2001}
 %[94]\cite{Colella:2008}
 %[96]\cite{Colella:1984}
 %[97]\cite{Conway:1966}
@@ -2210,10 +2263,14 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 %[109]\cite{Debbasch:2009b}
 %[114]\cite{DiPerna:1985}
 %[115]\cite{Donat:1996}
+%[121]\cite{Dumbser:2009}
 %[122]\cite{Dumbser:2007}
+%[123]\cite{Dumbser:2008}
 %[124]\cite{Ehlers:1971}
 %[125]\cite{Einfeldt:1988}
+%[128]\cite{Field:2010}
 %[130]\cite{Font:2008fka}
+%[134]\cite{Friedrichs:1954}
 %[139]\cite{Gassner:2011}
 %[141]\cite{Gerolymos:2009}
 %[144]\cite{Giacomazzo:2005jy}
@@ -2221,10 +2278,12 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 %[147]\cite{Glimm:1965}
 %[149]\cite{Godunov:1959}
 %[151]\cite{Goodman:1985}
+%[154]\cite{Gottlieb:2009}
 %[161]\cite{Harten:1976}
 %[162]\cite{Harten:1983}
 %[163]\cite{Harten:1987}
 %[166]\cite{Henrick:2005}
+%[168]\cite{Hesthaven:2007}
 %[173]\cite{Israel:1979wp}
 %[174]\cite{Israel:1963}
 %[176]\cite{Jiang:1996}
@@ -2234,6 +2293,7 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 %[193]\cite{Lax:1956}
 %[194]\cite{Lax:1960}
 %[196]\cite{LeVeque:1992}
+%[195]\cite{Lax:1954}
 %[197]\cite{LeVeque:2002}
 %[201]\cite{Lindquist:1966}
 %[202]\cite{Liu:1994}
@@ -2241,10 +2301,19 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 %[208]\cite{Marti:1994}
 %[210]\cite{Marti:1991wi}
 %[211]\cite{Martin:2006}
+%[220]\cite{Meier:1999}
 %[222]\cite{Curtis:1972}
 %[224]\cite{Mignone:2005ns}
+%[226]\cite{Mignone:2010}
+%[235]\cite{Nessyahu:1990}
 %[248]\cite{Papadopoulos:1999kt}
 %[257]\cite{Pons:2000}
+%[259]\cite{Qiu:2005}
+%[260]\cite{Qiu:2004}
+%[262]\cite{Quirk:1994}
+%[263]\cite{Radice:2011qr}
+%[264]\cite{Radice:2012cu}
+%[267]\cite{Reed:1973}
 %[272]\cite{Rezzolla:2002ra} 
 %[273]\cite{Rezzolla:2002cc}
 %[274]\cite{Rezzolla:2011da}
@@ -2252,8 +2321,10 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 %[277]\cite{Roe:1981}
 %[284]\cite{Sasaki:1958}
 %[285]\cite{Sasaki:1962}
+%[296]\cite{Shu:1999}
 %[298]\cite{Shu:1989}
 %[299]\cite{Shu:1988}
+%[300]\cite{Shu:2003}
 %[304]\cite{Smoller:1993}
 %[310]\cite{Suresh:1997}
 %[311]\cite{Synge:1957}
@@ -2266,7 +2337,7 @@ The MP5 scheme utilizes the fifth order reconstraction alongside with flattening
 %[325]\cite{vanLeer:1973}
 %[339]\cite{Zhang:2005qy}
 %[341]\cite{Zhang:2011}
-
+%[347]\cite{Zumbusch:2009fe}
 
 
 
