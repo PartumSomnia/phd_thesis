@@ -2220,11 +2220,60 @@ Overall, even though considerable complexities involved, high order FV schemes, 
 
 \subsection{Central Methods}
 
-A central scheme, is a scheme that does not require any Reimann solver. The first such scheme was proposed by Lax and Friedrichs (LxF) 
+A central scheme is a scheme the monotone scheme that does not requrie aa Reimann solver. First such scmee was developed by Lax and Friedrichs (LxF) \cite{Lax:1954,Friedrichs:1954}. It has however a larger numerical dissipation in comparison to Godunov scheme, but it is simpler to implement and less expensive. Its lack of accuracy due to numerical dissipation prevents this scheme from being a popular choice. \\
+A second order central scheme was developed by Nessyahu and Tadmor (NT) \cite{Nessyahu:1990}. Kurganov and Tadmor (KT) \cite{Kurganov:2000} have further advanced the scheme, which populirized high-order central schemes. \\
+The Lax-Friedrichs scheme can be understood when a \textit{dual grid} is introduced into the Godunov scheme as follows. Consider a time $t_n$, and the numerical solution $U^n$, its local averages are then given by $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$. To obtain a solution at the time $t_{n+1}$, we compute the local averages of the solution on a dual grid $\{x_{i+1/2}\}_{i\in\mathbb{Z}}$, \textit{i.e.,} $\{U_{i+1/2}^{n+1}\}_{i\in\mathbb{Z}}$ in the center. Hence, the name of the scheme. The following steps go through alternating between the \textit{primal} and \textit{dual} grids. \\
+In more detains, consider a solution $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$ as a starting point. To obtain $\{U_{i+1/2}^{n+1}\}_{i\in \mathbb{Z}}$, we employ the Godunov scheme for the advection equation \ref{eq:theory:fv:adveq} 
 
-Let us consider monotone schemes. 
+\begin{equation}
+    \frac{U_{i+1/2}^{n+1} - U_{i+1/2}^{n}}{\Delta^0} = \frac{1}{\Delta^1}\int_{t_n}^{t_{n+1}}\big\{ f[u(t,x_i)] -f[u(t,x_{i+1})]  \big\}\text{d}t.
+    \label{eq:theory:fv:central:intadveq}
+\end{equation}
 
-The first one, albeit with much higher numerical dissipation then the Godunov scheme but having an advantage of 
+Note,  solution at cell centers remain free of discontinuities for duration of a timestep if the CFL $\leq 1/2 a$, $a$ is the maximum local-characteristic speed. Thus the r.h.s of \ref{eq:theory:fv:central:intadveq} can be computed via a simple quadrature in time, without Reimann solvers. \\
+
+Let us consider a solution, $U^n(x)$, that line in Godunovscheme, is a piecewise constant 
+
+\begin{equation}
+    U^{n}(x) = \sum_i U_{i}^{n}\chi_i(x),
+\end{equation}
+
+then $u(t,x_i) = U_{i}^{n}$ for $t\in[t_n. t_{n+1}]$ and 
+
+\begin{equation}
+    U_{i+1/2}^{n} = \frac{U_i ^n + U_{i+1}^n}{2}
+\end{equation}
+
+and the \ref{eq:theory:fv:central:intadveq} reads as
+
+\begin{equation}
+    U_{i+1/2}^{n+1} = \frac{U_i ^n + U_{i+1}^n}{2} + \frac{\Delta^0}{\Delta^1}[f(U_i ^n) - f(U_{i+1} ^n)]
+\end{equation}
+
+\textcolor{red}{graphical representation -- fig 3.2 -- is it needed?}
+
+Nessyahu and Tadmor \cite{Nessyahu:1990} have introduced the second order central scheme. Instead of piecewise constant reconstruction, they employed a minmod to obtain a piecewise linear approximation of $u^n$, and for time flux quadrature, they used a predictor-corrector approach. \\
+
+The dissipation of of the LxF and NT schemes is time-step depended. For a small $\Delta^0$ it makes schemes very dissipative. To improve the accuracy of the scheme Kurganov and Tadmor \cite{Kurganov:2000} proposed to limit the averaging on the dual grid to the region of spacetime spanned by the largest characteristics of the Riemann problem. Thus, while in the LxF and NT schemes the averging of the solution was supported in the whole grid, in the KT scheme, $U^{n+1}_{i+1/2}$ is only allowed in the region where affected by the results of the local Riemann problem. This reduces the dissipation and also allows the semi-descrete formulation 
+
+\begin{equation}
+    \frac{\text{d} U_i}{\text{d} t} = \frac{1}{\Delta^{1}}\big[F(U_{i-1/2}^{-},U_{i-1/2}^{+}) - F(U_{i+1/2}^{-},U_{i+1/2}^{+})\big],
+\end{equation}
+
+where $F$ are numerical fluxes \textit{i.e.,}
+
+\begin{equation}
+    F(U_L, U_R) = \frac{f(U_L) + f(U_R)}{2} - \frac{a}{2}[U_R - U_L].
+    \label{eq:theory:fv:central:fluxes}
+\end{equation}
+
+Essentially, the KT scheme is very similar to the Godunov scheme with fluxes evaluated through equation \ref{eq:theory:fv:central:fluxes}, Rusanov fluxes \cite{Kurganov:2000}. This also assures the stability of the system when $1/2 < a \cdot \text{CFL} \leq 1$. However, in that case the interpenetration of the scheme is no longer applicable. \\
+
+Lastly, we revisit the difference between the finite-volume (upwind) and central shemes. The main one lies in the constraction of these schemes, as in their form the latter can alwasy be regarded as a FV scheme with added Rusanov "Reimann solver". In particular, only for KT scheme, the maximum principle without additioanl "maximum-principle enforcing limiters" was proven in multi-dimensional case. \\
+
+
+\subsection{Finite-Difference Methods}
+
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
