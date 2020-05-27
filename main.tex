@@ -2274,6 +2274,40 @@ Lastly, we revisit the difference between the finite-volume (upwind) and central
 
 \subsection{Finite-Difference Methods}
 
+In the high order upwind finite difference (FD) schemes the approximation is done point-wise instead of averaging over volumes as it is done in FV schemes. Interestingly, these schemes were proposed as better performing alternatives to ENO and WENO schemes of very high order. \cite{Shu:1988,Shu:1989,Jiang:1996}. Especially in the multi-dimensional case, FD schemes are much more superior to the high order FV schemes in turms of efficiency. \cite{Shu:1999,Shu:2003}. \\
+
+Here we aim to discuss finite difference high resolution shock capturing schemes in very brief manner. We refer the reader to specialized literature for a in-depth discussion. In particular, for the discussion of FD ENO/WENO HRSC schemes see \cite{Shu:1999}, and for FD MP5 scheme -- see \cite{Mignone:2010}. \\
+
+Let us start by introducing a system of hyperbolic balance-laws as
+
+\begin{equation}
+    \partial_t\boldsymbol{F}^0(\boldsymbol{u}) + \partial_i\boldsymbol{F}^i(\boldsymbol{u}) = \boldsymbol{S}(\boldsymbol{u}).
+    \label{eq:theory:fd:hypsys}
+\end{equation}
+
+For the grid, we employ a uniform Cartesian for the ease of discussion 
+
+\begin{equation}
+    \boldsymbol{x}_{i,j,k} = (i\Delta^1, j\Delta^2, k\Delta^3), \hspace{5mm} i,j,k\in \mathbb{Z}.
+\end{equation}
+
+In the following discussion, we will not elaborate on the comparison between different representations of a solution \textit{i.e.,} exact, volume averaged, their approximations, reconstractions. We thus only need, for a quantity $u$, to define the numerical approxiamtion at a given point $x_{i,j,k}$, as $u_{i,j,k}$. 
+
+For the \ref{eq:theory:fd:hypsys} the FD scheme reads
+
+\begin{align}
+    \frac{d\boldsymbol{F}^{0}_{i,j,k}}{dt} = \boldsymbol{S}_{i,j,k} &+ \frac{\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}}{\Delta^1} \\
+    & + \frac{\boldsymbol{F}^{2}_{i,j-1/2,k} - \boldsymbol{F}^{2}_{i,j+1/2,k}}{\Delta^2} + \frac{\boldsymbol{F}^{3}_{i,j,k-1/2} + \boldsymbol{F}^{3}_{i,j,k+1/2}}{\Delta^3},
+\end{align}
+
+which is identical to the semi-descrete form of the finite volume scheme introduced before \ref{eq:theory:fv:1storder3dscheme}. However, there terms $\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}$ represented integrals of the control volumes along the boundary. If FD scheme, these are direct (high-order, non-oscillatory) approximations of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. \\
+
+Note, that as at the second order the volume averages and point-wise values are the same, the FD and FV schemes read identically. The difference becomes important at higher orders and in many dimensions, especially for the performance of a scheme. Consider the FD high order multi-dimensional scheme, At region boundaries, it does not require any quadrature, Reimann solvers or extra primitive recovery calls \textcolof{gray}{while still requiring reconstruction operators}. This makes a schemem much less computationally expensive. In addition, In general relativistic hydrodynamics, the source term treatment is simpler and more direct, as onlu the point-wise values are requried. This helped popularize the FD for GRHD applications. \\
+
+For the following discussion on the computation of the descrete derivatives on the r.h.s onf the \ref{eq:theory:fd:hypsys}, let us first approach this task in case of a simple equation, the one-deminesiona advection eqiation \ref{eq:theory:fv:adveq}, which is also hyperbolic scalar equation. 
+
+In FV scheme, the reconstraction operators are used to evaluate the left $U_L$ and right $U_R$ from which, via approximate Reimann solvers, the fluxes are computed after. In FD schemes the reconstruction operators are also used, but to evaulate the (non-oscillatory approximation) of $\parital_x f$, referenced above. It is convenient to express $f$ as follows
+
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
