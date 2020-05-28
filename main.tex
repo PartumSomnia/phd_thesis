@@ -2302,11 +2302,68 @@ For the \ref{eq:theory:fd:hypsys} the FD scheme reads
 
 which is identical to the semi-descrete form of the finite volume scheme introduced before \ref{eq:theory:fv:1storder3dscheme}. However, there terms $\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}$ represented integrals of the control volumes along the boundary. If FD scheme, these are direct (high-order, non-oscillatory) approximations of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. \\
 
-Note, that as at the second order the volume averages and point-wise values are the same, the FD and FV schemes read identically. The difference becomes important at higher orders and in many dimensions, especially for the performance of a scheme. Consider the FD high order multi-dimensional scheme, At region boundaries, it does not require any quadrature, Reimann solvers or extra primitive recovery calls \textcolof{gray}{while still requiring reconstruction operators}. This makes a schemem much less computationally expensive. In addition, In general relativistic hydrodynamics, the source term treatment is simpler and more direct, as onlu the point-wise values are requried. This helped popularize the FD for GRHD applications. \\
+Note, that as at the second order the volume averages and point-wise values are the same, the FD and FV schemes read identically. The difference becomes important at higher orders and in many dimensions, especially for the performance of a scheme. Consider the FD high order multi-dimensional scheme, At region boundaries, it does not require any quadrature, Reimann solvers or extra primitive recovery calls \textcolor{gray}{while still requiring reconstruction operators}. This makes a schemem much less computationally expensive. In addition, In general relativistic hydrodynamics, the source term treatment is simpler and more direct, as onlu the point-wise values are requried. This helped popularize the FD for GRHD applications. \\
 
 For the following discussion on the computation of the descrete derivatives on the r.h.s onf the \ref{eq:theory:fd:hypsys}, let us first approach this task in case of a simple equation, the one-deminesiona advection eqiation \ref{eq:theory:fv:adveq}, which is also hyperbolic scalar equation. 
 
-In FV scheme, the reconstraction operators are used to evaluate the left $U_L$ and right $U_R$ from which, via approximate Reimann solvers, the fluxes are computed after. In FD schemes the reconstruction operators are also used, but to evaulate the (non-oscillatory approximation) of $\parital_x f$, referenced above. It is convenient to express $f$ as follows
+In FV scheme, the reconstraction operators are used to evaluate the left $U_L$ and right $U_R$ from which, via approximate Reimann solvers, the fluxes are computed after. In FD schemes the reconstruction operators are also used, but to evaulate the (non-oscillatory approximation) of $\partial_x f$, referenced above. It is convenient to express $f$ as follows
+
+\begin{equation}
+    f\big[u(x_i)\big] = \frac{1}{\Delta}\int_{x-1/2}^{x+1/2}h(\xi)d\xi,
+    \label{eq:theory:fd:introd_h}
+\end{equation}
+
+where we, following \cite{Shu:1988}, employed function $h(x)$ in a manner that its average between $x_{i+1/2}$ and $x_{i-1/2}$ stands for the value of $f$ at $x_i$. Then, 
+
+\begin{equation}
+    \frac{\partial f}{\partial x}\Big|_{x_i} = \frac{h(x_{i+1/2}) - h(x_{i-1/2})}{\Delta}.
+    \label{eq:theory:fd:diff_via_h}
+\end{equation}
+
+That that there were no approximations done in writing \ref{eq:theory:fd:introd_h} and \ref{eq:theory:fd:diff_via_h}. This allows to obtain an approximation to the derivative $\partial f/\partial x$ at $x_i$ of accuracy $r$, -- the same order as the reconstraction operator $\mathbb{R}$, that was used to recover $h_{i+1/2}$. In addition, as only the values at $x_i$ of $f$ are needed for computation, $h$ is never computed at any time. \\
+
+The stability of the scheme is assured by correctly upwinding the reconstraction. Consider the case of $f'(u)>0$. Then, if we allow
+
+\begin{equation}
+    \widetilde{\upsilon}_i = f\big[u(x_i)\big] = \frac{1}{\Delta}\int_{x_{i-1/2}}^{x^{i+1/2}}h(\xi)d \xi
+\end{equation}
+
+and 
+
+\begin{equation}
+    f_{i+1/2} := \upsilon_{i+1/2} ^{-}, \hspace{10mm} f_{i-1/2} := \upsilon_{i-1/2} ^{-},
+\end{equation}
+
+then
+
+\begin{equation}
+    \frac{\partial f(u)}{\partial x} = \frac{f_{i+1/2} - f_{i-1/2}}{\Delta} + \mathcal{O}(\Delta^r)
+\end{equation}
+
+yields the required high order approximation to $\partial_x$ at $x_i$. \\
+
+In a more general case, where the beahviour $f'(x)>0$ is not assured, the flux $f$ is split in a left-goping $f^{-}$ and right-going $f^{+}$ as $f = f^{+} + f^{-}$, for which separate upwind reconstructions are used to assure the stability. Note that this procedure is rather similar application of a Reimann solver in finite volume schemes. In some cases the direct correspondance between the flux-splitting methods and particualr Reimann solvers can be established. \\
+
+We consider here tow ways, how the flux splitting can be done. The ones that are of relevents to this theiss are: \textit{Roe flux-split}, \textit{i.e.,}
+
+\begin{equation}
+    f = f^{\pm}, \text{  if  } [f'(\bar{u})]_{x_{i+1/2}} \lessgtr 0
+\end{equation}
+
+where $\bar{u}_{x+1/2} := (1/2) (u_i + u_{i+1})$, 
+
+and the Rusanov flux-split \cite{Shu:1997} \textit{i.e.,}
+
+\begin{equation}
+    f^{\pm} = f(u) \pm \alpha u, \hspace{5mm} a \max[f'(u)],
+\end{equation}
+
+where the maximum is taken over the reconstruction operator stencil. \\ 
+
+With respect to the efficiency, the Roe flux splittes appears superiour, as it requires only one reconstraction. However, it was shown \cite{LeVeque:1992} that, if the transonic refraction waves are pesnet, this flux splitter can lead to the formation of entropy-violating shocks. In addition, the flux splitter is a odd-even decoupling phenomenon \cite{Quirk:1994}. One of the solutions was suggested in \cite{Radice:2012cu} to replace Roe flux split with Lax-Friedrichs one when $u$ or $f$ are not monotonic within the reconstruction stencil. 
+
+It is important to note that in our discussion an implicit assumption is made that the function $f$ is convex. In case of relativistic hydrodynamics this is indeed so, however, -- not in the case of relativistic-magneto-hydrodynamics. \\
+
 
 
 %[15]\cite{Aloy:2006rd}
@@ -2404,6 +2461,7 @@ In FV scheme, the reconstraction operators are used to evaluate the left $U_L$ a
 %[277]\cite{Roe:1981}
 %[284]\cite{Sasaki:1958}
 %[285]\cite{Sasaki:1962}
+%[295]\cite{Shu:1997}
 %[296]\cite{Shu:1999}
 %[298]\cite{Shu:1989}
 %[299]\cite{Shu:1988}
