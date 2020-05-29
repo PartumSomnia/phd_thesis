@@ -2348,6 +2348,7 @@ We consider here tow ways, how the flux splitting can be done. The ones that are
 
 \begin{equation}
     f = f^{\pm}, \text{  if  } [f'(\bar{u})]_{x_{i+1/2}} \lessgtr 0
+    \label{eq:theory:fd:roefluxsplit}
 \end{equation}
 
 where $\bar{u}_{x+1/2} := (1/2) (u_i + u_{i+1})$, 
@@ -2356,6 +2357,7 @@ and the Rusanov flux-split \cite{Shu:1997} \textit{i.e.,}
 
 \begin{equation}
     f^{\pm} = f(u) \pm \alpha u, \hspace{5mm} a \max[f'(u)],
+    \label{eq:theory:fd:laxfluxsplit}
 \end{equation}
 
 where the maximum is taken over the reconstruction operator stencil. \\ 
@@ -2364,10 +2366,64 @@ With respect to the efficiency, the Roe flux splittes appears superiour, as it r
 
 It is important to note that in our discussion an implicit assumption is made that the function $f$ is convex. In case of relativistic hydrodynamics this is indeed so, however, -- not in the case of relativistic-magneto-hydrodynamics. \\
 
+In addition, in \cite{LeVeque:1992}, a more strict condition imposed on the where Roe flux splitter has to be used instead of Lax-Friedrichs. \textcolor{red}{Our implementation is based on the experience, that a more frequent usage of Roe splitter, decreases comutational costs, as $u$ and $f$ are already computed on the grid, while $f'(u)$ is not. This appears to be sufficient to avoid odd-even decoupling in the tests performed. All the results shown in this thesis, obtain using this Roe-split with this "entropy fix" [This is David's work. Not theory. Not sure how to incorporate it.]} \\
 
+Now, let us consider the general system of hyperbolic balance-laws \ref{eq:theory:fd:hypsys}. The spatial derivatives of the fluxes $\partial_{\alpha} F_{i,j,k} ^{\alpha}$ can be evaluated via a component-by-component approach using the algorithm described above. And while, this is sufficient for lower (up to the second) order schemes, in higher order ones it excites spurious numerical oscillations.
+This problem can be alleviated if reconstraction is done on local characteristic variables of the ssystem. For simplicity, let us consider a one-dimensional case $\alpha={0,1}$. Then, the we employ Jacobian matrices
+
+\begin{equation}
+    \boldsymbol{A}^{\alpha} = \frac{\partial \boldsymbol{F}^{\alpha}}{\partial u}\Big|_{\bar{\boldsymbol{u}}}, \hspace{5mm} \alpha = 0,1,
+    \label{eq:theory:fd:jacobreconstr}
+\end{equation}
+
+where 
+
+\begin{equation}
+    \bar{u} := \frac{1}{2}(u_{i,j,k} + u_{i+1,j,k}),
+    \label{eq:theory:fd:aver_ubar}
+\end{equation}
+
+to reconstract the fluxes $F^1 _{i+1/2, j, k}$. The $\bar{u}$ is the average state at the point of reconstruction. \\
+
+Notably, the average \ref{eq:theory:fd:aver_ubar} and present in \ref{eq:theory:fd:roefluxsplit} and \ref{eq:theory:fd:jacobreconstr} is considerably less complicated then the ones proposed in \cite{Roe:1981}. It was shown that the use of $\bar{u}$ \ref{eq:theory:fd:aver_ubar} instead of averaging proposed in \cite{Roe:1981} has no significant impact on the quality of the solution in FD schemes, even when relativistic case is concerned. \\
+
+As the \ref{eq:theory:fd:hypsys} is strongly hyprebolic, the matrix $\boldsymbol{A}^0$ can be inverted. Then the generalized eigenvalue problem 
+
+\begin{equation}
+    [\boldsymbol{A}^1 - \lambda_{(1)}\boldsymbol{A}^0]r_{(I)} = 0,
+\end{equation}
+
+has only real eigenvalues $\lambda_{(I)}$ and $N$ real, independent, right-eigenvectors, $r_{(I)}$ [see, \textit{e.g.,} \cite{Anile:1990}]
+
+Let the matrix of eigenvectors be $R$ as 
+
+\begin{equation}
+    R_{J}^{I} = r^{I}_{(J)},
+\end{equation}
+
+and $L$ its inverse. Then, the local characteristic variables are 
+
+\begin{equation}
+    \omega = Lu, \hspace{10mm} Q = LF^1
+\end{equation}
+
+and we perform component-wse reconstraction to obtain $Q_{1+1/2,j,k}$, where $\omega$ is used in palce of $u$ and $Q$ in place of $f$ in the \ref{eq:theory:fd:laxfluxsplit}. 
+
+Then, we set
+
+\begin{equation}
+    F^1_{i+1/2, j, k} = RQ_{i+1/2, j, k}.
+\end{equation}
+
+The approximate of $\partial_a F^a$ in terms of $x_{i,j,k}$ then is obtained, repeating the procedure for other dimensions. \textcolor{red}{Results shown in this thesis are obtained, via reconstraction of local charactersitic variables.} \\
+
+The major disadvantage of finite differencing schemes, however, is they they are primarely adopted for Cartesian grids (uiform or with Berger-Oliger-style AMR \cite{Berger:1984}). In case of cell-centered AMR with refluxing, \cite{Berger:1989}, the FD scheme reduce to second order at the boundary of refinment levels. \textcolor{red}{These limitations however are of second importance for the results presented in this thesis [Are they really?..]}
+
+\subsection{Discontinuous Galerkin Methods}
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
+%[18]\cite{Anile:1990}
 %[33]\cite{Baiotti:2004wn}
 %[35]\cite{Balsara:2000}
 %[36]\cite{Banyuls:1997}
