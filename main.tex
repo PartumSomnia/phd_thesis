@@ -2421,9 +2421,37 @@ The major disadvantage of finite differencing schemes, however, is they they are
 
 \subsection{Discontinuous Galerkin Methods}
 
+For hyperbolic equations, with particular emphasis on neutron-transport, Discontinuous Galerkin (DG) Methods have been prposed by Reed and Hill \cite{Reed:1973}. Cockburn and Shu in a series of works extensively expanded on the topic \cite{Cockburn:1991,Cockburn:1989ii,Cockburn:1989iii,Cockburn:1990iv,Cockburn:1998v}. For the elliptic and parabolic equations, the method was also adopted, (see \textit{e.g.,} \cite{Arnold:2002} and references therein). The popularicy of methods have increases in recent years, as well as number of applications of GC methods to classical hyperbolic, parabolic and elliptic problems \cite{Cockburn:2000,Canuto:2008,Hesthaven:2007}. In addition, Zumbush \cite{Zumbusch:2009fe} and Field et al. \cite{Field:2010} have successfully applied the DG methods to the Einstein system of equations in vacuum. Finally, Radice et al. \cite{Radice:2011qr} proposed the first DG general-relativistic hydrodynamics code. \\
+
+The rapid growth of DG methods popularity is largely attributed to their numerical properties which we are going to briefly outline here. \\
+
+In addition, while DG methods are realtively young with respect to FV and FD, they have majority of mathematically proven properies. In particular, the intrinsic non-linear stability have been shown for DG methods for any order of accuracy. However, this required imposing limiters and/ro filtering, to treat the under-reslved parts inf the solution \textit{i.e.,} shocks. If the solution, however, is not well represented by the truncated expansion, the aliasing instability occures. For example, modes that are not present in the actual solution can be "aliased" into the evolved ones. Thus the high order modes can have thir content transfered to lower-order mdoes imporperly. This leads to a non-linear instabilities (see \textit{e.g.,} \cite{Boyd:2001}). In addiiton, it was shown that the solution obtained via DG methods is always entropic, as DG methods satisfy the cell-entropy inequality (see \textit{e.g.,} \cite{Cockburn:2003}). Recently, a maximum-principle-satisfying DG schemes were obtained by Zhang and Shu \cite{Zhang:2011}, via a special limiting technique. \\
+
+Another important property of DG methods in the regions, where the solution is smooth, a high, spectral accuracy can be achieved. With respect to the accuracy of DG methods, it was shown that the numerical dissipation depends only on the truncation error \cite{Cockburn:2003}. This in turn implies that in regions where the solution is smooth and resolved, the dissipation is effectively turned off. This is of prime importance for problems where numerical diffusivity routinely orders of magnitude higher then the physical diffusivity, \textit{e.g.,} in transport problems, where it can render results completely wrong. \\
+
+With respect to their practical use, the DG methods can be easily adopted to general unstructured grids. They are also belived to be very efficient in massively parallel computing owing to their compact stencils that grand them high stability \cite{Biswas:1994}. \\
+
+A particular property that makes DG methods very compelling for GR applications, that they are covariant. DG (and their derivative finite-element method, FEM) do not depend on the a choice of the cooridnate system. Instead they can be described in terms of push-forward and pull-backs from a given reference element \cite{Meier:1999}. \\
+
+\textcolor{gray}{In figure 3.3, the superiour accurady of DG methods is shown. There, for advection equation, the comparsion is made between 5th order DG scheme, 5th Order WENO5 scheme and 7th order WENO7 scheme. The former reins supreme even though the latter has a higher formal order of accuracy. For the comparison equal number of DF-points/DG-elements was taken, to assure the similar computational cost between schemes. However, it is important to note that formaly, DG method have more degrees of freedom (d.o.f) by 5 times with respect to FD methods. A commonly adopted method of comparions between these methods relies of setting equal number of d.o.f. However, this is David's opinion that it is misleading as FD method is much more expensive numerically then. The approach adopted by David allows to set the computational cost equal between the scheme. By setting equal number of FD points to the number of DG elements motivated by the fact that the computational costs of DG scales with number of elements similarly, as the cost of FV/FD methods scales woth the number of ceslls/points. Thus David's comparisons is govern by the scenario in which the computational time is similar. However, an equal number of d.o.f. for the comparison is useful to set, when the memory requirements are a limiting factor.}
+
+Despite the large number of advantages, DG methods also have certain limitaitons. In particular, in comparison with FV/FD methods, they have larger memory requirements. In addition, with respect to shocks, all the standard flattening techniques ano not sufficintly reliable in redicing oscillations, or/and decrease the accuracy of the scheme in the smooth regions. However, arguably the most important limitation of DG methods, is that the linear stability requires a more strict CFL condition. For example if the strongly-stability preserving (SSP) time-discretization is adopted \textit{e.g.,} Runge-Kutta (RK) schemes \cite{Gottlieb:2009}, and the spatial discritisation of the same order, the stability condition reads
+
+\begin{equation}
+    \text{CFL} \leq \frac{1}{c}\frac{1}{2k + 1},
+\end{equation}
+
+where the $k+1$ is the order of accuracy of the scheme \cite{Cockburn:2001}. In recent works [259]\cite{Qiu:2005,Qiu:2004} a novel hybrid DG-FV scheme, DG-WENO was developed to combat this limitation. Similarly, a hybrid scheme $P_N P_M$ was introduced in \cite{Dumbser:2009,Dumbser:2008}. Also, advancments in local-spacetime schemes have been made \cite{Gassner:2011} (see also \cite{Hesthaven:2007} for alternative approaches)
+
+
+
+
+
+
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
 %[18]\cite{Anile:1990}
+%[22]\cite{Arnold:2002}
 %[33]\cite{Baiotti:2004wn}
 %[35]\cite{Balsara:2000}
 %[36]\cite{Banyuls:1997}
