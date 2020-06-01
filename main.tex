@@ -2504,7 +2504,82 @@ The mechanism of DG method, essencially, is to project the \ref{eq:theory:dg:wea
     V_N = \big\{ \upsilon\in\text{BV}(\Omega):\upsilon\circ\phi\in\text{I\!P}_{D}(T), \: j=1,...,N \big\}
 \end{equation}
 
-where $\text{I\!P}_{D}$ is the space of polynomials of degree $D$. 
+where $\text{I\!P}_{D}$ is the space of polynomials of degree $D$. Note, we do not actually require the continuity of functions in $V_N$ between elements. Hence the themse of this family of schemes \textit{discontinuous} Galerkin. Then, in order to constract a DG scheme we need to obtain
+
+\begin{equation}
+    u(t) = C^1(\text{I\!R}_{+};v_N), \hspace{10mm} s.t., \ref{eq:theory:dg:intformadveq} \text{ holds for any } \upsilon\in V_N.
+    \label{eq:theory:dg:weakform}
+\end{equation}
+
+Up to now we were considering test functions that belong to the same functional space as the numerical solution, \textit{i.e.,} to the $V_N$. Such schemes, where the test function and numerical the numerical solution $u$ belong to the same functional space are called \textit{Galerkin methods}. Next, computation of the degrees of freedom of $u$ is now simplified since both $u$ and $\upsilon$ are from finite-dimensional space. This is done by assessing the condition \ref{eq:theory:dg:intformadveq} for a large but finite number of test functions $\upsilon$, linearly independent, of course. This finite number of conditions of the form \ref{eq:theory:dg:intformadveq} allows to determined the degrees of freeodom, as it generates a set of ODEs for d.o.f. of $u$. \\
+
+Next, it is important to mention certain aspects of the weak formulation \ref{eq:theory:dg:weakform}. \\
+
+The first point is related to the smoothness of the test function. The formulation \ref{eq:theory:dg:intformadveq} is not well defined for a non-smooth $\upsilon$. Thus, the DG formulations requires a following addition. The test function $\upsilon$ has to appear as smooth $C_0 ^1(\Omega)$ extension $\upsilon$ in $V_N$ for \ref{eq:theory:dg:intformadveq} to be well defined. Doing this, it has to be ensured that the one-sided limit of $\upsilon$ at $\partial\Omega_j$ from the interior of $\Omega_j$. \textcolor{red}{no clue what this means} This can we achieved by setting
+
+\begin{equation}
+    \langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j} := \langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon_j\rangle_{\partial\Omega_j},
+\end{equation}
+
+where $\upsilon_j \in C_0 ^1 (\Omega)$ and $\upsilon|_{\Omega_j}=\upsilon$. \\
+
+Secondly, let us discuss the normal trace. We simplify \ref{eq:theory:dg:intformadveq} by setting the test function $\upsilon = \chi_i$ and obtain
+
+\begin{equation}
+    \partial_t\int_{\Omega_j}u\text{d}x = - \langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j}
+\end{equation}
+
+which strikingly resembles the finite volume method. Thus, the normal trace cab be viewed as a flux computed using an approxmiated Riemann solver. \\
+
+Now, let us consider the contraction of the DG scheme. For simplicity and brievity we limit ourselves to the one-dimensional case, reducing \ref{eq:theory:dg:intformadveq} to the 
+
+\begin{equation}
+    \sum_{j=1}^{N}\Bigg[\int_{x_j - 1/2}^{x_j +1/2}\partial_t u \upsilon \text{d}x - \int_{x_j - 1/2}^{x_j +1/2}f(u)\partial_x\upsilon\text{d}x\Bigg] = \sum_{j=1}^{N}\big[F^{j-1/2}\upsilon(x_{j-1/2}) - F^{j+1/2}\upsilon(x_{j+1/2})\big],
+\end{equation}
+
+where $F$ is now the numerical flux. Next, we peform an expansion on a polynomial basis on $u(t,\cdot)$ and $f[u(t,\cdot)]$ as
+
+\begin{equation}
+    u(t,x) = \sum_{i=1}^{D}u_{i}^{j}(t)l_{i}^{j}(x), \hspace{5mm} f(t,x) = \sum_{i=1}^{D}f_{i}^{j}(t)l_{i}^{j}(x), \hspace{5mm} x\in[x_{j-1/2}, x_{j+1/2}],
+\end{equation}
+
+where $l_{i}^{j}$ is some polynomial basis over $[x_{j-1/2}, x_{j+1/2}]$. Usually this basis is constracted from orthonormal polynomials, but this is not required. \\
+Now, let us chose $\upsilon = l_{k}^{j}\chi_j$, $k=0,...,D$. This would yield a set of evolution equations for the expansion coefficients $u_{i}^{j}(x)$ \textit{i.e.,}
+
+\begin{equation}
+    \sum_{i=1}^{D}\Bigg[\int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)l_{k}^{j}(x)\text{d}x\Bigg]\frac{\text{d}u_{i}^{j}(t)}{\text{d}t} - \sum_{i=0}^{D}\Bigg[ \int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)\partial_{x}l_{k}^{j}(x)\text{d}x \Bigg]f_{i}^{j} = F^{j-1/2}l_{k}^{j}(x_{j-1/2}) - F^{j+1/2}l_{k}^{j}(x_{j-1/2}),
+\end{equation}
+
+which in more compact form read
+
+\begin{equation}
+    \boldsymbol{M}^{j} - \boldsymbol{D}^{j}\boldsymbol{f} = \boldsymbol{F}^{j-1/2} - \boldsymbol{F}^{j+1/2}, \hspace{5mm} \text{for any } j=1,...,N
+\end{equation}
+
+where vectors $u^{j}$ contain all the expansion coefficients of $u$ and introduced the following matrixes
+
+\begin{equation}
+    \big(\boldsymbol{M}^j\big)_{ki} := \int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)l_{k}^{j}(x)\text{d}x
+\end{equation}
+
+which is the mass matrix, 
+
+\begin{equation}
+    \big(\boldsymbol{D}^{j}\big)_{ki} := \int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)\partial_{x}l_{k}^{j}(x)\text{d}x
+\end{equation}
+
+which is the co-differential matrix, and finally 
+
+\begin{equation}
+    \big(F^{j-1/2}\big)_i := \sum_{k} \delta_{ik} F^{j-1/2}l_{k}^{j}(x_{j-1/2})
+\end{equation}
+
+which are the flux vectors.\\
+
+It is important to note several things. The mass-matrix $\boldsymbol{M}$ is defined on a single element, \textit{i.e.,} it is local. It can be made diagonal, if the accuracy of integration is sufficient and the orthonormal basis is chosen. This simplifies the time evolution as otherwise, the $\boldsymbol{M}$ has to be inverted. This however, is not expensive doe to locality of $\boldsymbol{M}$. There are also alternative methods on diagonalizing the $\boldsymbol{M}$, \textit{e.g.,} mass-lumping \cite{Canuto:2008}.  \\
+
+next, Owing to the fact that $f(u)$ is a general, non-linear function, expanding the flux requires sufficiently large number of coefficients and an adequate quadrature formula to evaluate $\boldsymbol{D}^j$. Otherwise an aliasing error is being introduced. In most practical application it indeed arises and somwhat metigates the non-linear stability of the scheme. If the solution is smooth however, it can be suppressed via filtering techniques \cite{Hesthaven:2007}. 
+Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump discontinuity. Then, even in a overal linear case, the aliasing error arises, requiring a special techniques to reduce it. One of the commonly adopted methods to do so is to employ a minmod limiter as a non-linear filter to flatten the profile of the solution within the element that contains discontinuities \cite{Cockburn:2001}. \textcolor{gray}{see more in chapter 6}
 
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
