@@ -2581,11 +2581,20 @@ It is important to note several things. The mass-matrix $\boldsymbol{M}$ is defi
 next, Owing to the fact that $f(u)$ is a general, non-linear function, expanding the flux requires sufficiently large number of coefficients and an adequate quadrature formula to evaluate $\boldsymbol{D}^j$. Otherwise an aliasing error is being introduced. In most practical application it indeed arises and somwhat metigates the non-linear stability of the scheme. If the solution is smooth however, it can be suppressed via filtering techniques \cite{Hesthaven:2007}. 
 Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump discontinuity. Then, even in a overal linear case, the aliasing error arises, requiring a special techniques to reduce it. One of the commonly adopted methods to do so is to employ a minmod limiter as a non-linear filter to flatten the profile of the solution within the element that contains discontinuities \cite{Cockburn:2001}. \textcolor{gray}{see more in chapter 6}
 
+\chapter{Finite-Dierencing Methods: Flat Spacetimes}
+
+\section{Introduction}
+
+To increase a formal order of accuracty in a current generation numerical codes, the use of flux-conservative finite-difference HRSC schemes is the simplest approach. Its direct competitior, high-order finite volume schemes are more computationally expensive, as they require solution of multiple Riemann problems at the interface between regions 
+
+
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
 %[18]\cite{Anile:1990}
 %[22]\cite{Arnold:2002}
-%[33]\cite{Baiotti:2004wn}
+%[28]\cite{Baiotti:2010zf}
+%[29]\cite{Baiotti:2004wn} [same 1]
+%[33]\cite{Baiotti:2004wn} [same 1]
 %[35]\cite{Balsara:2000}
 %[36]\cite{Banyuls:1997}
 %[40]\cite{Benartzi:2007}
@@ -2602,6 +2611,7 @@ Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump 
 %[81]\cite{Chen:2006}
 %[82]\cite{Chen:2003}
 %[83]\cite{Chen:2009}
+%[85]\cite{Chiu:1973}
 %[86]\cite{Cockburn:1998v}
 %[87]\cite{Cockburn:2003}
 %[88]\cite{Cockburn:1989ii}
@@ -2620,6 +2630,7 @@ Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump 
 %[109]\cite{Debbasch:2009b}
 %[114]\cite{DiPerna:1985}
 %[115]\cite{Donat:1996}
+%[116]\cite{Donat:1998}
 %[121]\cite{Dumbser:2009}
 %[122]\cite{Dumbser:2007}
 %[123]\cite{Dumbser:2008}
@@ -2628,12 +2639,14 @@ Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump 
 %[128]\cite{Field:2010}
 %[130]\cite{Font:2008fka}
 %[134]\cite{Friedrichs:1954}
+%[136]\cite{Galeazzi:2013mia}
 %[139]\cite{Gassner:2011}
 %[141]\cite{Gerolymos:2009}
 %[144]\cite{Giacomazzo:2005jy}
 %[146]\cite{Giacomazzo:2010bx}
 %[147]\cite{Glimm:1965}
 %[149]\cite{Godunov:1959}
+%[150]\cite{Goodale:2003}
 %[151]\cite{Goodman:1985}
 %[154]\cite{Gottlieb:2009}
 %[161]\cite{Harten:1976}
@@ -2644,7 +2657,11 @@ Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump 
 %[173]\cite{Israel:1979wp}
 %[174]\cite{Israel:1963}
 %[176]\cite{Jiang:1996}
+%[179]\cite{Kastaun:2006}
+%[180]\cite{Kastaun:2007phd}
+%[185]\cite{Konigl:1980}
 %[188]\cite{Kruzkov:1970}
+%[189]\cite{Kulikovskii:2002}
 %[190]\cite{Kurganov:2000}
 %[192]\cite{Lax:1957}
 %[193]\cite{Lax:1956}
@@ -2671,6 +2688,7 @@ Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump 
 %[263]\cite{Radice:2011qr}
 %[264]\cite{Radice:2012cu}
 %[267]\cite{Reed:1973}
+%[269]\cite{Reisswig:2009us}
 %[272]\cite{Rezzolla:2002ra} 
 %[273]\cite{Rezzolla:2002cc}
 %[274]\cite{Rezzolla:2011da}
@@ -2680,19 +2698,24 @@ Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump 
 %[285]\cite{Sasaki:1962}
 %[295]\cite{Shu:1997}
 %[296]\cite{Shu:1999}
+%[297]\cite{Shu:2001rep}
 %[298]\cite{Shu:1989}
 %[299]\cite{Shu:1988}
 %[300]\cite{Shu:2003}
 %[304]\cite{Smoller:1993}
+%[305]\cite{Sod:1978}
 %[310]\cite{Suresh:1997}
 %[311]\cite{Synge:1957}
 %[312]\cite{Tadmor1998}
 %[315]\cite{Tauber:1961}
 %[316]\cite{Taylor:2007}
-%[317]\cite{Tchekhovskoy:2007zn}
+%[317]\cite{Tchekhovskoy:2007zn} [copy 2]
+%[318]\cite{Tchekhovskoy:2007zn} [copy 2]
 %[321]\cite{Thorne:1981}
 %[323]\cite{Toro:1999}
 %[325]\cite{vanLeer:1973}
+%[334]\cite{Woodward:1984}
+%[335]\cite{Yang:2001}
 %[339]\cite{Zhang:2005qy}
 %[341]\cite{Zhang:2011}
 %[347]\cite{Zumbusch:2009fe}
