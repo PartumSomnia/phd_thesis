@@ -2581,11 +2581,83 @@ It is important to note several things. The mass-matrix $\boldsymbol{M}$ is defi
 next, Owing to the fact that $f(u)$ is a general, non-linear function, expanding the flux requires sufficiently large number of coefficients and an adequate quadrature formula to evaluate $\boldsymbol{D}^j$. Otherwise an aliasing error is being introduced. In most practical application it indeed arises and somwhat metigates the non-linear stability of the scheme. If the solution is smooth however, it can be suppressed via filtering techniques \cite{Hesthaven:2007}. 
 Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump discontinuity. Then, even in a overal linear case, the aliasing error arises, requiring a special techniques to reduce it. One of the commonly adopted methods to do so is to employ a minmod limiter as a non-linear filter to flatten the profile of the solution within the element that contains discontinuities \cite{Cockburn:2001}. \textcolor{gray}{see more in chapter 6}
 
-\chapter{Finite-Dierencing Methods: Flat Spacetimes}
+\chapter{Finite-Differencing Methods: Flat Spacetimes}
 
 \section{Introduction}
 
-To increase a formal order of accuracty in a current generation numerical codes, the use of flux-conservative finite-difference HRSC schemes is the simplest approach. Its direct competitior, high-order finite volume schemes are more computationally expensive, as they require solution of multiple Riemann problems at the interface between regions 
+\begin{sidenote}
+    \textbf{David:}  \\
+    
+    I've been reading that for high-resolution shock-capturing, the finite differencing techniques are more efficient and simpler in implementation. However, most codes for MHD and radiation MHD that I find are using finite-volume methods. I am very curious why?..
+    
+    THC actually has both FD and FV schemes implemented
+    FV is exactly conservative and there is a better way to do AMR with it
+    FD is better because it is much simpler at higher order
+    with THC when we want to do high order precision things we use FD
+    when we do messy simulations with microphysics, for which robustness and conservation are more important than formal order of convergence, we use FV
+    to be more precise we actually use the Kurganov-Tadmor central scheme, not a Godunov-type FV scheme
+    but people always mixes the two (see e.g., the discussion in my PhD thesis)
+    
+    So, our simulations with microphysical eos andneutrinos are performed using the KT FV scheme?
+    
+    yes KT FV
+\end{sidenote}
+
+To increase a formal order of accuracty in a current generation numerical codes,  flux-conservative finite-difference HRSC schemes is the simplest approach. Its direct competitor, high-order finite volume schemes are more computationally expensive, as they require solution of multiple Riemann problems at the interface between regions \cite{Reisswig:2009us,Shu:2001rep}, as well as complex averaging and de-averaging procedures \cite{Tchekhovskoy:2007zn} \\
+
+Here David presents a new code, the Templated-Hydrodynamics Code (THC), developed using Cactus framework \cite{Goodale:2003}. In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed. The reconstruction in characteristic fields is avaliable for up to 7th order, as well as, the Roe flux split with a entropy-fix prescription. \\
+
+The "templated" in the code name stands for a modern paradigm in C++ programing, the tempalted progaming, which means, that part of the code can be generated from the prescribed templates at compiling time. This paradigm allows for a creation of complex modular codes avoiding computational costs, that plague classical polymorphism. The "templated" programming allows to inline all the needed functions and classes at compiling time, \cite{Yang:2001}. \\
+
+The following reconstruction schemes are implemented: MP5, classical monotonicity preserving \cite{Suresh:1997,Mignone:2010} the weighted essentially non oscillatory (WENO) schemes WENO5 and WENO7 \cite{Liu:1994,Jiang:1996,Shu:1997} and two bandwidth-optimized WENO schemes WENO3B and WENO4B \cite{Martin:2006,Taylor:2007}, constracted for modelling the conpressible turbulence. Note, that the number in acheme name stands for a forma order of accuracy. \\ 
+
+In this chapter we briefly state the details of the \texttt{THC} algorithm and highlight the results of the comparioson between different reconstraction schemes for modelling relativistic turbulence. \\
+
+The chapter is structured as following. First we overview several detain of \texttt{THC} code, discussing the numerical algorithms, in particular with respect to the equations of Newtonian and special relativistic hydrodynamics. Then we state several results. Then we view the linear and non-linear development of the relativistc Kelvin-Helmholtz instability (KHI) in 3D. 
+
+\subsection{The \texttt{THC} code }
+
+Here the infrastructure of \texttt{THC} is presented in addition to the formulation of Newtonian and special-relativistc HD. 
+
+\subsubsection{Newtonian Hydrodynamics}
+
+Let us consider the equations of the classical, Newtonian hydrodynamics. These are the coservation of mass, momentum and energy for a perfect fluid. 
+
+They can be written in a from of a stringly hyperbolic system of balance-laws in afrom \ref{eq:theory:fd:hypsys} (copy)
+
+\begin{equation}
+\partial_t\boldsymbol{F}^0(\boldsymbol{u}) + \partial_i\boldsymbol{F}^i(\boldsymbol{u}) = \boldsymbol{S}(\boldsymbol{u}).
+\end{equation}
+
+Setting source terms $\boldsymbol{S}$ to zero, we have left the primitive variables 
+
+\begin{equation}
+    u = [\rho,\: \vec{\upsilon},\: \epsilon],
+\end{equation}
+
+where $\rho$ is the density, $\upsilon^{i}$ is the velocity, $\epsilon$ is the specific internal energy. The conserved variables are 
+
+\begin{equation}
+    \boldsymbol{F}^{0} = [\rho,\: \rho\vec{\upsilon},\: E] = \big[\rho, \: \rho\vec{\upsilon}, \: \rho\big(\frac{1}{2}\upsilon^2 + \epsilon\big)\big)\big],
+\end{equation}
+
+while the fluxes are 
+
+\begin{equation}
+    \boldsymbol{F}^i(u) = \big[ \rho\upsilon^i, \: \rho\upsilon^i\vec{\upsilon}+p\boldsymbol{\delta}^i, \: \upsilon^{i}(E+p) \big]
+\end{equation}
+
+where $p$ is the pressure, $[\boldsymbol{\delta}^i]^j = \delta^{ij}$ is the Kronecker symbol. To close the system of equations we set the equation of state $p = p(\rho, \epsilon)$. For the ideal fluid we set ideal fluid 
+
+\begin{equation}
+    p = (\Gamma -1)\rho\epsilon
+\end{equation}
+
+where $\Gamma$ is the adiabatic index of the fluid. \\
+
+More detained description regarding Jacobians and their spectral decomposition for the equations of Newtonian hydrodynamics and for a generic equation of state see in \cite{Kulikovskii:2002}.
+
+\subsubsection{Special-relativistic hydrodynamics}
 
 
 %[15]\cite{Aloy:2006rd}
@@ -2692,7 +2764,7 @@ To increase a formal order of accuracty in a current generation numerical codes,
 %[272]\cite{Rezzolla:2002ra} 
 %[273]\cite{Rezzolla:2002cc}
 %[274]\cite{Rezzolla:2011da}
-%[275]\cite{Rezzolla:2013}\
+%[275]\cite{Rezzolla:2013}
 %[277]\cite{Roe:1981}
 %[284]\cite{Sasaki:1958}
 %[285]\cite{Sasaki:1962}
