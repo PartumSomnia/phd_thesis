@@ -1,0 +1,108 @@
+\documentclass[11pt,a4paper,headinclude=true,DIV=14,BCOR=8mm,chapterprefix,listof=totoc,twoside,openright,abstracton]{scrbook}
+
+\usepackage[headsepline]{scrpage2}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[intlimits]{amsmath}
+% \usepackage{siunitx}
+% \usepackage{color}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{hyperref}
+\usepackage{hyperref}
+\usepackage{mathtools}
+% \usepackage[style=authoryear]{biblatex}
+\usepackage{natbib}
+% \usepackage{newtxtext}
+% \usepackage{newtxmath}
+% \usepackage{harvard}
+\setcitestyle{aysep={}} 
+\bibliographystyle{apalike}
+\usepackage{xr}
+\usepackage{wrapfig}
+% \bibliographystyle{agsm}
+%\usepackage{feynmf}
+%\usepackage{tensor}
+\usepackage[framemethod=tikz]{mdframed} % for a block of text
+
+\setlength{\parindent}{0pt}
+\geometry{a4paper, tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm, headheight=3em, headsep=2em, footskip=1cm}
+
+\setcitestyle{citesep={,}}
+
+\newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
+\newcommand{\red}[1]{\textcolor{red}{#1}} 
+\newcommand{\gray}[1]{\textcolor{gray}{#1}} 
+
+\newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
+
+
+\geometry{a4paper, tmargin=2cm, bmargin=2cm, lmargin=1cm, rmargin=1cm, headheight=2em, headsep=2em, footskip=1cm}
+
+\title{PhD thesis}
+\author{Vsevolod Nedora}
+\date{today}
+
+\begin{document}
+    
+    \maketitle
+
+%% --------------- 
+%%
+%% Theory
+%%
+%% ---------------
+
+\chapter{Numerical Approximation of Conservation Laws}
+\label{ch:nummethods}
+
+Laws of conservation form a foundation of physics. Their complex matematical from, however, makes them challanging ti treat numerically. Thus, approximations are required. In this chapter we briefly outline high-order, state-of-the-art numerical methods for the solution of conservation laws. Owing to their key importance in physics, the amount of literature concerning the topic is extensive. Thus, we shall limit our discussion to what is relevant to this thesis, whilst keep the discussion brief. \gray{A particular focus will be set on general-relativistic hydrodynamics} \\
+
+This chapter is organized as following. \gray{In section ... ... ... }
+
+\section{Theoretical Background}
+\label{sec:theory:conserv_laws:theorback}
+
+In this section we outline the mathematical theory of conservation laws, and then, techniques of how they can be implemented numerically. Of particular importance, stand topics of weak and entropic solution for conservation laws, their existance and uniqueness. With respect to the numerical applications, we discuss the consistency, stability and convergence, as well as Lax-Richtmeyer theorem. We conclude with a brief overview of the case of non-linear equations. The brief discusstion that we provide here is based on the fundamental works by \cite{LeVeque:1992} and \cite{Tadmor1998}. We refer to them for more in-depth discussion. 
+
+\subsection{Conservation Laws}
+
+If we consider a basic form of conservation laws, 
+
+%% eq 2.1 and 2.2 in the SOURCE 
+\begin{align} 
+\partial_t\boldsymbol{u} + \nabla\cdot\boldsymbol{f}(\boldsymbol{u}) = 0, \hspace{10mm} &(t,x)\in \text{I\!R}_{+}\times\text{I\!R}^d , \\
+\boldsymbol{u}(0, x) = \boldsymbol{u}(x), \hspace{18mm} &x\in \text{ I\!R},
+\label{eq:theory:conservlaws}
+\end{align}
+
+where $\boldsymbol{u}$ is the vector of $m$ unknowns, $\boldsymbol{f}=(\boldsymbol{\boldsymbol{f}^1,...,\boldsymbol{f}^m})$ is a $d$-dimensional flux and $\boldsymbol{u_0}\in\big[L^{\infty}(\text{I\!R}^d)\big]^m$ is the initial data. \\
+
+It can be shown that the solution of the system \ref{eq:theory:conservlaws} can exhibit discontinuities (shocks) even if the initial data is smooth. Thus, a common approach is to view such a system on the notion of distributions. \\
+
+A solution that satisfies an equation \ref{eq:theory:conservlaws} in a prescribed sense, for which, however, not all the derivatives exists, is called \textit{weak solution}. It can be shown, however, that even a simple case of a scalar conservation law may have multiple weak solutions. To select a "physically preferred" solution a concept of an "entropy function" $\eta$ is introduced. This is a special (convex) function that allows to symmetrizes the spatial Jacobian, $\nabla_{\boldsymbol{u}}f^i$. Together with the entropy flux, $\psi$, derived from compatibility relation, the $\eta\psi$ constitute and \textit{entropy pair}. Then, a weak solution for which the entropy pair exists and admits the admits 
+
+\begin{equation}
+\partial_t\eta(\boldsymbol{u}) + \nabla\cdot\boldsymbol{\psi}(\boldsymbol{u})\leq 0,
+\label{eq:theory:nummeth:entropic}
+\end{equation}
+
+is the \textit{entropic solution}. In case of distributions the condition for a solution is integral of \ref{eq:theory:nummeth:entropic} over space and time to be equal $0$. Considering a simple scalar case, this condition is equivalent to require characteristic lines impinge into shock waves \cite{LeVeque:1992}. 
+
+%% --------------- 
+%%
+%% References
+%%
+%% ---------------
+
+\newpage
+
+\bibliography{references}
+
+\end{document}
