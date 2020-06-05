@@ -86,14 +86,49 @@ where $\boldsymbol{u}$ is the vector of $m$ unknowns, $\boldsymbol{f}=(\boldsymb
 
 It can be shown that the solution of the system \ref{eq:theory:conservlaws} can exhibit discontinuities (shocks) even if the initial data is smooth. Thus, a common approach is to view such a system on the notion of distributions. \\
 
-A solution that satisfies an equation \ref{eq:theory:conservlaws} in a prescribed sense, for which, however, not all the derivatives exists, is called \textit{weak solution}. It can be shown, however, that even a simple case of a scalar conservation law may have multiple weak solutions. To select a "physically preferred" solution a concept of an "entropy function" $\eta$ is introduced. This is a special (convex) function that allows to symmetrizes the spatial Jacobian, $\nabla_{\boldsymbol{u}}f^i$. Together with the entropy flux, $\psi$, derived from compatibility relation, the $\eta\psi$ constitute and \textit{entropy pair}. Then, a weak solution for which the entropy pair exists and admits the admits 
+A solution that satisfies an equation \ref{eq:theory:conservlaws} in a prescribed sense, for which, however, not all the derivatives exists, is called \textit{weak solution}. It can be shown, however, that even a simple case of a scalar conservation law may have multiple weak solutions. To select a "physically preferred" solution a concept of an "entropy function" $\eta$ is introduced. This is a special (convex) function that allows to symmetrizes the spatial Jacobian, $\nabla_{\boldsymbol{u}}f^i$. Together with the entropy flux, $\psi$, derived from compatibility relation, the $\eta\psi$ constitute and \textit{entropy pair}. Then, a weak solution for which the entropy pair exists and admits
 
 \begin{equation}
 \partial_t\eta(\boldsymbol{u}) + \nabla\cdot\boldsymbol{\psi}(\boldsymbol{u})\leq 0,
 \label{eq:theory:nummeth:entropic}
 \end{equation}
 
-is the \textit{entropic solution}. In case of distributions the condition for a solution is integral of \ref{eq:theory:nummeth:entropic} over space and time to be equal $0$. Considering a simple scalar case, this condition is equivalent to require characteristic lines impinge into shock waves \cite{LeVeque:1992}. 
+is the \textit{entropic solution}. The criterion can de understood, as requiring that the process, that led to the formation of a shock is irreversible \cite{LeVeque:1992}. In a scalar case $m=1$, the existence and uniqueness was shown possible for broad range of conditions \cite{Kruzkov:1970}. The extension to the  measure-valued solutions was stated by \cite{DiPerna:1985} and to the conservation laws on manifolds \cite{Benartzi:2007}. \\
+
+In case of a system of conservation laws, however, the existence of an entropy flux $\psi$ is not guaranteed and the uniqueness and stability of entropic solution has not been proven. 
+Thus, while in one dimension and with a particular equation of state such properties can be found \textit{e.g.,} \cite{Chen:2009}, for a general equations the existence and uniqueness of the Reimann problem is not assured \cite{Curtis:1972}.
+
+Another examples, of where the weak solution existence was found are the relativistic case \cite{Glimm:1965} with however ultrarelativistic equation of state only \cite{Smoller:1993} and strictly hyperbolic systems with a smooth enough initial conditions \cite{Lax:1957}.
+
+For a recent review on the topic, see \textit{e.g.,} \cite{Chen:2006}. \\
+
+%%
+%% []
+%%
+
+\subsection{Consistency, Stability and Convergence}
+
+For the discussion of a numerical treatment of conservation laws, several key concepts ought be to be introduced. For simplicity, we limit ourselves to the $m=1$, one-dimensional case, where $\boldsymbol{u}$ of equation \ref{eq:theory:conservlaws} are scalar functions $u$. Let us further simplify notations, by viewing the solution to the 1D version of equation \ref{eq:theory:conservlaws} as a a function of time only $u(t)$, a bounded "curve" in infinite dimension vector space. Then, the \ref{eq:theory:conservlaws} can be viewed as an infinite system of ordinary differential equations (ODEs), written symbolically as
+
+\begin{equation}
+\frac{\text{d}u(t)}{\text{d}t} = \mathcal{L}[u(t)], \hspace{10mm} u(0) = u_0,
+\label{eq:theory:conservlawsode}
+\end{equation}
+
+where we associate the operator $\mathcal{L}(\cdot)$ with the $-\nabla\cdot\boldsymbol{f}(\cdot)$. 
+Importantly, the solution to \ref{eq:theory:conservlawsode} is not necessarily smooth in time and thus ought to be considered in terms of distributions. We however, assume for the purpose of this discussion that the $u(t)$ is a smooth function. In addition, by saying $u(0) = u_0$ we have broken a certain mathematical rigor. This is acceptable for our task, however, for more details we refer to the \cite{Kruzkov:1970}. 
+
+Now we discuss the numerical approximation to \ref{eq:theory:conservlawsode}. This begins with introducing a discretization parameter $\Delta$ into the equation \ref{eq:theory:conservlawsode} such that $u^{\Delta}\approxeq u $, $L^{\Delta}\approxeq \mathcal{L}$ and $u^{\Delta}(0) \approx u_0$. In the latter, there is an additional error associated projection operator, but it is usually negligible in comparison with the one associated with discretization. One of these errors is the \textit{truncation error}, $r^{\Delta}$, which is due to approximating $\mathcal{L}[u(t)]$ with $L^{\Delta}[u(t)]$, where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. A scheme is called \textit{consistent} if truncation error converges to zero as $\Delta \rightarrow 0$ in some (problem- and method dependent) norm for all possible initial data $u_0$. A scheme is said to be of order $r$ if $|| r^{\Delta}(t) || = \mathcal{O}(\Delta^r)$. A scheme is said to be \textit{stable} if this norm is limited $|||L^{\Delta}||| \leq C$, where $C\geq 0$ is a constant independent of $\upsilon$. And a scheme is said to be \textit{convergent} if a limit of $||u^{\Delta}(t)-u(t)|| = 0$ when $\Delta\rightarrow 0$. Lax-Richtmeyer equivalence for a linear equations state that numerical approximation of well-posed problems is convergent if and only if the scheme is stable and consistent \cite{Lax:1956}, thus relating consistency, stability and convergence. For a non-linear case a stronger criterion \textit{non-linear stability} is however required. 
+
+\subsection{Non-Linear Equations and Non-Linear Stability}
+
+
+
+
+
+
+
+
 
 %% --------------- 
 %%
@@ -103,6 +138,6 @@ is the \textit{entropic solution}. In case of distributions the condition for a 
 
 \newpage
 
-\bibliography{references}
+\bibliography{../references}
 
 \end{document}
