@@ -120,7 +120,27 @@ Importantly, the solution to \ref{eq:theory:conservlawsode} is not necessarily s
 
 Now we discuss the numerical approximation to \ref{eq:theory:conservlawsode}. This begins with introducing a discretization parameter $\Delta$ into the equation \ref{eq:theory:conservlawsode} such that $u^{\Delta}\approxeq u $, $L^{\Delta}\approxeq \mathcal{L}$ and $u^{\Delta}(0) \approx u_0$. In the latter, there is an additional error associated projection operator, but it is usually negligible in comparison with the one associated with discretization. One of these errors is the \textit{truncation error}, $r^{\Delta}$, which is due to approximating $\mathcal{L}[u(t)]$ with $L^{\Delta}[u(t)]$, where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. A scheme is called \textit{consistent} if truncation error converges to zero as $\Delta \rightarrow 0$ in some (problem- and method dependent) norm for all possible initial data $u_0$. A scheme is said to be of order $r$ if $|| r^{\Delta}(t) || = \mathcal{O}(\Delta^r)$. A scheme is said to be \textit{stable} if this norm is limited $|||L^{\Delta}||| \leq C$, where $C\geq 0$ is a constant independent of $\upsilon$. And a scheme is said to be \textit{convergent} if a limit of $||u^{\Delta}(t)-u(t)|| = 0$ when $\Delta\rightarrow 0$. Lax-Richtmeyer equivalence for a linear equations state that numerical approximation of well-posed problems is convergent if and only if the scheme is stable and consistent \cite{Lax:1956}, thus relating consistency, stability and convergence. For a non-linear case a stronger criterion \textit{non-linear stability} is however required. 
 
+%%
+%%
+%%
+
 \subsection{Non-Linear Equations and Non-Linear Stability}
+
+Up to this point we were focusing on the discretization of spatial derivatives of the ODE \ref{eq:theory:conservlawsode}, \textit{i.e.,} the operator $L^{\Delta}[u(t)]$, eluding mentioning the time discretization. The reason for that is an observation, that in the context of non-linear conservation laws, the former introduces a much larger error than the latter. However, for the discussion of non-linear stability and convergence, we must focus on both, introducing \textit{fully discrete} schemes.\\
+In \cite{Kruzkov:1970}, it was shown, that there exist a one-parameter family of evolution operators $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$. Its discrete from is $\{ T^{\Delta} _{k \Delta t} \}_{k\in\text{I\!N}}$ The $\mathcal{T}_t(u_0)$ yields a solution of \ref{eq:theory:conservlaws} at a time $t$, given the initial data $u_0$. Then, a scheme in its fully discrete form is $ u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)]$. The choice of a single discretization parameter $\Delta$ is justified by the Courant-Friedrichs-Lewy (CFL) condition, which connects time and space discretization that preserve stability. \\
+In a fully discrete form, the consistency condition is $||\cdot||$, $||r^{\Delta}(t)||\rightarrow 0$ when $\Delta\rightarrow 0$ and linear stability requires $|||T^{\Delta}_{\Delta t}||| \leq C$ where $C$ is a constant. The Truncation error is $r^{\Delta}(t) = T^{\Delta}_{\Delta t}[u(t)] - \mathcal{T}_{\Delta t}[u(t)]$, where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. \\
+
+%% on the TV stability
+
+Now we proceed with outlying how a numerical scheme can be constructed in a non-linear case. We start with a fundamental Lax-Wendroff theorem, \cite{Lax:1960}, that states that for a function $u$ to be a weak solution of \ref{eq:theory:conservlaws}, the numerically approximated solution $u^{\Delta}$ to the \ref{eq:theory:conservlawsode} obtained via conservative and consistent scheme, should converge strongly. Hence, once the condition for a scheme to be convergent is found, the Lax-Wendroff theorem assures that solution obtained via such a scheme is weak solution\footnote{However, the solution is not guaranteed to be entropic. For that the scheme has to also satisfy the entropy inequality.}. \\
+
+A concept of convergence is related to a concept of bound variation (BV) invariance and compactness of bounded sets. The BV space is a space of all functions with finite total variation (TV) \cite{Luigi:2002}. It can be shown that if initial data belongs to a $\text{BV}(\text{I\!R}^d)$, then the solution $u \in \text{BV}(\text{I\!R}\times\text{I\!R}^d)$, for $t > 0$, $u(t) \in \text{BV}(\text{I\!R}^d)$, which constitutes the BV-invariance. This is however not necessarily the case for a system of cosnervation laws. See \textit{e.g.,} \cite{Chen:2006}. In addition, it can be shown that a given set of functions that belongs to BV, there exists a subset converging in the $L^1$-norm to a specific function \cite{Luigi:2002}. \\
+
+Thus, if we have a numerical scheme that displays a behavior akin BF-invariance, the Lax-Wendroff Theorem assure that the it $L^1$ stable and consistent. Than, a solution obtained via such a scheme converges in $L^1$-nrom to a weak solution as $\Delta\rightarrow 0$. Such scheme is called \textit{TV-stable}. A particular class of schemes having this property is the \textit{total-variation diminishing} (TVD) schemes. Convergence in case non-linear conservation laws was first shown for \textit{monotone} schemes that if $u \geq \upsilon$ then $T_{s}^{\Delta}(u) \geq T_{s}^{\Delta}(\upsilon)$. And a scheme satisfies the strong stability condition if $\geq T_{s}^{\Delta}$ is conservative and monotone \cite{Crandall:1980proc}, and hence, it is TVD \cite{LeVeque:1992}. 
+
+
+
+
 
 
 
