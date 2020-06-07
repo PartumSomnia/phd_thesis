@@ -134,14 +134,44 @@ In a fully discrete form, the consistency condition is $||\cdot||$, $||r^{\Delta
 
 Now we proceed with outlying how a numerical scheme can be constructed in a non-linear case. We start with a fundamental Lax-Wendroff theorem, \cite{Lax:1960}, that states that for a function $u$ to be a weak solution of \ref{eq:theory:conservlaws}, the numerically approximated solution $u^{\Delta}$ to the \ref{eq:theory:conservlawsode} obtained via conservative and consistent scheme, should converge strongly. Hence, once the condition for a scheme to be convergent is found, the Lax-Wendroff theorem assures that solution obtained via such a scheme is weak solution\footnote{However, the solution is not guaranteed to be entropic. For that the scheme has to also satisfy the entropy inequality.}. \\
 
-A concept of convergence is related to a concept of bound variation (BV) invariance and compactness of bounded sets. The BV space is a space of all functions with finite total variation (TV) \cite{Luigi:2002}. It can be shown that if initial data belongs to a $\text{BV}(\text{I\!R}^d)$, then the solution $u \in \text{BV}(\text{I\!R}\times\text{I\!R}^d)$, for $t > 0$, $u(t) \in \text{BV}(\text{I\!R}^d)$, which constitutes the BV-invariance. This is however not necessarily the case for a system of cosnervation laws. See \textit{e.g.,} \cite{Chen:2006}. In addition, it can be shown that a given set of functions that belongs to BV, there exists a subset converging in the $L^1$-norm to a specific function \cite{Luigi:2002}. \\
+A concept of convergence is related to a concept of bound variation (BV) invariance and compactness of bounded sets. The BV space is a space of all functions with finite total variation (TV) \cite{Luigi:2002}. It can be shown that if initial data belongs to a $\text{BV}(\text{I\!R}^d)$, then the solution $u \in \text{BV}(\text{I\!R}\times\text{I\!R}^d)$, for $t > 0$, $u(t) \in \text{BV}(\text{I\!R}^d)$, which constitutes the BV-invariance. This is however not necessarily the case for a system of cosnervation laws. See \textit{e.g.,} \cite{Chen:2006}. In addition, it can be shown that for a given set of functions that belongs to BV, there exists a subset converging in the $L^1$-norm to a specific function \cite{Luigi:2002}. \\
 
-Thus, if we have a numerical scheme that displays a behavior akin BF-invariance, the Lax-Wendroff Theorem assure that the it $L^1$ stable and consistent. Than, a solution obtained via such a scheme converges in $L^1$-nrom to a weak solution as $\Delta\rightarrow 0$. Such scheme is called \textit{TV-stable}. A particular class of schemes having this property is the \textit{total-variation diminishing} (TVD) schemes. Convergence in case non-linear conservation laws was first shown for \textit{monotone} schemes that if $u \geq \upsilon$ then $T_{s}^{\Delta}(u) \geq T_{s}^{\Delta}(\upsilon)$. And a scheme satisfies the strong stability condition if $\geq T_{s}^{\Delta}$ is conservative and monotone \cite{Crandall:1980proc}, and hence, it is TVD \cite{LeVeque:1992}. 
+Thus, if we have a numerical scheme that displays a behavior akin BV-invariance, the Lax-Wendroff Theorem assure that the it $L^1$ stable and consistent. Then, a solution obtained via such a scheme converges in $L^1$-norm to a weak solution as $\Delta\rightarrow 0$. Such a scheme is called \textit{TV-stable}. A particular class of schemes having this property is the \textit{total-variation diminishing} (TVD) schemes. \\
 
+Convergence in the case of non-linear conservation laws was first shown for \textit{monotone} schemes, for which if $u \geq \upsilon$ the $T_{s}^{\Delta}(u) \geq T_{s}^{\Delta}(\upsilon)$. A monotone and conservative $T_{s}^{\Delta}$ implies that it satisfies the strong stability condition \cite{Crandall:1980proc}, and that the method is TVD \cite{LeVeque:1992}. A numerical solution obtained via a consistent, stable and monotone scheme converges to a weak solution of \ref{eq:theory:conservlaws}, which is also entropic \cite{Crandall:1980}. However, an accuracy of a monotone scheme was shown to be limited to a first order \cite{Harten:1976}. \\
 
+An adaptive approach was employed to achieve higher accuracy, while preserving TVD properties in 1D\footnote{in the multi-dimensional case, TVD schemes are necessarily at most first-order accurate \cite{Goodman:1985}}, however at a loss of monotonicity. These methods are non-linear stable and high order accurate by allowing the order of convergence decrease to a first order in the vicinity of discontinuities. These are high resolution shock-capturing (HRSC) schemes. Contraction of a high order multidimensional schemes require weaker conditions of non-linear stability. A second-order central-scheme by Kurganov and Tadmor \cite{Kurganov:2000} is an example, of such a scheme, satisfying the maximum-principle. \\
 
+Owing to these complications, the most widely used numerical schemes are neither TVD nor have been shown to be TV stable. Moreover, in case of general systems of non-linear conservation laws, even the 1D stability and convergence has not been proven. Use of these schemes is advocated by numerical evidence of their convergence to an entropic solution. However, the mathematical proof remains to be provided, which in part requires better understand the characterization of entropic solutions \cite{Tadmor1998} and in part -- in properties of systems of conservation laws.  \\
 
+%%
+%%
+%%
 
+\subsection{Finite-Volume Methods}
+
+Finite-volume methods are widely used in computational fluid dynamics \gray{owing to what?}. The Godunov scheme \cite{Godunov:1959} was the first such scheme able to yield solutions with discontinuities without spurious numerical extrema and with least numerical dissipation, \textit{i.e.,} being a \textit{monotonicity-preserving} scheme. There is a plethora of broadly used Godunov-type, methods for conservation laws, built on top of the original, see \textit{e.g.,} \cite{Toro:1999} for an up-to-date overview of the subject. \\
+
+In this subsection we outline the basic Godunov method for the first order schemes, and remark on the second-order Godunov-type schemes, most popular for relativistic hydrodynamic applications. We close the subsection mentioning the extension of FV methods to even higher orders, and difficulties involved to its application.\\
+
+%%
+%%
+%%
+
+\subsubsection{The Godunov Method}
+
+We start by defining what is \textit{Reimann problem}. Reimann problem is a special initial value problem, that involve conservation equations and piece-wise constant initial data with a single discontinuity. Can naturally arise in FV methods due to discreteness of the grid. A \textit{Reimann solver} then is a special method to compute a numerical flux across a discontinuity in a Reimann problem. Mostly used in high order accuracy schemes. Left and right states usually evaluated using some form on non-linear reconstructor, which are then used as input for a Reimann solver. To reduce the computational cost, the iterative procedure is commonly replaced by approximations, such as Roe, HLLE, HLLC solvers. \\
+
+In his pioneer work, Godunov \cite{Godunov:1959} established main principles that most modern hock-capturing methods are based upon. Studying the linear-advection equation and assuming leanar scheme is to be used for discretization, he showed that all monotonicity-preserving are at most first-order accurate. It was pointed out later that nonlinear schemes are required to achieve higher-order accuracy \cite{Boris:1971,vanLeer:1973}. In addition, Godunov has shown first-order upwind algorithm is the most accurate monotonicity-preserving scheme for the advection equation, elaborating on how it can be extended to the non-linear case. \\
+
+We will restrict ourselves to a very brief description of an application of FV method to a one dimensional scalar hyperbolic advection equation 
+
+\begin{equation}
+    \partial_t u + \partial_x f(u) = 0.
+    \label{eq:theory:fv:adveq}
+\end{equation}
+
+The equation \ref{eq:theory:fv:adveq} is to be case on a uniformly-spaced grids in space $ x_i = i\Delta^1$ and time $t_n = n\Delta^0$ where $n\in\mathbb{N}$
 
 
 
