@@ -1953,7 +1953,7 @@ It is believed that a more precise characterization of piecewise-regular entropi
 
 \begin{sidenote}
     \textbf{Reimann problem} \\
-    Reimann problem is a specifit initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuituy in the domain of interest. Innumerical analysis it appears naturally in finite volume method for the solution of conservation law equations due to the discreteness of the grid. 
+    Reimann problem is a specifit initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuituy in the domain of interest. In numerical analysis it appears naturally in finite volume method for the solution of conservation law equations due to the discreteness of the grid. 
     \textbf{Reimann solver} \\
     A Reimann solver is a numerical method used to solve a Reimann problem. Generally speaking, Reimann solvers ar especific methods for computing the numerical flux across a discontinuityin the Riemann problem. They are wifely used in high resolution schemes. Usually, left and right states for the reimann Problem are calculated using some form on non-linear reconstraction, such as flux limiteror WENO method, and then used as inut for the reimann solver. \\
     An iterative solution to the RP is too costly, especially in MHD. Popular approximations are:
@@ -1967,6 +1967,8 @@ It is believed that a more precise characterization of piecewise-regular entropi
 
 The finite-volume method, the Godunov scheme \cite{Godunov:1959}, was one of the fist \textit{monotonicity-preserving schemes}\footnote{Different from the monotonic schemes discussed above} that was able to yield solutions with discontinuities without spurious numerical extrema and with minimum numerical dissipation. There is a plethora of variations of Godunov-type, methods for conservation laws, built on top of the original method, see \textit{e.g.,} \cite{Toro:1999} for an up-to-date overview of the subject. \\
 In this section we consider the basic Godunov method for the first order schemes. Then, we iterate on the second-order Godunov-type schemes, that are the most widely used in the field of relativistic hydrodynamics. In the end of the subsetion, we elaborate on the extension of FV methods to even higher orders, and pint out the difficulties arising in application to the relativistic hydrodynamics 
+
+
 
 \subsubsection{The Godunov Method}
 \textcolor{red}{my overall understanding of this method is rather poor and thus I copied David. It needs to be revised more.}

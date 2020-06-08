@@ -171,13 +171,34 @@ We will restrict ourselves to a very brief description of an application of FV m
     \label{eq:theory:fv:adveq}
 \end{equation}
 
-The equation \ref{eq:theory:fv:adveq} is to be case on a uniformly-spaced grids in space $ x_i = i\Delta^1$ and time $t_n = n\Delta^0$ where $n\in\mathbb{N}$
+The equation \ref{eq:theory:fv:adveq} is to be case on a uniformly-spaced grids in space $ x_i = i\Delta^1$ and time $t_n = n\Delta^0$ where $n\in\mathbb{N}$. In the foundation of FV methods lie the control volumes, defined as $[x_{i-1/2},x_{i+1/2}]$, over which the average value of $u$ is $\bar{u}_i ^n$. \\
+Averaging the avdection equation \ref{eq:theory:fv:adveq} over one control volume and one time-step we obtain
 
+\begin{equation}
+    \frac{\bar{u}_{i}^{n+1}-\bar{u}_{i}^{n}}{\Delta^0} = \frac{1}{\Delta^0}\int_{t_n}^{t_{n+1}}\big\{f[u(t,x_{i-1/2})] - f[u(t,x_{i+1/2})]\big\}\text{d}t
+    \label{eq:theory:fv:intadveq}
+\end{equation}
 
+without making any approximation. To solve integrals on r.h.s of \ref{eq:theory:fv:intadveq} we need to solve Riemann problems centered at the interfaces between control-volumes. To obtain a solution at the time $n+1$, \textit{i.e.,} $\{U_{i}^{n+1}\}_{i\in\mathbb{Z}}$, starting from the solution at time $n$ \textit{i.e.,} $\{U_{i}^{n}\}_{i\in\mathbb{Z}} \approx \{\bar{u}_{i}^{n}\}_{i\in\mathbb{Z}}$, Godunov assumed that a solution can be represented as a \textit{piece-wise constant} in each control volume. The form of the solution is such that it is only non-zero within a given control volume. Then, as Riemann problems, required for r.h.s of \ref{eq:theory:fv:intadveq} are centered about interfaces between adjacent control-volumes, integral form of advection equation \ref{eq:theory:fv:intadveq} can be solved exactly for all $t\in[t_n, t_{n+1}]$. Provided, a sufficiently small time-step $\Delta^0$ is adopted that satisfies the CFL condition $\text{CFL} := \Delta^0 / \Delta^1 \leq c^{-1} $, where $c$ is the maximum propagation speed. Notably, obtaining $\{U^{n+1}_i\}_{i\in\mathbb{Z}}$ is further simplified as the $u(t, x_{i-1/2})$ is constant with time \cite{LeVeque:1992}.\\
 
+A semi-discrete form of Godunov scheme \ref{eq:theory:fv:intadveq} can be written as 
 
+\begin{equation}
+\frac{\text{d}U_i}{\text{d} t} = \frac{1}{\Delta^1}[F(U_{i-1}, U_{i}) - F(U_i, U_{i+1})].
+\label{eq:theory:fv:semi-discrete}
+\end{equation}
 
+where $F(U_{i-1}, U_{i})$ and $F(U_i, U_{i+1})$ are \textit{numerical fluxes} introduced on a premise that solution $u(t, x_{i-1/2})$ depends on $U_{i-1} ^n$ and $U_{i} ^n$ as $u(t, x_{1/2}) =: u^* (U_{i-1}^{n}, U_{i}^n)$. \\
 
+The introduction of semi-discrete formulations simplifies the discussion on high order FV schemes and on coupling between hydrodynamic equations and other systems of equations \textit{e.g.,} spacetime evolution, that are evolved with methods other then FV. Thus, we shall restrict ourselves to the discussion of FV methods in this form. We refer to \textit{e.g.,} \cite{Toro:1999} for a comprehensive description of FV methods and to \cite{Gassner:2011} for a more up-tp-date discussion regarding the higher order time discretization methods for FV. \\
+
+The extension of FV method in form \ref{eq:theory:fv:semi-discrete} to 3D,  $\boldsymbol{x}_{i,j,k} = (i\Delta^1,j\Delta^2,k\Delta^3)$ where $i, j, k \in \mathbb{Z}$ is simple and done via adding $F^1$, $F^2$ and $F^3$, numerical fluxes associated with $f^1$, $f^2$ and $f^3$ respectively. Similarly, by introducing a generic control-volume $\Omega_a$ and $\boldsymbol{\nu}$ is the inwards pointing normal to $\Omega$, the FV methods can be extended to a unstructured grid in multi-dimensions. \\ 
+
+A particular aspect of FV schemes, is that after the Reimann problem is solved at the interface between control-volumes, most of the information is lost in the subsequent averaging. Thus, even using approximate Reimann solvers, a monotone scheme can be obtained. It was shown to be particularly useful when Reimann problems are complex \textit{e.g.,} in relativistic Euler equation \cite{Marti:1994,Pons:2000,Giacomazzo:2005jy}. However, it also implies high diffusivity of FV schemes \cite{Harten:1983}. In most solvers, the numerical flux $F(U)$ is treated separately for left $U_L$ and right $U_R$ states. A popular examples or such solvers are HLLE solver \cite{Roe:1981}, the Marquina flux-formula \cite{Donat:1996} and HLLE solver \cite{Einfeldt:1988}. 
+
+\subsubsection{TVD Finite-Volume Methods}
+
+The difficulty in constructing high order finite volume methods is the loss of information at an averaging step. However, this information can be recovered via use of \textit{reconstruction techniques}. In particular, the non-linear reconstruction procedure, that suppresses spurious oscillations from appearing. The procedure relies on adopting the second order approximation of $u$ as $U_i(x) = U_i + \sigma_i(x-x_i)$, where $\sigma_i$ is the reconstructed slope in $[x_{i-1/2},x_{i+1/2}]$ and $U_i(x)$ is a profile of the solution $U$. As at the interface between control volumes, the profiles may not agree, the $U^{-}$ and $U^{+}$ are introduced inro the FV scheme.
 
 
 %% --------------- 
