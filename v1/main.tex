@@ -196,9 +196,39 @@ The extension of FV method in form \ref{eq:theory:fv:semi-discrete} to 3D,  $\bo
 
 A particular aspect of FV schemes, is that after the Reimann problem is solved at the interface between control-volumes, most of the information is lost in the subsequent averaging. Thus, even using approximate Reimann solvers, a monotone scheme can be obtained. It was shown to be particularly useful when Reimann problems are complex \textit{e.g.,} in relativistic Euler equation \cite{Marti:1994,Pons:2000,Giacomazzo:2005jy}. However, it also implies high diffusivity of FV schemes \cite{Harten:1983}. In most solvers, the numerical flux $F(U)$ is treated separately for left $U_L$ and right $U_R$ states. A popular examples or such solvers are HLLE solver \cite{Roe:1981}, the Marquina flux-formula \cite{Donat:1996} and HLLE solver \cite{Einfeldt:1988}. 
 
+%%
+%%
+%%
+
 \subsubsection{TVD Finite-Volume Methods}
 
-The difficulty in constructing high order finite volume methods is the loss of information at an averaging step. However, this information can be recovered via use of \textit{reconstruction techniques}. In particular, the non-linear reconstruction procedure, that suppresses spurious oscillations from appearing. The procedure relies on adopting the second order approximation of $u$ as $U_i(x) = U_i + \sigma_i(x-x_i)$, where $\sigma_i$ is the reconstructed slope in $[x_{i-1/2},x_{i+1/2}]$ and $U_i(x)$ is a profile of the solution $U$. As at the interface between control volumes, the profiles may not agree, the $U^{-}$ and $U^{+}$ are introduced inro the FV scheme.
+The difficulty in constructing high order finite volume methods is the loss of information at the averaging step. However, this information can be recovered via \textit{reconstruction techniques} To suppress spurious oscillations from appearing and achieve high order accuracy, the non-linear reconstruction procedures of the solution $u$ are needed. The technique resembles linear regression. It relies on adopting the second order approximation of $u$ as $U_i(x) = U_i + \sigma_i(x-x_i)$, where $\sigma_i$ is the reconstructed slope in $[x_{i-1/2},x_{i+1/2}]$ and $U_i(x)$ is a profile of the solution $U$. As at the interface between control volumes, the profiles may not agree, the $U^{-}$ and $U^{+}$ are introduced into the FV scheme. Instantaneous fluxes then given by $F(U_L, U_R)$, which implies that the solution at the next time step depends only on the jump between two state $U_L$ and $U_R$. Hence, if a second order time integrator is used as well, the second order accuracy scheme is obtained \footnote{This is true in a semi-discrete form. In a fully discrete from, the use of predictor-corrector technique is required}. The choice of $\sigma_i$, that assures that the scheme is TV, is dictated by a special limiter \textit{slope-limiter}. Such are "minmod", "minmod2" limiters \cite{LeVeque:1992}, that reduce a scheme to the first order in the vicinity of discontinuities, preventing spurious oscillations. For a system of conservation laws, the reconstruction is usually done component-wise.
+
+%%
+%%
+%%
+
+\subsubsection{Higher-Order Finite-Volume Methods}
+
+Via a technique similar to linear regression, we were able to extend the Godunov scheme to a second order. Employing a polynomial regression instead, higher order schemes can be constructed. Consider a generic function $\upsilon(x)$, its generic volume-average $\widetilde{\upsilon}_i$. To obtain a high-order approximation of $\upsilon$ at a point $x$ from $\widetilde{\upsilon}_i$ we employ a non-linear reconstruction operator $\mathcal{R}$. Owing to possible discontinuities, we actually use left-biased $\mathcal{R}^-$ and tight-biased $\mathcal{R}^+$. The operator is of order $r$. Its action on the average returns 
+$\upsilon^{-}_{i+1/2}$ and $\upsilon^{+}_{i+1/2}$ respectively, high order approximations. Examples of $\mathcal{R}$ are: the piecewise parabolic method (PPM) \cite{Colella:1984,Colella:2008}, the piecewise hyperbolic method (PHM) \cite{Marquina:1994}, the essentially nonoscillatory (ENO) \cite{Harten:1987,Shu:1988,Shu:1989}, weighted essentially non-oscillatory (WENO) \cite{Liu:1994,Jiang:1996} and monotonicity-preserving (MP5) \cite{Suresh:1997} algorithms. \\
+In particular, the WENO scheme achieve high accuracy by combining results from multiple reconstructions. It takes a weighted average of the reconstructed polynomial on each stencil, suppressing the non-smooth stencils via small weights. As it does not use conditional statements to select the smoothest stencil as ENO does, it is more computationally efficient. However, at high orders it was shown to be unstable and requires additional limiting techniques \cite{Gerolymos:2009,Tchekhovskoy:2007zn,Balsara:2000}. See \textit{e.g.,} \cite{Gerolymos:2009} for implementation details of WENO scheme. For more advanced versions of WENO scheme, built to reduce numerical dissipation, see \cite{Martin:2006} and \cite{Taylor:2007}. \\
+The MP5 scheme is a 5th order method, that employs flattening, that reduces the effect of artificial extrema, via smoothing procedures. It is a monotonicity-preserving scheme, that does not introduce spurious oscillations, however, having many conditional statements in limiting procedures it is not as computationally efficient as WENO schemes.
+
+%%
+%%
+%%
+
+\subsubsection{Very-High-Order Finite-Volume Schemes}
+
+Formally, in 1D the construction of high order schemes can be done via prescribing high order non-oscillatory reconstruction operators $\mathcal{R}$. However, as all of them fall to the first order in the vicinity of shocks, the actual accuracy is solution dependent. The main problem comes in composing a suitable quadrature formulas for $\mathcal{R}$ multidimensional case. Numerical tests also showed, that for a system of conservation laws in order to avoid spurious oscillations in the numerical solution, instead of component-wise reconstruction is disfavored, the local characteristic, conserved variables ought to be used. In case of a general relativistic hydrodynamics, the computational cost of using FV schemes is very high. The reason for that is the need to  compute metric source terms and interpolate the metric at the quadrature points with very high accuracy, as well as to compute fluxes. However, the superiour accuracy of these methods assures their growing number of applications. \textit{e.g.,} \cite{Tchekhovskoy:2007zn,Dumbser:2007}.
+
+%%
+%% to be more precise we actually use the Kurganov-Tadmor central scheme, not a Godunov-type FV scheme
+%%
+
+\subsection{Central Methods}
+
 
 
 %% --------------- 
