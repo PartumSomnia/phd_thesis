@@ -221,15 +221,61 @@ The MP5 scheme is a 5th order method, that employs flattening, that reduces the 
 
 \subsubsection{Very-High-Order Finite-Volume Schemes}
 
-Formally, in 1D the construction of high order schemes can be done via prescribing high order non-oscillatory reconstruction operators $\mathcal{R}$. However, as all of them fall to the first order in the vicinity of shocks, the actual accuracy is solution dependent. The main problem comes in composing a suitable quadrature formulas for $\mathcal{R}$ multidimensional case. Numerical tests also showed, that for a system of conservation laws in order to avoid spurious oscillations in the numerical solution, instead of component-wise reconstruction is disfavored, the local characteristic, conserved variables ought to be used. In case of a general relativistic hydrodynamics, the computational cost of using FV schemes is very high. The reason for that is the need to  compute metric source terms and interpolate the metric at the quadrature points with very high accuracy, as well as to compute fluxes. However, the superiour accuracy of these methods assures their growing number of applications. \textit{e.g.,} \cite{Tchekhovskoy:2007zn,Dumbser:2007}.
+Formally, in 1D the construction of high order schemes can be done via prescribing high order non-oscillatory reconstruction operators $\mathcal{R}$. However, as all of them fall to the first order in the vicinity of shocks, the actual accuracy is solution dependent. The main problem comes in composing a suitable quadrature formulas for $\mathcal{R}$ multidimensional case. Numerical tests also showed, that for a system of conservation laws in order to avoid spurious oscillations in the numerical solution, instead of component-wise reconstruction is disfavored, the local characteristic, conserved variables ought to be used. In case of a general relativistic hydrodynamics, the computational cost of using FV schemes is very high. The reason for that is the need to  compute metric source terms and interpolate the metric at the quadrature points with very high accuracy, as well as to compute fluxes. However, the superior accuracy of these methods assures their growing number of applications. \textit{e.g.,} \cite{Tchekhovskoy:2007zn,Dumbser:2007}.
 
 %%
-%% to be more precise we actually use the Kurganov-Tadmor central scheme, not a Godunov-type FV scheme
+%THC actually has both FD and FV schemes implemented
+%3:15
+%FV is exactly conservative and there is a better way to do AMR with it
+%3:16
+%FD is better because it is much simpler at higher order
+%3:16
+%with THC when we want to do high order precision things we use FD
+%3:16
+%when we do messy simulations with microphysics, for which robustness and conservation are more important than formal order of convergence, we use FV
+%3:17
+%to be more precise we actually use the Kurganov-Tadmor central scheme, not a Godunov-type FV scheme
+%3:17
+%but people always mixes the two (see e.g., the discussion in my PhD thesis)
+% So, our simulations with microphysical eos andneutrinos are performed using the KT FV scheme?
+% yes KT FV
 %%
 
 \subsection{Central Methods}
 
+Central schemes, introduced by Lax and Friedrichs (LxF) \cite{Lax:1954,Friedrichs:1954}, are schemes that do not requires Riemann solvers, contrary to the standard (upwind) finite volume schemes. They are simple in implementation, inexpensive computationally but highly dissipative numerically. Their higher order implementations include second order scheme by Nessyahu and Tadmor (NT) \cite{Nessyahu:1990} and further advancements done by Kurganov and Tadmor (KT) \cite{Kurganov:2000}. 
 
+The key concept of the LxF scheme is the \textit{dual grid}, $\{x_{i+1/2}\}_{i\in\mathbb{Z}}$ (composed of centers), introduced into Godunov scheme. Hence, the name of the method. This grid is used to compute local averages, $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$, of the solution, $U^n$, on the previous time step, $t_n$, to obtain a solution at the time $t_{n+1}$. The reason why we can avoid using Riemann solvers here is that the solution at cell centers remain free of discontinuities for the duration of a time step if the CFL $\leq 1/2 a$, where $a$ is the maximum local-characteristic speed. 
+
+For a basic Godunov scheme, the piece-wise constant solution and reconstruction are employed, while for the second order, piecewise linear approximation and minmod reconstruction are used \cite{Nessyahu:1990}. The downside, however, is high, time-step dependent, numerical dissipation. It was addressed by Kurganov and Tadmor \cite{Kurganov:2000}, who introduces limiting technique for fluxes, Rusanov fluxes, that resembles the behavior of Riemann solvers, and assures the stability of the system when $1/2 < a \cdot \text{CFL} \leq 1$. This makes a distinction between modern FV and central schemes more phenomenological. 
+
+%%
+%%
+%%
+
+\subsection{Finite-Difference Methods}
+\red{To be further shortened}
+
+As an alternative to high order FV schemes, a new method was proposed, where the approximation is done point-wise instead of averaging over volumes \cite{Shu:1988,Shu:1989,Jiang:1996}. Finite-Difference (FD) methods perform better and especially efficient in multi-dimensional case with respect to high order FV schemes \cite{Shu:1999,Shu:2003}. The modern finite difference high resolution shock capturing schemes is a complicated topic that will only briefly discuss. We refer more more in-depth discussion to \cite{Shu:1999,Mignone:2010}.
+
+Consider the system of hyperbolic balance-laws
+
+\begin{equation}
+\partial_t\boldsymbol{F}^0(\boldsymbol{u}) + \partial_i\boldsymbol{F}^i(\boldsymbol{u}) = \boldsymbol{S}(\boldsymbol{u}),
+\label{eq:theory:fd:hypsys}
+\end{equation}
+
+and cast it on a Cartesian uniform spatial grid $ \boldsymbol{x}_{i,j,k} = (i\Delta^1, j\Delta^2, k\Delta^3) $ where $ i,j,k\in \mathbb{Z} $. To obtain a numerical approximation to the solution $u$, $u_{i,j,k}$ at a point $x_{i,j,k}$, we write the semi-discrete FD scheme, which in 3D consists of three terns of the form $(\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}) / \Delta^1$. However, while in FV schemes $\boldsymbol{F}$ are integrals of the control volumes along the boundary, in FD, they are direct (high-order, non-oscillatory) approximations of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. Thus, at the second order the FD and FV schemes looks equivalent. The difference emerges at higher orders, where FD is more efficient and simpler, as it  does not require any quadrature, Riemann solvers or extra primitive recovery calls\footnote{As in high order finite volume schemes it is generally not possible to preserve higher order accuracy in conversion from volume-averaged conserved variables to volume-averaged primitive ones. The reconstruction have to be done in terms of the former}. FD methods are also more computationally favorable for GRHD, as the source term treatment is simpler. 
+
+Consider the mechanism of FD scheme. For that we take a one-dimensional advection (hyperbolic, scalar) equation \ref{eq:theory:fv:adveq}. The core of FV method is to evaluate left, $U_L$, and right, $U_R$, states via reconstruction operator and then compute fluxes. In FD the reconstruction operators are used to obtain non-oscillatory approximation $\partial_x f$. For that a function $h(x)$ is introduced to represent the average between $x_{i+1/2}$ and $x_{i-1/2}$ as a value of $f$ at $x_i$ with no approximations \cite{Shu:1988}. Then the derivative approximation, $(\partial_{x} f)_{x_i} = [h(x_{i+1/2}) - h(x_{i-1/2}) ]/\Delta$, has an accuracy $r$, same, as the reconstruction operator $\mathcal{R}$ that was used to recover $h_{i+1/2}$. The stability of the scheme is assured by correctly "upwinding" the reconstruction separately for a left-going $f^{-}$ and right-going $f^{+}$, where the flux $f$ was split as $f = f^{+} + f^{-}$. This. once again, resembles Riemann solver approach. 
+
+There are several methods to split the flux $f$. In particular, \textit{Roe flux-split} and \textit{Rusanov flux-split} \cite{Shu:1997}. The former is more efficient. However, it can lead to odd-even decoupling phenomenon \cite{Quirk:1994} and, in presence of transonic refraction waves the Roe flux-splitter may result in the formation of entropy-violating shocks \cite{LeVeque:1992}. See \cite{LeVeque:1992,Radice:2012cu} for more discussion on these issues.
+
+In case of a general system of conservation laws \ref{eq:theory:fd:hypsys}, spatial derivatives can be evaluated via a component-by-component approach via methods outlined above. This is sufficient for a second order schemes, to achieve higher order, reconstruction is to be done on local characteristic variables of the system. Constructing a Jacobian matrices $\boldsymbol{A}^{\alpha} = \partial \boldsymbol{F}^{\alpha} / \bar{\boldsymbol{u}}$ where $\alpha = 0,1$, and inverting them\footnote{As the \ref{eq:theory:fd:hypsys} is strongly hyperbolic, the matrix $\boldsymbol{A}^0$ can be inverted.}, solving the generalized eigenvalue problem, we obtain only real eigenvalues $\lambda_{(I)}$ and $N$ real, independent, right-eigenvectors, $r_{(I)}$ [see, \textit{e.g.,} \cite{Anile:1990}]. Then we construct matrix of eigenvectors be $R$ and $L$ its inverse and obtain local characteristic variables $\omega = Lu$ and $Q = LF^1 $. Which we use to reconstruct $F$ as $F^1_{i+1/2, j, k} = RQ_{i+1/2, j, k}$. \red{Results shown in this thesis are obtained, via reconstraction of local charactersitic variables. Sure?}. 
+
+The downside to the FD schemes is their reliance on Cartesian grids (uniform or with Berger-Oliger-style AMR \cite{Berger:1984}). In case of cell-centered AMR with refluxing, \cite{Berger:1989}, the FD scheme reduce to second order at the boundary of refinement levels.
+
+\subsection{Discontinuous Galerkin Methods}
 
 %% --------------- 
 %%
