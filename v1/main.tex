@@ -277,6 +277,28 @@ The downside to the FD schemes is their reliance on Cartesian grids (uniform or 
 
 \subsection{Discontinuous Galerkin Methods}
 
+Proposed by Reed and Hill \cite{Reed:1973} for hyperbolic equations, and further developed in  \cite{Cockburn:1991,Cockburn:1989ii,Cockburn:1989iii,Cockburn:1990iv,Cockburn:1998v}, the Discontinuous Galerkin (DG) Methods has been growing in popularity and numer of applications ever since. The extension of the method to elliptic and parabolic equations \cite{Arnold:2002} have further solidified this trend \cite{Cockburn:2000,Canuto:2008,Hesthaven:2007}. The method was applied to Einstein system of equations in vacuum \cite{Field:2010} and to general-relativistic hydrodynamics \cite{Radice:2011qr}. The reason for such attention, is the sheer number of proven numerical properties, such as intrinsic non-linear stability at any accuracy order\footnote{For that, however, the limiters and/ro filtering are required for the treatment of under-resolved parts inf the solution, \textit{i.e.,} shocks. In case of truncation expansion poorly capturing the solution behavior, the aliasing instabilities occur and nonphysical modes introduced into the solution, leading to non-linear instabilities \cite{Boyd:2001}}, assurance of cell-entropy inequality, \textit{i.e.,} the solution is always entropic achieving high, spectral accuracy in smooth regions \cite{Cockburn:2003}, and in certain cases, assurance of maximum-principle \cite{Zhang:2011}. DG schemes, (and finite-element method, FEM)  are also covariant, independent of a coordinate system chosen, which makes them of particular interest for general relativity applications \cite{Meier:1999}. For transport problems, where physical dissipation is important, DG methods are of special importance as well, as for a smooth solution they allow for practically no numerical dissipation \cite{Cockburn:2003}. Ability to use unstructured grids and achievable efficiency of DG methods makes them very promising for massive parallel applications \cite{Biswas:1994}. 
+The downside of DG methods are the larger memory requirements with respect to FV/FD methods. In addition, if a solution exhibits discontinuities, special techniques to reduce oscillations are required, that do not hinder the scheme accuracy. It was also shown that the linear stability requires more stringent CFL condition. To address that, novel hybrid DG-FV scheme were proposed \cite{Qiu:2005,Qiu:2004} and \cite{Dumbser:2009,Dumbser:2008} with somewhat different approach. For recent advances in this scheme applications see \textit{e.g.,} \cite{Gassner:2011} and \cite{Hesthaven:2007}.
+
+%%
+%%
+%%
+
+\subsubsection{Runge-Kutta Discontinuous-Galerkin Methods}
+
+One of the widely used variants of DG method is the spectral discontinuous Galerkin methid with numerical integration (SDGM-NI) of the nodal-DG scheme \cite{Hesthaven:2007}. Here we will take a brief look at its main principles, and how in a classical way semi-discrete scheme can be derived. We consider a one-dimensional hyperbolic equations, the advection equation with no sources, for simplicity.
+
+\begin{equation}
+    \partial_t = \nabla\cdot\boldsymbol{f}(u) =0, \hspace{10mm} (t,x)\in \text{I\!R}_{+} \times\Omega,
+    \label{eq:theory:dg:adveq}
+\end{equation}
+
+where $\Omega\subset \text{I\!R}^{d}$ is a bounded, regular domain. In this domain, $\Omega$, we perform a triangulation $\mathbb{T}$, such that the domain is now is a union of $N$ images of a reference element, $T$, \textit{i.e.,} $\cup_{j=1}^{N}\Omega_{j} = \Omega$ and $\Omega_{i}\cap\Omega_{j} = \emptyset$, that is usually a triangle in 2D and tetrahedron in 3D. This mapping allows to "pull-back" the equations from a given element of arbitrary complexity in physical space, into a reference one, where all the discrete differential operators, derivatives, interpolation and integration have been pre-computed once for a simple geometry. This is the key idea behind the DG scheme. In relativistic case, a covariance of the scheme can be "combined" with the covariance of equation to render effectively coordinate-free. 
+
+Next we will briefly outline how a weak formulation of \ref{eq:theory:dg:adveq} is obtained \gray{David comments on a diferent way for GRHD in section 6 of his thesis}. We assume that $u$ is a  bounded function in space and a smooth function in time.
+
+
+
 %% --------------- 
 %%
 %% References
