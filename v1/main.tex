@@ -59,6 +59,8 @@
 %%
 %% ---------------
 
+\chapter{General-Relativistic Hydrodynamics}
+
 \chapter{Numerical Approximation of Conservation Laws}
 \label{ch:nummethods}
 
@@ -267,13 +269,25 @@ Consider the system of hyperbolic balance-laws
 
 and cast it on a Cartesian uniform spatial grid $ \boldsymbol{x}_{i,j,k} = (i\Delta^1, j\Delta^2, k\Delta^3) $ where $ i,j,k\in \mathbb{Z} $. To obtain a numerical approximation to the solution $u$, $u_{i,j,k}$ at a point $x_{i,j,k}$, we write the semi-discrete FD scheme, which in 3D consists of three terns of the form $(\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}) / \Delta^1$. However, while in FV schemes $\boldsymbol{F}$ are integrals of the control volumes along the boundary, in FD, they are direct (high-order, non-oscillatory) approximations of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. Thus, at the second order the FD and FV schemes looks equivalent. The difference emerges at higher orders, where FD is more efficient and simpler, as it  does not require any quadrature, Riemann solvers or extra primitive recovery calls\footnote{As in high order finite volume schemes it is generally not possible to preserve higher order accuracy in conversion from volume-averaged conserved variables to volume-averaged primitive ones. The reconstruction have to be done in terms of the former}. FD methods are also more computationally favorable for GRHD, as the source term treatment is simpler. 
 
-Consider the mechanism of FD scheme. For that we take a one-dimensional advection (hyperbolic, scalar) equation \ref{eq:theory:fv:adveq}. The core of FV method is to evaluate left, $U_L$, and right, $U_R$, states via reconstruction operator and then compute fluxes. In FD the reconstruction operators are used to obtain non-oscillatory approximation $\partial_x f$. For that a function $h(x)$ is introduced to represent the average between $x_{i+1/2}$ and $x_{i-1/2}$ as a value of $f$ at $x_i$ with no approximations \cite{Shu:1988}. Then the derivative approximation, $(\partial_{x} f)_{x_i} = [h(x_{i+1/2}) - h(x_{i-1/2}) ]/\Delta$, has an accuracy $r$, same, as the reconstruction operator $\mathcal{R}$ that was used to recover $h_{i+1/2}$. The stability of the scheme is assured by correctly "upwinding" the reconstruction separately for a left-going $f^{-}$ and right-going $f^{+}$, where the flux $f$ was split as $f = f^{+} + f^{-}$. This. once again, resembles Riemann solver approach. 
+Consider the mechanism of FD scheme. For that we take a one-dimensional advection (hyperbolic, scalar) equation \ref{eq:theory:fv:adveq}. The core of FV method is to evaluate left, $U_L$, and right, $U_R$, states via reconstruction operator and then compute fluxes. In FD the reconstruction operators are used to obtain non-oscillatory approximation $\partial_x f$. For that a function $h(x)$ is introduced to represent the average between $x_{i+1/2}$ and $x_{i-1/2}$ as a value of $f$ at $x_i$ with no approximations \cite{Shu:1988}. Then the derivative approximation, $(\partial_{x} f)_{x_i} = [h(x_{i+1/2}) - h(x_{i-1/2}) ]/\Delta$, has an accuracy $r$, same, as the reconstruction operator $\mathcal{R}$ that was used to recover $h_{i+1/2}$. The stability of the scheme is assured by correctly "upwinding" the reconstruction separately for a left-going $f^{-}$ and right-going $f^{+}$, where the flux $f$ was split as $f = f^{+} + f^{-}$.
+
+Then
+
+\begin{equation}
+\frac{\partial f(u)}{\partial x} = \frac{f_{i+1/2} - f_{i-1/2}}{\Delta} + \mathcal{O}(\Delta^r)
+\end{equation}
+
+yields the required high order approximation to $\partial_x$ at $x_i$. This. once again, resembles Riemann solver approach. 
 
 There are several methods to split the flux $f$. In particular, \textit{Roe flux-split} and \textit{Rusanov flux-split} \cite{Shu:1997}. The former is more efficient. However, it can lead to odd-even decoupling phenomenon \cite{Quirk:1994} and, in presence of transonic refraction waves the Roe flux-splitter may result in the formation of entropy-violating shocks \cite{LeVeque:1992}. See \cite{LeVeque:1992,Radice:2012cu} for more discussion on these issues.
 
 In case of a general system of conservation laws \ref{eq:theory:fd:hypsys}, spatial derivatives can be evaluated via a component-by-component approach via methods outlined above. This is sufficient for a second order schemes, to achieve higher order, reconstruction is to be done on local characteristic variables of the system. Constructing a Jacobian matrices $\boldsymbol{A}^{\alpha} = \partial \boldsymbol{F}^{\alpha} / \bar{\boldsymbol{u}}$ where $\alpha = 0,1$, and inverting them\footnote{As the \ref{eq:theory:fd:hypsys} is strongly hyperbolic, the matrix $\boldsymbol{A}^0$ can be inverted.}, solving the generalized eigenvalue problem, we obtain only real eigenvalues $\lambda_{(I)}$ and $N$ real, independent, right-eigenvectors, $r_{(I)}$ [see, \textit{e.g.,} \cite{Anile:1990}]. Then we construct matrix of eigenvectors be $R$ and $L$ its inverse and obtain local characteristic variables $\omega = Lu$ and $Q = LF^1 $. Which we use to reconstruct $F$ as $F^1_{i+1/2, j, k} = RQ_{i+1/2, j, k}$. \red{Results shown in this thesis are obtained, via reconstraction of local charactersitic variables. Sure?}. 
 
 The downside to the FD schemes is their reliance on Cartesian grids (uniform or with Berger-Oliger-style AMR \cite{Berger:1984}). In case of cell-centered AMR with refluxing, \cite{Berger:1989}, the FD scheme reduce to second order at the boundary of refinement levels.
+
+%%
+%%
+%%
 
 \subsection{Discontinuous Galerkin Methods}
 
@@ -286,22 +300,37 @@ The downside of DG methods are the larger memory requirements with respect to FV
 
 \subsubsection{Runge-Kutta Discontinuous-Galerkin Methods}
 
-One of the widely used variants of DG method is the spectral discontinuous Galerkin methid with numerical integration (SDGM-NI) of the nodal-DG scheme \cite{Hesthaven:2007}. Here we will take a brief look at its main principles, and how in a classical way semi-discrete scheme can be derived. We consider a one-dimensional hyperbolic equations, the advection equation with no sources, for simplicity.
+Let us consider widely used variant of DG method, spectral discontinuous Galerkin methid with numerical integration (SDGM-NI) \cite{Hesthaven:2007}, as an example of how DG methods work. For the purpose of being brief, we focus on na advection equation with no sources \textit{i.e.,} $\partial_t + \nabla\cdot\boldsymbol{f}(u) =0$ where $(t,x)\in \text{I\!R}_{+} \times\Omega$, with $\Omega\subset \text{I\!R}^{d}$ being a bounded, regular domain. The core idea behind DG methods is to perform a triangulation $\mathbb{T}$, such that the domain, $\Omega$, dissolves into $N$ images of a reference element, $T$, \textit{i.e.,} $\cup_{j=1}^{N}\Omega_{j} = \Omega$ and $\Omega_{i}\cap\Omega_{j} = \emptyset$. These elements are usually a triangles in 2D and tetrahedrons in 3D. The created mapping allows to "pull-back" the equations from a given element that has an arbitrary complexity in physical space, into a reference one, in which all discrete derivatives, interpolation and integration have been already pre-computed a simple geometry. In addition, in relativistic case, a covariance of the scheme can be "combined" with the covariance of equations to render the scheme effectively coordinate-free. 
+
+A classical approach to construct a weak formulation of the scheme for an advection equation, is related to the concept of bound variation. Thus, we assume that $u$ is supposedly a bounded function in space and smooth function of time and introduce a smooth test function $\upsilon \in C_0 ^1(\Omega)$ as following
 
 \begin{equation}
-    \partial_t = \nabla\cdot\boldsymbol{f}(u) =0, \hspace{10mm} (t,x)\in \text{I\!R}_{+} \times\Omega,
-    \label{eq:theory:dg:adveq}
+    \sum_{j=1}^{N}\Bigg[\int_{\Omega_j}\partial_{t}u\upsilon\text{d}x - \int_{\Omega_j}\boldsymbol{f}(u)\cdot\nabla\upsilon\text{d}x\Bigg] = -\sum_{j=1}^{N}\langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j}.
+    \label{eq:theory:dg:intformadveq}
 \end{equation}
 
-where $\Omega\subset \text{I\!R}^{d}$ is a bounded, regular domain. In this domain, $\Omega$, we perform a triangulation $\mathbb{T}$, such that the domain is now is a union of $N$ images of a reference element, $T$, \textit{i.e.,} $\cup_{j=1}^{N}\Omega_{j} = \Omega$ and $\Omega_{i}\cap\Omega_{j} = \emptyset$, that is usually a triangle in 2D and tetrahedron in 3D. This mapping allows to "pull-back" the equations from a given element of arbitrary complexity in physical space, into a reference one, where all the discrete differential operators, derivatives, interpolation and integration have been pre-computed once for a simple geometry. This is the key idea behind the DG scheme. In relativistic case, a covariance of the scheme can be "combined" with the covariance of equation to render effectively coordinate-free. 
+where $\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu}$ is the normal trace of $\boldsymbol{f}(u)$ on the boundary.
 
-Next we will briefly outline how a weak formulation of \ref{eq:theory:dg:adveq} is obtained \gray{David comments on a diferent way for GRHD in section 6 of his thesis}. We assume that $u$ is a  bounded function in space and a smooth function in time.
+Then, obtaining a weak formulation narrows down to getting $u\in\text{BV}(\Omega)$ such that equation \ref{eq:theory:dg:intformadveq} holds for any $\upsilon \in C_0 ^1(\Omega)$. This is accomplished by projecting $u\in\text{BV}(\Omega)$ on a finite-dimensional subspace of BV$(\Omega)$ by introducing a piecewise polynomial function on $\mathcal{T}_{N}$
+
+\begin{equation}
+V_N = \big\{ \upsilon\in\text{BV}(\Omega):\upsilon\circ\phi\in\text{I\!P}_{D}(T), \: j=1,...,N \big\}
+\label{eq:theory:dg:weakforkreq}
+\end{equation}
+
+where $\text{I\!P}_{D}$ is the space of polynomials of degree $D$. And then the obtained a weak formulation further narrows down to finding $u(t) = C^1(\text{I\!R}_{+};v_N)$ such that for any $ \upsilon\in V_N $ the equation \ref{eq:theory:dg:intformadveq} holds. Note that $V_N$ continuity of functions in was not required in \ref{eq:theory:dg:weakforkreq}. Also, in our formulation test function and numerical solution $u$ belong to the same functional space. This is the origin of the scheme name \textit{discontinuous Galerkin}. Finally, the degrees of freedom of $u$ are obtained from conditions that arise when equation \ref{eq:theory:dg:intformadveq} in considered for a large but finite number of linearly independent test functions $\upsilon$. 
+
+Next, starting from \ref{eq:theory:dg:intformadveq} we construct the general from of a DG scheme in one-dimensional case. We do so by introducing $F$, numerical fluxes similarly as to how it was done for finite volume methods and perform an expansion of $F$ on a polynomial basis $l_{i}^{j}$ over $[x_{j-1/2}, x_{j+1/2}]$. Then we chose $l_{k}^{j}$ that yield set of evolution equations for the expansion coefficients, which in more compact form read
+
+\begin{equation}
+\boldsymbol{M}^{j} - \boldsymbol{D}^{j}\boldsymbol{f} = \boldsymbol{F}^{j-1/2} - \boldsymbol{F}^{j+1/2}, \hspace{5mm} \text{for any } j=1,...,N \\
+\end{equation}
+
+where $u^{j}$ contain all the expansion coefficients $u$,  $\big(\boldsymbol{M}^j\big)_{ki}$ is the mass matrix, defined on a single element and in most cases can be diagonalized \cite{Canuto:2008}, $\big(\boldsymbol{D}^{j}\big)_{ki}$ is the co-differential matrix, for which inadequately chosen quadrature can violate non-linear stability \cite{Hesthaven:2007}, and $\big(F^{j-1/2}\big)_i$ are the flux vectors. \textcolor{gray}{see more in chapter 6}
 
 
 
-%% --------------- 
-%%
-%% References
+% References
 %%
 %% ---------------
 
