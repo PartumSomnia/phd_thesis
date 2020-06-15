@@ -63,6 +63,10 @@
 
 In this chapter we provide a basic overview of mathematical and physical bases of this thesis. We do not aim to This chapter is structured as follows. \gray{List the content}
 
+%%
+%%
+%%
+
 \section{Important concepts and notations}
 \red{To be shortened or removed}
 
@@ -95,13 +99,118 @@ Formally, for an $n-$dimensional oriented pseudo-Reimannian manifold $\mathcal{M
 
 \section{The Cauchy Problem in General Relativity}
 
-In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations, derived via the variation of Hilbert Action. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
 
 %%
 %%
 %%
 
 \subsection{Euler-Lagrange equations}
+
+We start by introducing a real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. In general relativity these two objects describe space-time $(\mathcal{M},\boldsymbol{g})$. Let us consider Lagrangian field theory on $(\mathcal{M},\boldsymbol{g})$.
+
+Unless specified otherwise, the $\nabla$ denotes the affine connection associated w.ith $\boldsymbol{g}$, the Levi-Civita connection symbol. We adopt the convention that Greek indices lie in $\{0, 1, 2, 3\}$ and low Latin indices $\{1, 2, 3\}$. With $\nabla\boldsymbol{T}$ we indicate the covariant derivative of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ is the covariant derivative along a given vector field $\boldsymbol{u}$. In this notations, the scalar product of two vectors $\boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}$ and the action of a linear form $\boldsymbol{\omega}$ on a vector $\boldsymbol{\upsilon}$ is denoted as $\langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}$.
+
+Let the $\boldsymbol{\alpha}$ be the totally antisymmetric symbol that expresses through coordinates $x^{\mu}$ as $\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3$, where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the spacetime is then $\boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha}$, where $g$ denotes the determinant of the spacetime metric.
+
+The action principle of the Lagrangian field theory on the spacetime $(\mathcal{M}; \boldsymbol{g})$ is
+\begin{equation}
+S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int_{\mathcal{M}}\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}),
+\end{equation}
+where $\boldsymbol{q}$ are a set of generalized coordinates for the fields described by the theory, $\nabla$ is the Levi-Civita connection, $\mathcal{L}$ is a scalar density of a scalar quantity $\lambda$ as $\lambda(\boldsymbol{q},\nabla\boldsymbol{q})$. 
+
+Varying the action with respect to the $\boldsymbol{q}$
+\begin{equation}
+\delta S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \delta\int\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\partial\mathcal{L}}{\partial\boldsymbol{q}}\delta\boldsymbol{q}+\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\nabla\boldsymbol{q}\Big)
+\end{equation}
+
+As $\delta$ and $\nabla$ commute, and partially integrating $\nabla$, we obtain
+
+\begin{equation}
+\partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\mathcal{L}}{\partial\boldsymbol{q}}-\nabla\frac{\partial \mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big)\delta\boldsymbol{q} + \int_{\mathcal{M}}\boldsymbol{\alpha}\nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\boldsymbol{q}\Big)
+\end{equation}
+
+The last term is a boundary term and in order to vanish we impose boundary condition. Assume that the fields are defined over only a compact domain. As the choice of $\partial\boldsymbol{q}$ is arbitrary, the $ \partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = 0 $ and the Euler-Lagrange equations are
+
+\begin{equation}
+\frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0,
+\label{eq:theory:eulerlagrange}
+\end{equation}
+
+which represent second-order partial differential equation whose solutions are the functions for which a given functional is stationary.
+
+%%
+%%
+%%
+
+\subsection{The Hilbert Action}
+
+Here we summarize how the Einstein field equations can be obtained naturally via principle of least action, varying the Hilbert Action.
+
+Consider an action that describes the graviatational field via action $S_g$, and a matter field $\mathcal{L}_m$ via action $S_m$. Then, the total action is
+
+\begin{equation}
+    S = S_g + S_m = \int\Big(\frac{1}{2\kappa}R+\mathcal{L}_m\Big)\epsilon,
+\end{equation}
+
+where $R$ is the Ricci scalar and $\kappa$ is the Einstein's constant. 
+The action principle dictates, that $\delta S = 0$  with respect to the inverse metric $g^{\mu\nu}$, \textit{i.e,}
+
+\begin{equation}
+0 = \delta S = \int\Bigg[\frac{1}{2\kappa}\Big(\frac{\delta R}{\delta g^{\mu\nu}}+\frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}}\Big) + \frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}}\Bigg]\delta g^{\mu\nu}\epsilon
+\end{equation}
+
+Owing to the arbitrariness of $\delta g^{\mu\nu}$, the integrant must be zero. 
+
+\begin{equation}
+\frac{\delta R}{\delta g^{\mu\nu}} + \frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -2\kappa\frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}} = -\frac{2\kappa}{\sqrt{-g}}\frac{\delta S_m}{\delta g_{\mu\nu}} := \kappa T_{\mu\nu},
+\label{eq:theory:action1}
+\end{equation}
+
+where $T_{\mu\nu}$ is the the stress-energy tensor associated with matter action $S_m$. 
+The computation of $\delta R / \delta g^{\mu\nu}$ and determinant of the metric $\sqrt{-g}$ is somewhat lengthy. For the sake of brevity, we summarize the result as
+
+\begin{equation}
+    \frac{\delta R}{\delta g^{\mu\nu}} = R_{\mu\nu}, \hspace{5mm}
+    \frac{1}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -\frac{1}{2}g_{\mu\nu}.
+    \label{eq:theory:deltaR_deltagmuny}
+\end{equation}
+
+Substituting Eq. \ref{eq:theory:deltaR_deltagmuny} into equation of motion Eq.  \ref{eq:theory:action1} we obtain the Einstein's field equation 
+
+\begin{equation}
+R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
+\label{eq:theory:EFE}
+\end{equation}
+
+where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$. Derived by Einstein in 1915, the equation \ref{eq:theory:EFE} relats the local spacetime curvature (expressed by the Einstein tensor $G_{\mu\nu}=R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}$) with the local energy and momentum within that spacetime (expressed by the stress–energy tensor, $T_{\mu\nu}$). A particular usefull mental image of this equation was given by John Wheeler in "Geons, Black Holes, and Quantum Foam" \cite{Wheeler:2010}, "Spacetime tells matter how to move; matter tells spacetime how to curve."
+
+%%
+%%
+%%
+
+\subsection{3+1 Decomposition of Einstein field equations}
+
+The Einstein field equations (\ref{eq:theory:EFE}) represent a set of 10 non-linear partial differential equations. They can be defined on an entire metric $\mathcal{M}$ or a given domain $\Omega\subset\mathcal{M}$. In the latter case, the boundary conditions on $\partial\Omega$ are required. 
+
+A widely adopted approach to solving EFE numerically, is to first represent them as a set of evolutionary equations, where spatial properties are evolved in time, \textit{i.e.,} perform a foliation. Geometrically, this is equivalent to representing space-time as a set of spatial slices (space-like hypersurfaces $\Sigma_t$), separated by a timestep, $t$.  This, however, requires the spacetime to be strongly hyperbolic, \textit{i.e.,} $\mathcal{M}=\Sigma\times\mathbb{R}$. In this subsection we summarize the foliation procedure and resulting equation. 
+
+Let the $t$ be the global smooth functions such that, $ \Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\} $ and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\:\rangle = 1$. Thus, $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. Continuing the analogy, the Lie derivative of the $\boldsymbol{q}$ along the vector $\vec{t}$ can be seen as a rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$. 
+
+Let us now consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$, and a part normal to the hypersurface $\Sigma_t$, and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ equates to $\vec{t} = \alpha\vec{n}+\vec{\beta}$, where $\vec{\beta}$ is called \textit{shift vector} and $\alpha$ is -- \textit{lapse-function}. In the  spacetime metric $\boldsymbol{g}$ a spatial part, Riemannian metric $\boldsymbol{\gamma}$ can be expressed as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the 1-form associated to the vector $\vec{n}$. The Levi-Civita connection can be computed by projecting the operator $\nabla$ on the space tangent to the hypersurface $\Sigma_t$.
+
+In order to simplify the following expressions, we employ coordinates that are adapted to the foliation, namely $\{t, x^i\}$ with $\vec{\partial}_i\cdot \vec{n} = 0$. In these coordiantes the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$. Then, the connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ and can be expressed in terms of $\alpha$ and $\vec{\beta}$ as following.
+
+\begin{align*}
+\text{Spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
+\text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
+\text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i, \\
+\text{and the line segment: }ds^2 &= -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
+\end{align*}
+
+where we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
+
+
 
 %%
 %%
@@ -385,5 +494,6 @@ where $u^{j}$ contain all the expansion coefficients $u$,  $\big(\boldsymbol{M}^
 \newpage
 
 \bibliography{../references}
+
 
 \end{document}
