@@ -189,6 +189,40 @@ where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$. D
 %%
 %%
 
+\subsection{Hamiltonian Field Theory}
+\red{Note that $\boldsymbol{q}$ were used before but not introduced. Fix.}
+
+Let us start by introducing generalized coordinates $\boldsymbol{q}$, their covariant derivatives $\nabla\boldsymbol{q}$, and recall the volume 4-form $\boldsymbol{\alpha}$. In light of the spacetime decomposition discussed below, we explicitly divide the $\boldsymbol{\alpha}$ into the time $dt$ and spatial parts represented by the antisymmetric symbol ${^{(3)}\boldsymbol{\alpha}}$ as $\boldsymbol{\alpha} = dt \wedge {^{(3)}\boldsymbol{\alpha}}$. Let the "time derivative" be represented by Lie derivative along the vector field $\vec{t}$ as $\dot{\boldsymbol{q}} := \mathcal{L}_{\vec{t}}\:\boldsymbol{q}$. Then, for Lagrangian density, $\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q})$, the conjugate momentum can be written as $\boldsymbol{p} := \partial\Lambda / \partial\dot{\boldsymbol{q}}$. Assuming that $\boldsymbol{p}$ and $\nabla\boldsymbol{q}$ can be expressed as a function of $\boldsymbol{q}$ and $\boldsymbol{p}$ we introduce the Hamiltonian as an integral of its density, and a quantity $J$ as its time integral
+
+\begin{align}
+H &= \int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q})\big), \\
+J &= \int_{0}^{t}H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt\int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q},\nabla\boldsymbol{q})\Big).
+\end{align}
+
+Consider the variation of the $J$ with respect to the $\delta\boldsymbol{p}$ and $\delta\boldsymbol{q}$ as
+
+\begin{align}
+\delta J = \int_{0}^{t}\delta H(\boldsymbol{q},\boldsymbol{p})dt &= \int_{0}^{t}dt (\dot{\boldsymbol{q}}\delta\boldsymbol{p}+\boldsymbol{p}\delta\dot{\boldsymbol{q}}) - \int_{0}^{t}dt\delta\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q}).\\
+\delta\Lambda &= \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Bigg[\frac{\delta\Lambda}{\delta\dot{\boldsymbol{q}}}\delta\dot{\boldsymbol{q}}+\frac{\delta\Lambda}{\delta\boldsymbol{q}}\delta\boldsymbol{q}\Bigg] = 
+\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\boldsymbol{p}\delta\dot{\boldsymbol{q}} + \dot{\boldsymbol{p}}\delta\boldsymbol{q}),\\
+\delta J = \int_{0}^{t} \delta H(\boldsymbol{q},\boldsymbol{p})dt &=  
+\int_{0}^{t}dt\Bigg[ \frac{\delta H}{\delta \boldsymbol{p}}\delta \boldsymbol{p} + \frac{\delta H}{\delta \boldsymbol{q}}\delta \boldsymbol{q} \Bigg] =
+\int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\dot{\boldsymbol{q}}\cdot\delta\boldsymbol{p}-\dot{\boldsymbol{p}}\cdot\delta\boldsymbol{q}),
+\end{align}
+
+where first we explicitly written the variation of the Lagrangian, then, we expressed the first term in square brackets as  $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$ using the definition of the conjugate momentum. The second term we transformed applying the Euler-Lagrange equations (\ref{eq:theory:eulerlagrange}). Lastly, we inserted $\delta\Lambda$ back into $\delta J$, that cancelled the term $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$. Then, comparing the result with general $\delta H$, we make use of arbitrariness of  $\delta\boldsymbol{p}$ and $\delta\boldsymbol{p}$ and obtain the Hamilton equations read
+
+\begin{equation}
+\dot{\boldsymbol{q}}=\frac{\delta H}{\delta\boldsymbol{p}}, \hspace{5mm} \dot{\boldsymbol{p}} = -\frac{\delta H}{\delta\boldsymbol{q}}.
+\label{eq:theory:hamiltoneqs}
+\end{equation}
+
+The Hamiltonian formalism can be used to redirive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution.
+
+%%
+%%
+%%
+
 \subsection{3+1 Decomposition of Einstein field equations}
 
 The Einstein field equations (\ref{eq:theory:EFE}) represent a set of 10 non-linear partial differential equations. They can be defined on an entire metric $\mathcal{M}$ or a given domain $\Omega\subset\mathcal{M}$. In the latter case, the boundary conditions on $\partial\Omega$ are required. 
@@ -210,6 +244,195 @@ In order to simplify the following expressions, we employ coordinates that are a
 
 where we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
 
+%% Extrinsic Curvature and Constraint equations
+
+Next, let us introduce the \textit{extrinsic curvature} of a $D-1$-suface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon}) = -\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$. Notably, the $\boldsymbol{K}$ thus does not depend on $\alpha$ and $\vec{\beta}$, it is a purely spatial tensor. The components of the extrinsic curvature are
+
+\begin{equation}
+K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
+\label{eq:theory:extrcurvdef}
+\end{equation}
+
+where $\mathcal{L}_{\vec{n}}$ is the Lie derivative along the vector field $\vec{n}$. 
+
+The equation (\ref{eq:theory:extrcurvdef}) suggests the following interpretation of the  extrinsic curvature as a "speed of the $\vec{n}$ during the parallel transport along the hypersurface $\Sigma_t$". The extrinsic curvature $K_{\mu\nu}$ can be related to the 4D Ricci tensor $R_{\mu\nu}$ through the Codazzi equation, while $3D$ Riemann tensor $^3{R_{\alpha\beta\gamma}}^{\delta}$ is related to the $4D$ one and the $\boldsymbol{K}$ via Gauss equation,
+
+\begin{align}
+D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} &= R_{\gamma\delta}n^{\delta}{\gamma^{\gamma}}_{\beta},\\
+^3{R_{\alpha\beta\gamma}}^{\delta} &= {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}{\gamma^{\lambda}}_{\gamma}{\gamma^{\delta}}_{\sigma}{R_{\mu\nu\lambda}}^{\delta}-K_{\alpha\gamma}{K_{\beta}}^{\delta}+K_{\beta\gamma}{K^{\delta}}_{\alpha}.
+\label{eq:theory:formomentum}
+%\label{eq:theory:forhamiltconst}
+\end{align}
+
+respectively, where $K$ is a trace of the tensor $\boldsymbol{K}$. 
+
+Now, substituting the (\ref{eq:theory:EFE}) into the Codazzi equation and Gauss equation (\ref{eq:theory:formomentum}) we obtain the so-called \textit{momentum constraint} and \textit{momentum constraint}
+
+\begin{align}
+    D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} &= -8\pi{\gamma^{\alpha}}_{\beta} n^{\gamma}T_{\alpha\gamma}=:8\pi j_{\beta}, \\
+    ^3 R+ K^2 - K_{\alpha\beta}K^{\alpha\beta} &= 2G^{\alpha\beta}n_{\alpha}n_{\beta} = 16\pi n_{\alpha}n_{\beta} T^{\alpha\beta} =: 16\pi E,
+    \label{eq:theory:momconstraint}
+    %\label{eq:theory:hamilconstraint}
+\end{align}
+
+where $E$ is called an ADM energy density. 
+
+The constraint equations (\ref{eq:theory:momconstraint}) represent a set of elliptic equations that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. It is however, possible to show that Einstein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ it will remain so throughout the evolution. 
+
+%% The Hamiltonian Formulation of the Einstein Equations
+
+Next, we briefly sketch a path to derivation the Einstein field equations in the Hamiltonian formalism. For the sake of brevity we shall elude most of the intermediate and computationally extensive steps, as well as the discussion on boundary terms. For that we refer to \cite{Poisson:2004}.
+
+First it is useful to note that determinant of the three-metric $\sqrt{\gamma}$ can be expressed as $\sqrt{\gamma}=\sqrt{-g}/\alpha$. The $p$ is the trace of the canonical momentum $\boldsymbol{p}$.
+
+We start by recalling the EFE (\ref{eq:theory:EFE}) and introduce there the scalar curvature $R$. For that we applying Hamiltinian constraint \ref{eq:theory:hamiltoneqs}. This yields
+
+\begin{align}
+G_{\mu\nu} &= R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} \\
+2(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu}) &= -Rg_{\mu\nu}n^{\nu}n^{\mu} = -Rn_{\mu}n^{\mu} =  
+R.
+\label{eq:theory:efe:for_r}
+\end{align}
+
+Let us now consider the $R_{\mu\nu}n^{\mu}n^{\nu}$. It can be expressed as a combination of extrinsic curvature and total divergences as following
+
+\begin{align}
+R_{\mu\nu}n^{\mu}n^{\nu} &= -(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\mu})n^{\gamma}n^{\nu} \\
+&= K^2 - K_{\mu\gamma}K^{\mu\gamma} - \nabla_{\mu}(n^{\mu}\nabla_{\gamma}n^{\gamma}) + \nabla_{\gamma}(n^{\mu}\nabla_{\mu}n^{\gamma}) \\
+R_{\mu\nu}n^{\mu}n^{\nu} &= K^2 - K_{\mu\nu}K^{\mu\nu}.
+\label{eq:theory:rmunu_as_func_k}
+\end{align}
+
+where in the last step, we assumed that the variations with compact support, that cancels the last two terms in the total divergences. 
+
+Now, we write Lagrangian density in terms of the variables on the hypersurface, $\Lambda = \sqrt{-g}R $. For that we make use of the fact that  $\sqrt{\gamma}=\sqrt{-g}/\alpha$, and express $R$ via eq. \ref{eq:theory:efe:for_r}, in which $G_{\mu\nu}n^{\mu}n^{\nu}$ we express via the Hamiltonian constraint \ref{eq:theory:hamiltoneqs} and $R_{\mu\nu}n^{\mu}n^{\nu}$ via equation \ref{eq:theory:rmunu_as_func_k} as
+
+\begin{align}
+\Lambda &= \sqrt{-g}R = \alpha\sqrt{\gamma}R 
+= 2\alpha\sqrt{\gamma}(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu})\\ 
+&= 2\alpha\sqrt{\gamma}\Bigg(\frac{1}{2}\Big[{^{(3)}R} - K_{\mu\nu}K^{\mu\nu} + K^2 \Big] - K^2 - K_{\mu\nu}K^{\mu\nu}\Bigg) \\
+\Lambda &= \Lambda_g+\Lambda_m= \frac{1}{16\pi}\alpha\Big({^{(3)}R} + K_{\mu\nu}K^{\mu\nu} - K^2\Big)\sqrt{\gamma}+\Lambda_m
+\end{align}
+
+where in the last expression we added a contribution from the matter fields.
+
+Next we note that the extrinsic curvature of a
+surface $\Sigma$ is defined as $K_{\mu\nu} = \nabla_{\mu}n_{\nu}$. To relate $K_{\mu\nu}$ to the metric, we make use of the following property of Lie derivatives:
+
+\begin{align}
+\mathcal{L}_{\vec{n}}g_{\mu\nu} &= n^{\gamma}\nabla_{\gamma}g_{\mu\nu} + g_{\gamma\nu}\nabla_{\mu}\upsilon^{\gamma} + g_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma} \\
+&= \nabla_{\mu}n_{\nu}+\nabla_{\nu}\upsilon_{\nu} =2\nabla_{\mu}n_{\nu}
+\end{align}
+
+where the second expression after "=" holds when $\nabla_{\gamma}\mu$ is the natural derivative operator corresponding to the metric $g_{\mu\nu}$, and the last holds because $K_{\mu\nu}$ is symmetric.
+
+Substituting this into our definition of $K_{\mu\nu}$ (\ref{eq:theory:extrcurvdef}),
+
+\begin{align}
+K_{\mu\nu} 
+&= -\frac{1}{2}\mathcal{L}_{\vec{n}\:}\gamma_{\mu\nu} \\
+&= -\frac{1}{2}[n^{\gamma}\nabla_{\gamma}\gamma_{\mu\nu} + \gamma_{\gamma\nu}\nabla_{\mu}\upsilon^{\nu} + h_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma}] \\
+&= -\frac{1}{2\alpha}{\gamma_{\mu}}^{\gamma}{\gamma_{\nu}}^{\delta}[\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu}] \\
+K_{\mu\nu} &= -\frac{1}{2\alpha}(\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu})
+\label{eq:theory:3+1:k_mu_nu}
+\end{align}
+
+where in the last line we made use of the fact that  projection operators on the hypersurface $\Sigma$ are not needed.
+
+The relation \ref{eq:theory:3+1:k_mu_nu} we use to write the canonical momentum $p^{\mu\nu}$ as
+
+\begin{align}
+p^{\mu\nu} &= \frac{\partial\Lambda}{\partial\dot{\gamma}_{\mu\nu}} 
+= -\frac{\sqrt{\gamma}}{16\pi}\alpha\Bigg[\frac{\partial {^{(3)}R}}{\partial\dot{\gamma}_{\mu\nu}} + \frac{\partial(K_{\mu\nu}K^{\mu\nu})}{\partial\dot{\gamma}_{\mu\nu}} - \frac{\partial K^2}{\partial\dot{\gamma}_{\mu\nu}}\Bigg] 
+= \frac{\sqrt{\gamma}}{16\pi}(K\gamma^{\mu\nu} - K^{\mu\nu}),
+\end{align}
+
+where 
+
+\begin{equation}
+\frac{\partial K_{\mu\nu}}{\partial \dot{\gamma}_{\mu\nu}} = \frac{1}{2\alpha}, \hspace{5mm} \frac{\partial {^{(3)}R}}{\partial \dot{\gamma}_{\mu\nu}} = 0, \hspace{5mm}\frac{\partial K^2}{\partial \dot{\gamma}_{\mu\nu}} = \frac{\gamma^{\mu\nu}K}{\alpha}
+\end{equation}
+
+assuming that there is no explicit dependency of the $\Lambda$ on $\dot{\gamma}_{\mu\nu}$.
+
+Note, that lapse function, $\alpha$, and shift vector, $\vec{\beta}$, are related to the the gauge freedom. This constitutes the freedom in how the manifold $\mathcal{M}$ can be split into hypersurfaces. In addition, as this choice is arbitatry, the momenta associated with these function and vector is zero, and the Hamiltonian density then reads
+
+\begin{align}
+\mathcal{H} &= p^{\mu\nu}\dot{\gamma}_{\mu\nu} - \Lambda = -\sqrt{\gamma}\alpha{^{(3)}R} + \frac{\alpha}{\sqrt{\gamma}}\Big[p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}p^2\Big] + 2p^{\mu\nu} D_{\mu}\beta_{\mu} -\Lambda_m \\
+%    &=  \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[-{^{(3)}R}+h^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}h^{-1}p^2\Big] - 2\beta_{\nu}\big[D_{\mu}(h^{-1/2}p^{\mu\nu})\big] + D_{\mu}(h^{-1/2}\beta_{\nu}p^{\mu\nu})\Bigg\} \\
+&= \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[ -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2\Big] +  2\beta_{\nu}\Big[D_{\mu}(\gamma^{-1/2}p^{\mu\nu})\Big] - 2D_{\mu}(\gamma^{-1/2}\beta_{\nu}p^{\mu\nu}) \Bigg\} - \Lambda_m,
+\end{align}
+
+where $p$ is the trace of $\boldsymbol{p}$. In the last line we have restored the correct $16\pi$ factor. Notably, in the case of variations with compact support, the last term (in the brackets), a boundary term, can be neglected. 
+
+The gauge freedom allows to set to zero the variation of $\mathcal{H}$ with respect to $\delta \alpha$ and $\delta \beta_{\mu}$. First, let us consider the matter part of the Hamiltonian $\mathcal{H}$, \textit{i.e,} $\Lambda_m$. The variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$ read
+
+\begin{align}
+\frac{\delta S_m}{\delta \alpha} &=-\alpha\frac{\delta S_m}{\delta g_{00}} = -\alpha\sqrt{-g}T^{00} = -\alpha^2\sqrt{\gamma}T^{00} = -\sqrt{\gamma}T^{\mu\nu}n_{\mu}n_{\nu} \\
+\frac{\delta S_m}{\delta \beta_{\mu}} &= \frac{\delta S_m}{\delta g_{\mu 0}} =\frac{1}{2}\sqrt{-g}T^{\mu 0} = -\frac{1}{2} \sqrt{\gamma}T^{\mu\nu}n_{\nu}.
+\end{align}
+
+Then, the variation of the whole Hamiltonian $H$ with respect to a quantity with vanishing canonical momentum is zero, we obtain two equations 
+
+\begin{align}
+\frac{\delta H}{\delta \alpha} &= 0 = -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2 + 16\pi T^{\mu\nu}n_{\mu}n_{\nu} \\
+\frac{\delta H}{\delta \beta_{\mu}} &= 0 = - D_{\mu}(\gamma^{-1/2}p^{\mu\nu}) + 8\pi{\gamma^{\mu}}_{\nu}n_{\gamma}T^{\nu\gamma}.
+\label{eq:theory:hamiltonianvariation}
+\end{align}
+
+\red{it might be too high for me} It is important to note, that the $\delta H / \delta\beta_{\mu}$ is actually a Frech\'{e}t differential $dH$, $\delta \beta_{\mu}$, which is writes as
+
+\begin{equation}
+\langle dH,\delta\beta \rangle = \delta\beta_{\mu}\big[-D_{\nu}(\gamma^{-1/2}p^{\mu\nu})+8\pi n_{\gamma}T^{\mu\nu}\big], 
+\end{equation}
+
+containing $\delta\beta_{\mu}$ which is spatial. Thus only the spatial part is being constrained in the equation above. To account for that the projector ${\gamma^{\mu}}_{\nu}$ is added to the $\delta H/\delta \beta_{\mu}$.
+
+Proceeding with the Hamiltonian formalism we note that Hamilton equations \ref{eq:theory:hamiltoneqs} leads to the evolution equations for the three-metric, assuming that $\Lambda$ explicitly does not depend on the momentum
+
+\begin{equation}
+\dot{\gamma}_{\mu\nu} =\frac{\delta H}{\delta p^{\mu\nu}} = 2\gamma^{-1/2}\alpha\big(p_{\mu\nu}-\frac{1}{2}\gamma_{\mu\nu}p\big) - D_{\nu}\beta_{\mu}-D_{\mu}\beta_{\nu}
+%    -2D_{(\mu}\beta_{\nu)},
+\label{eq:theory:_adm_metric_evo}
+\end{equation}
+
+and to the evolution equations for the canonical momentum 
+
+\begin{align}
+\dot{p}^{\mu\nu} = -\frac{\delta H}{\delta \gamma_{\mu\nu}} = &+ \alpha\gamma^{1/2}\Big({^{(3)}R}^{\mu\nu}-\frac{1}{2}{^{(3)}R\gamma^{\mu\nu}}\Big) 
+ - \frac{1}{2}\alpha\gamma^{-1/2}\gamma^{\mu\nu}\Big(p_{\gamma\delta}p^{\gamma\delta}-\frac{1}{2}p^2\Big) \\
+& + 2\alpha\gamma^{-1/2}\big(p^{\mu\gamma}{p^{\nu}}_{\gamma}-\frac{1}{2}pp^{\mu\nu}\big) 
+ - \gamma^{1/2}\big(D^{\mu}D^{\nu}\alpha-\gamma^{\mu\nu}D^{\gamma}D_{\gamma}\alpha\big) \\
+& - \gamma^{1/2}D_{\gamma}\big(\gamma^{-1/2}\beta^{\gamma}p^{\mu\nu}\big) 
++ 2p^{\gamma(\mu}D_{\gamma}\beta^{\nu)} + 8\pi \alpha \gamma^{1/2}S^{\mu\nu},
+\label{eq:theory:_adm_mom_evo}
+\end{align}
+
+where $A_{(\mu\nu)} = 0.5(A_{\mu\nu}+A_{\nu\mu})$ the convention was used, and $S^{\mu\nu} = {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}T^{\alpha\beta}$ and in taking the variation of the matter field the following was used
+
+\begin{equation}
+\frac{\delta S}{\delta \gamma_{ik}} = \frac{\delta S_m}{\delta g_{ik}} = \frac{1}{2}\sqrt{-g}T^{ik}
+\end{equation}
+
+The set of equations (\ref{eq:theory:hamiltonianvariation}), (\ref{eq:theory:_adm_metric_evo}) and (\ref{eq:theory:_adm_mom_evo}) comprise the ADM system. A more widely used from of these equations is in turns of $\gamma_{ij}$ and $K_{ij}$ that reads
+
+\begin{align}
+(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} =& -2\alpha K_{ik}; \\
+(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} =& -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) \\
+&- 8\pi\alpha\Big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\Big); \\
+{^{(3)}R} + K^2 - K_{ik}K^{ik} =& 16\pi E; \\
+D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
+\label{eq:theory:adm}
+\end{align}
+
+where $S = \gamma^{ij}S_{ij}$.
+
+These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
+
+\todo{make sure that the coefficients in formuals are consistent, $16\pi$ might me missing or $-$}
+\todo{Makse sure that $\Lambda$ stands for largangian density and $\mathcal{L}$ for lie derivative}
+
+\subsubsection{The CCZ4 Formulation}
 
 
 %%
