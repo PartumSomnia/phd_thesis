@@ -533,18 +533,91 @@ In this subsection we provide a brief overview on how the equations of general r
 
 \subsubsection{Kinematics of a Relativistic Fluid}
 
-In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities such as energy density, mass, momentum density. However, in general and special relativity, the these quantities are not well defined and depend on the observer. In other words, different observers perceive the same fluid being in various thermodynamic states. Hence, a description of the fluid dynamics in relativity requires a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, that are observer-dependent, but implicitly by a "flow" in spacetime. These are \textit{flux-conservative formulations} of hydrodynamics.
+In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities such as energy density, mass, momentum density. However, in general and special relativity, these quantities are not well defined and depend on the observer. In other words, different observers perceive the same fluid being in various thermodynamic states. Hence, a description of the fluid dynamics in relativity requires a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, that are observer-dependent, but implicitly by a "flow" in spacetime. These are \textit{flux-conservative formulations} of hydrodynamics.
 
-We start by examining the classical mass density, a scalar $\rho$, usually defined as total umber of particles $N$ of rest-mass $m$ in the volume $\text{d}^3x$. Then, the total mass is given by the integral over the volume of $\rho$, where $\rho=mn$, with $m$ being a particle mass and $n$ the number density. Assuming all particles have the same mass, we have an integral of a number density over volume, $\text{d}^3x$, which is just a total number of particles inside the volume $N$.  
-However, while the number of particles, $N$, is the same regardless of the observer, the $\text{d}^3x$ is measured differently by observers moving in relation to each other. Hence, the percived number of particles in that volume differ. One of the solutions is to chose a frame of reference, say comoving with the fluid, and define the $\rho$ there. However, this would hinder our ability to generalize to other reference frames. A better solution is to construct a \textit{covariant description in terms of invariant quantities}. 
+We start by examining the classical mass density, a scalar $\rho$, usually defined as total umber of particles, $N$, of rest-mass, $m$, in the volume, $\text{d}^3x$. Then, the total mass is given by the integral over the volume of $\rho$, where $\rho=mn$, with $m$ being a particle mass and $n$ the number density. Assuming all particles have the same mass, we have an integral of a number density over volume only, which is just a total number of particles inside the volume $N$. 
+However, while the number of particles, $N$, is the same regardless of the observer, the $\text{d}^3x$ is measured differently by observers moving in relation to each other. Hence, the perceived number of particles in that volume differs. One of the solutions ot that, is to chose a frame of reference, say comoving with the fluid, and define the $\rho$ there. However, this would hinder our ability to generalize to other reference frames. A better solution is to construct a \textit{covariant description in terms of invariant quantities}. 
 
-In light of this arguments, let us now introduce the flow of the fluid density in space-time, the  the 3 pseudo-form $\boldsymbol{\rho}$ that on any three dimensional submanifold describes the flow of mass transverse to it as $\int_{\Sigma} \boldsymbol{\rho}$, where $\Sigma$ be a spacelike hypersurface,  $\vec{n}$ -- the future-oriented normal vector. This is the density measured by an observer with 4-velocity $\vec{n}$. 
+In light of this arguments, let us now introduce the flow of the fluid density in space-time, the  the 3 pseudo-form $\boldsymbol{\rho}$ that on any three dimensional submanifold describes the flow of mass transverse to it as $\int_{\Sigma} \boldsymbol{\rho}$, where $\Sigma$ be a spacelike hypersurface, $\vec{n}$ -- the future-oriented normal vector. This is the density measured by an observer with 4-velocity $\vec{n}$. To define a \textit{mass flow} measured by an Eulerian observer across any spacelike surface $\Omega\subset\Sigma$, we need to employ a two-form $\boldsymbol{\rho}(\vec{n}, \cdot, \cdot)$ given by the interior product between the 3 pseudo-form $\boldsymbol{\rho}$ and $\vec{n}$. Then the mass flow is an integral of $i_{\vec{n}}\boldsymbol{\rho}.$ over the surface $\Omega$ and the conservation of the number of particles of the fluid is expressed by the vanishing exterior product of the density form \textit{i.e.,} $\text{d}\boldsymbol{\rho}=0$. The integral form of this expression reads: the net flow across any sufficiently regular surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero. 
+
+Next, we define the \textit{flux}. Recall the volume pseudo-form, $\text{Vol}_x ^4 = \sqrt{-g}dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3$, where $g$ is the determinant of the spacetime metric. On the submanifold $\Sigma$, the intrinsic volume is a three-form, $\text{Vol}_x ^3 = i_{\vec{n}} \text{Vol}_x ^4$. Generally, a flux of a vector field can be described by a three-form, for which on a pseudo-Riemannian manifold there exist a vector field associated with it. Thus, we introduce the vector field associated with density, the \textit{rest-mass density four-vector}, $\vec{j}$. The relation between the density 3 pseudo-form and the four-vector is given by the Hodge star operator $\underline{j}=\star\boldsymbol{\rho}$ (see \textit{e.g.,} \cite{Frankel:2002}). It can further be shown that the integral over surface $\Sigma$ of $\boldsymbol{\rho}$ is equal to the integral of $(\vec{j}\cdot\vec{n})\text{Vol}_x ^3$, where $\vec{n}$ is the future-oriented unit-timelike normal to $\Sigma$.
+
+Generally, for a hypersurface, $\Sigma$, a flux associated with the vector field $\vec{X}$ transverse to it os given by 
+
+\begin{equation}
+\int_{\Sigma} \star\underline{X} = \int_{\Sigma}i_{\vec{X}}\text{Vold}^n = \int_{\sigma}i_{\vec{X}}\big[\underline{\nu}\wedge\text{Vol}^{n-1}\big] = \int_{\Sigma}\vec{X}\cdot\vec{\nu}\:\text{Vol}^{n-1}
+\label{eq:theory:flux_of_flow}
+\end{equation}
+
+where $\vec{\nu}$ is a normal to $\Sigma$, \textit{i.e.,} $\text{Vol}^4 _x = \underline{\nu}\wedge\text{Vol}^3 _x$.
+\textcolor{gray}{this piece is used in Liuille theorem though}
+
+Next, we examine the volume pseudo-form of the spacetime. Notably, the flux of particles  across any future-oriented spacelike hypersurface is positive (or zero). This implies that $\vec{j}$ is time like (or null), and then it can be decomposed uniquely into a scalar $\rho$, density in the comoving frame, and unit-timelike vector $\vec{u}$, representing a fluid four-velocity, $\vec{j} = \rho \vec{u}$. The divergence of vecotor $j$ then gives a familiar mass conservation expression
+
+\begin{equation}
+0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
+\label{eq:theory:nablamu_jmu}
+\end{equation}
+
+Next, let us introduce the mixed tensor $\boldsymbol{T}$. Since the three-forms are equivalent to vectors, we can define a flow of the $\nu$ momentum across the volume element orthogonal to $dx^{\mu}$ as ${T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu})$. Note that we have recovered, $\boldsymbol{T}$, the stress energy tensor that was already introduced earlier \ref{eq:theory:action1}. If Einstein equations are satisfied, then Bianchi identities dictate that divergence of the stress-energy tensor of the fluid must vanish, 
+
+\begin{equation}
+\nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
+\label{eq:theory:nablamu_tmunu}
+\end{equation}
+
+It is important to note, that this statement does not imply the conservation of the energy and momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires $\vec{\partial}_{\nu}$ to be a Killing vector.
+
+\todo{define somewhere an eulerian observer}
+
+%%
+%%
+%%
+
+\subsubsection{Stress Energy Tensor}
+
+%% DISCUSSIOn o nthe stress energy tensor on the perfect fluid. NOT REALLY dynamics
+Having introduced the fluid kinematic, and defined the important quantities such as mass, energy and momentum and their "conservation" in \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}, here we proceed with description of the conservative formulation of the fluid dynamics. 
+
+We reemphasizes that in this thesis we are concerned with the \textit{perfect fluid} only. This implies that in the co-moving frame, there is not heat conduction and there is no viscosity. \todo{actually we do have a viscous part -- you have to add this...}. The former criterion implies that the fluid is in local thermodynamic equilibrium (LTE). The latter however requires more explanation. There is still no consensus on the correct mathematical formulation, especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in general-relativity (see e.g., \cite{Andersson:2006nr} and references therein). \textcolor{gray}{however in recent youers there have been some progress GRELS models and David's implementation I must add!}. 
+
+Let us examine the stress-energy tensor of a perfect fluid in the comoving frame with the fluid. First, recall the fluid's four velocity $\vec{u}$. If $e_{i}$ is the basis vector, the scalar product $\vec{u}\cdot\vec{e}_i=0$ and $\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$. Then, the object $\{\vec{u},\vec{e}\}$ is comoving with the fluid and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. The tensor $\boldsymbol{T}$ then has the following components: 
+
+\begin{itemize}
+    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ is the energy-density in the rest-frame of the fluid, the scalar $e$,
+    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i)$ is the energy flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction, and
+    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k)$ is the $k$ component of the force exchanged across the surface element orthogonal to $\underline{e}_i$. Due to invariance of $\boldsymbol{T}$ with respect to rotations of the basis vectors, the force exchange can be described by a scalar $p$, that is commonly called pressure, as $\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k$.
+\end{itemize}
+
+Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
+
+\begin{equation}
+\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
+\label{eq:theory:stressenergytensor}
+\end{equation}
+
+where we aslo introduced $h$, the enthalpy of the fluid, $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy. 
+
+In addition to the fluid kinematics (eqs. \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}) and the description of motion (eq. \ref{eq:theory:stressenergytensor}), the relation between the pressure, internal energy and density is needed to fully describe the dynamics of the fluid. This relation is usually called the equation of state. 
+
+The commonly adopted equations (EoS) of state are the the ideal-gas, or gamma-law EoS $\rho = (\Gamma-1)\rho\epsilon$, where $\Gamma$ is the polytropic index of the gas, the polytropic EoS $p = K\rho^{\Gamma}$ and the microphysical equation of state \todo{that you need to discuss more..., as we use only it. Like: in recent years there have been conciderable advancment in this approach and many EOSs ara avialble with different physcia inputs... I need to mention here or somewhere the DD2, SFHo, LS220, SLy4, and BLh.}
+
+Combined with an EoS, equations \ref{eq:theory:adm}, \ref{eq:theory:nablamu_jmu}, \ref{eq:theory:nablamu_tmunu} and \ref{eq:theory:stressenergytensor} form a hyperbolic
+system of equations that can be evolved, once initial data is prescribed. The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
+
+%%
+%%
+%%
+
+\subsubsection{Conservative Formulations of Fluid Dynamics}
+
 
 
 
 %%
 %%
 %%
+
 
 \chapter{Numerical Approximation of Conservation Laws}
 \label{ch:nummethods}
