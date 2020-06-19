@@ -600,7 +600,7 @@ where we aslo introduced $h$, the enthalpy of the fluid, $h = 1 + \epsilon = p/\
 
 In addition to the fluid kinematics (eqs. \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}) and the description of motion (eq. \ref{eq:theory:stressenergytensor}), the relation between the pressure, internal energy and density is needed to fully describe the dynamics of the fluid. This relation is usually called the equation of state. 
 
-The commonly adopted equations (EoS) of state are the the ideal-gas, or gamma-law EoS $\rho = (\Gamma-1)\rho\epsilon$, where $\Gamma$ is the polytropic index of the gas, the polytropic EoS $p = K\rho^{\Gamma}$ and the microphysical equation of state \todo{that you need to discuss more..., as we use only it. Like: in recent years there have been conciderable advancment in this approach and many EOSs ara avialble with different physcia inputs... I need to mention here or somewhere the DD2, SFHo, LS220, SLy4, and BLh.}
+The commonly adopted equations (EoS) of state are the the ideal-gas, or gamma-law EoS $\rho = (\Gamma-1)\rho\epsilon$, where $\Gamma$ is the polytropic index of the gas, the polytropic EoS $p = K\rho^{\Gamma}$ and the microphysical equation of state \todo{that you need to discuss more..., as we use only it. Like: in recent years there have been considerable advancement in this approach and many EOSs ara avialble with different physcia inputs... I need to mention here or somewhere the DD2, SFHo, LS220, SLy4, and BLh.}
 
 Combined with an EoS, equations \ref{eq:theory:adm}, \ref{eq:theory:nablamu_jmu}, \ref{eq:theory:nablamu_tmunu} and \ref{eq:theory:stressenergytensor} form a hyperbolic
 system of equations that can be evolved, once initial data is prescribed. The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
@@ -611,8 +611,55 @@ system of equations that can be evolved, once initial data is prescribed. The co
 
 \subsubsection{Conservative Formulations of Fluid Dynamics}
 
+The early attempts to solve equations of relativistic hydrodynamics numerically relied on a finite-difference scheme, after the equations were cast if a form resembling non-linear advection equations \cite{May:1966,Wilson:1972}. To avoid excessive oscillations at shocks a combination of upwinding and artificial-viscosity methods was employed. This however led to several limitations, such as difficulty with tunning the artificial viscosity to still allow shocks to develop, and the limit on a flows being only mildly relativistic \cite{Font:2008fka}. A novel approach was required. It began with stating the non-conservative nature of the previous approach and formulating the formulating the conservative one. An important example of the conservation formulation that is adopted to $3 + 1$ formalism is the "Valencia formulation" \cite{Banyuls:1997} that can be represented as following
 
+\begin{equation}
+    \frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
+    \label{eq:theory:valencia_formalism}
+\end{equation}
 
+where $u$ is a “vector” of \textit{primitive quantities}, such as the rest-mass density or the specific internal energy, $\boldsymbol{F}^0$ is a “vector” of \textit{conserved quantities} and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ are their fluxes and sources respectively.
+
+Formulated in a form of \ref{eq:theory:valencia_formalism}, the equations of relativistic hydrodynamics allowed to study ultra-relativistic flows and resolve shocks without spurious oscillations and without need for artificial viscosity. The formulation was of particular usefulness for numerical methods designed for conservation laws. These are the finite-volume (FV) FD high-resolution shock capturing (HRSC) methods, that will be discussed in Chapter \ref{ch:theory:grhd_num_methods}. \gray{Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) are based on these methods (\textit{e.g.,} \cite{Giacomazzo:2010bx}} \todo{add recolla/bernuzzi/radice/shibata or remove this line}). In addition to Valencia formulation, there are other conservative formulations and methods.  (see \textit{e.g.,} \cite{Papadopoulos:1999kt}). For the sake of brevity, however, we shall limit our discussion to the former only. 
+
+Let us start building the description of the fluid dynamics by introducing the four-velocity, $\vec{u}$, and split it into a component parallel to the normal vector, $\vec{n}$, and a purely spatial component $\vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon})$. Then the $\vec{\upsilon} = \vec{u}/W -\vec{n}$ is the fluid three-velocity measured by the Eulerian observer whose Lorentz factor, is $W = (-\vec{u}\cdot\vec{n})$. Or in component form, $\upsilon^i = u^i/W + \beta^i/\alpha$ and $\upsilon_i = u_{i}/W$. 
+Divergence of the rest-mass density four-vector $j$, (\ref{eq:theory:nablamu_jmu}) can easily be cast as 
+
+\begin{eqnarray}
+0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{t}[\sqrt{\gamma}\rho W] + \frac{1}{\sqrt{-g}}\partial_{i}[\sqrt{\gamma}\rho(\alpha \upsilon^{i} - \beta^{i})]
+\end{eqnarray}
+
+where $D=\rho W = -\vec{j}\cdot \vec{n}$ is the conserved density. This is familiar continuity equation. To write the energy and momentum equations in conservation form we note that for any vector field $\vec{p}$, the $\nabla_{\mu}[{T^{\mu}}_{\nu}p^{\nu}] = {T^{\mu}}_{\nu} \nabla_{\mu} p^{\nu}$ 
+\cite{Rezzolla:2013}. Then, for two components of $\vec{p}$, namely $-\vec{n}$ and $\vec{\partial}_i$, we obtain 4 conversational laws, for 4 components of $T^{0}_{\nu}p^{\nu}$. These are $S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i)$ and $E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})$ associated with fluxes and sources respectively. 
+
+For numerical reasons it is common to replace the total internal energy density $E$ with $\tau = E-D$, where $D$ is the rest mass density. This is done to avid errors emerging due to $E$ being much smaller then $D$.
+
+Now we can combine the obtained expressions for the conserved quantities, associated fluxes and sources with eq. (\ref{eq:theory:valencia_formalism}) and obtain
+
+\begin{align}
+     \frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} &+ \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}), \\
+     \boldsymbol{F}^0(\boldsymbol{u}) &= [D,\: S_j,\: \tau] = [\rho W,\: \rho h W^2 \upsilon_j,\: \rho h W^2 - p - \rho W],\\
+     \boldsymbol{F}^i(\boldsymbol{u}) &= \Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg],\\
+     \boldsymbol{S}(\boldsymbol{u}) &= \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
+     \label{eq:theory:grhdvalencia}
+\end{align}
+
+where $\boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon]$ are the primitive quantities, $\boldsymbol{F}^0(\boldsymbol{u})$ are the conserved quantities, $\boldsymbol{F}^i(\boldsymbol{u})$ are the associated fluxes and $\boldsymbol{S}(\boldsymbol{u})$ are the sources. 
+There are however several complications with the system \ref{eq:theory:grhdvalencia}. In particular there is no explicit inverse relation between the primitive quantities and the conserved ones. Thus one has to resort to root-finding algorithms in order to reconstruct them (More on this in Chapter \ref{ch:theory:grhd_num_methods}). In addition, it was pointed out that the $W$ couples the equation for the momenta in different direction \cite{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. This leads to the following behavior, the dynamics of the shock wave can be affected by the non-zero tangential velocity. This increases the complexity of already non-trivial formulation of GR hydrodynamics \cite{Mignone:2005ns,Zhang:2005qy}.
+
+%%
+%%
+%%
+
+\subsection{The General-Relativistic Boltzmann Equation}
+\red{Make sure you actually need it}
+
+Proposed by Synge \cite{Synge:1957} for special relativity and later extended to the general relativity by Chernikov \cite{Chernikov:1962} and Tauber and Weinberg \cite{Tauber:1961}, the Boltzmann equation has quickly gained popularity for many physical and astrophysical applications, that relied oon the description in terms of distributions. For instance, the relativistic gas, \cite{Israel:1963}, transient relativistic thermodynamics \cite{Israel:1979wp}, radiative transfer \cite{Lindquist:1966}, core-collapse supernovae \cite{Bruenn:1985} and others (see \textit{e.g.}, \cite{Cercignani:2002} and references therein)
+
+Different formulations exist for the general relativistic Boltzmann equation. In particular, Lindquist \cite{Lindquist:1966} and Ehlers \cite{Ehlers:1971} proposed a geometrical interpretation, that was later augmented by the modern geometry formalism of tangent bundles and operators acting between them \cite{Sasaki:1958,Sasaki:1962}. A more algebraic derivation of the equation was also recently proposed with albeit lacking on a geometrical side \cite{Debbasch:2009a,Debbasch:2009b}. 
+\todo{see if you have to cite David for this approach}
+
+\subsubsection{The geometry of the tangent bundle}
 
 %%
 %%
@@ -620,7 +667,7 @@ system of equations that can be evolved, once initial data is prescribed. The co
 
 
 \chapter{Numerical Approximation of Conservation Laws}
-\label{ch:nummethods}
+\label{ch:theory:grhd_num_methods}
 
 Laws of conservation form a foundation of physics. Their complex matematical from, however, makes them challanging ti treat numerically. Thus, approximations are required. In this chapter we briefly outline high-order, state-of-the-art numerical methods for the solution of conservation laws. Owing to their key importance in physics, the amount of literature concerning the topic is extensive. Thus, we shall limit our discussion to what is relevant to this thesis, whilst keep the discussion brief. \gray{A particular focus will be set on general-relativistic hydrodynamics} \\
 
