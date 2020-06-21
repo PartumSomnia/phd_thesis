@@ -693,10 +693,54 @@ The last concept that we need to introduce on $T\mathcal{M}$ is a metric. This w
 \begin{align}
 \text{Vol}^8 &:= -g \text{d}x^{0} \wedge \text{d}x^{1} \wedge ... \wedge \text{d}p^{3} := - g\text{d}^{4}x \text{d}^{4}p, \\
 &:= -g \text{d}x^{0} \wedge \text{d}x^{0} \wedge ... \wedge \text{D}p^{3} :=-g \text{d}^{4}x\text{D}^4 p
+\label{eq:theory:8form}
 \end{align}
 \red{the level of understanding in this subsection is below absolute zero...}
 
-A particular tool tha
+%%
+
+On a quest of deriving Boltzmann equation, after introducing the phase space, we need to obtain basic properties on the flow. For that we invoke the \textit{Liuville's theorem}.
+
+Let us start by introducing a \textit{cotangent bundle}. Let $\mathcal{M}$ be a differentiable manifold. Similarly to the construction of the tangent bundle, we can consider a set of covectors on a given manifold as a vector bundle over $\mathcal{M}$, denoted $T^*\mathcal{M}$ and called \textit{cotangent bundle} of $\mathcal{M}$. Similarly we can define a cotangent bundle of a tangent one $T^*T\mathcal{M}$. The cotangent bundle $T^*\mathcal{M}$ is the vector bundle dual to the tangent bundle $T\mathcal{M}$. 
+
+The second object we need is the \textit{Poincar\'{e}} 1-form on $T\mathcal{M}$. Consider a point $q$ on a manifold $\mathcal{M}$, and a point $A$ associated with $q$ on a tangent bundle $T\mathcal{M}$. Let there be a 1-form $\underline{\alpha}\in T^* _q\mathcal{M}$. The $\underline{\lambda}$ and $\underline{\alpha}$ are uniquely connected: $\underline{\lambda} = \pi^* \alpha$, and the former is called the \textit{Poincar\'{e}} 1-form. In a local coordinate patch, $TU$ it is expressed as $\underline{\lambda} = p_{\alpha} \text{d}x^{\alpha}$ with its associated vector
+
+\begin{equation}
+    \vec{\lambda} = p^{\alpha} \frac{\text{D}}{\partial x^{\alpha}} = p^{\alpha}\frac{\partial}{\partial x^{\alpha}} - p^{\alpha}{\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}},
+\end{equation}
+
+being called the $\textit{geodesic flow field}$. This flow represents a phase-space flow of particles moving along geodesics.
+
+Next, consider a mass shell, that at a point $q\in U$ can be defined as a set:
+
+\begin{equation}
+\mathcal{S}_m = \big\{ p^{\alpha}\in T_q\mathcal{M}: p_{\mu}p^{\mu}+m^2 =:f(p) = 0 \big\}.
+\end{equation}
+
+\gray{and the normal to the mass-shell is [long formula]}. 
+
+Now, let us introduce an additional unique form $\underline{\nu}$ whose restriction on $T_q\mathcal{M}$ is equal to $\underline{\pi}$, and if $m \neq 0$, the $\underline{\nu} = (1/m) p_{\alpha}\text{D}p^{\alpha}$ while if $m = 0$, the $\underline{\nu} = p_{\alpha}\text{D}p^{\alpha}$. Note that $\underline{\nu}$ is irrotational by definition ($d\underline{\nu}=0$) and can be shown to be incompressible \textit{i.e.,} $\text{d}^{\star}\underline{\lambda} =\star \text{d}\star\underline{\lambda} =0$ \gray{In addition, both $\underline{\lambda}$ and $\underline{\nu}$ are harmonic}. 
+
+Now, let us recall the definition of the flux of a vector field (\ref{eq:theory:flux_of_flow}) and define a six-form $\boldsymbol{\omega}$ such that $\boldsymbol{\omega} = \star\big(\underline{\nu}\wedge\underline{\lambda}\big) = i_{\vec{\lambda}} i_{\vec{\nu}}\text{Vol}^8$ and, in light of \ref{eq:theory:8form}, $\boldsymbol{\omega} = i_{\vec{\lambda}} ( \text{Vol}^{4}_{x}\wedge\text{Vol}^{3}_{p} )$ with $\text{Vol}_x ^4$ and $\text{Vol}_p ^4$ being defined on $TU$, while $\text{Vol}_p ^3 := i_{\vec{\nu}}\text{Vol}_p ^4$ being the volume form on the masss shell, $S_m$. 
+
+Next, we employ coordinates adopted to the mass shell in order to rewrite $\boldsymbol{\omega}$ with the following split in mind. In the context of ADM foliation, we split spacetime manifold as $\mathcal{M} = \mathcal{R} \times \Sigma$, with $x^0 = \text{const}$ being constant hypersurfaces with normal $\underline{n} = - \alpha\text{d}x^0$ and $\alpha$ -- the lapse function. 
+
+\gray{[skip a big part with coodinate adaption and action taking.]}
+
+Now we transition to the coordinates adopted to the mass shell and the split. Then, considering the action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$, we obtain that on a space-like hypersurface, $\Sigma$, and on the mass shell, the 6-form $\boldsymbol{\omega} := \boldsymbol{\Omega}$. The re-expressed $\boldsymbol{\Omega}$ allows a split $\boldsymbol{\Omega} = \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}$, with $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ defined via $\text{d}x^{\alpha}$ and $\text{d}p^{\alpha}$, with $\alpha\in{1,2,3}$ respectively. These forms, $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$, can be written in a coordinate-independent way at any point $q\in\mathcal{M}$. They are the intrinsic forms in $T\mathcal{M}$. The $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the \textit{proper geodesics flux volume form} on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively.
+
+Now we can consider a geodesic flow, $\vec{\lambda}$. It generates a "tube" in a phase space, that we limit with $S_1$ and $S_2$ sections. Then the flux of points in phase space associated with geodesic flow is $\int_{S}\boldsymbol{\omega}$. It is possible to show that the flux satisfies
+
+\begin{equation}
+    \int_{S_1}\boldsymbol{\omega} = \int_{S_2}\boldsymbol{\omega}
+    \label{eq:theory:liuville}
+\end{equation}
+
+which is the \textit{Liouville’s Theorem} in the relativistic case.
+
+%%
+
+Finally, we can obtain the Boltzmann equation. 
 
 
 %%
