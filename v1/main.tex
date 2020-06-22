@@ -664,7 +664,7 @@ For completeness we will outline the derivation procedure of the general relativ
 
 %%
 
-\subsubsection{The geometry of the tangent bundle}
+\subsubsection{Geometry of phase space}
 
 Crudely speaking, the Boltzmann equation that acts within particles phase space, composed of coordinates and momenta, \textit{i.e.,} of $2n$ coordiantes. All the equations and formulations discussed up to this point, however, are encompass $n$ coordinates only. Thus, we start with outlining mathematical methods to \textit{extend}, the required definitions and operators to the phase space.
 
@@ -697,7 +697,8 @@ The last concept that we need to introduce on $T\mathcal{M}$ is a metric. This w
 \end{align}
 \red{the level of understanding in this subsection is below absolute zero...}
 
-%%
+%% Liuville's theorem
+\subsubsection{Liuville's theorem}
 
 On a quest of deriving Boltzmann equation, after introducing the phase space, we need to obtain basic properties on the flow. For that we invoke the \textit{Liuville's theorem}.
 
@@ -727,7 +728,7 @@ Next, we employ coordinates adopted to the mass shell in order to rewrite $\bold
 
 \gray{[skip a big part with coodinate adaption and action taking.]}
 
-Now we transition to the coordinates adopted to the mass shell and the split. Then, considering the action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$, we obtain that on a space-like hypersurface, $\Sigma$, and on the mass shell, the 6-form $\boldsymbol{\omega} := \boldsymbol{\Omega}$. The re-expressed $\boldsymbol{\Omega}$ allows a split $\boldsymbol{\Omega} = \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}$, with $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ defined via $\text{d}x^{\alpha}$ and $\text{d}p^{\alpha}$, with $\alpha\in{1,2,3}$ respectively. These forms, $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$, can be written in a coordinate-independent way at any point $q\in\mathcal{M}$. They are the intrinsic forms in $T\mathcal{M}$. The $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the \textit{proper geodesics flux volume form} on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively.
+Now we transition to the coordinates adopted to the mass shell and the split. Then, considering the action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$, we obtain that on a space-like hypersurface, $\Sigma$, and on the mass shell, the 6-form we redefine $\boldsymbol{\omega} := \boldsymbol{\Omega}$. This $\boldsymbol{\Omega}$ allows a split $\boldsymbol{\Omega} = \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}$, with $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ defined via $\text{d}x^{\alpha}$ and $\text{d}p^{\alpha}$, with $\alpha\in{1,2,3}$ respectively. These forms, $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$, can be written in a coordinate-independent way at any point $q\in\mathcal{M}$. They are the intrinsic forms in $T\mathcal{M}$. The $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the \textit{proper geodesics flux volume form} on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively.
 
 Now we can consider a geodesic flow, $\vec{\lambda}$. It generates a "tube" in a phase space, that we limit with $S_1$ and $S_2$ sections. Then the flux of points in phase space associated with geodesic flow is $\int_{S}\boldsymbol{\omega}$. It is possible to show that the flux satisfies
 
@@ -738,9 +739,60 @@ Now we can consider a geodesic flow, $\vec{\lambda}$. It generates a "tube" in a
 
 which is the \textit{Liouville’s Theorem} in the relativistic case.
 
-%%
+%% Boltzmann eqiation
+\subsubsection{Boltzmann equation}
 
-Finally, we can obtain the Boltzmann equation. 
+Finally, we can obtain the Boltzmann equation. Let us make use of the formalism discussed above and introduce a 6-form representing the number of phase-space trajectories crossing $S$ of the phase tube between $S_1$ and $S_2$ cross sections. This is the phase space version of the mass flux. In the absence of collisions we obtain the number of number of phase-space trajectories should not change, and hence, integrals over $S_1$ and $S_2$ of $\boldsymbol{\mu}$ equates. Remembering that $\boldsymbol{\omega}$ represents the density of states in phase space of particles moving along geodesics, we obtain $\boldsymbol{\mu} = F\boldsymbol{\omega}$, where where $F$ is \textit{invariant distribution function}. \textcolor{gray}{i.e. F is the Radon-Nikodym derivative of $\boldsymbol{\mu}$ with re $\boldsymbol{\omega}$ [But I better not state it here.]}.
+
+Consider now that collisions change the number of phase trajectories. Then the integrals of $\boldsymbol{\mu}$ over $S_1$ and $S_2$ no longer equal. Their difference states how many phase space trajectories have been altered: $\delta N = \int_{S_2} \boldsymbol{\mu} - \int_{S_1}\boldsymbol{\mu} = \int_S \text{d}\boldsymbol{\mu} = \int_S \text{d}F\wedge\boldsymbol{\omega}$. Note that $\text{d}F\wedge\boldsymbol{\omega}$ can be expressed in terms of Poincar\'{e} 1-form and one-form $\underline{\nu}$ as $\text{d}F\wedge\star (\underline{\nu}\wedge\underline{\lambda})$. Then, introducing the scalar product as $\langle\boldsymbol{\alpha},\boldsymbol{\beta}\rangle\text{Vol}^8 := \boldsymbol{\alpha}\wedge\star\boldsymbol{\beta}$ we can further write that $\text{d}F\wedge\boldsymbol{\omega} = \langle\text{d}F,\underline{\lambda}\rangle\star\underline{\nu} - \langle\text{d}F,\underline{\nu}\rangle\star\underline{\lambda}$. Since Hodge star of the Poincar\'{e} 1-form is zero on a cross-section $S_1$, \textit{i.e.,} $\star\underline{\lambda}=0$, the change in number of phase-space trajectories is 
+
+\begin{equation}
+\delta N = \int_S\langle\text{d}F\underline{\lambda}\rangle\star\underline{\nu} = \int_S\mathcal{C}[F]\star\underline{\nu}, \text{ where } \langle\text{d}F\underline{\lambda}\rangle = \mathcal{C}[F]
+\end{equation}
+
+and where we denoted the effect of collisions as $\mathcal{C}[F]$. This is the Boltzmann equation. It can be written explicitly in coordinate form, in the coordinate system adopted to the equation (see. \textit{e.g.,} \cite{Cercignani:2002}). 
+
+Remembering that the differential form $\underline{\lambda}$ is incompressible, we can write that $\langle\text{d}F,\underline{\lambda}\rangle = \text{d}^{\star}[F,\underline{\lambda}]$. This allows to obtain a conservative formulation of the Boltzmann equation, that indicates the conservation of the number of particles \cite{Cardall:2002bp} $\text{d}^{\star}[F\underline{\lambda}] = \mathcal{C}[F]$. Next, we re-introduce the Levi Civita connection $\nabla$ in phase space. For incompressible $\underline{\lambda}$ it states that $\nabla_A\lambda^A=0$ and the Boltzmann equation then becomes $\lambda^A\partial_A F=\mathcal{C}[F]$. The conservative form the the equation reads 
+
+\begin{equation}
+\nabla_A[Fp^{A}] = \mathcal{C}[F],
+\label{eq:theory:liouvilletheorem}
+\end{equation}
+
+\gray{[or in component form...]}
+
+%%
+\subsubsection{From the Boltzmann Equation to the Euler Equation}
+
+In order to derive from the Boltzmann equation, equations of hydrodynamics, we need to, first, define variables of the fluid kinetic description, such as mass and energy fluxes. Note, that the density flux can easly be obtained from $\boldsymbol{\mu}$ as $\boldsymbol{\rho} = \int_{S_m} \boldsymbol{\mu}$. Next, recalling the definition of the rest-mass denisty four-vector $J$, we note that its integral over $\Sigma$ can be expressed as an integral over $\Sigma\times S_{m}$, if we recall the charactersitic form $\boldsymbol{\Pi}$, as $\int_{\Sigma}(-J^{\mu}n_{\mu})\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} Fp^0\boldsymbol{\Pi}\text{Vol}_x ^3$. Then, since $\boldsymbol{\Omega} = \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}$, we have $\int_{\Sigma}(-J^{\mu}n_{\mu})\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} F\boldsymbol{\Omega} = \int_{\Sigma}\boldsymbol{\rho}$, from which it follows that $J^{\mu} = \int_{S_m}Fp^{\mu}\boldsymbol{\Pi}$. Note, that this is the first moment of the distribution function $F$. The second, then, $T^{\mu\nu} = \int_{S_m} F p^{\mu}p^{\nu}\boldsymbol{\Pi}$ gives the stress energy tensor. The nature of the collisional operation ultimately defines the equilibrium configuration distribution function $F$ \cite{Cercignani:2002}, and thus the form of the stress-energy tenor.
+
+Now we use the Liouville Theorem to obtain the equations of hydrodynamics. To accomplish that we insert the $\boldsymbol{\Psi}$, a tensorial funcition of $\pi^i$, into the theorem, equation \ref{eq:theory:liouvilletheorem} on both sides and integrate with respect to $\boldsymbol{\Pi}$ as
+
+\begin{equation}
+\int_{\text{I\!R}}\nabla_{A}[F\lambda^A\boldsymbol{\Psi}]\boldsymbol{\Pi}=\int_{\text{I\!R}}\mathbb{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi}
+\end{equation}
+
+where we used that $\lambda^A\nabla_{A}\boldsymbol{\Psi}=0$ as $\vec{\lambda}$ is the geodesic flow. 
+
+Letting the $F$ decay for large momenta we obtain the transfer equation \cite{Israel:1963,Cercignani:2002}
+
+\begin{equation}
+\nabla_{\mu}\int_{\text{I\!R}} F\boldsymbol{\Psi}p^{\mu}\boldsymbol{\Pi} =\int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi},
+\label{eq:theory:transferequation}
+\end{equation}
+
+A particular example of the equation \ref{eq:theory:transferequation}, is the simple gas. Then the $\Psi$ can be shown to be one of the $\{1,p^0,p^1,p^2,p^3\}$ and right hand side of the transfer equation becomes equal to zero \cite{Cercignani:2002}. From this example it can be deduced that $\boldsymbol{\Psi}$ are related to the quantities conserved by the collisional operator and are called \textit{collisional invariants}. Choice of $1$ would yield the mass conservation, while $p^{\mu}$ -- the energy and momentum conservation. Then, if the r.h.s. of the transfer equation \ref{eq:theory:transferequation} is canceled, we obtain the conservation laws in a following form
+
+\begin{equation}
+\nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
+\end{equation}
+
+\red{I can continue here to derive the Angualr momentum and its flux as I use them for "our" papers}
+
+\section{Neutrino M0 scheme}
+\section{Equation of State}
+\section{Nucleosynthesis}
+\section{Kilonova}
 
 
 %%
