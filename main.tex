@@ -2666,6 +2666,93 @@ More detained description regarding Jacobians and their spectral decomposition f
 
 \textcolor{gray}{[Here david provides the description of the special relativitisc formulation of hydrodynamics and describes many tests here performed with his code. Tests like shock tube, blast waves, studying convergence and resolution effects. This is not very related to my thesis so I read it and I skip it from rewriting here.]}
 
+In relativity it is common to adopt the unit system in which $c=1$. Adopting also the Einstein summation coefficient convention, we aim here to provide a discription of a perfect fluid. 
+
+The $4-$velocity of the fluid is a vector $\vec{u} = (W, W, \vec{\upsilon})$, with $W = (1 - \upsilon^i , \upsilon_i)^{-1/2}$ being the Lorentz Factor. Then, 
+
+\begin{equation}
+    \vec{j} = \rho\vec{\upsilon}, \hspace{5mm} T = \rho h \vec{u} \otimes \underline{u} + p\boldsymbol{g},
+\end{equation}
+
+are the rest-mass current 4-vector and the stress energy tensor respectively, where $\rho$ is the rest-mass density, $h=1+\epsilon+p/\rho$ is the specific enthalpy and $g$ is the spacetime metric. For a flat spacetime that we consider, it is 4x4 matrix with only non-zero components being diagonals, \textit{i.e.,} $g_{\mu\nu}=(-1,1,1,1)$. \textcolor{red}{David's goal is to study statistical properties of special-relativistic turbulence and of unveiling novel and non-classical features we will consider the fluid not to affect the spacetime geometry.}
+
+Further, recalling the covariant derivative associated with the metric, $\nabla$, the laws of conservation read as a divergence of equals to zero, \textit{i.e.,}
+
+\begin{equation}
+    \nabla\cdot\vec{j}=0,\hspace{5mm}\nabla\cdot T = 0,
+    \label{eq:theory:specrel:conserv}
+\end{equation}
+
+for the rest mass and energy respectively. 
+
+Recalling the general form of the system of hyperbolic balance-laws in the form, (\ref{eq:theory:fd:hypsys}), the equations \ref{eq:theory:specrel:conserv} can written in terms of primitive variables 
+
+\begin{equation}
+    u = [\rho, \: \vec{\upsilon}, \: \epsilon],
+\end{equation}
+
+conservative variables 
+
+\begin{equation}
+    F^0(u) = [D, \: \underline{s}, \: \tau],
+\end{equation}
+
+where 
+
+\begin{equation}
+    D = \rho W, \hspace{3mm}, \vec{\vec{s}} = \rho h W^2 \vec{\upsilon} \hspace{3mm} \tau = \rho h W^2 - p - \rho W
+\end{equation}
+
+with the fluxes given by 
+
+\begin{equation}
+    \boldsymbol{F}^i(u) = [D\upsilon^i, \: \vec{s}\upsilon^i, + p\boldsymbol{\delta}^i, \: s^i-D\upsilon^i]
+\end{equation}
+
+We consider sources to be zero and hence the r.h.s of eq.(\ref{eq:theory:fd:hypsys}), and the systeb being closed by the equation of state. For simplicity chosen to the that of an ideal fluid.
+
+Note that while in the Newtonian hydrodynamics there exists an inverse transformation $F^0\rightarrow u$, allowing to express primitive variables from conservative ones, this is not achievable in special relativity. A numerical techniques are required to revocer primitive varaibles, \textit{e.g.,} \cite{Kastaun:2006}. \textcolor{gray}{details on how to extract this via rootfinding and physical entropy}. 
+
+\subsection{Numerical Tests}
+
+\textcolor{gray}{Here I will outline some results for my own understanding. This is not to be put in the thesis, as I am not working with the code development.}
+\textcolor{red}{NOT REFPHRASED}
+
+\begin{itemize}
+    \item \textbf{Strong shock}. Classical one-dimensional shock tube.Even at this fairly low resolution, all the schemes are able to capture well both the shock wave and the rarefaction wave, showing the good behaviour of the entropy fix. The contact discontinuity is resolved, but not without oscillations (due to the high Mach number of the shock wave, i.e., $\mathcal{M}=360$.
+    \item \textbf{Blust wave}. larger density contrast at the contact discontinuity. The MP5 scheme is able to properly capture the constant state between the shock wave and the contact discontinuity, while the WENO schemes result in more “rounded” solutions.
+    \item \textbf{Rotated Sod test}. Three-dimensional shock-tube test in Newtonian hydrodynamics. All the schemes are able to properly capture the main features of the solution: the discontinuities are captured within 1 or 2 gridpoints and both WENO5 and MP5 are able to capture the plateau in the velocity. Overall, these tests demonstrate the accuracy of the dimensionally unsplit approach that we use to treat the multi-dimensional case.
+    \item \textbf{Double Mach reflection test} Our algorithm is able to introduce enough numerical dissipation to avoid the odd-even decoupling. All things considered, we find that the best performance is given by the MP5 scheme.
+\end{itemize}
+
+and in special relativity 
+
+\begin{itemize}
+    \item \textbf{Adiabatic smooth flow} Test code with the smooth solutions. One-dimensional, large-amplitude, smooth, wave propagating in an isentropic fluid. A good-enough approximation of the exact solution was obtained by computing it on a very fine Lagrangian grid (1e6 points) and interpolated on the Eulerian grid. Instead of the third-order SSP-RK scheme, we adopt here a fourth-order RK time integrator. Our schemes approach the expected convergence order only asymptotically, at very high resolution. The reason for this
+    behaviour is in the “kinks” ahead and behind the pulse, where the numerical error is largest. These regions are “misinterpreted” as discontinuities by the shock-detection part of our schemes, unless they are resolved with enough gridpoints. The best performing scheme in this test is the MP5 one. Formation of the shock gradually degrades the overall convergence order to the 1st.
+    \item \textbf{Blast wave}. Relativistic fluids can exhibit much stronger shock waves. MP5 scheme requires twice as small CFL as other schemes to prevent large oscillations and yields non-physical values. \textcolor{gray}{there is a finite-volume code \texttt{Whisky}, \cite{Baiotti:2010zf,Baiotti:2004wn} with the HLLE approximate Riemann solver \cite{Toro:1999} and PPM reconstruction \cite{Colella:1984}. } If the timestep is suffciently small, on the other hand, the MP5 algorithm results in very accurate solutions, as in the Newtonian case. \texttt{THC} here performes better then \texttt{Whisky}.
+    \item \textbf{Shock-heating} relativistic effects can enhance the density contrasts in shock waves. shocks whose collision compresses the fluid. Kinetic energy into thermal energy, that is, through “shock heating”. For a Lorentz factor of a 1000, $\Gamma=4/3$, for a Newtonian fluid the compression ratio $\approx7$, while for spec. relativ. it is $\approx 4000$. The WENO5 and WENO7 solutions are affected by some small wall-heating effect, slight underdensity. The MP5 scheme, on the other hand, yields a solution which is essentially free
+    from oscillations.
+    \item \textbf{Transverse shock}. the equations for the momentum in the different directions are coupled together by the Lorentz factor: even in one-dimensional problems the application of a transverse velocity can change completely the solution. This feature was first pointed out by \cite{Pons:2000} and \cite{Rezzolla:2002ra}, and then used by \cite{Rezzolla:2002cc} and \cite{Aloy:2006rd} to discover a new physical effect, see also [\cite{Mignone:2005ns}, \cite{Zhang:2005qy}] for a description of the numerical consequences of this property]. The MP5 scheme overestimates slightly the density contrast, but all of the algorithms are able to capture the correct location of the shock wave.
+    \item \textbf{Spherical explosion}. No analytic solution is known in this case. As in the one-dimensional case, a small timestep is necessary in order to avoid numerical oscillations with the MP5 algorithm, while the other schemes appear to be stable even with a timestep which is twice as large.
+    \item \textbf{Kelvin-Helmholtz instability in 2D}. The instability is seeded by adding a small perturbation in the transverse component of the velocity. we use periodic boundary conditions in all the directions. Compare first growth rate of the transverse velocity during the linear-growth phase of the KHI. Important to including the contact wave in the approximate Riemann solver in the case of a finite-volume code. We also note the     importance of avoiding excessive dissipation in the contact discontinuity. The behaviour of the MP5 scheme, as well as that of the bandwidthoptimized WENO schemes, is more surprising: all of these schemes overestimate the growth of the RMS transverse velocity at low resolution. Some insight about the numerical viscosity can be gained by looking at the
+    topology of the flow during the linear-growth phase of the KHI. These secondary
+    instabilities, although only numerical artifacts (see below), appear only
+    in schemes able to properly treat the initial contact discontinuity. They are not to be genuine features of the solution and, rather, tend to disappear as the resolution is increased. Conclusion: secondary instabilities are triggered by the non-linear dissipation mechanism of the different schemes, emerge neatly when computed with numerical schemes that treat properly the initial contact discontinuity, but do not have a physical meaning. Solution: adding more numerical viscosity [219] or as David suggests, physical viscosity. A more quantitative way of estimating the numerical viscosity of the code: The one-dimensional power spectrum can be used to quantify the typical scale of structures, such as the secondary vortices discussed above, stretched in the direction of the bulk shear flow. Even more unexpected is the ability of the MP5 scheme to resolve small scales structures and that, on the basis of the argument about the development of the secondary instabilities, should be more dissipative than WENO4B, but which instead appears to yield more small-scale structures in the rest-mass density.
+\end{itemize}
+
+\subsubsection{The relativistic Kelvin-Helmholtz instability in 3D}
+\textcolor{red}{Important for GRBs}
+
+analysis is meant to assess how the different methods reproduce the same turbulent initial-value problem and to provide some insight on the spectral properties of the different schemes. The relativistic KHI [see, e.g., [51]] is of particular interest because of its relevance for the stability of relativistic jets [see, e.g., [251, 250]], and because of its potential role in the amplification of magnetic fields in gamma-ray bursts [see, e.g., [338]], and binary neutron-star mergers [25, 143, 240, 274].
+
+\begin{itemize}
+    \item \textbf{The linear evolution of the instability} Consider the evolution of the instability during its linear-growth phase. As expected, all the numerical schemes, with the exception of MINMOD, are in very good agreement with the 2D solution up to the end of the linear-growth phase, when 3D effects become important and turbulence starts to play an important role in the dynamics. It is interesting to note that MINMOD, which is the most dissipative of the schemes we are using, is actually overestimating the growth of the KHI.
+    This suggests that \textbf{some care should be taken when interpreting the results from under-resolved simulations}. secondary vortices are produced in more least dissipative methods.
+    \item \textbf{The non-linear evolution of the instability} The linear-growth phase of the KHI instability ends when the primary vortices become unstable to secondary instabilities and the flow starts the transition to turbulence. Three-dimensional effects dominate. Use the tracer scalar field to track the evolution.
+    \item \textbf{Fully-Developed turbulence}
+\end{itemize} 
+
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
 %[18]\cite{Anile:1990}
@@ -2736,7 +2823,7 @@ More detained description regarding Jacobians and their spectral decomposition f
 %[174]\cite{Israel:1963}
 %[176]\cite{Jiang:1996}
 %[179]\cite{Kastaun:2006}
-%[180]\cite{Kastaun:2007phd}
+%[180]\cite{Kastaun:2007phd} % bugged
 %[185]\cite{Konigl:1980}
 %[188]\cite{Kruzkov:1970}
 %[189]\cite{Kulikovskii:2002}
