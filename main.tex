@@ -761,6 +761,7 @@ The CCZ4 system reads
     & - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
     & - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
     & -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
+    \label{eq:theory:ccz4equations} % used for Whisky Code description
 \end{align}
 
 where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
@@ -1067,6 +1068,7 @@ Now we can combine the obtained expressions for the conserved quantities, associ
 
 \begin{equation}
     \frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}),
+    \label{eq:theory:grhdeq_thc} % used for THC section Code
 \end{equation}
 
 where primitive quantities being
@@ -2750,9 +2752,33 @@ analysis is meant to assess how the different methods reproduce the same turbule
     \item \textbf{The linear evolution of the instability} Consider the evolution of the instability during its linear-growth phase. As expected, all the numerical schemes, with the exception of MINMOD, are in very good agreement with the 2D solution up to the end of the linear-growth phase, when 3D effects become important and turbulence starts to play an important role in the dynamics. It is interesting to note that MINMOD, which is the most dissipative of the schemes we are using, is actually overestimating the growth of the KHI.
     This suggests that \textbf{some care should be taken when interpreting the results from under-resolved simulations}. secondary vortices are produced in more least dissipative methods.
     \item \textbf{The non-linear evolution of the instability} The linear-growth phase of the KHI instability ends when the primary vortices become unstable to secondary instabilities and the flow starts the transition to turbulence. Three-dimensional effects dominate. Use the tracer scalar field to track the evolution.
-    \item \textbf{Fully-Developed turbulence}
+    \item \textbf{The non-linear evolution of the instability}. when the primary vortices become unstable to secondary instabilities and the flow starts the transition to turbulence. three-dimensional effects dominate.
+    \item \textbf{Fully-Developed turbulence} By far the most interesting quantity to study is the three-dimensional velocity power spectrum. conclusions. importance of the use of high order    schemes (avoid bottle-neck, otherwise power-spectrum shows an excess due to viscous effects.) use of WENO4B over WENO5 is well justified, since WENO4B is roughly twice as expensive as     WENO5 in 3D. Tthe main differences between the bandwidth-optimized schemes and their traditional counterparts seem to lay in the bottleneck region WENO3B and WENO4B have a much less pronounced bottleneck with respect to WENO5, WENO7 and MP5.
 \end{itemize} 
 
+\subsection{Driven Relativistic Turbulence}
+
+consider an idealized model of an ultrarelativistic fluid. The fluid is modeled as perfect. We evolve the equations describing conservation of energy and momentum in the presence of an externally imposed Minkowskian force. To solve the equations of relativistic hydrodynamics in 3D we use the THC
+code described in this chapter and published in \cite{Radice:2012cu}. In particular, here, we use the MP5 reconstruction in local characteristic variables [165].
+\begin{itemize}
+    \item \textbf{Basic flow properties} All in all, this is one of our main results: the velocity power spectrum in the inertial range is universal, that is, insensitive to relativistic effects, at least in the subsonic and mildly supersonic cases. Note that this does not mean that
+    relativistic effects are absent or can be neglected when modelling relativistic turbulent flows.
+    \item \textbf{Intermittency} local appearance of anomalous, short-lived flow features.
+    \item \textbf{Conclusion} \textcolor{red}{We have presented THC, a new multi-dimensional, finite-difference, high-resolution shock-capturing code for classical and special-relativistic hydrodynamics... -- [FULL description of THC]}
+\end{itemize}
+
+\section{Finite-Differencing Methods: General Spacetimes} 
+Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{red}{here, we describe our new high order, high-resolution shockcapturing, finite-differencing code: \texttt{WhiskyTHC}, which constitutes the extension to general relativity of the \texttt{THC} code.}
+
+\subsection{WhiskyTHC}
+\textcolor{red}{marginally rephrased}
+\begin{itemize}
+    \item \textbf{Numerical Methods}. \texttt{WhiskyTHC} is a result of combination of two \texttt{Whisky} \cite{Baiotti:2004wn} and \texttt{THC} \cite{Radice:2012cu}. High-order flux-vector splitting finite-differencing techniques has come from the former, while the module for the recovery of the primitive quantities as well as the equation of state framework from the latter \cite{Galeazzi:2013mia}. Tabulated temperature and composition dependent equation of states can be used \textcolor{gray}{however David used only polytrops}. Overall, \texttt{Whisky} solves the equations of general-relativistic hydrodynamics in conservation form \ref{eq:theory:grhdeq_thc}. using a finite difference scheme \textcolor{red}{we however are using FV? Be carefull with which methods are used exactly}. The flux reconstruction is done in
+    local-characteristic variables using the MP5 scheme, see \textit{e.g.,} \cite{Rezzolla:2013}. The space-time is evolved using the CCZ4 formulation \ref{eq:theory:ccz4equations}, solved via finite difference code publicly available through \texttt{Einstein Toolkit}, 
+\end{itemize}
+
+
+%[4]\cite{McLachlan} % BSSN
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
 %[18]\cite{Anile:1990}
@@ -2760,6 +2786,7 @@ analysis is meant to assess how the different methods reproduce the same turbule
 %[28]\cite{Baiotti:2010zf}
 %[29]\cite{Baiotti:2004wn} [same 1]
 %[33]\cite{Baiotti:2004wn} [same 1]
+%[34]\cite{Balsara:2012}
 %[35]\cite{Balsara:2000}
 %[36]\cite{Banyuls:1997}
 %[40]\cite{Benartzi:2007}
@@ -2769,6 +2796,7 @@ analysis is meant to assess how the different methods reproduce the same turbule
 %[59]\cite{Borges:2008}
 %[60]\cite{Boris:1971}
 %[62]\cite{Boyd:2001}
+%[66]\cite{Borges:2008}
 %[67]\cite{Bruenn:1985}
 %[75]\cite{Canuto:2008}
 %[77]\cite{Cardall:2002bp}
@@ -2803,8 +2831,10 @@ analysis is meant to assess how the different methods reproduce the same turbule
 %[125]\cite{Einfeldt:1988}
 %[128]\cite{Field:2010}
 %[130]\cite{Font:2008fka}
+%[131]\cite{Font:2001ew}
 %[134]\cite{Friedrichs:1954}
 %[136]\cite{Galeazzi:2013mia}
+%[137]\cite{Galeazzi:mThesis:2008}
 %[139]\cite{Gassner:2011}
 %[141]\cite{Gerolymos:2009}
 %[144]\cite{Giacomazzo:2005jy}
@@ -2819,12 +2849,14 @@ analysis is meant to assess how the different methods reproduce the same turbule
 %[163]\cite{Harten:1987}
 %[166]\cite{Henrick:2005}
 %[168]\cite{Hesthaven:2007}
+%[170]\cite{Hu:2013}
 %[173]\cite{Israel:1979wp}
 %[174]\cite{Israel:1963}
 %[176]\cite{Jiang:1996}
 %[179]\cite{Kastaun:2006}
 %[180]\cite{Kastaun:2007phd} % bugged
 %[185]\cite{Konigl:1980}
+%[186]\cite{Kreiss:1973}
 %[188]\cite{Kruzkov:1970}
 %[189]\cite{Kulikovskii:2002}
 %[190]\cite{Kurganov:2000}
@@ -2836,6 +2868,7 @@ analysis is meant to assess how the different methods reproduce the same turbule
 %[197]\cite{LeVeque:2002}
 %[201]\cite{Lindquist:1966}
 %[202]\cite{Liu:1994}
+%[203]\cite{Loffler:2011ay}
 %[207]\cite{Marquina:1994}
 %[208]\cite{Marti:1994}
 %[210]\cite{Marti:1991wi}
@@ -2844,6 +2877,7 @@ analysis is meant to assess how the different methods reproduce the same turbule
 %[222]\cite{Curtis:1972}
 %[224]\cite{Mignone:2005ns}
 %[226]\cite{Mignone:2010}
+%[228]\cite{Millmore:2009dk}
 %[235]\cite{Nessyahu:1990}
 %[248]\cite{Papadopoulos:1999kt}
 %[257]\cite{Pons:2000}
@@ -2882,7 +2916,9 @@ analysis is meant to assess how the different methods reproduce the same turbule
 %[334]\cite{Woodward:1984}
 %[335]\cite{Yang:2001}
 %[339]\cite{Zhang:2005qy}
+%[340]\cite{Zhang:2010}
 %[341]\cite{Zhang:2011}
+%[342]\cite{Zhang:2011a}
 %[347]\cite{Zumbusch:2009fe}
 
 
