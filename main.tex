@@ -2817,19 +2817,35 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
         
         In \cite{Hu:2013} the extension of the method to the system of conservation laws was also proposed. 
         
-        The complications however are present when the source terms are treated. While for a simplified case of classical gass dynamics it might require a lower timestep, in the general relativistic case and general taulated EOS, the positivist of pressure is difficult to assure. This can be metigated by enforcing a floor value on the pressure 
+        The complications however are present when the source terms are treated. While for a simplified case of classical gas dynamics it might require a lower timestep, in the general relativistic case and general tabulated EOS, the positivist of pressure is difficult to assure due to complexity of the energy source terms. It can be mitigated by enforcing a floor value on the pressure.
+        
+        Note, that adopting a positivity preserving limiter to treat the transition between matter and vacuum, still implies replacing the vacuum with low density fluid at rest, is not a physically accurate approach. That would rely on treating the transition as a free boundary (see \textit{e.g.,} \cite{Kastaun:2006}) The advantage of positivity preserving limiter with respect to a classical atmosphere treatment, is that it allows to have a value of $\rho_{\text{atmo}}$ that does not require further tuning and can be arbitrary small, and assure that the solution is locally conserved. 
+            
+        \textcolor{red}{In our models} we employ this approach as follows, at the meginning of the simulations we set the floor density, relying in the subsequent evolution on a positivity preserving limiters to ensure the atmosphere well behaviour. Due to negligeble density of the atmosphere its accretion has a negligeble effect on the evolved object. 
+        
         
     \end{itemize}
+
+    \item \textbf{Single Neutron Stars: Fixed space-time} here the atmosphere test showed that using the standard atmosphere leads to the mass conservation violation on a small degree, however, it also shows an appearance of a "jet+-like structure along the axes where grid points are aligned with the star's surface. These aritifical outflowes are driven by the numerical oscillations creating an imbalance at the surface MP5+LF on the other hand shows no artificial matter streams due to its conservative nature
+    \item \textbf{Single Neutron Stars: Full-GR}
+    \item \textbf{Non-linear Oscillations: the Migration Test} Here the setup is the following, a neutrono star in Full GR is set with an initial oscullation, that formces a star to fiurst contract and then rebounce. This rebounce creates and ejecta. Different prescitpions show this ejecta, but the MP5-LF is inadequate in this test, introducing the structure in the ourflow (numerical osculllations/fragmentations). Origin: component-wise reconstruction in low density regions.
+    \item \textbf{Gravitational Collapse to Black-Hole}
+    \item \textbf{Binary Neutron Stars} The initial data we consider describes two neutron stars in quasi-circular orbit. It is computed in the conformally-flat approximation using the Lorene
+    pseudo-spectral code [157] and has been made publicly available by the Meudon group [3].
+    
 \end{itemize}
 
-
+%[3]\cite{Lorene}
 %[4]\cite{McLachlan} % BSSN
+%[13]\cite{Alic:2013xsa}
 %[15]\cite{Aloy:2006rd}
 %[16]\cite{Luigi:2002}
 %[18]\cite{Anile:1990}
 %[22]\cite{Arnold:2002}
+%[25]\cite{Baiotti:2008ra}
 %[28]\cite{Baiotti:2010zf}
 %[29]\cite{Baiotti:2004wn} [same 1]
+%[31]\cite{Baiotti:2009gk}
 %[33]\cite{Baiotti:2004wn} [same 1]
 %[34]\cite{Balsara:2012}
 %[35]\cite{Balsara:2000}
@@ -2841,6 +2857,7 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[59]\cite{Borges:2008}
 %[60]\cite{Boris:1971}
 %[62]\cite{Boyd:2001}
+%[63]\cite{Boyle:2009vi}
 %[66]\cite{Borges:2008}
 %[67]\cite{Bruenn:1985}
 %[75]\cite{Canuto:2008}
@@ -2864,6 +2881,7 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[84]\cite{Chernikov:1962}
 %[100]\cite{Crandall:1980}
 %[101]\cite{Crandall:1980proc}
+%[102]\cite{Damour:2012yf}
 %[108]\cite{Debbasch:2009a}
 %[109]\cite{Debbasch:2009b}
 %[114]\cite{DiPerna:1985}
@@ -2878,8 +2896,8 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[130]\cite{Font:2008fka}
 %[131]\cite{Font:2001ew}
 %[134]\cite{Friedrichs:1954}
-%[136]\cite{Galeazzi:2013mia}
 %[137]\cite{Galeazzi:mThesis:2008}
+%[136]\cite{Galeazzi:2013mia}
 %[139]\cite{Gassner:2011}
 %[141]\cite{Gerolymos:2009}
 %[144]\cite{Giacomazzo:2005jy}
@@ -2889,11 +2907,13 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[150]\cite{Goodale:2003}
 %[151]\cite{Goodman:1985}
 %[154]\cite{Gottlieb:2009}
+%[157]\cite{Gourgoulhon:2000nn}
 %[161]\cite{Harten:1976}
 %[162]\cite{Harten:1983}
 %[163]\cite{Harten:1987}
 %[166]\cite{Henrick:2005}
 %[168]\cite{Hesthaven:2007}
+%[169]\cite{Hotokezaka:2013mm}
 %[170]\cite{Hu:2013}
 %[173]\cite{Israel:1979wp}
 %[174]\cite{Israel:1963}
@@ -2918,12 +2938,14 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[208]\cite{Marti:1994}
 %[210]\cite{Marti:1991wi}
 %[211]\cite{Martin:2006}
+%[212]\cite{Maselli:2012zq}
 %[220]\cite{Meier:1999}
 %[222]\cite{Curtis:1972}
 %[224]\cite{Mignone:2005ns}
 %[226]\cite{Mignone:2010}
 %[228]\cite{Millmore:2009dk}
 %[235]\cite{Nessyahu:1990}
+%[247]\cite{Pannarale:2011pk}
 %[248]\cite{Papadopoulos:1999kt}
 %[257]\cite{Pons:2000}
 %[259]\cite{Qiu:2005}
@@ -2932,12 +2954,15 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[263]\cite{Radice:2011qr}
 %[264]\cite{Radice:2012cu}
 %[267]\cite{Reed:1973}
+%[268]\cite{Reisswig:2010di}
 %[269]\cite{Reisswig:2009us}
+%[270]\cite{Reisswig:2009rx}
 %[272]\cite{Rezzolla:2002ra} 
 %[273]\cite{Rezzolla:2002cc}
 %[274]\cite{Rezzolla:2011da}
 %[275]\cite{Rezzolla:2013}
 %[277]\cite{Roe:1981}
+%[283]\cite{Santamaria:2010yb}
 %[284]\cite{Sasaki:1958}
 %[285]\cite{Sasaki:1962}
 %[289]\cite{Schnetter:2003rb}
@@ -2959,6 +2984,7 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[321]\cite{Thorne:1981}
 %[323]\cite{Toro:1999}
 %[325]\cite{vanLeer:1973}
+%[329]\cite{Vines:2011ud}
 %[334]\cite{Woodward:1984}
 %[335]\cite{Yang:2001}
 %[339]\cite{Zhang:2005qy}
