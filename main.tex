@@ -2830,10 +2830,46 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
     \item \textbf{Single Neutron Stars: Full-GR}
     \item \textbf{Non-linear Oscillations: the Migration Test} Here the setup is the following, a neutrono star in Full GR is set with an initial oscullation, that formces a star to fiurst contract and then rebounce. This rebounce creates and ejecta. Different prescitpions show this ejecta, but the MP5-LF is inadequate in this test, introducing the structure in the ourflow (numerical osculllations/fragmentations). Origin: component-wise reconstruction in low density regions.
     \item \textbf{Gravitational Collapse to Black-Hole}
-    \item \textbf{Binary Neutron Stars} The initial data we consider describes two neutron stars in quasi-circular orbit. It is computed in the conformally-flat approximation using the Lorene
-    pseudo-spectral code [157] and has been made publicly available by the Meudon group [3].
+    \item \textcolor{red}{\textbf{Binary Neutron Stars} [Copied. Not rephrased]} Models having an initial small separation of 45 km. Compare it to \texttt{Whisky} code, that is a second-order finite-volume code, with high-order primitive reconstruction and implements several different approximate Riemann solvers, \textcolor{red}{David used PPM reconstruction [95] and of the HLLE Riemann solver \cite{Harten:1983}, \cite{Einfeldt:1988}].} 
+    The initial data we consider describes two neutron stars in quasi-circular orbit. It is computed in the conformally-flat approximation using the Lorene pseudo-spectral code \cite{Gourgoulhon:2000nn} and has been made publicly available by the Meudon group \cite{Lorene}. The EoS assumed for the initial data is polytropic. \textcolor{gray}{In our case it is cold EOS} while the evolution is performed using the ideal-gas EoS to allow for thermal effects in the merger phase. \textcolor{gray}{In our case it is finite temperature EOS}. Discussion on baryonic masses and compactness $c=M_{\infty}/R_{\infty}$, where $R_{\infty}]$ is the areal radius.
+    \begin{itemize}
+        \item \textit{Small separation} Grid discussion: extend, symmetries \textit{e.g.,} we assume reflection
+        symmetry across the $xy$ plane and $\pi$ symmetry across the yz plane. Number of refinement levels. Static grid or AMR. 
+        Evolution via CCZ4 with damping constants $\kappa_1=?$, $\kappa_2=?$ and $\kappa_3=?$ and with beta-driver $\eta=?$. The space time evolved. Space-time is evolved via fourth order finite-differencing and with fifth order Kreiss-Oliger artificial dissipation \textcolor{red}{I need to find what is used in our runs}.
+        Study the graviational radiation via looking ad the $l=2$ $m=2$ mode of the $Weyl$ scalar $\Psi_4$ extracted at a fixed coordiante radius of $r=450M_{\odot}$. Strain is not computed as it involves other uncertanties \cite{Boyle:2009vi,Reisswig:2009us,Reisswig:2009rx,Reisswig:2010di}. 
+        The dynamics of the inspiral and merger of BNS has been described many times and in great detail in the literature \textit{e.g.,} \cite{Baiotti:2008ra}. We only mention that the two neutron stars
+        inspiral for about 2:5 orbits, touch and quickly merge into a single black-hole. For this particular model no significant disk is left behind. The gravitationalwave signal consists.
+        For GW plot 22 mode of $\Psi_4$ as extracted at $r=450M_{\odot}$ and as a function of the retarted time $t-r_*$ where $r_* = r + 2M_{\text{ADM}}\log(r/(2M_{\text{ADM}})-1)$.
+        Results: 1. treatment of the neutron star surface is not a leading source of error in binary neutron star simulations, as far as the inspiral GW signal is concerned. \texttt{WhiskyTHC} shows a smaller dephasing significantly smaller de-phasing: the difference between the low and the high resolution is about 0.6 radians, which is a factor four smaller than the one shown by \texttt{Whisky}. Observation: merger happens earlier as we increase the resolution. For each run we compute the phase, $\phi$, of the 22 mode of $\Psi_4$ from its definition, $(\Psi_4)_{22} = A e^{i\phi}$. 
+        We should stress that this error estimate only reflects the numerical truncation error. Other systematic errors and, in particular, finite extraction radius effects and inaccuracies in the initial data, are also present and might be relevant (especially for WhiskyTHC). On the other hand, here we are interested only in evaluating the accuracy of the two numerical methods.
+        \item \textit{Large separation} [mostly skipped]
+        Notice that  contact happens before the bare contact angular frequency \cite{Damour:2012yf} 
+        \begin{equation}
+            0.15276 = M\omega_{\text{contact}} := 2C^{3/2}, \hspace{5mm} \omega:=\dot{\phi}
+        \end{equation}
+        is reached. This is in any case expected because this approximation of the contact frequency does not take tidal deformations into account.
+    \end{itemize}
     
+    \item \textbf{Conclusion}
+     
 \end{itemize}
+
+\section{Discontinuous Galerkin methods for general relativistic hydrodynamics}
+\textcolor{red}{Skipped}
+
+
+%% ==========================================
+%%
+%% Radiation
+%%
+%%
+%% ==========================================
+
+
+
+\chapter{The Filtered Spherical Harmonics Method}
+
+\part{Relativistic Radiation Transport}
 
 %[3]\cite{Lorene}
 %[4]\cite{McLachlan} % BSSN
@@ -2876,6 +2912,7 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %[92]\cite{Cockburn:1991}
 %[93]\cite{Cockburn:2001}
 %[94]\cite{Colella:2008}
+%[95]
 %[96]\cite{Colella:1984}
 %[97]\cite{Conway:1966}
 %[84]\cite{Chernikov:1962}
