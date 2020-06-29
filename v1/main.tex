@@ -482,6 +482,7 @@ The CCZ4 system reads \red{[can be removed to shorten the discussion]}
 & - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
 & - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
 & -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
+\label{eq:theory:ccz4equations}
 \end{align}
 
 where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
@@ -642,6 +643,7 @@ Now we can combine the obtained expressions for the conserved quantities, associ
      \boldsymbol{F}^i(\boldsymbol{u}) &= \Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg],\\
      \boldsymbol{S}(\boldsymbol{u}) &= \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
      \label{eq:theory:grhdvalencia}
+     % eq:theory:grhdeq_thc
 \end{align}
 
 where $\boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon]$ are the primitive quantities, $\boldsymbol{F}^0(\boldsymbol{u})$ are the conserved quantities, $\boldsymbol{F}^i(\boldsymbol{u})$ are the associated fluxes and $\boldsymbol{S}(\boldsymbol{u})$ are the sources. 
@@ -1069,9 +1071,57 @@ Next, starting from \ref{eq:theory:dg:intformadveq} we construct the general fro
 
 where $u^{j}$ contain all the expansion coefficients $u$,  $\big(\boldsymbol{M}^j\big)_{ki}$ is the mass matrix, defined on a single element and in most cases can be diagonalized \cite{Canuto:2008}, $\big(\boldsymbol{D}^{j}\big)_{ki}$ is the co-differential matrix, for which inadequately chosen quadrature can violate non-linear stability \cite{Hesthaven:2007}, and $\big(F^{j-1/2}\big)_i$ are the flux vectors. \textcolor{gray}{see more in chapter 6}
 
+%%
+%%
+%%
+
+\subsection{Summary}
+
+\gray{To we written}
+
+%%
+%%
+%%
+
+\section{Methods and Codes}
+
+In this section we present a short summary on the methods and codes used in this thesis. We \red{need to discuss the GRHD code WhikyTHC first and foremost, then we need to elaborate on how the data of this code is interpreted, focusing on ejecta. Then we elaborrate on the EOS used. Then we elaborate the methods used to compute nucleosynthesis in the ejecta and eventually elecromagnetic counterparts. } For the sake of bravity we shall outline the main ideas, assumtions and techniques employed uin different methods in the beginning of corresponding subsections without going into details, but providing references to where they can be found.
+
+\subsection{\texttt{WhiskyTHC}}
+
+At present there are two main techniques employed numerical codes for the evolution of the fluid in general evolving spacetime. The first and the simplest relies on a flux-conservative finite-difference HRSC schemes. Its direct competitor are the high-order finite volume schemes, albeit computationally more expensive, as multiple Reimann problems have to be solved at the interposes between regions (volume elements) \cite{Reisswig:2009us,Shu:2001rep} in addition to sophisticated averaging and de-averaging procedures \cite{Tchekhovskoy:2007zn}.
+
+In this thesis we employ the \texttt{WhiskyTHC} code [many references, starting from David's thesis]. This is a combination of the finitie volume code \texttt{Whisky} [refs] and hydrodynamics code \texttt{THC} \cite{Radice:2012cu}[refs].
+
+\texttt{Whisky} is a finite-volume code \cite{Baiotti:2010zf,Baiotti:2004wn} with the HLLE approximate Riemann solver \cite{Toro:1999} and PPM reconstruction \cite{Colella:1984}. The code contains module for the primitive quantities recovery as well as the equation of state framework from the latter \cite{Galeazzi:2013mia}, allowing to use tabulated temperature and composition dependent equation of states.
 
 
-% References
+\texttt{THC} is the Templated-Hydrodynamics Code \cite{Radice:2012cu}, based on Cactus framework \cite{Goodale:2003}. It employs state-of-the-art flux-vector splitting scheme with the reconstruction in characteristic fields avaliable for up to 7th order. It also has the Roe flux split with a entropy-fix prescription. The "templated" in the code name stands for a modern paradigm in C++ programming, the tempalted programming that allows for creation of complex modular codes deprived of increased computational costs due to polymorphism \cite{Yang:2001}. The code incorporates the following reconstruction schemes: MP5, classical monotonicity preserving \cite{Suresh:1997,Mignone:2010} the weighted essentially non oscillatory (WENO) schemes WENO5 and WENO7 \cite{Liu:1994,Jiang:1996,Shu:1997} and two bandwidth-optimized WENO schemes WENO3B and WENO4B \cite{Martin:2006,Taylor:2007}
+It employs high-order flux-vector splitting finite-differencing techniques.
+
+Overall, \texttt{WhiskyTHC} solves the equations of general-relativistic hydrodynamics in conservation form \ref{eq:theory:grhdeq_thc}. using a finite difference scheme \red{sure?}. The flux reconstruction is done in local-characteristic variables using the \red{MP5/Weno} scheme, see \textit{e.g.,} \cite{Rezzolla:2013}. The space-time is evolved using the CCZ4 formulation \ref{eq:theory:ccz4equations}, solved via finite difference code publicly available through \texttt{Einstein Toolkit}, \cite{McLachlan,Loffler:2011ay}. The code is build on the \texttt{Carpet} AMR driver \cite{Schnetter:2003rb} from the \texttt{Cactus} computational toolkit \cite{Goodale:2003}, incorporating a provided by \texttt{Carpet} Berger-Oliger-style mesh refinement \cite{Berger:1989,Berger:1984} with subcycling in time and refluxing. \red{sure?}. The relativistic hydrodynamics is coupled to space-time via the method of lines (MoL). Third order Runge-Kutta (RK) scheme is used for time integration. 
+
+When considering a boundary between fluid and vacuum in Eulerian (relativistic) hydrodynamics codes a special techniques are needed \cite{Galeazzi:mThesis:2008,Kastaun:2006,Millmore:2009dk}. One of such techniques is an introduction of \textit{atmosphere}, an artificial density floor in the simulation domain. Thus, the rest mass density and coordinate velocity are reset to a floor values once the former falls below a certain threshold value during the evolution \cite{Font:2001ew,Baiotti:2004wn}. It was however shown that when higher then second order numerical schemes are used, the numerical oscillations may arise, leading to mass and energy violation \cite{Radice:2011qr}. The coccect tratment of the fluid-vacuum boundary is one of the main challenges in moderns GRHD codes. 
+
+For models discussed in this thesis the following techniques to treat the atmosphere is employed \red{Standard Atmosphere Treatment, "ordinary MP5 approach", or An Improved Atmosphere Treatment, "MP5+LF", or Positivity Preserving Limiter}.
+
+%%
+%%
+%%
+
+\subsubsection{Initial Data}
+\red{To be reused in proper section}
+\gray{In this thesis we consider models of inspiring and merging binary neutron stars. The initial data describes two neutron stars in quasi-circular orbit. It is computed in the conformally-flat approximation using the Lorene pseudo-spectral code \cite{Gourgoulhon:2000nn}, that has been made publicly available by the Meudon group \cite{Lorene}. \gray{the Eos is cold slice of fin.temp.EOS, while the evolution with fin.temp.EOS}
+}
+
+\gray{we assume reflection symmetry across the $xy$}
+\gray{we use AMR}
+\gray{Evolution via CCZ4 with damping constants $\kappa_1=?$, $\kappa_2=?$ and $\kappa_3=?$ and with beta-driver $\eta=?$. The space time evolved. Space-time is evolved via fourth order finite-differencing and with fifth order Kreiss-Oliger artificial dissipation} 
+\gray{[See more in v0 of the thesis]}
+
+%% ---------------
+%%
+%% References
 %%
 %% ---------------
 
