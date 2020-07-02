@@ -2867,12 +2867,13 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
 %% ==========================================
 
 
-
-\chapter{The Filtered Spherical Harmonics Method}
-
 \part{Relativistic Radiation Transport}
+\chapter{The Filtered Spherical Harmonics Method}
+\section{Introduction}
 
+Radiation-transport equations are complex and expensive to solve numerically. The main reasons for that are the following. First, is the dimensionality of the problem. Radiation carriers are described by their location in space, which generally is a 3D sapce, momenta, which requires 2 additional components, angles, and finally one component for energy of the carrier. Thus, with an addition of time there are $(6+1)$ dimensions for the problem. The second main difficulty stems from in the different regimes of the radiation transport with respect to the optical depth. If the latter is high, \textit{i.e.,} the opacity is very large, the radiation transport can be described by the diffusion of carriers, having the parabolic character. However, if the opacity is small and thus the optical depth, the radiation can stream freely, displaying a hyperbolic character of the transport \cite{Mihalas:1984}. A particular difficulty is presented by the intermediate regime, when the radiation transport mechanism transitions from diffusion to free streaming. 
 
+Most commonly used approaches to simplify the radiation transport equation relies on reducing the sentimentality of the problem. The most approach is to reduce the number of spatial dimensions by assuming a certain symmetry, for example, an axial or spherical symmetry. And while this have shown to be a reasonable approximation for many astrophysical models, in cases where the system itself does not exhibit any spatial symmetries, such simplification cannot be done. Anther approach to reduce the dimensional of the problem, is to simplify the momentum space. An example of such approach, that allows to reduce the computational cost considerably, is the approximation of transport equations with diffusion equations \cite{Pomraning:1973,Roe:1981}. And while in the opaque regions (with high optical depth) this approximation is reasonable, it becomes much less so in the transparent regions where the anisotropy of radiation has to be taking into account \cite{Ott:2008jb}. The intermediate region is however even more challenging. It is common to simply interpolate the solution there.
 
 
 
