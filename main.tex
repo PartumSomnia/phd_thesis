@@ -2879,9 +2879,35 @@ The main source of complexity in the radiation transport stems from the scatteri
 
 Another way to solve the multidimensional radiation transport is to employ Monte-Carlo methods \cite{Fleck:1971,Gentile:2009,Abdikamalov:2012zi}. They can achieve very high accuracy, however, plague by the statistical noise (due to finite sampling of the phase space), they require very large number of Monte Carlo particles, and thus, they are computationally expensive. 
 
-A more physically motivated approximation of the radiation transport can be achieved via expending the radiation intensity in angles using spherical harmonic basis functions. This is so-called $P_N$ method. It allows to convert the integrodifferential equation into a hyperbolic system of partial differential equations for the expansion coefficients. The coefficients stand for angualr moments in the basisi of spherical harmonic functions. 
+A more physically motivated approximation to the radiation transport can be achieved by expending the radiation intensity in angles using spherical harmonics as basis functions. This is so-called $P_N$ method. It allows to convert the integrodifferential equation into a hyperbolic system of partial differential equations for the expansion coefficients. Coefficients stand for angular moments in the basis of spherical harmonic functions. An advantage of this method with respect to the diffusion approximation is that if in the latter the radaition propagation speed is unbound, in $P_N$ method, that approximates the radiation as a set of elementary waves, the propagation speed is limited by the speed of light \cite{McClarren:2008b}. This approach is also numerically more favorably, exhibiting the formal spectral convergence to the true solution and requiring less memory, a factor of two with respect to $S_N$ method for an equivalent angular distribution and accuracy. Preserving the rotational invariance, the $P_N$ method allows to avoid the "ray effect" of $S_N$ method. However, approximation of the radiation field with smooth basis functions, while being sufficiently accurate in the optically thick regime, displays non-physical oscillations in the transparent one \footnote{This is related to the so-called Gibbs phenomenon \cite{Boyd:2001}}. If radiation is coupled to matter, these oscillations can produce regions with negative radiation intensity and thus negative temperature \cite{McClarren:2008b,Olson:2009} (see also \cite{Olson:2000,Olson:2009,Brunner:2001,McClarren:2010,Olson:2012,Hauck:2010}). On of the solutions to this problem is to filter out (using \textit{e.g.,} spherical spline expansion \cite{Boyd:2001}) these oscillations from the radiation intensity \cite{McClarren:2010}. However, the exact choice of the filtering technique, extension to full 3D and absence of the clear continuum limit\footnote{Which does not allow to study the spatial convergence of the solution} present additional challenge in implementing the filtering approach. \\
+%
+In this chapter we overview the method by McClarren \& Hauck \cite{McClarren:2010}, \textcolor{red}{folllowing David  who achieved the clear continuum limit by reformulating the original method, investigated the range of filter types and studied 2D and 3D radiation transfer with his trasport code \texttt{Charon}} 
+\textcolor{red}{more description of Charon}
+\textcolor{red}{The chapter is organized as following}
 
 
+\section{The relativistic Boltzmann equation}
+
+
+Here we aim to introduce the equation for radiation transport in special relativity. For the purpose of being in-line with corresponding literature we slightly change the notation from the section \textcolor{red}{sec:[Boltzmann GR]} and given an independent discussion
+
+\subsection{The distribution function for radiation}
+
+Let us start by introducing the specific radiation intensity $I$
+
+\begin{equation}
+    d\mathcal{E} = I \cos\theta\text{d}A\text{d}\nu\text{d}\Omega\text{d}t
+\end{equation}
+
+that describes the radiation energy in freqquency range $\nu\pm\text{d}\nu$ propagating in the direction $\Omega$, within the solid angle $\text{d}\Omega$, crossing the surface are $\text{d}A$, whose norm makes and angle $\theta$ with respect fo $\Omega$, withing time interval $\text{d}t$. (see \textit{e.g.,} \cite{Pomraning:1973})
+
+In order to approach the number density and energy density of the radiation, we introduce the distribution function, $F$, describing the density of radiation carriers in phase space. This is of particular usefullness for the relativistic case as $F$ is Lorentz invariant \cite{Mihalas:1984}. For that we first focus on a single relativisitc particle phase space. Let $x^{\mu}$ and $p^{\mu}$ be particles positions and momenta, measured in \textcolor{red}{fiducual internal frame}. Assuming that the radiation carriers are massless, with their energy being related to frequency as $\epsilon = h\nu$, the momentum four-vector $p^{\mu}$ can be written in terms of angles describing the direction of the particles movement, $\theta$ and $\phi$, and the frequency $\nu$ as 
+
+\begin{equation}
+    p^{\mu} = \frac{h\nu}{c}(1, \: \cos\phi\sin\theta,\:\sin\phi\sin\theta,\:\cos\theta),
+\end{equation}
+
+where we also made use of the normalization condition for timelike vectors, that imply that $p^{\mu}$ has only $3$ independent components.
 
 
 %[2]\cite{Cactus}
@@ -3024,6 +3050,7 @@ A more physically motivated approximation of the radiation transport can be achi
 %[235]\cite{Nessyahu:1990}
 %[242]\cite{Olson:2009}
 %[243]\cite{Olson:2012}
+%[244]\cite{Olson:2000}
 %[245]\cite{Ott:2008jb}
 %[247]\cite{Pannarale:2011pk}
 %[248]\cite{Papadopoulos:1999kt}
