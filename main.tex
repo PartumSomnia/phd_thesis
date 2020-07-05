@@ -2887,7 +2887,7 @@ In this chapter we overview the method by McClarren \& Hauck \cite{McClarren:201
 
 
 \section{The relativistic Boltzmann equation}
-
+\textcolor{red}{If I am to use this seriously, I must augment this section. It is barely rephrased and copied.}
 
 Here we aim to introduce the equation for radiation transport in special relativity. For the purpose of being in-line with corresponding literature we slightly change the notation from the section \textcolor{red}{sec:[Boltzmann GR]} and given an independent discussion
 
@@ -2897,17 +2897,82 @@ Let us start by introducing the specific radiation intensity $I$
 
 \begin{equation}
     d\mathcal{E} = I \cos\theta\text{d}A\text{d}\nu\text{d}\Omega\text{d}t
+    \label{eq:theory:boltz:specIntes}
 \end{equation}
 
-that describes the radiation energy in freqquency range $\nu\pm\text{d}\nu$ propagating in the direction $\Omega$, within the solid angle $\text{d}\Omega$, crossing the surface are $\text{d}A$, whose norm makes and angle $\theta$ with respect fo $\Omega$, withing time interval $\text{d}t$. (see \textit{e.g.,} \cite{Pomraning:1973})
+that describes the radiation energy in freqquency range $\nu\pm\text{d}\nu$ propagating in the direction $\Omega$, within the solid angle $\text{d}\Omega$, crossing the surface are $\text{d}A$, whose norm makes and angle $\theta$ with respect fo $\Omega$, withing time interval $\text{d}t$. (see \textit{e.g.,} \cite{Pomraning:1973}). 
+
+Note, that in this definition, the intensity is set per unit frequency interval, while it is common in neutrino-transport literature to define it per frequency interval (\textit{e.g.,} \cite{Burrows:1999es})
 
 In order to approach the number density and energy density of the radiation, we introduce the distribution function, $F$, describing the density of radiation carriers in phase space. This is of particular usefullness for the relativistic case as $F$ is Lorentz invariant \cite{Mihalas:1984}. For that we first focus on a single relativisitc particle phase space. Let $x^{\mu}$ and $p^{\mu}$ be particles positions and momenta, measured in \textcolor{red}{fiducual internal frame}. Assuming that the radiation carriers are massless, with their energy being related to frequency as $\epsilon = h\nu$, the momentum four-vector $p^{\mu}$ can be written in terms of angles describing the direction of the particles movement, $\theta$ and $\phi$, and the frequency $\nu$ as 
 
 \begin{equation}
     p^{\mu} = \frac{h\nu}{c}(1, \: \cos\phi\sin\theta,\:\sin\phi\sin\theta,\:\cos\theta),
+    \label{eq:theory:boltz:pmu}
 \end{equation}
 
 where we also made use of the normalization condition for timelike vectors, that imply that $p^{\mu}$ has only $3$ independent components.
+
+Next we introduce a quantities
+
+\begin{align}
+    dN &= F p^{\mu}t_{\mu}\text{d}^3 x\text{d}\Pi = \frac{h^3\nu^2}{c^2}F\text{d}^3x\text{d}\nu\text{d}\Omega, \text{ where } \\
+    \text{d}\Pi &= \frac{\text{d}p^1\text{d}p^2\text{d}p^3}{-p_0} =\frac{h^2\nu}{c^2}\text{d}\nu\text{d}\Omega
+    \label{eq:theory:boltz:dN}
+\end{align}
+
+where $dN$ stands for the total number density of radiation carriers within the phase-space volume element $\text{d}\Pi$, spatial volume element $\text{d}^3 x$, that pass a $t=\text{const}$ hyperserface with normal $\vec{t} = \partial_t$. The $\text{d}\Pi$ is Loretnz-invariant by contraction volume element over the manifold of allowed $p^{\mu}$ \cite{Cercignani:2002}.
+
+Thus we introduced a distribution function in terms of $p^i$, that can ultimatelly be expressed in terms of $\nu$, $\phi$ and $\theta$. This function thus contain the information regarding the type of the radiation carrier. However, in the neutrino-transport literature factor $g$ is usually introduced that represents the statistical weight of the particle, $1$ for neutrinos and $2$ for photons (assuming both are mass-less). 
+
+Note, that the spatial volume element can be written as $\text{d}^3x = \text{d}\cos\theta\text{d}t$ and the energy per particle is $h\nu$. Then from definition of $\text{d}\mathcal{E}$ we can write that $\text{d}\mathcal{E} = h\nu\text{d}N$. This, combined with equations \ref{eq:theory:boltz:dN} and \ref{eq:theory:boltz:specIntes} results in 
+
+\begin{equation}
+    I = \frac{h^4} \nu^3{c^2}F,
+    \label{eq:theory:boltz:IasF}
+\end{equation}
+
+which imply that both $\text{d}N$ and $F$ are scalars.
+
+Note, that instead of momentum phase space $\text{d}^p$ we used here the Lorentz-invarient volume element $\text{d}\Pi$ from equation \ref{eq:theory:boltz:dN}. 
+
+\subsubsection{The relativistic Boltzmann equation}
+
+Following \cite{Mihalas:1984} we write the special-relativistc Boltzmann equation as
+
+\begin{equation}
+    p^{\mu}\frac{\partial F}{\partial x^{\mu}} = \mathbb{C}[F],
+    \label{eq:theory:boltz:boltz}
+\end{equation}
+
+where $\mathbb{C}$ is the collisional term that describes the radiation-matter interaction. The l.h.s. of the \ref{eq:theory:boltz:boltz} contains the description of radiation. 
+
+Following the commonly adopted approach in the radiation transport literature, we express $\mathbb{C}$ in terms of the absorption, emission, and scattering coefficients. Then, the evolution equation for intensity reads \cite{Pomraning:1973}
+
+\begin{equation}
+    \frac{1}{c} \frac{\partial I}{\partial t} + n^i\frac{\partial I}{\partial x^i} = \eta - \kappa I + \frac{\kappa_s}{4\pi}\int\frac{\nu}{\nu'}K(\nu',\vec{n}'\rightarrow\nu,\vec{n}) I(\nu',\vec{n}')\text{d}\Omega'\text{d}\nu'
+    \label{eq:theory:boltz:def_dIdt}
+\end{equation}
+
+where $\eta$ stands for the matter radiative emissivity, $\kappa$ is the total extinction coefficient that incorporates the absorption $\kappa_a$ and scattering $\kappa_s$ as $\kappa = \kappa_a + \kappa_s$, $K$ is the scattering \textcolor{red}{kernel}, that describes the statistical probability of a scattering to occur from one specified angle and frequency into anther \cite{Pomraning:1973}.
+
+Combining the equations \ref{eq:theory:boltz:pmu}, \ref{eq:theory:boltz:IasF}, and \ref{eq:theory:boltz:def_dIdt}, we write 
+
+\begin{equation}
+    p^{\mu}\frac{\partial F}{\partial x^{\mu}} = \frac{c^2}{h^3}\frac{\eta}{\nu^2} - h\nu\kappa F + \frac{h \nu \kappa_s}{4\pi}\int\Bigg(\frac{\nu'}{\nu}\Bigg)^2 K(\vec{p}\:'\rightarrow\vec{p})F(\vec{p}\:')h\text{d}\nu'\text{d}\Omega',
+\end{equation}
+
+where as $\mathbb{C}$ is a scalar\footnote{as $F$ was shown to be a scalar}, the $\eta/\nu^2$ and $\nu\kappa$ are invariant quantities, as also pointed out in \cite{Mihalas:1984}. 
+
+For simplicity we shall consider only elastic scattering, in which the energy of the radiation carriers is preserved. Then the scattering kernel reads 
+
+\begin{equation}
+    K(\nu'\vec{n}\: '\rightarrow\nu,\vec{n}) = [1 + \sigma_a\vec{n}\cdot\vec{n}\: ']\delta(\nu-\nu')
+\end{equation}
+
+where the coefficient $\sigma_a$ accounts for scattering anisotropy. 
+
+\subsection{The \texttt{Charon} Code}
 
 
 %[2]\cite{Cactus}
