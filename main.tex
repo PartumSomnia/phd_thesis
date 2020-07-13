@@ -2973,6 +2973,16 @@ For simplicity we shall consider only elastic scattering, in which the energy of
 where the coefficient $\sigma_a$ accounts for scattering anisotropy. 
 
 \subsection{The \texttt{Charon} Code}
+\textcolor{red}{Here I summarize how the charon code was made}
+
+The distribution fuction $F$ depends in $1+3+1+2$ variables of time, $t$, space, $x^{\mu}$, frequency, $\nu$, and angles of propagation $\theta$, $\phi$. If the matter within which the radiation is propagating is moving, there two main frames in which these variables are defined: Eulerian (inertial) frame and comoving with the fluid frame (a collection of frames for every fluid element that have an instantaneous velocity, same as the fluid, \cite{Mihalas:1984,Hubeny:2006wm}). If the fluid id stationary these frames coincide.
+
+In charon code the distribution function is expanded in the spatial cooridnates using the linear DG basis and in the angular variables using spherical harmonics, the frequency is treated using a multi-group approach. Thus the radiation transfer takes from a large set of ordinary differential equations that can be solved via an semi-implicit time integrator. 
+
+\subsubsection{Frequency Discretization}
+Chosen a maximum frequency $\nu_{\text{max}}$ and a uniform grid in a frequency space. Associated intervales of frequency are called frequnecy or energy groups. 
+
+End.
 
 
 %[2]\cite{Cactus}
