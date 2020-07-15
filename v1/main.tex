@@ -1083,6 +1083,33 @@ where $u^{j}$ contain all the expansion coefficients $u$,  $\big(\boldsymbol{M}^
 %%
 %%
 
+\section{Relativistic Radiation Transport}
+
+\subsection{Introduction}
+\red{Featues: David's intro for Spheric.Harm.Expans.Method}
+
+Radiation-transport equations are complex and expensive to solve numerically. The two main reasons for that are the dimensionality of the problem and a necessity to treat radiation differently depending on the optical depth. In particular, radiation carriers are described by their location in space, which generally is a $3$D space, momenta, which requires $2$ components, angles, and finally one component for energy or frequency. Thus, with an addition of time there are $(6+1)$ dimensions. Another complication stems from the fact that radiation transport enters different regimes when large and small optical depths limits are considered. For instance, if optical depth is large, and thus the opacity of the fluid, the radiation transport can be described by the diffusion of carriers, having the parabolic character. On the other hand, if the opacity is small and thus the optical depth, the radiation can stream freely, displaying a hyperbolic character of the transport \cite{Mihalas:1984}. And a particular difficulty is presented by the intermediate regime, where the radiation transport mechanism transitions from diffusion to free streaming. 
+
+To reduce complexity of the problem it is a common approach to reduce the dimensionality of the radiation transfer. In particular, to reduce the number of spatial dimension by assuming a certain symmetry. Such are axial or spherical symmetries. And while this have shown to be a reasonable approximation for many astrophysical models, in cases where the system itself does not exhibit any spatial symmetries, such simplification cannot be done. Another commonly adopted approach is to reduce the dimensionality of a momentum space. For instance, employing diffusion equations to approximate transport ones allows to reduce computational costs \cite{Pomraning:1973,Roe:1981}. However, while in the opaque regions (with high optical depth) this approximation is reasonable, it becomes much less so in the transparent regions where the anisotropy of radiation has to be taking into account \cite{Ott:2008jb}. There, the free-streaming approximation is usually adopted. In the intermediate region, between the two, however, there is no apparent approximation possible. The most commonly adopted technique is the interpolation between the diffusion and free-streaming regions. This approach can be augmented by using a two-moment schemes with analytic closures (\textit{e.g.,} \cite{Brunner:2002}), however in many applications a solution in actual $(6+1)$ dimensions is a requirement.
+\red{This has to be augmented with what we use in the as a M0 and what can be done with M1 schemes.}
+
+One of the particular examples of how the radiation transport can be simplified lies in the approximation of its scattering integral with a finite sum of a number of discrete angular intervals. Thus, the integrodifferential equation can be approximated with linear system of equations for a multi-index object. This method of solving transport equation along several directions in each spatial zone is called discrete-ordinate ($S_N$) method \cite{Castor:2004,Ott:2008jb,Sumiyoshi:2012za,Godoy:2012}. The discretization, however, comes with a serious drawback, as it introduces regions which the radiation cannot reach between grid directions. This is so-called "ray-effect" \cite{Morel:2003}.
+
+Another way to solve the multidimensional radiation transport is to employ Monte-Carlo methods \cite{Fleck:1971,Gentile:2009,Abdikamalov:2012zi}. They can achieve very high accuracy, however, plague by the statistical noise (due to finite sampling of the phase space), they require very large number of Monte Carlo particles, and thus, they are computationally expensive. \red{there has been a considerable progess in recent years...} \gray{this approach has a benifit of being more intuitive in implementation and as its scaling does not depend on the number of varaibles, it can outperform more complex momenta shemes (M1). It has a serious drawback in the optically thick region however, that produces artifacts in the radiaotion due to a finitie number of radiation pachages. To be elaborated...}
+
+A more physically motivated approximation to the radiation transport can be achieved by expanding the radiation intensity in angles using spherical harmonics as basis functions. This is so-called $P_N$ method. It allows to convert the integrodifferential equation into a hyperbolic system of partial differential equations for the expansion coefficients. In this approximation, the radiation is approximated by a set of elementary waves with a speed limited by the speed of light \cite{McClarren:2008b}. This method allows avoid the "ray effect" by preserving the rotational invariance, allows to achieve formal spectral convergence to the true solution, and requires less computer memory than $S_N$ method. However, approximation of the radiation field with smooth basis functions, while being sufficiently accurate in the optically thick regime, displays non-physical oscillations in the transparent one. If radiation is coupled to matter, these oscillations can produce regions with negative radiation intensity and thus negative temperature \cite{McClarren:2008b,Olson:2009} (see also \cite{Olson:2000,Olson:2009,Brunner:2001,McClarren:2010,Olson:2012,Hauck:2010}). Possible solution here is to employ filtering techniques (using \textit{e.g.,} spherical spline expansion \cite{Boyd:2001}) to remove these oscillations from the radiation intensity \cite{McClarren:2010}.
+
+\subsection{The relativistic Boltzmann equation}
+\red{this can/cannot be used for M0 introduction. NOTE: SPECIAL relativity}
+\gray{See v0 for it. There, there is intro on Intesnity, and basic equations for scattering integral. Not sure I need this, as M0 uses GR and not SR and for Kilonova we use approximations}
+
+
+
+
+%%
+%%
+%%
+
 \section{Methods and Codes}
 
 In this section we present a short summary on the methods and codes used in this thesis. We \red{need to discuss the GRHD code WhikyTHC first and foremost, then we need to elaborate on how the data of this code is interpreted, focusing on ejecta. Then we elaborrate on the EOS used. Then we elaborate the methods used to compute nucleosynthesis in the ejecta and eventually elecromagnetic counterparts. } For the sake of bravity we shall outline the main ideas, assumtions and techniques employed uin different methods in the beginning of corresponding subsections without going into details, but providing references to where they can be found.
