@@ -36,7 +36,13 @@
 
 \setcitestyle{citesep={,}}
 
+%% --- MY commands --- 
 \newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\swind}{spiral-wave wind}
+\newcommand{\nwind}{$\nu$-component}
 
 \newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
 
@@ -3305,8 +3311,24 @@ A full $r$-process can be achieved in so-called magnetorotationally driven core 
 
 \paragraph{Neutron star mergers}
 
+Mergers of two neutron stars or a neutron star and a black hole are regarded as one of the main cites of $r$-process material. Formed in a evolution of a binary of massive stars, compact objects orbit each other for gigayears, before slow loss of energy from the system due to gravitational waves reduces their orbit and they merge \cite{Hulse:1975,Lattimer:2004sa,Price:2006fi}. 
+The late inspiral and merger of binary neutron stars (BNS) or a neutron star and a black hole (NSBH) have been studied extensively via smooth particle similation \red{[REFS]} hydrodynamic simulations \red{[REFS]} and numerical relativity simulations with simplifed gravity \red{[REFS]} or full general relativity \red{[REFS]}. The compoisition of a neuttron star in these simulations have been modelled with simplifed polytropic \red{[REFS]} or pice-wise polytropic \red{[REFS]} or microphsyiccal equaiton of states (EOS) \red{[REFS]}. The physical setup of these simulations have also evolved to eventually include effects of neutrino radiaiton transport \red{[REFS]} and magnetic fields \red{[REFS]}. 
+These studies have shown that shortly before and during the merger, the neutron star(s) undergo(s) a tidal deformation and disruption. Formed streams of neutron reach matter are then ejected into the circombinary with enough energy to be not graviationally bound to the system \cite{Price:2006fi,Foucart:2014nda,Sekiguchi:2015dma,Kyutoku:2015gda,Radice:2016dwd}. 
+In addition, in case of a BNS, when neutron stars collide, material at the collision interface, heated by shocks, gets 'squeezed' and launched in the directions perpendicular to the plane of the binary \cite{Bauswein:2013,Hotokezaka:2013b} \red{[REFS]}. 
+Generally, these tow components, tidal and shocked, constitute the \textit{dynamical ejecta}. Where the term ejecta referrers to the material that has enough energy to leave the system. 
+The properties of the dynamical ejecta from BNS have a broad distribution, especailly in terms of mass and ejectron fraction [\red{[REFS]} \& myFitPaper], where the former lies in range $(10^{-4},10^{-2})M_{\odot}$ and the latter $(0.05,0.45)$. We discuss dynamical ejecta properties of BNS in more details in section \red{sec:results:dyn\_ej:prop} and nucleosynthesis in it in \red{sec:results:dyn\_ej:nucleo}. In case of NSBH the ejecta mass was shown be larger, reaching $0.1M_{\odot}$ with low electron fraction, $\leq0.2$ but it requires that masses of BH and NS are comparable and BH is rapidly spinning \cite{Foucart:2014nda}\red{[REFS]}. If the BH is much more massive then NS, the latter would be 'swallowed' with no ejecta \red{[REFS]}.
 
+After the merger, there are expected to be additional ejecta. For general postmerger configuration consists of a remnant, massive neutron star (MNS) or a black hole sorrounded by a disk (torus) of bounded matter. In the first case,  a strong neutrino flux from cooling MNS and disk can drive an outflow in the direction, perpendicular to the plane of the binary, the so-called \textit{neutrino-driven wind} (see Figure 1 from \cite{Perego:2014fma}) \red{[REFS],Jujibayashi+20}. This ejecta is expected to occure on a timescales of $\sim100$ms postmerger, be not very neutron rich $Y_e\sim(0.2-0.45)$ due to neutrino irradiation and have a mass of $(10^{-4}-10^{-3})M_{\odot}$ \red{[REFS]}. 
 
+The massive nutron star born in a merger exhibit dynamical oscillations \red{[REFS]}. The $m=1$ mode, so-called "one-armed spiral instability" especially can persisit on a $\sim100$ms powtmerger timescale and become a dominant mode \red{[REFS], MainPaper}. This oscillations can inject energy within the disk, where via angular momentum transport it leads to an outer part of the disk to become unbound. This ejecta, the \textit{\swind{}} was shown to occur in all cases where the MNS is present. It has high electron fraction and its mass depends on a lifetime of the remnant, and for a $\sim100$ms it can amount to a few $\times\sim10^{-2}M_{\odot}$ \red{[Letter, MainPaper]}. We discuss the mechanism that drives the \swind{} in the section \red{sec:results:swind:mechanism} and the ejecta properties in \red{sec:results:swind:prop} and corresponding nucleosynthesis in \red{sec:results:swind:nucleo}.
+
+On a longer timescales, the viscous processes and alpha recombination in the disk, surrounding MNS or a BH are expected to unbind additional material. This is so-called \textit{secular ejecta}. It is expected to be massive and neutron rich. However, due to long timescales involved, it is very difficult model \red{[REFS]}.
+
+The BNS and NSBH mergers thus ejecta a neutron rich material in which $r$-process can take place, producing nuclides beyond $A=300$. However thous are unsubtle to fission and decay. But before they reach the valey of stability they capture more free neutrons and grow up to $A=300$ and the cycle repeats. This is so-called fission cycle. It is maintained as long as there are free neutrons. After then the nuclides decay to the valley of stability for the last time, forming the remarkably robust abundance pattern, independent of the number of cycles \cite{Korobkin:2012uy,Bauswein:2013,Mendoza-Temis:2014mja}, (see also Figure 4 from \cite{Korobkin:2012uy}).
+
+%% 
+
+\subsubsection{Galactic chemical evolution}
 
 %% A A A A A A A 
 
@@ -3391,12 +3413,6 @@ A full $r$-process can be achieved in so-called magnetorotationally driven core 
 % Price and Rosswog, 2006 \cite{Price:2006fi}
 % Perego et al., 2014 \cite{Perego:2014fma}
 
-%% S S S S S S S S 
-
-% Sekiguchi et al., 2015 \cite{Sekiguchi:2015dma}
-% Sekiguchi et al., 2011 \cite{Sekiguchi:2011zd}
-% Surman et al., 2008 \cite{Surman:2008qf}
-
 %% Q Q Q Q Q Q Q Q Q 
 
 % Qian and Woosley, 1996 \cite{Qian:1996xt}
@@ -3410,6 +3426,9 @@ A full $r$-process can be achieved in so-called magnetorotationally driven core 
 
 %% S S S S S S S S S 
 
+% Sekiguchi et al., 2015 \cite{Sekiguchi:2015dma}
+% Sekiguchi et al., 2011 \cite{Sekiguchi:2011zd}
+% Surman et al., 2008 \cite{Surman:2008qf}
 % Shaviv, 2012 \cite{Shaviv:2012}
 % Suess and Urey (1956) \cite{Suess:1956}
 % Seitenzahl et al., 2009 \cite{Seitenzahl:2009}
