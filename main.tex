@@ -41,6 +41,7 @@
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
 \newcommand{\swind}{spiral-wave wind}
 \newcommand{\nwind}{$\nu$-component}
 
@@ -3389,12 +3390,33 @@ The search for electromagnetic counterparts to mergers continues, involving obse
 \red{Subsection of GRBs}
 \cite{Lee:2007js,Nakar:2007yr,Gehrels:2009,Fernandez:2015use}
 
+%%
+%%
+%%
+
 \subsection{SkyNet: A modular nuclear reaction network library}
 
-Weaver et al.,
-1978; Paxton et al., 2011; Bressan et al., 2012 -- stopped 
+%%
 
+\subsubsection{Introduction}
 
+Nuclear reactions play an important role in numerous astrophysical cites, where sufficiently high temperatures and densities are achieved. In particular, in main sequence stars nuclear fusion prevents stars from collapsing, releasing the binding energy, counteracting gravity \cite{Bethe:1939}. When stars do undergo a core collapse, the nuclear and weak reactions govern the explosion by introducing and removing energy (\textit{e.g.,} via neutrino cooling and heating). 
+%
+A small amount of the material synthesized in the explosive burning is ejected into the ISM  \cite{Nomoto:1997if,Woosley:2002}. It is composed mostly of iron-group elements, enriched with heavier elements synthesized in weak $r$-process \cite{Wanajo:2013} and $s$-process \cite{Burbidge:1957}. 
+Enrichment of ISM with even heavier elements, synthesized in full $r$-process, is believed to occur manly in compact binary mergers \cite{Freiburghaus:1999}, \red{where the material with ifferent composition is ejected on a prolonged timescale via numerous physical processes [ManyRefs]}. \gray{In addition, nuclear burning in a form of thermonuclear explosion occurs when matter is accreted onto a white dwarf or a neutron star, producing electromagnetic transients Novae and X-ray bursts \cite{Boyd:2008,Freiburghaus:1999}}
+%
+To study the aforementioned phenomena, it is necessary to model nuclear reactions and not only focusing on the total energy generation (\textit{e.g.,}  \cite{Weaver:1978,Mueller:1986,Timmes:1999}) but tracking the evolution of the whole ensebmle of nuclear species \red{[Refs]}. A mathematical and/or numerical model that describes coupled nuclear reactions, tracking the evolution of abundances of various species, coupled by a non-liear reaction, rates is called \textit{nuclear reaction network}.
+% BBN
+The complexity of networks, \textit{i.e.,} the number of species and reactions evolved, varies depending on the intended implementation. For instance, for a Big Band nucleosynthesis rarely more then a dozen nuclear species are evolved 
+\cite{Wagoner:1973,Orlov:2000,Nollett:2000fh,Coc:2013eha,Cyburt:2015mya}. 
+% STellar
+Stellar evolution models also included reaction networks starting from a few species and reactions (\textit{e.g.,} \cite{Hayashi:1962,Hofmeister:1964}) and incorporating tens or even hudred of them in a more recent and advanced models \cite{Arnett:1977,Weaver:1978,Paxton:2011,Bressan:2012,Jones:2015}
+%
+Networks designed for explosive nuclear burning and supernovae evolved from including a few tens of species (\textit{e.g.,} \cite{Truran:1966,Truran:1967,Arnett:1969,Woosley:1973}) to including hundreds of species and reactions, (\textit{e.g.,} in type Ia SN \cite{Thielemann:1986,Hillebrandt:2013gna,Seitenzahl:2013,Leung:2015fxa}, in core-collapse supernovae \cite{Thielemann:1986,Limongi:2003ui,Heger:2008td,Harris:2014}, in novae \cite{Weiss:1990,Jose:1997vf,Iliadis:2002zz,Starrfield:2016} and X-ray bursts \cite{Schatz:2001xx,Woosley:2003cd,Cyburt:2010,Parikh:2012hx}) 
+% 
+For neutron capture however, the size of a network is the largest.
+
+\pagebreak
 
 %% A A A A A A A 
 
