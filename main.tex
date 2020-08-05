@@ -3411,10 +3411,17 @@ The complexity of networks, \textit{i.e.,} the number of species and reactions e
 \cite{Wagoner:1973,Orlov:2000,Nollett:2000fh,Coc:2013eha,Cyburt:2015mya}. 
 % STellar
 Stellar evolution models also included reaction networks starting from a few species and reactions (\textit{e.g.,} \cite{Hayashi:1962,Hofmeister:1964}) and incorporating tens or even hudred of them in a more recent and advanced models \cite{Arnett:1977,Weaver:1978,Paxton:2011,Bressan:2012,Jones:2015}
-%
+% SN
 Networks designed for explosive nuclear burning and supernovae evolved from including a few tens of species (\textit{e.g.,} \cite{Truran:1966,Truran:1967,Arnett:1969,Woosley:1973}) to including hundreds of species and reactions, (\textit{e.g.,} in type Ia SN \cite{Thielemann:1986,Hillebrandt:2013gna,Seitenzahl:2013,Leung:2015fxa}, in core-collapse supernovae \cite{Thielemann:1986,Limongi:2003ui,Heger:2008td,Harris:2014}, in novae \cite{Weiss:1990,Jose:1997vf,Iliadis:2002zz,Starrfield:2016} and X-ray bursts \cite{Schatz:2001xx,Woosley:2003cd,Cyburt:2010,Parikh:2012hx}) 
-% 
-For neutron capture however, the size of a network is the largest.
+% r-process 
+Neutron captrue results in a creation of unstable nuclides, that decay via complex chains of reaction, involving hundreds and thousands steps. Thus, nuclear reaction networks has to adequately complex for modelling the $s$-process, (\textit{e.g,} \cite{Prantzos:1990,Kaeppeler:2011,Nishimura:2017zdi}) and even more so to model $r$-process. In particualr, in CCSN neutrino driven winds (\textit{e.g.,} \cite{Woosley:1992,Arcones:2010,Wanajo:2013}) in outflows from magnetorotational CCSN (\textit{e.g., \cite{Winteler:2012,Nishimura:2015nca}}. In compact object mergers several cites with different conditions require modelling. In particular, in dynamical ejecta \cite{Goriely:2011vg,Bauswein:2013,Wanajo:2014,Just:2014,Fernandez:2016sbf}\red{[Refs]}, in the disk (torus) formed after merger around the remnant \cite{Surman:2008qf,Perego:2014fma,Martin:2015hxa,Lippuner:2017tyn}\red{[Refs]}. This however does not limit the scope of where modeling of neutron capture nucleosynthesis is done. See \cite{Blinnikov:1996,Panov:1995,Panov:2001,Mumpower:2011ar}\red{[Refs]} for overview.
+% modelling the network
+The key component of a nuclear reaction network are the reaction rates (RR) for various processes. 
+In general RR depend strongly on the particle energy, intermediate states of compound nucleus reaction (resonances) (\textit{e.g.,} \cite{Clayton:1968}, \textsection{4}), while the single-nuclide reactions, \textit{e.g.,} $\beta$-decay, are assumed to have constant RR, which is strictly speaking is true only in vacuum.
+For many nuclides formed far from the valley of stability these rates are not experimentally known and need to be modeled \cite{Cyburt:2010}. This is usually done by following a subsequent decay of a single compound nuclides, formed in the reaction \cite{Hauser:1952,Rauscher:2000fx,Goriely:2008zu}.
+In addition, in order to model the nuclear statistical equilibrium (NSE) and $\beta$-decay rates,nuclide masses and partition functions (\cite{Arcones:2010dz,Brett:2012jn,Mendoza-Temis:2014mja,Mumpower:2015ova}) have to be prescribed. This data is not fully available and have large uncertainties (see \textit{e.g.,} \cite{Lunney:2003,Schatz:2013,Mumpower:2015ova} and references therein). Thus, often theoretical models for numcear masses and $\beta$-decay properties are used for many species \cite{Lunney:2003,Moller:2003,Mumpower:2015ova}. 
+
+
 
 \pagebreak
 
