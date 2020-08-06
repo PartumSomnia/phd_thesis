@@ -3416,10 +3416,27 @@ Networks designed for explosive nuclear burning and supernovae evolved from incl
 % r-process 
 Neutron captrue results in a creation of unstable nuclides, that decay via complex chains of reaction, involving hundreds and thousands steps. Thus, nuclear reaction networks has to adequately complex for modelling the $s$-process, (\textit{e.g,} \cite{Prantzos:1990,Kaeppeler:2011,Nishimura:2017zdi}) and even more so to model $r$-process. In particualr, in CCSN neutrino driven winds (\textit{e.g.,} \cite{Woosley:1992,Arcones:2010,Wanajo:2013}) in outflows from magnetorotational CCSN (\textit{e.g., \cite{Winteler:2012,Nishimura:2015nca}}. In compact object mergers several cites with different conditions require modelling. In particular, in dynamical ejecta \cite{Goriely:2011vg,Bauswein:2013,Wanajo:2014,Just:2014,Fernandez:2016sbf}\red{[Refs]}, in the disk (torus) formed after merger around the remnant \cite{Surman:2008qf,Perego:2014fma,Martin:2015hxa,Lippuner:2017tyn}\red{[Refs]}. This however does not limit the scope of where modeling of neutron capture nucleosynthesis is done. See \cite{Blinnikov:1996,Panov:1995,Panov:2001,Mumpower:2011ar}\red{[Refs]} for overview.
 % modelling the network
-The key component of a nuclear reaction network are the reaction rates (RR) for various processes. 
-In general RR depend strongly on the particle energy, intermediate states of compound nucleus reaction (resonances) (\textit{e.g.,} \cite{Clayton:1968}, \textsection{4}), while the single-nuclide reactions, \textit{e.g.,} $\beta$-decay, are assumed to have constant RR, which is strictly speaking is true only in vacuum.
-For many nuclides formed far from the valley of stability these rates are not experimentally known and need to be modeled \cite{Cyburt:2010}. This is usually done by following a subsequent decay of a single compound nuclides, formed in the reaction \cite{Hauser:1952,Rauscher:2000fx,Goriely:2008zu}.
+The key component of a nuclear reaction network is the interaction between two and more nuclides, that are cahraterized by reaction rates (RR) as well as single particle reactions, such as $\beta$-decay.
+Charged particle reactions require that the Coulomb barrier to be overcome. Thus, in general, RR depend strongly on the particle energy as well as on resonances in compound nuclear systems (\textit{e.g.,} \cite{Clayton:1968}, \textsection{4}). 
+In a the single-particle reactions, \textit{e.g.,} $\beta$-decay, it is common to assumed a constant RR, which is strictly speaking is true only in vacuum. Another common approach to treating complex reactions, is to assume that reactants from a single nuclide that undergoes a chain of decays into reaction products. This is called a Hauser-Feshbach approach. It is particulalrly useful for reactions far from the valley of stability with a long chains of decay \cite{Hauser:1952,Rauscher:2000fx,Goriely:2008zu}. 
 In addition, in order to model the nuclear statistical equilibrium (NSE) and $\beta$-decay rates,nuclide masses and partition functions (\cite{Arcones:2010dz,Brett:2012jn,Mendoza-Temis:2014mja,Mumpower:2015ova}) have to be prescribed. This data is not fully available and have large uncertainties (see \textit{e.g.,} \cite{Lunney:2003,Schatz:2013,Mumpower:2015ova} and references therein). Thus, often theoretical models for numcear masses and $\beta$-decay properties are used for many species \cite{Lunney:2003,Moller:2003,Mumpower:2015ova}. 
+% Other NRN codes
+Several nuclear reaction networks are available in the literature. In particular: a set of networks by 
+\cite{Timmes:1999} \footnote{\url{http://cococubed.asu.edu/code_pages/burn.shtml}}, 
+\texttt{XNet} by \cite{Hix:1999} \footnote{\url{http://eagle.phys.utk.edu/xnet/trac}} , 
+\texttt{NucNet} by \cite{Meyer:2007} and a  \footnote{\url{https://sourceforge.net/projects/nucnet-tools}}
+\texttt{SkyNet} by \cite{Lippuner:2015gwa} \footnote{\url{https://bitbucket.org/jlippuner/skynet}}.
+% 
+In this thesis we employ \texttt{SkyNet} to compute nuclesosynthetic yilds in binary neutron star mergers ejecta. Thus we discuss this network in more details. \texttt{Skynet} is a modular and versatile nuclear reaction network designed initially for $r$-process nucleosynthesis calculations. It is capable of evolving arbitrary set of nuclear
+species in NSE as well as switching to a full network self-consistently. The network incorporates screening corrections and equation of state that consideres an entire composition. 
+% 
+\texttt{SkyNet} is a popular choice for studying nucleosynthesis in neutron rich environment \cite{Lippuner:2015gwa,Radice:2016dwd,Roberts:2016igt,Lippuner:2017tyn,Siegel:2017nub,Vlasov:2017nou,Fernandez:2016sbf} \red{[Refs(us,david)]}, .
+
+%%
+%%
+%%
+
+\subsubsection{Nuclear reaction network basics}
 
 
 
@@ -3437,10 +3454,10 @@ In addition, in order to model the nuclear statistical equilibrium (NSE) and $\b
 % Argast et al., 2004 \cite{Argast:2003he}
 % Abbott et al., 2016a \cite{Abbott:2016blz}
 % Abbott et al., 2016b \cite{Aasi:2013wya}
-Arnett and Truran, 1969 \cite{Arnett:1969}
-Arnett, 1977 \cite{Arnett:1977}
-Arcones et al., 2010 \cite{Arcones:2010}
-Arcones and Martínez-Pinedo, 2011 \cite{Arcones:2010dz}
+% Arnett and Truran, 1969 \cite{Arnett:1969}
+% Arnett, 1977 \cite{Arnett:1977}
+% Arcones et al., 2010 \cite{Arcones:2010}
+% Arcones and Martínez-Pinedo, 2011 \cite{Arcones:2010dz}
 
 %% B B B B B B B 
 
@@ -3452,11 +3469,11 @@ Arcones and Martínez-Pinedo, 2011 \cite{Arcones:2010dz}
 % Barnes et al., 2016 \cite{Barnes:2016umi}
 % Berger et al., 2013 \cite{Berger:2013wna}
 % Bellm, 2014 \cite{Bellm:2014}
-Bethe, 1939 \cite{Bethe:1939}
-Boyd, 2008 \cite{Boyd:2008}
-Bressan et al., 2012 \cite{Bressan:2012}
-Blinnikov and Panov, 1996 \cite{Blinnikov:1996}
-Brett et al., 2012 \cite{Brett:2012jn}
+% Bethe, 1939 \cite{Bethe:1939}
+% Boyd, 2008 \cite{Boyd:2008}
+% Bressan et al., 2012 \cite{Bressan:2012}
+% Blinnikov and Panov, 1996 \cite{Blinnikov:1996}
+% Brett et al., 2012 \cite{Brett:2012jn}
 
 %% C C C C C C C 
 
@@ -3465,10 +3482,10 @@ Brett et al., 2012 \cite{Brett:2012jn}
 % Cowan and Rose, 1977 \cite{Cowan:1977}
 % Couch et al.,1974 \cite{Couch:1974}
 % Cescutti et al., 2015 \cite{Cescutti:2015}
-Coc et al., 2012 \cite{Coc:2011az}
-Cyburt et al., 2016 \cite{Cyburt:2015mya}
-Cyburt et al., 2010 \cite{Cyburt:2010}
-Clayton, 1968, \cite{Clayton:1968}
+% Coc et al., 2012 \cite{Coc:2011az}
+% Cyburt et al., 2016 \cite{Cyburt:2015mya}
+% Cyburt et al., 2010 \cite{Cyburt:2010}
+% Clayton, 1968, \cite{Clayton:1968}
 
 %% D D D D D D D 
 
@@ -3488,7 +3505,7 @@ Clayton, 1968, \cite{Clayton:1968}
 % Fernández and Metzger, 2013 \cite{Fernandez:2013tya}
 % Freiburghaus et al., 1999 \cite{Freiburghaus:1999}
 % Fernández and Metzger, 2016 \cite{Fernandez:2015use}
-Fernández et al., 2017 \cite{Fernandez:2016sbf}
+% Fernández et al., 2017 \cite{Fernandez:2016sbf}
 
 %% G G G G G G G 
 
@@ -3497,7 +3514,7 @@ Fernández et al., 2017 \cite{Fernandez:2016sbf}
 % Goriely et al., 2015 \cite{Goriely:2015fqa}
 % Gehrels et al., 2009 \cite{Gehrels:2009}
 % Grossman et al., 2014 \cite{Grossman:2013lqa}
-Goriely et al., 2008 \cite{Goriely:2008zu}
+% Goriely et al., 2008 \cite{Goriely:2008zu}
 
 %% H H H H H H H 
 
@@ -3508,20 +3525,20 @@ Goriely et al., 2008 \cite{Goriely:2008zu}
 % Hotokezaka et al., 2013b \cite{Hotokezaka:2013b}
 % Hotokezaka et al. (2015) \cite{Hotokezaka:2015zea}
 % Hotokezaka et al., 2016). \cite{Hotokezaka:2015cma}
-Hayashi et al., 1962 \cite{Hayashi:1962}
-Hofmeister et al., 1964 \cite{Hofmeister:1964}
-Hillebrandt et al., 2013 \cite{Hillebrandt:2013gna}
-Heger and Woosley, 2010 \cite{Heger:2008td}
-Harris et al., 2014 \cite{Harris:2014}
-Hauser and Feshbach, 1952 \cite{Hauser:1952}
-Hix and Thielemann (1999) \cite{Hix:1999}
-Hix and Meyer, 2006 \cite{Hix:2005pf}
+% Hayashi et al., 1962 \cite{Hayashi:1962}
+% Hofmeister et al., 1964 \cite{Hofmeister:1964}
+% Hillebrandt et al., 2013 \cite{Hillebrandt:2013gna}
+% Heger and Woosley, 2010 \cite{Heger:2008td}
+% Harris et al., 2014 \cite{Harris:2014}
+% Hauser and Feshbach, 1952 \cite{Hauser:1952}
+% Hix and Thielemann (1999) \cite{Hix:1999}
+% Hix and Meyer, 2006 \cite{Hix:2005pf}
 
 %% I I I I I I i 
 
 % Iwamoto et al., 1999 \cite{Iwamoto:2000as}
 % Ishimaru et al. (2015) \cite{Ishimaru:2015}
-Iliadis et al., 2002 \cite{Iliadis:2002zz}
+% Iliadis et al., 2002 \cite{Iliadis:2002zz}
 
 %% J J J J J J J 
 
@@ -3529,8 +3546,8 @@ Iliadis et al., 2002 \cite{Iliadis:2002zz}
 % Ji et al. (2016) \cite{Ji:2016}
 % Jin et al., 2015 \cite{Jin:2015txa}
 % Jin et al., 2016 \cite{Jin:2016pnm}
-Jones et al., 2015 \cite{Jones:2015}
-José and Hernanz, 1998 \cite{Jose:1997vf}
+% Jones et al., 2015 \cite{Jones:2015}
+% José and Hernanz, 1998 \cite{Jose:1997vf}
 
 %% K K K k k K K K 
 
@@ -3541,7 +3558,7 @@ José and Hernanz, 1998 \cite{Jose:1997vf}
 % Kasen et al. (2013) \cite{Kasen:2013xka}
 % Kasen et al., 2015 \cite{Kasen:2014toa}
 % Kasliwal et al., 2016 \cite{Kasliwal:2016uhu}
-Kaeppeler et al., 2011 \cite{Kaeppeler:2011}
+% Kaeppeler et al., 2011 \cite{Kaeppeler:2011}
 
 %% L L L L L L L L 
 
@@ -3552,10 +3569,10 @@ Kaeppeler et al., 2011 \cite{Kaeppeler:2011}
 % Lee and Ramirez-Ruiz, 2007 \cite{Lee:2007js}
 % Lippuner and Roberts, 2015 \cite{Lippuner:2015gwa}
 % Law et al., 2009 \cite{Law:2009}
-Leung et al., 2015 \cite{Leung:2015fxa}
-Limongi and Chieffi, 2003 \cite{Limongi:2003ui}
-Lippuner et al., 2017 \cite{Lippuner:2017tyn}
-Lunney et al., 2003 \cite{Lunney:2003}
+% Leung et al., 2015 \cite{Leung:2015fxa}
+% Limongi and Chieffi, 2003 \cite{Limongi:2003ui}
+% Lippuner et al., 2017 \cite{Lippuner:2017tyn}
+% Lunney et al., 2003 \cite{Lunney:2003}
 
 %% M M M M M M M M 
 
@@ -3571,23 +3588,23 @@ Lunney et al., 2003 \cite{Lunney:2003}
 % Metzger et al., 2015 \cite{Metzger:2014yda}
 % Metzger, 2017 \cite{Metzger:2016pju}
 % Martin et al., 2015 \cite{Martin:2015hxa}
-Müller, 1986 \cite{Mueller:1986}
-Mumpower et al., 2012 \cite{Mumpower:2011ar}
-Mumpower et al., 2016 \cite{Mumpower:2015ova}
-Möller et al., 2003 \cite{Moller:2003}
-Meyer and Adams (2007) \cite{Meyer:2007}
+% Müller, 1986 \cite{Mueller:1986}
+% Mumpower et al., 2012 \cite{Mumpower:2011ar}
+% Mumpower et al., 2016 \cite{Mumpower:2015ova}
+% Möller et al., 2003 \cite{Moller:2003}
+% Meyer and Adams (2007) \cite{Meyer:2007}
 
 %% N N N N N N N N 
 
 % Nishimura et al. (2015) \cite{Nishimura:2015nca}
 % Nakar, 2007 \cite{Nakar:2007yr}
 % Nomoto et al., 1997 \cite{Nomoto:1997if}
-Nollett and Burles, 2000 \cite{Nollett:2000fh}
-Nishimura et al., 2017 \cite{Nishimura:2017zdi}
+% Nollett and Burles, 2000 \cite{Nollett:2000fh}
+% Nishimura et al., 2017 \cite{Nishimura:2017zdi}
 
 %% O O o O O O O O 
 
-Orlov et al., 2000 \cite{Orlov:2000}
+% Orlov et al., 2000 \cite{Orlov:2000}
 
 
 %% P P P P P P P P 
@@ -3596,11 +3613,11 @@ Orlov et al., 2000 \cite{Orlov:2000}
 % Pruet et al., 2006 \cite{Pruet:2005qd}
 % Price and Rosswog, 2006 \cite{Price:2006fi}
 % Perego et al., 2014 \cite{Perego:2014fma}
-Paxton et al., 2011 \cite{Paxton:2011}
-Parikh et al., 2013 \cite{Parikh:2012hx}
-Prantzos et al., 1990 \cite{Prantzos:1990}
-Panov et al., 1995 \cite{Panov:1995}
-Panov et al 2001 \cite{Panov:2001}
+% Paxton et al., 2011 \cite{Paxton:2011}
+% Parikh et al., 2013 \cite{Parikh:2012hx}
+% Prantzos et al., 1990 \cite{Prantzos:1990}
+% Panov et al., 1995 \cite{Panov:1995}
+% Panov et al 2001 \cite{Panov:2001}
 
 %% Q Q Q Q Q Q Q Q Q 
 
@@ -3614,8 +3631,8 @@ Panov et al 2001 \cite{Panov:2001}
 % Roberts et al., 2010 \cite{Roberts:2010}
 % Radice et al., 2016 \cite{Radice:2016dwd}
 % Roberts et al., 2011; \cite{Roberts:2011}
-Rauscher and Thielemann, 2000 \cite{Rauscher:2000fx}
-Roberts et al. (2017) \cite{Roberts:2016igt}
+% Rauscher and Thielemann, 2000 \cite{Rauscher:2000fx}
+% Roberts et al. (2017) \cite{Roberts:2016igt}
 
 
 %% S S S S S S S S S 
@@ -3631,12 +3648,12 @@ Roberts et al. (2017) \cite{Roberts:2016igt}
 % Straniero et al., 2006 \cite{Straniero:2005hc}
 % Suda et al., 2008 \cite{Suda:2008na}
 % Singer et al., 2014 \cite{Singer:2014qca}\
-Strohmayer and Brown, 2002 \cite{Strohmayer:2001ue}
-Seitenzahl et al., 2013 \cite{Seitenzahl:2013}
-Starrfield et al., 2016 \cite{Starrfield:2016}
-Schatz et al., 2001 \cite{Schatz:2001xx}
-Schatz, 2013 \cite{Schatz:2013}
-Siegel and Metzger (2017) \cite{Siegel:2017nub}
+% Strohmayer and Brown, 2002 \cite{Strohmayer:2001ue}
+% Seitenzahl et al., 2013 \cite{Seitenzahl:2013}
+% Starrfield et al., 2016 \cite{Starrfield:2016}
+% Schatz et al., 2001 \cite{Schatz:2001xx}
+% Schatz, 2013 \cite{Schatz:2013}
+% Siegel and Metzger (2017) \cite{Siegel:2017nub}
 
 %% T T T T T T T T T 
 
@@ -3646,16 +3663,16 @@ Siegel and Metzger (2017) \cite{Siegel:2017nub}
 % Tsujimoto et al. (2017) \cite{Tsujimoto:2017}
 % Tanaka and Hotokezaka (2013) \cite{Tanaka:2013ana}
 % Tanvir et al., 2013 \cite{Tanvir:2013pia}
-Timmes et al., 2000 \cite{Timmes:2000}
-Truran et al., 1966 \cite{Truran:1966}
-Truran et al., 1967 \cite{Truran:1967}
-Thielemann et al., 1986 \cite{Thielemann:1986}
-Timmes (1999) \cite{Timmes:1999}
+% Timmes et al., 2000 \cite{Timmes:2000}
+% Truran et al., 1966 \cite{Truran:1966}
+% Truran et al., 1967 \cite{Truran:1967}
+% Thielemann et al., 1986 \cite{Thielemann:1986}
+% Timmes (1999) \cite{Timmes:1999}
 
 %% V V V V V V V V V 
 
 % van de Voort et al., 2015 \cite{VanDeVoort:2015}
-Vlasov et al. (2017) \cite{Vlasov:2017nou}
+% Vlasov et al. (2017) \cite{Vlasov:2017nou}
 
 %% Y Y Y Y Y Y Y Y Y 
 
@@ -3674,12 +3691,12 @@ Vlasov et al. (2017) \cite{Vlasov:2017nou}
 % Wehmeyer et al., 2015 \cite{Wehmeyer:2015}
 % Wallner et al. (2015) \cite{Wallner:2015}
 % Wollaeger et al., 2017 \cite{Wollaeger:2017ahm}
-Weaver et al., 1978 \cite{Weaver:1978}
-Woosley et al., 1973 \cite{Woosley:1973}
-Wagoner, 1973 \cite{Wagoner:1973}
-Weiss and Truran, 1990 \cite{Weiss:1990}
-Woosley et al., 2004 \cite{Woosley:2003cd}
-Woosley and Hoffman, 1992 \cite{Woosley:1992}
+% Weaver et al., 1978 \cite{Weaver:1978}
+% Woosley et al., 1973 \cite{Woosley:1973}
+% Wagoner, 1973 \cite{Wagoner:1973}
+% Weiss and Truran, 1990 \cite{Weiss:1990}
+% Woosley et al., 2004 \cite{Woosley:2003cd}
+% Woosley and Hoffman, 1992 \cite{Woosley:1992}
 
 
 %% --------------- 
