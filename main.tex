@@ -3438,7 +3438,35 @@ species in NSE as well as switching to a full network self-consistently. The net
 
 \subsubsection{Nuclear reaction network basics}
 
+Nuclear reaction networks allow to track the evolution of a system of many species that undergo nuclear transmutations in prescribed reactions given the reaction rates. The rate equations describe microscopic processes. They are based on the kinetic theory. For instance, a system of non-correlated particles, involved in interactions, some of which can change particle type, can be described in terms of  ad distribution function. The evolution of this function is given by Kinetic theory \red{Danielewicz and Bertsch, 1991; Buss et al., 2012}. 
+Notably, only a subset of particles is evolved by a reaction network, whyle for others the conditions are assumed to be unchanged. For instance, photons are assumed to be in equilibrium, while electron and positron densities are set by the charge neutrality. 
+Describing particle interaction and nuclide transmutation it is common to introduce the entrance and exit channels. Then, reaction rate is defined as a speed at which a reaction proceeds per particle in the entrance channel. Thus, if there is no change between particles in entrance and exit channels, the RR is zero. A particular usefull quantity is \textit{abundance} $Y_i$, defined as 
 
+\begin{equation}
+    \label{eq:theory:nuc:abundance}
+    Y_i = \frac{n_i}{n_B} = \frac{N_i/V}{N_B/V} = \frac{N_i}{N_B},
+\end{equation}
+
+where $V$ is the volume of the fluid element, $N_i$ and $N_B$ are the total numbers of particles of species $i$ and baryons respectively. It is usually abundances of $Y_i$ that are evolved in nuclear reaction networks instead of particle number densities $n_i$ as the latter depend on the volume that often is not constant. 
+The abundance evolution equation reads
+
+\begin{equation}
+    \frac{\text{d}Y_i}{\text{d}t} = \sum\lambda_{\alpha}(-R_{i}^{\alpha}+P_{i}^{\alpha})N_{i}^{\alpha}\prod_{m\in\mathcal{R}_{\alpha}}Y_m^{N_{m}^{\alpha}}
+\end{equation}
+
+where $\lambda_{\alpha}$ is the reaction rate of the forward process, $R_{i}^{\alpha}$ are reactants, $P_{i}^{\alpha}$ are products, $N_{i}^{\alpha}$ number of particles of the species $i$ involved and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of psecies $i$ involved. (e.g., Hix and Thielemann, 1999)
+
+The Eq.~\eqref{eq:theory:nuc:abundance} can be understood as following. The time derivative of the species $i$ abundances is given by the sum over all reactions, in which the species in question particiepate. Each reaction contribution consists of multiplies: reaction rate, a factor describing creation or destruction of particles (of species $i$), \textit{i.e.,} number of particles, and an abundances of reactants. 
+
+A representative example is carbon burning $^{12}\text{C} + ^{4}\text{He} \leftrightarrow ^{16}\text{O}$:
+
+\begin{eqnarray*}
+    \frac{\text{d}Y^{12}\text{C}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
+    \frac{\text{d}Y^{4}\text{He}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
+    \frac{\text{d}Y^{16}\text{O}}{\text{d}t} &= \lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots . \\
+\end{eqnarray*}
+
+\paragraph{Reaction rates and velocity averaged cross-sections}
 
 \pagebreak
 
