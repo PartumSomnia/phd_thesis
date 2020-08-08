@@ -3439,8 +3439,9 @@ species in NSE as well as switching to a full network self-consistently. The net
 \subsubsection{Nuclear reaction network basics}
 
 Nuclear reaction networks allow to track the evolution of a system of many species that undergo nuclear transmutations in prescribed reactions given the reaction rates. The rate equations describe microscopic processes. They are based on the kinetic theory. For instance, a system of non-correlated particles, involved in interactions, some of which can change particle type, can be described in terms of  ad distribution function. The evolution of this function is given by Kinetic theory \red{Danielewicz and Bertsch, 1991; Buss et al., 2012}. 
-Notably, only a subset of particles is evolved by a reaction network, whyle for others the conditions are assumed to be unchanged. For instance, photons are assumed to be in equilibrium, while electron and positron densities are set by the charge neutrality. 
-Describing particle interaction and nuclide transmutation it is common to introduce the entrance and exit channels. Then, reaction rate is defined as a speed at which a reaction proceeds per particle in the entrance channel. Thus, if there is no change between particles in entrance and exit channels, the RR is zero. A particular usefull quantity is \textit{abundance} $Y_i$, defined as 
+Generally, only a subset of particles is evolved by a reaction network, while for some the conditions are assumed to be unchanged. For instance, photons are assumed to be in equilibrium at all times, while electron and positron densities are set by the charge neutrality. 
+% Abundances
+Describing particle interaction and nuclide transmutation it is common to introduce the entrance and exit channels representing reactants and products. Then, reaction rate is defined as a speed at which a reaction proceeds per particle in the entrance channel. Thus, if there is no change between particles in entrance and exit channels, the RR is zero. A particular usefull quantity is \textit{abundance} $Y_i$, defined as 
 
 \begin{equation}
     \label{eq:theory:nuc:abundance}
@@ -3454,10 +3455,9 @@ The abundance evolution equation reads
     \frac{\text{d}Y_i}{\text{d}t} = \sum\lambda_{\alpha}(-R_{i}^{\alpha}+P_{i}^{\alpha})N_{i}^{\alpha}\prod_{m\in\mathcal{R}_{\alpha}}Y_m^{N_{m}^{\alpha}}
 \end{equation}
 
-where $\lambda_{\alpha}$ is the reaction rate of the forward process, $R_{i}^{\alpha}$ are reactants, $P_{i}^{\alpha}$ are products, $N_{i}^{\alpha}$ number of particles of the species $i$ involved and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of psecies $i$ involved. (e.g., Hix and Thielemann, 1999)
-
+where $\lambda_{\alpha}$ is the reaction rate of the forward process, $R_{i}^{\alpha}$ are reactants, $P_{i}^{\alpha}$ are products, $N_{i}^{\alpha}$ number of particles of the species $i$ involved and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of psecies $i$ involved (see e.g., \cite{Hix:1999}).
+The \textit{SkyNet} solves a coupled, first-order, non-linear system of equation, \eqref{eq:theory:nuc:abundance} for a given set of reaction rates $\lambda_{\alpha}$.
 The Eq.~\eqref{eq:theory:nuc:abundance} can be understood as following. The time derivative of the species $i$ abundances is given by the sum over all reactions, in which the species in question particiepate. Each reaction contribution consists of multiplies: reaction rate, a factor describing creation or destruction of particles (of species $i$), \textit{i.e.,} number of particles, and an abundances of reactants. 
-
 A representative example is carbon burning $^{12}\text{C} + ^{4}\text{He} \leftrightarrow ^{16}\text{O}$:
 
 \begin{eqnarray*}
@@ -3468,7 +3468,38 @@ A representative example is carbon burning $^{12}\text{C} + ^{4}\text{He} \leftr
 
 \paragraph{Reaction rates and velocity averaged cross-sections}
 
-\pagebreak
+% On the particle distribution function: GENRAL
+In general, the particle distribution function has a complex dependency on the macro- and micro- physical parameters. However, scattering processes, redistribution energy between nuclear species, bring particles into thermal equilibrium. Then, the distribution function and reaction rates, simplify considerably and depend only on temperature and chemical potential. 
+% On the Dist.Func. of Boltzmann particle
+In addition, in most applications the distribution function for Boltzmann particles is assumed to be given by thermal Maxwell-Boltzmann distribution. Then the reactions in which nuclei and photons participate depend only on temperature and density.
+% On the neturinos 
+Leptons, \textit{e.g.,} neutrinos, are generally not included into a nuclear reaction network explicitly, as their distribution is often non-thermal and difficult to treat. The electron-positron chemical potential is set to obey the charge neutrality. Then, the weak reaction rates depend, besides temperature, number density of baryons and electron fraction, on the predefined neutrino distribution function (see e.g.,Reddy et al., 1998 for two-particle charged currentweak interaction description and \red{section 2C})). 
+% Cross section
+An important quantity entering the nuclear networks is the reaction cross-section. Considering incoming particles, projectiles, $j$, scattering on stationary targets $i$, it the $\sigma_{\alpha}$ can be deined as a ration of the number of reactions per target, $i$, over the flux of incoming projectiles, $j$. For Boltzmann particles, then, the reaction rate reads 
+
+\begin{equation}
+    \lambda_{\alpha} = N_{\alpha}n_{B}\langle\sigma_{\alpha}\nu_{\text{rel}}\rangle
+\end{equation}
+
+where $N_{\alpha}$ accounts for not double counting particles entering reactions, $\nu_{\text{rel}}$ is the relative velocity between particles and $n_B$ is the number density of baryons. The expression in $\langle\cdot\rangle$ states the cross-section averaged ober the relative velocities between two given particles. 
+The relaction between reaction rate and cross-section then reads 
+
+\begin{equation}
+    r_{i,j} = n_1 n_2 N_{\alpha} \langle\sigma_{\alpha}\nu_{\text{rel}}\rangle.
+\end{equation}
+
+See \textit{e.g.,} \cite{Clayton:1968}, \paragraphmark{4}; \cite{Rolfs:1988}, \paragraphmark{3}
+
+\paragraph{Nuclear Statistical Equilibrium (NSE) and inverse reaction rates}
+
+In addition to forward reactions, inverse ones if are not too unlikely, play a significant role in nucleasynthesis calculations. Considering the strong reactions. For instance, the inverse reaction to the neutron capture can be even more frequent than the forward process. At high enough temperatures the photodissociation reaction becomes as frequent the fusion. 
+When the rate of a forward reaction becomes equal to that of the inverse, the reaction is said to be in equilibrium. 
+If all reactions considered are in equilibrium, it is said that a nuclear statistical equilibrium (NSE) is established. The picture can be simplified by considering a mixture of free protons and neutrons creating a nucleus which is then dissociated back into free neutrons and protons. In other words, when composition enters the NSE, forward and inverse reactions become in equilibrium.
+
+rates of inverse reactions?
+
+
+% \pagebreak
 
 %% A A A A A A A 
 
