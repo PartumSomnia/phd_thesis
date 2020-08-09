@@ -3494,9 +3494,27 @@ See \textit{e.g.,} \cite{Clayton:1968}, \paragraphmark{4}; \cite{Rolfs:1988}, \p
 
 In addition to forward reactions, inverse ones if are not too unlikely, play a significant role in nucleasynthesis calculations. Considering the strong reactions. For instance, the inverse reaction to the neutron capture can be even more frequent than the forward process. At high enough temperatures the photodissociation reaction becomes as frequent the fusion. 
 When the rate of a forward reaction becomes equal to that of the inverse, the reaction is said to be in equilibrium. 
-If all reactions considered are in equilibrium, it is said that a nuclear statistical equilibrium (NSE) is established. The picture can be simplified by considering a mixture of free protons and neutrons creating a nucleus which is then dissociated back into free neutrons and protons. In other words, when composition enters the NSE, forward and inverse reactions become in equilibrium.
+If all reactions considered are in equilibrium, it is said that a nuclear statistical equilibrium (NSE) is established. This condition can also be thought of as, a mixture of free protons and neutrons creating a nucleus which is dissociated back into free neutrons and protons. In other words, when composition enters the NSE, forward and inverse reactions become in equilibrium. The NSE composition can benerally be computed from the equality of chemical potentials. 
+The abundance of species $i$ in chemical equilibrium, assuming Boltzmann gas, is given 
 
-rates of inverse reactions?
+\begin{equation}
+    Y_{i;\text{eq}} = \frac{G_i(T)}{n_B}\Bigg(\frac{m_i T}{2\pi}\Bigg)^{3/2}\exp\Bigg(\frac{\mu_i - m_i}{T}\Bigg),
+\end{equation}
+
+where $G(T)$ is the internal partition function of species $i$, $m_i$ is its rest mass, $\mu_i$ is its chemical potential, $T$ is the temperature.
+
+%%
+%%
+%%
+
+\subsubsection{Network Evolution}
+\red{physics from previouse subsection implemented in SkyNet}
+In essence, a nuclear reaction network evolves a large system of coupled non-linear ordinary differential equations (ODEs) given in a form of \eqref{eq:theory:nuc:abundance}. As reaction rates can span order of magnitude, the system of ODEs is very stiff \cite{Timmes:1999,Hix:2005pf}, and implicit ODE solvers are mode suited for it \cite{Timmes:1999,Winteler:2012,Longland:2014}. \gray{or specifically adapted explicit methods \cite{Feger:2011,Guidry:2011,Guidry:2012,Guidry:2011a,Guidry:2011b,Brock:2015}}. 
+\texttt{SkyNet} relies on the first-order implicit backward Euler method \cite{Hix:1999}. \red{Check}
+
+
+
+
 
 
 % \pagebreak
@@ -3533,6 +3551,7 @@ rates of inverse reactions?
 % Bressan et al., 2012 \cite{Bressan:2012}
 % Blinnikov and Panov, 1996 \cite{Blinnikov:1996}
 % Brett et al., 2012 \cite{Brett:2012jn}
+% Brock et al., 2015 \cite{Brock:2015}
 
 %% C C C C C C C 
 
@@ -3565,6 +3584,7 @@ rates of inverse reactions?
 % Freiburghaus et al., 1999 \cite{Freiburghaus:1999}
 % Fernández and Metzger, 2016 \cite{Fernandez:2015use}
 % Fernández et al., 2017 \cite{Fernandez:2016sbf}
+% Feger, 2011 \cite{Feger:2011} 	 # Phd thesis
 
 %% G G G G G G G 
 
@@ -3574,6 +3594,10 @@ rates of inverse reactions?
 % Gehrels et al., 2009 \cite{Gehrels:2009}
 % Grossman et al., 2014 \cite{Grossman:2013lqa}
 % Goriely et al., 2008 \cite{Goriely:2008zu}
+% Guidry and Harris, 2013 	 same as \cite{Guidry:2011}
+% Guidry and Harris 2011 \cite{Guidry:2011}
+% Guidry, 2012 \cite{Guidry:2012}
+% Guidry et al., 2013a,b \cite{Guidry:2011a} \cite{Guidry:2011b}
 
 %% H H H H H H H 
 
@@ -3632,6 +3656,7 @@ rates of inverse reactions?
 % Limongi and Chieffi, 2003 \cite{Limongi:2003ui}
 % Lippuner et al., 2017 \cite{Lippuner:2017tyn}
 % Lunney et al., 2003 \cite{Lunney:2003}
+% Longland et al., 2014 \cite{Longland:2014}
 
 %% M M M M M M M M 
 
@@ -3747,6 +3772,7 @@ rates of inverse reactions?
 % Wanajo et al., 2014 \cite{Wanajo:2014}
 % Wheeler et al., 2000 \cite{Wheeler:2000}
 % Winteler et al., 2012 \cite{Winteler:2012}
+% Winteler, 2013 \cite{Winteler:2013} 	 # PhD thesis
 % Wehmeyer et al., 2015 \cite{Wehmeyer:2015}
 % Wallner et al. (2015) \cite{Wallner:2015}
 % Wollaeger et al., 2017 \cite{Wollaeger:2017ahm}
