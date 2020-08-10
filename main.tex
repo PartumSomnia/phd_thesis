@@ -3512,6 +3512,15 @@ where $G(T)$ is the internal partition function of species $i$, $m_i$ is its res
 In essence, a nuclear reaction network evolves a large system of coupled non-linear ordinary differential equations (ODEs) given in a form of \eqref{eq:theory:nuc:abundance}. As reaction rates can span order of magnitude, the system of ODEs is very stiff \cite{Timmes:1999,Hix:2005pf}, and implicit ODE solvers are mode suited for it \cite{Timmes:1999,Winteler:2012,Longland:2014}. \gray{or specifically adapted explicit methods \cite{Feger:2011,Guidry:2011,Guidry:2012,Guidry:2011a,Guidry:2011b,Brock:2015}}. 
 \texttt{SkyNet} relies on the first-order implicit backward Euler method \cite{Hix:1999}. \red{Check}
 
+\gray{
+    For temperature and density, functions of time, the network evolves the composition vector $Y(t)$ via implicit backward Euler method, obtaining the abundances at the end of the timestep as well as $\dot{Y}(Y,T,\rho)$, time derivative of the abundances, from known abundances at the beginning of it. 
+    The problem amounts to a multi-dimensional root-finding problem. \texttt{SkyNet} uses Newton–Raphson (NR) method. The Jacobian matrix is $N\times N$ for $N$ nuclear species and can be expensive to invert and store. But most of its entries are zero, as not all species are directly related via a single reaction. 
+}
+\gray{
+    \textbf{Self-heating evolution}
+    The density as a function of time is usually given, \textit{e.g.,} from hydrodynamc simulations. Temperature, however, in most cases does not include heating from nucleosynthesis. On the other hand, nucleosynthesis itself depends on the fluid thermodynamics, as Kinetic theory and balance equations state. Simultaneously, binding energy released in nuclear reactions affecting fluid state. Thus a \textit{self-heating} network evolution is requited. This is done following the First Law of thermodynamics, in which system entropy, volume and composition are treated as independent variables.
+    The system takes into account external heating (per baryon) $\dot{\epsilon}_{\text{ext}}$ and neutrino heating cooling $\dot{\epsilon}_{\nu}$.
+}
 
 
 
