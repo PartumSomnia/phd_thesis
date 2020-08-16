@@ -3512,16 +3512,53 @@ where $G(T)$ is the internal partition function of species $i$, $m_i$ is its res
 In essence, a nuclear reaction network evolves a large system of coupled non-linear ordinary differential equations (ODEs) given in a form of \eqref{eq:theory:nuc:abundance}. As reaction rates can span order of magnitude, the system of ODEs is very stiff \cite{Timmes:1999,Hix:2005pf}, and implicit ODE solvers are mode suited for it \cite{Timmes:1999,Winteler:2012,Longland:2014}. \gray{or specifically adapted explicit methods \cite{Feger:2011,Guidry:2011,Guidry:2012,Guidry:2011a,Guidry:2011b,Brock:2015}}. 
 \texttt{SkyNet} relies on the first-order implicit backward Euler method \cite{Hix:1999}. \red{Check}
 
-\gray{
+\begin{sidenote}
     For temperature and density, functions of time, the network evolves the composition vector $Y(t)$ via implicit backward Euler method, obtaining the abundances at the end of the timestep as well as $\dot{Y}(Y,T,\rho)$, time derivative of the abundances, from known abundances at the beginning of it. 
     The problem amounts to a multi-dimensional root-finding problem. \texttt{SkyNet} uses Newton–Raphson (NR) method. The Jacobian matrix is $N\times N$ for $N$ nuclear species and can be expensive to invert and store. But most of its entries are zero, as not all species are directly related via a single reaction. 
-}
-\gray{
+\end{sidenote}
+\begin{sidenote}
     \textbf{Self-heating evolution}
-    The density as a function of time is usually given, \textit{e.g.,} from hydrodynamc simulations. Temperature, however, in most cases does not include heating from nucleosynthesis. On the other hand, nucleosynthesis itself depends on the fluid thermodynamics, as Kinetic theory and balance equations state. Simultaneously, binding energy released in nuclear reactions affecting fluid state. Thus a \textit{self-heating} network evolution is requited. This is done following the First Law of thermodynamics, in which system entropy, volume and composition are treated as independent variables.
+    The density as a function of time is usually given, \textit{e.g.,} from hydrodynamc simulations. Temperature, however, in most cases does not include heating from nucleosynthesis. On the other hand, nucleosynthesis itself depends on the fluid thermodynamics, as Kinetic theory and balance equations state. Simultaneously, binding energy released in nuclear reactions affects fluid state. Thus a \textit{self-heating} network evolution is requited. This is done following the First Law of thermodynamics, in which system entropy, volume and composition are treated as independent variables.
     The system takes into account external heating (per baryon) $\dot{\epsilon}_{\text{ext}}$ and neutrino heating cooling $\dot{\epsilon}_{\nu}$.
-}
+    In \textit{SkyNet} the implementation is such that while abundances are evolved implicitly,
+    the entropy is computed explicitly (at the end of the timestep, from the one at the beginning of the imte step, using NR root-finder, after that the temperature is evalated from EOS)
+    \red{[it was mentioned that fullly implicit scheme was planned]}
+    The total heating rate, $\dot{\epsilon}_{\text{tot}}$ is computed as following:
+    \begin{equation}
+        \dot{\epsilon}_{\text{tot}} = \frac{\Delta q}{\Delta t} + \dot{\epsilon}_{\text{nuc}} = -\dot{\epsilon}_{\nu} + \dot{\epsilon}_{\text{ext}} - \frac{1}{\Delta t}\sum_i \Delta Y_i \mathcal{M}_i
+    \end{equation}
+    where $\Delta q$ is the infinitesimal heat added to the system from the surroundings per baryion, \textit{i.e.,} $\delta Q/N$ and $Y_i=N_i/N_B$ are the abundances for which $\sum_i Y_i A_i = 1$, $\epsilon_{\text{ext}}$ is the external heating rate (per baryon), $\mathcal{M}_i=m_i - A_i m_u$ is the mass excess, $\epsilon_{\nu}$ is the neutrino heating/cooling rate of the system on the environment, $\epsilon_{\text{nuc}} = (-1/\Delta t)\sum_i\Delta Y_i \mathcal{M}_i$ is the rate of release of binding energy in nuclear reactions.
+    Notably, $\dot{\epsilon}_{\text{tot}}$ is generally composed of different components \cite{Barnes:2016umi}, depending on thermolisation efficiency. For instance, kinetic energy of massive fission fragments thermilizes very efficiently, while light neutrinos do not. \red{this is planned to be taken into account for Kilonca calculations} 
+\end{sidenote}
 
+\begin{sidenote}
+    \textbf{Convergence criteria and time stepping}
+    Timestep depends on the convergence of the NR rootfinder. 
+    Convergence criterion for a NR:
+    \begin{equation}
+        \sum_{x_i^{n+1}\geq Y_{\text{thr}}}\Bigg|\frac{x_{i}^{(n+1)} - x_{i}^{(n)}}{x_{i}^{(n+1)}}\Bigg| < \epsilon_{\text{tol},\Delta x}
+    \end{equation}
+    where $x_{i}^{(n+1)}$ is the $i$-th vompoennt of the vector $x_{n+1}$. Here $x$ is the unknown abundances at the end of the timestep. Usually, $\epsilon_{\text{tol},\Delta x}$ is set to $10^{-6}$.
+    Another convergence criterion: assureance of the total baryon number conservation 
+    \begin{equation}
+        \Bigg| 1- \sum_i x_i^{(n+1)}A_i \Bigg| < \epsilon_{\text{tol},\text{mass}}
+    \end{equation}
+    where $x_{i}^{(n+1)}$ represents abundances $Y_i(t+\Delta t)$
+    After a successfull timestep a cheme tries to increase timestep, if not limited by a rapid growth of a given abundances. 
+    \gray{A proper way to renormalize abundances $Y_{i,\text{new}} = Y_i/\sum_i A_i Y_i$
+    to assure that $\sum_i A_i Y_i = 1$ exactly}
+\end{sidenote}
+
+\begin{sidenote}
+    \textbf{NSE evolution mode} 
+    \texttt{SkyNet} tracks the composition evolved, and if it approaches NSE, it automatically switches from full network evolutiom (where jacobian approaches numerical singumlarity as partial derivates become zero), to the NSE scheme. 
+    In NSE mode, \texttt{SkyNet} evolves only the termodynamic quantites, \textit{i.e.,} entropy $s$ and electron fraction $Y_e$ of the composition, following the weak reactions ($\beta$-decay, neutrino reactions). The temperature is computed from EOS. 
+    Two coupled ODEs are obtained for $Y_e$ and $s$ that are evolved via adaptive step-size Runge-Kutta method, an explicit integration method, that is allowed for a not-too-stiff equations.
+\end{sidenote}
+
+\begin{sidenote}
+    \textbf{Electron screening}
+\end{sidenote}
 
 
 
