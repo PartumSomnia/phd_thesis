@@ -3659,6 +3659,35 @@ The nuclear reaction rates for computations are taken fron JINA REACLIB database
 
 \subsubsection{Lanthanide turnoff and heating rate as a function of $Y_e$}
 
+A turn off is a porint in aprameter space, when the mass fraction of synthesiszed lanthanaids (actinides) $X_{\text{La}}$ ($X_{\text{Ac}}$) drops below $10^{-3}$. For example, a maximum $Y_e$ (and minimum $\bar{A}_{\text{fin}}$) for which the $X_i \geq 10^{-3}$ is a turn off point. 
+
+The turnoff prevents a large amount of lanthanides (actinides) from being produced and suppresses the fission cycling.
+
+Here $\bar{A}_{\text{fin}}$ is the final average mass number,
+
+\begin{equation}
+    \bar{A}_{\text{fin}} = \frac{1}{Y_{\text{seed}}(0) + Y_{\alpha}/18},
+\end{equation}
+
+where $Y_{\alpha}(0)$ is the initial abundance of alpha particles, $Y_{\text{seed}}(0)$ is the initial abundance of the seed nuclides ($A\geq12$). The $Y_{\text{seed}}(0) + Y_{\alpha}/18$ thus denotes the number abundance of heavy nuclei at the end of the $r$-process, assuming that it takes $\sim 18$ $\alpha$-particles to create a seed nuclei \cite{Woosley and Hoffman, 1992}. Further, assuming that the number of seed nuclides by the end of the $r$-porcess equals the initial number of seeds plos those produced in $\alpha$-process, \textit{i.e.,} neglecting the effects of fission cycling, the total mass-fraction of heavy nuclei at the end of the nucleosynthesis is $1$. Note that $\bar{A}_{\text{fin}}$ is a function of initial abundances only and a good indicator of the direction that nucleosynthesis would take. 
+
+Considering a range in $s\in\{1, 10, 30, 100 \}$, $\tau\in\{0.1, 1, 10\}$~ms and $Y_e\in(0,0.5)$,
+the nucleosynthesis calculations state, nuclear heating rates, $M\varepsilon$, ($1$day, $10^{-2}M_{\odot}$) are rather constant up to $Y_e\approx 0.4$, when a particualr nuclides start dominate the heating. The number of fission cycles is increased for high $s$ models, due to increased production of seed nuclides by triple-$\alpha$ process. 
+
+Neutron-rich freeze-out occurs at high $s$ and small $\tau$, where ejecta high temperature and rapid expansion allows for a fewer capture events on seed nuclei and free neutrons escape. An ejecta compoent with such conditions was suggested to produce a ultraviolet precoursour to the kilonova on a timescale of hours, powered by the decay of frozen-out neutrons \cite{Metzger et al. (2015)}.
+
+\gray{See if that can be modelled easily for our BNS models}
+
+The heating rate, $M\varepsilon$, are roughly constant with $Y_e$, at $1$ day, as long as the fraction $X_{\text{La+Ac}}$ produced is constant. 
+After lanthanides production ceases and their fraction falls, the instantaneous heating rate (at $1$ day) decreases only slightly (up to $1$ order of magnitude). 
+Considering the integrated nuclear heating amount as a function of $Y_e$ ($s=\text{const}$, $\tau=\text{const}$), it does decreases by $1-2$ orders of magnitude, when the $r$-process stops producing unstable heavy lanthanides, and stable nuclides are produced directly.
+
+%%
+
+\subsubsection{Fission cycling}
+
+
+
 
 % \pagebreak
 
