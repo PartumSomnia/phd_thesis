@@ -3723,8 +3723,36 @@ At higher $Y_e\in(0.25,0.375)$, the first $r$-process peak, $A\sim 88$ makes a s
 At even higher $Y_e>0.375$, the proton-rich side of stability around the iron peak exerts a contribution.
 
 %%
+%%
+%%
 
-\subsubsection{Lightcurves}
+\subsection{Lightcurves}
+
+Consider a rather simplified way of modeling a kilonova. 
+The expansion is assumed to be homologous, \textit{i.e.,} $r = \upsilon t$ with the density structure being
+
+\begin{equation}
+    \rho(t, r) = \rho_0(r/t)\Big(\frac{t}{t_0}\Big),
+\end{equation}
+
+instead of uniform density of the expanding ball, as the latter might show superluminal expansion velocities.
+
+The nuclear reaction network gives the heating as a fucntion of time, $\varepsilon(t)$, but only a fraction of released energy (in form of neutrinos and gamma-rays) will be passed into the material, thermolized in the material. This fraction is difficult to calculate. It requries gamma ray transport schemes. One can assume it to be constant, \textit{i.e.,} $f=0.3$ \cite{Barnes and Kasen, 2013}. Thus, only $f\varepsilon$ of the released in nucleosynthesis energy is deposited into the material.
+Assuming the homologous outflow, the velocity can be considered as a Lagrangian coordinate and the Lagrangian radiative transport equations can be writted to the forst order in $\upsilon/c$ \cite{Mihalas and Weibel-Mihalas, 1999}
+The equation of state can be assumed to be the one of an ideal gas, $u=3T/(2\mu)$ and the Eddington factor entering the Lagrange equations can be obtained from the static Boltzmann transport equation. 
+This method is similar to \cite{Ensman, 1994}. 
+
+Calculating the exact opacities of a mixture of atoms with complex line structure, such as iron-group elements, and even more so, lanthanides and actinides is a difficult task. \red{it was adressed though by Tanaka et al}.
+However, if the detailed opacity calculations are beyond the scope, one can assume an approximate opacities given by 
+
+\begin{equation}
+    \kappa = \kappa_{\text{Fe}}(T) + \sum_i \max[\kappa_{\text{Nd}}(T,\: X_i) - \kappa_{\text{Fe}}(T),\: 0],
+\end{equation}
+
+where $\kappa_{\text{Fe}}(T)$ and $\kappa_{\text{Nd}}(T,\: X_i)$ are the iron and neodymium opacities given in \cite{Kasen et al., 2013}, $X_i$ is the mass fraction lanthanides or actinides species. 
+For the gray opacity calculations, the Plank mean opacity can be assumed (it is a good approximation when wavelength dependent opacity is calculated in the Sobolev approximation (Kasen, 2015))
+
+\subsubsection{Dependence of kilonova light curves on the outflow properties}
 
 
 % \pagebreak
