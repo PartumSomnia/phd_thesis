@@ -3814,7 +3814,27 @@ To asses the importance of NSBH for the galactic enrichment with $r$-process mat
 
 \subsection{Methods}
 
-\subsubsection{Relativistic merger simulations and binary systems}
+\paragraph{NSBH} Code: Spectral Einstein Code (SpEC) with neutrino leackage scheme. EOS: LS220
+
+\paragraph{SPH evolution of ejecta}
+
+\subsubsection{Nuclear reaction network and weak interactions}
+
+The nucleosynthesis calculation requires the density history of the ejecta, its initial composition and entropy. This can be done performing a hydrodynamics simulation of the expanding ejecta (which allows to account for the feedback the nucleosynthesis has on ejecta, \textit{e.g.,} generated entropy) or assuming an expansion mode, \textit{e.g.,} homologous expansion. Change in electron fraction during the expansion can be included via weak interactions. Otherwise, it can remain constant.
+
+Notably, a single EOS may not extend to the temperature-density region where $r$-process is still possible in the expanding ejecta. As the nuclear reactions affect the EOS only marginally below $\rho\sim 10^{12}$g cm$^{-3}$, a switch to another, multi-species non-degenerate ideal gas EOS, \textit{e.g.,}\cite{Timmes and Arnett, 1999}. However, caution must be exercised in this procedure, as a single nucleus approximation of the LS220 eos predicts nuclei different from thos from full NSE calculation and thus different internal energy. 
+
+For a given density history (of a Lagrangian particles), the nucleosytnehes can be performed via NNR \texttt{SkyNet} \cite{Lippuner and Roberts, 2015}. If it is required to track the evolution of the electron fraction, (which can be the case for high densities and temperatures where weak interactions are not in equilibrium), the NSE evolution mode can be used. Below $T\sim 7$GK, however, a full NNR evolution is required.
+The inclusion of weak reactions, -- absorption of neutrinos and atin-neutrinos by electrons and positrons, and electrons and positions by free nucleons. The expression for neutrino capture rate is complex, which requires different distribution functions for electrons and positrons. In its applied form it does not include momentum transfer to the nucleons and neglects weak magnetism corrections (note however, that might be of importance for the neutrino-driven with \cite{Horowitz, 2002}). Neutrino-distribution is usually assumed to the be of the Fermi-Dirac sahpe in energy sapce. While the simple spherical emitting surface is a common approximation, the geometry might be of importance as the NSBH (BNS) merges form a disk-shape emitting region.
+
+%%
+%%
+%%
+
+\subsection{Results and discussion}
+
+\subsubsection{The electron fraction of the ejecta}
+
 
 
 
