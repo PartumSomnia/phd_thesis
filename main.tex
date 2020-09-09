@@ -40,6 +40,7 @@
 \newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\magenta}[1]{\textcolor{magenta}{#1}} %% For terms/concepts to remember 
 \newcommand{\green}[1]{\textcolor{green}{#1}}
 \newcommand{\gray}[1]{\textcolor{gray}{#1}}
 \newcommand{\swind}{spiral-wave wind}
@@ -3835,8 +3836,41 @@ The inclusion of weak reactions, -- absorption of neutrinos and atin-neutrinos b
 
 \subsubsection{The electron fraction of the ejecta}
 
+The prime quantity defining the nucleosynthesis in the ejecta is its electron fraction \cite{(e.g., Lippuner and Roberts, 2015)}. Due to absence of neutrino emitting central object, shocks at collision and due to short timescales, the electron fraction of the ejecta from NSBH mergers is generally expected by the that of the initial beta-equilibrium \cite{Just et al., 2015}. Such low  $Y_e < 0.1$, the full $r$-process with a large number of fission cycles is expected  \cite{(e.g. Kasen et al., 2015; Lippuner and Roberts, 2015)}. On the other hand, in case of the BNS, the significant neutrino irradiation is expected raising the ejecta electron fraction through weak interactions \cite{Wanajo et al., 2014; Goriely et al., 2015; Foucart et al., 2016a; Palenzuela et al., 2015; Radice et al., 2016}. If the $Y_e$ is raised to $0.25$, the nucleosynthesis becomes dependent on other ejecta properties, such as expansion timescale and entropy. 
 
+In case where neutrino absorption is not 'ab-initio' included into the simulation, the effect of it can be estimated from the total neutrino luminosity and neutrino processing timescale. 
 
+\begin{equation}
+    \tau_{\nu} \approx 67.8 \text{ms} \: \Big(\frac{r}{250\text{km}}\Big)^2 L_{\nu_e, 53}^{-1} T_{\nu_e, 5}^{-1}
+\end{equation}
+
+where $r$ is the radius of the fluid element, $L_{\nu_e, 53}$ is the electron neutrino luminosity in units of $10^{53}$erg s$^{-1}$ and $T_{\nu_e,5}$ is the electron neutrino spectral temperature in units of $5$MeV. The spectral temperature can be estimated for a gray scheme by considering the temperature of the emission region, and adopting that the average neutrino energy is $\varepsilon_{\nu} \approx 3.15T$ \cite{(e.g., Foucart et al., 2015).}. \red{[Quote]Electron antineutrinos are unlikely to contribute significantly to the neutrino interaction timescale[Why?]} \red{[Answer]This is because in the low entropy outflows of BHNS mergers almost all protons are locked in heavy nuclei and thus have very low neutrino capture cross-sections.[EndQuote]}.
+
+Next, assuming that all protons are incorporated into the heavy nuclei, neutrino luminocity and ejecta velocity remain constant, and that neutrino irradiation from the disk start at after merger, also neglecting $e^{-}$, $e^{+}$ captures, 
+
+\begin{equation}
+    \frac{d Y_e}{dr} = \frac{\theta(r - \nu t_{\nu, on})}{\nu \tau_{\nu} Y_{e; eq}}(Y_{e; eq} - Y_e)
+\end{equation}
+
+where $Y_{e; eq} = \langle Z \rangle_{\text{nuclei}} / \langle A \rangle_{\Omega_j}\text{nuclei}$ and $t_{on}$ is the time when neutrino luminosities reach their saturation value.
+The result of this analysis states taht the the neutrino irradiation is unlikely to play a significant role in changing the composition of the ejecta from NSBH mergers.
+Running with the full NNR results in very little changes in ejecta composition during the first $\sim10$~ms after while the changes at $\sim20$~ms are driven by beta-decays in $r$-process.
+
+%%
+
+\subsubsection{Nucleosynthesis and neutrino induced production of the first r-process peak}
+
+Consider in more details, the effect neutrinos have on the isotropic abundances in ejecta. 
+Note that luminosity of the electron anti-neutrino is higher then the one of the electron neutrino due to \magenta{re-leptonization} of the neutrino emitting disk \cite{Foucart et al., 2016a}. However, nucleosynthesis yilds are unsensitive to the chosen electron antineutrino luminosity because of the \magenta{$\alpha$-effect}.
+
+The result is, again, a confirmation, that the NSBH ejects, dynamically, a large amount of $r$-process rich material \cite{(e.g. Roberts et al., 2011; Korobkin et al., 2012; Just et al., 2015)}, with both second and third $r$-process peaks reproduced robustly at all considered neutrino luminosities which is to be expected for the outflow with initially very low $Y_e$, that passes several fission cycles \cite{Lippuner and Roberts, 2015}. 
+
+Notably, the abundance of the first r-process peak at mass number $A=78$ depends on the neutrino luminosity but in all cases it is under-produced relative to the solar abundance when normalizing to the second and third peaks.
+
+The origin of seed nuclei for the first peak production is the following. After falling from NSe, and the strong eqilibrium ceases to hold, the material is composed of heavi nuclei and free neutrons, which, while still being close to the torus, turns into proton. Then it caputres another neutron forming $D$. Then, two deutrons form an $\alpha$-particles, two of which then undergo a neutron-catalyzed triple-alpha reaction, forming a low-mass seed nuclei \cite{Meyer et al., 1998}. A similar process proceeds in neutron rich neutrino driven winds \cite{Delano and Cameron, 1971; Hoffman et al., 1997}.
+These low-mass seed nuclei capture neutrons forming heavier elements, but cannot generally ass the $N=50$ ($Z=28$) in the $r$-process path due to exhaustion of free neutrons. In the end these seeds end up as a first-peak elements. 
+
+\subsubsection{Details of the first peak production mechanism}
 
 
 % \pagebreak
