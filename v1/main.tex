@@ -39,6 +39,7 @@
 \newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
 \newcommand{\red}[1]{\textcolor{red}{#1}} 
 \newcommand{\gray}[1]{\textcolor{gray}{#1}} 
+\newcommand{\magenta}[1]{\textcolor{magenta}{#1}} %% For terms/concepts to remember 
 
 \newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
 
@@ -1145,6 +1146,59 @@ For models discussed in this thesis the following techniques to treat the atmosp
 \gray{we use AMR}
 \gray{Evolution via CCZ4 with damping constants $\kappa_1=?$, $\kappa_2=?$ and $\kappa_3=?$ and with beta-driver $\eta=?$. The space time evolved. Space-time is evolved via fourth order finite-differencing and with fifth order Kreiss-Oliger artificial dissipation} 
 \gray{[See more in v0 of the thesis]}
+
+
+%% ---------------------------------
+%% ---------------------------------
+%%
+%%      NUCLESYNTHESIS 
+%%
+%% ---------------------------------
+%% ---------------------------------
+
+\chapter{Nucleosynthesis}
+
+\section{Introduction}
+
+The origin of elements in the universe is one of the prime questions in physics. In attempt to answer it, the understanding of the nucleosynthesis has come a long way, from Big Bang Nucleosynthesis (BBN) being considered as the main source of all elements (\textit{e.g.,} \cite{Alpher:1948}), to unveiling a complex system of processes and reactions in which BBN is responsible for creating only the lightest elements with an atomic number $A<8$ (see \textit{e.g.,} \cite{Alpher:1950,Burbidge:1957,Shaviv:2012}). 
+
+In this chapter we briefly discuss main processes responsible for the creation of heavy elements in the Universe, with a particular focus on the rapid neutrin capture process, the $r$-process. We mention the conditions and cites of $r$-process, its contribution to the Universe' chemical evolution. Then we elaborate on how a network of nuclear reactions can be modelled in order to compute the final abundances, and, in particular, how it is done in the state-of-the-art code \texttt{SkyNet}. 
+Finally, we highlight the results from investigations of the $r$-process nucleosynthesis in outflows of binary neutron stars and neutron star - black hole mergers performed with \texttt{SkyNet}. After that we \red{add to the picture, the results of our investigations.}
+
+This chapter is not meant as a complete overview of the heavy element nucleosynthesis, but rather a short introduction to the concepts and tools important for this thesis. For a more complete overview we direct the interested reader to the following works \red{[cite:Lippuner PhD thesis?]}
+
+%%
+%%
+%%
+
+\section{Solar System abundances}
+
+One of the most important tests of nucleosynthesis production channels and theories is the comparison with the accurately measured observed abundances in the Universe. One of the ways to asses the solar system abundances is to perform an absorption and emission spectroscopy on the meteorites naturally falling \cite{Shaviv:2012}. This is an ongoing endeavor that encompass decades of thorough research \cite{Cameron:1973,Anders:1989,Grevesse:1998,Lodders:2003}. 
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.25\textwidth]{./figs/intro_nuc_LippF11.png}
+    \caption{
+        \red{Figure from Lippuner, 1.1 TO BE Replaced}
+        Figure with solar observed abundances, showing $r$-elements and $s$-elements.
+        The observed obundacnes as a function of atomic mass number $A$, (data from \cite{Lodders:2003}). The plot shows nuclei that are more bound (due to \magenta{spin pairing of nucleons} \cite{Moller:1993ed}), \textit{i.e,} those with an even $A$ number, are more abundant. The lowest binding energy of nuclei with odd number of neutrons and protons (but even $A$) are largely unstable or short-lived. A few exceptions are \textit{e.g.,} $^{40}$K, $^{50}$V, $^{138}$La and $^{176}$Lu, that have a half-life of at least $10^{9}$ years.
+    }
+    \label{fig:intro:nuc:solar1}
+\end{figure}
+
+It was shown that the dominant nucleosynthesis process, responsible for creating elements in different mass ranges varies \cite{Burbidge:1957}. 
+For instance, light elements, $A<8$, were synthesized right after the Big Bang. Nuclides before the iron peak, $12\leq A\leq 56$, come from stellar hydrostatic nuclear burning. Elements at the iron peak, $50\leq A \leq 62$, produces mostly during the type Ia supernova or explosive silicon burning in core-collapse supernova (CCSN). In these cites, the nuclear statistical equilibrium (more on that later) is established before the matter expands and cools down. 
+Most of the material beyond iron peak are produced via neutron capture processes.
+
+%%
+%%
+%%
+
+\subsection{Nucleosynthesis up to the iron peak}
+
+
+
+
 
 %% ---------------
 %%
