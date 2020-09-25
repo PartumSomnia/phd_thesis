@@ -1177,7 +1177,7 @@ One of the most important tests of nucleosynthesis production channels and theor
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.25\textwidth]{./figs/intro_nuc_LippF11.png}
+    \includegraphics[width=0.25\textwidth]{./figs/intro_nuc_LipF11.png}
     \caption{
         \red{Figure from Lippuner, 1.1 TO BE Replaced}
         Figure with solar observed abundances, showing $r$-elements and $s$-elements.
@@ -1229,6 +1229,57 @@ During the explosion, a fraction of the mass of outer layers is ejected into the
 
 \subsubsection{Iron Peak}
 
+At temperatures higher then $T\sim 5\times10^{9}$K, \magenta{nuclear statistical} equilibrium (NSE) establishes. This is a balance between the fusion reactions forming a ($N,Z$) nuclide from $N$ neutrons and $Z$ protons and photodissociation reactions, splitting it back. 
+At NSE, three parameters describe the composition: density, temperature and electron fraction, $Y_e = n_p/(n_p + n_e)$, where $n_e$ and $n_p$ are the (total) number density of electrons and protons respectively \cite{Seitenzahl:2009}. 
+
+The composition at NSE favors more tightly bound nuclides, as they are more difficult to photodissociate. Thus, if the conditions allow, \textit{i.e.,} not too high temperature and density, and the electron fraction of the mater is $Y_e \sim 0.46$ (an electron fraction of iron), then nuclides at $A\sim56$, \textit{i.e.,} iron peak elements, dominate \cite{Seitenzahl:2009}. 
+For example, NSE establishes during the type Ia supernova, when a thermonuclear explosion of a white dwarf creates right conditions for the iron peak elements to be synthesized and fall into equilibrium. After the explosion, the elements of the iron peak, as they are stable, cools and enrich the interstellar medium \cite{Iwamoto:2000as}. 
+
+%%
+
+\subsubsection{Nucleosynthesis beyond the iron peak}
+
+Nuclides with $A\geq 56$ cannot be synthesized via standard cycles due to their strong Coulomb barriers. Thus, processes that do not involve charged particles become dominant. These are the neutron capture processes.
+As nuclides absorb neutrons and grow larger, their binding energy $Q_n$ decreases. This process is stopped when $Q_n\sim1$MeV and energetic photons start to knock out neutrons from a nucleus. This process is called photodisintegration and a location in parameter space where it occurs, that in turn dependents on temperature and density, is called the \magenta{neutron drip line} \cite{Rolfs:1988}.
+
+Nuclides produced via neutron capture are generally unstable to a $\beta$-decay, with a timescale $\tau_{\beta}$, that can be larger or smaller than a neutron capture timescale, $\tau_n$. 
+In case when $\tau_{\beta}\ll\tau_n$, \textit{i.e.,} when a $\beta$-decay occures faster then the next neutron capture, the process is called \textit{slow} or $s$-process. 
+Thus, by definition, the $s$-process moves along the valley of stability\footnote{a region of stable nuclides in the nuclides chart, a chart in terms of number of neutrons $n_n$ and number of protons $n_p$.}.
+On the other hand, if $\tau_{\beta}\gg\tau_n$, \textit{i.e,} when a neutron capture occurs much faster then a $\beta$-decay, the process is called \textit{rapid} neutron capture or $r$-process. This nucleosynthesis generates nuclides near (but not crossing) the neutron drip line (see Fig.~\ref{fig:intro:nuc:srprocess}) \cite{Rolfs:1988}. 
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.25\textwidth]{./figs/intro_nuc_LipF16.png}
+    \caption{
+        \red{Figure from Lippuner, 1.6 TO BE Replaced}
+        Schemes of $s$- and $r$-processes on a section of the nuclear chart. 
+        The $r$-process runs along the neutron drip line, and the $s$-process -- along the valley of stability. 
+        At a magic number, $N=50$, that correspond to the closed neutron shell, the material piles up, as the neutron capture cross-section decreases by several orders of magnitude. 
+        This is the origin of the double peak structure seen in the Fig.~\ref{fig:intro:nuc:solar1}.
+    }
+    \label{fig:intro:nuc:srprocess}
+\end{figure}
+
+The trajectory of $r$-process is interrupted when the neutrons within nuclide can arrange themselves in a closed shell. Such configuration is energetically very favorable and thus the cross section for a subsequent neutron capture is reduced. Only after several $\beta$-decays the $r$-process continues. 
+Thus, nuclides located at points where neutron drip line and closed neutron shell overlap is more abundant. These unstable nuclides will decay back to the valley of stability, some of the neutrons within them would turn to protons, reducing the total mass of the nuclide. 
+The indication of this "overproduction" are the peaks in the abundance patterns at a mass, $A$, slightly lower then the one corresponding to a closed shell nuclide, Fig.~\ref{fig:intro:nuc:solar1}. 
+
+A similar "overproduction" of nuclides with a closed neutron shell occurs when an $s$-process is considered. When the nuclides reach the closed shell, the cross-section for the next neutron capture drops, and material piles-u \cite{Rolfs:1988}. 
+However, in the case of $s$-process, the peaks in abundance pattern will be at $A$, corresponding to the closed shell exactly, as the process does not wait for additional $\beta$-decays, and thus higher than $A$ of $r$-process peaks. 
+Closed shell nuclides are located at $N=50,\: 82, \: 126$ and thus corresponding abundance peaks for $s$-process are at $A=88, \: 138, \: 208$ and at $A=80,\:130,\:194$ for $r$-process (see \textit{e.g.,} \cite{Arnould:2007gh}).
+
+It was found, that the solar $r$-process abundance pattern is generic, and can be found in other places in the Universe. In particular, in stars that are formed very early, on a galactic evolution timescale. For such metal poor halo stars, one would expect to observe less $s$- and $r$-process elements as there might have been not enough time for the enrichment to take place. However recent studies showed that the solar $r$-process abundances are found in these stars as well \cite{Sneden:2008,Roederer:2010}, see also Figure 8 in \cite{Sneden:2009} 
+\textcolor{red}{and section 1.9}. 
+
+Thus, modeling the $r$-process nucleosynthesis it is expected to reproduce the solar abundances. 
+
+It is important to mention that in addition to $s$- and $r$-process, a possible $i$-process, (intermediate) is widely discussed. 
+The process operates further from the valley of stability than $s$-process, but it does not reach neutron drip line \cite{Cowan:1977,Bertolli:2013gka}. 
+Slow and intermediate neutron capture processes operate within the low-mass asymptotic giant branch (AGB) stars with mass $M\in[1.5,3]M_{\odot}$ and more massive stars, that enrich the interstellar medium with heavy elements via strong winds (\textit{e.g.,} \cite{Peters:1968,Couch:1974,Kaeppeler:1994K,Woosley:2002,Straniero:2005hc,Herwig:2011}). 
+
+%%
+
+\subsubsection{Possible $r$-process sites}
 
 
 %% ---------------
