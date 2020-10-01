@@ -1430,13 +1430,99 @@ A very high energy emission from the non-thermalized radiation is weak and can b
 
 \subsection{Modeling the $r$-process nucleosynthesis}
 
-Nucleosynthesis calculations are of utmost importance for a large number of astrophysical applications. Nuclear burning withing the main sequence stars \cite{Bethe:1939} creates elements up to iron group. Explosive synthesis withing a supernova generates iron-group elements and beyond with contributions from $s$-process elements \cite{Burbidge:1957}, and weak $r$-process \cite{Wanajo:2013}. Elements, that ultimately enrich the ISM \cite{Nomoto:1997if,Woosley:2002}. In BNS and NSBH mergers, the full $r$-process nucleosynthesis is believed to be possible \cite{Freiburghaus:1999}, synthesizing the heaviest elements, lanthanides and actinides [Refs].
+Nucleosynthesis calculations are of utmost importance for a large number of astrophysical applications. Nuclear burning withing the main sequence stars \cite{Bethe:1939} creates elements up to iron group. Explosive synthesis withing a supernova generates iron-group elements and beyond with contributions from $s$-process \cite{Burbidge:1957}, and weak $r$-process \cite{Wanajo:2013}. Elements, that ultimately enrich the ISM \cite{Nomoto:1997if,Woosley:2002}. In BNS and NSBH mergers, the full $r$-process nucleosynthesis is believed to be possible \cite{Freiburghaus:1999}, synthesizing the heaviest elements, lanthanides and actinides [Refs].
 
+To model the aforementioned processes is it necessary to compute nuclear reactions and not only focusing on the total energy generation (\textit{e.g.,}  \cite{Weaver:1978,Mueller:1986,Timmes:1999}) but tracking the evolution of the whole ensemble of nuclear species \red{[Refs]}.
+A mathematical and/or numerical model that describes coupled nuclear reactions, tracking the evolution of abundances of various species, coupled by a non-liear reaction rates is called \textit{nuclear reaction network} (NRN).
 
+The complexity of networks, \textit{i.e.,} the number of species and reactions evolved, varies depending on the intended implementation.
+%% BBN
+For instance, for a Big Band nucleosynthesis rarely more then a dozen nuclear species are evolved 
+\cite{Wagoner:1973,Orlov:2000,Nollett:2000fh,Coc:2013eha,Cyburt:2015mya}. 
+%% STellar
+To model nucleosynthesis in stars tens or even hundreds of them are used in a more recent and advanced models \cite{Arnett:1977,Weaver:1978,Paxton:2011,Bressan:2012,Jones:2015}
+%% SN
+Networks designed for explosive nuclear burning and supernovae have come a long way from including only a few tens of species (\textit{e.g.,} \cite{Truran:1966,Truran:1967,Arnett:1969,Woosley:1973}) to including hundreds of species and reactions, (\textit{e.g.,} in type Ia SN \cite{Thielemann:1986,Hillebrandt:2013gna,Seitenzahl:2013,Leung:2015fxa}, in core-collapse supernovae \cite{Thielemann:1986,Limongi:2003ui,Heger:2008td,Harris:2014}, in novae \cite{Weiss:1990,Jose:1997vf,Iliadis:2002zz,Starrfield:2016} and X-ray bursts \cite{Schatz:2001xx,Woosley:2003cd,Cyburt:2010,Parikh:2012hx}) 
+%% r-process
+Neutron captures result in a formation of unstable nuclides, that decay via extensive chains of reactions, involving hundreds and thousands of steps. Thus, nuclear reaction networks has to be adequately complex to model the $s$-process, (\textit{e.g,} \cite{Prantzos:1990,Kaeppeler:2011,Nishimura:2017zdi}) and even more so to model $r$-process. 
+The applications of such NRN are vast. In CCSN neutrino driven winds (\textit{e.g.,} \cite{Woosley:1992,Arcones:2010,Wanajo:2013}).
+In outflows from magnetorotational CCSN (\textit{e.g., \cite{Winteler:2012,Nishimura:2015nca}}. 
+In compact object mergers several cites with different conditions require modeling. 
+In particular, in dynamical ejecta \cite{Goriely:2011vg,Bauswein:2013,Wanajo:2014,Just:2014,Fernandez:2016sbf}\red{[Refs]}, in the disk (torus)  \cite{Surman:2008qf,Perego:2014fma,Martin:2015hxa,Lippuner:2017tyn}\red{[Refs]}. And these are only selected examples of where modeling of neutron capture nucleosynthesis is done. See \cite{Blinnikov:1996,Panov:1995,Panov:2001,Mumpower:2011ar}\red{[Refs]} for overview.
 
+%% modelling the network
+Key components of a NRN are interactions between two and more nuclides, catheterized by reaction rates (RR), as well as single particle reactions, such as $\beta$-decay.
+Reactions between charged particles require that the Coulomb barrier is overcome. Thus, in general, RR depend strongly on the particle energy as well as on \magenta{resonances} in compound nuclear systems (\textit{e.g.,} \cite{Clayton:1968}, \textsection{4}). 
+\gray{ %% Additional, not crucual information
+In single-particle reactions, \textit{e.g.,} $\beta$-decay, it is common to assume a constant RR, which is strictly speaking is true only in vacuum. 
+Another common approach to treating complex reactions, is to assume that reactants form a single nuclide that undergoes a chain of decays into reaction products. This is called a Hauser-Feshbach approach. It is particulalrly useful for reactions far from the valley of stability with a long chains of decay \cite{Hauser:1952,Rauscher:2000fx,Goriely:2008zu}. 
+In addition, in order to model the nuclear statistical equilibrium (NSE) and $\beta$-decay rates, nuclide masses and partition functions (\cite{Arcones:2010dz,Brett:2012jn,Mendoza-Temis:2014mja,Mumpower:2015ova}) have to be prescribed. 
+This data is not fully available and have large uncertainties (see \textit{e.g.,} \cite{Lunney:2003,Schatz:2013,Mumpower:2015ova} and references therein). 
+Thus, often theoretical models for nuclear masses and $\beta$-decay properties are used for many species \cite{Lunney:2003,Moller:2003,Mumpower:2015ova}. 
+}
 
+Several nuclear reaction networks are available in the literature. 
+In particular: 
+a set of networks by \cite{Timmes:1999} \footnote{\url{http://cococubed.asu.edu/code_pages/burn.shtml}}, 
+\texttt{XNet} by \cite{Hix:1999} \footnote{\url{http://eagle.phys.utk.edu/xnet/trac}} , 
+\texttt{NucNet} by \cite{Meyer:2007} and a  \footnote{\url{https://sourceforge.net/projects/nucnet-tools}}
+\texttt{SkyNet} by \cite{Lippuner:2015gwa} \footnote{\url{https://bitbucket.org/jlippuner/skynet}}.
 
+In this thesis we employ \texttt{SkyNet} to compute nucleosynthetic yields in binary neutron star mergers ejecta. 
+We introduce the NNR in the follwing subsection and discuss its main advantages. 
+\texttt{Skynet} is a modular and versatile nuclear reaction network designed initially for $r$-process nucleosynthesis calculations. It is capable of evolving arbitrary set of nuclear
+species in NSE as well as switching to a full network self-consistently. The network incorporates \magenta{screening corrections} and equation of state that considers an entire composition. 
 
+\texttt{SkyNet} is a popular choice for studying nucleosynthesis in neutron rich environment \cite{Lippuner:2015gwa,Radice:2016dwd,Roberts:2016igt,Lippuner:2017tyn,Siegel:2017nub,Vlasov:2017nou,Fernandez:2016sbf} \red{[Refs(us,david)]}, .
+
+%%
+%%
+%%
+
+\subsubsection{Nuclear reaction network basics}
+\red{This might go into TheoryAppendix}
+
+Nuclear reaction networks allow to track the evolution of a system of many nuclear species that undergo transmutations in prescribed reactions given the reaction rates. 
+The rate equations describe microscopic processes. They are based on the kinetic theory. For instance, a system of non-correlated particles, involved in interactions, some of which can change particle type, can be described in terms of a distribution function. 
+The evolution of this function is given by Kinetic theory \red{Danielewicz and Bertsch, 1991; Buss et al., 2012}. 
+
+Generally, only a subset of particles is evolved by a NRN, while for others the conditions are assumed to be constant. 
+For instance, \magenta{photons are generally assumed to be in equilibrium} at all times, while electron and positron densities are set by the \magenta{charge neutrality}. 
+
+% Abundances
+When describing particle interactions and nuclide transmutations it is common to introduce the entrance and exit channels representing reactants and products. 
+Then, a reaction rate is defined as a speed at which a reaction proceeds per particle in the entrance channel. It follows then that, if there is no change between particles in entrance and exit channels, the RR is zero. 
+A particular useful quantity is \textit{abundance} $Y_i$, defined as 
+
+\begin{equation}
+\label{eq:theory:nuc:abundance}
+Y_i = \frac{n_i}{n_B} = \frac{N_i/V}{N_B/V} = \frac{N_i}{N_B},
+\end{equation}
+
+where $V$ is the volume of the fluid element, $N_i$ and $N_B$ are the total numbers of particles of species $i$ and baryons respectively. It is usually abundances of $Y_i$ that are evolved in nuclear reaction networks instead of particle number densities $n_i$ as the latter depend on the volume that often is not constant. 
+The abundance evolution equation reads
+
+\begin{equation}
+\frac{\text{d}Y_i}{\text{d}t} = \sum\lambda_{\alpha}(-R_{i}^{\alpha}+P_{i}^{\alpha})N_{i}^{\alpha}\prod_{m\in\mathcal{R}_{\alpha}}Y_m^{N_{m}^{\alpha}}
+\end{equation}
+
+where $\lambda_{\alpha}$ is the reaction rate of the forward process, $R_{i}^{\alpha}$ are reactants, $P_{i}^{\alpha}$ are products, $N_{i}^{\alpha}$ number of particles of the species $i$ involved and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of psecies $i$ involved (see e.g., \cite{Hix:1999}).
+
+The \texttt{SkyNet} solves the coupled first-order non-linear system of equation, \eqref{eq:theory:nuc:abundance}, for a given set of reaction rates $\lambda_{\alpha}$.
+The Eq.~\eqref{eq:theory:nuc:abundance} can be understood as following. The time derivative of the species $i$ abundances is given by the sum over all reactions, in which the species in question participate. 
+Each reaction contribution consists of multiplies: reaction rate, a factor describing creation or destruction of particles (of species $i$), \textit{i.e.,} the number of particles, and abundances of reactants.
+
+A representative example is carbon burning $^{12}\text{C} + ^{4}\text{He} \leftrightarrow ^{16}\text{O}$:
+
+\begin{eqnarray*}
+    \frac{\text{d}Y^{12}\text{C}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
+    \frac{\text{d}Y^{4}\text{He}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
+    \frac{\text{d}Y^{16}\text{O}}{\text{d}t} &= \lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots . \\
+\end{eqnarray*}
+
+%%
+
+\paragraph{Reaction rates and velocity averaged cross-sections}
 
 %% ---------------
 %%
