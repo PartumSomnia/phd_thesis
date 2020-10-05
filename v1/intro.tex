@@ -1663,8 +1663,104 @@ The initial abundances (and $\rho_0$) are determined by the NSE for a given $Y_e
 
 The nuclear reaction rates for computations are taken fron JINA REACLIB database \cite{Cyburt et al., 2010}.
 
-\red{Details on what was used for setting up the skynet}
-
 %%
 
 \subsubsection{Parameter Space}
+
+\red{Details on what was used for setting up the skynet}
+\red{This would go the the 'method' section}
+\gray{The result of the analysis:
+    Fig.3.1 shows the effect of Ye and s on the final abundances. High Entropy -- high neutron-to-seed ratio, even though seed nuclei are light, -- full $r$-process. Low entropy, $r$-process is jugged as there are not many free neutrons available. However, it still preceeds and the seed nuclei are very heavy.
+    At high $Y_e$ the, where ejecta becomes less neutron rich, the full $r$-process is no longer produced as there are not enough neutrons per seed nucleus to rich the third peak.
+    High entropy and low $Y_e$ allows for $3$rd peak reproduciton still as there are few seed nuclei and neutron to seed ration is high.
+}
+
+%%
+
+\subsubsection{Lanthanides turnoff and heating rate as a function of $Y_e$}
+\gray{This is too much for theory or methods. Needs to go to the appendix on Nucleo}
+
+\magenta{Lanthanides turnoff} is a turn off pooint in the parameter space, when the mass fraction of synthesized lanthanides (actinides) $X_{\text{La}}$ ($X_{\text{Ac}}$) drops below $10^{-3}$. 
+For example, a maximum $Y_e$ (and minimum $\bar{A}_{\text{fin}}$) for which the $X_i \geq 10^{-3}$ is a turn off point.
+The turnoff prevents a large amount of lanthanides (actinides) from being produced and suppresses the fission cycling.
+Here $\bar{A}_{\text{fin}}$ is the final average mass number,
+
+\begin{equation}
+\bar{A}_{\text{fin}} = \frac{1}{Y_{\text{seed}}(0) + Y_{\alpha}/18},
+\end{equation}
+
+where $Y_{\alpha}(0)$ is the initial abundance of alpha particles, $Y_{\text{seed}}(0)$ is the initial abundance of the seed nuclides ($A\geq12$). 
+The $Y_{\text{seed}}(0) + Y_{\alpha}/18$ thus denotes the number abundance of heavy nuclei at the end of the $r$-process, assuming that it takes $\sim 18$ $\alpha$-particles to create a seed nuclei \cite{Woosley and Hoffman, 1992}. 
+Further, assuming that the number of seed nuclides by the end of the $r$-process equals the initial number of seeds plus those produced in $\alpha$-process, \textit{i.e.,} neglecting the effects of fission cycling, the total mass-fraction of heavy nuclei at the end of the nucleosynthesis is $1$. 
+Note that $\bar{A}_{\text{fin}}$ is a function of initial abundances only and a good indicator of the direction that nucleosynthesis would take.
+
+Considering a range in $s\in\{1, 10, 30, 100 \}$, $\tau\in\{0.1, 1, 10\}$~ms and $Y_e\in(0,0.5)$,
+the nucleosynthesis calculations state, nuclear heating rates, $M\varepsilon$, (at $1$day, $10^{-2}M_{\odot}$) are rather constant up to $Y_e\approx 0.4$, when a particular nuclides start dominate the heating. The number of fission cycles is increased for high $s$ models, due to increased production of seed nuclides by triple-$\alpha$ process. 
+\gray{Conclusion: Heating rates are fairly insensitive to $Y_e$ until $Y_e\approx0.4$}.
+
+\magenta{Neutron-rich freeze-out} occurs at high $s$ and small $\tau$, where ejecta high temperature and rapid expansion allows for a fewer capture events on seed nuclei and free neutrons escape. 
+An ejecta component with such conditions was suggested to produce a ultraviolet precursor to the kilonova on a timescale of hours, powered by the decay of frozen-out neutrons \cite{Metzger et al. (2015)}.
+\gray{See if that can be modelled easily for our BNS models}
+
+The heating rate, $M\varepsilon$, are roughly constant with $Y_e$, at $1$ day, as long as the fraction $X_{\text{La+Ac}}$ produced is constant. 
+After lanthanides production ceases and their fraction falls, the instantaneous heating rate (at $1$ day) decreases only slightly (up to $1$ order of magnitude). 
+Considering the integrated nuclear heating amount as a function of $Y_e$ ($s=\text{const}$, $\tau=\text{const}$), it does decreases by $1-2$ orders of magnitude, when the $r$-process stops producing unstable heavy lanthanides, and stable nuclides are produced directly.
+\gray{Conclusion: $M\varepsilon \approx \text{cost}$ with $Y_e$ (at $1$ day)}
+
+%%
+
+\subsubsection{Fission cycling}
+\gray{Good and clean for Nucleo section}
+
+\magenta{Fission cycling} is a process where freshly synthesized via strong $r$-process heavy nuclides with $A\sim 300$ undergo fission just to become seed nuclides for a similar $r$-process leading to an $A\sim 300$ nuclide. This process eliminates the dependency of the final abundances on the initial conditions and it also limits the maximum nuclide mass that ca be achieved. 
+
+The number of fission cycles can be estimated via a ration of the seed nuclides at time zero and the number of seeds at the time when there are no more free neutrons available. This is motivated by the fact that neutron capture itself does not create new seeds, only increases the mass of them, while fission, splitting heavy nuclide in two, generates additional seeds. 
+
+The number of fission cycles is tight to how much lanthanides and actinides are produced. In particular, as \magenta{fission cycling limits the maximum mass of the nuclide that can be created}, the fraction of lanthanides, actinides as well as heating $\varepsilon$ are insensitive to the initial $Y_e$. 
+The number of cycles is thus tight to the initial $Y_e$. The lower it is, the more free neutrons available and thus more cycles would occur. After the fission cycling stops the $r$-process maximum mass drops to $A\sim 250$. Thus the amount of actinides drops as only the lightest of them can be produced that do not fission immediately. 
+
+%%
+
+\subsubsection{Lanthanide production and heating rate in the full parameter space}
+\gray{Good and clean for the transition to Kilonova section}
+
+\paragraph{Langhinide production boundaries in parameter space}
+The properties of the electromagnetic signal, kilonova, are determined by the energy available, \textit{i.e.,} nuclear heating rate, and how easy this energy can escape the medium, \textit{i.e.,} photon opacity. Both, in turn, depend on the amount of lanthanides (and actinides) available. 
+
+Consider the aforementioned parameter space in $Y_e$, $s$ and $\tau$. The mass fraction $X_{\text{La}+\text{Ac}}$ have the following general dependency on the parameters. 
+
+For a very low ($Y_e \sim 0.01$) the lanthanides production is mostly assured with exception of two cases: high $s$ - low $\tau$ and very large $\tau$ low $s$. 
+In case of the former, the reason is the increased timescale for the neutron capture and lowered mass of the seed nuclei, which might lead to the neutron-rich freeze-out. 
+In case of the latter, the long expansion timescale results in the newly-synthesized heavy elements decaying under the high density and temperature conditions sufficient for photodissociation, bringing the composition back to NSE. When the material does cool down enough for the $r$-process to produce heavy elements agian, the electron fraction has been already increased through $\beta$-decays, allowing for the weak $r$-process only. 
+\gray{Conclusion: full $r$-process for low $Y_e$ suppressed at high $s$ - low $\tau$ and very large $\tau$ - low $s$. Leading to a freeze-out in the first case and photo-dissociation and NSE restoration in the latter. }
+
+At the intermediate $Y_e \sim 0.25$ the boundary between lanthanides-right and lanthanides-free composition lies. 
+Specifically, at the $Y_e=0.25$, lanthanides are produced if the $s \sim 1$ is very low or very high $s \sim 100$. In case of the former this is due to seed nuclei being initially very heavy and few captures are needed to produces lanthanides, while in case of the latter, a large number of free neutrons is available as triple-$\alpha$ process is suppressed \cite{Hoffman et al., 1997}, Meanwhile, high-$\tau$ low-$s$ and low-$\tau$ high-$s$ (symmetric corners of distribution) are lanthanides-free. 
+\gray{The $Y_e \sim 0.25$ limits the lanthanides production region of parameter space.}
+
+\paragraph{heating rate boundaries in parameter space}
+Considering the heating rate, $M\varepsilon$, at $1$~day for $M=10^{-2}M_{\odot}$ the following dependencies observed.
+For $Y_e\in[0.04,0.35]$ the heating rates (at $1$~day) remain almost independent of $s$ and $\tau$. The dependency on $Y_e$ becomes prominent at $Y_e>0.35$, however the dependency on $s$ and $\tau$ are rather weak. In particular, there heating rates peak at $Y_e=0.425$ due to the decay of $^{66}$Cu that has a rather large $Q$-value.
+Notably, no significant correlation found between $X_{\text{La}+\text{Ac}}$ and heating rate at $1$~day. This independence from composition results from the fact that at $1$~day the main contributions to the heating rate would come from nuclides with corresponding half-life (decay energy depends on half-life). And thus, even though the composition of the material does depend on the $Y_e$, $s$ and $\tau$, the same nuclides are considered when heating rates are estimated. At very high $Y_e$, however, the heating rate can be dominated by a selected nuclides and thus it depends on the composition.
+\gray{Conclusion: Heating rates are independent of composition, until singular nuclei start to dominate heating. [REASON]}
+
+%%
+
+\subsubsection{Fitted nuclear heating rates}
+\red{Details on what sets the heating. Might be a footnote, or in appendix}
+
+Decay of newly synthesized heavy elements powers kilonova. There are however, particular nuclei decay of which has the largest contribution. To determine these, the fractional heating contributions of all nuclides are integrated. The time window is between $0.1$ and $100$ days, $s\in[1,100]$ $k_B/\text{baryon}$ and $\tau\in[0.1,500]$~ms. 
+
+The single most important nuclide in the aforementioned window is $^{132}$I. The origin of this nuclide is the decay of double magic $^{132}$Sn, that is produced in large quantities and then decays within minutes to $^{132}$Te (through $^{132}$Sb). The decay of $^{132}$Te is not very energetic, but it results in $^{132}$I, which decays with $Q=3.6$~MeV. This determines its large contribution to the heating. 
+
+Overall, at very low $Y_e < 0.25$, nuclei from the second and third peaks ($A\sim 130$ and $A\sim 200$) dominate the heating (and few $A\sim 250$ ones), while at higher $Y_e$, most of the heating comes from the second peak. This is in agreement with dominant $\beta$-decay nuclei found in \cite{Metzger et al., 2010}. In addition, heating comes from the spontaneous fission of heavy elements, produced alongside actinides.
+
+At higher $Y_e\in(0.25,0.375)$, the first $r$-process peak, $A\sim 88$ makes a significant contribution as well as neutron-rich side of the iron-peak. 
+
+At even higher $Y_e>0.375$, the proton-rich side of stability around the iron peak exerts a contribution.
+
+%%
+%%
+%%
+
+\subsection{Lightcurves}
