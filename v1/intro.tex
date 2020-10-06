@@ -1764,3 +1764,180 @@ At even higher $Y_e>0.375$, the proton-rich side of stability around the iron pe
 %%
 
 \subsection{Lightcurves}
+\red{To be re-used for Kilonova intro/method [Bolometric lightcurves?]}
+
+The ejecta expansion is assumed to be homologous, \textit{i.e.,} $r = \upsilon t$ with the density structure being
+
+\begin{equation}
+\rho(t, r) = \rho_0(r/t)\Big(\frac{t}{t_0}\Big),
+\end{equation}
+
+instead of uniform density of the expanding ball, as the latter might show superluminal expansion velocities.
+
+The nuclear reaction network gives the heating as a function of time, $\varepsilon(t)$, but only a fraction of released energy (in form of neutrinos and gamma-rays) will be passed into the material, thermolized in the it. This fraction is difficult to calculate and it requires gamma ray transport schemes. 
+One can assume it to be constant, \textit{i.e.,} $f=0.3$ \cite{Barnes and Kasen, 2013}. Thus, only $f\varepsilon$ of the released in nucleosynthesis energy is deposited into the material.
+Assuming the \magenta{homologous outflow}, the velocity can be considered as a \magenta{Lagrangian coordinate} and the Lagrangian radiative transport equations can be written to the first order in $\upsilon/c$ \cite{Mihalas and Weibel-Mihalas, 1999}
+The equation of state can be assumed to be the one of an ideal gas, $u=3T/(2\mu)$ and the Eddington factor entering the Lagrange equations can be obtained from the static Boltzmann transport equation. 
+This method is similar to \cite{Ensman, 1994}. 
+\gray{Conclusion: A very basic way to model radiation transport in moving matter}
+
+Calculating the exact opacities of a mixture of atoms with complex line structure, such as iron-group elements, and even more so, lanthanides and actinides is a difficult task. \red{it was adressed though by Tanaka et al}.
+However, if the detailed opacity calculations are beyond the scope, one can assume an approximate opacities given by 
+\begin{equation}
+\kappa = \kappa_{\text{Fe}}(T) + \sum_i \max[\kappa_{\text{Nd}}(T,\: X_i) - \kappa_{\text{Fe}}(T),\: 0],
+\end{equation}
+where $\kappa_{\text{Fe}}(T)$ and $\kappa_{\text{Nd}}(T,\: X_i)$ are the iron and neodymium opacities given in \cite{Kasen et al., 2013}, $X_i$ is the mass fraction lanthanides or actinides species. 
+For the gray opacity calculations, the \magenta{Plank mean opacity} can be assumed (it is a good approximation when wavelength dependent opacity is calculated in the Sobolev approximation \cite{(Kasen, 2015)})
+\gray{Conclusion: opacity for the rad.transport calculations}
+
+%%
+
+\subsubsection{Dependence of kilonova light curves on the outflow properties}
+
+%% Effect of opacity and heating rates
+In case of a lanthanides-rich ejecta, $Y_e=0.01$ $(Y_e=0.19)$ the difference in heating rates is small. However, large differences in opacity result in the peak time difference of about a week and magnitude difference of about $1$~mag. In addition, the effective temperature at peak is also much lower for the $Y_e=0.01$. 
+In case of a lanthanides-poor ejecta, $Y_e=0.25$ $(Y_e=0.5)$, the difference in heating rates is more prominent as in the latter, mostly stable nuclei are produced. The difference in peak time of the latter $1-2$ days later and its peak magnitude appears about $1$ order dimmer. This is the effect of the reduced heating.
+Thus difference in opacity sets the lightcurve properties at low $Y_e$ while effect of different heating rates on the lightcurve is prominent at high $Y_e$. 
+The interplay between opacity in heating can be seen from the fact that more heating leads to the brighter late part, because hotter ejecta maintains its high opacity (more populated excited levels) for longer \cite{Kasen et al., 2013}.. 
+\gray{Conclusion: High $Y_e$, $\kappa$ sets the lightcurve, low $Y_e$, $m\varepsilon$ sets the lightcurve. More $m\varepsilon$ leads to brighter late time curve.}
+
+%% effect of entropy
+The effect of different entropy of the ejecta is the most prominent at $Y_e=0.25$, where the $s=1k_B/$baryon and $s=10k_B$/baryon give lanthanides-righ and -poor ligtcurves.
+Thus, if lanthanides are produced the transient is expected to be longer, dimmer and redder, while of the lanthanides are not produced, it is brighter, bluer and shorter.
+The peak times and magnitudes also assessed by \cite{e.g. Roberts et al., 2011; Barnes and Kasen, 2013; Tanaka and Hotokezaka, 2013}. 
+%% precoursour 
+A particular exception is the case of the neutron-rich freeze-out that leads to a neutron-powered transient and occurs at high entropy and low expansion timescale. It results in a very bright, $L\sim10^{41-42}$, and very early, $\sim0.5$~hour, hot, $T\sim 10^{4-5}$, ultraviolet transient. Previously this transient was also reported by \cite{Metzger et al. (2015)}.
+
+%%
+
+\subsubsection{Mass estimates of potential kilonova observations}
+\red{Not usefull. Hight be used as a connection between Thermal/Non-thermal emission}
+
+A particular example for the investigation of the dependency of a lightcurve on ejecta mass can be done for the GRB130603B, for which observations is infrared and optical \cite{Berger et al., 2013; Tanvir et al., 2013}
+
+The lwoer limit on the ejected mass can be computed. The method is the following. Consider a set of parameters for ejects, velocity and mass, compute the AB magnitude for the transients produced bu this ejecta. Account for the cosmology and instrument filter responds for the observed data. Compare the observed magnitudes with model ones and interpolated the minimum that reproduces observations.
+
+%%
+
+\subsection{Conclusion}
+\red{summary}
+
+The final amount of lanthanides and actinides depends mostly on $Y_e$. Ejecta is free of these elements for $Y_e > 0.25$. Notably, lanthanides-free ejecta can be achieved also for low $Y_e$ under special conditions in terms of entropy and expansion timescale. High $s$ low $\tau$ ang low $Y_e$, for isntance, give a neutron rich freeze-our. Contrary, at low $s$, high $\tau$, there is a late time heating that resets the composition to the NSE corresponding to a higher $Y_e$. 
+
+High opacity of lanthanides (a factor of a 100) results in the peak of a Kilonova occurring a weak later and at $1$ magnitude lower. Similar results were found in \cite{Roberts et al. (2011), Kasen et al. (2013), Tanaka and Hotokezaka (2013), and Grossman et al. (2014).}. Heating rates however, at $1$ day depend weakly on the lanthinides abundances, and thus on $Y_e$. When ejecta is initially low $Y_e$ the dependency is small, as the same ensemble of nuclides dominating the heating is produced. If the $Y_e$ is high, however, the specific nuclides dominate the heating and its rate changes strongly depending on composition. 
+
+%%
+%%
+%%
+
+\section{NEUTRINOS AND BHNS R-PROCESS NUCLEOSYNTHESIS}
+\red{Might be usefull for general understanding / Theory [NSBH]} 
+\red{PAPER}} 
+
+\textbf{The influence of neutrinos on r-process nucleosynthesis in the ejecta of black hole–neutron star mergers}
+
+\textit{
+Considering the output of the general relativistic simulation of a NSBH merger, mapping it onto the newtonian smoothed particle hydrodynamics (SPH) code and investigate the evolution of ejecta before the outflow is homologous. The nucleosynthesis is added in postprocessing, considering different levels of neutrino irradiation from the disk. The neutrinio irradaition can affect the final abundances as neutrino absorption on free neutrinos turn them into protons, changing the $Y_e$, adding to the seed nuclei budget. 
+}
+
+%%
+
+\subsection{Introduction}
+
+NSBH were expected to be detected by LIGO/VIRGO \cite{LIGO Scientific Collaboration et al., 2015; Acernese et al., 2015}, (\gray{and they were but with no counterpart}), possibly hinting on the origin of short Gamma ray Bursts \cite{e.g. Lee and Ramirez-Ruiz, 2007} and $r$-process nucleosynthesis \cite{(e.g. Lattimer and Schramm, 1976; Korobkin et al., 2012; Bauswein et al., 2014b}.
+
+%% Galactic chemical ecolution nas compact mergers
+While galactic chemical evolution hinted that SN might be largely responsible for $r$-process elements enrichment \cite{e.g. Qian, 2000; Argast et al., 2004}, the conditions within SNe are not perfect for this process \cite{e.g. Arcones and Thielemann, 2013)}. These conditions however, are present when neutron stars or NS and BH merge \cite{Freiburghaus et al., 1999}. 
+Including mergers  into galactic chemical evolution is difficult, as these are high yield rare events that require a significant time between progenitor formation and merger. In particular, discrepancies between such models and observations of $r$-process elements abundances in low metallicity halo \cite{Qian, 2000; Argast et al., 2004}. More complex models of galactic chemical evolution show however a reconciliation of the disagreement \cite{Matteucci et al., 2014; Shen et al., 2015; van de Voort et al., 2015; Ishimaru et al., 2015} \gray{And recent observations, GW170817, indicate the mergers are one of the main sources of $r$-process material.}
+
+%% Effect of weak interactions on the composition of the Ejecta 
+Weak interactions were shown to be important in mergers of two neutron stars, affecting the properties of the outflow \cite{Wanajo et al., 2014; Goriely et al., 2015; Sekiguchi et al., 2015; Foucart et al., 2016a; Palenzuela et al., 2015; Radice et al., 2016} \gray{Can Add long paper in the list}. The outcome of the merger has a complex dependency on EOS, electromagnetic field and neutrino effects \cite{e.g., Neilsen et al., 2014; Palenzuela et al., 2015}. 
+In case of NS and BH merger, weak interactions are expected to play much lesser role. Low entropy in the tidal part of the dynamical ejecta suppresses the $e^{-}$ and $e^{+}$ captures. Neutrino interactions are suppressed by the high outflow speeds and low neutrino luminosity \cite{e.g., Foucart et al., 2014, 2015}. Thus, strong $r$-process is likely to occur in the NSBH outflows \cite{Lattimer and Schramm, 1976; Lattimer et al., 1977; Korobkin et al., 2012; Bauswein et al., 2014a}.
+
+The merger rates for NSBH are quite uncertain (\gray{Check the LIGO papers}). The ejecta mass from the mergers depends on the binary parameters, BH spin and mass in particular \cite{Foucart et al., 2013; Hotokezaka et al., 2013c; Bauswein et al., 2014a; Kyutoku et al., 2015}. 
+Increasing the former (in the direction of the orbital angular momentum), increase the amount of ejecta, while increasing the latte leads to a complex effect on the ejecta mass \cite{Kyutoku et al., 2015}.
+To asses the importance of NSBH for the galactic enrichment with $r$-process material requires an accurate estimate of merger rates and predictions for the amount of unbound mass, both of which are not very well known. 
+
+%%
+
+\subsection{Methods}
+\red{For general knowledge [Might be in appendix, in short form]}
+
+\subsubsection{Nuclear reaction network and weak interactions}
+
+The nucleosynthesis calculation require a density history of the ejecta, its initial composition and entropy. This can be done performing a hydrodynamics simulation of the expanding ejecta (which allows to account for the feedback the nucleosynthesis has on ejecta, \textit{e.g.,} generated entropy) or assuming an expansion mode, \textit{e.g.,} homologous expansion. Change in electron fraction during the expansion can be included via weak interactions. Otherwise, it can remain constant.
+
+Notably, a single EOS may not extend to the temperature-density region where $r$-process is still possible in the expanding ejecta. As the nuclear reactions affect the EOS only marginally below $\rho\sim 10^{12}$g cm$^{-3}$, a switch to another, multi-species non-degenerate ideal gas EOS, \textit{e.g.,}\cite{Timmes and Arnett, 1999}. However, caution must be exercised in this procedure, as a single nucleus approximation of the LS220 eos predicts nuclei different from those from full NSE calculation and thus different internal energy. 
+
+For a given density history (of a Lagrangian particles), the nucleosynthesis can be performed via NRN, \texttt{SkyNet} \cite{Lippuner and Roberts, 2015}. If it is required to track the evolution of the electron fraction, (which can be the case for high densities and temperatures where weak interactions are not in equilibrium), the NSE evolution mode can be used. Below $T\sim 7$GK, however, a full NNR evolution is required.
+The inclusion of \magenta{weak reactions}, -- absorption of neutrinos and anti-neutrinos by electrons and positrons, and electrons and positions by free nucleons. 
+The expression for neutrino capture rate is complex, which requires different distribution functions for electrons and positrons. In its usually adopted form it does not include momentum transfer to the nucleons and neglects weak magnetism corrections (note however, that might be of importance for the neutrino-driven with \cite{Horowitz, 2002}). 
+Neutrino-distribution is usually assumed to the be of the Fermi-Dirac shape in energy space. While the simple spherical emitting surface is a common approximation, the geometry might be of importance as the NSBH (BNS) merges form a disk-shape emitting region.
+
+%%
+%%
+%%
+
+\subsection{Results and discussion}
+
+\subsubsection{The electron fraction of the ejecta}
+
+The prime quantity defining the nucleosynthesis in the ejecta is its electron fraction \cite{(e.g., Lippuner and Roberts, 2015)}. Due to the absence of neutrino emitting central object as well as shocks at collision, and short timescales, the electron fraction in the NSBH ejecta  is generally set by the initial beta-equilibrium \cite{Just et al., 2015}. Under such low  $Y_e < 0.1$, the full $r$-process with a large number of fission cycles is expected  \cite{(e.g. Kasen et al., 2015; Lippuner and Roberts, 2015)}. On the other hand, in case of the BNS, the significant neutrino irradiation is expected to increase the ejecta electron fraction through weak interactions \cite{Wanajo et al., 2014; Goriely et al., 2015; Foucart et al., 2016a; Palenzuela et al., 2015; Radice et al., 2016}. If the $Y_e$ is raised to $0.25$, the nucleosynthesis becomes dependent on other ejecta properties, such as expansion timescale and entropy. 
+
+In case where neutrino absorption is not 'ab-initio' included into the simulation, the effect of it can be estimated from the total neutrino luminosity and neutrino processing timescale. 
+
+\begin{equation}
+\tau_{\nu} \approx 67.8 \text{ms} \: \Big(\frac{r}{250\text{km}}\Big)^2 L_{\nu_e, 53}^{-1} T_{\nu_e, 5}^{-1}
+\end{equation}
+
+where $r$ is the radius of the fluid element, $L_{\nu_e, 53}$ is the electron neutrino luminosity in units of $10^{53}$erg s$^{-1}$ and $T_{\nu_e,5}$ is the electron neutrino spectral temperature in units of $5$MeV. The spectral temperature can be estimated for a gray scheme by considering the temperature of the emission region, and adopting that the average neutrino energy is $\varepsilon_{\nu} \approx 3.15T$ \cite{(e.g., Foucart et al., 2015).}. 
+\red{[Quote]Electron antineutrinos are unlikely to contribute significantly to the neutrino interaction timescale[Why?]} \red{[Answer]This is because in the low entropy outflows of BHNS mergers almost all protons are locked in heavy nuclei and thus have very low neutrino capture cross-sections.[EndQuote]}.
+
+Next, assuming that all protons are incorporated into the heavy nuclei, neutrino luminocity and ejecta velocity remain constant, and that neutrino irradiation from the disk start after merger, also neglecting $e^{-}$, $e^{+}$ captures, 
+
+\begin{equation}
+\frac{d Y_e}{dr} = \frac{\theta(r - \nu t_{\nu, on})}{\nu \tau_{\nu} Y_{e; eq}}(Y_{e; eq} - Y_e)
+\end{equation}
+
+where $Y_{e; eq} = \langle Z \rangle_{\text{nuclei}} / \langle A \rangle_{\Omega_j}\text{nuclei}$ and $t_{on}$ is the time when neutrino luminosities reach their saturation value.
+
+The result of this analysis states that the the neutrino irradiation is unlikely to play a significant role in changing the composition of the ejecta from NSBH mergers.
+Running with the full NRN results in very little changes in ejecta composition during the first $\sim10$~ms after while the changes at $\sim20$~ms are driven by beta-decays in $r$-process.
+
+%%
+
+\subsubsection{Nucleosynthesis and neutrino induced production of the first r-process peak}
+
+Consider in more details, the effect neutrinos have on the \magenta{isotopic abundances} in ejecta. 
+Note that luminosity of the electron anti-neutrino is higher then the one of the electron neutrino due to \magenta{re-leptonization} of the neutrino emitting disk \cite{Foucart et al., 2016a}. However, nucleosynthesis yields are insensitive to the chosen electron antineutrino luminosity because of the \magenta{$\alpha$-effect}.
+
+The result is, again, a confirmation, that the NSBH ejects, dynamically, a large amount of $r$-process rich material \cite{(e.g. Roberts et al., 2011; Korobkin et al., 2012; Just et al., 2015)}, with both second and third $r$-process peaks reproduced robustly at all considered neutrino luminosities which is to be expected for the outflow with initially very low $Y_e$, that passes several fission cycles \cite{Lippuner and Roberts, 2015}. 
+
+Notably, the abundance of the first $r$-process peak at mass number $A=78$ depends on the neutrino luminosity but in all cases it is under-produced relative to the solar abundance when normalizing to the second and third peaks.
+
+\red{Mechanism generating seeds for the first peak elements in a very neutron rich environment [neutrino-induced seed production]}
+The origin of seed nuclei for the first peak production is the following. After falling from NSe, and the strong eqilibrium ceases to hold, the material is composed of heavy nuclei and free neutrons, which, while still being close to the torus, turns into protons. Then they capture another neutron forming $D$. Then, two deutrons form an $\alpha$-particles, \gray{[is this $\alpha$-process?]} two of which then undergo a neutron-catalyzed triple-alpha reaction, forming a low-mass seed nuclei \cite{Meyer et al., 1998}. A similar process proceeds in neutron rich neutrino driven winds \cite{Delano and Cameron, 1971; Hoffman et al., 1997}.
+These low-mass seed nuclei capture neutrons forming heavier elements, but cannot generally pass the $N=50$ ($Z=28$) in the $r$-process path due to exhaustion of free neutrons. In the end these seeds end up as a first-peak elements. 
+
+%%
+
+\subsubsection{Details of the first peak production mechanism}
+\red{Abundances as a function of neutrino luminocities} 
+
+Consider the indirect production of the first peak nuclei. This relies on the neutrino induced seed production, \textit{e.g.,} \magenta{neutrino catalyzed triple alpha process}, that converts $6$ protons into one seed nucleus. For a $L_{\nu_e}\sim 10^{53}$~erg s$^{-1}$, about $\sim10\%$ of the $r$-process material stops at the first peak. 
+
+A time needed for an indirectly produced seed nuclei to be processed to its final $N=50$, the $\tau$ timescale, is $70-600$~ms postmerger for $L_{\nu_e;52}\in[1,20]$. The time it takes to go from chrage $Z_1$ to $Z_2$ can be estimated considering the \magenta{waiting point approximation} (c.f., \cite{Kratz et al., 1993}) and beta-decay timescales of intermediate nuclei. Notably at high temperatures, where  $(n,\gamma)$ reaction is in equilibrium with its inverse reaction, the $\tau$ timescale depend only on hydrodynamics $\rho$, $T$, $Y_n$. 
+This explains the dependency of the first $r$-process abundances on the ejecta parameters. 
+
+The combined timescale that is required for a seed nucleus to go to the start of the first $r$-process peak and get processed through the first peak is $\sim500$~ms and $\sim100$~ms respectively for the aforementioned range of neutrino luminosities. The final first peak abundances then scale linearly with neutrino luminosity. After the $\sim600$ms postmerger the free neutrinos are exhausted.
+Thus, overall, the neutrino flux in a time-frame of the charge conversion, $[70, 70+100]$~ms, determines the amount of neutrino-induced first peak production. 
+
+Notably, while up to $L_{\nu_e}5\times10^{52}$erg s$^{-1}$, the first peak element production scales linearly with $L_{\nu_e}$, at this value, the saturation occurs. In addition, for a certain slow moving fluid elements with low initial electron fraction and entropy, the neutrino luminosity can have a non-monotonic behavior of the first peak abundance with the neutrino luminosity.
+
+Regarding the effects of thermodynamic conditions and their effect on the first pear elements production the following can be stated. Increased neutrino luminosity raises the fluid electron fraction and temperature. Hence, the total number of seed nuclei is increases. Higher entropy also reduces the ability of the synthesized material to pass the $A=8$ stability gap. Notably at very low temperatures (lower $L_{\nu_e}$) the induced seed production changes considerably and is able to pass the $N=50$ maxiumum. 
+The first peak elements are produced even when there no neutrinos through fission of heavy nuclei.
+
+%%
+
+\subsubsection{Isotopic and elemental abundances, galactic chemical evolution, and low metallicity halo stars}
+\red{Brief}
