@@ -1941,3 +1941,90 @@ The first peak elements are produced even when there no neutrinos through fissio
 
 \subsubsection{Isotopic and elemental abundances, galactic chemical evolution, and low metallicity halo stars}
 \red{Brief}
+
+It was shown that for a set of BHNS models, the nucleosynthesis in the ejecta differs only a little. The reason for this is twofold. On one side, abundances at the second and third peak are insensitive to the binary parameters due to fission cycling. On the other side, for a given neutrino luminosity, the neutrino induced first peak is insensitive to binary parameters. Notably, larger difference is expected if the ejecta velocity varies more, which in turn changes the time when the neutrino exhaustion the ejected material.
+
+Comparison between solar $r$-process abundance pattern and models yields show an overall qualitative agreement but considerable quantitative disagreement. In particular, an overproduction of the third peak elements. This disagreement can be attribution to uncertainties in ejecta properties and uncertainties in nuclear data. The latter, in particular can amount to a factor of ten \cite{Mumpower et al., 2015}.
+\footnote{In addition, the neutrino-induced fission, that can affect the abundances of the first peak elements, especially in ejecta that undergoes strong neutrino irradiation, \cite{Qian, 2002; Kolbe et al., 2004}, is not included in the NRR} 
+\gray{Conclusion} Overall, it is unlikely that NSBH is a dominant source of $r$-process elements. 
+
+\magenta{Elemental abundance pattern} $Y_Z = \sum_i \delta_{Z_i,Z}Y_i$ is commonly used in studying the abundance patterns in metal poor stars. The comparison is meaningful for high $Z$ elements, $(51,81)$. Elements below Mo can be synthesized in MP stars via multiple other channels \cite{Travaglio et al., 2004; Montes et al., 2007; Qian andWasserburg, 2008; Arcones and Montes, 2011; Hansen et al., 2014}.
+As in stars with high enough metallicity the $s$-process can contribute to the abundance pattern, present in \textit{e.g.,} sun, the comparison can also be done with low metallicity halo stars. Data is available in \cite{Westin et al., 2000, Roederer et al., 2012, and Roederer et al., 2014}
+
+\subsubsection{Conclusion}
+Considered are the BHNS mergers with neutrino irradiation, ejecta follow-up via SPH code and nucleosynthesis in postprocessing. 
+Findings: 
+\begin{itemize}
+    \item Second and thirds $r$-process peaks are robustly reproduced. (This is not always the case for BNS \cite{Wanajo et al., 2014; Goriely et al., 2015; Sekiguchi et al., 2015} )
+    \item Neutrinos do not change the pre-$r$-$Y_e$ considerably, and full $r$-process occurs in the entire ejecta. 
+    \item Weak dependency of $r$-process final abundances and binary parameters.
+    \item Neutrino irradiation affect nucleosynthesis in a way besides changing $Y_e$, -- inducing low mass seed nuclei production via triple-$\alpha$ process \cite{Fuller and Meyer, 1995, Meyer et al., 1998}. This enhances the synthesis of first peak elements. This is relevant for both BHNS and BNS. 
+    \item Final abundances qualitatively agree with solar for second and third peak. The third peak is however overproduced. 
+    \item Uncertainties in ejecta parameters and nuclear data input for NRR can affects the result significantly.
+\end{itemize}
+
+%%
+%%
+%%
+
+\section{Signatures of hypermassive neutron star lifetimes on rprocess nucleosynthesis in the disk ejecta from neutron star mergers}
+\red{PAPER} 
+\red{Can be used in part for intro/theory/appenixes}
+\red{The overall structure is good. Can be adopted}
+
+\textit{
+We investigate the nucleosynthesis of heavy elements in the winds ejected by accretion disks formed in neutron star mergers.
+}
+
+\subsection{Introduction}
+
+%% Motivation
+Origin of $r$-process material in the universe is uncertain. Observations of MP stars in the galactic halo require a mechanism that creates a robust abundance patters, (that of the Solar system), for $A>130$ \cite{(e.g., Sneden et al., 2008).}. Meanwhile, observations of old VMP stars suggest that this mechanism has operated since the early universe \cite{(e.g., Cowan et al., 1999; Ji et al., 2016)}. 
+Less robust abundance patters is found for light $r$-process elements, as deviations are observed between the one of the Solar System and MP stars \cite{(e.g., Montes et al., 2007).}. 
+Similarly, meteoritic abundances show difference in the timescales on which light and heavy $r$-process elements formed. This hints to more than one main source of $r$-process nucleosynthesis \cite{Wasserburg et al., 1996}.
+
+%% Prodocution cites 
+While the CCSN can contribute to the budget of light $r$-process elements ($A\leq 130$), e.g., \cite{Roberts et al., 2010; Fischer et al., 2010, Hrdepohl et al., 2010}, \cite{Martinez-Pinedo et al., 2012; Wanajo, 2013}, most heavy elements are produced in compact object mergers, BNS, NSBH, as conditions in their ejecta is highly neutron-rich \cite{(Lattimer and Schramm, 1974)}. 
+These mergers are candidates for gravitational wave telescopes \cite{(e.g., LIGO Scientific Collaboration, 2010; IGO Scientific Collaboration et al., 2015)}, are a focus of numerical relativity modelling \cite{(e.g., Lehner and Pretorius, 2014; Paschalidis, 2017)} and search for electromagnetic counterparts \cite{(e.g., Rosswog, 2015; Fernandez and Metzger, 2016; Tanaka, 2016).}. 
+\red{Collapsars are missing}.
+
+%% Dyn. Ej. as a production cite
+The dynamical ejecta of BNS/NSBH mergers is favorable site for the $r$-process nucleosynthesis. Its low initial electron fraction assures the robust $r$-process abundance pattern for $A>130$ due to \magenta{fission cycling} \cite{(e.g., Goriely et al., 2005),}, that depends weakly on the binary parameters \cite{(e.g., Goriely et al., 2011; Korobkin et al., 2012; Bauswein et al., 2013)}. Additionally, neutrino absorption within the ejecta allows for the production of lighter $A<130$ elements \cite{(e.g., Wanajo et al., 2014; Goriely et al., 2015; Sekiguchi et al., 2015; Radice et al., 2016; Foucart et al., 2016a,b; Roberts et al., 2017)}
+
+%% Disk outflow
+A disk formed in BNS or NSBH mergers can eject a fraction of its mass on a longer timescales \cite{(e.g., Ruffert et al., 1997; Lee et al., 2009; Metzger et al., 2009b}. Such ejecta has large $Y_e$, raised by weak interactions \cite{(e.g., Dessart et al., 2009; Fernandez and Metzger, 2013; Perego et al., 2014)}. The mechanisms contributing to the mass ejection are: weak interactions with a thermal timescale $\sim30$~ms, angular momentum transport processes and nuclear recombination with timescales $\sim1$~s. 
+Mass of the ejecta can exceed that of the dynamical ejecta \cite{e.g., Fernandez and Metzger, 2016} with the neutrino-driven component accounting for only a small fraction, present if massive neutron star was formed before the collapse \cite{(Dessart et al., 2009; Fernandez and Metzger, 2013; Metzger and Fernandez, 2014; Just et al., 2015}. 
+
+%% Previous works 
+The disk outflows has been shown to be the cite of light and heavy $r$-process elements production in early works, that made use of \magenta{parametric treatment} to obtain thermodynamic trajectories for composition analysis \cite{(e.g., Surman et al., 2008; Wanajo and Janka, 2012)}. A robust pattern in produced light elements with variability in heavy elements was found in outflows from disks surrounding the BH \cite{Just et al., 2015; Wu et al., 2016)}. The neutrino driven (polar) outflows from the disks surrounding a massive neutron star, however, were found to the the cite of primarily light elemnt production $A<130$ \cite{Martin et al., 2015, Perego et al., 2014} \red{We confirm it, with however no robust results}
+
+%% This work 
+Here the nucleosynthesis in the ejecta from disks surrounding massive NS is considered, with varying lifetimes of the remnant. The parameterized approach mimics the effect that different EOS, angular momentum transept mechanisms and neutrino cooling would have on the remnant \cite{(e.g., Paschalidis et al., 2012; Kaplan et al., 2014).}. Nucleosynthesis is computed in postprocessing on tracer particles. 
+
+%%
+
+\subsection{Method}
+\subsubsection{Disk outflow simulations and thermodynamic trajectories}
+\red{brief}
+
+Use \texttt{FLASH} code, that solves newtonian hydro (with \magenta{$\alpha$ viscosity}) and lepton number (including neutrino absorption) conservation in axisymmetry. 
+
+Neutrinos are treated via \magenta{leakage scheme} for cooling and \magenta{'light-bulb'} approximation for self-absorption, considering only charged-particle interactions. The surface of the NS is streated as a reflecting surface, that also has an outward neutrino flux.
+No feedback from NRN on the hydro evolution. 
+NRN starts at $T\leq 10^9$~K, or at maximum, if lower. Thus, it starts at NSE. \texttt{SkyNet} includes viscous heating and neutrino heating effects from thermodynamic trajectories. 
+
+\paragraph{Important timescales} 
+The \textit{orbital time} at the initial density peak $t_{orb}=f(R_d, Mc)\sim3$~ms, with $R_d$ being the radius of the diensity peak, $M_c$ -- the mass of the central object. 
+The \textit{initial thermal time} of the disk $t_{th}=f(M_d, e_{i,d}, L_{\nu,52})\sim30$~ms, where $e_{i,d}$ is the initial specific internal energy of the disk, $L_{\nu,52}$ is a typical neutrino luminosity from the disk.
+The \textit{initial viscous timescale} of the disk $t_{vis}=f(\alpha, H/R, R_d, M_c)\sim200$~ms, where
+$\alpha$ is the viscosity parameter, $H/R$ is the height-to-radius ration of the disk.
+
+Neutrino driven outflow are launched on the thermal timescale. 
+Long-term outflows are launched on a viscous timescale. 
+
+\magenta{dimensionless spin parameter} $\chi = J_c / (G M_c ^2)$, where $J$ is the BH angular momentum, $c$ is the speed of light, $G$ is the gravitational constant. 
+
+%%
+
+\subsection{Results and discussion}
+\red{very brief}
