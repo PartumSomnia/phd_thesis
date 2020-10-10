@@ -4368,6 +4368,59 @@ A note on nucleosynthesis. Since dynamical ejecta tends to be neutron-rich, prod
 % Woosley et al., 2004 \cite{Woosley:2003cd}
 % Woosley and Hoffman, 1992 \cite{Woosley:1992}
 
+%% ======================================================================
+%% ====================================================================
+%% 
+%%     KILONOVA
+%% 
+%% ====================================================================
+%% ======================================================================
+
+\chapter{Kilonova}
+
+\section{Radiation Transport Modeling of Kilonovae and Broad-lined Ic Supernovae}
+\red{this is based on the Barnes PhD thesis on Opacities for Kilonva (Rad.Transport)}
+
+Both, BNS mergers and SNe Ic-BL are associated with gamma ray bursts (short and long respectively)
+\subsection{Introduction}
+\red{Very very basic and pooly cited. Unusable}
+
+\subsection{Modelling Kilonova}
+
+With regards to the electromagnetic counterparts to mergers, the large LIGO error-boxes and contaminants in the transient sky obsruring the character of the EM signal, the successfull detection and interpretation depends senibly on accurate models of the transient. 
+The first escimations of the electromagnetic emission for the $r$-process decay powered transiet was done by \cite{Li & Paczynski (1998)}. Due to the absence of accurate predicitons for ejecta properties and radiactive decay models, the parametrized study was carried out via use of one-dimensional analytic model. The analysis suggested that the transient powered by the decay of $r$-process synthesized elements would be short and bright, varying strongly with ejecta properties. 
+The simplest approach to the transient's photometry can be provided with the help of two key quantities, describing its peak. The luminocity $L_{\text{pk}}$ and time it takes to achive it $t_{\text{pk}}$.
+The Arnett's Law profides a rough peak time and luminocity with ejecta parameters
+
+\begin{align}
+    t_{\text{pk}} \sim \Bigg(\frac{M_{ej}\kappa}{\upsilon_{ej} c}\Bigg)^{1/2} \\
+    L_{\text{pk}} \sim \dot{E}_{\text{rad}}t_{\text{pk}})
+\end{align}
+
+where $M_{ej}$ and $\upsilon_{ej}$ are the mass and characteristic velocity of the ejected material, $\kappa$ is its opacity, $c$ is the speed of light, and $\dot{E_{\text{rad}}$ is the time-dependent rate of energy generation by radioactive decay. 
+
+The ejecta's opacity defines the ease with which the radiation diffuses through it. The mass of the ejecta, composed of unstable nuclei sythesized in $r$-process nucle, sets the radiactive energy scales for the system $\dot{E}_{\text{rad}}\propto M_{\text{ej}}$. in both BNS and NSBH cases
+The ejecta mass and veliocity depend on the parameters of the binary \cite{(Oechslin et al. 2007; Sekiguchi et al. 2016; Kyutoku et al. 2015}.
+
+\gray{Very crude BNS discription. Not usefull} 
+Modelling the binary neutron star merger is a complicated task. The process plays out in a strong gravity reginve. Stong magnetization of both neutron stars makes magnetic field one of the dominant factors \cite{(Price & Rosswog 2006).}, alongzde the neutrino irradiation. Thus, accurate modelling of these mergers require GRMHD (with radiation) to capture the physics of merger and mass ejection. In addition treatment of the NS EOS has to be considered, as it describes how easy it is for a NS to be tidally disrupted and what is the energetics of the collision. \cite{(e.g. Bauswein et al. 2013; Hotokezaka et al. 2013a)}
+
+\gray{Useless, -- se Lippuner Kilonova discussion}
+Kilonova is powered by the decay of many complex chains of decay, each occuring on its own timescale and with a unique energy spectrum. The experimental data for many heavy nuclei sythesisze in $r$-process is lacking and hence, the energy deposition of their decay chains is uncertain. 
+
+\gray{Mostly useless, -- but with a new citatioN!}
+For the nuclei for which the experimental data is lacking, the neclear mass models are used. These models preduict neutron capture cross-sectio nand properties of their radioactive decay. 
+Nuclear mass models, calibrated to the avaialble heavy nuclei closer to the valley of stability, can significanntly diverge, predicting the properties of heavy neutron-rich nuclei beahvior. Thus, ultimately the final abundances are affected. \cite{(Eichler et al. 2015; Mendoza-Temis et al. 2015).}
+The nuclear mass model choice affects the nucleosytnehsis and susequencly the decay and the power available to the electromagnetic counterpart \url{https://arxiv.org/abs/2010.03668}. 
+
+There is a strong dependency of the funal $r$-process abundances on the initial conditions in the ejecta. see \cite{(Lippuner & Roberts 2015}.
+
+\gray{Just to say that Kilova modelling inherit all the uncertanties of Hydro and Nucle and opacities strongly affect it as well}
+Finally, one of the main challenges in modelling the Kilonova emission is to dectribe the radiation propagation withing the emitting and absorbing environemtn. The radiation transport (Ideally 3D) requires full density profiles of the ejecta, its radiarcitivity, inheriging the hydrodynamical and nuclear physics uncertanties. In addition, to describe the absoprtion of radiation propagating through the ejecta, the absorbtion cross section, usually described in terms of opcity $\kappa $($[\kappa] = \text{cm g}^{-1}$), must be included. The frequency dependent opacitis of matter composed of heavy elements with complex atomic structure strongly affects properties of the electromagnetic transient. Understanding the opacities is vital toe producing accurate kilonova models. 
+
+%%
+
+\subsection{Monte Carlo radiation transport in expanding atmospheres}
 
 %% --------------- 
 %%
