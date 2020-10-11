@@ -4394,10 +4394,10 @@ The Arnett's Law profides a rough peak time and luminocity with ejecta parameter
 
 \begin{align}
     t_{\text{pk}} \sim \Bigg(\frac{M_{ej}\kappa}{\upsilon_{ej} c}\Bigg)^{1/2} \\
-    L_{\text{pk}} \sim \dot{E}_{\text{rad}}t_{\text{pk}})
+    L_{\text{pk}} \sim \dot{E}_{\text{rad}}(t_{\text{pk}})
 \end{align}
 
-where $M_{ej}$ and $\upsilon_{ej}$ are the mass and characteristic velocity of the ejected material, $\kappa$ is its opacity, $c$ is the speed of light, and $\dot{E_{\text{rad}}$ is the time-dependent rate of energy generation by radioactive decay. 
+where $M_{ej}$ and $\upsilon_{ej}$ are the mass and characteristic velocity of the ejected material, $\kappa$ is its opacity, $c$ is the speed of light, and $\dot{E}_{\text{rad}}$ is the time-dependent rate of energy generation by radioactive decay. 
 
 The ejecta's opacity defines the ease with which the radiation diffuses through it. The mass of the ejecta, composed of unstable nuclei sythesized in $r$-process nucle, sets the radiactive energy scales for the system $\dot{E}_{\text{rad}}\propto M_{\text{ej}}$. in both BNS and NSBH cases
 The ejecta mass and veliocity depend on the parameters of the binary \cite{(Oechslin et al. 2007; Sekiguchi et al. 2016; Kyutoku et al. 2015}.
@@ -4416,11 +4416,85 @@ The nuclear mass model choice affects the nucleosytnehsis and susequencly the de
 There is a strong dependency of the funal $r$-process abundances on the initial conditions in the ejecta. see \cite{(Lippuner & Roberts 2015}.
 
 \gray{Just to say that Kilova modelling inherit all the uncertanties of Hydro and Nucle and opacities strongly affect it as well}
-Finally, one of the main challenges in modelling the Kilonova emission is to dectribe the radiation propagation withing the emitting and absorbing environemtn. The radiation transport (Ideally 3D) requires full density profiles of the ejecta, its radiarcitivity, inheriging the hydrodynamical and nuclear physics uncertanties. In addition, to describe the absoprtion of radiation propagating through the ejecta, the absorbtion cross section, usually described in terms of opcity $\kappa $($[\kappa] = \text{cm g}^{-1}$), must be included. The frequency dependent opacitis of matter composed of heavy elements with complex atomic structure strongly affects properties of the electromagnetic transient. Understanding the opacities is vital toe producing accurate kilonova models. 
+Finally, one of the main challenges in modelling the Kilonova emission is to dectribe the radiation propagation withing the emitting and absorbing environemtn. The radiation transport (Ideally 3D) requires full density profiles of the ejecta, its radiarcitivity, inheriging the hydrodynamical and nuclear physics uncertanties. In addition, to describe the absoprtion of radiation propagating through the ejecta, the absorbtion cross section, usually described in terms of opcity $\kappa$ ($[\kappa] = \text{cm g}^{-1}$), must be included. The frequency dependent opacitis of matter composed of heavy elements with complex atomic structure strongly affects properties of the electromagnetic transient. Understanding the opacities is vital toe producing accurate kilonova models. 
 
 %%
 
 \subsection{Monte Carlo radiation transport in expanding atmospheres}
+\red{Not very well rephrased. Might be usefull, but only for appendix}
+
+Radiation transport is described in \cite{Rybicki & Lightman (1986),}.
+The description of solving the RT equations in expanding atmospheres is presented in \cite{Kasen et al. (2006).}.
+Radiation transport computation allow to obtain the monochromatic specific Intensity $I_{\nu}$ for a particular system. The specific intensity depends on the position, direction and frequency and is related to the luminosity as 
+
+\begin{equation}
+    L = \frac{\text{d}E_{\text{rad}}}{\text{d}t}\iiint I_{\nu} \text{d}\nu \text{d}A \text{d} \Omega
+\end{equation}
+
+where the frequency $\nu$ goes through the selected range or the entire electromagnetic spectrum, $A$ is the area and $\Omega$ is the solid angle. 
+
+The radiation transport calculations determine the $I_{\nu}$ through integrating the transport equation 
+
+\begin{equation}
+    \frac{\text{d}I_{\nu}}{\frac{d}s} = -\alpha_{\nu} I_{\nu} + j_{\nu}.
+\end{equation}
+
+where $s$ is the distance passed, $\alpha_{\nu}$ and $j_{\nu}$ are the monochromatic extinction and emission coefficients. The former defines how much energy a photon looses to the scattering and absoption as a fucntion of the distance. 
+
+\begin{equation}
+    \alpha_{\nu} = n\sigma_{\nu} = \rho\kappa_{\nu}, \hspace{3mm} [\text{cm}^{-1}],
+\end{equation}
+
+where $\sigma_{\nu}$ is the cross-section for a particular interaction, $n$ is the number density of particles that photons are scattered or absobed on, $\kappa$ is the monochromatic opacity, and $\rho$ is the mass density. 
+Typical sources of opacity in exanding atmospheres and ejected material in astrophysical context are the electron scattering, $~\sim  0.02$, bound-free opacity (photoionisation), bound-bound or "line" opacity (photoexatation).
+
+The emission coefficient $j_{\nu}$ describes the addition of energy to the $I_{\nu}$, (per time, unit of volume, solid angle and frequency). 
+In case of a thermal equilibrium the the $j_{\nu}$ is related to a Plank function $B_{\nu}$ as $j_{\nu} = \alpha_{\nu; \text{abs}}B_{\nu}(T)$, where $\alpha_{\nu; \text{abs}}$ is the component of opacity that describes absorption. 
+
+\red{A particular code}
+A code \texttt{SEDONA} allows to study the radiation transport via a time-dependent Monte Carlo method. It assumes \magenta{LTE} and uses the \magenta{expansion opacity} to discibe the interaction of photos with expanding absorbinb medium. See details in \cite{Kasen et al. (2006).}.
+
+\gray{Very crude disctiption, but since I did not do any of this, it might be sufficient} 
+MC methods to solve the radiation transfer equations are based on "photon packages" that are injected into the medium and whose interaction outcome with it is computed via random number sampling. Thus, the result of each such process, \textit{e.g.,} photon-ion interaction, direction of the photon scattering, frequency at which a photon is re-emitted in a Compton scattering are determined via random number sampling. 
+
+A particular use of random sampling is the estimation of length of the path that a photon packet takes within the medium between interactions. The packet can only be scattered or absorbed, \textit{i.e.,} $j_{\nu}=0$. Thus the RT equation reduces to 
+
+\begin{equation}
+    \frac{\text{d}I_{\nu}}{\frac{d}s} = -\alpha_{\nu} I_{\nu} \leftarrow I_{\nu}(s) = I_{\nu,0}\exp(-\alpha_{\nu}s).
+\end{equation}
+
+that has a following probabalistic intepretation. Consider two points $s_1$ and $s_2$. In continous radiation interpretation, the difference in radiation intensity between these two points can be arbitrary small, and hence the $I(s_1)/I(s_2)$ describes the amount of energy lost from the radiation beam.
+However, in probabalistic interpretation, where descrete photon packets carry the energy, the relation $I(s_1)/I(s_2)$ describes the probability that between $s_1$ and $s_2$ the interaction and hence a change in phton packet energy will occure. 
+This probability is sected in the interval $I_{\nu}(s_1)/I_{\nu}(s_2) = z \in (0,1]$. 
+The distance, traveled by a packed between interactions $\delta s$ is then obtaind as $\delta s = - (1 / \alpha_{\nu}) \log(z)$. 
+
+The opacity calculation presents a particualr challenge for solving the transport equation. This is particularly so in the expanding medium as the opacity is frequency dependend and the photon's frequency depends on the local fluid velocity. 
+Considering the homologous expansion, ($\upsilon = r/t$, commonly used to describe the velocity profile of the expanding atmospheres in supernovae and ejecta in comparct binary mergers) the photon frequency (energy) measuredin the comoving frame continously dereceases as it traverses the fluid and thus the opacity encountered by this photon changes. 
+
+The bound-bound opacities are particularly affected by the motion of the medium. The excitation of a bound-bound transition requires a photon to have the exact energy (frequency) of the transition, a resonsnce. Moving through the expanding medium, the photon whose frequency is continuously decreasing will enter and exit resonances with varise lines. This has to be accounted for by the opacity calculations. A particularly usefull formalism for that is the Sobolev (Expansion Oapccity) formalism. It assumes taht the energy region where resonance can occure is phsycally narrow. The Sobolev optical depth for a homogeneouse flow (\cite{Sobolev 1960}) is 
+
+\begin{equation}
+    \tau = \frac{K_{\lambda} c t_{\text{exp}}}{\lambda_0}
+\end{equation}
+
+where $K_{\lambda}$ is the integrated line strength, $t_{\text{exp}}$ is the expansion time, and $\lambda_0$ is the wavelength of the line center.
+Note that in non-homogeneous system $\tau$ depends on the velocity gradient of the matter in the direction of the photon's propagation).
+
+Using the expansion opacity $\tau$, the effective continoum opacity can be stimated through averaging over individal lines in bins in wavelength space \cite{Karp et al. (1977), Eastman & Pinto 1993,}
+
+\begin{equation}
+    \alpha_{\text{exp}}(\lambda_c) = \frac{1}{ct_{\text{exp}}} \sum_i \frac{\lambda_i}{\Delta \lambda_c} (1 - e^{-\tau_i})
+\end{equation}
+
+where $\lambda_c$ is the wavelength of the center of the bin, $\tau_i$ is the Sobolev optical depoth of line $i$, and the sum runs over all lines within the bin. 
+
+
+
+
+
+
+
+
 
 %% --------------- 
 %%
