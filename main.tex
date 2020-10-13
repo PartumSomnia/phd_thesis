@@ -4488,9 +4488,74 @@ Using the expansion opacity $\tau$, the effective continoum opacity can be stima
 
 where $\lambda_c$ is the wavelength of the center of the bin, $\tau_i$ is the Sobolev optical depoth of line $i$, and the sum runs over all lines within the bin. 
 
+%%
+%%
+%%
+
+\section{Effect of a high opacity on the light curves of radioactively-powered transients from compact object mergers}
+\red{Based on paper: \cite{Barnes & Kasen (2013)}}
 
 
+\gray{Overview of the paper. This might be used as a background. But it is outdated. }
+The merger of two NS produces graviational waves and an eletromagneitc transent powered by the decay of newly synthesized heavy elements. Little is know about the optical properties of these heavy $r$-process eleemnts. Their opacity was first assumed to be similar to that of the Iron group elements. 
+However later [see many refs] it was shown to be orders of magnitude higher.
+In this section the effect of lanthanides-rich, high opacity is studied in application to the multiwavelength time-dependend 1D radiation transfer calculations. The study of different ejecta mass and velocities is taken.
+%
+Main fundings: 
+Higher opacity leads to the longer lasting lightcurves ($\sim$weeks), with emission shirted to the lower freqyency bands of the spectrum. This is the result of a stong optical \magenta{line blanketing}. The temperature at the late times is a representative of the recombination temperature of lanthinides $\sim 2500$~K and spectrum is blackbody. 
+Adding an additional, lathanides-free (predominantly Nickel) outflow shows a distinctive 2 component SED with a bright optical peal and an infrared peak. 
 
+%%
+
+\subsection{Introduction}
+\red{Very crude. Badly rephrased. beneral info and motivation}
+
+\gray{A generic introduction}. Understanding the compact object binary merger leads to a new insight into many areas in astrophysics. 
+The BNS and NSBH mergers are belived to be the central engines of the sGRB \cite{(Paczynski 1986; Narayan et al. 1992), [and many others]}.
+The material decompressing from nuclear densitiutes, the ejecta, is a possible cite for the $r$-process nuclesosyntehsis \cite{(Lattimer & Schramm 1974, 1976) [and many others]}.
+Hence, mergers influence the cosmic chemical evolution and may be the dominant soirce of the heaviest, $r$-process elements \cite{(e.g. Eichler et al. 1989b; Rosswog et al. 1998; Freiburghaus et al. 1999; Rosswog et al. 2000; Rosswog 2005; Goriely et al. 2005). [and many more]}.
+These events has successfully been detected as souirces of gravitational waves. \cite{LIGO}
+The accurate identification of electromagnetic counterparts to mergers thus unhances the available information from graditational waves \cite{(e.g. Schutz 1986, 2002; Stubbs 2008; Bloom et al. 2009)} and provides new intput into aforementioned fields of study.
+
+The comprehansive study of possible electromagnetic counterparts to mergers is given in \cite{Metzger & Berger (2012)}. It was shown that among possible options, sGRB, orphan radiu and optical afterglows, and optical kilonova, the latter is the best option for aiding the sky localisation of GW signals. \gray{Source of Kilonova, BNS ejecta, tidal, shocked}.
+The brightness of the transent is set primaraly by the mass of the ejecta. However, its duration depends on the diffusion time of radiation through the ejecta -- and thus on mass, velocity and opacity. 
+The nuclear heating from the decay of $r$-process elements was modelled in detain \cite{(Metzger et al. 2010; Roberts et al. 2011; Goriely et al. 2011, [add Lippuner]}, the opacities are still rather uncertain. 
+
+\gray{This might be relevant}
+The first study of the electromagnetic counterpart to mergers was based on a simplifed 1D spherically symmetric model, that emitted a black body spectrum assuming opacities being similar to electron scattering ones \cite{Li & Paczynski (1998)}. A more recent, 1D but full MC radiation transport models with radiatvie heating informed by the nuclear reaction networks and opacities assumed to be close to Iron peak oapcities \cite{(Metzger et al. 2010; Roberts et al. 2011)}. Both were qulitatively similar, ginving peal luminocities $10^{41-44}$ in optical/UV, rise time around a day, and colors shiting to red post peak. 
+
+In this paper, more accurate opaciites are used. The effect on lightcurves is shown to be strong. 
+The atomic data and opacities are taken from \cite{Kasen et al. 2013}.
+Higher opaciites led to lighcurves being longer and dimmer, and redder. Instead of sharp peak at $\sim$1~day, the lightcurve rises and falles slowly on a timescale of $\sim 1$~weak. SED is supressed in optical, and most energy is emitted in FIR. 
+These findings help for EM counterparts identification and searches. 
+
+%%
+
+\subsection{Opacity of r-process ejecta}
+
+It was shown for SNe ejecta, that among electron scattering, free-free and photoionisation, the bound-bound transitions from iron group elements dominate opacities in optical (blue) part of the spectrum. \cite{(see e.g. Pinto & Eastman 2000)}. 
+The pseudo-continoum bound-bound opacities are 'induced' by millions of doppler-briadened lines. Continoue doppler-shifting on phostons that traverse the ejecta assures that they fall into resonance with numerous transitions. Thus, ejecta's velocity gradient enhances the effective line opacities \cite{Karp et al. (1977)} and later, \cite{(Friend & Castor 1983; Eastman & Pinto 1993; Hoeflich et al. 1993).}. 
+
+In light of this, the extinction coefficient, defined through the average over discrete wavelength, can be written as \cite{Eastman & Pinto (1993)}
+
+\begin{equation}
+    \alpha_{\text{exp}}(\lambda_c) = \frac{1}{ct_{\text{exp}}}\sum_i \frac{\lambda_i}{\Delta\lambda_c}(1-e^{-\tau_i}).
+\end{equation}
+
+where $t_{\text{exp}}$ is the time since mass ejection, $\lambda_{c}$ is the central wavelength of the bin, $\Delta\labmda_c$ is the bin width, $\tau_i$ is the Sobolev optical depth of a line \cite{(Sobolev 1960)}, and the sum runs over all lines in the bin.
+
+The epxansion opacity then
+
+\begin{equation}
+    \kappa_{\text{exp}} = \frac{\alpha_{\text{exp}}}{\rho}
+\end{equation}
+
+where $\rho$ is the gas density. 
+
+The use of Sobolev $\tau_i$ two statements are assumed:
+Compare to the velocity scale over which ejecta proprieties vary, the intrinsic width of lines is small.
+Lines (their intrinsic profiles) do not overlap. 
+Notably, withing the expanding ejecta the first criterion can be satisfied. However, the second may not. In \cite{Kasen et al. 2013} the example of a more rigourous radiation tranport is considered with non-Sobolev opptical deoth of lines.
 
 
 
