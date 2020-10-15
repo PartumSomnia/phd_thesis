@@ -4542,7 +4542,7 @@ In light of this, the extinction coefficient, defined through the average over d
     \alpha_{\text{exp}}(\lambda_c) = \frac{1}{ct_{\text{exp}}}\sum_i \frac{\lambda_i}{\Delta\lambda_c}(1-e^{-\tau_i}).
 \end{equation}
 
-where $t_{\text{exp}}$ is the time since mass ejection, $\lambda_{c}$ is the central wavelength of the bin, $\Delta\labmda_c$ is the bin width, $\tau_i$ is the Sobolev optical depth of a line \cite{(Sobolev 1960)}, and the sum runs over all lines in the bin.
+where $t_{\text{exp}}$ is the time since mass ejection, $\lambda{c}$ is the central wavelength of the bin, $\Delta\lambda_c$ is the bin width, $\tau_i$ is the Sobolev optical depth of a line \cite{(Sobolev 1960)}, and the sum runs over all lines in the bin.
 
 The epxansion opacity then
 
@@ -4552,10 +4552,35 @@ The epxansion opacity then
 
 where $\rho$ is the gas density. 
 
-The use of Sobolev $\tau_i$ two statements are assumed:
+The use of Sobolev $\tau_i$ requires two statements to be assumed:
 Compare to the velocity scale over which ejecta proprieties vary, the intrinsic width of lines is small.
 Lines (their intrinsic profiles) do not overlap. 
-Notably, withing the expanding ejecta the first criterion can be satisfied. However, the second may not. In \cite{Kasen et al. 2013} the example of a more rigourous radiation tranport is considered with non-Sobolev opptical deoth of lines.
+Notably, withing the expanding ejecta the first criterion can be satisfied. However, the second may not. In \cite{Kasen et al. 2013} the example of a more rigorous radiation transport is considered with non-Sobolev optical depth of lines.
+
+Optical depth calculation requires the information regarding atomic level population. The simplest approach is to assume the local thermodynamic equilibrium (LTE).
+IT was shown that in the context of Type Ia SN, the LTE is established below the photosphere \cite{Baron et al. (1996),}. The effects of non-LTE on the broadband fluxes months after Type Ia SNe was shown to be $\sim30\%$ in U, B, V, R and $\sim50\%$ in I band \cite{Jack et al. (2011)}. Thus, if the ejecta is optically thick the LTE assumption holds, more or less. When ejecta becomes transparent, as for I band, the LTE assumption is not longer accurate. In case of BNS ejecta, low density but higher opacity is expected to lead to similar situation. Thus, the LTE is applicable to model the vicinity of the lightcurve peak, but not much after that. Closer the one weak after the peak, the LTE breaks. It is also important to note, that other uncertanties most likely dominate the results, such are the atomic data uncertanties and assumed ejecta geometry. 
+
+In the case of very optically thick lines $\tau\gg 1$, the expansion opacity, $\kappa_{\nu}\text{exp}$ becomes insensitive ot the actual opacity of lines, as $1-e^{-\tau_i}\approx 1$, and the number of distinct optically thick lines becomes a key parameter in determining it. However, for the heavy elements $Z>28$, the amount of line data available is sparse. The lathanides, having complex valence f-shells are expected to have a strong contribution to the opacity. 
+
+In case of inaccesasability of line data, the number of lines should scale with the number of stubstates, for a given electron orbitale, $C=g! / (n! (g-n)!)$ whith $g=2(2l+1)$, where $n$ is the number of valence eletrons, $l$ is the angular momentum quantum number of the valence shell. For the open $f$ shell $(l=3)$, the number of liens thus is expected to be high. Hence, opacity of ejecta with lanthinides is expected to have higher opacity then pure iron ejecta, assuming the equal probability for a line to be optically thick. 
+
+Fraction of actinides in ejecta is considered to be too small to make a contribution.
+
+In addition, the proad range of temperatures and densities in the ejecta requires to model the opacity of elements with different ionisation states. Rarely the data for higher the doubly ionized elements is available however. Assuming lower ionisation states leads to underestimation of opacity. This is especially important for early $~1-2$~days lightcurve. Moreover, rarely the low frequency (long $\lambda$) line data is available, prohibiting the estimation of IR and NIR lightcurves. Notably, in case of BNS merger ejecta, most of the energy is radiated in low frequency bands. 
+
+An alternative is to use the atomic structure modelling to obtain the lanthinides line data.
+
+Another more crude alternative is to use several representative species to approximate the opacity of the ejecta. The ejecta can be devided into the iron-like elements, neodimium-like elements (lanthinides) amd calcium for a low-opacity filter (which have intermediate complexity for their region of the periodic table). Each is a representative of its group, approximating it, as in general, all ions have uinique set of strong lines. 
+
+The extinction opacity then 
+
+\begin{equation}
+    \alpha_{\text{exp}} = \frac{1}{ct_{exp}} \sum_z N_z \sum_i \frac{\lambda}{\Delta \lambda_c} (1 - e^{-\tau_i(\rho_Z)})
+\end{equation}
+
+where $Z$ runs over the representative elements, (Fe and Nd here), $N_Z$ is the number of elements in the group that is apporximated by the element with $Z$, the $\rho_Z = \chi_Z \rho$ is the density with $\chi_Z$ being the mean mass fraction of the representative elements. 
+
+
 
 
 
