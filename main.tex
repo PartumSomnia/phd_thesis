@@ -4580,6 +4580,68 @@ The extinction opacity then
 
 where $Z$ runs over the representative elements, (Fe and Nd here), $N_Z$ is the number of elements in the group that is apporximated by the element with $Z$, the $\rho_Z = \chi_Z \rho$ is the density with $\chi_Z$ being the mean mass fraction of the representative elements. 
 
+%%
+%%
+%%
+
+\subsection{Light curves of r-process transients}
+\red{Rad.trasport calcualtions with updated oapcities}
+
+Consider a spherically symmetric outflow going through the homologous expansion. Note that there were studies that the effect of ejecta anisotropy does not qualitatively change the shape of lightcurves \cite{(Roberts et al. 2011}. The density profile is split into the dense outflow, $\rho\propto r^{-\delta}$ and atmosphere, $r\propto r^{-n}$ with the transition occuring at $\upsilon_t$. 
+
+\begin{eqnarray}
+    \upsilon_t = 7.1 \times 10^{8} \xi_{\upsilon} \Big(\frac{E_{51}}{M}\Big)^{1/2} \text{cm s}^{-1}, \\
+    \rho(r,t) = \xi_{\rho}\frac{M_{\text{ej}}}{\upsilon_t ^3 t^3}\Big(\frac{r}{\upsilon_t t}\Big)^{-\delta}, \hspace{3mm} \upsilon < \upsilon_t \\
+    \rho(r,t) = \xi_{\rho}\frac{M_{\text{ej}}}{\upsilon_t ^3 t^3}\Big(\frac{r}{\upsilon_t t}\Big)^{-n}, \hspace{3mm} \upsilon > \upsilon_t \\
+\end{eqnarray}
+
+with $n>\delta$ and $\xi_{\rho}$ and $\xi_{\upsilon}$ are normalisation constants (giving specific energy and mass when profile is integrated).
+
+Previous studies have given a broad range ejecta mass and vleocity that depend on binary parameters as well as input physics for BNS \cite{(e.g. Rosswog et al. 1999; Oechslin et al. 2007; Goriely et al. 2011; Bauswein et al. 2013; Hotokezaka et al. 2013b)} and of neutron star-black hole mergers \cite{(e.g. Janka et al. 1999; Lee 2001; Rosswog 2005)}. Feducial values for $M_{ej}$ and $\upsilon_{ej}$ are assumed and varied within limits. 
+
+Ejecta compostition is assumed to the homogeneous of either pure $^{56}$Ni or $r$-process elements. The decay energy of $r$-process material is split into fission fragments ($10\%$) and $\beta$-decay $90\%$. The $\beta$-decay energy is split further into neutrino energy $25\%$ and $\gamma$-ray energy $75\%$. For the fragments and leptons the prompt thermolisation is assumed, while $\gamma$-rays are tracked by the radiation transport code. 
+
+%%
+
+\subsubsection{Light Curves}
+
+The code used for rad. traposrt is \texttt{SEDONA} \cite{(Kasen et al. 2006}. The code starts at $0.1$~days after the merger, following the ejecta expasion, cooling as well as heating due to radiation and radioactivity. The opacities $=f(\lambda)$ for each element group Iron-like,  is computed using code \texttt{Autostructure} and for Neoudimium-like elements using \cite{Kurucz & Bell (1995a)} line data, respectively.
+It is assumed that lines are completerly absibiong, the ionisation states follow LTE.
+
+The result is the, when $r$-process opacities are used, the lightcurves rise more slowly, are broader wit hdimmer peaks. Such transiets are long lasting $\sim 1$~week.
+
+Theotrical expectations for lightcurve duration stems from the radaition effective diffustion time \cite{(Arnett 1979)},
+
+\begin{equation}
+    t_d \approxeq \Big( \frac{M_{ej} \kappa}{ \upsilon c} \Big)^{1/2}
+\end{equation}
+
+where $\upsilon$ is a characteristic ejecta velocity and $\kappa$ an appropriately wavelength-averaged opacity.
+
+Thus, longer diffusion times (and thus longer peak times) for the $r$-process ejecta is domianted by larger $10-100$ times larger opacitiies of these elements. Lossing more energy to expamsion, the ejecta have less to emit at the peak times. Thus the peak is dimmer. 
+
+Another result is that the Arnett's law is roughtl ysatsified (the instantaneous radioactive energy input roughly matches the luminocity at peak) \cite{(Arnett 1979, 1982).}
+
+\magenta{Bolometric Lightcurve} behavior with ejecta parameters have the following realtions. More massive ejeecta produces brighter, longer lasting transent. Higher velocitis gresult in shorter rise time and larger peak luminocities, but they alsi decline more reapidlly.
+
+\magneta{Broadband lightcurves} shows that $r$-process material, its high opacity, leads to the suprerssion of the emission in optical band, while most of the eneregy is located at IR and FIR bands. In addition, the emission at high freuqncy bands, U, B, V is suppressed due to strong line-blanketing and lightcurves decay rapidly with time. This behaviour stems from the evolution of photospheric properties of $r$-process transiets, assuming that the observed SED roughly corresponds to a blackbody at the photospheric temperature and radius.
+
+The photosphere can be defiled as 
+
+\begin{equation}
+    \tau(r_{ph}) = -\int_{\infty}^{r_{ph}} \bar{\kappa}_{P}(r)\rho(r)\text{d}r = 1,
+\end{equation}
+
+where $\bar{\kappa}_P$ is a \magenta{Plank mean opacity} evaluated from the line data.
+
+The evolution of $T_{ph}$ and $\upsilon_{ph}$ consisits of first steady decline, that is an indicative of the expansion and cooling. However, at some point the $T_{ph}$ plateous, at $\sim2500$~K, which is the temperature that correspnds to the first ionisation state of lanthinides. Thus at this temperature a shart decrease in opacity uccures as elements recombine to neutral (Kasen +2013). 
+Formed in the outer, cooler layers, the ionisation front moves inward, below which the photons are still trapped in high opacity material, and above which they escape. This photosphere shifts with ionisation fronts. Lightcurve color during this process remains approximattly constant, representing the temperature of lanthinide recombination. The process ends, when the ionisation fron reaches the inner boudnary of the ejecta, rendering its fully transparent and neutral. 
+
+%%
+
+\subsubsection{Uncertainties in the Opacities}
+
+
 
 
 
