@@ -4728,6 +4728,43 @@ Ejecta is assumed to be spherically symmetric and expanding homologously with th
 
 Inhereted from the neutron starts or seeding and amplified by the turbulence during the merger, Kilonova ejecta contains resudual magnetic field \cite{(Kiuchi et al. 2014, 2015)}. 
 
+In a sufficiently strong filed, the motion of the charged particles is confined to the "flux tubes", that trace the field lines, as their Larmor radii is smaller then the coherence length of the magnetic field. 
+
+For a homologous expanding ejecta with frozen in magnetic flux, the field strength scales as 
+
+\begin{equation}
+    B(t) \approx \frac{B_0 R_0 ^2}{R_{ej}^2} \approx 3.7 \times 10^{6} B_{12} R_{6}^{-2} \upsilon_{2} t_d^{-2} \hspace{3mm} \text{G}
+\end{equation}
+
+where $\upsilon_2 - \upsilon/0.2$~c, $t_d$ is elapsed time in days, $B_0$ and $R_0$ are the initial ejecta magnetic field strength and radius. Scaling is done to typical values. Note that initial $B_0$ lies in $(10^{9},10^{15})$. \red{This is not 'afterglow' magnetic filed...}.
+
+The maximum Larmor radius for a charged particle 
+
+\begin{equation}
+    r_{L, max} = \frac{(E+mc^2)\upsilon}{qBc},
+\end{equation}
+
+where $m$, $q$, $E$ and $\upsilon$ are the particles mass, charge, kietic energy and velocity respectively. The maximum Larmor radius is achieved when $\boldsymbol{\upsilon}\perp\boldsymbol{B}$.
+
+Assuming fiducial valies for the kinetic enenergy of the fission fragments, $\alpha$, $\beta$, and fission fragments (and their masses), the $r_{L,max}(t)/R_{ej}(t)$ can be computed. Note, that the assumption that all particles follow flux tubes is not very precises for $\alpha$ and $\beta$ with that have $r_L/R_{ej}\ll 1$.
+This is so-called flux tube approximation for the charged particles trajectories. 
+This has importnat implications for Kilonova. For instance, radial fields can push the charged particles through the ejecta quickliy, reducing their thermolisation efficiency. On the other hand, the toroidal field traps the charged particles, inproving it. 
+
+Three configurations for magnetic fields are considered: radial $\boldsymbol{B}\propto\hat{r}$ (inspired by the ejecta motion), toroidal $\boldsymbol{B}\propto\hat{\phi}$ ispired by the NS and disk rotation, and random, inspired by the turbulence in ejencta.
+\red{There should have been more explanation...}
+
+%%
+
+\subsubsection{Composition}
+
+The ejecta composition is important to determine its thermolisation. Not only it defines the background material, that affects the decay products energy loss, but it also sets the distribution of thadiactive energy between various decay channels and energy spectra of the decay products. 
+
+The composition (on a set of smooth-particle hydrodynamic trajectories \cite{(Goriely et al. 2011)}) is computed from the the $r$-process nucleosynthesis, that is tracked via nueclear reaction network \cite{Mendoza-Temis et al. 2015}. The network starts with matter in NSE, at $T\sim6$~GK, densitites from HD histories and initial electron fractions $0.015-0.055$. 
+\gray{similar to what was done in Lippuner papers for hdyro evolved ejecta dor BNS simulations}
+
+Two types of trajectories are identified: slow ($\sim 90\%$) where neutron capture empties the free neutron reserve, allowing full $r$-process, that produces elements of the 3rd peak, and fast ejecta, rapid expansion of which allows some free neutrons to remain (as the neutron capture timescale is longer) \cite{(see also: Just et al. 2015; Goriely et al. 2014; Metzger et al. 2015; Mendoza-Temis et al. 2015).}.
+The created here ejecta model thus includes the 'inner ejecta' that exhausts in free neutron reservoir, and 'outer ejecta' that expands too rapidly for that. Summing up trajectories in each class, the mass-integrated composiitons are obtained. 
+
 
 
 
