@@ -4828,6 +4828,25 @@ Description of the decay energy thermolisation within the ejecta
 
 \subsubsection{Gamma-Rays}
 
+Two processes are relevant for the energy loss of $\gamma$-rays: photoionization and Compton scattering. The opacities for the former can be obtained fomf the Photon Cross Section Database (XCOM; \cite{Berger et al. 2010})  the latter can be obtained from Klein-Nishina formula. These processes produce non-thermal (suprathermal) electrons that \gray{loose energy via synchrotron emission?}.
+In Kilonova ejecta, composed of high $Z$ elements, the photoionization cross-section dominates the opacities up to $1$~MeV, after which the Compton scattering takes over. The opacity was found to depend weekly on the ejecta parameters variation within the Kilonova and assumed constant.
+
+\subsubsection{$\beta$-particles}
+
+The supra-thermal electrons loose their energy via several processes:
+\begin{itemize}
+    \item The colomb interactions with free thermal electrons. It is relevant when energy of non-thermal electrons far exceed the energy of thermal ones. This is also called 'plasma losses'. The amount of energy loset per unit time (see \cite{(Huba, J. D. 2013)}) $\dot{E}_{\beta}^{pl}\propto f(E_{\beta}, n_e, \lambda_{ee}, T)$, where $\lambda_{ee}$ is the Coulomb logarithm for electron-electron scattering. The formula holds as long as $E_{\beta}\gg k_{B}T$. The $n_e$ can be computed assiming a fixed ionisation state for all elements. 
+    \item Ionisation and excitation of the atomic electrons. The energy loss due to that has a well-established formulation \cite{(Heitler 1954; Berger & Seltzer 1964; Gould 1975; Blumenthal & Gould 1970}; \cite{Chan & Lingenfelter (1993)} \cite{Milne et al. 1999)}. Here $\dot{E}_{\beta}^{IE} \propto f(n_{e,b}, \upsilon_{\beta}, E_{\beta}, \tau, \bar{I})$, where $n_{e,b}$ is the number density of bound electrons, $\tau=E_{\beta}/m_e c^2$, $\bar{I}$ is the average ionisation and excitation potential (see e.g., \cite{(Segre 1977)} and \cite{PChan & Lingenfelter (1993)} for how it can be computed). 
+    \item Synchrotron emission. In the bagnetic field of strength $B$, the electron with velocity $\upsilon_{\beta}$ has an energy loss rate $\dot{E}_{\beta}^{syn}=(4/9)r_e^2 c \gamma^2 (\upsilon_{\beta}/c)^2 B^2$, where $\gamma$ is the particle lorentz factor \gray{$\Gamma$}. For kilonova the $\dot{E}_{\beta}^{syn}$ was found to be orders of magnitude smaller then $\dot{E}_{\beta}^{IE}$ and thus neglected. 
+    \item Free-Free or Bremsstrahlung losses, where the energy loss rate can be written as $\dot{E}_{\beta}^{Brem} = n_i \upsilon_{\beta}(E_{\beta}+m_e c^2)Z^2 r_0^2 \alpha \phi_{rad}$, where $n_i$ is the number density of scattering speciesn, $\alpha$ is the fine-structure constant, $\phi_{rad}$ is the energy dependent empirical fitting constant (see \cite{Seltzer & Berger (1986)}).The free-free energy loss was found to contributiong moderately for $E_{\beta}\geq1$.
+\end{itemize}
+
+In the outer ejecta, whose ionisation degree is low, $\dot{E}_{\beta}^{IE}$ dominates the 'PL' and 'Brem' losses. The outer ejecta has higher thermalizatio nrates. 
+
+%%
+
+\subsubsection{Alpha-particles}
+
 
 
 
