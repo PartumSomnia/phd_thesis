@@ -4847,6 +4847,50 @@ In the outer ejecta, whose ionisation degree is low, $\dot{E}_{\beta}^{IE}$ domi
 
 \subsubsection{Alpha-particles}
 
+The main energy loss of suprathermal $\alpha$-particles experience is due to interaction with 1) bound and 2) free electrons (plasma losses), -- interaction with heavy ions and nuclei are not as important. The energy loss rate (\cite{Huba, J. D. (2013)}) reads $\dot{E}_i^{pl} = f(E_i, \mu_i, Z_i, n_e, \lambda_{ie}, T)$, where $E_i$ is the ion's kinetic energy, $\mu_i$ ions mass, $Z_i$ is the charge in, $\lambda_{ie}$ is the Coulomb logarithm for ion-electron scattering. The energy loss rates can be taken from NIST’s ASTAR database \cite{(Berger et al. 2005)}, which is however limited and mapping of a full ejecta composition on a reduced set present in database is required.
+
+At low energies the plasma losses dominate, when $E_{\alpha}\leq1$~MeV. At high energies, however, interaction with bound eletrons become important.
+
+%%
+
+\subsubsection{Fission fragments}
+
+\gray{skipped the method}
+
+Fission fragments interact with atomic nuclei, as well as free and bound electrons. The latter are especially important at high energies, while the interaction with free electrons important up to $10$~MeV. Fission fragments thermilize more efficiently in the outer ejecta.
+
+%%
+%%
+%%
+
+\subsection{Analytic Results}
+
+Consider the inner ejecta and the analytical treatment of thermalization from \cite{Metzger et al. (2010)}; \cite{Hotokezaka et al. (2016)}.
+
+%%
+
+\subsubsection{Analytic estimates of thermalization timescales}
+
+The thermalization of each decay product and within each decay cahnnel sets the net thermalization of the energy from radioactive  decay of $r$-process material. In addition, density of the medium, set by its mass anc velocity, also affects the energy loss rate.
+The density history can be approxumated considering an expanding homogenous sphere with mass $M_{ej}$, and kinetic energy $E_k = M_{ej} \upsilon_{ej}^2 / 2$ as $\rho(t) \propto M_{ej} \upsilon^{-3} t^{-3}$. 
+The efficiency of thermalization drops at, $t_{ineff}$, when the ejecta expansion timescale catches up with the time needed for a particle to thermalize.
+Recalling the kilonova peak time $t_{peak} \propto (A M_{ej} \kappa / (\upsilon_{ej} c))^{1/2}$ where $A=.32$ is the scaling factor from radiation trasport simulations \cite{(e.g. Barnes & Kasen 2013)}. 
+Thus the thermalization have an important effect on the lightcurve if $t_{ieff} < t_{peak}$. 
+
+For each decay produced the $t_{ineff}$ is different. 
+\paragraph{$\gamma$-rays} thermalization depends on how efficiently they can deposite their energy before escapin the ejecta. This depends on the ejecta optical depth $\tau\approx\rho\kappa_{\gamma}R_{ej}$. IF the optical depth $\tau<1$, $\gamma$-rays can escape. Consider the $E_{\gamma}\geq 1MeV$, for which opacity of importance is the Compton opacity $\kappa_C\approx5\times10^{-2}$cm$^2$g$^{-1}$. For lowere energies the photoionisation opacity $\kappa_{PI}\approx 1$ cm$^2$g$^{-1}$ domiantes. 
+One finds that for $\gamma$-rays $t_{ineff}<t_{peak}$.
+
+\paragraph{$\beta$-particles}.
+It was found that the loss of energy by the $\beta$-particles is rather constant with energy. The thermalization time is $t_{th}\propto(E_{\beta;0}, M^{-1}, \upsilon^{3}, t^{3}$. 
+In order the thermalize efficielty, the expansion timescale $t_{exp}$ must be smaller then $t_{th}$. This freezes out at $t_{ineff}$. Comparting this to the $t_{peak}$, one finds that for a standart kilonova ejecta mass and velocity these two are compatible.
+
+Next, consider magnetic foelds. 
+Radial magnetic field allows $\beta$-particles to escape the ejecta avoiding thermalization of its energy. To escape timescale then is $t_{esc}\approx R_{ej}(t)/(\lambda \upsilon_{\beta,||})$, where the $\lambda R_{ej}$ is the coherence lendgth of the magnetic field, and $\upsilon_{\beta,||}$ is the parallel to the field line component of the particle velocity. 
+Notably, for a typical parameters of the ejecta mass, velocity and a radai flied (coherence length $\lambda=1$) the escape time is less then a peak time and thus such losses are important. However for a disordered field, even a slight entanglement prevents paraticles from escaping.
+
+\paragraph{\alpha-particles and fission fragments}
+
 
 
 
