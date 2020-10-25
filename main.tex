@@ -4889,7 +4889,44 @@ Next, consider magnetic foelds.
 Radial magnetic field allows $\beta$-particles to escape the ejecta avoiding thermalization of its energy. To escape timescale then is $t_{esc}\approx R_{ej}(t)/(\lambda \upsilon_{\beta,||})$, where the $\lambda R_{ej}$ is the coherence lendgth of the magnetic field, and $\upsilon_{\beta,||}$ is the parallel to the field line component of the particle velocity. 
 Notably, for a typical parameters of the ejecta mass, velocity and a radai flied (coherence length $\lambda=1$) the escape time is less then a peak time and thus such losses are important. However for a disordered field, even a slight entanglement prevents paraticles from escaping.
 
-\paragraph{\alpha-particles and fission fragments}
+\paragraph{$\alpha$-particles and fission fragments}
+
+The thermalization of fission fragments and alpha-particles is similar to beta particles. However, being might more energetic, (especially the fission fragments) and they loose their energy faster. The efficientlcy of $\alpha$-paroticles thermalization is similar to that of the $\beta$-particles. Fission fragments can efficietly thermalize out to late times, $t_{ineff;ff}\gg t_{peak}$.
+
+The thermalization of both $\alpha$-particles and fission fragments is slightly rediced by the fact that moving slowly through the expanding ejecta, with trajectories vound around magnetic field lines, they loose their kinetic energy (in the comoving frame).
+
+\subsubsection{Summary of thermalization}
+
+Particles that can thermalize efficiently at $t=t_{peak}$ are $\alpha$-particles and low energy $\beta$-particles. 
+Less clear is the ability to therlamize of high energy $\beta$-particles and $\gamma$-rays. 
+\gray{See fig. 3.8}
+
+\subsubsection{Analytic thermalization model}
+
+The model predicts the thermalization efficiency of massive particles. 
+A set of assumptions is empolyed: the energy generation rate evolution (exponent), density profile of the ejecta, $\dot{E}=f(\rho)$ of a particles does not depends on its $E$; single $E_0$ is set for all particles of a given type.
+
+Consider the thermalization efficiency, $f(t) = \dot{E}_{th}(t) / \dot{E}_{rad}(t)$, which is the ratio of energy emitted by radioactive decays to energy absorbed by the ejecta at $t$. 
+Assume that the $\dot{E}_{rad} = \dot{\varepsilon}_0(t_0/t)$, where $\dot{\varepsilon}_0 = 10^{11}$M$_{ej}$ergs s$^{-2}$ and $t_0=1$~day. 
+Assume that a single particle following a homologous expansion looses energy as $\dot{E}_{part}(t) = \psi \rho_0 (t/t_0)^{-3}$, with $\psi\rho_0=\dot{E}_{part}(t_0)$. 
+Then the thermalization rate for an ensebmble of particles of a given type (with unique $\psi$) is $\dot{E}_{th}(t) = N(t) \psi \rho_0 (t/t_0)^{-3}$.
+Consider the time $t$. At this time the particle energy satisfies $E_{part}(t)=E_0 - \int_{t_i}^{t}\psi\rho_0 (t'/t_0)^{-3}dt' = 0$, and then $t_i = ((\psi\rho_0 t_0^3 t^2)/(2E_0t^2 + \psi\rho_0 t_0^3))^{1/2}$. 
+The number of particles that are still present at time $t$ is $N(t) = (\dot{\varepsilon}_0 t_0)/(2E_0) \ln[ 1+2(t/t_{ineff})^2 ]$, where $t_{ineff}$ is the inefficiency timescale (see prev.sec.)
+Then the ratio between the energy of a partiles of type $p$ that by the time $t$ has bee thermalzied is 
+\begin{equation}
+    f_p(t) = \frac{\dot{E}_{th}}{\dot{E}_{rad}} = \frac{\ln\Bigg[1 + 2 \Big(\frac{t}{t_{ineff;p}}\Big)^2\Bigg]}{2\Big(\frac{t}{t_{ineff;p}}\Big)}
+\end{equation}
+This equation is valid for $\beta$- $\alpha-$ particles and fission fragments \gray{here the corresponding $t_{ineff}$ van be inserted.}
+
+For the $\gamma$-rays however a separate treatment is required. The probabolity of a $\gamma$-ray to interact then defines its efficiency to thermalize. 
+Consider the optical depth $\tau\approx\rho\kappa_{\gamma}R_{ej}$ with $\bar{\kappa_{\gamma}}$ as a $\gamma$-ray opacity averaged over the enission spectrum. Then, the interaction probability is $f_{\gamma}(t) \approx 1 - e^{-\tau} = 1-e^{-(t/t_{ineff;\gamma})^{-2}}$.
+
+%%
+%%
+%%
+
+\subsection{Numerical Results}
+\gray{bried}
 
 
 
