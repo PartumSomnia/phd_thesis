@@ -4928,9 +4928,40 @@ Consider the optical depth $\tau\approx\rho\kappa_{\gamma}R_{ej}$ with $\bar{\ka
 \subsection{Numerical Results}
 \gray{bried}
 
+Consider the 3D transport of $\gamma$-rays, fission fragments, $\alpha$- and $\beta$-particles in the magnetized expanding medium. 
 
 
+\paragraph{Thermalization efficiencies} The most efficient themalization, $f(t)>0.5$ is for fission fragments at late time ($t>2$~weeks). $\alplha$- and $\beta$- particles have lowere $f(t)\sim0.5$ and this time. The $\gamma$-rays thermalize withing few days. 
 
+The magnetic fields play an important role, they allow to \texbf{diffuse}, if the field is radial or slightly tangled, reducing $f(t)$; \textbf{escape}, skipping the thermalization, reducing $f(t)$; and leading to \textbf{frame-to-frame} effects, the loss of a particle energy in a homologously expanding shell, in comoving frame, hence -- less energy particles has, the lower $f(t)$, which are of particular importance for $\alpha$- particles and fission fragments.
+The $f(t)$ is reduced more for toroidal field, radial -- minimum, and random fields are in-between.
+
+The relative thermalization efficiency of various outcomes is consistent between different ejecta setups. However, the exact values of $f(t)$ depend of the ejecta mass and velocity sensitively. In particular $f(t)$ rises with $M_{ej}$ and falls when $\upsilon_{ej}$ increases. 
+
+The massive particle thermalization increases with increasing asphericicty. 
+
+The $r$-process yields have an important effect on thermalization efficiency. Producing more trans-lead elements, that primarely decay via fission and emission of alpha particles, results in increesed importance of these particles in total thermalziation rates.
+
+\subsubsection{Effects on the kilonova lightcurves}
+
+\gray{The code \texttt{SEDONA} is used}.
+
+\paragraph{Analytic fit to thermalization efficiency}
+
+\begin{equation}
+    f_{tot}(t) = 0.36 \Bigg[e^{-at} + \frac{\ln(1+2bt^d)}{2bt^d}\Bigg],
+\end{equation}
+
+where $a$, $b$, $d$ are the fitting constants. 
+ 
+Consider the radiation traposrt code. Consider low $Y_e$ ejecta, that robustly reproduce lanthinides and actinides and that and fir which the enhanced opacities are to be used. The inclusion of sophysticated thermalization effciency models leads to following results.
+The kilonova peaks at earlier time and dimmer, with further decreased luminocities later in time. This is especially important for low mass fast ejecta. Lightcurves of such ejecta fade quicker and is overall less bright. 
+In addition, the magnetic fields have an important effect on lightcurves. Random or toroidal fields, that confine particles, increase thernalisation efficiency, raising the kilonova luminocity. 
+Effects of nucleosynthesis lies in setting the amount of translead uclei and the amount of energy produced by $\alpha$-decay. 
+
+%%
+
+\subsection{Late-time light curve}
 
 %% --------------- 
 %%
