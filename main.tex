@@ -5172,9 +5172,109 @@ At even higher energies, hard X-ray photons, an imporatnt source of opacity is t
 %% pair-creation
 For an extremely high photon energies $h\nu \gg m_e c^2$a pair creation becomes important. In particular this is so if a remnant is magnetar with large spin-down luminosity. Then, the at peak of the Kilonova emission, the pair creation might prevent pair-creation photons from escaping the kilonova. 
 
+%%
+
 \subsection{Unified Toy Model}
 
+The way to model electormagnetic emission from the ejecta is to perform multi-dimensional, multi-group radiative transfer simulation coupled to hydrodynamica (or MHD) simulation of the ejecta itself.
 
+Here a simplified model is considered or a transient, powered by the radioactive decay within the ejecta only. Several other assumptions are made.
+In particular, the ejecta expansion is homologous (faster matter ahead of slow one) \cite{(Rosswog et al 2014)}
+The mass-velocity distribution is $M_{\upsilon} = M(\upsilon / \upsilon_0)^{-\beta}$, for $\upsilon \geq \upsilon_0$,
+where $M$ is the total mass, $\upsilon_0$ is the average, minimum velocity. $\beta$ can be assumed to te $3$, \cite{(Bauswein et al 2013a)}. However see \cite{Piran et al 2013} for a more complex velocity profiles.
+
+The diffusion timescale defines when the radiation escapes the ejecta. For a layer with $\upsilon$ and $M_{\upsilon}$ and opacity $\kappa_{\upsilon}$ it is 
+
+\begin{equation}
+    t_{d,\upsilon} \approx \frac{3}{4\pi}\frac{M_{\upsilon}\kappa_{\upsilon}}{\beta Rc} = \frac{1}{4\pi}\frac{M_{\upsilon}^{4/3}\kappa_{\upsilon}}{M^{1/3}\upsilon_0 t c}
+\end{equation}
+
+where $\beta=3$ was assumed. 
+
+This equation implies that at time $t=t_{d,\upsilon}$ the radiation from the layer $M_{\upsilon}$ peaks.
+
+The $M_{\upsilon}(t)$ is related to the total mass of the ejecta and peak time (when radiation diffuses from the entire ejecta)
+
+\begin{equation}
+    M_{\upsilon}(t) = 
+    \begin{cases}
+        M(t/t_{peak})^{3/2},& t<t_{peak}, \\
+        M, &t>t_{peak}
+    \end{cases}
+\end{equation}
+
+where $t_{peak} = (3M\kappa / (4\pi \beta \upsilon c))^{1/2}$ with $\upsilon = \upsilon_0$. \red{Did not understand}
+
+Outer layers with $M_{\upsilon} < M$ peaks first, while the deepest layers peak later but set the luminocity of the whole ejecta (assuming that the the opacity is constant in the ejecta. 
+
+The radial evolution of each layer $M_{\upsilon}$ of mass $dM_{\upsilon}$ is given by 
+
+\begin{equation}
+    \frac{dR}{dt} = \upsilon,
+\end{equation}
+
+and the layer's thermal energy changes according to 
+
+\begin{equation}
+    \label{eq:theory:mkn:energ}
+    \frac{dE_{\upsilon}}{dt} = \underbracket{-\frac{E_{\upsilon}}{R_{\upsilon}} \frac{dR_{\upsilon}}{dt}}_{PdV\text{ losses}} - \underbracket{L_{\upsilon}}_{\text{rad. los.}} + \underbrace{\dot{Q}}_{\text{heating sources}},
+\end{equation}
+
+where the radiative losses take form
+
+\begin{equation}
+    L_{\upsilon} = \frac{E_{\upsilon}}{t_{d,\upsilon} + t_{lc,\upsilon}},
+\end{equation}
+
+in which the $t_{lc,\upsilon} = R_{\upsilon}/c$ limits the energy loss to the light crossing time (important for when the layer is optically thin) \red{did not understand}.
+
+The heating sources $\dot{Q}$ include
+
+\begin{equation}
+    \dot{Q}(t) = \underbrace{\dot{Q}_{r,\upsilon}}_{\text{radioactivity}} + \underbrace{\dot{Q}_{mag}}_{\text{magnetar}} + \underbrace{\dot{Q}_{fb}}_{\text{fall-bak accretion}}
+\end{equation}
+
+Next, even though in principle the effect of radiation pressure on ejecta ought be considered, in case where radioactive heating, total energy input $\int \dot{Q}_{r,\upsilon}dt < E_{kin,0}$ of the ejecta, \cite{(Metzger et al 2011; Rosswog et al 2013)}, this effect can be neglected.
+Meanwhile, central engine might provide enough energy to modify the free expansion model. Then the equation for the central shell velocity evolution reads 
+
+\begin{equation}
+    \label{eq:theory:mkn:velcenteng}
+    \frac{d}{dt}\Bigg(\frac{M\upsilon_0^2}{2}\Bigg) = M\upsilon_0\frac{d\upsilon_0}{dt} = \frac{E_{\upsilon_0}}{R_0}\frac{dR_0}{dt}
+\end{equation}
+
+Here, the term with $E_{\upsilon_0}$ balances the PdV \textit{loss} term in the thermal energy eequation (for $dE_{\upsilon}/dt$)
+
+To compute the mitted radtion, first assume the black-body emission, the thermal emission, wit heffective temperature 
+
+\begin{equation}
+    T_{eff} = \Bigg(\frac{L_{tot}}{4 \pi \sigma R_{ph}^2}\Bigg)^{1/4}
+\end{equation}
+
+where $L_{tot} = \sum(L_{\upsilon dm_{\upsilon}})$. is the total luminocity (cumuklative for all mass shells). 
+At the point where optical depth $\sum(\kappa_{\upsilon}dm_{\upsilon})=1$ the photosphere is located wit hradius $R_{ph}(t)$. 
+The flux density of the source at photon frequency $\nu$ is given by 
+
+\begin{equation}
+    F_{\nu}(t) = \frac{2\pi h \nu^3}{c^2} \frac{1}{\exp\Big(\frac{h\nu}{kT_{eff}}\Big) - 1} \frac{R_{ph}^2}{D^2}
+\end{equation}
+
+where, $D$ is the distnace to the source. (Cosmological effects are neglected here).
+
+Additionally, the opacity $\kappa_{\upsilon}$ depends on the temperature of the layer $T_{\upsilon}$, that itself cna be comptued as 
+
+\begin{equation}
+    T_{\upsilon} = \Bigg(\frac{3E_{\upsilon}}{4\pi a R^{3}_{\upsilon}}\Bigg)^{1/4}
+\end{equation}
+
+assuming that the ejecta internal energy is dominated by the raditiona. 
+
+Finally, in order to compute the electromagnetic emission from the ejecta, the equation Eq.~\eqref{eq:theory:mkn:energ} ought be solved for $E_{\upsilon}$ (and $L_{\upsilon}$) for every shell with $dM_{\upsilon}$ and $\upsilon>\upsilon_0$. 
+The velocity distribution can be assumed fixed (\textit{e.g.,} $M_{\upsilon} = M(\upsilon/\upsilon_0)^{-\beta}$,  if only the internal heating are important. If however, the central engine energy input is important, the the velocity of the central layer evolves according to Eq.~\eqref{eq:theory:mkn:velcenteng}.
+Initial kinetic energy of the ejecta is quicly removed by the adiabatic expansion and the thermal energy of the ejecta, when its emission peaks, is domunated by the heating.
+
+%%
+
+\subsection{$r$-process heating}
 
 %% --------------- 
 %%
