@@ -5309,8 +5309,76 @@ The dependency of $\dot{Q}_{r.\upsilon}$ on the nuclear physics models was shown
 Regarding the thermalization efficiency of the energy released, \cite{Barnes et al (2016)} provides a recepi that sets the $\varepsilon_{th,\upsilon}$ decreasing from $\sim0.5$ at around $1$~day to $\sim0.1$ at around $1$~week. 
 
 \begin{equation}
-    \varepsilon_{th,\upsilon}(t) = 0.36 \Bigg[ \exp(-\alpha_{\upsilon}, t_{day}) + \frac{\ln(1+2b_{\upsilon} t_{day}^{d_{\upsilon}})}{2b_{\upsilon}t_{day}^{d_{\upsilon}}} \Bigg]
+    \varepsilon_{th,\upsilon}(t) = 0.36 \Bigg[ \exp(-a_{\upsilon}, t_{day}) + \frac{\ln(1+2b_{\upsilon} t_{day}^{d_{\upsilon}})}{2b_{\upsilon}t_{day}^{d_{\upsilon}}} \Bigg]
 \end{equation}
+
+where $t_{day}$ is the time in days, ${a_{\upsilon}, b_{\upsilon}, d_{\upsilon}}$ are the constants that depend on the ejecta layer properties, mass and velocity. 
+
+
+\subsubsection{Red Kilonova: Lanthanide-Bearing Ejecta}
+
+Lathanides-rich ejecta is present in tidal outflow in BNS and NSBH mergers.
+
+Notably, a toy model predicts a lightcurve from such low-$Y_e$ ejecta that peaks in NIR (in relatively good agreement with Rad.Transf.Model of \cite{Barnes et al (2016)}) on a timescale of several days (week)
+The disagreemnt with radiation transfer models most noticable in the post-peak period, where toy model predicts sharp decay, while Rad.Trasf. predicts smooth decline. The reason for it is the toy model's assumption of optically thick blackbody emission. As ejecta expands cools and become optically thin, this assumption breaks down.
+It is important to note, that the toy model does not take into account other emergent sources of opacity at late times, such as clumping, dust foramtion, photo-ionisation from central engine. These may smooth the post-peak lightcurves.
+
+\subsubsection{Blue Kilonova: Lanthanide-Free Ejecta}
+
+High $Y_e$ ejecta ($Y_e > 0.3$) was shown to be present in BNS \textit{e.g.,} \cite{Wanajo et al 2014b; Goriely et al 2015)}. Such ejecta would lack elements of lanthinides group \cite{(Metzger and Fernandez 2014)} and thus have a different EM signature.
+The emission from such ejecta peaks in optical/R,I bandson a time scale of days. It is 2-3 magnitudes brighter then 'Red Kilonova'. 
+This emission is assumed to be of polar origin and contribute to the total electromagntic signature of the BNS ejecta. 
+
+\subsubsection{Free Neutron Precursor}
+
+The sufficiently high density and low veloicyt of the bulk of the ejecta assures that there is enough time for the $r$
+-process to remove free neutrons. However, a small fraction of the ejecta was shown to have hight enough velocity to retain its free neutrins and escape the dens slow part, \textit{e.g.,} \cite{(Bauswein et al 2013a)}. The origin of this component is the shock-heated intefrace between two neutron stars as they collide. 
+The outer layers of the ejecta then can be \red{superheated} by this \red{'neutron skin'}, modifying the Kiloniva signal. \cite{(Metzger et al 2015a; Lippuner and Roberts 2015)}
+
+Here we consider such ejecta, that contains free neutrons. 
+Consider layer $dM_{\upsilon}$, that contain a fraction $X_{n;\upsilon}$ of free neutons, specific heating rate of which $\dot{e}_n(t)$. Then, the heating rate in the layer reads 
+
+\begin{equation}
+    \dot{Q}_{r;\upsilon} = dM_{\upsilon} X_{n,\upsilon}\dot{e}_n(t).
+\end{equation}
+
+The initial mass fraction of neutrons $X_{n,\upsilon}$ is defined as 
+
+\begin{equation}
+    X_{n,\upsilon} = \frac{2}{\pi}(1 - Y_e)\arctan\Big(\frac{M_{n}}{M_{\upsilon}}\Big),
+\end{equation}
+
+is an arbitrary assumed interpolation between the neutron rich ($M\ll M_{n}$) inner layers with $X_{n} = 1-2Y_e$ and neutron-free ($M\gg M_n$) layers.
+
+Assuming the averabe neutron half-0ife of $900$~s, the specific heating rate $\dot{e}_{n}$ is 
+
+\begin{equation}
+    \dot{e}_n = 3.2 \times 10^{14} \exp[-t/\tau_n] \text{ erg } \text{s}^{-1} \text{g}^{-1},
+\end{equation}
+
+Simultaneously, as fraction of free neutrons increases in outermost layrs, the fraction of $r$-process elements decreases as $X_{r,\upsilon} = 1 - X_{n.\upsilon}$, which has to be accounted for in Eq.~\eqref{eq:theory:mkn:energ}.
+
+The effect of free neutrons on Kilonova lightcurves is the following.
+Even for a very small mass, $\sim 10^{-4}M_{\odot}$ of freen-nutron ejecta, with $Y_e\sim0.1$, the UVR luminocities are increased considerably, in the first hours after merger.
+The reason for that is, $\dot{e}_{n} > \dot{e}_r$ by at loeast an order of magnitude on a tiemscales up to 1 hour postmerger. Also, this timescale is comaprable with the diffusion time scale for the neutron mass layer. 
+
+\begin{equation}
+    t_{peak,\upsilon} \approx \Bigg(\frac{M_{\upsilon}^{4/3}\kappa_{\upsilon}}{4\pi M^{1/3}\upsilon_0 c}\Bigg)^{1/2} \sim 3.7 \text{ hours}.
+\end{equation}
+
+And 
+
+\begin{equation}
+    L_{peak} \approx \frac{E_n \tau_n}{t_{peak;\upsilon}^2} \propto 3\times10^{41}
+\end{equation}
+
+which is insensitive to the mass of the layer itself. 
+This emission is expected to peak in optical/UV band due to the high ejecta temperature during the first hours after merger. 
+
+%%
+
+\subsection{Engine Power}
+
 
 %% --------------- 
 %%
