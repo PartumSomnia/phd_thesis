@@ -5670,12 +5670,85 @@ is smaller in the lab frame than in the comoving frame.
 Next, consider a frequency integrated total energy radiated per init time over the $4\pi$ steradians, denoted as $P$. \gray{Assume that the photon been is symmetric under the parity transformation in particle rest-frame (energy radiated per unit of the solid angle in $\theta\phi$ and $\pi-\theta,\pi+\phi$ are the same} \red{assume emission is locally isotropic.}.
 The the pwer in the lab frame $P = P'\Gamma\delta t'/(\Gamma\delta t') = P'$. Hence, power radiated by particles is \magenta{Lorentz invariant}.
 
-\subsubsection{Transformation of specic luminosity and specic intensity}
+%%
+%%
+%%
+
+\subsubsection{Transformation of specific luminosity and specific intensity}
+
+Consider a spherically symmetric source, expanding with Lorentz factor $\Gamma$. 
+
+Introduce the \magenta{specific luminocity}, defined as the total energy that passes through the surface enclosing the spurce per unit time, per unit frequency, $L_{\nu} = dE / d\nu dt_{obs}$. 
+As $d\nu dt_{obs} = d\nu' dt'$ and $E=\Gamma E'$, the Lorentz transformation of luminocity is
+
+\begin{equation}
+    L_{\nu} = \frac{dE}{d\nu dt_{obs}} = \Gamma \frac{dE'}{d\nu' dt'} = \Gamma L_{\nu}'
+\end{equation}
+
+ assuming that the $3$-momentum is zezo (as the spurce is spherically symmetric).
+
+Next, introduce the \magenta{specific intensity}, defined as a flux per unit frequency and per unit solid angle, mediated by photons, transversing surface $dA$, perpendicular to the conical beam, confining the photons, 
+
+\begin{equation}
+    I_{\nu} = \frac{dE}{d\nu dt_{obs} dA d\Omega}
+\end{equation}
+
+that has a Lorentz transfprmation $I_{\nu} = \mathcal{D}^3 I_{\nu'}'$ as $d\nu dt_{obs} dA$ is the Lorentz invariant.
+
+%%
+%%
+%%
+
+\subsubsection{Observed lightcurve from a source that is suddenly turned off}
+
+\red{I did not quite understand this section at all...}
+\red{Also here a figure is required, Fig.2}
+\red{it mainly says that when the source turns off, because of its finite angular extend and EATS, the observed flux does not switches off, but rapidly declies.}
 
 
+Considering the variability of EM transients such as GRB it is important to asses how a sudden turn off of the source affects the observed emission. 
+Consider a relativist thin shell moving within a cone with lorentz factor $L$. As it reaches the radius $r=R_0$ the source turns off. 
+\red{
+A point on the thin shell is characterized by $(r,\theta,\phi)$ where $\theta$ is the angle measured with respect to the line of sight to the observer. Then, photons, emitted at $(r=\upsilon t, \theta,\phi)$ arrive at the observer with a time delay with respect to a photone emitted at $r=0$ of
+}
 
+\begin{equation}
+    t_{obs} = t - \frac{r \cos(\theta)}{c} = t(1-\frac{\upsilon\cos(\theta)}{c}) = \frac{t}{\Gamma\mathcal{D}}
+\end{equation}
 
+Now, consider the observed emission from the source ar frequency $\nu$. The starting time is $t_{0;obs}\approx(R_02c\Gamma^2)$, at which photons, emitted from $(R_0,0,0)$ arrive, At later times, $t_{obs}>t_{0;obs}$, the observer still sees photons emitted when $r < R_0$. 
+Assume that the intrinsic emission spectrum is $I_{\nu'}' = I'\nu^{'-\beta}$.
+Then, at $t_{obs} > t_{0;obs}$ the radiation from $\theta > \theta_t$ (where $\theta_t$ corresponds to $t_{obs} = R_0(1/\upsilon - \cos(\theta_t)/c)$) reaches the observer.
+The observer flux \textit{e.g.,} $f_{\nu} \propto \int I_{\nu} d\Omega$, has the following Lorentz transformation $f_{\nu}\propto\int_{\theta_t} d\theta \sin(\theta_t) \mathcal{D}^{-(3+\beta)}$.
 
+Now, consider a more rigorous deriviation of the tranformation of the specific flux in observer frame fromrelativistic source with comoving specific intensity $I_{\nu'}'$ and spectrum $\propto \nu^{' -\beta}$
+
+\begin{equation}
+    f_{\nu}(t_{obs}) = \int d\Omega_{obs} I_{\nu} \cos(\theta_{obs}) = 2\pi \int d\theta_{obs} \frac{ I_{\nu'_0}' \nu_{0}^{'\beta}\sin(2\theta_{obs})[(1+z)\Gamma]^{-(3+\beta)} }{ 2\nu^{\beta} [ 1-\upsilon\cos(\theta + \theta_{obs}) / c ]^{3+\beta} }
+\end{equation}
+
+where $\nu_0 '$ is a frequency that lies on the powerlaw segment of the spectrum for $I_{\nu'}'$. The lorentz transformation of the specific intensity was made above. The factor $(1+z)^{3+\beta}$ accounts for the redshift on the frequency. 
+
+Assuning that $\sin(\theta)/d_{A} = \sin(\theta_{obs})/r$, the above integral writes 
+
+\begin{equation}
+    f_{\nu} \approx \frac{ 2\pi I' \nu' _0 \nu_{0}^{'\beta}\nu^{-\beta} }{[(1+z)\Gamma]^{3+\beta}} \Big( \frac{R_0}{d_A} \Big)^2 \int_{\theta_t}^{\pi / 2} d\theta \frac{\sin(\theta)\cos(\theta)}{(1-\upsilon\cos(\theta)/c)^{3+\beta}},
+\end{equation}
+
+where $\theta+\theta_{obs}$ in the denominator was replaced with $\theta$ as $\theta_{obs}\ll\theta$.
+The integral is simple to compute. Ir yields
+
+\begin{equation}
+    f_{\nu}(t_{obs}) \propto (1 - \upsilon\cos(\theta_t)/c)^{-(2 + \beta)}\nu^{-\beta} \propto t_{obs}^{-(2+\beta)} \nu^{-\beta},
+\end{equation}
+
+This equation shows, that the observed radiation does not immedeatly turns off when the soruce switches off. The flux falls off rapidly with time and wanishes when $\theta_t$ exceeds the angular size of the soruce $(\theta_j)$.
+
+%%
+%%
+%%
+
+\subsection{Syncrotron Radiation}
 
 
 %% --------------- 
