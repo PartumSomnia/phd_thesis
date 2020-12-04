@@ -5749,6 +5749,77 @@ This equation shows, that the observed radiation does not immedeatly turns off w
 %%
 
 \subsection{Syncrotron Radiation}
+\red{This is not exactly accurate formalism, does not take angle into account}
+\red{Could be considerably imprved}
+
+Consider an electron moving in the magnetic field, perpendicular to the field lines.
+Let $\gamma_e$, $\upsilon_e$ be the electron's Lorentz factor and veloicity and $B$ the magnetic field strength.
+The electric field in the electron rest-frame is $E=\gamma_e \upsilon_e B /c$. The electron acceleration in this field yields radiation, total power of which, according to the Larmor's formula, 
+
+\begin{equation}
+    P_{syn} = \frac{2q^4E^2}{3c^3m_e}=\frac{2q^4B^2\gamma_e^2\upsilon_e^2}{3c^5m_e^2}=\frac{\sigma_TB^2\gamma_e^2\upsilon_e^2}{4\pi c}
+\end{equation}
+
+where $\sigma_T = 8\pi q^4 / (3m_e^2c^4)$ is the Thompson cross section. 
+
+The $P_{syn}$ is the lorentz invariant *as electric dipol radiation is Lorentz invariant).
+
+Note, that for an isotropic pitch angle distribution, the average power $\langle P_{syn} \rangle = (2/3)P_{syn}$.
+
+The angular speed of the electron (\textit{e.g.,} its Larmor frequency), is
+
+\begin{equation}
+    \omega_L = \frac{q B}{\gamma_e m_e c}
+\end{equation}
+
+\red{nice rephrasing}
+Within the magnetic field, an electron is moving on a spiral trajectory. 
+The relativistic beaming of emitted radiation leads to a distant observer being able to see this radiation, only when the electron velocity vector is within $\angle \sim \gamma_e^{-1}$ from the lone of sight. Correspondingly, only a fraction of orbital time, $t\sim1/(\pi\gamma_e)$, contributes to the observed radiaiton, which appear as a repeated pulse. The duration of this pulse is
+
+\begin{equation}
+    \delta t_{obs} \sim \frac{2}{\gamma_e \omega_L}\frac{1}{2\gamma_e^2}\sim \frac{m_e c}{q B \gamma_e^2}
+\end{equation}
+
+where we used $\delta t' = \delta t / \gamma_e$. 
+Then the characteristic frequency of the synchtrontron radiation is given by an inverse of $\delta t$ and reads 
+
+\begin{equation}
+    \omega_{syn} \sim \frac{q B \gamma_e^2}{m_e c} \text{ and } \nu_{syn} = \frac{\omega_{syn}}{2\pi} \sim \frac{q B \gamma_e^2}{2\pi m_e c}
+\end{equation}
+
+where $\nu_{syn}$ is the cyclic frequency.
+Note that here the factor $(3/2)\sin(\alpha)$, where $\alpha$ is the pitch angle between the electron's velocity and the magnetic field is \red{ommited}.
+
+The synchrotron spectrum peaks at $\sim \nu_{syn}$. At $\nu < \nu_{syn}$ the $P_{syn}(\nu)\propto\nu^{1/3}$ (which is determined by the Fourier transform of the synchrotron pulse profile). At $\nu > \nu_{syn}$ the power decays exponentially. See \cite{RubicyLightman1979} for the calculation of synchrotron spectum.
+
+The power per unit frequency at the peak of the spectrum is given 
+
+\begin{equation}
+    P_{syn}(\nu_{syn}) \sim \frac{P_{syn}}{\nu_{syn}} \sim \frac{\sigma_T B m_e c^2}{2 q},
+\end{equation}
+
+Now consider the distribution of electrons.
+Commonly adopted is the power-law distcibution, $dn_e/d\gamma_e \propto \gamma_e^{-p}$, which results in emssion spectrum $f_{\nu}\propto\nu^{-(p-1)/2}$,
+which is q consiquencye of 
+
+\begin{equation}
+    f_{\nu} = \int_{\gamma_{\nu}}^{\infty} d\gamma_e \frac{dn_e}{d\gamma_e}P_{syn}(\nu) \propto \nu^{-(p-1)/2}
+\end{equation}
+
+as $P_{syn}(\nu) \propto (\nu/\nu_{syn})^{1/3}$ for $\nu < \nu_{syn}$\red{where is this from?}.
+
+Here
+
+\begin{equation}
+    \gamma_{\nu} \sim \Bigg(\frac{2\pi\nu m_e c}{qB}\Bigg)^{1/2}
+\end{equation}
+
+is the minimum Lorentz factor, above which electrons contribute to the specific flux, $f_{\nu}$
+\red{why?}
+
+
+
+
 
 
 %% --------------- 
