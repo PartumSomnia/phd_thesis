@@ -5816,6 +5816,56 @@ Here
 
 is the minimum Lorentz factor, above which electrons contribute to the specific flux, $f_{\nu}$
 \red{why?}
+\gray{This seems to be an equation for $\nu = f(\gamma)$ inverted, -- so is the $\nu$ a critical frequency?}
+
+%%
+%%
+%%
+
+\subsubsection{Effect of synchrotron cooling on electron distribution}
+
+Consider the effects of electrons cooling. 
+The characteristic frequency associated with it is $\nu_c$ and lorentz factor $\gamma_c$.
+Electrons with lorenz factor $\gamma_e > \gamma_c$ can efficiently loose their energy to synchrotron radiation. Then, after the time $t_0$, their $\gamma_e$ drops below $\gamma_c$, 
+
+\begin{equation}
+    c^2 \frac{dm_e}{dt} \gamma_e = -\frac{\sigma_T}{6\pi} B^2 \gamma_e^2 c
+\end{equation}
+
+which result in 
+
+\begin{equation}
+    \gamma_c \sim \frac{6 \pi m_e c}{\sigma_T B^2 t_0}
+\end{equation}
+
+The corresponding characteristic frquency is called the synchrotron cooling frequency
+
+\begin{equation}
+    \nu_c = \frac{3}{4\pi} \gamma_c^2 \frac{q B}{m_e c}
+\end{equation}
+
+At $\nu_c$ the spectrum of the synchrotron radiation is changing, as electrons with $\gamma_e > \gamma_c$, the effects of cooling modify the electron distribution. 
+
+Consider the continuity equation for electrons in the energy space 
+
+\begin{equation}
+    \frac{\partial }{\partial t}\frac{d n_e}{d\gamma_e} + \frac{\partial}{\partial \gamma_e}\Big[ \dot{\gamma_e}\frac{dn_e}{d\gamma_e} \Big] = S(\gamma_e)
+\end{equation}
+
+where $\dot{\gamma_e} = -\sigma_T B^2 \gamma_e^2 / (6\pi m_e c)$ is the rate at which electron lorentz factor changes due to losses, $S(\gamma_e)$ is the injection rate of electrons into the system.
+Assume that the minimum Lorentz factor of injected electrons is $\gamma_m$, \textit{e.g.,} where $S(\gamma_e) = 0$ for $\gamma_e < \gamma_m$.
+Then if $\gamma_c < \gamma_e < \gamma_m$ the solution to the equation $dn_{e}/d\gamma_e \propto \dot{\gamma_e}^{-1} \propto \gamma_e^{-2}$.
+
+Then, for this electron distibution the synchrotron spectrum is $f_{\nu}\propto\nu^{-1/2}$ 
+\footnote{If $B=f(t)$, then the distribution function for $\gamma_e$ evolves with time and is not a simple pwoer law with index $2$, see \cite{Uhm and Zhang, 2014b}.}
+
+For $\gamma_e > \gamma_c > \gamma_m$, the solution to the equation is $dn_e/d\gamma_e \propto \gamma_e^{-p-1}$ (assuming the constant $B$ field, the steady state). Then the synchrotron spectrum reads $f_{\nu}\propto\nu^{-p/2}$.
+
+%%
+%%
+%%
+
+\subsubsection{Synchrotron self-absorption frequency}
 
 
 
