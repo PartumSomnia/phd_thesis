@@ -5867,6 +5867,67 @@ For $\gamma_e > \gamma_c > \gamma_m$, the solution to the equation is $dn_e/d\ga
 
 \subsubsection{Synchrotron self-absorption frequency}
 
+If the photone absorption by the inverse-syncrotron process is important, another charactersitic frequency, $\nu_a$, can be determined. Consider the Kirchhoff's law, \red{stating that the emergent specific flux cannot exceed the black-body flux corresponding to the appropriate electron temperature} which is
+
+\begin{equation}
+    k_BT\approx \max(\gamma_a,\min[\gamma_m,\gamma_c])m_e c^2 / 2.7
+\end{equation}
+
+where $\gamma_m$, $\gamma_c$ and $\gamma_a$ are electron Lorentz factors corresponding to $\nu_m$, $\nu_c$ and $\nu_a$.
+Then the \red{synchrotron self-absorption frequency $\nu_a$ is the frequency where the emergent synchrotron flux is equal to the black body flux}
+
+\begin{equation}
+    \frac{2m_ec^2\max(\gamma_a,\min[\gamma_m,\gamma_c])\nu_a^2}{2.7c^2}\approx\frac{\sigma_T B m_e c^2 N_>}{4 \pi q}
+\end{equation}
+
+where the LHS is the Plunk function in the Rayleigh-Jeans limit and $N_{>}$ is the column density of electrons with Lorentz factor larger then $\max(\gamma_a\min[\gamma_m,\gamma_c])$.
+
+
+Finally, the order of characteristic frequencies determines the emergent synchrotron spectrum for a distribution of electrons. 
+See Fig.X for fast and slow cooling regimes \cite{Sari et al 1998}.
+
+%%
+%%
+%%
+
+\subsubsection{Maximum energy of synchrotron photons}
+
+Consider a shock front. Scattering back and forth, particles within it accelerate via the \magenta{first order Fermi process}, increaseing their energy $\times 2$ times, at every front of the shock.
+In order to determine what is the maximum energy a particle can reach consider the following. A charged particle of mass $m$ accelerates while crossing the shock front on a timescale $\sim$ Larmor time, $t'_L = mc\gamma/(qB')$, where primed quantities are measured in the rest frame of the fluid and $\gamma$,lorentz factor on a particle in the frame, comoving with the shock. 
+The particle can accelerate to $\gamma$ only if it losses less then half of its energy to synchrotron emission in $t'_L$. Then 
+
+\begin{equation}
+    \frac{4 q^4 B^{'2}\gamma^2 t'_L}{9 m^2 c^3} < \frac{m c^2\gamma}{2} \text{ or } \nu\propto \frac{q B' \gamma^2}{2\pi m c} < \frac{9 m c^3}{16\pi q^2}
+\end{equation}
+
+Thut, for electron the maximum synchrotron photon energy is $\sim 50$~MeV and for proton it is $\sim 100$~GeV in the shocked fluid comoving frame. \red{assuming Bohm diffusion limit.}
+This limit can be exceeded in case of highly inhoogeneous magnetic field \cite{Kumar et al. (2012)}.
+
+%%
+%%
+%%
+
+\subsubsection{Inverse-Compton radiation}
+
+%% SINGLE electron, Single Photone
+The inverse-Compton scattering is the scattering of photons by electrons of larger energy, resiling in increase in photon energy on average.
+Consider electrons with $\gamma_e$ and photons with frquency $\nu$. Let $h\nu\gamma_e \ll m_e c^2$. The average frequncy of scattered photons then $\nu_s\sim\nu\gamma^2_e$.
+\gray{
+    This can be seen from considering the scattering in the rest frame of the electron.
+    Let the incident photon have frequicy $\nu' \sim \nu\gamma_e$. (See eq.for Doppler Shift). If $h\nu'\ll m_e c^2$, the scattering is elastic (electron recoil is negligable) and the post-scattering angle distribution is a dipol function. 
+    Then, transforming the $\nu'$ into the original frame results in $\nu_s\sim\nu\gamma_e^2$.
+}
+
+%% Single electron, Radiation Field
+Consider a radiation field with photon density $u_{\gamma}$, and an electron moving through it. Then, the power in IC-scattered photons is (assuming $h\nu\gamma_e\ll m_e c^2$)
+
+\begin{equation}
+    P_{ic} \sim \sigma_T \int d\nu \frac{u_{\nu} c}{h\nu} h\nu\gamma_e^2 \sim \sigma_T u_{\gamma}\gamma^2_e c;
+\end{equation}
+
+where $u_{\nu}d\nu$ is the energy density in photons of frequency between $\nu$ and $\nu+d\nu$, such $\int d\nu u_{\nu} = u_{\gamma}$. From $P_{sync}$ (see eq.above.somewhere) and this eqution $P_{sync}/P_{IC} \sim u_{B}/u_{\gamma}$, where $u_{B}- B^2 / 8\pi$.
+
+Of particular importance for the 
 
 
 
