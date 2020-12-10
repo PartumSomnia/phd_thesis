@@ -5989,6 +5989,36 @@ Others...
 
 \section{Afterglow Theory}
 
+Consider a dynamics of a relativistic blast wave propagating through a circumburst medium (CBM). Such scenario is a universal part of the GRB theory, that can be treated independently. 
+Assume that such "fireball" has a Lorentz factor $\Gamma_0$ and a total "isotropic equivalent" energy $E$. The CBM has a density profile described by $n(R) = (A/m_p)R^{-k}$.
+
+The theory of relativist shocks with applications to AGN jets was developed by \cite{Blandford and McKee (1976)}. Later, the theory was successfully applied to GRB afterglows \cite{Costa et al., 1997; van Paradijs et al., 1997; Frail et al., 1997}. 
+Importantly, the power law behaviour of the afterglow lightcurves is natually reproduces the self-similar nature of the self-similar blast wave solution.
+
+\red{here the physical understanding is emphasized, not the derivation}
+
+\red{This is badly rephrased. Could be improved with a pic from Nava}
+Consider the reference frame comoving with the shocked fluid. Then, $\Gamma$ is the LF of this fluid with respect to the unshocked one. The density of the unshocked fluid in this reference frame is $\Gamma n$, and its particles are seen as streaming towards the shocked fluid with LF $\Gamma$. Generally, for unshocked fluid it is assumed that the thermal energy of its particles is much lower than the rest mass, or in other words, that the CBM is cold. 
+Passing through the cold CBM, shock front randomizes the particle, protons, velocity vectors, raising their thermal energy to $\Gamma^2 m_p c^2$ (while their LF remains unchanged). 
+In the \red{lab frame the average energy of each down stream proton is $\Gamma^2 m_p c^2$, from which it follows that at radius $R$, the total emergy in the shocked plasma }
+
+\begin{equation}
+    E \approx \frac{4\pi A R^{3-k}c^2 \Gamma^2}{3-k}
+\end{equation}
+
+where $AR^{-k}$ is the density of the CBM at radius $R$ and $4\pi A R^{3-k}/ (3-k)$ is the total swept up mass.
+
+From this equation the dynamic of a blast wave can be inferred. For instance, assuming $E=\text{const}$, $k=0$ (uniform density in CBM), the blast wave lorentz factor $\Gamma\propto R^{-3/2}$.
+
+The radius from the center of explostion (CoE) at which $\Gamma = 1/2 \Gamma_0$, initial value, when also $1/2 E_0$ is deposited into CBM, is called \textit{deceleration radius}, $R_d$. 
+For the uniform CBM, it is $R_d\propto E^{1/3} n^{-1/3} R_{0,2}^{-2/3}$.
+
+Additionally, shock compresses the plasma. For \red{highly relativistc shocks}, the compression is $4\Gamma$, giving the density in the comoving frame $4 \Gamma n$.
+It also accelrates the inbound particles to a power-law distribtuion function. Additionally, it apmplifies the magnetic fields. 
+
+Essencially, this is all that is required for computing the afterglow emission.
+
+\red{Now consider a slightly more rigorous derivation of $R_d$ and compression ratio and entropy generation by the blast wave.}
 
 %% --------------- 
 %%
