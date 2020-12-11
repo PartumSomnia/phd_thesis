@@ -6020,6 +6020,58 @@ Essencially, this is all that is required for computing the afterglow emission.
 
 \red{Now consider a slightly more rigorous derivation of $R_d$ and compression ratio and entropy generation by the blast wave.}
 
+Now, consider a relativistic shock propagating into a cold upstream medium.
+The evolution of physical properties of the shock is guverned three conservation laws: baryon number, $n' \Gamma c$, energy and momentum fluxes across the shock front. The latter two are a imbeded into the fluid energy momentum tensor 
+
+\begin{equation}
+    T^{\mu\nu} = (\rho' c^2 + p') u^{\mu} u^{\nu} + p' g^{\mu\nu},
+\end{equation}
+
+where $\rho' c^2$ is the total energy density, $p'$ is the pressure (in the plasma rest frame), $u^{\mu}$ is the $4$-velocity and $g^{\mu\nu}$ is the metric tensor.
+
+Through some magic the conservation equations mentioned above can be written as \cite{Blandford and McKee, 1976; Rezzolla and Zanotti, 2013}
+
+\begin{eqnarray}
+    \frac{e_2'}{n_2'} = (\gamma_{21} - 1)m_p c^2 \\
+    \frac{n_2'}{n_1'} = \frac{\hat{\gamma}\gamma_{21} + 1}{\hat{\gamma}-1} \\
+    \gamma_{1s}^2 = \frac{(\gamma_{21} + 1) [\hat{\gamma}(\gamma_{21}-1)+1]^2}{\hat{\gamma}(2-\hat{\gamma})(\gamma_{21}-1)+2}
+\end{eqnarray}
+
+Here \red{same as in Nava picture that you should put} the $2$ and $1$ subscripts stand for downstram and upstream respectively, $e'$ is the internal energy density, $n'$ is the proton number density, (both in the local fluid rest frame), $\gamma_{21}$ is the relative Lorentz factor of plasma in region $2$ with respect to the region $1$, $\gamma_{1s}$ is the relative Lorentz factor of plasma in region $1$ with respect to the shock front and $\hat{\gamma}$ is the adiabatic index of the fluid.
+
+For $\Gamma\gg1$ that usually describes early stage of the GRB afterglow \cite{(e.g. Piran, 1999)}, the $\hat{\gamma}=4/3$ \red{recall that in subrelativistc it is $5/3$}
+Then, $n_2'/n_1' = 3 ((4/3)\gamma_{21} + 1) = 4\gamma_{21} + 3 \approx 4\gamma_{21}$ which implies that the downstream plasma is compressed with compression ratio $4\gamma_{21}$.
+Similarly, approximating, the conservation equation $\frac{e_2'}{n_2'} \approx \gamma_{21} m_p c^2$ and the last equation can be simplifed to $\gamma_{1s} \approx \sqrt{2} \gamma_{21}$, which imlies that the shock front travels faster then the downstream fluid.
+
+Next, consider the self-similar deceleration phase of the blast wave in the constant density CBM. There, the energy consirvation reads 
+
+\begin{equation}
+    E = \frac{4 \pi }{3 } R^3 n m_p c^2 \Gamma^2 = \text{ const}
+\end{equation}
+
+where $\Gamma = \gamma_{21}$ is the lorentz factor of the blastwave with respect to the unshocked medium, $R$ is the radius of the blast wave (from CoE).
+Note, that in the comoving frame the average proton thermal enrgy is $m_p c^2 \Gamma$. In the lab frame it is $m_p c^2 \Gamma^2$. 
+Overall, we observe that $\Gamma^2 R^3 = \text{ const}$ or 
+
+\begin{equation}
+    \Gamma \propto R^{-3/2}
+\end{equation}
+
+Now, consider the elapsed time in the observer frame. 
+As both the blastwave and emitted photons are moving in the same direction with the speed difference of $\sim 1/2 \Gamma^2$, 
+
+\begin{equation}
+    t_{obs} \sim \frac{R}{2\Gamma^2 c} \propto R^4 \propto \Gamma^{-8/3}
+\end{equation}
+
+and 
+
+\begin{equation}
+    \Gamma \propto R^{-3/2} \propto t_{obs}^{-3/8}, \hspace{3mm} R\propto t_{obs}^{1/4}
+\end{equation}
+
+Next, we consider \red{power-law stratified density profile}, and obtain similar scaling relations
+
 %% --------------- 
 %%
 %% References
