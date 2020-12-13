@@ -6070,7 +6070,95 @@ and
     \Gamma \propto R^{-3/2} \propto t_{obs}^{-3/8}, \hspace{3mm} R\propto t_{obs}^{1/4}
 \end{equation}
 
-Next, we consider \red{power-law stratified density profile}, and obtain similar scaling relations
+%%______________________________________
+%% on the non-uniform CBM
+
+Next, we consider \red{power-law stratified density profile}, 
+
+\begin{equation}
+    n = n_0 \Big(\frac{R}{R_0}\Big)^{-k}
+\end{equation}
+
+and obtain similar scaling relations.
+\red{I do not really need this. I can go direcly to Peer model and Nava model}
+
+\begin{equation}
+    E = \int n_0 \Big( \frac{R}{R_0} \Big)^{-k} m_p c^2 \Gamma^2  4\pi R^2 dR = \text{ const}
+\end{equation}
+
+where $R^{3-k} \Gamma^2 \text{ const}$. 
+
+After some derivation 
+
+\begin{equation}
+    \Gamma\propto R^{(k-3)/2}\propto t_{obs}^{(k-3)/(8-2k)}
+\end{equation}
+
+And if $k=0$, the previously derived relation for constant density CBM follows.
+
+A particularly usefull case is the CBM filled with a free wind with constant mass loss rate $\dot{M}$ and wind speed $\upsilon_w$, that gives $\dot{M}=4\pi R^2 n \upsilon_w = \text{ const}$, or $n\propto R^{-k}$, \textit{i.e.,} the case of $k=2$ with $\Gamma\propto R^{-1/2}\propto t_{obs}^{-1/4}$.
+
+%%_______________________________________
+%% On the energy injection
+
+Now consider the case where the energy of the blast wave is contiuously increasing. A possible physical scenario here is a long-lasting Poynting-flux dominated jet, feeding the fireball \gray{and suppressing the reverse shock}. 
+Then the energy of the outflow from the central engine has to be included into the energy equation of the blast wave
+
+\begin{equation}
+    E_{tot} = E_0 + E_{inj}
+\end{equation}
+
+Consider a central engine with time dependent luminocity  $L(t) = L_0 (t_{obs}/t_0)^{-q}$. Then the energy equation reads
+
+\begin{equation}
+    E_{tot} = E_0 + E_{inj} = E_0 + \int_{0}^{t_{obs}} L(t)dt = E_0 + \frac{L_0 t_0^q}{1-q}t_{obs}^{1-q}
+\end{equation}
+
+where $E_0$ is the initial energy of the blast wave and $E_{inj}$ is the injected energy into the blast wave from the central engine.
+
+Consider the case when energy injection increases with time noticably, $q<1$.
+
+Then, when $E_{inj} \gg E_0$ for $q<1$, the blastwave scaling 
+
+\begin{equation}
+    E_{tot} \sim E_{inj} \propto t_{obs}^{1-q}.
+\end{equation}
+
+and for the constant density CBM, $\Gamma^2 R^3 \propto t_{obs}^{1-q}$ which eventually leads to $\Gamma\propto R^{-(2+q)/(4-2q)}\propto t_{obs}^{-(2+q)/8}$.
+
+And it is easy to see that if $q\rightarrow 1$, the 'no injection' case is resored.
+
+%%____________________________________
+%% Lorentz factor stratification of the ejecta as the Energy injection
+
+The energy can be added to the blast wave in a form of velocity stratified ejecta, when the wave decelerates, \textit{e.g.,}
+
+\begin{equation}
+    E\propto \gamma^{1-s}\propto\Gamma^{1-s}
+\end{equation}
+
+where $\gamma$ is the Lorentz factor of the ejecta and $\Gamma$ is the lorentz factor of the blast wave.
+Here the effects of the reverse shock can also be neglected as energy injection comes when $\Gamma\sim\gamma$ \red{[How does this work in the Peer/Nava model?]}
+
+This method is equivalent to the long-lived central engine with time dependent luminocity (at least for the dynamics of the blast wave), and the coefficient $s$ can be expressed in terms of $q$ \cite{Zhang et al., 2006}. 
+
+For a unifrom density CBM the scaling realtion reads
+
+\begin{equation}
+    \Gamma\propto R^{-3/(1+s)}\propto t_{obs}^{-3/(7+s)}, \hspace{3mm} R\propto t_{obs}^{(1+s)/(7+s)}
+\end{equation}
+
+which then gives $s = (10-7q)/(2+q)$ and $q=(10-2s)/(7+s)$
+
+\red{The question is, can I add L(t) to the dE/dr of the Nava model and it is all?..}
+
+%%
+%%
+%%
+
+\subsection{Afterglow synchrotron spectrum and lightcurve}
+
+
 
 %% --------------- 
 %%
