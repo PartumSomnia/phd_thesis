@@ -6158,6 +6158,136 @@ which then gives $s = (10-7q)/(2+q)$ and $q=(10-2s)/(7+s)$
 
 \subsection{Afterglow synchrotron spectrum and lightcurve}
 
+\red{Note that here the electron distribution function is implicitely assumed such that $dn/d\gamma$ peaks at $\gamma_m$ and for $\gamma>\gamma_m$, the $dn/d\gamma\propto\gamma^{-p}$,and for $\gamma<\gamma_m$, the distribution is uncertain. It could be thermal}
+
+\cite{(Sari et al., 1998)} has shown that the multi-segment broken power law function can \gray{sufficiently well} describe the instantaneous afterglow spectrum. The spectrum consists of three cahractersitic frequencies: the \red{typical synchrotron frequency of the accelerated electrons with the minimum Lorentz factor} $\nu_m$, the cooling frequency $\nu_c$ and the synchrotron self-absorption frequency $\nu_a$.
+The latter is usually the smallest one in the afterglow phase (at least for a few months \gray{but it depends on the CBM density}).
+Depending on the order of $\nu_m$ and $\nu_c$ the spectrum falls into two broad categories. The \textit{slow cooling} case, when $\nu_m < \nu_c$ and a \textit{fast cooling} case when $\nu_m > \nu_c$. The scaling relations for these regimes are \cite{Sari et al. (1998)}
+
+\begin{equation}
+    f_{\nu} = 
+    \begin{cases}
+        f_{\nu,\max}\Big(\frac{\nu_a}{\nu_m}\Big)^{1/3}\Big(\frac{\nu}{\nu_a}\Big)^2 & \text{ if } \nu < \nu_a \\
+        f_{\nu,\max}\Big(\frac{\nu}{\nu_m}\Big)^{1/3} & \text{ if } \nu_a < \nu < \nu_m \\
+        f_{\nu,\max}\Big(\frac{\nu}{\nu_m}\Big)^{-(p-1)/2} & \text{ if } \nu_m < \nu < \nu_c \\
+        f_{\nu,\max}\Big(\frac{\nu_c}{\nu_m}\Big)^{-(p-1)/2}\Big(\frac{\nu}{\nu_c}\Big)^{-p/2} & \text{ if } \nu > \nu_c \\
+    \end{cases}
+\end{equation}
+
+for the slow cooling case and 
+
+\begin{equation}
+    f_{\nu} = 
+    \begin{cases}
+        f_{\nu,\max}\Big(\frac{\nu_a}{\nu_c}\Big)^{1/3}\Big(\frac{\nu}{\nu_a}\Big)^2 & \text{ if } \nu < \nu_a \\
+        f_{\nu,\max}\Big(\frac{\nu}{\nu_c}\Big)^{1/3} & \text{ if } \nu_a < \nu < \nu_c \\
+        f_{\nu,\max}\Big(\frac{\nu}{\nu_c}\Big)^{-1/2} & \text{ if } \nu_c < \nu < \nu_c \\
+        f_{\nu,\max}\Big(\frac{\nu_m}{\nu_c}\Big)^{-1/2}\Big(\frac{\nu}{\nu_c}\Big)^{-p/2} & \text{ if } \nu > \nu_m \\
+    \end{cases}
+\end{equation}
+
+from the fast cooling case. 
+
+Here $f_{\nu;max}$ is the flux density which $f_{\nu}(\nu_m)$ for the slow cooling case and $f_{\nu}(\nu_{c})$ for the fast cooling. \red{this is the answer  I was looking for}. 
+
+Note that in this formalism, the scaling relations, spectrum, does not depend on the blast wave dynamics. Only the peak flux $f_{\nu,\max}$, and the characteristic frequencies $\nu_a$, $\nu_c$, $\nu_m$ do. 
+
+The characteristic frequencies $\nu_m$, $\nu_c$ can be calculated from the synchrotron frequency formula (see previouse sections)
+
+\begin{equation}
+    \nu = \frac{3}{4\pi}\gamma^2\frac{qB'}{m_e c}
+\end{equation}
+
+where $\gamma$ is $\gamma_{m}$ or $\gamma_c$. 
+
+The minimum lorentz factor in the shock heated plasma with a given electron distribution (power law) is
+
+\begin{equation}
+    \gamma_m = g(p) \varepsilon_e (\Gamma - 1) \frac{m_p}{m_e}\frac{n_p}{n_e},
+\end{equation}
+
+where $\Gamma$ is the lorentz factor of the blast wave, $\varepsilon_e$ is the fraction of energy density of the shocked fluid given to electrons, $n_p$ and $n_e$ are the number densities of the protons and electrons respectively, and $g(p)$ is the dimensionless factor
+
+\begin{equation}
+    g(p) \approx 
+    \begin{cases}
+        \frac{p-2}{p-1} & \text{ if } p>2 \\
+        \ln^{-1}(\gamma_M/\gamma_m), & \text{ if } p = 2
+    \end{cases}
+\end{equation}
+
+where $\gamma_M$ is the maximum LF of electrons.
+
+\gray{
+    the $gamma_min$ and its dependency on $g(p)$ seems to come from equating the integral of the electron distribution function for $\gamma>\gamma_min$ to the total energy density of the shocked fluid, \textit{i.e.,} $4\Gamma (\Gamma - 1) n_p m_p c^2$ times the fraction of this energy avaialble, $\varepsilon_e$. 
+    [If this is the case, maybe I can compute it numerically?..]
+}
+
+The cooling lorentz factor of electrons is derived based on the cooling timescale (see previous sections)
+
+\begin{equation}
+    \gamma_c = \frac{6\pi m_e c}{\sigma_T t' B^{'2} (1 + Y)}
+\end{equation}
+
+where $Y = u_{syn}/u_{B}$ is the synchrotron self-Compton parameter, which depends whether the photon-electron scattering is in Klein-Nishina limit (\textit{i.e.,} if photon energy exceeds $m_e c^2$),
+the $u_{syn}$ is the synchrotron photon energy density and $u_B$ is the magnetic energy density.
+
+The synchrotron self-absorption frequncy can be obtained by equating the black-body flux corresponding to the temperature of electrons with characteristic frequency $\nu_a$ to the emerging flux at $\nu_a$, 
+
+\begin{equation}
+    I_{\nu}^{syn}(\nu_a) = I_{\nu}^{bb}(\nu_a) \approx 2 k_B T \frac{\nu_a^2}{c^2}
+\end{equation}
+
+where 
+
+\begin{equation}
+    k_B T \approx \max[\gamma_a,\min(\gamma_c,\gamma_m)] m_e c ^2 /3
+\end{equation}
+
+where $\gamma_a$ corresponds to $\nu_a'$ as $\gamma_a = (4\pi m_e c \nu_a' / 3qB')^{1/2}$.
+
+Assuming that a fraction, $\varepsilon_B$, of the energy density of the shocked CBM goes into the magnetic filed energy density, the magnetic field strength reads 
+
+\begin{equation}
+    B' \approx [32 \pi m_p c^2 \varepsilon_B n_p (\Gamma - 1)\Gamma]^{1/2}
+\end{equation}
+
+%%
+
+Next the scaling for the $\nu_m$, $\nu_c$ and $\nu_a$ are provided based on the shock dynamics in different CBM. 
+For instance, for the case of constant density medium see \cite{(e.g. Granot and Sari, 2002; Gao et al., 2013b)} and for wind-like CBM... 
+
+%%
+
+The maximum of the specific flux $f_{\nu,\max}$ is (see previous section)
+
+\begin{equation}
+    f_{\nu;\max} = \frac{(1+z)L'_{\nu'}\Gamma}{4\pi D_L^2} \approx (1+z)\frac{N_{tot}P_{\nu;\max}' \Gamma}{4\pi D_{L}^2}
+\end{equation}
+
+where $L'_{\nu'}$ is the specific luminocity in the jet comoving frame, $N_{tot}$ is the total number of electrons that contribute to radiation at frequency $\nu$
+
+\begin{equation}
+    P_{\nu',\max}' = \approx \frac{\sqrt{3} q^3 B'}{m_e c^2}
+\end{equation}
+
+is the pwoer radaited per unit frequency for one electron at the peak of the spectrum, or in other words it is the specific power for electron with thermal LF $\gamma\approx\min(\gamma_c,\gamma_{min})$ and $z$ is the reshift of the burst and $D_L$ is the luminocity distance to it.
+
+Note that for a constant density CBM, the $F_{\nu,\max}$ is time independent as $F_{\nu,\max}\propto R^3\Gamma^2\propto E_{tot}$ total energy of the blast wave (which is constant for an adiabatic external shock). For the constant density CBM and wind-like CBM see full expression for the peak specific flux \cite{Granot and Sari, 2002; Yost et al., 2003}
+
+Note more that for $\nu>\max[\nu_m,\nu_c]$, the observed specific flux \cite{(Kumar, 2000; Freedman and Waxman, 2001)} is independent on the CBM density and its stratification and depends weakly on $\varepsilon_B$, 
+
+\begin{equation}
+    f_{\nu} \propto E^{(p+2)/4} \varepsilon_e^{p-1}\varepsilon_B^{(p-2)/4}t_{obs}^{-(3p-2)/4}\nu^{-p/4}
+\end{equation}
+
+This is of particular importance for high energy emission from GRB.
+
+%%
+%%
+%%
+
+\subsection{Reverse shock}
 
 
 %% --------------- 
