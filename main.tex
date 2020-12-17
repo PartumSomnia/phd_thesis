@@ -6360,6 +6360,8 @@ A possible explanation is that Poynting flux dominates the GRB-jet and supresses
 
 \subsection{Jet Break}
 
+\red{The convention is to call the jet with uniform structure a top-hat jet...}
+
 Here we consider effects of a finite jet angle on the observed lightcurve.
 
 The observations of GRB afterglow, specifically, the observed achromatic break, suggested that GRB-jet is collimated. The achromatic break in the lightcurve, usually referred to as "jet break", has in its origin two main effects \cite{Rhoads, 1999; Sari et al., 1999}. 
@@ -6372,9 +6374,71 @@ In the case of uniform CBM, where $\Gamma\propto t^{-3/8}$, the post-jet-break l
 
 Note, that the effect of jet-break smears out by the integration over equal-time-arrival surface \cite{Kumar and Panaitescu, 2000b; Piran, 2000; Granot and Piran, 2012}.
 
-%%
+%% LATERAL EXPANSION
 
 Next, consider the jet sideways (lateral) expansion.
+It was shown that the the jet lateral expansion, (when the sound waves cross it) occures apporximatelly at a time when the "edge effect" becomes important \cite{Rhoads (1999) and Sari et al. (1999)}.
+%% See page 37 for original text. It is very messy.
+Consider a sideways expansion speed of the jet in comoving frame. For relativistic plasma it is $c/\sqrt{3}$. Then, the jet openning angle grows as $\theta_j\sim\Gamma_{(ij)k}^{-1}$, as a result of time dialation and transverse speed being $\sim c$. Thus, in the jet comoving frame, the elapsed time is $1/\Gamma$ of the elapsed time in the lab frame. In its oww, rest frame the the transverse size of the jet epanding with $\sim$ is $\sim R/\Gamma$, while in the lab frame the transverse speed is $\upsilon_{\theta}\sim c/\Gamma$.
+From the momentum equation if follows hwoever that for a relativisic plasma $\partial(\rho\Gamma^2\upsilon_{\theta})/\partial t \sim r^{-1}\partial p / \partial\theta$, which leads to $\upsilon_{\theta}\sim c/(\Gamma^2\theta_j)$.
+See \cite{Kumar and Granot (2003)} \cite{Granot and Piran (2012)} for the detailed discussion.
+\red{Note that in the 'code' we use the Granot and Piran (2012) model as well.}
+
+Analytically it can be shown that, after the jet-break the jet $R$ increase slows down \textit{e.g.,}
+\cite{Rhoads (1999); Sari et al.(1999); Piran (2000); Granot and Piran (2012)}.
+A simple scaling relations for $\nu_m$, $\nu_c$ and $F_{\nu;max}$ as well as $f_{\nu}=f_{\nu}(\nu, t_{obs}, p)$ can be obtained.
+Importantly, the flux at a frequncy taht lies above the $\min(\nu_c,\nu_m)$decays faster with the jet lateral expansion (compare to the "edge effect" alone).
+
+It was shown that the sideways expansion becomes important only after the $\Gamma$ falls below $2$ \cite{(Granot et al., 2001; Kumar and Granot, 2003; Cannizzo et al., 2004; Zhang and MacFadyen, 2009; De Colle et al., 2012; Granot and Piran, 2012; van Eerten and MacFadyen, 2012; van Eerten et al., 2012)}
+\red{Really??}
+
+However, the observed lightcurve depends on the observer's vewving angle \textit{e.g.,} \cite{Zhang et al., 2014b; Ryan et al., 2014).}.
+
+%% STRUCTURED JET
+
+It is expected that the GRB jet has an angular structure with luminosity per solid angle and Lorentz factors depending on the the angle.
+Commonly assumed structure times include the dependence of jet properties on the angle as a power-law function
+\cite{(Meszaros et al., 1998; Rossi et al., 2002; Zhang and Meszaros, 2002b)} 
+and Gaussian distribution 
+\cite{(Zhang and Meszaros, 2002b; Kumar and Granot, 2003; Zhang et al., 2004a).}
+The structure of the jet becomes very importnat when the jet is observed off-axis, while for an on-axis observer, the afterglow has a steeper decay in coamparsion to a simple "top-hat" jet \cite{Meszaros et al., 1998; Dai and Gou, 2001; Panaitescu, 2005}
+For an off-axis observer, seeing the power-law jet, the "jet break" time depends on the viewing angle $\theta_{\upsilon}$ (contrary to the $\theta_j$ jet openning angle as in top-hat jet)
+\cite{Zhang and Meszaros, 2002b; Rossi et al., 2002; Kumar and Granot, 2003; Granot and Kumar, 2003}.
+For an off-axis observer, seeing the gaussian get, the observed lightcurve depends on whether the $\theta_{\upsilon}$ falls within the gaussian cone. If yes, then the observed emission is similar to the "top-hat" jet. If no, then it is similar to the power-law jet.
+\cite{Kumar and Granot, 2003; Granot and Kumar, 2003}
+
+Importantly, that structured jet allows to introduce the so called "quasi-universal" GRB, \cite{(Rossi et al., 2002; Zhang and Meszaros, 2002b; Zhang et al., 2004a)}. The GRB jets are considered to the similar, appear only different to the observer due to different viewing angles (see \textit{e.g.,} \cite{Zhang and Meszaros, 2002b}).
+See the \cite{(Zhang and Meszaros, 2002b; Rossi et al., 2002} for the similarities in the luminocity functions of structured jets. 
+It was however shown that quasi-universal jet does well agree with observations \cite{(Nakar et al., 2004}. But with more free parameters, it might be more consistent with observational constraints \cite{(Lloyd-Ronning et al., 2004; Zhang et al., 2004a; Dai and Zhang, 2005)}
+
+%% TWO compnent Jet Model
+
+As a subcategory of structured jets, a two-component model has been widely consdiered. Such model consits of a collimated energetic get with high $L_{\gamma,iso}$ and $\Gamma$, surrounded by a wider and slower \gray{cocoon}. 
+Such model can account for certain observational features, \textit{e.g.,} for early jet break and subsequent rebrightening
+\cite{Huang et al., 2004; Peng et al., 2005; Wu et al., 2005}.
+Particular application of the model GRB 030329 \cite{(Berger et al., 2003b)} and GRB 080319B \cite{(Racusin et al., 2008).}.
+Such model is particularly favioured for the collaspar scenario, where the narrow, highly relativist jet emerges from a star, in addition to the wide, less relativistic "cocoon" around it \cite{Ramirez-Ruiz et al., 2002; Zhang et al., 2004b}. 
+
+%%
+
+Another example of a structured jet is a "patchy" jet, where numerous "mini-jets" within a broad jet cone are the source of the bright emission \cite{Kumar and Piran, 2000a; Yamazaki et al., 2004b}.
+Such structure can occure when there are non-uniform shells present.
+The patches of the accelerated emission regions can be present within relativisitc outflowed due to magnetic reconnections or turbulence in a magnetically domianted jets \cite{Luticov and Blandford, 2003; Narayan and Kumar, 2009; Kumar and Narayan, 2009; Lazar et al., 2009; Zhang and Yan, 2011; Zhang and Zhang, 2014}
+
+%%
+
+\textit{Orphan afteglows}
+
+The orphan afterglow is the afterglow detected without prompt $\gamma$-ray emission. This can occur if the line of sight to the observer lies outside the cone of relativistically beamed photons from the jet. However, as the Doppler beaming factor inceases (as the $1/\Gamma$ cone widens), and the observed emission rises. It peaks when the line of sight crosses the $1/\Gamma$ cone. After that, the lightcurve behaves in accordince with the post-jet-break afterglow \cite{Granot et al., 2002}.
+\textit{dirty fireball} is one of the scenarios where the ophan afterglow is possible, as its low $\Gamma$ prevents the promt energetic emission from arising \cite{Huang et al., 2002).}. 
+The detection of such afterglows however is very challenging.
+
+%%
+%%
+%%
+
+\subsection{Other Effects}
+
 
 
 %% --------------- 
