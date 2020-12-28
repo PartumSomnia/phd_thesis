@@ -6755,7 +6755,66 @@ The discrepancy can be resolved if, either, the X-ray emission is not produced b
 
 \section{Observational properties of GRB prompt radiation}
 
+\red{very very brief}
 
+\red{Important definitions for spectrum}
+
+The prompt emission is define traditionally as a phase during which the high energy, sub-MeV emission is still seen by the triggering detectros (above the background level). 
+Generally "prompt phase" is associated with so-called "burst duration", $T_{90}$, the time between $5\%$ and $95\%$ of the total fluence observed. This quantity is however instrument-dependent (energy band, sensitivity, quiescent gaps in the emission) and does not account for different physcial cites producting (external/internal). It is generally assumed that the "prompt emission" arises from internal dissipation cites, while "afterglow" comes from the external shock. 
+
+\textbf{Temporal properties of GRBs}
+
+\begin{itemize}
+    \item The $T_{90}\in(10^{-3},10^{3})$~s with two distict peaks around $0.2-0.3$~s, "short duration" class and $20-30$~s, the "long duration" class.
+    The "long-duration" group is "softer" then the "short-duration" one.
+    \item In general, the GRB lightcurve are not smooth, exhibiting in some cases distict emission episodes with long gaps in between. Some can have temporal structure on a millisecond scale. \cite{Fishman and Meegan, 1995}
+    \item Some GRBs (from $3\%$ \cite{Koshut et al., 1995} to $12\%$ \cite{Burlon et al., 2009}) have a softer and weaker "precursor", separated from the main burst by $10$ to $100$~s. In some cases the precursor emission is very distinct from the main-episode emission, in some it is similar \cite{Lazzati, 2005; Burlon et al., 2008, 2009; Hu et al., 2014).}
+    \item Power density spectrum (PDS) of GRB is not periodic. 
+    \item It is possible that GRB lightcurve are seen as a superposition from a slow and fast compoennts, with the latter graduallly depleting at low energies \cite{Vetere et al., 2006}. This is also supported by observations of a low frequency emission \cite{Gao et al., 2012}.
+    \item Individual pulses in lightcurves are approximated by "fast-rising exponential-decay" functions.
+    \item There are quiescent episodes during a burst
+    \item Lightcurves vary with energy band. Pulses tend to be narrower in harder bands.
+    \item Pulses with a lower energy being systematically lagged behind those with a high energy, is observed in the keV - MeV regime for many long GRBs \cite{Norris et al., 2000; Norris, 2002; Norris et al., 2005}. Short GRBs do not show signicant spectral lags \cite{(Norris and Bonnell, 2006)}.
+\end{itemize}
+
+%%
+%%
+%%
+
+\subsection{Spectral properties}
+
+\subsubsection{Spectral shapes and functions}
+
+The GRB spectra are non-thermal.
+Time integrated spectra of GRB, the spectra extracted over its entire duration, shows a distinct evolution, implying complex underlyting physics. However, only for bright GRBs the specral analysis can be carried out.
+A typical GRB spectrum can be fit with smoothly-joined broken power law known as the "Band-function" \cite{Band et al., 1993}. The photon number spectrum in this model reads
+
+\begin{equation}
+    N(E) = 
+    \begin{cases}
+        A\Big( \frac{E}{100 \text{keV}} \Big)^{\alpha} \exp\Big( -\frac{E}{E_0} \Big), &E < (\alpha-\beta)E_0 \\
+        A\Big[ \frac{(\alpha - \beta)E_0}{100 \text{keV}} \Big]^{\alpha - \beta} \exp(\beta - \alpha) \Big( \frac{E}{100 \text{keV}} \Big)^{\beta} &E\geq (\alpha-\beta)E_0
+    \end{cases}
+\end{equation}
+
+where $N(E)dE$ is the number of photons in the energy bin $dE$, $\alpha$ and $\beta$ ($< 0$) are photon spectral indexes \red{Note that these are not the $\alpha$ and $\beta$ from temporal decay indexes of $F_{\nu}\propto t^{-\alpha} \nu^{-\beta}$.} below and above the break frequency $E_0$.
+
+The \magenta{flux density spectrum} $F_{\nu}$ is conventionally applied to the emission in low-energy bands (optical, IR, radio) corresponds to $EN(E)$. 
+The \magenta{spectral energy distribution} (SED) corresponds to the $E^2 N(E)$ or $\nu F_{\nu}$.
+The "$E$ peak" is the peak in the $E^2N(E)$ spectrum, given as $E_p = (2 + \alpha)E_0$.
+
+Spectra for some GRBs can be fitter with a cutoff power-law spectrum 
+
+\begin{equation}
+    N(E) = A \Big( \frac{E}{100 \text{keV}} \Big)^{-\hat{\Gamma}} \exp{\Big(-\frac{E}{E_c}\Big)}
+\end{equation}
+
+which is similar to the first part of the Band function with $\alpha$ replaced by positive $\hat{\Gamma}$. 
+The applicability of this function is generally dies to the observational limitations, that cut off high energy emission that would require the second part of the Band function. 
+
+It was suggested that the prmpt GRB spectrum is a superposition of the thermal (black body) and non-thermal (power-law) components \cite{Ryde, 2004; Ryde and Pe'er, 2009}. However, this model over-predicts the observed X-ray flux \cite{Ghirlanda et al., 2007; Frontera et al., 2013} and is not challenged by observations in general.
+
+pp 77 
 
 %% --------------- 
 %%
