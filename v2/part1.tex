@@ -292,6 +292,7 @@ This chapter is meant to sketch several important parts of the mathematical back
 We do not aim to provide a comprehensive overview. 
 The chapter is divided into \todo{list the parts and their content}
 
+%% [ GENERAL RELATIVITY from EFE to CCZ4 ]
 \iftoggle{Full}{
     
     %% ---
@@ -312,10 +313,14 @@ The chapter is divided into \todo{list the parts and their content}
     \subsubsection{Euler-Lagrange equations}
     %% ---
     
-    \red{Requires understanding of: vectors, differential forms and tensors, smooth manifolds, Lorenzian maniforld and metric, affine connection (Levi-Civita connection), covariant derivatives, action pinciple, lagrange field theory, variation of the action, Einstein-Hilbert action, Ricci scalar and Ricci tensor, Riemann tensor;
+    \red{Requires understanding of: vectors, differential forms and tensors;
+    differential equation types: ellipitc, parabolic, hyperbolic, their nmerical advantages;
+    smooth manifolds, Lorenzian maniforld and metric, affine connection (Levi-Civita connection), covariant derivatives, action pinciple, lagrange field theory, variation of the action, Einstein-Hilbert action, Ricci scalar and Ricci tensor, Riemann tensor;
     spacelike, timelike and null hypersurface, hyperbolic space-time, space-time foliation,
     Lie-derivative along the vector field, Lagrangian density, Legendre transformation, Hamiltonian,
-    extrinsic curvature, Codazzi equations, Gauss equations }
+    extrinsic curvature, Codazzi equations, Gauss equations,
+    palantini-type vatiation
+    gauge conditions: slicing and spatial,}
     
     We consider a spacetime defined by the real \textit{smooth manifold} $\mathcal{M}$ and \textit{Lorentzian metric} $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. 
     The $\nabla$ denotes the \textit{affine connection} associated with $\boldsymbol{g}$, the Levi-Civita connection.
@@ -839,6 +844,143 @@ The chapter is divided into \todo{list the parts and their content}
     \paragraph{Strongly Hyperbolic Formulations of the Einstein Equations}
     
     
+    It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only \textit{weekly hyperbolic} \cite{Baumgarte:2002jm}. 
+    It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}. 
+    
+    In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. 
+    In particular, the \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
+    the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
+    the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. 
+    We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for new and better formulations of Einstein equations for numerical applications is ongoing. 
+    We limit ourselves to sketching only the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}. 
+    The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
+    
+    
+    \paragraph{The CCZ4 Formulation}
+    
+    
+    The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- \textit{strongly-hyperbolic}. 
+    This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
+    
+    First, consider the covariant Lagrangian
+    
+    \begin{equation}
+        \Lambda = g^{\mu\nu}[R_{\mu\nu} + 2\nabla_{\mu}Z_{\nu}]\sqrt{g} + \Lambda_m,
+    \end{equation}
+    
+    and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}, leads to the evolution equations
+    
+    \begin{equation}
+        R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
+    \label{eq:theory:z4fieldeq}
+    \end{equation}
+    
+    and two sets of constraint equations
+    
+    \begin{equation}
+        \nabla_{\rho} g^{\mu\nu} = 0, 
+    \label{eq:theory:z4connect}
+    \end{equation}
+    
+    and
+    
+    \begin{equation}
+        Z_{\mu} = 0,
+    \end{equation}
+    
+    where the latter is called an \textit{algebraic constraint}. 
+    If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
+    
+    The Einstein field equations themselves are recovered from (\ref{eq:theory:z4connect}) and (\ref{eq:theory:z4fieldeq}) when the algebraic constraint is satisfied. 
+    
+    The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. 
+    This allows to obtain the solution of the Einstein equations. 
+    
+    However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. 
+    To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
+    
+    A further modified version of Z4 was introduced by \cite{Alic:2011gg}. 
+    It incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture}, that will be discussed later. 
+    The CCZ4 system reads 
+    
+    \begin{align}
+        \partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
+        \partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
+        & + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
+        & -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
+        \partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
+        \partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
+        & - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
+        \partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
+        & + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
+        \partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 	3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
+        & - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
+        & - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
+        & -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
+    \label{eq:theory:ccz4equations} % used for Whisky Code description
+    \end{align}
+    
+    where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
+    
+    \begin{align}
+        \widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
+        \widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
+    \end{align}
+    
+    And as one sees, the ecolution of $Z_i$ is now included in $\hat{\Gamma}$. 
+    \todo{understand the conformal stuff and add some steps to show how the ccz4 was made}
+    
+    
+    \paragraph{Gauge conditions}
+    
+    
+    During the discussion of the original ADM system, the choice of the lapse function, \textit{i.e} \textit{slicing condition}, and shift vector \textit{i.e} \textit{spatial gauge condition} was left open. 
+    The right choice however, is crucial for the stable evolution and in itself presents a broad and rapidly evolving subject. Here we are going to discuss only the gauge that is relevant for our work. 
+    
+    \begin{itemize}
+        \item \textit{Slicing conditions} 
+        One of the widely used conditions is so called "maximal slicing" that sets $K=0$, which in turn results in the equation
+        \begin{equation}
+            D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
+        \end{equation}
+        This conditions has an advantage of being \textit{singularity-avoiding}. 
+        For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. 
+        However implementation of this condition in from of a \textit{elliptic equations} is computationally expensive.
+        A class of slicing conditions in form of \textit{hyperbolic equations} that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
+        \begin{equation}
+            (\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
+        \label{eq:theory:gauge_onepluslog}
+        \end{equation}
+        which in CCZ4 reads 
+        \begin{equation}
+            (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+        \end{equation}
+        where $f(\alpha)$ is a positive function. 
+        For many numerical applications, including those that are discussed in this work, the "$1 + \log$" slicing is adopted with the $\beta_i=0$. 
+        Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
+        \begin{equation}
+            \alpha = 1 + \log\gamma
+        \end{equation}
+        This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
+        \todo{add/modify some text.}
+        
+        \item \textit{Spatial gauge conditions}
+        The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
+        One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
+        \begin{align}
+            \partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
+            \partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
+        \end{align}
+        where $\eta$ is a dumping coefficient.
+        This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. 
+        It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a \textit{zero-speed mode}, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
+        A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes:
+        \begin{align}
+            (\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
+            (\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
+        \end{align}
+        was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
+    \end{itemize}
     
     
     %% --- 
@@ -886,12 +1028,45 @@ The chapter is divided into \todo{list the parts and their content}
     Recalling the Hamiltonian system of equations (canonical equations), we note that they lead to the evolution equations for the three-metric, $\dot{\gamma}_{\mu\nu}$. Then we obtain the evolution equations for the canonical momentum $\dot{p}^{\mu\nu}$. The set of equations we obtain, then, comprise the so-called ADM system.
     %% --- Remarks 
     These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
-    
-
+    %% Hyperbolicity -- Formulations
+    The ADM formulation in its basic form, derived as described above, is however weakly hyperbolic \cite{Baumgarte:2002jm} and not very well suited for numerical applications, as errors tend to couple to non-zero velocity modes \cite{Alcubierre:1999rt}.
+    A search for a better formulation of EFE is an ongoing effort. Following formualtions have been developed. 
+    The \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
+    the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
+    the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+    In the following we briefly discuss the formulation of relevance to this thesis, the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}.
+    %% --- CCZ4
+    The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- strongly-hyperbolic. 
+    This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
+    %% --- derivation 
+    The procedure involves invoking again the Lagrangian, (ogf gravity and matter) and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}. This results in a evolution equations and two sets of constraint equations and $Z_{\mu}=0$ equation, which is called the algebraic constraint. If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
+    Then, the Einstein field equations themselves are recovered from the obtained set of evolution and constraint equations if the algebraic constraint is satisfied.
+    The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. This allows to obtain the solution of the Einstein equations. 
+    However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
+    A further modified version that incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture} was introduced by \cite{Alic:2011gg}.
+    %% --- Gauge conditions
+    During the derivation of the ADM system, the choice of the lapse function, \textit{i.e} slicing condition, and shift vector \textit{i.e} spatial gauge condition was left open. The right choice however, is crutual for the stable evolution and in itself presents a broad and rapidly evolving subject.
+    The \textit{Slicing condition} called 'maximal slicing', for instance, has a property of being \textit{singularity-avoiding}, -- avoiding $\alpha$ going to $\infty$ at the vicinity of a singularity of a Schwarzschild black hole \cite{Geyer:1995}.
+    Of particular relevance is the so-called "$1 + \log$" slicing, that states th.at $\beta_i=0$ and $\alpha = 1 + \log\gamma$, where $\gamma$ is \gray{trace of the three-metric}. This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
+    The requirements for the \textit{Spatial gauge conditions} are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
+    One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}. It has however some undesired numerical properties -- zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}. These problems are addressed by the modified \textit{Gamma driver}, gauge that does not have zero or small speed modes that was proposed by \cite{vanMeter:2006vi} and applied to study binary black holes by \cite{Campanelli:2005dd}.
 }{
     pass
 }
 
+%% [ RELATIVISTC HYDRODYNAMICS ]
+\iftoggle{Full}{
+    
+    %% ---
+    
+    \subsection{The Equations of General-Relativistic Hydrodynamics}
+    
+    %% --- 
+    
+    In this section we discuss the equations of general relativistic hydrodynamics. We consider the fluid on a Lorentzian manifold and how its flow affects the spacetime.
+}{
+    pass
+}
 
 
 
