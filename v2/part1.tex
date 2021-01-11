@@ -37,283 +37,278 @@
 
 \chapter{Theoretical Background} %% [ Based on the thesis of David Radice ]
 
-%%
+%% --------------------------------------
 
 \section{Basic Notations and definitions}
 
-%% ================= | Diff.forms, external prodcuts; Hoge star | ==============
-\iftoggle{Full}{
-    
-    \subsection{More on the tangent and cotangent spaces}
-    Tangent space to $\mathcal{M}$ is denoted with $T_p(\mathcal{M})$.
-    The cotangent space $T_p ^* \mathcal{M}$
-    
-    %% ---------------------------
-    
-    \subsection{Differential forms}
-    \gray{copied}
-    
-    They are usefull for multivariable calculus independent of coordinates. Used for integrands over curves, manifolds. For example, differential form can be used to define a volume element as $f(x,y,z)dx \wedge dy \wedge dz$, where $\wedge$ is the \textit{wedge product} defined below.
-    
-    Albegra of differential forms is organized to reflect the orientation of the domain of integration. For instance: the \textit{exterior product} (see below) $d$ that converts $k$-from into $k+1$-form. 
-    This operation is similar to the divergence and the curl of a vector field.
-    
-    Differential $1$-forms are naturally dual to \textit{vector fields} on a manifold. Pairing is done via \textit{inner product}.
-    
-    If there are two \textit{manifolds}, then the albegra of diff.forms and their exterior derivatives is preserved by the \textbf{pullblack} under the smooth function. 
-    This allows geometrically invariant information to be moved from one space to another via the pullback.
-    
-    Let $\mathcal{M}$ be an orientated $m$-dimentional manifold and $\mathcal{M}'$ is the same manifold with the opposite orientation and $\omega$ is an $m$-form, then 
-    
-    \begin{equation}
-        \int_{\mathcal{M}}\omega = -\int_{\mathcal{M}'}\omega.
-    \end{equation}
-    
-    The \textit{exterior algebra} is used to make the notion of an oriented density precise.
-    
-    The basic $1$-forms are \textbf{differentials} of the coordiantes $dx^1,...,dx^n$. 
-    Each of them is a \textbf{covector} that measures a small displacement in the corresponding coordinate direction. A general $1$-form thus is the combination of these differentials 
-    \begin{equation}
-        f_1dx^1\cdot\cdot\cdot f_ndx^n
-    \end{equation}
-    where $f_k=f_k(x^1,...,x^n)$ are functions of all the coordiantes. 
-    
-    \textit{Wedge product} is similar to \textit{cross product}, and is used to build higher differential forms out of lower ones, as the cross product in vector calculus.
-    
-    The \textit{Exterior derivative}, operator $d$ is a generalization of a differential of a function. 
-    Let $\omega=fdx^I$ be a simple $k$-form. Then its exterior derivative $d\omega$ is a $(k+1)$-form set by taking differential of the coefficient functions
-    \begin{equation}
-        d\omega = \sum_{i=1}^n \frac{\partial f}{\partial x^i}dx^i \wedge dx^I
-    \end{equation}
-    Thus a \textit{deferential form}, lets say, differential $2$-form is called an exterior derivative $da$ of $a=\sum_{j=1}^{n}f_j dx^j$. 
-    It is given by
-    \begin{equation}
-        da = \sum_{j=1}^n df_j \wedge dx^j = \sum_{i,j=1}^n \frac{\partial f_j}{\partial x^i}dx^i\wedge dx^j.
-    \end{equation}
-    Overall, the $da=0$ is required for a function $f$ such that $a=df$.
-    
-    On as smooth manifold $\mathcal{M}$ the differential from of degree $k$ is a \textit{smooth section} of the $k$th \textit{exterior power} of the \textit{cotangent bundle} of $\mathcal{M}$. 
-    Then, the set of all the $k-$forms on $\mathcal{M}$ is a \textit{vector space} $\Omega^k(\mathcal{M})$. 
-    The formal definition then stands. At any point $p\in \mathcal{M}$ a $k-$form $\beta$ defines an element 
-    \begin{equation}
-        \beta_p\in\Lambda^kT^* _p \mathcal{M}
-    \end{equation}
-    where $T_p\mathcal{M}$is the \textit{tangent space} tp $\mathcal{M}$ at $p$. The $T^* _p \mathcal{M}$ is its \textit{dual space} (cotangent space). Thus, $\beta$ is also a linear functional such that $\beta_p:\Lambda^k T_p \mathcal{M}\rightarrow I\!R$
-    
-    %% -----------------------------------------------------
-    
-    \subsection{More on the algebra of differential forms}
-    
-    If $\phi$ and $\psi$ are the 2-forms given for example as 
-    \begin{equation}
-    \phi = x dx - y dy \hspace{5mm} \text{and} \hspace{5mm}\psi = z dx + x dz
-    \end{equation}
-    Then the \textbf{exterior product} is given by 
-    \begin{align}
-    \phi\wedge\psi &= (x dx - y dy)\wedge(zdx + xdz) = \\
-    &=xzdxdx+x^2dxdz-yzdydx-yxdydz= \\
-    &=yzdxdy + x^2 dx dz - xydydz
-    \end{align}
-    as $dxdx=0$ and $dydx=-dxdy$. 
-    The product of two $1$-forms is a $2$-form.
-    In general, the \textbf{wedge product} of a $p$-form and $q$-form is a $(p+q)$-form.
-    
-    In other words, consider a surface $\mathcal{M}$ and two $1$-forms on it $\phi$ and $\psi$ Then the \textbf{wedge product} is 
-    \begin{equation}
-    (\phi\wedge\psi)(v,w)=\phi(v)\psi(w) - \phi(w)\psi(v)
-    \end{equation}
-    for any $v$ and $w$ tangent vectors to $\mathcal{M}$.
-    
-    \paragraph{Properties of the wedge product.} The exterior algebra main idea is that the operations are designed to create \textbf{the permutational antisymmetry}. 
-    Let the $dx_i$ be the basis $1$-from and $\omega_j$ are the orbitrary $p$-form (of order $p_j$), and $a$, $b$ be arbitrary scalars. 
-    Then the \textit{wedge product} is defined to have properties:
-    \begin{align}
-        (a\omega_1+b\omega_2)\wedge\omega_3 &= a\omega_1\wedge\omega_3+b\omega_2\wedge\omega_3 \hspace{5mm} (p_1 = p_2), \\
-        (\omega_1\wedge\omega_2)\wedge\omega_3 &= \omega_1\wedge(\omega_2\wedge\omega_3), \hspace{5mm} a(\omega_1\wedge\omega_2) =  (a\omega_1)\wedge\omega_2\\
-        dx_i\wedge dx_j &= -dx_j\wedge dx_i
-    \end{align}
-    Thus, any arbitrary differential form can be reduced to \textbf{a} coefficient multiplying $dx_i$ or a wedge product of the generic form 
-    \begin{equation}
-        dx_i\wedge dx_j \wedge...\wedge dx_p
-    \end{equation}
-    with the properties allowing to put all coefficients together as 
-    \begin{equation}
-        a dx_1 \wedge b dx_2 = - a(b dx_2 \wedge dx_1) = -ab(dx_2 \wedge dx_1) = ab(dx_1 \wedge dx_2)
-    \end{equation}
-    
-    \paragraph{Wedge product acting on tangent vectors}.
-    The $\wedge$ of two tangent vectors $\boldsymbol{u}\wedge\boldsymbol{v}$, where ($\boldsymbol{u}, \boldsymbol{v}\in T_p(\mathcal{M})$) is an antisymmetric tensor product that in addition to bilinearity requires antisymmetry. 
-    \begin{align}
-        \boldsymbol{v} =& v^1e_1 + v^2 e_2 + v^3 e_3 \\
-        \boldsymbol{u} =& u^1e_1 + u^2 e_2 + u^3 e_3 \\
-        \boldsymbol{v}\wedge\boldsymbol{u} =& (v^1u^1 - v^2u^1)(e_1\wedge e_2) + \\
-        & + (v^1u^3 - v^3u^1)(e_1\wedge e_1) + \\
-        & + (v^2u^3 - v^3u^2)(e_2\wedge e_1)
-    \end{align}
-    mimicking the behavior of the cross product. 
-    However, this can easly be extended to higher dimensions. 
-    
-    Important, that the resulting object of $\boldsymbol{v}\wedge\boldsymbol{u}$ does not belong to $T_p M$. It is called an \textbf{alternating bivector} and is an element of the vector space $\Lambda^2 T_p (\mathcal{M})$ ,that is called -- \textbf{second exterior power} of $T_p \mathcal{M}$.
-    
-    Generally one obtains $\Lambda^k T_p (\mathcal{M})$ that is a linear subspace of $T_p ^k (\mathcal{M})$.
-    
-    Note that the exterior product on the \textit{cotangent spaces}, $T_p ^* \mathcal{M}$ is compatible with \textit{wedge product} on $T_p\mathcal{M}$ and is usually denoted with the same symbol and yields
-    $(\boldsymbol{\alpha}\wedge\boldsymbol{\beta})\in\Lambda^2 T_p ^* \mathcal{M}$.
-    
-    %% ------------------------------------------------------
-    
-    \subsection{Differential forms on a Reimannian maniforld}
-    
-    There metric defines a fiber-wise isomorphism of the tangent and cotangent spaces. This allows to convert vector fields to covector field and vice versa. It also allows the definition of the \textit{Hodge star operator}.
-    
-    Hodge star operator $\star$ is a linear map, defined on the exterior algebra of a finite-dimensional oriented vector space endowed with a non-degenerate symmetric bilinear form. Applying the operator to the element of the algebra produces the \textit{Hodge dual} of the element.
-    
-    Example. Consider a $3D$ Euclidean space. Let there be an orientated plane, that is presented by the exterior product $\wedge$ of two basis vectors. Then its \textit{Hodge dual} is the normal vector given by the cross product. 
-    
-    The \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
-    
-    The $\star$ can be applied to the \textit{cotangent bundle} of a pseudo-reimanian manifold -- to all differential $k$-forms. This allows the definition of a differential as a \textit{Hodge adjoint} of the exteior derivative. 
-    
-    \paragraph{Formal definition}. Let $V$ be a $n$-dimensional vector-space with non-degenerate symmetric bilinear form $\langle\cdot,\cdot\rangle$ -- the \textit{inner product}. 
-    This induces an inner product on $k-$vectors $\alpha,\beta\in\Lambda^k V$ for $0\leq k \leq n$ by defining it on decomposable $k$-vectors $\alpha = \alpha_1\wedge\cdots\wedge\alpha_k$ and $\beta=\beta_1\wedge\cdots\wedge\beta_k$.
-    
-    The \textit{Hodge star} operator is a linear operator on the exterior algebra of $V$, mapping $k$-vectors to $(n-k)$-vectors for $0\leq k \leq n$. It has following property that defines it completely
-    \begin{equation}
-        \alpha\wedge(\star\beta) = \langle\alpha,\beta\rangle\omega 
-    \end{equation}
-    for every pair of $k-$vectors $\alpha\beta\in\Lambda^kV$.
-    Here the $\omega\in\Lambda^nV$ is the unit $n-$vector defined in terms of an oriented orthonormal basis $\{e_1,...,e_n\}$ of $V$ as
-    \begin{equation}
-        \omega := e_1 \wedge \cdots \wedge e_n.
-    \end{equation}
-    
-    Dually, in the space $\Lambda^n V^*$ of $n-forms$, the dual $\omega$ is the column form $\textbf{det}$, the function whose value on $v_1\wedge\cdots\wedge v_n$ is the determinant of the $n\times n$ matrix assembled from the column vectors of $v_i$ in $e_i$ coordinates. Thus the dual definition is 
-    \begin{equation}
-        \text{det}(\alpha\wedge\star\beta) = \langle\alpha,\beta\rangle.
-    \end{equation}
-    or equivalently 
-    \begin{align}
-        \alpha =& \alpha_1\wedge\cdots\wedge\alpha_k \\
-        \beta =& \beta_1\wedge\cdots\wedge\beta_k \\
-        \star\beta =& \beta_1 ^{\star} \wedge\cdots\wedge \beta_{n-k} ^ {\star} \\
-        \text{det}(\alpha_1\wedge\cdots\wedge\alpha_k\wedge\beta_1 ^{\star}\wedge\cdots\wedge\beta_{n-k}^{\star}) =& \text{det}(\langle\alpha_i,\beta_j\rangle)
-    \end{align}
-    
-    \paragraph{Examples}.
-    Consider 2D space with normalized Euclidian metric and orientation given by ordering $(x,y)$. The \textit{Hodge star} on $k-$forms is given by 
-    
-    \begin{align}
-        \star 1 &= dx \wedge dy \\
-        \star dx &= dy \\
-        \star dy &= -dx \\
-        \star(dx \wedge dy) &= 1.
-    \end{align}
-    
-    Consider a more complex example. A plane that can be regarded as a vector space with a standard sesquilinear form as the metric. 
-    There the \textit{Hodge operator} has a property that it is invariant under the holomorphic changes of coordinates. 
-    Consider $z = x + iy$ holomorphic function of $w=u + iv$. Then in the new coordinates 
-    
-    \begin{align}
-        \alpha &= pdx +qdy \\
-        \star \alpha &= -q dx + p dy
-    \end{align}
-    
-    Next, consider a 3D space. 
-    Here the $\star$ can be regarded as a correspondence between vectors and bivectors. 
-    Thus in Eucledian $\boldsymbol{R}^3$ space with basis $dx,dy,dz$, of one-forms, one finds
-    \begin{align}
-        \star dx =& dy\wedge dz \\
-        \star dy =& dz\wedge dx \\
-        \star dz =& dx \wedge dy \\
-    \end{align}
-    The relations to the exterior and cross product are:
-    \begin{equation}
-        \star(\boldsymbol{u}\wedge\boldsymbol{v})=\boldsymbol{u}\times\boldsymbol{v}, \hspace{5mm}\star(\boldsymbol{u}\times\boldsymbol{v}) = \boldsymbol{u}\wedge\boldsymbol{v}
-    \end{equation}
-    
-    Thus in 3D the $\star$ provides and isomorphism between vectors and bivectors, so each axial vector $\boldsymbol{a}$ is associated with the bivector $\boldsymbol{A}$ as $\boldsymbol{A} = \star\boldsymbol{a}$ and $\boldsymbol{a} = \star\boldsymbol{A}$. It can also mean a correspondence between the axis and infinitesimal rotation around the axis with the speed equal to the length of the axis vector.
-    
-    Consider a tensor $dx \otimes dy$ that corresponds to the matrix with one $dx$ row and $dy$ column. The wedge $dx\wedge dy = dx\otimes dy - dy\otimes dx$ is a 3 by 3 \textit{skew-symmetric matrix} with all $0$ exept $(0,1)$ and $(1,0)$ components that are $1$. 
-    So the $\wedge$ operator turns $\boldsymbol{v} = adx + bdy + cdz$ into $\star\boldsymbol{v}\approx$ $3\times 3$ matrix with $0$ on diaoganals.
-    
-    Next, consider $4D$ space.
-    Here $\star$ acts as an endomorphism of the second exterior power, mapping $2$-forms into $2$-forms. 
-    Consider the Minkowski space time with signature $(+,-,-,-)$ and coordinates $(t,x,y,z)$, there we have
-    \begin{align}
-        \star dt &= dx \wedge dy \wedge dz \\
-        \star dx &= dt \wedge dy \wedge dz \\
-        \star dy &= -dt \wedge dx \wedge dz \\ 
-        \star dz &= dt \wedge dx \wedge dy 
-    \end{align}
-    
-    \paragraph{Wedge product on manifold}
-    For an $n-$dimensional oriented pseudo-Reimannian manifold $\mathcal{M}$ we apply the construction such that to each cotangent vector space $T^* _p \mathcal{M}$ and its exterior powers $\Lambda^k T_p ^* \mathcal{M}$ and hence to all differential $k-$forms $\xi\in\Omega^k(\mathcal{M})=\Gamma(\Lambda^k T^* \mathcal{M})$, the global sections of the bundle are $\Lambda^k T^*\mathcal{M}\rightarrow \mathcal{M}$. 
-    The Reimannian metric induces inner product on $\Lambda^k T_p ^* \mathcal{M}$ at each point $p\in\mathcal{M}$. We define the \textit{Hodge dual} of a $k-$form $\xi$ defining $\star\xi$ as a unique $(n-k)$-form satisfying
-    \begin{equation}
-        \eta\wedge\star\xi = \langle\eta,\xi\rangle\omega
-    \end{equation}
-    for every $k-$form $\eta$ where $\langle\eta,\xi\rangle$ is a real value function on $\mathcal{M}$ and the volume form $\omega$ is induced by the Reimannian metric.
-    
-    \paragraph{In the coordinate form}
-    Consider an orthonormal basis $\{ \frac{\partial}{\partial x_1}, \cdots,\frac{\partial}{\partial x_n} \}$ the a tangent space $V=T_p\mathcal{M}$. And its dual basis $\{ dx_1, ..., dx_n \}$ in $V^* = T_p ^*\mathcal{M}$, with the metric matrix $g_{ij} = \big(\langle\frac{\partial}{\partial x_i},\frac{\partial}{\partial x_j}\rangle\big)$ and its inverse matrix $g^{ij} = \big(\langle dx_i, dx_j \rangle\big)$. The Hodge dual of a decomposable $k$-form is then 
-    \begin{equation}
-        \star(dx^{i_1}\wedge\cdots\wedge dx^{i_k}) = \frac{\sqrt{|\text{det}[g_{ab}]|}}{(n-k)!}g^{i_1 j_1}\cdots g^{i_k j_k} \epsilon_{j_1 ... j_n} dx^{j_{k+1}}\wedge\cdots\wedge dx^{j_n}
-    \end{equation}
-    
-    %%
-    
-    \subsection{Conclusion}
-    
-    In this section we aimed to define certain mathematical concepts crucial for understanding next sections of this chapter.
-    
-    Particular attentions deserve the concept of tangent vectors $\partial x_i$ and cotangent vectors $\alpha_i$ that on a manifold form tangent $T_p \mathcal{M}$ and contangent $T_p^*\mathcal{M}$ spaces. The manifold that assembles all the tangent vectors is denoted with $T\mathcal{M} = \{ (x,y) | x\in \mathcal{M}, y \in T_x \mathcal{M} \}$, with the projection $\pi:T\mathcal{M}\rightarrow \mathcal{M}$, while the cotangent bundle is a smooth manifold that assembles all the cotangent spaces.
-    
-    The operation of importance are the \textit{inner product} $\langle \cdot,\cdot \rangle : V \times V \rightarrow \mathcal{F}$, that is linear, positive and conjugate-define, and it allows the paring between vectors and differential forms; 
-    and the \textit{outer, Wedge, product} which, acting on vectors, mimics the behavior of the cross product, and acting on differential forms converts $k$-from into $k+1$-form, allowing for instance to define a volume element, $f(x,y,z)dx \wedge dy \wedge dz$. 
-    
-    Another important concept related to the differential forms on a Reimannian manifold is the Hodge star operator, that allows to convert vector fields into the co-vector fields and vise versa.
-    
-    For example, for an orientatned plane in Eqclidean space,
-    the Hodge dual of the $\wedge$ product of two basis vectors is the normal vector (given by the cross product).
+%% Diff.forms, external prodcuts; Hoge star 
+\subsection{More on the tangent and cotangent spaces}
 
-    Thus \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
-    
-}{
-    pass
-}
+Tangent space to $\mathcal{M}$ is denoted with $T_p(\mathcal{M})$.
+The cotangent space $T_p ^* \mathcal{M}$
 
+%% ---------------------------
 
+\subsection{Differential forms}
+\gray{copied}
+
+They are usefull for multivariable calculus independent of coordinates. Used for integrands over curves, manifolds. For example, differential form can be used to define a volume element as $f(x,y,z)dx \wedge dy \wedge dz$, where $\wedge$ is the \textit{wedge product} defined below.
+
+Albegra of differential forms is organized to reflect the orientation of the domain of integration. For instance: the \textit{exterior product} (see below) $d$ that converts $k$-from into $k+1$-form. 
+This operation is similar to the divergence and the curl of a vector field.
+
+Differential $1$-forms are naturally dual to \textit{vector fields} on a manifold. Pairing is done via \textit{inner product}.
+
+If there are two \textit{manifolds}, then the albegra of diff.forms and their exterior derivatives is preserved by the \textbf{pullblack} under the smooth function. 
+This allows geometrically invariant information to be moved from one space to another via the pullback.
+
+Let $\mathcal{M}$ be an orientated $m$-dimentional manifold and $\mathcal{M}'$ is the same manifold with the opposite orientation and $\omega$ is an $m$-form, then 
+
+\begin{equation}
+\int_{\mathcal{M}}\omega = -\int_{\mathcal{M}'}\omega.
+\end{equation}
+
+The \textit{exterior algebra} is used to make the notion of an oriented density precise.
+
+The basic $1$-forms are \textbf{differentials} of the coordiantes $dx^1,...,dx^n$. 
+Each of them is a \textbf{covector} that measures a small displacement in the corresponding coordinate direction. A general $1$-form thus is the combination of these differentials 
+\begin{equation}
+f_1dx^1\cdot\cdot\cdot f_ndx^n
+\end{equation}
+where $f_k=f_k(x^1,...,x^n)$ are functions of all the coordiantes. 
+
+\textit{Wedge product} is similar to \textit{cross product}, and is used to build higher differential forms out of lower ones, as the cross product in vector calculus.
+
+The \textit{Exterior derivative}, operator $d$ is a generalization of a differential of a function. 
+Let $\omega=fdx^I$ be a simple $k$-form. Then its exterior derivative $d\omega$ is a $(k+1)$-form set by taking differential of the coefficient functions
+\begin{equation}
+d\omega = \sum_{i=1}^n \frac{\partial f}{\partial x^i}dx^i \wedge dx^I
+\end{equation}
+Thus a \textit{deferential form}, lets say, differential $2$-form is called an exterior derivative $da$ of $a=\sum_{j=1}^{n}f_j dx^j$. 
+It is given by
+\begin{equation}
+da = \sum_{j=1}^n df_j \wedge dx^j = \sum_{i,j=1}^n \frac{\partial f_j}{\partial x^i}dx^i\wedge dx^j.
+\end{equation}
+Overall, the $da=0$ is required for a function $f$ such that $a=df$.
+
+On as smooth manifold $\mathcal{M}$ the differential from of degree $k$ is a \textit{smooth section} of the $k$th \textit{exterior power} of the \textit{cotangent bundle} of $\mathcal{M}$. 
+Then, the set of all the $k-$forms on $\mathcal{M}$ is a \textit{vector space} $\Omega^k(\mathcal{M})$. 
+The formal definition then stands. At any point $p\in \mathcal{M}$ a $k-$form $\beta$ defines an element 
+\begin{equation}
+\beta_p\in\Lambda^kT^* _p \mathcal{M}
+\end{equation}
+where $T_p\mathcal{M}$is the \textit{tangent space} tp $\mathcal{M}$ at $p$. The $T^* _p \mathcal{M}$ is its \textit{dual space} (cotangent space). Thus, $\beta$ is also a linear functional such that $\beta_p:\Lambda^k T_p \mathcal{M}\rightarrow I\!R$
+
+%% -----------------------------------------------------
+
+\subsection{More on the algebra of differential forms}
+
+If $\phi$ and $\psi$ are the 2-forms given for example as 
+\begin{equation}
+\phi = x dx - y dy \hspace{5mm} \text{and} \hspace{5mm}\psi = z dx + x dz
+\end{equation}
+Then the \textbf{exterior product} is given by 
+\begin{align}
+\phi\wedge\psi &= (x dx - y dy)\wedge(zdx + xdz) = \\
+&=xzdxdx+x^2dxdz-yzdydx-yxdydz= \\
+&=yzdxdy + x^2 dx dz - xydydz
+\end{align}
+as $dxdx=0$ and $dydx=-dxdy$. 
+The product of two $1$-forms is a $2$-form.
+In general, the \textbf{wedge product} of a $p$-form and $q$-form is a $(p+q)$-form.
+
+In other words, consider a surface $\mathcal{M}$ and two $1$-forms on it $\phi$ and $\psi$ Then the \textbf{wedge product} is 
+\begin{equation}
+(\phi\wedge\psi)(v,w)=\phi(v)\psi(w) - \phi(w)\psi(v)
+\end{equation}
+for any $v$ and $w$ tangent vectors to $\mathcal{M}$.
+
+\paragraph{Properties of the wedge product.} The exterior algebra main idea is that the operations are designed to create \textbf{the permutational antisymmetry}. 
+Let the $dx_i$ be the basis $1$-from and $\omega_j$ are the orbitrary $p$-form (of order $p_j$), and $a$, $b$ be arbitrary scalars. 
+Then the \textit{wedge product} is defined to have properties:
+\begin{align}
+(a\omega_1+b\omega_2)\wedge\omega_3 &= a\omega_1\wedge\omega_3+b\omega_2\wedge\omega_3 \hspace{5mm} (p_1 = p_2), \\
+(\omega_1\wedge\omega_2)\wedge\omega_3 &= \omega_1\wedge(\omega_2\wedge\omega_3), \hspace{5mm} a(\omega_1\wedge\omega_2) =  (a\omega_1)\wedge\omega_2\\
+dx_i\wedge dx_j &= -dx_j\wedge dx_i
+\end{align}
+Thus, any arbitrary differential form can be reduced to \textbf{a} coefficient multiplying $dx_i$ or a wedge product of the generic form 
+\begin{equation}
+dx_i\wedge dx_j \wedge...\wedge dx_p
+\end{equation}
+with the properties allowing to put all coefficients together as 
+\begin{equation}
+a dx_1 \wedge b dx_2 = - a(b dx_2 \wedge dx_1) = -ab(dx_2 \wedge dx_1) = ab(dx_1 \wedge dx_2)
+\end{equation}
+
+\paragraph{Wedge product acting on tangent vectors}.
+The $\wedge$ of two tangent vectors $\boldsymbol{u}\wedge\boldsymbol{v}$, where ($\boldsymbol{u}, \boldsymbol{v}\in T_p(\mathcal{M})$) is an antisymmetric tensor product that in addition to bilinearity requires antisymmetry. 
+\begin{align}
+\boldsymbol{v} =& v^1e_1 + v^2 e_2 + v^3 e_3 \\
+\boldsymbol{u} =& u^1e_1 + u^2 e_2 + u^3 e_3 \\
+\boldsymbol{v}\wedge\boldsymbol{u} =& (v^1u^1 - v^2u^1)(e_1\wedge e_2) + \\
+& + (v^1u^3 - v^3u^1)(e_1\wedge e_1) + \\
+& + (v^2u^3 - v^3u^2)(e_2\wedge e_1)
+\end{align}
+mimicking the behavior of the cross product. 
+However, this can easly be extended to higher dimensions. 
+
+Important, that the resulting object of $\boldsymbol{v}\wedge\boldsymbol{u}$ does not belong to $T_p M$. It is called an \textbf{alternating bivector} and is an element of the vector space $\Lambda^2 T_p (\mathcal{M})$ ,that is called -- \textbf{second exterior power} of $T_p \mathcal{M}$.
+
+Generally one obtains $\Lambda^k T_p (\mathcal{M})$ that is a linear subspace of $T_p ^k (\mathcal{M})$.
+
+Note that the exterior product on the \textit{cotangent spaces}, $T_p ^* \mathcal{M}$ is compatible with \textit{wedge product} on $T_p\mathcal{M}$ and is usually denoted with the same symbol and yields
+$(\boldsymbol{\alpha}\wedge\boldsymbol{\beta})\in\Lambda^2 T_p ^* \mathcal{M}$.
+
+%% ------------------------------------------------------
+
+\subsection{Differential forms on a Reimannian maniforld}
+
+There metric defines a fiber-wise isomorphism of the tangent and cotangent spaces. This allows to convert vector fields to covector field and vice versa. It also allows the definition of the \textit{Hodge star operator}.
+
+Hodge star operator $\star$ is a linear map, defined on the exterior algebra of a finite-dimensional oriented vector space endowed with a non-degenerate symmetric bilinear form. Applying the operator to the element of the algebra produces the \textit{Hodge dual} of the element.
+
+Example. Consider a $3D$ Euclidean space. Let there be an orientated plane, that is presented by the exterior product $\wedge$ of two basis vectors. Then its \textit{Hodge dual} is the normal vector given by the cross product. 
+
+The \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
+
+The $\star$ can be applied to the \textit{cotangent bundle} of a pseudo-reimanian manifold -- to all differential $k$-forms. This allows the definition of a differential as a \textit{Hodge adjoint} of the exteior derivative. 
+
+\paragraph{Formal definition}. Let $V$ be a $n$-dimensional vector-space with non-degenerate symmetric bilinear form $\langle\cdot,\cdot\rangle$ -- the \textit{inner product}. 
+This induces an inner product on $k-$vectors $\alpha,\beta\in\Lambda^k V$ for $0\leq k \leq n$ by defining it on decomposable $k$-vectors $\alpha = \alpha_1\wedge\cdots\wedge\alpha_k$ and $\beta=\beta_1\wedge\cdots\wedge\beta_k$.
+
+The \textit{Hodge star} operator is a linear operator on the exterior algebra of $V$, mapping $k$-vectors to $(n-k)$-vectors for $0\leq k \leq n$. It has following property that defines it completely
+\begin{equation}
+\alpha\wedge(\star\beta) = \langle\alpha,\beta\rangle\omega 
+\end{equation}
+for every pair of $k-$vectors $\alpha\beta\in\Lambda^kV$.
+Here the $\omega\in\Lambda^nV$ is the unit $n-$vector defined in terms of an oriented orthonormal basis $\{e_1,...,e_n\}$ of $V$ as
+\begin{equation}
+\omega := e_1 \wedge \cdots \wedge e_n.
+\end{equation}
+
+Dually, in the space $\Lambda^n V^*$ of $n-forms$, the dual $\omega$ is the column form $\textbf{det}$, the function whose value on $v_1\wedge\cdots\wedge v_n$ is the determinant of the $n\times n$ matrix assembled from the column vectors of $v_i$ in $e_i$ coordinates. Thus the dual definition is 
+\begin{equation}
+\text{det}(\alpha\wedge\star\beta) = \langle\alpha,\beta\rangle.
+\end{equation}
+or equivalently 
+\begin{align}
+\alpha =& \alpha_1\wedge\cdots\wedge\alpha_k \\
+\beta =& \beta_1\wedge\cdots\wedge\beta_k \\
+\star\beta =& \beta_1 ^{\star} \wedge\cdots\wedge \beta_{n-k} ^ {\star} \\
+\text{det}(\alpha_1\wedge\cdots\wedge\alpha_k\wedge\beta_1 ^{\star}\wedge\cdots\wedge\beta_{n-k}^{\star}) =& \text{det}(\langle\alpha_i,\beta_j\rangle)
+\end{align}
+
+\paragraph{Examples}.
+Consider 2D space with normalized Euclidian metric and orientation given by ordering $(x,y)$. The \textit{Hodge star} on $k-$forms is given by 
+
+\begin{align}
+\star 1 &= dx \wedge dy \\
+\star dx &= dy \\
+\star dy &= -dx \\
+\star(dx \wedge dy) &= 1.
+\end{align}
+
+Consider a more complex example. A plane that can be regarded as a vector space with a standard sesquilinear form as the metric. 
+There the \textit{Hodge operator} has a property that it is invariant under the holomorphic changes of coordinates. 
+Consider $z = x + iy$ holomorphic function of $w=u + iv$. Then in the new coordinates 
+
+\begin{align}
+\alpha &= pdx +qdy \\
+\star \alpha &= -q dx + p dy
+\end{align}
+
+Next, consider a 3D space. 
+Here the $\star$ can be regarded as a correspondence between vectors and bivectors. 
+Thus in Eucledian $\boldsymbol{R}^3$ space with basis $dx,dy,dz$, of one-forms, one finds
+\begin{align}
+\star dx =& dy\wedge dz \\
+\star dy =& dz\wedge dx \\
+\star dz =& dx \wedge dy \\
+\end{align}
+The relations to the exterior and cross product are:
+\begin{equation}
+\star(\boldsymbol{u}\wedge\boldsymbol{v})=\boldsymbol{u}\times\boldsymbol{v}, \hspace{5mm}\star(\boldsymbol{u}\times\boldsymbol{v}) = \boldsymbol{u}\wedge\boldsymbol{v}
+\end{equation}
+
+Thus in 3D the $\star$ provides and isomorphism between vectors and bivectors, so each axial vector $\boldsymbol{a}$ is associated with the bivector $\boldsymbol{A}$ as $\boldsymbol{A} = \star\boldsymbol{a}$ and $\boldsymbol{a} = \star\boldsymbol{A}$. It can also mean a correspondence between the axis and infinitesimal rotation around the axis with the speed equal to the length of the axis vector.
+
+Consider a tensor $dx \otimes dy$ that corresponds to the matrix with one $dx$ row and $dy$ column. The wedge $dx\wedge dy = dx\otimes dy - dy\otimes dx$ is a 3 by 3 \textit{skew-symmetric matrix} with all $0$ exept $(0,1)$ and $(1,0)$ components that are $1$. 
+So the $\wedge$ operator turns $\boldsymbol{v} = adx + bdy + cdz$ into $\star\boldsymbol{v}\approx$ $3\times 3$ matrix with $0$ on diaoganals.
+
+Next, consider $4D$ space.
+Here $\star$ acts as an endomorphism of the second exterior power, mapping $2$-forms into $2$-forms. 
+Consider the Minkowski space time with signature $(+,-,-,-)$ and coordinates $(t,x,y,z)$, there we have
+\begin{align}
+\star dt &= dx \wedge dy \wedge dz \\
+\star dx &= dt \wedge dy \wedge dz \\
+\star dy &= -dt \wedge dx \wedge dz \\ 
+\star dz &= dt \wedge dx \wedge dy 
+\end{align}
+
+\paragraph{Wedge product on manifold}
+For an $n-$dimensional oriented pseudo-Reimannian manifold $\mathcal{M}$ we apply the construction such that to each cotangent vector space $T^* _p \mathcal{M}$ and its exterior powers $\Lambda^k T_p ^* \mathcal{M}$ and hence to all differential $k-$forms $\xi\in\Omega^k(\mathcal{M})=\Gamma(\Lambda^k T^* \mathcal{M})$, the global sections of the bundle are $\Lambda^k T^*\mathcal{M}\rightarrow \mathcal{M}$. 
+The Reimannian metric induces inner product on $\Lambda^k T_p ^* \mathcal{M}$ at each point $p\in\mathcal{M}$. We define the \textit{Hodge dual} of a $k-$form $\xi$ defining $\star\xi$ as a unique $(n-k)$-form satisfying
+\begin{equation}
+\eta\wedge\star\xi = \langle\eta,\xi\rangle\omega
+\end{equation}
+for every $k-$form $\eta$ where $\langle\eta,\xi\rangle$ is a real value function on $\mathcal{M}$ and the volume form $\omega$ is induced by the Reimannian metric.
+
+\paragraph{In the coordinate form}
+Consider an orthonormal basis $\{ \frac{\partial}{\partial x_1}, \cdots,\frac{\partial}{\partial x_n} \}$ the a tangent space $V=T_p\mathcal{M}$. And its dual basis $\{ dx_1, ..., dx_n \}$ in $V^* = T_p ^*\mathcal{M}$, with the metric matrix $g_{ij} = \big(\langle\frac{\partial}{\partial x_i},\frac{\partial}{\partial x_j}\rangle\big)$ and its inverse matrix $g^{ij} = \big(\langle dx_i, dx_j \rangle\big)$. The Hodge dual of a decomposable $k$-form is then 
+\begin{equation}
+\star(dx^{i_1}\wedge\cdots\wedge dx^{i_k}) = \frac{\sqrt{|\text{det}[g_{ab}]|}}{(n-k)!}g^{i_1 j_1}\cdots g^{i_k j_k} \epsilon_{j_1 ... j_n} dx^{j_{k+1}}\wedge\cdots\wedge dx^{j_n}
+\end{equation}
+
+%%
+
+\subsection{Conclusion}
+
+In this section we aimed to define certain mathematical concepts crucial for understanding next sections of this chapter.
+
+Particular attentions deserve the concept of tangent vectors $\partial x_i$ and cotangent vectors $\alpha_i$ that on a manifold form tangent $T_p \mathcal{M}$ and contangent $T_p^*\mathcal{M}$ spaces. The manifold that assembles all the tangent vectors is denoted with $T\mathcal{M} = \{ (x,y) | x\in \mathcal{M}, y \in T_x \mathcal{M} \}$, with the projection $\pi:T\mathcal{M}\rightarrow \mathcal{M}$, while the cotangent bundle is a smooth manifold that assembles all the cotangent spaces.
+
+The operation of importance are the \textit{inner product} $\langle \cdot,\cdot \rangle : V \times V \rightarrow \mathcal{F}$, that is linear, positive and conjugate-define, and it allows the paring between vectors and differential forms; 
+and the \textit{outer, Wedge, product} which, acting on vectors, mimics the behavior of the cross product, and acting on differential forms converts $k$-from into $k+1$-form, allowing for instance to define a volume element, $f(x,y,z)dx \wedge dy \wedge dz$. 
+
+Another important concept related to the differential forms on a Reimannian manifold is the Hodge star operator, that allows to convert vector fields into the co-vector fields and vise versa.
+
+For example, for an orientatned plane in Eqclidean space,
+the Hodge dual of the $\wedge$ product of two basis vectors is the normal vector (given by the cross product).
+
+Thus \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
+
+%% --------------------------------------
+
+%% 
 \section{General-relativistic hydrodynamics}
 
-%% Chose the content output
-
-
-This chapter is meant to sketch several important parts of the mathematical background. We focus on the aspects relevant for the tools and methods employed in out discussion. 
+This section is meant to sketch several important parts of the mathematical background. 
+We focus on the aspects relevant for the tools and methods employed in out discussion. 
 We do not aim to provide a comprehensive overview. 
-The chapter is divided into \todo{list the parts and their content}
+The chapter is divided into 
+\todo{list the parts and their content}
 
 %% [ GENERAL RELATIVITY from EFE to CCZ4 ]
-\iftoggle{Full}{
     
-    %% ---
-    
-    \subsection{The Cauchy Problem in General Relativity}
-    
-    %% ---
-    
-    In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. 
-    We start by introducing notations and the basics of GR. 
-    We summarize the Einstein field equations. 
-    Then we continue with how EFE can be split in a set of evolutionary equations and constraints. 
-    For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. 
-    In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to evolve spacetimes with singularities. 
-    This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
-    
-    %% --- 
-    \subsubsection{Euler-Lagrange equations}
-    %% ---
-    
-    \red{Requires understanding of: vectors, differential forms and tensors;
+%% ---
+
+\subsection{The Cauchy Problem in General Relativity}
+
+%% ---
+
+In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. 
+We start by introducing notations and the basics of GR. 
+We summarize the Einstein field equations. 
+Then we continue with how EFE can be split in a set of evolutionary equations and constraints. 
+For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. 
+In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to evolve spacetimes with singularities. 
+This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+
+%% --- 
+\subsubsection{Euler-Lagrange equations}
+%% ---
+
+\red{Requires understanding of: vectors, differential forms and tensors;
     differential equation types: ellipitc, parabolic, hyperbolic, their nmerical advantages;
     smooth manifolds, Lorenzian maniforld and metric, affine connection (Levi-Civita connection), covariant derivatives, action pinciple, lagrange field theory, variation of the action, Einstein-Hilbert action, Ricci scalar and Ricci tensor, Riemann tensor;
     spacelike, timelike and null hypersurface, hyperbolic space-time, space-time foliation,
@@ -321,778 +316,1512 @@ The chapter is divided into \todo{list the parts and their content}
     extrinsic curvature, Codazzi equations, Gauss equations,
     palantini-type vatiation
     gauge conditions: slicing and spatial,}
-    
-    We consider a spacetime defined by the real \textit{smooth manifold} $\mathcal{M}$ and \textit{Lorentzian metric} $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. 
-    The $\nabla$ denotes the \textit{affine connection} associated with $\boldsymbol{g}$, the Levi-Civita connection.
-    We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$.
-    The $\nabla\boldsymbol{T}$ denotes the \textit{covariant derivative} of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.
-    
-    The scalar product of two vectors then 
-    
+
+We consider a spacetime defined by the real \textit{smooth manifold} $\mathcal{M}$ and \textit{Lorentzian metric} $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. 
+The $\nabla$ denotes the \textit{affine connection} associated with $\boldsymbol{g}$, the Levi-Civita connection.
+We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$.
+The $\nabla\boldsymbol{T}$ denotes the \textit{covariant derivative} of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.
+
+The scalar product of two vectors then 
+
+\begin{equation}
+\boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}
+\end{equation}
+
+The action of a linear form on a vector however is represented as 
+
+\begin{equation}
+\langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}
+\end{equation}
+
+Let the $\boldsymbol{\alpha}$ be the \textit{totally antisymmetric symbol} that expresses through coordinates $x^{\mu}$ as
+
+\begin{equation}
+\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
+\end{equation}
+
+where $\wedge$ denotes \textit{exterior product}. 
+Then, proper \textit{volume pseudo-form} of the spacetime is
+
+\begin{equation}
+\boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha},
+\end{equation}
+
+where $g$ denotes the determinant of the spacetime metric.
+
+In GR, the spacetime is represented by \textit{Lorentzian manifold} $\mathcal{M}$ and $g$, the \textit{Lorentzian metric}.
+
+The \textit{action principle} of the \textit{Lagrangian field theory} on the spacetime $(\mathcal{M}; \boldsymbol{g})$ is
+
+\begin{equation}
+S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int_{\mathcal{M}}\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}),
+\end{equation}
+
+where $\boldsymbol{q}$ are a set of generalized coordinates for the fields described by the theory, $\nabla$ is the Levi-Civita connection, $\mathcal{L}$ is a scalar density of a scalar quantity $\lambda$ as $\lambda(\boldsymbol{q},\nabla\boldsymbol{q})$. 
+
+Varying the action with respect to the $\boldsymbol{q}$
+
+\begin{equation}
+\delta S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \delta\int\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\partial\mathcal{L}}{\partial\boldsymbol{q}}\delta\boldsymbol{q}+\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\nabla\boldsymbol{q}\Big)
+\end{equation}
+
+As $\delta$ and $\nabla$ commute, and partially integrating $\nabla$, we obtain
+
+\begin{equation}
+\partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\mathcal{L}}{\partial\boldsymbol{q}}-\nabla\frac{\partial \mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big)\delta\boldsymbol{q} + \int_{\mathcal{M}}\boldsymbol{\alpha}\nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\boldsymbol{q}\Big)
+\end{equation}
+
+The last term is a boundary term and in order to vanish we impose boundary condition. 
+Assume that the fields are defined over only a \textit{compact domain}. \\
+As the choice of $\partial\boldsymbol{q}$ is arbitrary, the 
+
+\begin{equation}
+\partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = 0
+\end{equation}
+
+and the \textit{Euler-Lagrange equations} are
+
+\begin{equation}
+\frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0
+\label{eq:theory:eulerlagrange}
+\end{equation}
+
+%% ---
+\subsubsection{The Hilbert Action}
+%% ---
+
+The \textit{Einstein-Hilbert action} allows to obtain an \textit{Einstein field equations} through the \textit{principle of least action}. Here we briefly underline the procedure.
+
+Introduce action that describes the gravitational field, and a matter field $\mathcal{L}_m$:
+
+\begin{align}
+S_g &= \int\frac{1}{2\kappa}R\epsilon, \\
+S_m &= \int\mathcal{L}_{m}\epsilon,
+\end{align}
+
+where $R$ is the Ricci scalar and $\kappa$ is the  Einstein's constant.
+
+The full action then:
+
+\begin{equation}
+S = \int\Big(\frac{1}{2\kappa}R+\mathcal{L}_m\Big)\epsilon
+\end{equation}
+
+The action principle dicatates, that $\delta S = 0$  with respect to the inverse metric $g^{\mu\nu}$. 
+
+\begin{equation}
+\int\Bigg[\frac{1}{2\kappa}\Big(\frac{\delta R}{\delta g^{\mu\nu}}+\frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}}\Big) + \frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}}\Bigg]\delta g^{\mu\nu}\epsilon
+\end{equation}
+
+Owing to the arbitrariness of $\delta g^{\mu\nu}$, the integrand must be zero. 
+
+\begin{equation}
+\frac{\delta R}{\delta g^{\mu\nu}} + \frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -2\kappa\frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}} = -\frac{2\kappa}{\sqrt{-g}}\frac{\delta S_m}{\delta g_{\mu\nu}} := \kappa T_{\mu\nu},
+\label{eq:theory:action1}
+\end{equation}
+
+where we introduced the stress-energy tensor $T_{\mu\nu}$ and the matter action $S_m$ for future use. \\
+
+\gray{this matter action is used in deriving the $T_{\mu} ^{\nu}$ i the invariant fluid formalism}
+
+The continuation of this derivation requires taking variation of the Riccia scalar $R$ and the determinant of the metric $\sqrt{-g}$. 
+As this is a length procedure, we provide here the result. 
+
+\begin{equation}
+\frac{\delta R}{\delta g^{\mu\nu}} = R_{\mu\nu},
+\label{eq:theory:deltaR}
+\end{equation}
+
+where the $R_{\mu\nu}$ is the Ricci curvature tensor.
+
+\begin{equation}
+\frac{1}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -\frac{1}{2}g_{\mu\nu}.
+\label{eq:theory:deltagmuny}
+\end{equation}
+
+Substituting Eq. \ref{eq:theory:deltaR} and Eq. \ref{eq:theory:deltagmuny} into equation of motion Eq.  \ref{eq:theory:action1} we obtain the Einstein's field equation 
+
+\begin{equation}
+R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
+\label{eq:theory:EFE}
+\end{equation}
+
+where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$.
+
+%% ---
+\subsubsection{3+1 Decomposition of Einstein field equations}
+%% ---
+
+The Einstein field equations (\ref{eq:theory:EFE}) represent a set of $10$ non-linear partial differential equations.
+These equations can be defined on a while metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter, the boundary conditions on $\partial\Omega$ are required. 
+
+It is convenient to chose a \textit{null hyersurface} $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. 
+This, however, requires the spacetime to be \textit{strongly hyperbolic}, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. 
+This foliation can be understood as splitting the spacetime into a set of \textit{spacelike} hypersurfaces $\Sigma_t$. 
+
+
+\paragraph{Spacelike Foliations}
+
+
+Let the $t$ be the global smooth functions such that, 
+
+\begin{equation}
+\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\},
+\end{equation}
+
+and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. 
+This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field.
+Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the \textit{Lie derivative} of the $\boldsymbol{q}$ along the vector $\vec{t}$.
+
+Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. 
+A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a pert normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the diretion to $\Sigma_{t+dt}$. 
+Then, the vector $\vec{t}$ can be written as 
+
+\begin{equation}
+\vec{t} = \alpha\vec{n}+\vec{\beta}.
+\end{equation}
+
+$\vec{\beta}$ is called \textit{shift vector} and $\alpha$ is called \textit{lapse-function}. 
+
+The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, \textit{Riemannian metric} $\boldsymbol{\gamma}$ as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n}$, where $\underline{n}$ is the 1-form associated to the vector $\vec{n}$. \red{and?}
+The \textit{Levi-Civita connection} can be computed by projecting the $\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
+
+There are exist coordinates that are adapted to the foliation, namely $\{t, x^i\}$ with $\vec{\partial}_i\cdot \vec{n} = 0$. 
+In these coordiantes the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$. 
+
+The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ and can be expressed in terms of $\alpha$ and $\vec{\beta}$ as
+
+\begin{align}
+\text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
+\text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
+\text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i,
+\end{align}
+
+where we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
+
+The line-element can be thus written as
+\begin{equation}
+ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
+\end{equation}
+
+
+\paragraph{Ex-curse: Hamiltonian Field Theory}
+
+
+First we recall the generalized coordinates $\boldsymbol{q}$ and their \textit{covariant derivatives} $\nabla\boldsymbol{q}$. 
+
+In light of the spacetime decomposition discussed above, we divide the $\boldsymbol{\alpha}$ into the time $dt$ and spatial parts represented by the \textit{antisymmetric symbol} ${^{(3)}\boldsymbol{\alpha}}$ as 
+
+\begin{equation}
+\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3 = dt \wedge {^{(3)}\boldsymbol{\alpha}}.
+\end{equation}
+
+Next, we introduce the "time derivative" as a \textit{Lie derivative along the vector field} $\vec{t}$ as 
+
+\begin{equation}
+\dot{\boldsymbol{q}} := \mathcal{L}_{\vec{t}}\boldsymbol{q}.
+\end{equation}
+
+As the $\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q})$ is the \textit{Lagrangian density}, a conjugate momentum can be defined as 
+
+\begin{equation}
+\boldsymbol{p} := \frac{\partial\Lambda}{\partial\dot{\boldsymbol{q}}},
+\end{equation}
+
+Assuming that $\boldsymbol{p}$ and $\nabla\boldsymbol{q}$ can be expressed as a function of $\boldsymbol{q}$ and $\boldsymbol{p}$, inspired by the \textit{Legendre transformation}, we define the \textit{Hamiltonian} and its density as
+
+\begin{align}
+\mathcal{H} &= \boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) \\
+H &= \int_{\Sigma}\mathcal{H}{^{(3)}\boldsymbol{\alpha}}
+\end{align}
+
+Additionally we define the quantity 
+
+\begin{equation}
+J = \int_{0}^{t}H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt\int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q},\nabla\boldsymbol{q})\Big).
+\end{equation}
+
+Consider the variation of the $J$ with respect to the $\delta\boldsymbol{p}$ and $\delta\boldsymbol{q}$ as
+
+\begin{equation}
+\delta J = \int_{0}^{t}\delta H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt (\dot{\boldsymbol{q}}\delta\boldsymbol{p}+\boldsymbol{p}\delta\dot{\boldsymbol{q}}) - \int_{0}^{t}dt\delta\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q}).
+\end{equation}
+
+Consider the last term. The variation of the Lagrangian is
+
+\begin{equation}
+\delta\Lambda = \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Bigg[\frac{\delta\Lambda}{\delta\dot{\boldsymbol{q}}}\delta\dot{\boldsymbol{q}}+\frac{\delta\Lambda}{\delta\boldsymbol{q}}\delta\boldsymbol{q}\Bigg],
+\end{equation}
+
+The first term in the square brackets can be reduced to $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$, using the definition of the conjugate momentum. 
+The second term can be treated, applying the Euler-Lagrange equations (\ref{eq:theory:eulerlagrange}). 
+These manipulations result in
+
+\begin{equation}
+\delta\Lambda = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\boldsymbol{p}\delta\dot{\boldsymbol{q}} + \dot{\boldsymbol{p}}\delta\boldsymbol{q}).
+\end{equation}
+
+Thus we obtain that 
+
+\begin{equation}
+\int_{0}^{t} \delta H(\boldsymbol{q},\boldsymbol{p})dt =   \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\dot{\boldsymbol{q}}\cdot\delta\boldsymbol{p}-\dot{\boldsymbol{p}}\cdot\delta\boldsymbol{q}),
+\end{equation}
+
+and as $\delta\boldsymbol{p}$ and $\delta\boldsymbol{p}$ are arbitrary, the \textit{Hamilton equations} read
+
+\begin{equation}
+\dot{\boldsymbol{q}}=\frac{\delta H}{\delta\boldsymbol{p}}, \hspace{5mm} \dot{\boldsymbol{p}} = -\frac{\delta H}{\delta\boldsymbol{q}}.
+\label{eq:theory:hamiltoneqs}
+\end{equation}
+
+The Hamiltonian formalism can be used to re-derive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution.
+
+
+\paragraph{Extrinsic Curvature and Constraint equations}
+
+
+We define the \textit{extrinsic curvature} of a $D-1$-surface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$. 
+Note, that the $\boldsymbol{K}$ does not depend on $\alpha$ and $\vec{\beta}$, it is a purely spatial tensor. 
+The components of the extrinsic curvature are 
+
+\begin{equation}
+K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
+\label{eq:theory:extrcurvdef}
+\end{equation}
+
+where $\mathcal{L}_{\vec{n}}$ is the Lie derivative along the vector field $\vec{n}$. \\
+From the (\ref{eq:theory:extrcurvdef}) the extrinsic curvature can be interpreted as a "speed of the $\vec{n}$ during the parallel transport along the hypersurface $\Sigma_t$".
+
+\textit{Codazzi equations} relate the $4D$ Ricci tensor to the extrinsic curvature as
+
+\begin{equation}
+D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta}=R_{\gamma\delta}n^{\delta}{\gamma^{\gamma}}_{\beta},
+\label{eq:theory:formomentum}
+\end{equation}
+
+here $K$ is a trace of the tensor $\boldsymbol{K}$.
+
+Gauss equation relates the $3D$ \textit{Riemann tensor} $^3{R_{\alpha\beta\gamma}}^{\delta}$ to the $4D$ one and the $\boldsymbol{K}$ as 
+
+\begin{equation}
+^3{R_{\alpha\beta\gamma}}^{\delta} = {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}{\gamma^{\lambda}}_{\gamma}{\gamma^{\delta}}_{\sigma}{R_{\mu\nu\lambda}}^{\delta}-K_{\alpha\gamma}{K_{\beta}}^{\delta}+K_{\beta\gamma}{K^{\delta}}_{\alpha}.
+\label{eq:theory:forhamiltconst}
+\end{equation}
+
+The \textit{momentum constraint} thus can be obtained by substituting the (\ref{eq:theory:EFE}) into  (\ref{eq:theory:formomentum}) which yields
+
+\begin{equation}
+D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} = -8\pi{\gamma^{\alpha}}_{\beta} n^{\gamma}T_{\alpha\gamma}=:8\pi j_{\beta},
+\label{eq:theory:momconstraint}
+\end{equation}
+
+where $j^{\alpha}$ is the ADM momentum density.
+
+The \textit{Hamiltonian constraint} can be obtained by substituting EFE (\ref{eq:theory:EFE}) into the (\ref{eq:theory:forhamiltconst}), yielding 
+
+\begin{equation}
+^3 R+ K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2G^{\alpha\beta}n_{\alpha}n_{\beta} = 16\pi n_{\alpha}n_{\beta} T^{\alpha\beta} =: 16\pi E,
+\label{eq:theory:hamilconstraint}
+\end{equation}
+
+where $E$ is the ADM energy density.
+
+The obtained constraint equations represent a set of \textit{elliptic equations} that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. 
+It is however, possible to show that Einstein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future.
+
+
+\paragraph{The Hamiltonian Formulation of the Einstein Equations, ADM equations}
+
+
+\gray{deriving the evolution equations, ADM formulation}
+
+%% Part 1 [Extrinsic curvature]
+
+Here we briefly sketch to path of derivation of the Einstein field equations in the Hamiltonian framework. We will elude most of the intimidate and computationally extensive steps, as well as derivation of the boundary terms. For this we refer to \cite{Poisson:2004}.
+
+First it is useful to note that determinant of the three-metric $\sqrt{\gamma}$ can be expressed as $\sqrt{\gamma}=\sqrt{-g}/\alpha$. 
+The $p$ is the trace of the canonical momentum $\boldsymbol{p}$.
+
+Now, consider the \textit{scalar curvature}, $R$,
+
+\begin{align}
+G_{\mu\nu} &= R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} \\
+-Rg_{\mu\nu}n^{\nu}n^{\mu} &= 2(G_{\mu\nu} n^{\nu}n^{\mu}-R_{\mu\nu}n^{\mu}n^{\mu})\\
+-Rn_{\mu}n^{\mu}& = 2(G_{\mu\nu}n^{\nu}n^{\mu} - R_{\mu\nu}n^{\mu}n^{\mu}) \\
+R &= 2(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu}).
+\end{align}
+
+From the \textit{Gauss-Codacci equation} (\ref{eq:theory:momconstraint}), which relates the spatial curvature $^{(3)}R$ to the spacetime curvature $R$, we have the following constraint relationship
+
+\begin{equation}
+2G_{\mu\nu}n^{\mu}n^{\nu} = {^{(3)}R} + K^2 - K_{\mu\nu}K^{\mu\nu}.
+\end{equation}
+
+The $R_{\mu\nu}n^{\mu}n^{\nu})$ can be expressed as a combination of extrinsic curvature and total divergences as follows.
+From the definition of the Ricci tensor $R_{\mu\nu}$, we have:
+
+\begin{align}
+R_{\mu\nu} &= {R_{\mu\gamma\nu}}^{\gamma} \\
+R_{\mu\nu}n^{\mu}n^{\nu} &= {R_{\mu\gamma\nu}}^{\gamma} \\
+&= -(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\mu})n^{\gamma}n^{\nu} \\
+&= n^{\mu}(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\nu})n^{\gamma} \\
+&= (\nabla_{\mu}n^{\mu})(\nabla_{\gamma}n^{\gamma}) - \nabla_{\mu}(n^{\mu}\nabla_{\gamma}n^{\gamma}) - (\nabla_{\gamma}n^{\mu})(\nabla_{\mu}n^{\gamma}) + \nabla_{\gamma}(n^{\mu}\nabla_{\mu}n^{\gamma}) \\
+&= K^2 - K_{\mu\gamma}K^{\mu\gamma} - \nabla_{\mu}(n^{\mu}\nabla_{\gamma}n^{\gamma}) + \nabla_{\gamma}(n^{\mu}\nabla_{\mu}n^{\gamma})
+\end{align}
+
+In case of variations with compact support, that we are interested in, the total divergences -- last two terms -- can be neglected. 
+Then the result is
+
+\begin{equation}
+R_{\mu\nu}n^{\mu}n^{\nu}= K^2 - K_{\mu\nu}K^{\mu\nu}.
+\label{eq:theory:rmunu_as_func_k}
+\end{equation}
+
+%% part 2 [Canonical momentum and Hamiltonian]
+
+Using the fact that $\sqrt{\gamma}=\sqrt{-g}/\alpha$ and the (\ref{eq:theory:rmunu_as_func_k}) we obtain the Lagrangian density in terms of the variables on the hypersurface:
+
+\begin{align}
+\Lambda &= \sqrt{-g}R \\
+&= \alpha\sqrt{\gamma}R \\
+&= 2\alpha\sqrt{\gamma}(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu})\\ 
+&= 2\alpha\sqrt{\gamma}\Big(\frac{1}{2}[{^{(3)}R} - K_{\mu\nu}K^{\mu\nu} + K^2] - K^2 - K_{\mu\nu}K^{\mu\nu}\Big)
+\end{align}
+
+Together with the contribution from matter fields, we obtain
+
+\begin{equation}
+\Lambda = \Lambda_g+\Lambda_m= \frac{1}{16\pi}\alpha({^{(3)}R} + K_{\mu\nu}K^{\mu\nu} - K^2)\sqrt{\gamma}+\Lambda_m
+\end{equation}
+
+Next we note that the extrinsic curvature of a
+surface $\Sigma$ is defined as $K_{\mu\nu} = \nabla_{\mu}n_{\nu}$. 
+
+To relate $K_{\mu\nu}$ to the metric, we make use of the following property of Lie derivatives:
+
+\begin{align}
+\mathcal{L}_{\vec{n}}g_{\mu\nu} &= n^{\gamma}\nabla_{\gamma}g_{\mu\nu} + g_{\gamma\nu}\nabla_{\mu}\upsilon^{\gamma} + g_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma} \\
+&= \nabla_{\mu}n_{\nu}+\nabla_{\nu}\upsilon_{\nu} \\
+&=2\nabla_{\mu}n_{\nu}
+\end{align}
+
+where the second line holds when $\nabla_{\gamma}\mu$ is the natural derivative operator corresponding to the metric $g_{\mu\nu}$ and the third line holds because $K_{\mu\nu}$ is symmetric.
+
+Substituting this into our definition of $K_{\mu\nu}$,
+
+\begin{align}
+K_{\mu\nu} &= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}g_{\mu\nu} \\
+&= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}(\gamma_{\mu\nu}-n_{\mu}n_{\nu}) \\
+&= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}\gamma_{\mu\nu} \\
+&= -\frac{1}{2}[n^{\gamma}\nabla_{\gamma}\gamma_{\mu\nu} + \gamma_{\gamma\nu}\nabla_{\mu}\upsilon^{\nu} + h_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma}] \\
+&= -\frac{1}{2\alpha}[\alpha n^{\gamma}\nabla_{\gamma}\gamma_{\mu\nu} + \gamma_{\gamma\nu}\nabla_{\mu}\alpha\upsilon^{\nu} + h_{\mu\gamma}\nabla_{\nu}\alpha\upsilon^{\gamma}] \\
+&= -\frac{1}{2\alpha}{\gamma_{\mu}}^{\gamma}{\gamma_{\nu}}^{\delta}[\mathcal{L}_{\vec{t}}\gamma_{\gamma\delta}-\mathcal{L}_{\vec{\beta}}\gamma_{\gamma\delta}] \\
+&= -\frac{1}{2\alpha}{\gamma_{\mu}}^{\gamma}{\gamma_{\nu}}^{\delta}[\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu}]
+\end{align}
+
+and on the hypersurface $\Sigma$ the \textit{projection operators} are not needed. So we obtain
+
+\begin{equation}
+K_{\mu\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu}=-\frac{1}{2\alpha}(\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu})
+\end{equation}
+
+which allows us to express the canonical momentum $p^{\mu\nu}$ as
+
+\begin{align}
+p^{\mu\nu} &= \frac{\partial\Lambda}{\partial\dot{\gamma}_{\mu\nu}} \\
+&= -\frac{\sqrt{\gamma}}{16\pi}\alpha\Bigg[\frac{\partial {^{(3)}R}}{\partial\dot{\gamma}_{\mu\nu}} + \frac{\partial(K_{\mu\nu}K^{\mu\nu})}{\partial\dot{\gamma}_{\mu\nu}} - \frac{\partial K^2}{\partial\dot{\gamma}_{\mu\nu}}\Bigg] \\
+&= \frac{\sqrt{\gamma}}{16\pi}(K\gamma^{\mu\nu} - K^{\mu\nu}),
+\end{align}
+
+where 
+
+\begin{equation}
+\frac{\partial K_{\mu\nu}}{\partial \dot{\gamma}_{\mu\nu}} = \frac{1}{2\alpha}, \hspace{5mm} \frac{\partial {^{(3)}R}}{\partial \dot{\gamma}_{\mu\nu}} = 0, \hspace{5mm}\frac{\partial K^2}{\partial \dot{\gamma}_{\mu\nu}} = \frac{\gamma^{\mu\nu}K}{\alpha}
+\end{equation}
+
+assuming that there is no explicit dependency of the $\Lambda$ on $dot{\gamma}_{\mu\nu}$.
+
+Since, $\alpha$ and $\vec{\beta}$ are related to the the \textit{gauge freedom}, -- there are many ways the manifold $\mathcal{M}$ can be split into hypersurfaces -- the momenta associated with these functions and vectors is zero.
+
+Thus, the \textit{Hamiltonian density} is
+
+\begin{align}
+\mathcal{H} &= p^{\mu\nu}\dot{\gamma}_{\mu\nu} - \Lambda \\
+&= -\sqrt{\gamma}\alpha{^{(3)}R} + \frac{\alpha}{\sqrt{\gamma}}\Big[p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}p^2\Big] + 2p^{\mu\nu} D_{\mu}\beta_{\mu} -\Lambda_m \\
+%    &=  \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[-{^{(3)}R}+h^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}h^{-1}p^2\Big] - 2\beta_{\nu}\big[D_{\mu}(h^{-1/2}p^{\mu\nu})\big] + D_{\mu}(h^{-1/2}\beta_{\nu}p^{\mu\nu})\Bigg\} \\
+&= \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[ -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2\Big] +  2\beta_{\nu}\Big[D_{\mu}(\gamma^{-1/2}p^{\mu\nu})\Big] - 2D_{\mu}(\gamma^{-1/2}\beta_{\nu}p^{\mu\nu}) \Bigg\} - \Lambda_m,
+\end{align}
+
+where we restored the correct $16\pi$ factor in the last line.
+
+As we consider variations with compact suppot, the last boundary term, can be neglected.
+
+%% part 3 [Arriving at constraint equations (again)]
+
+Now we consider the variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$
+
+\begin{align}
+\frac{\delta S_m}{\delta \alpha} &=-\alpha\frac{\delta S_m}{\delta g_{00}} = -\alpha\sqrt{-g}T^{00} = -\alpha^2\sqrt{\gamma}T^{00} = -\sqrt{\gamma}T^{\mu\nu}n_{\mu}n_{\nu} \\
+\frac{\delta S_m}{\delta \beta_{\mu}} &= \frac{\delta S_m}{\delta g_{\mu 0}} =\frac{1}{2}\sqrt{-g}T^{\mu 0} = -\frac{1}{2} \sqrt{\gamma}T^{\mu\nu}n_{\nu}.
+\end{align}
+
+As the variation of the Hamiltonian $H$ with respect to a quantity with vanishing canonical momentum is zero, we obtain two equations 
+
+\begin{align}
+\frac{\delta H}{\delta \alpha} &= 0 = -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2 + 16\pi T^{\mu\nu}n_{\mu}n_{\nu} \\
+\frac{\delta H}{\delta \beta_{\mu}} &= 0 = - D_{\mu}(\gamma^{-1/2}p^{\mu\nu}) + 8\pi{\gamma^{\mu}}_{\nu}n_{\gamma}T^{\nu\gamma}.
+\label{eq:theory:hamiltonianvariation}
+\end{align}
+
+Note, that the $\delta H / \delta\beta_{\mu}$ is actually a \textit{Frech\'et differential} $dH$, $\delta \beta_{\mu}$, which is writes as
+
+\begin{equation}
+\langle dH,\delta\beta \rangle = \delta\beta_{\mu}\big[-D_{\nu}(\gamma^{-1/2}p^{\mu\nu})+8\pi n_{\gamma}T^{\mu\nu}\big], 
+\end{equation}
+
+containing $\delta\beta_{\mu}$ which is spatial. 
+
+Thus only the spatial part is being constrained in the equation above. 
+To account for that the projector ${\gamma^{\mu}}_{\nu}$ is added to the $\delta H/\delta \beta_{\mu}$.
+
+The pair of equations (\ref{eq:theory:hamiltonianvariation}) is in fact the constraint equations derived before, namely the (\ref{eq:theory:momconstraint}) and (\ref{eq:theory:hamilconstraint}), and as we now see, they are related to the coordinate freedom of $\mathcal{M}$ decomposition and a coodrinate freedom on hypersurfaces.
+
+%% Part 4 [hamiltonian equations for metric -- evolution equations]
+
+Proceeding with the Hamiltonian formalism we note that equation \ref{eq:theory:hamiltoneqs} leads to the evolution equations for the three-metric, assuming that $\Lambda$ explicitly does not depend on the momentum
+
+\begin{equation}
+\dot{\gamma}_{\mu\nu} =\frac{\delta H}{\delta p^{\mu\nu}} = 2\gamma^{-1/2}\alpha\big(p_{\mu\nu}-\frac{1}{2}\gamma_{\mu\nu}p\big) - D_{\nu}\beta_{\mu}-D_{\mu}\beta_{\nu}
+%    -2D_{(\mu}\beta_{\nu)},
+\label{eq:theory:_adm_metric_evo}
+\end{equation}
+
+The evolution equations for the canonical momentum can read
+
+\begin{align}
+\dot{p}^{\mu\nu} = -\frac{\delta H}{\delta \gamma_{\mu\nu}} = &+ \alpha\gamma^{1/2}\big({^{(3)}R}^{\mu\nu}-\frac{1}{2}{^{(3)}R\gamma^{\mu\nu}}\big) \\
+& - \frac{1}{2}\alpha\gamma^{-1/2}\gamma^{\mu\nu}\big(p_{\gamma\delta}p^{\gamma\delta}-\frac{1}{2}p^2\big) \\
+& + 2\alpha\gamma^{-1/2}\big(p^{\mu\gamma}{p^{\nu}}_{\gamma}-\frac{1}{2}pp^{\mu\nu}\big) \\
+& - \gamma^{1/2}\big(D^{\mu}D^{\nu}\alpha-\gamma^{\mu\nu}D^{\gamma}D_{\gamma}\alpha\big) \\
+& - \gamma^{1/2}D_{\gamma}\big(\gamma^{-1/2}\beta^{\gamma}p^{\mu\nu}\big) \\
+&+ 2p^{\gamma(\mu}D_{\gamma}\beta^{\nu)} + 8\pi \alpha \gamma^{1/2}S^{\mu\nu},
+\label{eq:theory:_adm_mom_evo}
+\end{align}
+
+where $A_{(\mu\nu)} = 0.5(A_{\mu\nu}+A_{\nu\mu})$ the convention used, and where $S^{\mu\nu}={\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}T^{\alpha\beta}$. 
+
+Additionally, taking the variation of the matter field we noted that
+
+\begin{equation}
+\frac{\delta S}{\delta \gamma_{ik}} = \frac{\delta S_m}{\delta g_{ik}} = \frac{1}{2}\sqrt{-g}T^{ik}.
+\end{equation}
+
+The set of equations (\ref{eq:theory:hamiltonianvariation}), (\ref{eq:theory:_adm_metric_evo}) and (\ref{eq:theory:_adm_mom_evo}) comprise the ADM system. 
+A more widely used from of these equations is in turns of $\gamma_{ij}$ and $K_{ij}$ that reads
+
+\begin{align}
+(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} &= -2\alpha K_{ik}; \\
+(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} &= -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
+{^{(3)}R} + K^2 - K_{ik}K^{ik} &= 16\pi E; \\
+D_{i}K-D_{k}{K^k}_i &= 8\pi j_i,
+\label{eq:theory:adm}
+\end{align}
+
+where $S = \gamma^{ij}S_{ij}$.
+
+These equations constitute the IVP for Einstein field equations and are known as ADM equations. 
+The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
+
+\todo{make sure that the coefficients in formuals are consistent, $16\pi$ might me missing or $-$}
+\todo{Makse sure that $\Lambda$ stands for largangian density and $\mathcal{L}$ for lie derivative}
+
+
+\paragraph{Strongly Hyperbolic Formulations of the Einstein Equations}
+
+
+It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only \textit{weekly hyperbolic} \cite{Baumgarte:2002jm}. 
+It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}. 
+
+In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. 
+In particular, the \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
+the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
+the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. 
+We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for new and better formulations of Einstein equations for numerical applications is ongoing. 
+We limit ourselves to sketching only the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}. 
+The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
+
+
+\paragraph{The CCZ4 Formulation}
+
+
+The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- \textit{strongly-hyperbolic}. 
+This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
+
+First, consider the covariant Lagrangian
+
+\begin{equation}
+\Lambda = g^{\mu\nu}[R_{\mu\nu} + 2\nabla_{\mu}Z_{\nu}]\sqrt{g} + \Lambda_m,
+\end{equation}
+
+and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}, leads to the evolution equations
+
+\begin{equation}
+R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
+\label{eq:theory:z4fieldeq}
+\end{equation}
+
+and two sets of constraint equations
+
+\begin{equation}
+\nabla_{\rho} g^{\mu\nu} = 0, 
+\label{eq:theory:z4connect}
+\end{equation}
+
+and
+
+\begin{equation}
+Z_{\mu} = 0,
+\end{equation}
+
+where the latter is called an \textit{algebraic constraint}. 
+If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
+
+The Einstein field equations themselves are recovered from (\ref{eq:theory:z4connect}) and (\ref{eq:theory:z4fieldeq}) when the algebraic constraint is satisfied. 
+
+The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. 
+This allows to obtain the solution of the Einstein equations. 
+
+However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. 
+To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
+
+A further modified version of Z4 was introduced by \cite{Alic:2011gg}. 
+It incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture}, that will be discussed later. 
+The CCZ4 system reads 
+
+\begin{align}
+\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
+\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
+& + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
+& -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
+\partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
+\partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
+& - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
+\partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
+& + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
+\partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 	3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
+& - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
+& - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
+& -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
+\label{eq:theory:ccz4equations} % used for Whisky Code description
+\end{align}
+
+where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
+
+\begin{align}
+\widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
+\widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
+\end{align}
+
+And as one sees, the ecolution of $Z_i$ is now included in $\hat{\Gamma}$. 
+\todo{understand the conformal stuff and add some steps to show how the ccz4 was made}
+
+
+\paragraph{Gauge conditions}
+
+
+During the discussion of the original ADM system, the choice of the lapse function, \textit{i.e} \textit{slicing condition}, and shift vector \textit{i.e} \textit{spatial gauge condition} was left open. 
+The right choice however, is crucial for the stable evolution and in itself presents a broad and rapidly evolving subject. Here we are going to discuss only the gauge that is relevant for our work. 
+
+\begin{itemize}
+    \item \textit{Slicing conditions} 
+    One of the widely used conditions is so called "maximal slicing" that sets $K=0$, which in turn results in the equation
     \begin{equation}
-        \boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}
+    D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
     \end{equation}
-    
-    The action of a linear form on a vector however is represented as 
-    
+    This conditions has an advantage of being \textit{singularity-avoiding}. 
+    For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. 
+    However implementation of this condition in from of a \textit{elliptic equations} is computationally expensive.
+    A class of slicing conditions in form of \textit{hyperbolic equations} that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
     \begin{equation}
-        \langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}
+    (\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
+    \label{eq:theory:gauge_onepluslog}
     \end{equation}
-    
-    Let the $\boldsymbol{\alpha}$ be the \textit{totally antisymmetric symbol} that expresses through coordinates $x^{\mu}$ as
-    
+    which in CCZ4 reads 
     \begin{equation}
-        \boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
+    (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
     \end{equation}
-    
-    where $\wedge$ denotes \textit{exterior product}. 
-    Then, proper \textit{volume pseudo-form} of the spacetime is
-    
+    where $f(\alpha)$ is a positive function. 
+    For many numerical applications, including those that are discussed in this work, the "$1 + \log$" slicing is adopted with the $\beta_i=0$. 
+    Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
     \begin{equation}
-        \boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha},
+    \alpha = 1 + \log\gamma
     \end{equation}
+    This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
+    \todo{add/modify some text.}
     
-    where $g$ denotes the determinant of the spacetime metric.
-    
-    In GR, the spacetime is represented by \textit{Lorentzian manifold} $\mathcal{M}$ and $g$, the \textit{Lorentzian metric}.
-    
-    The \textit{action principle} of the \textit{Lagrangian field theory} on the spacetime $(\mathcal{M}; \boldsymbol{g})$ is
-    
-    \begin{equation}
-        S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int_{\mathcal{M}}\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}),
-    \end{equation}
-    
-    where $\boldsymbol{q}$ are a set of generalized coordinates for the fields described by the theory, $\nabla$ is the Levi-Civita connection, $\mathcal{L}$ is a scalar density of a scalar quantity $\lambda$ as $\lambda(\boldsymbol{q},\nabla\boldsymbol{q})$. 
-    
-    Varying the action with respect to the $\boldsymbol{q}$
-    
-    \begin{equation}
-        \delta S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \delta\int\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\partial\mathcal{L}}{\partial\boldsymbol{q}}\delta\boldsymbol{q}+\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\nabla\boldsymbol{q}\Big)
-    \end{equation}
-    
-    As $\delta$ and $\nabla$ commute, and partially integrating $\nabla$, we obtain
-    
-    \begin{equation}
-        \partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\mathcal{L}}{\partial\boldsymbol{q}}-\nabla\frac{\partial \mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big)\delta\boldsymbol{q} + \int_{\mathcal{M}}\boldsymbol{\alpha}\nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\boldsymbol{q}\Big)
-    \end{equation}
-    
-    The last term is a boundary term and in order to vanish we impose boundary condition. 
-    Assume that the fields are defined over only a \textit{compact domain}. \\
-    As the choice of $\partial\boldsymbol{q}$ is arbitrary, the 
-    
-    \begin{equation}
-        \partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = 0
-    \end{equation}
-    
-    and the \textit{Euler-Lagrange equations} are
-    
-    \begin{equation}
-        \frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0
-        \label{eq:theory:eulerlagrange}
-    \end{equation}
-    
-    %% ---
-    \subsubsection{The Hilbert Action}
-    %% ---
-    
-    The \textit{Einstein-Hilbert action} allows to obtain an \textit{Einstein field equations} through the \textit{principle of least action}. Here we briefly underline the procedure.
-    
-    Introduce action that describes the gravitational field, and a matter field $\mathcal{L}_m$:
-    
+    \item \textit{Spatial gauge conditions}
+    The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
+    One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
     \begin{align}
-        S_g &= \int\frac{1}{2\kappa}R\epsilon, \\
-        S_m &= \int\mathcal{L}_{m}\epsilon,
+    \partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
+    \partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
     \end{align}
-    
-    where $R$ is the Ricci scalar and $\kappa$ is the  Einstein's constant.
-    
-    The full action then:
-    
-    \begin{equation}
-        S = \int\Big(\frac{1}{2\kappa}R+\mathcal{L}_m\Big)\epsilon
-    \end{equation}
-    
-    The action principle dicatates, that $\delta S = 0$  with respect to the inverse metric $g^{\mu\nu}$. 
-    
-    \begin{equation}
-        \int\Bigg[\frac{1}{2\kappa}\Big(\frac{\delta R}{\delta g^{\mu\nu}}+\frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}}\Big) + \frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}}\Bigg]\delta g^{\mu\nu}\epsilon
-    \end{equation}
-    
-    Owing to the arbitrariness of $\delta g^{\mu\nu}$, the integrand must be zero. 
-    
-    \begin{equation}
-        \frac{\delta R}{\delta g^{\mu\nu}} + \frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -2\kappa\frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}} = -\frac{2\kappa}{\sqrt{-g}}\frac{\delta S_m}{\delta g_{\mu\nu}} := \kappa T_{\mu\nu},
-    \label{eq:theory:action1}
-    \end{equation}
-    
-    where we introduced the stress-energy tensor $T_{\mu\nu}$ and the matter action $S_m$ for future use. \\
-    
-    \gray{this matter action is used in deriving the $T_{\mu} ^{\nu}$ i the invariant fluid formalism}
-    
-    The continuation of this derivation requires taking variation of the Riccia scalar $R$ and the determinant of the metric $\sqrt{-g}$. 
-    As this is a length procedure, we provide here the result. 
-    
-    \begin{equation}
-        \frac{\delta R}{\delta g^{\mu\nu}} = R_{\mu\nu},
-    \label{eq:theory:deltaR}
-    \end{equation}
-    
-    where the $R_{\mu\nu}$ is the Ricci curvature tensor.
-    
-    \begin{equation}
-        \frac{1}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -\frac{1}{2}g_{\mu\nu}.
-    \label{eq:theory:deltagmuny}
-    \end{equation}
-    
-    Substituting Eq. \ref{eq:theory:deltaR} and Eq. \ref{eq:theory:deltagmuny} into equation of motion Eq.  \ref{eq:theory:action1} we obtain the Einstein's field equation 
-    
-    \begin{equation}
-        R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
-    \label{eq:theory:EFE}
-    \end{equation}
-    
-    where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$.
-    
-    %% ---
-    \subsubsection{3+1 Decomposition of Einstein field equations}
-    %% ---
-    
-    The Einstein field equations (\ref{eq:theory:EFE}) represent a set of $10$ non-linear partial differential equations.
-    These equations can be defined on a while metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter, the boundary conditions on $\partial\Omega$ are required. 
-    
-    It is convenient to chose a \textit{null hyersurface} $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. 
-    This, however, requires the spacetime to be \textit{strongly hyperbolic}, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. 
-    This foliation can be understood as splitting the spacetime into a set of \textit{spacelike} hypersurfaces $\Sigma_t$. 
-    
-    
-    \paragraph{Spacelike Foliations}
-    
-    
-    Let the $t$ be the global smooth functions such that, 
-    
-    \begin{equation}
-        \Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\},
-    \end{equation}
-    
-    and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. 
-    This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field.
-    Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the \textit{Lie derivative} of the $\boldsymbol{q}$ along the vector $\vec{t}$.
-    
-    Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. 
-    A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a pert normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the diretion to $\Sigma_{t+dt}$. 
-    Then, the vector $\vec{t}$ can be written as 
-    
-    \begin{equation}
-        \vec{t} = \alpha\vec{n}+\vec{\beta}.
-    \end{equation}
-    
-    $\vec{\beta}$ is called \textit{shift vector} and $\alpha$ is called \textit{lapse-function}. 
-    
-    The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, \textit{Riemannian metric} $\boldsymbol{\gamma}$ as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n}$, where $\underline{n}$ is the 1-form associated to the vector $\vec{n}$. \red{and?}
-    The \textit{Levi-Civita connection} can be computed by projecting the $\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
-    
-    There are exist coordinates that are adapted to the foliation, namely $\{t, x^i\}$ with $\vec{\partial}_i\cdot \vec{n} = 0$. 
-    In these coordiantes the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$. 
-    
-    The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ and can be expressed in terms of $\alpha$ and $\vec{\beta}$ as
-    
+    where $\eta$ is a dumping coefficient.
+    This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. 
+    It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a \textit{zero-speed mode}, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
+    A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes:
     \begin{align}
-        \text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
-        \text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
-        \text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i,
+    (\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
+    (\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
     \end{align}
-    
-    where we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
-    
-    The line-element can be thus written as
-    \begin{equation}
-        ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
-    \end{equation}
-    
-    
-    \paragraph{Ex-curse: Hamiltonian Field Theory}
-    
-    
-    First we recall the generalized coordinates $\boldsymbol{q}$ and their \textit{covariant derivatives} $\nabla\boldsymbol{q}$. 
-    
-    In light of the spacetime decomposition discussed above, we divide the $\boldsymbol{\alpha}$ into the time $dt$ and spatial parts represented by the \textit{antisymmetric symbol} ${^{(3)}\boldsymbol{\alpha}}$ as 
-    
-    \begin{equation}
-        \boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3 = dt \wedge {^{(3)}\boldsymbol{\alpha}}.
-    \end{equation}
-    
-    Next, we introduce the "time derivative" as a \textit{Lie derivative along the vector field} $\vec{t}$ as 
-    
-    \begin{equation}
-        \dot{\boldsymbol{q}} := \mathcal{L}_{\vec{t}}\boldsymbol{q}.
-    \end{equation}
-    
-    As the $\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q})$ is the \textit{Lagrangian density}, a conjugate momentum can be defined as 
-    
-    \begin{equation}
-        \boldsymbol{p} := \frac{\partial\Lambda}{\partial\dot{\boldsymbol{q}}},
-    \end{equation}
-    
-    Assuming that $\boldsymbol{p}$ and $\nabla\boldsymbol{q}$ can be expressed as a function of $\boldsymbol{q}$ and $\boldsymbol{p}$, inspired by the \textit{Legendre transformation}, we define the \textit{Hamiltonian} and its density as
-    
-    \begin{align}
-        \mathcal{H} &= \boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) \\
-        H &= \int_{\Sigma}\mathcal{H}{^{(3)}\boldsymbol{\alpha}}
-    \end{align}
-    
-    Additionally we define the quantity 
-    
-    \begin{equation}
-        J = \int_{0}^{t}H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt\int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q},\nabla\boldsymbol{q})\Big).
-    \end{equation}
-    
-    Consider the variation of the $J$ with respect to the $\delta\boldsymbol{p}$ and $\delta\boldsymbol{q}$ as
-    
-    \begin{equation}
-        \delta J = \int_{0}^{t}\delta H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt (\dot{\boldsymbol{q}}\delta\boldsymbol{p}+\boldsymbol{p}\delta\dot{\boldsymbol{q}}) - \int_{0}^{t}dt\delta\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q}).
-    \end{equation}
-    
-    Consider the last term. The variation of the Lagrangian is
-    
-    \begin{equation}
-        \delta\Lambda = \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Bigg[\frac{\delta\Lambda}{\delta\dot{\boldsymbol{q}}}\delta\dot{\boldsymbol{q}}+\frac{\delta\Lambda}{\delta\boldsymbol{q}}\delta\boldsymbol{q}\Bigg],
-    \end{equation}
-    
-    The first term in the square brackets can be reduced to $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$, using the definition of the conjugate momentum. 
-    The second term can be treated, applying the Euler-Lagrange equations (\ref{eq:theory:eulerlagrange}). 
-    These manipulations result in
-    
-    \begin{equation}
-        \delta\Lambda = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\boldsymbol{p}\delta\dot{\boldsymbol{q}} + \dot{\boldsymbol{p}}\delta\boldsymbol{q}).
-    \end{equation}
-    
-    Thus we obtain that 
-    
-    \begin{equation}
-        \int_{0}^{t} \delta H(\boldsymbol{q},\boldsymbol{p})dt =   \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\dot{\boldsymbol{q}}\cdot\delta\boldsymbol{p}-\dot{\boldsymbol{p}}\cdot\delta\boldsymbol{q}),
-    \end{equation}
-    
-    and as $\delta\boldsymbol{p}$ and $\delta\boldsymbol{p}$ are arbitrary, the \textit{Hamilton equations} read
-    
-    \begin{equation}
-        \dot{\boldsymbol{q}}=\frac{\delta H}{\delta\boldsymbol{p}}, \hspace{5mm} \dot{\boldsymbol{p}} = -\frac{\delta H}{\delta\boldsymbol{q}}.
-    \label{eq:theory:hamiltoneqs}
-    \end{equation}
-    
-    The Hamiltonian formalism can be used to re-derive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution.
-    
-    
-    \paragraph{Extrinsic Curvature and Constraint equations}
-    
-    
-    We define the \textit{extrinsic curvature} of a $D-1$-surface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$. 
-    Note, that the $\boldsymbol{K}$ does not depend on $\alpha$ and $\vec{\beta}$, it is a purely spatial tensor. 
-    The components of the extrinsic curvature are 
-    
-    \begin{equation}
-        K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
-    \label{eq:theory:extrcurvdef}
-    \end{equation}
-    
-    where $\mathcal{L}_{\vec{n}}$ is the Lie derivative along the vector field $\vec{n}$. \\
-    From the (\ref{eq:theory:extrcurvdef}) the extrinsic curvature can be interpreted as a "speed of the $\vec{n}$ during the parallel transport along the hypersurface $\Sigma_t$".
-    
-    \textit{Codazzi equations} relate the $4D$ Ricci tensor to the extrinsic curvature as
-    
-    \begin{equation}
-        D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta}=R_{\gamma\delta}n^{\delta}{\gamma^{\gamma}}_{\beta},
-    \label{eq:theory:formomentum}
-    \end{equation}
-    
-    here $K$ is a trace of the tensor $\boldsymbol{K}$.
-    
-    Gauss equation relates the $3D$ \textit{Riemann tensor} $^3{R_{\alpha\beta\gamma}}^{\delta}$ to the $4D$ one and the $\boldsymbol{K}$ as 
-    
-    \begin{equation}
-        ^3{R_{\alpha\beta\gamma}}^{\delta} = {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}{\gamma^{\lambda}}_{\gamma}{\gamma^{\delta}}_{\sigma}{R_{\mu\nu\lambda}}^{\delta}-K_{\alpha\gamma}{K_{\beta}}^{\delta}+K_{\beta\gamma}{K^{\delta}}_{\alpha}.
-    \label{eq:theory:forhamiltconst}
-    \end{equation}
-    
-    The \textit{momentum constraint} thus can be obtained by substituting the (\ref{eq:theory:EFE}) into  (\ref{eq:theory:formomentum}) which yields
-    
-    \begin{equation}
-        D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} = -8\pi{\gamma^{\alpha}}_{\beta} n^{\gamma}T_{\alpha\gamma}=:8\pi j_{\beta},
-    \label{eq:theory:momconstraint}
-    \end{equation}
-    
-    where $j^{\alpha}$ is the ADM momentum density.
-    
-    The \textit{Hamiltonian constraint} can be obtained by substituting EFE (\ref{eq:theory:EFE}) into the (\ref{eq:theory:forhamiltconst}), yielding 
-    
-    \begin{equation}
-        ^3 R+ K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2G^{\alpha\beta}n_{\alpha}n_{\beta} = 16\pi n_{\alpha}n_{\beta} T^{\alpha\beta} =: 16\pi E,
-    \label{eq:theory:hamilconstraint}
-    \end{equation}
-    
-    where $E$ is the ADM energy density.
-    
-    The obtained constraint equations represent a set of \textit{elliptic equations} that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. 
-    It is however, possible to show that Einstein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future.
-    
-    
-    \paragraph{The Hamiltonian Formulation of the Einstein Equations, ADM equations}
-    
-    
-    \gray{deriving the evolution equations, ADM formulation}
-    
-    %% Part 1 [Extrinsic curvature]
-    
-    Here we briefly sketch to path of derivation of the Einstein field equations in the Hamiltonian framework. We will elude most of the intimidate and computationally extensive steps, as well as derivation of the boundary terms. For this we refer to \cite{Poisson:2004}.
-    
-    First it is useful to note that determinant of the three-metric $\sqrt{\gamma}$ can be expressed as $\sqrt{\gamma}=\sqrt{-g}/\alpha$. 
-    The $p$ is the trace of the canonical momentum $\boldsymbol{p}$.
-    
-    Now, consider the \textit{scalar curvature}, $R$,
-    
-    \begin{align}
-        G_{\mu\nu} &= R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} \\
-        -Rg_{\mu\nu}n^{\nu}n^{\mu} &= 2(G_{\mu\nu} n^{\nu}n^{\mu}-R_{\mu\nu}n^{\mu}n^{\mu})\\
-        -Rn_{\mu}n^{\mu}& = 2(G_{\mu\nu}n^{\nu}n^{\mu} - R_{\mu\nu}n^{\mu}n^{\mu}) \\
-        R &= 2(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu}).
-    \end{align}
-    
-    From the \textit{Gauss-Codacci equation} (\ref{eq:theory:momconstraint}), which relates the spatial curvature $^{(3)}R$ to the spacetime curvature $R$, we have the following constraint relationship
-    
-    \begin{equation}
-        2G_{\mu\nu}n^{\mu}n^{\nu} = {^{(3)}R} + K^2 - K_{\mu\nu}K^{\mu\nu}.
-    \end{equation}
-    
-    The $R_{\mu\nu}n^{\mu}n^{\nu})$ can be expressed as a combination of extrinsic curvature and total divergences as follows.
-    From the definition of the Ricci tensor $R_{\mu\nu}$, we have:
-    
-    \begin{align}
-        R_{\mu\nu} &= {R_{\mu\gamma\nu}}^{\gamma} \\
-        R_{\mu\nu}n^{\mu}n^{\nu} &= {R_{\mu\gamma\nu}}^{\gamma} \\
-        &= -(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\mu})n^{\gamma}n^{\nu} \\
-        &= n^{\mu}(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\nu})n^{\gamma} \\
-        &= (\nabla_{\mu}n^{\mu})(\nabla_{\gamma}n^{\gamma}) - \nabla_{\mu}(n^{\mu}\nabla_{\gamma}n^{\gamma}) - (\nabla_{\gamma}n^{\mu})(\nabla_{\mu}n^{\gamma}) + \nabla_{\gamma}(n^{\mu}\nabla_{\mu}n^{\gamma}) \\
-        &= K^2 - K_{\mu\gamma}K^{\mu\gamma} - \nabla_{\mu}(n^{\mu}\nabla_{\gamma}n^{\gamma}) + \nabla_{\gamma}(n^{\mu}\nabla_{\mu}n^{\gamma})
-    \end{align}
-    
-    In case of variations with compact support, that we are interested in, the total divergences -- last two terms -- can be neglected. 
-    Then the result is
-    
-    \begin{equation}
-        R_{\mu\nu}n^{\mu}n^{\nu}= K^2 - K_{\mu\nu}K^{\mu\nu}.
-    \label{eq:theory:rmunu_as_func_k}
-    \end{equation}
-    
-    %% part 2 [Canonical momentum and Hamiltonian]
-    
-    Using the fact that $\sqrt{\gamma}=\sqrt{-g}/\alpha$ and the (\ref{eq:theory:rmunu_as_func_k}) we obtain the Lagrangian density in terms of the variables on the hypersurface:
-    
-    \begin{align}
-        \Lambda &= \sqrt{-g}R \\
-        &= \alpha\sqrt{\gamma}R \\
-        &= 2\alpha\sqrt{\gamma}(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu})\\ 
-        &= 2\alpha\sqrt{\gamma}\Big(\frac{1}{2}[{^{(3)}R} - K_{\mu\nu}K^{\mu\nu} + K^2] - K^2 - K_{\mu\nu}K^{\mu\nu}\Big)
-    \end{align}
-    
-    Together with the contribution from matter fields, we obtain
-    
-    \begin{equation}
-        \Lambda = \Lambda_g+\Lambda_m= \frac{1}{16\pi}\alpha({^{(3)}R} + K_{\mu\nu}K^{\mu\nu} - K^2)\sqrt{\gamma}+\Lambda_m
-    \end{equation}
-    
-    Next we note that the extrinsic curvature of a
-    surface $\Sigma$ is defined as $K_{\mu\nu} = \nabla_{\mu}n_{\nu}$. 
-    
-    To relate $K_{\mu\nu}$ to the metric, we make use of the following property of Lie derivatives:
-    
-    \begin{align}
-        \mathcal{L}_{\vec{n}}g_{\mu\nu} &= n^{\gamma}\nabla_{\gamma}g_{\mu\nu} + g_{\gamma\nu}\nabla_{\mu}\upsilon^{\gamma} + g_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma} \\
-        &= \nabla_{\mu}n_{\nu}+\nabla_{\nu}\upsilon_{\nu} \\
-        &=2\nabla_{\mu}n_{\nu}
-    \end{align}
-    
-    where the second line holds when $\nabla_{\gamma}\mu$ is the natural derivative operator corresponding to the metric $g_{\mu\nu}$ and the third line holds because $K_{\mu\nu}$ is symmetric.
-    
-    Substituting this into our definition of $K_{\mu\nu}$,
-    
-    \begin{align}
-        K_{\mu\nu} &= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}g_{\mu\nu} \\
-        &= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}(\gamma_{\mu\nu}-n_{\mu}n_{\nu}) \\
-        &= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}\gamma_{\mu\nu} \\
-        &= -\frac{1}{2}[n^{\gamma}\nabla_{\gamma}\gamma_{\mu\nu} + \gamma_{\gamma\nu}\nabla_{\mu}\upsilon^{\nu} + h_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma}] \\
-        &= -\frac{1}{2\alpha}[\alpha n^{\gamma}\nabla_{\gamma}\gamma_{\mu\nu} + \gamma_{\gamma\nu}\nabla_{\mu}\alpha\upsilon^{\nu} + h_{\mu\gamma}\nabla_{\nu}\alpha\upsilon^{\gamma}] \\
-        &= -\frac{1}{2\alpha}{\gamma_{\mu}}^{\gamma}{\gamma_{\nu}}^{\delta}[\mathcal{L}_{\vec{t}}\gamma_{\gamma\delta}-\mathcal{L}_{\vec{\beta}}\gamma_{\gamma\delta}] \\
-        &= -\frac{1}{2\alpha}{\gamma_{\mu}}^{\gamma}{\gamma_{\nu}}^{\delta}[\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu}]
-    \end{align}
-    
-    and on the hypersurface $\Sigma$ the \textit{projection operators} are not needed. So we obtain
-    
-    \begin{equation}
-        K_{\mu\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu}=-\frac{1}{2\alpha}(\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu})
-    \end{equation}
-    
-    which allows us to express the canonical momentum $p^{\mu\nu}$ as
-    
-    \begin{align}
-        p^{\mu\nu} &= \frac{\partial\Lambda}{\partial\dot{\gamma}_{\mu\nu}} \\
-        &= -\frac{\sqrt{\gamma}}{16\pi}\alpha\Bigg[\frac{\partial {^{(3)}R}}{\partial\dot{\gamma}_{\mu\nu}} + \frac{\partial(K_{\mu\nu}K^{\mu\nu})}{\partial\dot{\gamma}_{\mu\nu}} - \frac{\partial K^2}{\partial\dot{\gamma}_{\mu\nu}}\Bigg] \\
-        &= \frac{\sqrt{\gamma}}{16\pi}(K\gamma^{\mu\nu} - K^{\mu\nu}),
-    \end{align}
-    
-    where 
-    
-    \begin{equation}
-        \frac{\partial K_{\mu\nu}}{\partial \dot{\gamma}_{\mu\nu}} = \frac{1}{2\alpha}, \hspace{5mm} \frac{\partial {^{(3)}R}}{\partial \dot{\gamma}_{\mu\nu}} = 0, \hspace{5mm}\frac{\partial K^2}{\partial \dot{\gamma}_{\mu\nu}} = \frac{\gamma^{\mu\nu}K}{\alpha}
-    \end{equation}
-    
-    assuming that there is no explicit dependency of the $\Lambda$ on $dot{\gamma}_{\mu\nu}$.
-    
-    Since, $\alpha$ and $\vec{\beta}$ are related to the the \textit{gauge freedom}, -- there are many ways the manifold $\mathcal{M}$ can be split into hypersurfaces -- the momenta associated with these functions and vectors is zero.
-    
-    Thus, the \textit{Hamiltonian density} is
-    
-    \begin{align}
-        \mathcal{H} &= p^{\mu\nu}\dot{\gamma}_{\mu\nu} - \Lambda \\
-        &= -\sqrt{\gamma}\alpha{^{(3)}R} + \frac{\alpha}{\sqrt{\gamma}}\Big[p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}p^2\Big] + 2p^{\mu\nu} D_{\mu}\beta_{\mu} -\Lambda_m \\
-        %    &=  \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[-{^{(3)}R}+h^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}h^{-1}p^2\Big] - 2\beta_{\nu}\big[D_{\mu}(h^{-1/2}p^{\mu\nu})\big] + D_{\mu}(h^{-1/2}\beta_{\nu}p^{\mu\nu})\Bigg\} \\
-        &= \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[ -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2\Big] +  2\beta_{\nu}\Big[D_{\mu}(\gamma^{-1/2}p^{\mu\nu})\Big] - 2D_{\mu}(\gamma^{-1/2}\beta_{\nu}p^{\mu\nu}) \Bigg\} - \Lambda_m,
-    \end{align}
-    
-    where we restored the correct $16\pi$ factor in the last line.
-    
-    As we consider variations with compact suppot, the last boundary term, can be neglected.
-    
-    %% part 3 [Arriving at constraint equations (again)]
-    
-    Now we consider the variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$
-    
-    \begin{align}
-        \frac{\delta S_m}{\delta \alpha} &=-\alpha\frac{\delta S_m}{\delta g_{00}} = -\alpha\sqrt{-g}T^{00} = -\alpha^2\sqrt{\gamma}T^{00} = -\sqrt{\gamma}T^{\mu\nu}n_{\mu}n_{\nu} \\
-        \frac{\delta S_m}{\delta \beta_{\mu}} &= \frac{\delta S_m}{\delta g_{\mu 0}} =\frac{1}{2}\sqrt{-g}T^{\mu 0} = -\frac{1}{2} \sqrt{\gamma}T^{\mu\nu}n_{\nu}.
-    \end{align}
-    
-    As the variation of the Hamiltonian $H$ with respect to a quantity with vanishing canonical momentum is zero, we obtain two equations 
-    
-    \begin{align}
-        \frac{\delta H}{\delta \alpha} &= 0 = -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2 + 16\pi T^{\mu\nu}n_{\mu}n_{\nu} \\
-        \frac{\delta H}{\delta \beta_{\mu}} &= 0 = - D_{\mu}(\gamma^{-1/2}p^{\mu\nu}) + 8\pi{\gamma^{\mu}}_{\nu}n_{\gamma}T^{\nu\gamma}.
-    \label{eq:theory:hamiltonianvariation}
-    \end{align}
-    
-    Note, that the $\delta H / \delta\beta_{\mu}$ is actually a \textit{Frech\'et differential} $dH$, $\delta \beta_{\mu}$, which is writes as
-    
-    \begin{equation}
-        \langle dH,\delta\beta \rangle = \delta\beta_{\mu}\big[-D_{\nu}(\gamma^{-1/2}p^{\mu\nu})+8\pi n_{\gamma}T^{\mu\nu}\big], 
-    \end{equation}
-    
-    containing $\delta\beta_{\mu}$ which is spatial. 
-    
-    Thus only the spatial part is being constrained in the equation above. 
-    To account for that the projector ${\gamma^{\mu}}_{\nu}$ is added to the $\delta H/\delta \beta_{\mu}$.
-    
-    The pair of equations (\ref{eq:theory:hamiltonianvariation}) is in fact the constraint equations derived before, namely the (\ref{eq:theory:momconstraint}) and (\ref{eq:theory:hamilconstraint}), and as we now see, they are related to the coordinate freedom of $\mathcal{M}$ decomposition and a coodrinate freedom on hypersurfaces.
-    
-    %% Part 4 [hamiltonian equations for metric -- evolution equations]
-    
-    Proceeding with the Hamiltonian formalism we note that equation \ref{eq:theory:hamiltoneqs} leads to the evolution equations for the three-metric, assuming that $\Lambda$ explicitly does not depend on the momentum
-    
-    \begin{equation}
-        \dot{\gamma}_{\mu\nu} =\frac{\delta H}{\delta p^{\mu\nu}} = 2\gamma^{-1/2}\alpha\big(p_{\mu\nu}-\frac{1}{2}\gamma_{\mu\nu}p\big) - D_{\nu}\beta_{\mu}-D_{\mu}\beta_{\nu}
-        %    -2D_{(\mu}\beta_{\nu)},
-    \label{eq:theory:_adm_metric_evo}
-    \end{equation}
-    
-    The evolution equations for the canonical momentum can read
-    
-    \begin{align}
-        \dot{p}^{\mu\nu} = -\frac{\delta H}{\delta \gamma_{\mu\nu}} = &+ \alpha\gamma^{1/2}\big({^{(3)}R}^{\mu\nu}-\frac{1}{2}{^{(3)}R\gamma^{\mu\nu}}\big) \\
-        & - \frac{1}{2}\alpha\gamma^{-1/2}\gamma^{\mu\nu}\big(p_{\gamma\delta}p^{\gamma\delta}-\frac{1}{2}p^2\big) \\
-        & + 2\alpha\gamma^{-1/2}\big(p^{\mu\gamma}{p^{\nu}}_{\gamma}-\frac{1}{2}pp^{\mu\nu}\big) \\
-        & - \gamma^{1/2}\big(D^{\mu}D^{\nu}\alpha-\gamma^{\mu\nu}D^{\gamma}D_{\gamma}\alpha\big) \\
-        & - \gamma^{1/2}D_{\gamma}\big(\gamma^{-1/2}\beta^{\gamma}p^{\mu\nu}\big) \\
-        &+ 2p^{\gamma(\mu}D_{\gamma}\beta^{\nu)} + 8\pi \alpha \gamma^{1/2}S^{\mu\nu},
-    \label{eq:theory:_adm_mom_evo}
-    \end{align}
-    
-    where $A_{(\mu\nu)} = 0.5(A_{\mu\nu}+A_{\nu\mu})$ the convention used, and where $S^{\mu\nu}={\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}T^{\alpha\beta}$. 
-    
-    Additionally, taking the variation of the matter field we noted that
-    
-    \begin{equation}
-        \frac{\delta S}{\delta \gamma_{ik}} = \frac{\delta S_m}{\delta g_{ik}} = \frac{1}{2}\sqrt{-g}T^{ik}.
-    \end{equation}
-    
-    The set of equations (\ref{eq:theory:hamiltonianvariation}), (\ref{eq:theory:_adm_metric_evo}) and (\ref{eq:theory:_adm_mom_evo}) comprise the ADM system. 
-    A more widely used from of these equations is in turns of $\gamma_{ij}$ and $K_{ij}$ that reads
-    
-    \begin{align}
-        (\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} &= -2\alpha K_{ik}; \\
-        (\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} &= -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
-        {^{(3)}R} + K^2 - K_{ik}K^{ik} &= 16\pi E; \\
-        D_{i}K-D_{k}{K^k}_i &= 8\pi j_i,
-    \label{eq:theory:adm}
-    \end{align}
-    
-    where $S = \gamma^{ij}S_{ij}$.
-    
-    These equations constitute the IVP for Einstein field equations and are known as ADM equations. 
-    The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
-    
-    \todo{make sure that the coefficients in formuals are consistent, $16\pi$ might me missing or $-$}
-    \todo{Makse sure that $\Lambda$ stands for largangian density and $\mathcal{L}$ for lie derivative}
-    
-    
-    \paragraph{Strongly Hyperbolic Formulations of the Einstein Equations}
-    
-    
-    It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only \textit{weekly hyperbolic} \cite{Baumgarte:2002jm}. 
-    It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}. 
-    
-    In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. 
-    In particular, the \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
-    the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
-    the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. 
-    We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for new and better formulations of Einstein equations for numerical applications is ongoing. 
-    We limit ourselves to sketching only the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}. 
-    The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
-    
-    
-    \paragraph{The CCZ4 Formulation}
-    
-    
-    The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- \textit{strongly-hyperbolic}. 
-    This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
-    
-    First, consider the covariant Lagrangian
-    
-    \begin{equation}
-        \Lambda = g^{\mu\nu}[R_{\mu\nu} + 2\nabla_{\mu}Z_{\nu}]\sqrt{g} + \Lambda_m,
-    \end{equation}
-    
-    and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}, leads to the evolution equations
-    
-    \begin{equation}
-        R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
-    \label{eq:theory:z4fieldeq}
-    \end{equation}
-    
-    and two sets of constraint equations
-    
-    \begin{equation}
-        \nabla_{\rho} g^{\mu\nu} = 0, 
-    \label{eq:theory:z4connect}
-    \end{equation}
-    
-    and
-    
-    \begin{equation}
-        Z_{\mu} = 0,
-    \end{equation}
-    
-    where the latter is called an \textit{algebraic constraint}. 
-    If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
-    
-    The Einstein field equations themselves are recovered from (\ref{eq:theory:z4connect}) and (\ref{eq:theory:z4fieldeq}) when the algebraic constraint is satisfied. 
-    
-    The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. 
-    This allows to obtain the solution of the Einstein equations. 
-    
-    However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. 
-    To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
-    
-    A further modified version of Z4 was introduced by \cite{Alic:2011gg}. 
-    It incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture}, that will be discussed later. 
-    The CCZ4 system reads 
-    
-    \begin{align}
-        \partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
-        \partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
-        & + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
-        & -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
-        \partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
-        \partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
-        & - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
-        \partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
-        & + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
-        \partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 	3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
-        & - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
-        & - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
-        & -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
-    \label{eq:theory:ccz4equations} % used for Whisky Code description
-    \end{align}
-    
-    where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
-    
-    \begin{align}
-        \widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
-        \widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
-    \end{align}
-    
-    And as one sees, the ecolution of $Z_i$ is now included in $\hat{\Gamma}$. 
-    \todo{understand the conformal stuff and add some steps to show how the ccz4 was made}
-    
-    
-    \paragraph{Gauge conditions}
-    
-    
-    During the discussion of the original ADM system, the choice of the lapse function, \textit{i.e} \textit{slicing condition}, and shift vector \textit{i.e} \textit{spatial gauge condition} was left open. 
-    The right choice however, is crucial for the stable evolution and in itself presents a broad and rapidly evolving subject. Here we are going to discuss only the gauge that is relevant for our work. 
-    
-    \begin{itemize}
-        \item \textit{Slicing conditions} 
-        One of the widely used conditions is so called "maximal slicing" that sets $K=0$, which in turn results in the equation
-        \begin{equation}
-            D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
-        \end{equation}
-        This conditions has an advantage of being \textit{singularity-avoiding}. 
-        For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. 
-        However implementation of this condition in from of a \textit{elliptic equations} is computationally expensive.
-        A class of slicing conditions in form of \textit{hyperbolic equations} that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
-        \begin{equation}
-            (\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
-        \label{eq:theory:gauge_onepluslog}
-        \end{equation}
-        which in CCZ4 reads 
-        \begin{equation}
-            (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
-        \end{equation}
-        where $f(\alpha)$ is a positive function. 
-        For many numerical applications, including those that are discussed in this work, the "$1 + \log$" slicing is adopted with the $\beta_i=0$. 
-        Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
-        \begin{equation}
-            \alpha = 1 + \log\gamma
-        \end{equation}
-        This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
-        \todo{add/modify some text.}
-        
-        \item \textit{Spatial gauge conditions}
-        The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
-        One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
-        \begin{align}
-            \partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
-            \partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
-        \end{align}
-        where $\eta$ is a dumping coefficient.
-        This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. 
-        It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a \textit{zero-speed mode}, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
-        A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes:
-        \begin{align}
-            (\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
-            (\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
-        \end{align}
-        was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
-    \end{itemize}
-    
-    
-    %% --- 
-    
-    \subsection{Conclusion}
-    
-    %% --- 
-    
-    %% Subsection 1 [Euler-Lagrange equations]
-    In this section we have shown a derivation of \textit{Euler-Lagrange equations} from the variation of the action of \textit{Lagrange field theory} with respect to the \textit{generalized coordinates of the field}, and assuming the compact domain for boundary conditions.
-    %% Subsection 2 [The Hilbert Action]
-    Then, we sketched how the \textit{Einstein field equations} can be derived from the \textit{Einstein-Hilbert action}, that describes gravitational and matter fields, through the \textit{principle of least action}.
-    %% Subsection 3 [3+1 Decomposition of Einstein field equations]
-    Then we discussed how the Einstein field equations, which are the $10$ non-linear partial differential equations, can be decomposed into the $3+1$ system of equations, commonly adopted in numerical applications.
-    This is done by assuming the space-time to be strongly hyperbolic, and defining the initial data on the numm hypersurface and performing the space-time foliation, -- in other words -- splitting the spacetime into a set of \textit{spacelike} hypersurfaces.
-    There, the transition from one hyersurface to another is conveniently done with the help of vector $\vec{t} = \alpha\vec{n}+\vec{\beta}$. This "time flow vector" is composed of the part tangent to the hypersurface (to which the transition is done), the so-called \textit{shift}, $\vec{\beta}$; and the part, normal to the previous hypersurface in the direction of the next one, the lapse function $\alpha$. 
-    The space-time metric is then decomposed into the spatian, \textit{Riemannian metric} and time part.
-    %% paragraph []
-    In light of the spacetime decomposition, the Hamiltonian formalism can be used to re-derive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution. 
-    Such form consists of a set of constraint and evolution equations.
-    %% Extrisnsic curvature and momentum constraint.
-    To obtain them, first the concept of the extrinsic curvature is introduced, which can be thought of as a speed of the norm to the hypersurface, $\vec{n}$, during its parallel transport along the hypersurface $(\Sigma_t)$.
-    %% constraint equations
-    Then, the first, \textit{momentum constraint}, can be obtained by inserting the EFE intor the Codazzi equation, that relates the $3D$ Ricci tensor to the extrinsic curvature. 
-    The second, the \textit{Hamiltonian constraint} is derived by substituting the EFE into the gauss equation that relates the $4D$ Riemann tensor with the $3D$ one and extrinsic curvature.
-    %% on the constraint equations
-    The obtained constraint equations represent a set of \textit{elliptic equations} that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. 
-    It is however, possible to show that Einstein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future. 
-    %% paragraph [The Hamiltonian Formulation of the Einstein Equations]
-    The derivation of the evolution equations can be summarized as follows. 
-    %% --- Part 1 [Extrinsic curvature]
-    We begin by expressing the extrinsic curvature $R$, through $G_{\mu\nu}$ and $R_{\mu\nu}$. 
-    Then, we utilize \textit{Gauss-Codacci equation} (the momentum constraint), that relates spatial curvature $^{(3)}R$ to the spacetime curvature $R$.
-    Next, we note that from its definition, the Ricci tensor, $R_{\mu\nu}$, can be expressed as a combination of extrinsic curvature, $K$, and $K_{\mu\gamma}K^{\mu\gamma}$ and total divergences, which in the case of variations with compact support, nullifies. 
-    The result is a simple relation between the Ricci tensor $R_{\mu\nu}$ and extrinsic curvature $K$ and $K_{\mu\nu}K^{\mu\nu}$, written as 
-    $R_{\mu\nu}n^{\mu}n^{\nu}= K^2 - K_{\mu\nu}K^{\mu\nu}$
-    %% --- Part 2 [Deriving Canonical momentum and Hamiltonian]
-    Now we can write the Lagrangian density, $\Lambda$ in terms of the variables on the hypersurface, which consists of the gravity and matter parts, as $\Lambda = \Lambda_g+\Lambda_m$. 
-    Then, we relate the extrinsic curvature on the hypersurface, $K_{\mu\nu}$, to the metric, making use of a certain property of Lie derivative. 
-    Then we arrive at an expression for the canonical momentum, $p^{\mu\nu}$, and in turn, to the Hamiltonian density $\mathcal{H}$.
-    %% --- Part 3 [Arriving at constraint equations (again)]
-    Now we consider the variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$ and the variation of the Hamiltonian $H$.
-    This gives a set of equations, in which only the spatial part is constrained, which requires an addition of a projector. Thus, we have arrived to the pair of constrained equations, derived before. However, now we see that they are related to the coordinate freedom of $\mathcal{M}$ decomposition and a coordinate freedom on hypersurfaces.
-    %% --- Part 4 [hamiltonian equations for metric -- evolution equations]
-    Recalling the Hamiltonian system of equations (canonical equations), we note that they lead to the evolution equations for the three-metric, $\dot{\gamma}_{\mu\nu}$. Then we obtain the evolution equations for the canonical momentum $\dot{p}^{\mu\nu}$. The set of equations we obtain, then, comprise the so-called ADM system.
-    %% --- Remarks 
-    These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
-    %% Hyperbolicity -- Formulations
-    The ADM formulation in its basic form, derived as described above, is however weakly hyperbolic \cite{Baumgarte:2002jm} and not very well suited for numerical applications, as errors tend to couple to non-zero velocity modes \cite{Alcubierre:1999rt}.
-    A search for a better formulation of EFE is an ongoing effort. Following formualtions have been developed. 
-    The \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
-    the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
-    the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
-    In the following we briefly discuss the formulation of relevance to this thesis, the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}.
-    %% --- CCZ4
-    The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- strongly-hyperbolic. 
-    This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
-    %% --- derivation 
-    The procedure involves invoking again the Lagrangian, (ogf gravity and matter) and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}. This results in a evolution equations and two sets of constraint equations and $Z_{\mu}=0$ equation, which is called the algebraic constraint. If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
-    Then, the Einstein field equations themselves are recovered from the obtained set of evolution and constraint equations if the algebraic constraint is satisfied.
-    The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. This allows to obtain the solution of the Einstein equations. 
-    However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
-    A further modified version that incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture} was introduced by \cite{Alic:2011gg}.
-    %% --- Gauge conditions
-    During the derivation of the ADM system, the choice of the lapse function, \textit{i.e} slicing condition, and shift vector \textit{i.e} spatial gauge condition was left open. The right choice however, is crutual for the stable evolution and in itself presents a broad and rapidly evolving subject.
-    The \textit{Slicing condition} called 'maximal slicing', for instance, has a property of being \textit{singularity-avoiding}, -- avoiding $\alpha$ going to $\infty$ at the vicinity of a singularity of a Schwarzschild black hole \cite{Geyer:1995}.
-    Of particular relevance is the so-called "$1 + \log$" slicing, that states th.at $\beta_i=0$ and $\alpha = 1 + \log\gamma$, where $\gamma$ is \gray{trace of the three-metric}. This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
-    The requirements for the \textit{Spatial gauge conditions} are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
-    One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}. It has however some undesired numerical properties -- zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}. These problems are addressed by the modified \textit{Gamma driver}, gauge that does not have zero or small speed modes that was proposed by \cite{vanMeter:2006vi} and applied to study binary black holes by \cite{Campanelli:2005dd}.
-}{
-    pass
-}
+    was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
+\end{itemize}
+
+
+%% --- 
+
+\subsection{Conclusion}
+
+%% --- 
+
+%% Subsection 1 [Euler-Lagrange equations]
+In this section we have shown a derivation of \textit{Euler-Lagrange equations} from the variation of the action of \textit{Lagrange field theory} with respect to the \textit{generalized coordinates of the field}, and assuming the compact domain for boundary conditions.
+%% Subsection 2 [The Hilbert Action]
+Then, we sketched how the \textit{Einstein field equations} can be derived from the \textit{Einstein-Hilbert action}, that describes gravitational and matter fields, through the \textit{principle of least action}.
+%% Subsection 3 [3+1 Decomposition of Einstein field equations]
+Then we discussed how the Einstein field equations, which are the $10$ non-linear partial differential equations, can be decomposed into the $3+1$ system of equations, commonly adopted in numerical applications.
+This is done by assuming the space-time to be strongly hyperbolic, and defining the initial data on the numm hypersurface and performing the space-time foliation, -- in other words -- splitting the spacetime into a set of \textit{spacelike} hypersurfaces.
+There, the transition from one hyersurface to another is conveniently done with the help of vector $\vec{t} = \alpha\vec{n}+\vec{\beta}$. This "time flow vector" is composed of the part tangent to the hypersurface (to which the transition is done), the so-called \textit{shift}, $\vec{\beta}$; and the part, normal to the previous hypersurface in the direction of the next one, the lapse function $\alpha$. 
+The space-time metric is then decomposed into the spatian, \textit{Riemannian metric} and time part.
+%% paragraph []
+In light of the spacetime decomposition, the Hamiltonian formalism can be used to re-derive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution. 
+Such form consists of a set of constraint and evolution equations.
+%% Extrisnsic curvature and momentum constraint.
+To obtain them, first the concept of the extrinsic curvature is introduced, which can be thought of as a speed of the norm to the hypersurface, $\vec{n}$, during its parallel transport along the hypersurface $(\Sigma_t)$.
+%% constraint equations
+Then, the first, \textit{momentum constraint}, can be obtained by inserting the EFE intor the Codazzi equation, that relates the $3D$ Ricci tensor to the extrinsic curvature. 
+The second, the \textit{Hamiltonian constraint} is derived by substituting the EFE into the gauss equation that relates the $4D$ Riemann tensor with the $3D$ one and extrinsic curvature.
+%% on the constraint equations
+The obtained constraint equations represent a set of \textit{elliptic equations} that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. 
+It is however, possible to show that Einstein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future. 
+%% paragraph [The Hamiltonian Formulation of the Einstein Equations]
+The derivation of the evolution equations can be summarized as follows. 
+%% --- Part 1 [Extrinsic curvature]
+We begin by expressing the extrinsic curvature $R$, through $G_{\mu\nu}$ and $R_{\mu\nu}$. 
+Then, we utilize \textit{Gauss-Codacci equation} (the momentum constraint), that relates spatial curvature $^{(3)}R$ to the spacetime curvature $R$.
+Next, we note that from its definition, the Ricci tensor, $R_{\mu\nu}$, can be expressed as a combination of extrinsic curvature, $K$, and $K_{\mu\gamma}K^{\mu\gamma}$ and total divergences, which in the case of variations with compact support, nullifies. 
+The result is a simple relation between the Ricci tensor $R_{\mu\nu}$ and extrinsic curvature $K$ and $K_{\mu\nu}K^{\mu\nu}$, written as 
+$R_{\mu\nu}n^{\mu}n^{\nu}= K^2 - K_{\mu\nu}K^{\mu\nu}$
+%% --- Part 2 [Deriving Canonical momentum and Hamiltonian]
+Now we can write the Lagrangian density, $\Lambda$ in terms of the variables on the hypersurface, which consists of the gravity and matter parts, as $\Lambda = \Lambda_g+\Lambda_m$. 
+Then, we relate the extrinsic curvature on the hypersurface, $K_{\mu\nu}$, to the metric, making use of a certain property of Lie derivative. 
+Then we arrive at an expression for the canonical momentum, $p^{\mu\nu}$, and in turn, to the Hamiltonian density $\mathcal{H}$.
+%% --- Part 3 [Arriving at constraint equations (again)]
+Now we consider the variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$ and the variation of the Hamiltonian $H$.
+This gives a set of equations, in which only the spatial part is constrained, which requires an addition of a projector. Thus, we have arrived to the pair of constrained equations, derived before. However, now we see that they are related to the coordinate freedom of $\mathcal{M}$ decomposition and a coordinate freedom on hypersurfaces.
+%% --- Part 4 [hamiltonian equations for metric -- evolution equations]
+Recalling the Hamiltonian system of equations (canonical equations), we note that they lead to the evolution equations for the three-metric, $\dot{\gamma}_{\mu\nu}$. Then we obtain the evolution equations for the canonical momentum $\dot{p}^{\mu\nu}$. The set of equations we obtain, then, comprise the so-called ADM system.
+%% --- Remarks 
+These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
+%% Hyperbolicity -- Formulations
+The ADM formulation in its basic form, derived as described above, is however weakly hyperbolic \cite{Baumgarte:2002jm} and not very well suited for numerical applications, as errors tend to couple to non-zero velocity modes \cite{Alcubierre:1999rt}.
+A search for a better formulation of EFE is an ongoing effort. Following formualtions have been developed. 
+The \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
+the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
+the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+In the following we briefly discuss the formulation of relevance to this thesis, the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}.
+%% --- CCZ4
+The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- strongly-hyperbolic. 
+This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
+%% --- derivation 
+The procedure involves invoking again the Lagrangian, (ogf gravity and matter) and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}. This results in a evolution equations and two sets of constraint equations and $Z_{\mu}=0$ equation, which is called the algebraic constraint. If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
+Then, the Einstein field equations themselves are recovered from the obtained set of evolution and constraint equations if the algebraic constraint is satisfied.
+The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. This allows to obtain the solution of the Einstein equations. 
+However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
+A further modified version that incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture} was introduced by \cite{Alic:2011gg}.
+%% --- Gauge conditions
+During the derivation of the ADM system, the choice of the lapse function, \textit{i.e} slicing condition, and shift vector \textit{i.e} spatial gauge condition was left open. The right choice however, is crutual for the stable evolution and in itself presents a broad and rapidly evolving subject.
+The \textit{Slicing condition} called 'maximal slicing', for instance, has a property of being \textit{singularity-avoiding}, -- avoiding $\alpha$ going to $\infty$ at the vicinity of a singularity of a Schwarzschild black hole \cite{Geyer:1995}.
+Of particular relevance is the so-called "$1 + \log$" slicing, that states th.at $\beta_i=0$ and $\alpha = 1 + \log\gamma$, where $\gamma$ is \gray{trace of the three-metric}. This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
+The requirements for the \textit{Spatial gauge conditions} are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
+One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}. It has however some undesired numerical properties -- zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}. These problems are addressed by the modified \textit{Gamma driver}, gauge that does not have zero or small speed modes that was proposed by \cite{vanMeter:2006vi} and applied to study binary black holes by \cite{Campanelli:2005dd}.
 
 %% [ RELATIVISTC HYDRODYNAMICS ]
-\iftoggle{Full}{
-    
-    %% ---
-    
-    \subsection{The Equations of General-Relativistic Hydrodynamics}
-    
-    %% --- 
-    
-    In this section we discuss the equations of general relativistic hydrodynamics. We consider the fluid on a Lorentzian manifold and how its flow affects the spacetime.
-}{
-    pass
+
+%% ---
+
+\subsection{The Equations of General-Relativistic Hydrodynamics}
+
+%% --- 
+
+In this section we discuss the equations of general relativistic hydrodynamics. 
+We consider the fluid on a Lorentzian manifold and how its flow affects the spacetime.
+
+The topics that we are going to touch are:
+
+\begin{itemize}
+    \item fluid kinematics,
+    \item equations of motion for perfect fluids (assuming that there is no thermal conduction or viscosity)
+    \item the “Valencia formulation” of the hydrodynamic equations.
+\end{itemize}
+
+
+We note that the following description is very brief and is based on the following works: \cite{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013} to which we refer the reader for more details.
+
+%% P.1 Introduction. Difference in fluid treatment in Newtonain and Relativity cases
+In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities such as energy density, mass, momentum density. 
+However, in general and special relativity, these quantities are not well defined and depend on the observer. 
+In other words, different observers perceive the the same fluid being in different thermodynamic state. 
+Hence, a description of the fluid dynamics in general and special relativity requires a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, that are observer-dependent, but implicitly by a "flow" in spacetime. 
+These are \textit{flux-conservative formulations} of hydrodynamics.
+
+The Eulerian specification of the flow field is a way of looking at fluid motion that focuses on specific locations in the space through which the fluid flows as time passes. Hence, the Eulerian observer is the observer that is at rest in space.
+
+Consider the classical mass density, a scalar $\rho$, usually defined as total umber of particles $N$ of rest-mass $m$ in the volume $V$. Then, the total mass is given by
+
+\begin{equation}
+\int_V \rho \text{d}^3x = m\int_V n \text{d}^3 x = mN.
+\end{equation}
+
+However, while the number of particles $N$ would be the same regardless of the observer, the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. 
+Hence, the $n$ would be different. 
+One of the solutions is to chose a frame of reference, say comoving with the fluid and define the $\rho$ there. However, this would hinder our ability to generalize to other reference frames.
+An even better solution is to construct a \textit{covariant description in terms of invariant quantities}. 
+
+%% P.2 Covarient descriptoion of the fluid 
+%% P.2.1. Define the mass flow
+We start by defining the \textit{flow of the fluid density} in space-time, the $3$ pseudo-form $\boldsymbol{\rho}$ that on any three dimensional submanifold describes the \textit{flow of mass}, transverse to the submanifold as
+
+\begin{equation}
+\int_{\Sigma} \boldsymbol{\rho},
+\end{equation}
+
+where $\Sigma$ be a spacelike hypersurface, $\vec{n}$ is the future-oriented normal vector. 
+This is the density measured by an observer with $4$-velocity $\vec{n}$. 
+
+To define a \textit{mass flow} measured by an Eulerian observer across any spacelike surface $\Omega\subset\Sigma$, we need to construct a two-form $\boldsymbol{\rho}(\vec{n}, \cdot, \cdot)$ given by the interior product between the $3$ pseudo-form $\boldsymbol{\rho}$ and $\vec{n}$. 
+Then the mass flow is 
+
+\begin{equation}
+\int_{\Omega} i_{\vec{n}}\boldsymbol{\rho}.
+\end{equation}
+
+The \textit{conservation of the number of particles of the fluid} is expressed by the vanishing exterior product of the density form, i.e. $\text{d}\boldsymbol{\rho}=0$, or in an integral form 
+
+\begin{equation}
+\int_{\partial\Omega} \boldsymbol{\rho} = \int_{\Omega}\text{d}\boldsymbol{\rho} = 0,
+\end{equation}
+
+that reads as the following: the net flow across any sufficiently regular surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
+
+%% P.2.2. Define the flux associated with the flow, in this case of a rest-mass density four-vector
+Next we define a \textit{flux}. First, let us reintroduce the volume pseudo-form
+
+\begin{equation}
+\text{Vol}_x ^4 = \sqrt{-g}dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
+\end{equation}
+
+where $g$ is the determinant of the spacetime metric. 
+
+On the submanifold $\Sigma$, the intrinsic volume then would be defined as 
+
+\begin{equation}
+\text{Vol}_x ^3 = i_{\vec{n}} \text{Vol}_x ^4.
+\end{equation}
+
+A \textit{flux of a vector field} can be described by a three-form, for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
+
+A vector field associated with density is called \textit{rest-mass density four-vector} and is denoted by $\vec{j}$.
+
+It is constructed from the one-form by raising indexes, $\vec{j} = {^{\#}\underline{j}}$. 
+The one-form $\underline{j}$ is obtained as $\underline{j}\star\boldsymbol{\rho}$, where $\star$ is the \textit{Hodge dual operator} (see \textit{e.g.,} \cite{Frankel:1982dva}). 
+
+Then if the $\boldsymbol{\rho} = i_{\vec{j}}\text{Vol}_x ^4$, the flux of $\vec{j}$ can be shown as 
+
+\begin{equation}
+\int_{\Sigma} \boldsymbol{\rho} = - \int_{\Sigma}\vec{j}\cdot\vec{n}\text{Vol}_x ^3,
+\end{equation}
+
+where $\vec{n}$ is the future-oriented unit-timelike normal to $\Sigma$.
+
+%% --- for liuville theorem
+\textcolor{gray}{
+    [Direct copy... maybe not needed] More generally the flux associated with a flow defined by a vector field, $\vec{X}$, across a hypersurface, $\Sigma$, transverse to it and with normal $\vec{\nu}$ (with appropriate sign depending on the signature of the metric and on $\Sigma$), is given 
+    \begin{equation}
+    \int_{\Sigma} \star\underline{X} = \int_{\Sigma}i_{\vec{X}}\text{Vold}^n = \int_{\sigma}i_{\vec{X}}\big[\underline{\nu}\wedge\text{Vol}^{n-1}\big] = \int_{\Sigma}\vec{X}\cdot\vec{\nu}\text{Vol}^{n-1}
+    \label{eq:theory:flux_of_flow}
+    \end{equation}
+}
+\textcolor{red}{this piece is used in Liuille theorem though}
+
+We note that $\vec{j}$ is timelike (or null).
+It is given by the flux of particles across any future-oriented spacelike hypersurface is positive (or zero). 
+If $\vec{j}$ is timelike, there exists a unique decomposition 
+
+\begin{equation}
+\vec{j} = \rho \vec{u},
+\label{eq:theory:defofjandu}
+\end{equation}
+
+where the scalar $\rho$ can be seen as density in the comoving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
+
+The divergence of vecotor $j$ then gives a familiar mass conservation expression
+
+\begin{equation}
+0 = \nabla_{\mu} j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
+\label{eq:theory:nablamu_jmu}
+\end{equation}
+
+\textcolor{gray}{
+    Similarly energy and momentum of a fluid can be defined, using the Cartan formalism... but this is a PAIN! and is done to show that div(T)=0 is not really energy/momentum conservation...
 }
 
+Next, let us introduce the mixed tensor $\boldsymbol{T}$. 
+Since the three-forms are equivalent to vectors, we can define a flow of the $\nu$ momentum across the volume element orthogonal to $dx^{\mu}$ as 
+
+\begin{equation}
+{T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu}).
+\end{equation}
+
+${T^{\mu}}_{\nu}$ is the stress energy tensor that was already introduced earlier \ref{eq:theory:action1}. 
+
+Note, that if the Einstein equation are satisfied the Bianchi identities dictate that the $\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
+
+\begin{equation}
+\nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
+\label{eq:theory:nablamu_tmunu}
+\end{equation}
+
+However, this statement does not imply the conservation of the energy and momentum of the fluid in a general sense. 
+The conservation of the $\nu$-momentum requires $\vec{\partial}_{\nu}$ to be a Killing vector.
 
 
+\paragraph{Dynamics of a Relativistic Fluid}
 
 
+%% Introduction
+In the previous subsection we have introduced the fluid kinematic, and defined the important quantities such as mass, energy and momentum and their "conservation" in \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}.
+
+In this \gray{thesis} chapter we consider only the \textit{perfect fluid}, meaning that in the co-moving frame, there is not heat conduction and there is no viscosity. 
+\todo{actually we do have a viscous part -- you have to add this...}. 
+
+The former criterion implies that the fluid is in \textit{local thermodynamic equilibrium} (LTE). 
+The latter however requires more explanation. 
+The mathematical formulation of viscous, thermally conducting fluids in general-relativity, especially with respect to the numerical applications is still an active area of research  (see e.g., \cite{Andersson:2006nr} and references therein). 
+\textcolor{red}{however in recent years there have been some progress GRELS models and David's implementation I must add!}.
+
+%% Constructing a stress-energy tensor
+Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. 
+To construct it, we return to the fluid's four velocity $\vec{u}$ from (\ref{eq:theory:defofjandu}). 
+If $e_{i}$ is the basis vector, the scalar product $\vec{u}\cdot\vec{e}_i=0$ and $\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$. 
+Then the orthonormal tetrad $\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. 
+
+Tensor $\boldsymbol{T}$ is the stress-energy tensor with the following components: 
+
+\begin{itemize}
+    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$
+    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction.
+    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
+\end{itemize}
+
+Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively described by a scalar $p$, that we call \textit{pressure} as
+
+\begin{equation}
+\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k,
+\end{equation}
+
+Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
+
+\begin{equation}
+\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
+\end{equation}
+
+Defining the \textit{enthalpy} of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, we rewrite $\boldsymbol{T}$ as 
+
+\begin{equation}
+\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
+\label{eq:theory:stressenergytensor}
+\end{equation}
+
+In addition to the fluid kinematics (eqs. \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}) and the description of motion (eq. \ref{eq:theory:stressenergytensor}), the relation between the \textit{pressure}, \textit{internal energy} and \textit{density} is needed to fully describe the dynamics of the fluid. 
+This relation is usually called the \textit{equation of state}.
+
+The commonly adopted equations (EoS) of state are the the ideal-gas, or gamma-law EoS $\rho = (\Gamma-1)\rho\epsilon$, where $\Gamma$ is the polytropic index of the gas, the polytropic EoS $p = K\rho^{\Gamma}$ and the microphysical equation of state 
+\todo{that you need to discuss more..., as we use only it.}
+
+Combined with an EoS, equations \ref{eq:theory:adm}, \ref{eq:theory:nablamu_jmu}, \ref{eq:theory:nablamu_tmunu} and \ref{eq:theory:stressenergytensor} form a hyperbolic
+system of equations that can be evolved, once initial data is prescribed. 
+The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
 
 
+\paragraph{Conservative Formulations}
+
+%% Introcution
+In the pioneering works of May and White \cite{May:1966} and Wilson \cite{Wilson:1972} the equations of general relativistic hydrodynamics were solved using the finite-difference (FD) schemes after casting them into a from of non-linear advection-like equations. 
+
+To avoid excessive oscillations at shocks a combination of upwinding and artificial-viscosity methods was employed. 
+This however led to several limitations, such as difficulty with tunning the artificial viscosity to still allow shocks to develop, and the limit on a flows being only mildly relativistic \cite{Font:2008fka}. 
+
+A next big advancement in the numerical relativistic hydrodynamics was made after the non-conservative nature of the Wilson’s approach was pointed out \cite{Marti:1991wi} and the conservation formulation was developed. 
+
+%% Introduction :: valencia formuilation
+An important example of the conservation formulation that is adopted to $3 + 1$ formalism is the "Valencia formulation" \cite{Banyuls:1997} that can be represented as following
+
+\begin{equation}
+\frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
+\label{eq:theory:valencia_formalism}
+\end{equation}
+
+where $u$ is a “vector” of \textit{primitive quantities}, such as the rest-mass density or the specific internal energy, $\boldsymbol{F}^0$ is a “vector” of \textit{conserved quantities} and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ are their fluxes and sources respectively.
+
+This formulation allowed to study ultra-relativistic flows and resolve shocks without spurious oscillations and without need for artificial viscosity.
+
+It was shown to be especially well suited for use with numerical methods that take into account the conservation laws. 
+These are the finite-volume (FV) high-resolution shock capturing (HRSC) methods, that will be discussed in \red{Chapter} \ref{chapter:num_methods}
+
+Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods (\textit{e.g.,} \cite{Giacomazzo:2010bx} \cite{Rezzolla:2011da} and references therein \todo{add recolla/bernuzzi/radice/shibata}).
+
+There are other conservative formulations and methods (see \textit{e.g.,} \cite{Papadopoulos:1999kt})
+However, we will limit our focus to the "Valencia formulation".
+
+%% Derivation of the valencia formulation
+To begin we split the four-velocity $\vec{u}$ into the component parallel to the normal vector $\vec{n}$ and a purely spatial component as
+
+\begin{equation}
+\vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon}),
+\end{equation}
+
+where naturally the Lorentz factor, measured by the Eulerian observer 
+$W = (-\vec{u}\cdot\vec{n})$ emerges, and the $\upsilon$ is the fluid three-velocity measured by the Eulerian observer, 
+
+\begin{equation}
+\vec{\upsilon} = \frac{\vec{u}}{W} -\vec{n},
+\end{equation}
+
+components of which are
+
+\begin{equation}
+\upsilon^i = \frac{u^i}{W}+ \frac{\beta^i}{\alpha}, \hspace{10mm} \upsilon_i= \frac{u_{i}}{W}.
+\end{equation}
+
+Divergence of the rest-mass density four-vector $j$, (\ref{eq:theory:nablamu_jmu}) can easily be cast as 
+
+\begin{eqnarray}
+0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{t}[\sqrt{\gamma}\rho W] + \frac{1}{\sqrt{-g}}\partial_{i}[\sqrt{\gamma}\rho(\alpha \upsilon^{i} - \beta^{i})]
+\end{eqnarray}
+
+where $D= \rho W = -\vec{j}\cdot \vec{n}$ is the conserved density.
+
+To write the energy and momentum equations we note that for any vector field $\vec{p} $ \cite{Rezzolla:2013}, 
+
+\begin{equation}
+\nabla_{\mu}[{T^{\mu}}_{\nu}p^{\nu}].
+\end{equation}
+
+To obtain the \textit{Valencia formulation} we set $\vec{p}$ to have zeroth component $-\vec{n}$ and spatial components $\vec{\partial}_i$. 
+Then the
+
+\begin{itemize}
+    \item ${T^0}_{\nu}p^{\nu}$ represent the conserved quantities,
+    \item ${T^i}_{\nu}p^{\nu}$ are associated fluxes,
+    \item ${T^{\mu}}_{\nu}p^{\nu}$ are sources
+\end{itemize}
+
+with the former being 
+
+\begin{equation}
+S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i), \hspace{10mm} E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})
+\end{equation}
+
+for numerical reasons we will replace the total internal energy density $E$ with $\tau = E-D$, where $D$ is the rest mass density. 
+This is done to avoid errors emerging due to $E$ being much smaller then $D$. 
+
+Now we can combine the obtained expressions for the conserved quantities, associated fluxes and sources with eq. (\ref{eq:theory:valencia_formalism}) and obtain
+
+\begin{equation}
+\frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}),
+\label{eq:theory:grhdeq_thc} % used for THC section Code
+\end{equation}
+
+where \textit{primitive quantities} being
+
+\begin{equation}
+\boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon],
+\end{equation}
+
+the \textit{conserved ones} are 
+
+\begin{equation}
+\boldsymbol{F}^0(\boldsymbol{u}) = [D,\: S_j,\: \tau] = [\rho W,\: \rho h W^2 \upsilon_j,\: \rho h W^2 - p - \rho W],
+\end{equation}
+
+and the \textit{associated} fluxes are 
+
+\begin{equation}
+\boldsymbol{F}^i(\boldsymbol{u})=\Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg]
+\end{equation}
+
+and finally \textit{sources} are
+
+\begin{equation}
+\boldsymbol{S}(\boldsymbol{u}) = \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
+\end{equation}
+
+The from of the obtained general relativistic hydrodynamics equations resemble the one of the Newtonian gas dynamics. If the latter is adopted for numerical solutions. 
+
+There are however several complications. 
+
+In particular there is no explicit inverse relation between the primitive quantities and the conserved ones. 
+Thus one has to resort to the root-finding algorithms to reconstruct them (More on this in later chapters). 
+In addition, it was pointed out that the $W$ couples the equation for the momenta in different direction \cite{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. 
+This leads to the fact that the dynamics of the shock wave can be affected by the non-zero tangential velocity. 
+Hence, the increased complexity if he problem of GR hydrodynamics \cite{Mignone:2005ns,Zhang:2005qy}.
 
 
+%% ---
+
+\subsubsection{Conclusion}
+
+%% ---
+
+%% Fluid Kinetics -- definitions & conserevation
+In this section we discuss the equations of general relativistic hydrodynamics. 
+We consider the fluid on a Lorentzian manifold and how its flow affects the spacetime; the fluid kinematics, dynamics in the absence of heat conduction and finally, the Valencia formulation".
+%% Intro -- Newtonand and Realtivity desciptions
+Notably the description of the fluid in the specail and general relativity differs from the one in the Newtonian case, as in the former, the fluid thermodynamic state is observer-dependent.
+The "flux-conservative formulations" of hydrodynamics aim to address this issue by describing the fluid implicitly by a flow in space-time. 
+The covariant description in terms of invariant quantities of the fluid, that is independent of the frame of reference, is required. 
+%% Building the covariant fluid description
+First, define the flow of \textit{fluid density} in space-time, $\boldsymbol{\rho}$, and the \textit{mass-flow} measured by an Eulerian observer (an integral of $\boldsymbol{\rho}$ over the spacelike hypersurface $\Sigma$). 
+The conservation of the number of particles reads $\text{d}\boldsymbol{\rho}=0$. 
+Next, the \textit{rest-mass density four-vector}, $\vec{j}$, which is a vector field associated with density, is defined. This four-vector is time-like or null as it is given by the flux of particles across any future-oriented spacelike hypersurface. 
+If the former case there exists unique decomposition: $\vec{j} = \rho \vec{u}$, where $\rho$ can be seen as density in the comoving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
+The divergence of vecotor $j$ then gives a mass conservation, $0 = \nabla_{\mu}j^{\mu}$
+Next, the mixed tensor $\boldsymbol{T}$ is introduced to described flow of the $\nu$ momentum across the volume element orthogonal to $dx^{\mu}$ as ${T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu})$.
+The ${T^{\mu}}_{\nu}$ is the \textit{stress-energy tensor}. Notably, $\nabla_{\mu}{T^{\mu}}_{\nu} = 0$, if Einstein equations satisfies Bianchi identities, which however does not imply the conservation of the energy and momentum of the fluid in a general sense. For that the $\vec{\partial}_{\nu}$ ought to be a Killing vector
+The $0 = \nabla_{\mu}j^{\mu}$ and $\nabla_{\mu}{T^{\mu}}_{\nu} = 0$ can be still through of as a mass, energy and momentum conservation.
+
+%% Paragraph : dynamics of the relativistc fluid
+We limit the discussion to the ideal fluid, omitting the effects of heat condition and viscosity.
+\red{we remark on the effective treatment of viscosity in the ... somewhere} 
+Taking the fluid's four velocity, $\vec{u}$, the stress-energy of the perfect fluid $\boldsymbol{T}$, has the following components:
+$\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$;
+$\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction;
+$\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
+The force exchange in the absence of viscosity can be effectively described by a scalar $p$, 
+$\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k$.
+Thus, the stress-energy tensor reads
+\begin{equation}
+\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
+\end{equation}
+Defining the \textit{enthalpy} of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, we rewrite $\boldsymbol{T}$ as 
+\begin{equation}
+\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
+\end{equation}
+In addition to the fluid kinematics,
+$0 = \nabla_{\mu} j^{\mu}$ \ref{eq:theory:nablamu_jmu}
+$0 = \nabla_{\mu}{T^{\mu}}_{\nu}$\ref{eq:theory:nablamu_tmunu}
+ and the description of motion
+$\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}$ \ref{eq:theory:stressenergytensor},
+an additional relation is required, called the \textit{equation of state}.
+\red{in this thesis we focus on the microphysical equations of state}
+Combined with an EoS, equations \ref{eq:theory:adm}, \ref{eq:theory:nablamu_jmu}, \ref{eq:theory:nablamu_tmunu} and \ref{eq:theory:stressenergytensor} form a hyperbolic
+system of equations that can be evolved, once initial data is prescribed. 
+The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
+
+%% The General-Relativistic Boltzmann Equation
 
 
+%% ---------- 
+\subsubsection{The General-Relativistic Boltzmann Equation}
+%% -----------
+
+\red{To understand this one has to know:
+    manifolds, tangent vectors, tangent bundles, unit vectors and subbundles,
+    vector fields, incompressible vector fields, 
+    natural topology on a tangent bundle and natural projection;
+    coordinate patch, and coordinate transformation between patches;
+    connections on tangent bundles; push-forward, and pull-back operations
+}
+
+In special relativity the Boltzmann equation was expressed by Synge \cite{Synge:1957}. 
+Later Chernikov \cite{Chernikov:1962} and Tauber and Weinberg \cite{Tauber:1961} proposed its extension to the general relativity.
+
+The list of applications of the Boltzmann equation was limited to the relativistic gas at first \cite{Israel:1963}. 
+Later the list was supplemented by transient relativistic thermodynamics \cite{Israel:1979wp}, radiative transfer \cite{Lindquist:1966}, core-collapse supernovae \cite{Bruenn:1985} and others (see \textit{e.g.}, \cite{Cercignani:2002} and references therein).
+
+Different formulations of the general relativistic Boltzmann equation exists in the literature.
+Lindquist \cite{Lindquist:1966} and Ehlers \cite{Ehlers:1971} proposed a geometrical interpretation. 
+Later, a formulation based on Riemannian structure of tangent bundles was proposed by Sasaki \cite{Sasaki:1958,Sasaki:1962}. 
+In addition, Debbasch and van Leuuwen \cite{Debbasch:2009a,Debbasch:2009b} recently provided a detailed derivation, albeit strongly focused on the algebraic aspects while eluding simple geometrical interpretation. 
+
+Here we recall the detailed derivation of the general relativistic Boltzmann equation, using modern differential geometry notation by \red{Radice thesis}.
+
+\textcolor{red}{This.Is.Tough. Pure math. Copied from David + his sources.}
 
 
+\paragraph{The geometry of the tangent bundle}
 
 
+Let the $\mathcal{M}$ be $4$ dimensional differential \textit{manifold} such that $(\mathcal{M},\: g_{\alpha\beta})$ form the $C^2$ spacetime. 
+The set of \textit{tangent vectors} of $\mathcal{M}$ constitutes \textit{tangent bundle} of $\mathcal{M}$, the we denote as $T\mathcal{M}$. 
+The set of all \textit{unit vectors} of $\mathcal{M}$ constitute the \textit{subbundle} of $T\mathcal{M}$.
+
+\textcolor{gray}{incompressible vector field}.
+\textit{Every Killing vector field of $\mathcal{M}$ is in incompressible vector field}
 
 
+\paragraph{Extended transformation and extended tensors}
+
+\red{excurse in basic theory}
 
 
+Let the $T\mathcal{M}$ be the set of all the \textit{tangent vectors} of $\mathcal{M}$. 
+The $T\mathcal{M}$ has a \textit{natural topology}, bundle structure with $\mathcal{M}$ and the base - linear vector space $E^i$. 
+We call $T\mathcal{M}$ the \textit{tangent bundle} of $\mathcal{M}$. 
+There exists a \textit{natural projection}, or a projection map $\pi:\: T\mathcal{M}\rightarrow\mathcal{M}$.
+
+Let $U$ be a coordinate neighborhood, or a \textit{coordinate patch} of $\mathcal{M}$ with $n$ variables $x^{\alpha}$ as coordinates. 
+Then, every \textit{tangent vector} of $\mathcal{M}$ at a point $p\in U$ is described with $2n$ variables $(x^i,\upsilon^{\alpha})$. Here $x^{\alpha}$ are coordinates of $p$ with respect to the coordinate patch ${x^{\alpha}}$ and $\upsilon^{\alpha}$ are components of a \textit{tangent vector} in the \textit{natural frame} that constitutes by the vectors $\partial/\partial x^4$ at $q$. Thus, the vector $\vec{p}$ at $q$ can be written as:
+
+\begin{equation}
+\vec{p} = p^{\alpha}\frac{\partial}{\partial^{\alpha}}
+\end{equation}
+
+and its dual as 
+
+\begin{equation}
+\underline{p} = p_{\alpha}dx^{\alpha}:=g_{\alpha\beta}p^{\beta}dx^{\alpha}
+\end{equation}
+
+In addition we introduce a \textit{coordiante patch} $TU$, $\{z^A\}$, where $A$ runs from $0$ to $7$ of $T\mathcal{M}$ as 
+
+\begin{equation}
+z^{\alpha} = z^{\alpha}, \hspace{10mm} z^{\alpha+4} = p^{\alpha}.
+\end{equation}
+
+Now, let the $U(x^{\alpha})$ and $\hat{U}(\hat{x}^{\alpha})$ be the two coordinate patches of $\mathcal{M}$ such that $U\cap\hat{U}$ is not empty. 
+Then the \textit{intersection} of the coordinate patches is also not empty. 
+For every coordinate transformation of $\mathcal{M}$, there exists a corresponding matrix $\frac{\partial \hat{x}^{\alpha}}{\partial x^{\beta}}$.
+
+The \textit{coordinate transformation} is then
+
+\begin{equation}
+\hat{x}^{\mu} = \hat{x}^{\mu}(x), \hspace{5mm} \hat{p}^{\mu} = \frac{\partial\hat{x}^{\mu}}{\partial x^{\nu}}p^{\nu}
+\end{equation}
+
+which denotes the extended transforation of the $\hat{x}^{\mu} = \hat{x}^{\mu}(x)$.
+
+The corresponding Jacobian matrix is 
+\renewcommand\arraystretch{1.6} %% it stretches the matrix
+\begin{equation}
+\frac{\partial\hat{z}^A}{\partial z^B} = 
+\begin{pmatrix}
+\frac{\partial\hat{x}^{\alpha}}{\partial x^{\beta}} & 0 \\
+\frac{\partial^2\hat{x}^{\alpha}}{\partial x^{\beta} \partial x^{\gamma}}p^{\gamma} & \frac{\partial\hat{x}^{\alpha}}{\partial x^{\beta}} 
+\end{pmatrix}
+\end{equation}
+\renewcommand\arraystretch{1.0}
 
 
+\paragraph{Vectors on $T\mathcal{M}$}
 
 
+As we will need to introduce \textit{connections on a tangent bundle}, here we discuss the \textit{double tangent bundle}, or a second tangent bundle. 
+Since $T\mathcal{M}$ is a \textit{vector bundle} on its own right, its \textit{tangent bundle} has the secondary vector bundle structure $TT\mathcal{M}$. 
+Let the point $b\in TU$ and $T_b T\mathcal{M}$ be the \textit{tangent space} to $T\mathcal{M}$ at $b$.
+Given a vector $\partial/\partial x^{\alpha}$ at a point $b$, it can be "pushed forward" to the point on the $TT\mathcal{M}$ by means of so called \textit{differential of} $\pi$, written as $\pi_*$ \cite{Frankel:2002}.
+
+On a natural basis the \textit{push-forward} acts as 
+
+\begin{equation}
+\pi_*\Big[\frac{\partial}{\partial x^{\alpha}}\Big] = \frac{\partial}{\partial x^{\alpha}}, \hspace{5mm} \pi_* \Big[\frac{\partial}{\partial p^{\alpha}}\Big] = 0,
+\end{equation}
+
+and the \textit{pull back} as  
+
+\begin{equation}
+\pi^* {\text d} x^{\alpha} = {\text d} x^{\alpha}.
+\end{equation}
+
+Consider a vector field $\vec{X} \ in TT\mathcal{M}$ in a vicinity of the point $b$, which is associated with the point $q$ of $\mathcal{M}$ and vector $\vec{x}\in T_{q}\mathcal{M}$. 
+Let $b{\lambda}$ be the flow of $b$ generated by $\vec{X}$. 
+The $b(\lambda)$ is associate with $q(\lambda)$, the \textit{one parameter family of points} of $\mathcal{M}$. 
+The $b(\lambda)$ is also associated with $\vec{x}(\lambda)$ the \textit{one parameter family of vectors} on $T\mathcal{M}$.
+
+The vector field $\vec{X}$ is called \textit{vertical} if the $q(\lambda)\in\mathcal{M}$ are constant along the flow.
+Similarly, the vector field $\vec{X}$ is called \textit{horizontal} if $\vec{x}(\lambda)\in T_p \mathcal{M}$ is "constant" along the flow, meaning that $\vec{x}(\lambda)$ is just $\vec{x}$ that is \textit{parallel transported} to $q(\lambda)$.
+
+As there is no unique way to perform a \textit{parallel transport}, the linear connection $\nabla$ on $\mathcal{M}$ has to be chosen. 
+This choice is akin choosing two vector spaces $\mathcal{O}_b$ and $\mathcal{V}_b$ of the horizontal and vectical vectors respectively at each point $b$ that the direct sum of these spaces yields
+
+\begin{equation}
+\mathcal{O}_b\oplus \mathcal{V}_p = T_b T\mathcal{M}.
+\end{equation}
+
+Having the connection allows to prescribe a manner of \textit{lifting curves} from the base manifold $T\mathcal{M}$ into the $T_b T\mathcal{M}$.
+\textcolor{red}{I need to fix this and understand}. 
+A \textit{lift} is the unique horizontal vector $\vec{X}\in T_bT\mathcal{M}$ whose projection is a vector $\vec{x}\in T_q\mathcal{M}$.
+
+\textcolor{red}{fill it}
+
+Let us now define a \textit{connection vector basis} adopted to the aforementioned split of $T_b T\mathcal{M}$ $\{\text{D}/\partial x^A \}:=\{\text{D}/\partial x^{\alpha}, \partial/\partial p^{\alpha} \}$ where 
+
+\textcolor{red}{I did not find where this is derived from... difficult}
+
+\begin{equation}
+\frac{\text{D}}{\partial x^{\alpha}}{\partial x^{\alpha}} := \frac{\partial}{\partial x^{\alpha}} - {\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}}.
+\end{equation}
+
+Similarly a connection can be build for differential forms. 
+Using the pull-back $\pi^*$ the dual basis $\{ \text{D}z^{A} \}:=\{\text{d}x^{\alpha}, \text{D}p^{\alpha}\}$ that satisfies 
+
+\begin{equation}
+\text{D} = \text{d} p ^{\alpha} + {Gamma^{\alpha}}_{\beta\gamma}p^{\gamma}\text{d}x^{\beta}.
+\end{equation}
 
 
+\paragraph{Metric on $T\mathcal{M}$}
 
 
+Note that 
+
+\begin{equation}
+\frac{\partial^2 \hat{x}^{\mu}}{\partial x^{\nu}\partial x^{\lambda}}p^{\lambda} = {\hat{\Gamma}^{\mu}}_{\delta\gamma}p^{\lambda}\frac{\partial\hat{x}^{\delta}}{\partial x^{\nu}}.
+\end{equation}
+
+Let us assume that for any point $b\in T\mathcal{M}$ there exist an open set $TU$, such that $b\in TU$ with a coordinate system on $TU$ that satisfies
+
+\begin{equation}
+G_{AB} = (\boldsymbol{\eta}\otimes\boldsymbol{\eta})_{AB},
+\end{equation}
+
+where $\boldsymbol{\eta} = \text{diag}(-1, 1, 1, 1)$. 
+
+Let the $\hat{x}^A$ denote the generic coordinate system on $TU$. 
+Then the metric in this coordinate system can be expressed as
+
+\begin{align}
+\hat{G}_{\mu\nu} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}\eta_{\alpha\beta} + \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}{\hat{\Gamma}^{\gamma}}_{\:\:\:\alpha\lambda}p^{\lambda}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}{\hat{\Gamma}^{\delta}}_{\:\:\:\beta\xi}p^{\xi}\eta_{\gamma\delta}; \\
+\hat{G}_{\mu\: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\gamma}}{\partial x^{\nu}}{\hat{\Gamma}^{\beta}}_{\:\:\:\gamma\lambda}p^{\lambda}\eta_{\alpha\beta}; \\
+\hat{G}_{\mu+4 \: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}} \eta_{\alpha\beta}
+\end{align}
+
+and the line element 
+
+\begin{align}
+dS^2 &= \hat{G}_{AB}d\hat{z}^A d\hat{z}^B = \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}[\text{d}p^{\mu} + {\hat{\Gamma}^{\mu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] [\text{d}p^{\nu} + {\hat{\Gamma}^{\nu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] \\
+&= \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}\text{D}\hat{x}^{\mu}\text{D}\hat{x}^{\nu}
+\end{align}
+
+It is possible to show that the \textit{determinant} $|\text{det}\boldsymbol{G}| = g^{2}$ as the transformation from the natural frame to the connection frame is \textit{unimodular} \cite{Lindquist:1966}. 
+Thus the \textit{volume pseudo-form} on $T\mathcal{M}$ is in the coordiante patch $TU$
+
+\begin{align}
+\text{Vol}^8 &:= -g \text{d}x^{0} \wedge \text{d}x^{1} \wedge ... \wedge \text{d}p^{3} := - g\text{d}^{4}x \text{d}^{4}p, \\
+&:= -g \text{d}x^{0} \wedge \text{d}x^{0} \wedge ... \wedge \text{D}p^{3} :=-g \text{d}^{4}x\text{D}^4 p
+\end{align}
+
+\textcolor{red}{I kinda gave up here and just copied.}
+
+
+\paragraph{the Liuville theorem}
+
+
+Let us start by introducing a \textit{cotangent bundle}. 
+Let $\mathcal{M}$ be a \textit{differentiable manifold}. 
+Similarly to the construction of the tangent bundle, we can make a set of covectors on a given manifold into a vector bundle over $\mathcal{M}$, denoted $T^*\mathcal{M}$ and called \textit{cotangent bundle} of $\mathcal{M}$. 
+Similarly we can define a contangent bundle of a tangent one $T^*T\mathcal{M}$. 
+The contangent bundle $T^*\mathcal{M}$ is the vector bundle dual to the tangent bundle $T\mathcal{M}$. 
+
+Let us start by defining \textit{Poincar\'e} 1-form on $T\mathcal{M}$, $\underline{\lambda}\in T^* T\mathcal{M}$. 
+Consider point $q$ on a manifold $\mathcal{M}$ and a point $A$ associated with $q$ on a tangent bundle $T\mathcal{M}$. 
+Let there be a 1-form $\underline{\alpha}\in T^* _q\mathcal{M}$. 
+The $\underline{\lambda}$ and $\underline{\alpha}$ are uniquely connected $\underline{\lambda} = \pi^* \alpha$, and the former is called the \textit{Poincar\'e} 1-form. 
+In local coordinate patch, $TU$ it is expressed as
+
+\begin{equation}
+\underline{\lambda} = p_{\alpha} \text{d}x^{\alpha}.
+\end{equation}
+
+the associated vector is 
+
+\begin{equation}
+\vec{\lambda} = p^{\alpha} \frac{\text{D}}{\partial x^{\alpha}} = p^{\alpha}\frac{\partial}{\partial x^{\alpha}} - p^{\alpha}{\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}},
+\end{equation}
+
+is called the $\textit{geodesic flow field}$.
+
+This flow represents a phase-space flow of particles moving along geodesics.
+
+Consider a mass shell, that at a point $q\in U$ can be defined as a set:
+
+\textcolor{red}{remider: I have no idea how is this possible...}
+
+\begin{equation}
+\mathcal{S}_m = \big\{ p^{\alpha}\in T_q\mathcal{M}: p_{\mu}p^{\mu}+m^2 =:f(p) = 0 \big\}.
+\end{equation}
+
+The normal to the mass-shell is 
+
+\begin{align}
+\text{if } m &\neq 0 \hspace{5mm} \underline{\pi}:=\frac{q}{2m}\text{d}f, \hspace{5mm} \text{d}f = \frac{\partial f}{\partial x^{\mu}} + \frac{\partial f}{\partial p^{\mu}}\text{d}p^{\mu} = 2p_{\mu}\text{d}p^{\mu}, \\
+\text{if } m &= 0 \hspace{5mm} \underline{\pi}:=\frac{1}{2}\text{d}f
+\end{align}
+
+Next, we introduce a unique form $\underline{\nu}$ whose restriction on $T_q\mathcal{M}$ is equal to $\underline{\pi}$. 
+
+\begin{align}
+\text{if } m &\neq 0 \hspace{5mm} \underline{\nu} = \frac{1}{m}p_{\alpha}\text{D}p^{\alpha} \\
+\text{if } m &= 0 \hspace{5mm} \underline{\nu} = p_{\alpha}\text{D}p^{\alpha}
+\end{align} 
+
+Note that $\underline{\nu} = 0$, meaning that the $\underline{\nu}$ is \textit{irrotational}. 
+It becomes clear if we re-express it as 
+
+\begin{equation}
+\underline{\nu} = \frac{1}{2m}\frac{\text{D}f}{\partial p^{\alpha}}\text{D}p^{\alpha}
+\end{equation} 
+
+for massive particle case. For the mass-less the procedure is analogous.
+
+It can be shown that $\underline{\lambda}$ is incompressible \textit{i.e.,} $\text{d}^{\star}\underline{\lambda} =\star \text{d}\star\underline{\lambda} =0$.
+
+In addition, both $\underline{\lambda}$ and $\underline{\nu}$ are \textit{harmonic forms} as 
+
+\begin{equation}
+\nabla\underline{\nu} = 0 , \hspace{5mm}
+\nabla\underline{\lambda} = [\text{dd}^{\star} + \text{d}^{\star}\text{d}]\underline{\lambda} = 0.
+\end{equation}
+
+Let us now consider the density of states in the phase space, of particles moving along the geodeiscs with velocities on the mass shell.
+
+In the previous section we introduced a \textit{flux of the vector field} $\vec{X}$ across $\Sigma$ in \ref{eq:theory:flux_of_flow}, we define the following six-form
+
+\begin{align}
+\boldsymbol{\omega} &= \star\big(\underline{\nu}\wedge\underline{\lambda}\big) = i_{\vec{\lambda}} i_{\vec{\nu}}\text{Vol}^8 \\
+&= i_{\vec{\lambda}}\Big[i_{\vec{\nu}}\big(\text{Vol}^{4}_{x}\wedge\text{Vol}^{4}_{p}\big)\Big] = i_{\vec{\lambda}} \big[\text{Vol}^{4}_{x}\wedge\text{Vol}^{3}_{p}\big],
+\end{align}
+
+where we used the definition of $\text{Vol}^8$. 
+
+The introduced four forms read,
+
+\begin{align}
+\text{Vol}_x ^4 &:= \sqrt{-g} \text{d}x^{0} \wedge \text{d}x^{1} \wedge \text{d}x^{2} \wedge \text{d}x^{3}, \\
+\text{Vol}_p ^4 &:= \sqrt{-g} \text{D}p^{0} \wedge \text{D}p^{1} \wedge \text{D}p^{2} \wedge \text{D}p^{3}, \\
+\text{Vol}_p ^3 &:= i_{\vec{\nu}}\text{Vol}_p ^4,
+\end{align}
+
+where the four-forms are on the $TU$ and the latter three-form is on the mass shell $S_m$.
+
+Consider coordinates adopted to the mass-shell, where $\underline{\nu} = (p_0/m)\text{D}p^0$ and $\underline{\nu} = p_0\text{D}p^0$ in the massive and massless cases respectively, the three-form becomes
+
+\begin{equation}
+\text{Vol}^3 _p =\frac{\sqrt{-g}}{-p_0}\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3
+\end{equation}
+
+Now we have a three-form $\text{Vol}^3 _p$ and a four-form $\text{Vol}_x ^4$. 
+In the context of the ADM foliation, we split spacetime manifold as $\mathcal{M}=\mathcal{R}\times\Sigma$, with $x^0 = \text{const}$ being constant hypersurfaces with normal $\underline{n} = - \alpha\text{d}x^0$ and $\alpha$ -- the lapse function. We can now simplify the $\boldsymbol{\omega}$, splitting $\text{Vol}_x ^3$ as 
+
+\begin{align}
+\text{Vol}_x ^4 &= -\underline{n}\wedge\text{Vol}_x ^3 \hspace{5mm} \text{where,} \\
+\text{Vol}_x ^3 &= i_{\vec{n}}\text{Vol}_x ^4 = \sqrt{\gamma}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3
+\end{align}
+
+and the $\boldsymbol{\gamma}$ is the three-metric induced on the slices.
+
+The resulted coordinates, adapted to the mass shell and the spacetime foliation read
+
+\begin{align}
+\boldsymbol{\omega} &=-(\vec{p}\cdot\vec{n})\frac{1}{-p_0}\sqrt{\gamma}\sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3 \\
+&= \frac{p^0}{-p_0}|g|\text{d}x^1 \wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3
+\end{align}
+
+Now, consider a six-vector, $\delta_i x \delta_i p$ with $i\in\{1,2,3\}$. 
+The $\delta_i x$ are tangent vectors to the slice $\Sigma$ and the $\delta_i p$ are tangent to mass shell $S_m$.
+
+The action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$ yields
+
+\begin{align}
+\boldsymbol{\omega}(\delta_1 x,...,\delta_3 p) =& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
+& \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) \\
+& \hspace{2mm} -\frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}p,\delta_{2}p,\delta_{3}p)\times \\
+& \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 x, \delta_2 x, \delta_3 x) = \\
+=& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
+& \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) = \\
+=& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
+& \hspace{10mm} \Big[\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p), \\
+\end{align}
+
+where we used that $\text{d}x^i(\delta_j p)=0$ and the relation
+
+\begin{equation}
+\text{D}p^{i}(\delta_j p) = \text{d}p^{i}(\delta_j p) - {\Gamma^i}_{\alpha\beta}p^{\alpha}\text{d}x^{\beta}(\delta_j p) = \text{d}p^i(\delta_j p)
+\end{equation}
+
+Thus, on the space-like hypersurface $\Sigma$ and on the mass shell we have
+
+\begin{equation}
+\boldsymbol{\omega} = \frac{p^0}{-p_0}|g|\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\wedge\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3 =: \boldsymbol{\Omega}
+\end{equation}
+
+The $\boldsymbol{\Omega}$ can be split as 
+
+\begin{align}
+\boldsymbol{\Omega} &= \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}, \hspace{5mm} \text{where} \\
+\boldsymbol{\Lambda} &= p^0 \sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \\
+\boldsymbol{\Pi} &=  \frac{1}{-p_0}\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3
+\end{align}
+
+The defined forms $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ can be written in a coordinate-independent way at any point $q\in\mathcal{M}$ as 
+
+\begin{equation}
+\boldsymbol{\Lambda} = \star_{\mathcal{M}}\underline{\lambda}, \hspace{5mm} \boldsymbol{\Pi} = \star_{T_q\mathcal{M}}\underline{\pi}
+\end{equation}
+
+and this are intrinsic forms in $T\mathcal{M}$. 
+In addition, the $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the proper geodesics flux
+volume form on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively.
+
+Let us now consider the geodesic flow $\vec{\lambda}$. 
+It generates a "tube" in a phase space, that we limit with $S_1$ and $S_2$ sections. 
+Then the flux of points in phase space associated with geodesic flow is $\int_{S}\boldsymbol{\omega}$. 
+It is possible to show that the flux satisfies
+
+\begin{equation}
+\int_{S_1}\boldsymbol{\omega} = \int_{S_2}\boldsymbol{\omega}
+\label{eq:theory:liuville}
+\end{equation}
+
+which is the \textit{Liouville’s Theorem} in the relativistic case.
+
+To see that this is indeed the case, consider the \textit{exterior differential} of $\boldsymbol{\omega}$
+
+\begin{equation}
+\star\text{d}\omega = \text{d}^{\star}(\underline{\nu}\wedge\underline{\lambda}) = d^{\star}\underline{\nu}\wedge\underline{\lambda} + \underline{\nu}\wedge\text{d}^{\star}\underline{\lambda}.
+\end{equation}
+
+The $\text{d}^{\star}=\text{const}=k$ as $\text{dd}^{\star}\underline{\nu}=0$. 
+In addition, the $\text{d}^{\star}\underline{\lambda}=0$. 
+This allow us to write 
+
+\begin{equation}
+\text{d}\omega = -k(\star\lambda).
+\end{equation}
+
+We note the $\star\underline{\lambda}$ is the volume form of the hypersurfaces orthogonal to $\vec{\lambda}$. 
+Hence, the $\star\underline{\lambda}[\vec{\lambda},...]=0$ along the "tube" in phase space. 
+
+\begin{equation}
+\int_S\text{d}\boldsymbol{\omega} = 0.
+\end{equation}
+
+the \ref{eq:theory:liuville} is recovered, if we use the \textit{Stoke’s Theorem}, and using the fact that the $\boldsymbol{\omega}$ vanishes along the part of the boundary tangent to $\vec{\lambda}$.
+
+\textcolor{red}{Note that I still have no Idea what I have written. I need to go through the original materal, which I could not find... at least I could not find what I could read and understand. }
+
+
+\paragraph{The Boltzmann equation}
 
 
