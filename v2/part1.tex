@@ -277,10 +277,13 @@ the Hodge dual of the $\wedge$ product of two basis vectors is the normal vector
 
 Thus \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
 
+
 %% --------------------------------------
 
-%% 
 \section{General-relativistic hydrodynamics}
+
+%% --------------------------------------
+
 
 This section is meant to sketch several important parts of the mathematical background. 
 We focus on the aspects relevant for the tools and methods employed in out discussion. 
@@ -1823,5 +1826,773 @@ the \ref{eq:theory:liuville} is recovered, if we use the \textit{Stoke’s Theor
 
 
 \paragraph{The Boltzmann equation}
+
+
+Let us introduce the phase space version of the \textit{mass flux}, the 6-form representing the number of phase-space trajectories crossing $S$ of the phase tube between $S_1$ and $S_2$ cross sections. 
+
+In the absence of collisions we obtain 
+
+\begin{equation}
+    \int_{S_1}\boldsymbol{\mu} = \int_{S_2}\boldsymbol{\mu}.
+\end{equation}
+
+Remembering that $\boldsymbol{\omega}$ represents the \textit{density of states} in phase space of particles moving along geodesics, we obtain 
+
+\begin{equation}
+    \boldsymbol{\mu} = F\boldsymbol{\omega},
+\end{equation}
+
+where $F$ is \textit{invariant distribution function}, \textcolor{gray}{i.e. $F$ is the Radon-Nikodym derivative of $\boldsymbol{\mu}$ with re $\boldsymbol{\omega}$}.
+
+Consider now that collisions change the number of phase trajectories as 
+
+\begin{equation}
+    \delta N = \int_{S_2} \boldsymbol{\mu} - \int_{S_1}\boldsymbol{\mu} = \int_S \text{d}\boldsymbol{\mu} = \int_S \text{d}F\wedge\boldsymbol{\omega}.
+\end{equation}
+
+where 
+
+\begin{equation}
+    \text{d}F\wedge\boldsymbol{\omega} = \text{d}F\wedge\star (\underline{\nu}\wedge\underline{\lambda}) = \langle\text{d}F,\underline{\lambda}\rangle\star\underline{\nu} - \langle\text{d}F,\underline{\nu}\rangle\star\underline{\lambda},
+\end{equation}
+
+where $\langle\cdot,\cdot\rangle$ is a scalar product between forms and can be written as
+
+\begin{equation}
+    \langle\boldsymbol{\alpha},\boldsymbol{\beta}\rangle\text{Vol}^8 := \boldsymbol{\alpha}\wedge\star\boldsymbol{\beta},
+\end{equation}
+
+and with the $\star\underline{\lambda}=0$ on $S$ we obtain 
+
+\begin{equation}
+    \delta N = \int_S\langle\text{d}F\underline{\lambda}\rangle\star\underline{\nu} = \int_S\mathcal{C}[F]\star\underline{\nu},
+\end{equation}
+
+where we denoted the effect of collisions as
+
+\begin{equation}
+    \langle\text{d}F\underline{\lambda}\rangle = \mathcal{C}[F].
+\end{equation}
+
+This is the \textit{Boltzmann equation}. 
+
+In component from it reads as 
+
+\begin{equation}
+    p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{\gamma}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{\gamma}} =\mathcal{C}[F].
+\end{equation}
+
+In the coordinate system adapted to the equation, when $P^0 = p^0(p^i)$, the equation reads \cite{Cercignani:2002}:
+
+\begin{equation}
+    p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{i}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{i}} =\mathcal{C}[F].
+\end{equation}
+
+Remembering that the $\underline{\lambda}$ is incompressible, we can write
+
+\begin{equation}
+    \langle\text{d}F,\underline{\lambda}\rangle = \text{d}^{\star}[F,\underline{\lambda}],
+\end{equation}
+
+This allows to obtain a conservative formulation of the Boltzmann equation, that indicates the conservation of the number of particles \cite{Cardall:2002bp}
+
+\begin{equation}
+    \text{d}^{\star}[F\underline{\lambda}] = \mathcal{C}[F].
+\end{equation}
+
+Next, we re-introduce the Levi Civita connection $\nabla$ in phase space. 
+For incompressible $\underline{\lambda}$ it gives
+
+\begin{equation}
+    \nabla_A\lambda^A=0,
+\end{equation}
+
+while the \textit{Boltzmann equation} becomes 
+
+\begin{equation}
+    \lambda^A\partial_A F=\mathcal{C}[F]
+\end{equation}
+
+and its \textit{conservative} form 
+
+\begin{equation}
+    \nabla_A[Fp^{A}] = \mathcal{C}[F],
+    \label{eq:theory:liouvilletheorem}
+\end{equation}
+
+or in component form
+
+\begin{equation}
+    \frac{1}{|g|}\frac{\partial}{\partial x^{\mu}}\Bigg[|g|Fp^{\mu}\Bigg] + \frac{p_0}{|g|}\frac{\partial}{\partial p^{k}}\Bigg[\frac{|g|}{-p_0}{\Gamma^k}_{\alpha\beta}p^{\alpha}p^{\beta}F\Bigg] = \mathcal{C}[F].
+\end{equation}
+
+
+
+\paragraph{From the Boltzmann Equation to the Euler Equation}
+
+
+
+In order to derive from the Boltzmann equation the equations of hydrodynamics, we need to first define the needed varaibles of the kinetic description, such as \textit{mass} and \textit{energy} fluxes. 
+
+We not that the density flux can easly be obtained from $\boldsymbol{\mu}$. 
+
+We write the \textit{mass flow} then as 
+
+\begin{equation}
+\boldsymbol{\rho} = \int_{S_m} \boldsymbol{\mu}.
+\end{equation}
+
+Recalling the definition of the rest-mass density four-vector $J$, we note that
+
+\begin{equation}
+\int_{\Sigma}(-J^{\mu}n_{\mu})\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} Fp^0\boldsymbol{\Pi}\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} F\boldsymbol{\Omega} = \int_{\Sigma}\boldsymbol{\rho}
+\end{equation}
+
+Thus, the $J$ can be written as 
+\textcolor{red}{this is not clear how it was obtain. Must go through again.}
+
+\begin{equation}
+J^{\mu} = \int_{S_m}Fp^{\mu}\boldsymbol{\Pi}
+\end{equation}
+
+The second moment of the distribution function $F$ in a similar way gives the \textit{stress energy tensor} 
+
+\begin{equation}
+T^{\mu\nu} = \int_{S_m} F p^{\mu}p^{\nu}\boldsymbol{\Pi}
+\end{equation}
+
+the components of which in the frame comoving with the fluid are
+
+\begin{equation}
+T^{\mu\nu} = 
+\begin{pmatrix}
+E & \vec{F} \\
+\vec{F} & \boldsymbol{P} \\
+\end{pmatrix}
+\end{equation}
+
+where $E$ and $\vec{F}$ are the \textit{energy density} and \textit{flux} respectively, and $\boldsymbol{P}$ is the stress tensor. 
+
+The nature of the collisional operation ultimately defines the equilibrium configuration distribution function $F$ \cite{Cercignani:2002}, and thus the form of the stress-energy tenor. 
+
+Now we use the Liouville Theorem to obtain the equations of hydrodynamics. 
+To accomplish that we insert the $\boldsymbol{\Psi}$, a tensorial function of $p^i$, into the theorem, equation \ref{eq:theory:liouvilletheorem} on both sides and integrate with respect to $\boldsymbol{\Pi}$ as
+
+\begin{equation}
+\int_{\text{I\!R}}\nabla_{A}[F\lambda^A\boldsymbol{\Psi}]\boldsymbol{\Pi}=\int_{\text{I\!R}}\mathbb{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi}
+\end{equation}
+
+where we used that $\lambda^A\nabla_{A}\boldsymbol{\Psi}=0$ as $\vec{\lambda}$ is the geodesic flow. 
+
+Letting the $F$ decay for large momenta we obtain the \textit{transfer equation} \cite{Israel:1963,Cercignani:2002}:
+
+\begin{equation}
+\nabla_{\mu}\int_{\text{I\!R}} F\boldsymbol{\Psi}p^{\mu}\boldsymbol{\Pi} =\int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi},
+\label{eq:theory:transferequation}
+\end{equation}
+
+\textcolor{red}{check the sources. White intermediate steps}
+
+In a particular case of a simple gas $\Psi$ can be shown to be one of the $\{1,p^0,p^1,p^2,p^3\}$ \cite{Cercignani:2002}. 
+Then the right hand side of the transfer equation becomes 
+
+\begin{equation}
+\int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi} = 0.
+\end{equation}
+
+These $\boldsymbol{\Psi}$ are related to the quantities conserved by the collisional operator and are called \textit{collisional invariants}. 
+Choice of $1$ would yield the \textit{mass conservation}, 
+while $p^{\mu}$ -- the \textit{energy and momentum conservation}.
+
+Now, having canceled the R.H.S of the eq. \ref{eq:theory:transferequation}, we obtain the conservation laws in a following form
+
+\begin{equation}
+\nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
+\end{equation}
+
+
+\subsection{Overview}
+
+We start this section by revisiting the fundamental concepts, such as manifold, tangent and cotangent bundles, with vectors and differential forms defined on them, and operations such ans exterior, Wedge product and Hodge star operator. 
+
+Then we set ourselves a goal to obtain the covariant form of general relativistic hydrodynamics. 
+This includes the equations for space-time evolution adopted for use in numerical applications and Euler equations for the (ideal) fluid, which we aim to obtain through the Liuville's theorem and Boltzmann equations.
+
+To derive the Einstein field equations we perform the variation of the so-called Hilbert action, applying the Euler-Lagrange equation. For that we show a quick derivation of Euler-Lagrange equations, using the fact that the fields we are interested in are defined over only a compact domain and that the choice of the variation of coordinates is arbitrary, i.e. $\partial S(\boldsymbol{q}, \nabla \boldsymbol{q}) = 0$. 
+Then, in a similar way, the variation of the Hilbert action, yields the Einstein Field equation.
+
+For practical applications it is useful to express the EFE as a initial value boundary problem. 
+The Hamiltonian formalism allows to do that, which we briefly review. We then sketch the $3+1$ decomposition procedure, introducing the spacelike foliation, the shift vector $\vec{\beta}$ and lapse function $\alpha$, and extrinsic curvature.
+The goal is now to cast the EFE as a set of constraint equations, satisfied on every slice of the foliation, and evolution equations.
+%% that allow us to obtain the constraint equations, that has to be satisfied on every hyper-surface of the hypersurface. 
+Employing the EFE and Gauss-Codacci equations we write the Hamiltonian density, whose variation with respect to the variables of foliation $\alpha$ and $\beta$ yields constraint equation. 
+The evolution equations then are obtained through the variation of the Hamiltinan with respect to the three-metric and momentum.
+
+The obtained ADM system is however not well suited for numerical applications, being only weekly hyperbolic. 
+We thus briefly touch on a strongly hyperbolic formulation, the Z4 formulation, that exhibit such usefull for numeric properties as constraint violation dampening (constrain preservation) and its evolution, the CCZ4 formulation that is further adopted for BH evolution. 
+
+The choice of the space-time foliation, the chose of $\alpha$ and $\vec{\beta}$ is left free however. 
+Their choice refers to the gauge conditions. 
+We recall the most widely used "maximal slicing" and $1+\log$ conditions.
+
+
+
+Then we proceed with deriving equations of general relativistc hydrodynamics, aiming to provide a flux-conservative formulation. 
+We first define the kinematics of the relativistic fluid, \textit{i.e.,} a covariant description in terms of invariant quantities. 
+With this goal in mind we define the rest-mass density vector, whose nullified divergence is the number of particles conservation. 
+Then we re-introduce the stress energy tensor ans show that via Bianki identities, its divergence also vanishes.
+
+To discuss the dynamics of the fluid, we first, set its type. 
+We consider the fluid with no thermal conductivity and no viscosity, \textit{i.e.}, the perfect fluid. 
+In addition to fluid kinematics and the stress-energy tensor, describing its motion, the equation of state is needed. 
+Together they from a hyperbolic system of equations that describes the evolution of the fluid in space-time, once the initial data is set.
+
+For the reasons of numerical stability, a special formulation of the equations of general relativistic hydrodynamics is required. 
+Such is the Valencia formulation. The main idea is to contract an advection-like equations for fluxes of conserved quantities, from which the primitive quantities can be reconstructed.
+
+To derive these fluxes we first decompose the four velocity into the component parallel to the normal to the hypersurface and a purely spatial part. 
+This leads us to the definition of the conserved density. Then we introduce a vector whose zeroth component is just a norm and spatial component which is a \textcolor{gray}{tangent vector to hypersurface}. 
+This allows us to write the conserved and primitive quantities of the formulation, as well as the source term. 
+\todo{not all quntities in Val.Form. are clear. What is $S_j$ and $\epsilon$}
+
+Then we set an goal of writing the Euler equation for the fluid, based on the phase-spahce decription of it, with a help of Luiville's theorem and general-relativistic Boltzmann equation, the latter of which is derived via geometrical approach.
+To do that we first introduce necessary tools, namely vectors, co-vectors, tangent and cotangent bundles.
+There are $2n$ components with the first $n$ being coordinates and the second $n$ being impulses. 
+In addition, we introduce the coordinate transformation and finally, the metric on the tangent bundle.
+
+Having tools set, we derive the Liuville theorem. In order to do that we write phase-space flow of particles moving along geodesics which is represented by the Poincare 1-form and associated vector.
+In addition we define a mass shell, a norm to it and a irrotational form on a tangent bundle. 
+Together with the Poincare form it allows us to define the density of the phase-space trajectories which we denote as a Hodge operator of the wedge product of these two forms. 
+After some calculations, we obtain that this form can be expressed in a coordinate independent way as a split of two forms, the proper geodesics flux forms on the hypersurface and the mass shell respectively.
+By considering the "phase tube" with two crossections, we observe that integrated flux is conserved, which constitutes the Liouville\'s Theorem.
+
+After that we proceed with deriving the Boltzmann equation. 
+We start by introducing the number of phase-space trajectories crossing the section of a "phase tube". 
+The relation between the number of the phase space trajectories and the density defined above, yields the invariant distribution function. 
+Considering the change in the number of particles due to collisions. 
+The change in scalar product between the exterior derivative of the distribution function and Poincare 1-form due to collisions constitutes the Boltzmann equation. 
+\textcolor{red}{revise this.}. 
+Re-introducing the Levi Civita connection in phase space, and taking an advantage of the incompressibility if the poincare 1-form, we obtain a conservative form of the Boltzmann equation.
+
+From Boltzmann equation we can now obtain an equations of hydrodynamics. For that we first redefine the variables of the kinetic description, such as mass and energy fluxes, recalling the definition of the rest-mass density four-vector. 
+Similarly how the vector can be now expressed as a first moment of the distribution function, the second moment gives the stress energy tensor. However, we note that the nature of the collisional operation ultimately defines the equilibrium configuration distribution function and thus the form of the stress-energy tenor.
+
+Next we use the Liouville Theorem to obtain the equations of hydrodynamics introducing a tensorial function of the momenta, that is related to the quantities conserved by the collisional operator and are called collisional invariants into the integral form of the theorem. 
+Letting the distribution function decay for large momenta we obtain the transfer equation. 
+For a simple gas this can be reduced to already familiar equations where divergence of the rest mass vector $J$ and stress energy tensor is zero.
+
+
+%% --------------------------------------
+
+\section{Numerical Approximation of Conservation Laws}
+
+%% --------------------------------------
+
+\red{source called them 'coservational laws' -- but there seesm to be no such term}
+
+In this chapter we aim to briefly remark on the theory of the numerical approximation of conservation laws. 
+Owing to their key importance in physics, there is quite an extensive amount of literature concerning the topic. 
+We therefore select the aspects that are of relevance to this work, namely high-order, state-of-the-art numerical methods for the solution of conservation laws. 
+For the sake of compactness we would refrain from stating complete descriptions of these schemes, focusing on key ideas behind them, their advantages and drawbacks in the context of general-relativistic hydrodynamics.
+
+This section is structured as following. 
+In Section \red{fill me, if it is needed for just a Section?..}
+
+%% --------------------------------------
+\subsection{Theoretical Background}
+%% --------------------------------------
+
+In this \red{subsection} we briefly recall the basics behind the mathematical theory of conservation laws and subsequently, their numerical application. 
+We start by defining the \textit{weak} and \textit{entropic} solutions, and present certain results regarding \textit{existence} and \textit{uniqueness} of these solutions for conservation laws. 
+We then proceed with reviewing numerical approximation to conservation laws, as well as concepts of consistency, stability and convergence, \textcolor{gray}{briefly stating the Lax-Richtmeyer theorem}. 
+Then we conclude with reviewing the extension to the case of non-linear equations. 
+This subsection is based on the descriptions provided in \cite{LeVeque:1992,Tadmor1998}, and we refer the reader to these sources for more in-depth discussion.
+
+%% Analytical properties and requirements for conservation laws
+\subsubsection{Conservation Laws}
+
+
+Let us consider the conservation laws in the following form
+
+\begin{align}
+\partial_t\boldsymbol{u} + \nabla\cdot\boldsymbol{f}(\boldsymbol{u}) = 0, \hspace{10mm} &(t,x)\in \text{I\!R}_{+}\times\text{I\!R}^d , \\
+\boldsymbol{u}(0, x) = \boldsymbol{u}(x), \hspace{18mm} &x\in \text{ I\!R},
+\label{eq:theory:conservlaws}
+\end{align}
+
+where $\boldsymbol{u}$ is the vector of $m$ unknowns, $\boldsymbol{f}=(\boldsymbol{\boldsymbol{f}^1,...,\boldsymbol{f}^m})$ is a $d$-dimensional flux and $\boldsymbol{u_0}\in\big[L^{\infty}(\text{I\!R}^d)\big]^m$ is the initial data. 
+
+Investigations of the system \ref{eq:theory:conservlaws} showed that irrespective of the initial data, the solution can develop \textit{discontinuities} (shocks) in a finite time. 
+Thus, the system should be viewed in \textit{distribution formalism}. 
+There, if for all test functions $\upsilon\in C_0 ^1 (\text{I\!R}^{d+1})$ and $i=1,2,...,m$  there is
+
+\begin{equation}
+\int_{0}^{\infty}\text{d}t\int_{\text{I\!R}^d}\big[u^i \partial_t\upsilon + \boldsymbol{f}^i(\boldsymbol{u})\cdot\nabla\upsilon\big]\text{d}x = \int_{\text{I\!R}^d} u_0 ^i \upsilon \text{d}x,
+\end{equation}
+
+then, the vector $\boldsymbol{u}\in\big[\text{I\!R}_{+}\times\text{I\!R}^d\big]^m$ is a \textit{weak solution} of \ref{eq:theory:conservlaws}.
+
+It can be shown that \textit{multiple weak solutions} are allowed even for a scalar conservation law. 
+Let us then consider the concept of the \textit{entropic solution}. 
+A convex function \textcolor{red}{what is it?}, $\eta(\boldsymbol{u})$, is said to be an entropy function if its Hesian \textcolor{red}{what is it???}, $\nabla_{\boldsymbol{u}}^2\eta$, symmetrizes the spatial Jacobian, $\nabla_{\boldsymbol{u}}f^i$ \textcolor{red}{WHAT IS IT?!},
+\red{Write a better definition of an entropic solution to conservation laws}
+
+\begin{equation}
+\nabla_{\boldsymbol{u}}^2\eta\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{f}^i]^{T}\cdot\nabla_{\boldsymbol{u}}^2\eta, \hspace{10mm} i = 1, ... , m.
+\end{equation}
+
+Here we infer the \textit{compatibility relation}, introducing the \textit{entropy flux} $\boldsymbol{\psi} = (\boldsymbol{\psi}^1,...,\boldsymbol{\psi}^m)$, as 
+
+\begin{equation}
+[\nabla_{\boldsymbol{u}}\eta]^T\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{\psi}^i]^T, \hspace{15mm} i = 1,...,m.
+\end{equation}
+
+The pair $\eta\boldsymbol{\psi}$ is referred to as \textit{entropy pair}.
+
+Then, the \textit{entropic solution} is a weak solution that for any \textit{entropy pair} $(\eta\boldsymbol{\psi})$, admits
+
+\begin{equation}
+\partial_t\eta(\boldsymbol{u}) + \nabla\cdot\boldsymbol{\psi}(\boldsymbol{u})\leq 0.
+\end{equation}
+
+Concerning distributions, the \textit{entropic solution} requires that for any positive test function $\upsilon\in C_0 ^1 (\text{I\!R}_+\times\text{I\!R}^d)$  
+
+\begin{equation}
+\int_{\text{I\!R}_+\times\text{I\!R}^d} \big[\eta(\boldsymbol{u})\partial_t\upsilon + \boldsymbol{\psi}(\boldsymbol{u}) \cdot \nabla\upsilon \big]\text{d}t\text{d}x = 0
+\end{equation}
+
+It is possible to show \cite{LeVeque:1992}, that this condition in a scalar cast is equivalent to making characteristic line impinged into shock waves. 
+This constitutes that the process that resulted in a shock forming is \textit{irreversible} and that the time-symmetry is not longer applies. 
+
+Considering the scalar case, where $m=1$, it is possible to prove the existence and \textit{uniqueness of the entropic solution} under very general conditions \cite{Kruzkov:1970}. 
+It is also can be extended to \textit{measure-valued solutions} \cite{DiPerna:1985} and to the case of conservation laws on manifolds \cite{Benartzi:2007}.
+
+On the other hand, uniqueness and stability of entropic solutions is not well understood in case of systems of conservation laws, as not even the existence of $(\eta\boldsymbol{\psi})$ for the general system of equation has been proven. 
+In \cite{Chen:2009} a novel approach has been employed, based on divergence-measure vector fields. For one dimensional Riemann problem, where the initial data in a form 
+
+\begin{equation}
+\boldsymbol{u}_0(x) = 
+\begin{dcases}
+\boldsymbol{u}^L, \hspace{5mm} \text{if } x<0; \\
+\boldsymbol{u}^R, \hspace{5mm} \text{if } x>0.
+\end{dcases}
+\end{equation}
+
+it allowed to prove the existence, uniqueness and stability of the entropic solution of the Euler equations for a classical ideal-gas \cite{Chen:2003}.
+
+However the mere exestiance of the weak solution to the Riemann problem for general equation of state is not guaranteed \cite{Curtis:1972}. 
+(For more recent results regarding classical Euler equations, see the review \cite{Chen:2006}). 
+
+On the other hand, using Glimm’s method \cite{Glimm:1965} the existence of solutions to the Riemann problem was shown in the relativistic case but for the ultrarelativistic equation of state \cite{Smoller:1993}. 
+
+For \textit{strictly hyperbolic systems} \textit{i.e.,} when $\nabla_{\boldsymbol{u}}\boldsymbol{f}$ has a complete set of real eigenvalues and eigenvectors, the existence of weak solutions was proven in case when the initial data having small enough initial jump \cite{Lax:1957}.
+
+
+%% for some defintiions
+\subsubsection*{Infimum and Supremum}
+
+The \textit{infimum (inf)} of a subset $S$ of a partially ordered set $T$ is the greatest element of $T$ that is less than or equal to all elements of $S$.
+The \textit{supremum (sup)} of a subset $S$ of a partially ordered set $T$ is the least element in $T$ that is greater than or equatl to all elements of $S$. 
+
+The upper bound of a subset $S$ of a partially ordered set (P,$\leq$) is an element $b$ of $P$ such that $b\geq x$ for all $x$ in $S$. 
+
+If a supremum of a subset $S$ exists, it is unique. 
+The supremum of a subset $S$ of partially ordered set $P$ does not necessarily belongs to $S$. But if it does, it is the maximum, or the greatest element of $S$. 
+
+Consider examples of suprema. The supremum of a set of real numbers of $\{1,2,3\}$ is $3$. The number $4$ is an upper bound but it is not the least upper bound and hence not the supremum. 
+
+\begin{align}
+\sup\{x\in\text{I\!R}|0<x<1\} = 1. \\
+\sup\{(-1)^n - 1/n | n = 1,2,3,... \} = 1. \\
+\sup\{x\in\mathbb{Q} | x^2 < 2\} = \sqrt{2}
+\end{align}
+
+
+%% Numerical treatment of the conservation laws
+\subsubsection{Consistency, Stability and Convergence}
+
+
+Now we consider how the conservation laws can be treated numerically. 
+We limit the discussion to the $m=1$ case, as the non-linear theory is well established only for the scalar fields. 
+Thus we define a problem as 
+
+\begin{align}
+\partial_t u + \nabla\cdot\boldmath(u) = 0&, \hspace{10mm} (t,x) \in I\!R_{+}\times I\! R^d \\ 
+u(0, x) = u_o(x)&, \hspace{15mm} x\in I\!R^{d},
+\end{align}
+
+where $u$ is now just a scalar function. 
+
+Let us introduce the following notation. 
+The form of equations \ref{eq:theory:conservlaws} allows us to view the solution to this system in a form of a "curve" in an infinite dimensional vector sapce $L^{\infty}I\!(R^d)$, or as a sequence of \textit{bounded functions} $u(t,\cdot)\in L^{\infty}(I\! R^d)$, that we can consider only being functions of time $u(t)$ with values in the vector space. 
+Owing to the curve being bounded in $L^{\infty}(I\!R^d)$, the sequence of bounded functions read $u(t)\in L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$. 
+Then the system  \ref{eq:theory:conservlaws} can be seen as a system of ordinary differential equations (ODEs), which can be represented as 
+
+\begin{equation}
+\frac{\text{d}u(t)}{\text{d}t} = \mathcal{L}[u(t)], \hspace{10mm} u(0) = u_0,
+\label{eq:theory:conservlawsode}
+\end{equation}
+
+where we associate the operator $\mathcal{L}(\cdot)$ with the $-\nabla\cdot\boldsymbol{f}(\cdot)$. 
+It is important to remember, that as the $u(t)$ is not a smooth function of time, the equation \ref{eq:theory:conservlawsode} should be considered from a point of view of distributions. 
+In addition, we note that stating $u(0) = u_0$ is in all mathematical rigor is a restriction of general functions $L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$ to the set of \textit{zero Lebesgue measure}, which is not define. 
+For the purpose of keeping the discssion brief we refer to the \cite{Kruzkov:1970} for the related discussion. 
+For the numerical applications we further restrict $u(t)$ to be a smooth function of time, and leave the mathematical subtleties out of discussion. 
+
+Transitioning from general formulation \ref{eq:theory:conservlaws} to one adopted for a scalar function $u(t)$ \ref{eq:theory:conservlawsode}, we can introduce the numerical approximation, that is depended in a \textit{discretization parameter} $\Delta$. 
+This approximation reads
+
+\begin{equation}
+\frac{\text{d}u^{\Delta}(t)}{\text{d}t} = L^{\Delta}[u^{\Delta}(t)], \hspace{10mm} u^{\Delta}(0) = P^{\Delta}[u_0],
+\label{eq:theory:conservlawsodepde}
+\end{equation}
+
+where $u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \textit{i.e.,} $u^{\delta}\approxeq u u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator. 
+However, as the error associated with it is negligible in comparison with other errors arising in discretization of conservation laws, we will ignore it, effectively assuming that $u^{\Delta}(0) = u_0$. 
+One of such errors is the trucaction error. 
+
+The \textit{ local truncation error } can be defined as 
+
+\begin{equation}
+r^{\Delta} = L^{\Delta}[u(t)] - \mathcal{L}[u(t)],
+\end{equation}
+
+where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. 
+We call a numerical scheme \textit{consistent} if the $r^{\Delta}\rightarrow 0$ when $\Delta\rightarrow 0$ in a given norm for all possible initial data $u_0$. 
+Note, however, that the choice of norm is problem- and method- dependent and may limit the allowable initial data. 
+
+We then call a scheme to be \textit{ of order $r$ } if 
+
+\begin{equation}
+|| r^{\Delta}(t) || = \mathcal{O}(\Delta^r).
+\end{equation}
+
+A scheme is considered to be \textit{stable} if the norm $L^{\Delta}$ is limited 
+
+\begin{equation}
+|||L^{\Delta}||| := \sup \frac{||L^{\Delta}||}{||\upsilon||}\leq C,
+\end{equation}
+
+where $\sup$ is the supremum, $C\geq 0$ is a constant independent of $\upsilon$. 
+A scheme is considered to be \textit{convergent} if 
+
+\begin{equation}
+\lim_{\Delta\rightarrow 0} ||u^{\Delta}(t)-u(t)|| = 0, \hspace{10mm} \text{a.e. } t\in \text{I\!R}_{+}.
+\end{equation}
+
+The relation between the consistency, stability and convergence is given by the 
+\textit{Lax-Richtmeyer equivalence theorem} \cite{Lax:1956}. 
+
+It states that the numerical approximation of well-posed problems is convergent if and only if the scheme is stable and consistent. 
+
+In addition, consider a scheme of the order $r$, then
+
+\begin{equation}
+|| u^{\Delta}(t) - u(t) || = \mathcal{O}(\Delta^r).
+\end{equation}
+
+However, in the non-linear case, the \textit{non-linear stability} is required in addition to the stability and consistency are to assure convergence. 
+
+
+
+\subsubsection*{Measure in mathematics}
+\red{Wikipedia:)}
+
+Measure of a set is a systematic way to assign a number to each suitable subset of that set intuitively interpreted as its size. 
+Thus, a measure is a generalization of length, area, volume. 
+
+Example: \textit{Lebesgue measure on a Euclidean space} that assigned the conventional length area and volume to Euclidean geometry to the suitable subsets of the $n-$dimensional Euclidean space $\mathbb{R}^n$. 
+For instance the Lebesgue measure of the interval $[0,1]$ in the real numbers is this length. 
+
+Measure is a function, that assigns a non-negative real number to certain subsets of a set $X$. It mist be countably addictive. 
+
+The formal defitinion: 
+let $X$ be a set and $\Sigma$ a $\sigma$-algebra over $X$. A function $\mu$ from $\Sigma$ to the extended real number line is called measure if it sutisfies the following property:
+\begin{itemize}
+    \item Non negativity: For all $E$ in $\Sigma$ we have $\mu(E)\geq 0$
+    \item Null empty set: $\mu(\emptyset) = 0$.
+    \item Countable addictivity or $\sigma$ addictivity: for all countable collections $\{E_k\}_{k=1}^{\infty}$ of pairwise disjoint sets in $\Sigma$: $\mu\Big(U_{k=1}^{\infty}E_k\Big) = \sum_{k=1}^{\infty}\mu(E_k)$.
+\end{itemize}
+
+\paragraph{Lebesgue measure}
+
+This is a standard way of assigning a measure to subset of $n-$dimensional Euclidean space. 
+For $n=1,2,3$ it coincides with simply length, area and volume. 
+In general it is also called a $n-$dimensional volume or $n-$volume. 
+Usually a measure of the Lebesgue-measurable set $A$ is denoted with $\lambda(A)$. 
+
+Formal definition: 
+Given a subset $E\subseteq\mathbb{R}$ with the length of interval $I=[a,b]$ (or $I=(a,b)$) given by $l(I) = b-a$ Lebesgue outer measure $\lambda^*(E)$ is defined as 
+
+\begin{equation}
+\lambda^*(E) = \inf\Bigg\{\sum_{k=1}^{\infty}l(I_k):(I_k)_{k\in N} \text{ is a sequence of open intervals with } \subseteq U_{k=1}^{\infty}I_k\Bigg\}
+\end{equation}
+
+The first part of the definition states that the subset $E$ of the real numbers is reduced to its outer measure by coverage by sets of open intervals. 
+Each of these sets of intervals $I$ covers $E$ in the sense that when the intervals are combined together by union, they contain $E$. 
+The total length of any covering interval set can easily overestimate the measure of $E$, because $E$ is a subset of the union of the intervals, and so the intervals may include points which are not in $E$. 
+The Lebesgue \textit{outer} measure emerges as the greatest lower bound (\textit{infimum}) of the lengths from among all possible such sets. 
+Intuitively, it is the total length of those interval sets which fit $E$ most tightly and do not overlap.
+
+%That characterizes the Lebesgue outer measure. Whether this outer measure translates to the Lebesgue measure proper depends on an additional condition. 
+%This condition is tested by taking subsets $A$ of the real numbers using $E$ as an instrument to split $A$ into two partitions: the part of $A$ which intersects with $E$ and the remaining part of $A$ which is not in $E$: the set difference of $A$ and $E$. These partitions of $A$ are subject to the outer measure. If for all possible such subsets $A$ of the real numbers, the partitions of $A$ cut apart by $E$ have outer measures whose sum is the outer measure of $A$, then the outer Lebesgue measure of $E$ gives its Lebesgue measure. Intuitively, this condition means that the set $E$ must not have some curious properties which causes a discrepancy in the measure of another set when $E$ is used as a "mask" to "clip" that set, hinting at the existence of sets for which the Lebesgue outer measure does not give the Lebesgue measure. (Such sets are, in fact, not Lebesgue-measurable.)
+
+\paragraph{$L^p$ space}
+
+
+The $L^p$ spaces are function spaces defined using a natural generalization of the $p-$form for a finite-dimensional vector space. 
+They are also called \textit{Lebesgue spaces}. 
+$L^p$ spaces form an important class of \textit{Banach spaces} in functional analysis, and of topological vector spaces.
+
+
+\paragraph{$p-$form in finite dimensions}
+
+
+Consider a length vector $x=(x-1, x_2...,x_n)$ in the $n-$ dimensional real vector space $R^n$ is usually given by the Euclidean norm 
+
+\begin{equation}
+||x||_2 = (x_1 ^2 + ... + x_n ^2)^{1/2}.
+\end{equation}
+
+For real numbers the $p-$norm or $L^p$-norm of $x$ is defined by
+
+\begin{equation}
+||x||_p = (|x_1|^p + ... + |x_n|^p)^{1/p}.
+\end{equation}
+
+\textit{$l^p$ spaces}
+an $L^p$ space may be defined as a space of measurable functions for which the $p-$th power of an absolute value is Lebesgue integrable where functions which agree almost everywhere are identified.
+
+
+\paragraph{Total variation}
+
+
+The total variation of a real-valued function $f$ defined on an interval $[a,b]\subset R$ is the quantity 
+
+\begin{equation}
+V_b ^a (f) = \sup_{\mathcal{P}}\sum_{i=0}^{n_p -1}|f(x_{i+1} - f(x_i)|,
+\end{equation}
+
+where the supremum runs over the set of all partitions $\mathcal{P} = \{\mathcal{P}=\{x_0,...,x_{np}\}|P\text{ is the partition of }[a,b]\}$ of the given interval. 
+
+
+\paragraph{total variation for function of $n>1$ real variables}
+
+
+Let $\Omega$ be an open subset of $\mathbb{R}^n$. 
+Given a function $f$ belonging to $L^1(\Omega)$, the total variation of $f$ in $\Omega$ is defined as 
+
+\begin{equation}
+V(f,\Omega):=\sup\Bigg\{\int_{\Omega}f(x)\text{div}\phi(x)\text{d}x:\phi\in C_{c}^1(\Omega, \mathbb{R}), ||\phi||_{L^{\infty}(\Omega)}\leq 1\Bigg\}
+\end{equation}
+
+where $C_c ^1(\Omega, \mathbb{R}^n)$ is the set of continuously differentiable vector functions of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
+
+
+\paragraph{Bounded variation}
+
+
+A function of bounded variation also known as $BV$ function is a real valued function whose total variation $TV$ is bounded or finite. 
+
+In case of a continuous function of one variable, for that function to be of bounded variation implies that the distance along the direction of the $y-$axis, neglecting the $x-$axis motion contribution, traversed by a point, moving along the gap, has a finite value. 
+
+In case of several variables a function $f$ defined on an open subset $\Omega$ of $\mathbb{R}^n$ is staid to have bounded variation it its distributional derivative is a vector-valued finite Radon measure.
+
+Importantly, functions of bounded variation form an algebra of dinsontinous functions whose first derivative exists almost everywhere. 
+
+Thus, they can be used to define generalized solutions of nonlinear problems involving functionals. ODE, PDE.
+
+Returning to the definition of the total variation $TV$ for a function of one variable, $V_a ^b (f)$. 
+If $f$ is differentiable and its derivative is Reimann-integrable, its total variation is the vertical component of the arc-length of its graph, \textit{i.e.,}
+
+\begin{equation}
+VC_a ^b(f) - \int_a ^b |f'(x)|\text{d}x.
+\end{equation}
+
+A condinous real-valued function $f$ on the real line is said to be of bounded variation \textit{BV function} on a chosen interval $[a, b]\subset \mathbb{R}$ if its total variation is finitie, \textit{i.e.,}
+
+\begin{equation}
+f\in\text{BV}([a,b]) \leftrightarrows V_a ^b (f) < +\infty
+\end{equation}
+
+The space of bounded varaition (BV functions) can be defined as 
+
+\begin{equation}
+\text{BV}(\Omega) = \{u\in L^1(\Omega): V(u, \Omega) < +\infty\}
+\end{equation}
+
+
+\subsubsection{Non-Linear Equations and Non-Linear Stability}
+
+
+The system \ref{eq:theory:conservlawsodepde} is a system of ordinary differential equations, where the discretization of time has to made as well as space. 
+However, up to now we were discussing only the latter, introducing the operator $\mathcal{L}$ and its approximation $L^{\Delta}$. 
+The reason for that is the following. The spatial discretization introduces much more prominent truncation error than the time discretization, which allowed us to limit the discussion of non-linear conservation laws to different choices in constructing $L^{\Delta}$. 
+However, the properties of the time discretization start to play an important role in the context of non-linear stability and convergence of numerical schemes in the non-linear case. 
+Thus, we shall discuss a \textit{fulli descrete} schemes.
+
+Let us start by introducing a one-parameter family of evolution operators $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$. 
+Following \cite{Kruzkov:1970}, the $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$ allows an operation of composition that forms a semi-group and the $\mathcal{T}_t(u_0)$ yields a solution \ref{eq:theory:conservlaws} at a time $t$, given the initial data $u_0$, \textit{i.e.,}
+
+\begin{equation}
+u(t) = \mathcal{T}_t(u_0), \hspace{10mm} \mathcal{T}\circ\mathcal{T}_t = \mathcal{T}_{t+s}.
+\end{equation}
+
+Its discrete version then
+
+\begin{equation}
+u^{\Delta}(k\Delta t) = T^{\Delta}_{\Delta t}(u_0), \hspace{10mm} T^{\Delta}_s\circ T^{\Delta}_t = T^{\Delta} _{t+s}
+\end{equation}
+
+\textit{i.e.,}
+
+\begin{equation}
+u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)]
+\end{equation}
+
+in a fully discrete form.
+
+Importantly, there is only one discretization parameter $\Delta$ for time and space. 
+This is allowed due to the \textit{Courant–Friedrichs–Lewy} (CFL) condition, which is in essence a linear stability condition of a time-integrator, that links two discretizations. 
+
+For a fully-discrete from, the \textit{truncation error} reads 
+
+\begin{equation}
+r^{\Delta}(t) = T^{\Delta}_{\Delta t}[u(t)] - u(t + \Delta t) = T^{\Delta}_{\Delta t}[u(t)] - \mathcal{T}_{\Delta t}[u(t)],
+\end{equation}
+
+where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. 
+
+For consistency, it is required that the norm $||\cdot||$, $||r^{\Delta}(t)||\rightarrow 0$ when $\Delta\rightarrow 0$. 
+
+A scheme is said to be \textit{ of an order $r$ } if $||r^{\Delta}(t) = \mathcal{O}(\Delta^r)||$. 
+A scheme is regarded to be \textit{linearly stable} if 
+
+\begin{equation}
+|||T^{\Delta}_{\Delta t}||| \leq C,
+\end{equation}
+
+where $C$ is a constant. 
+
+%% constructing a numerical sheme [INTRO]
+Let us consider how a numerical scheme in a non-linear case then can be constructed. 
+The Lax-Wendroff theorem \cite{Lax:1960} reads, that for a function $u$ to be a weak solution of \ref{eq:theory:conservlaws}, the numerically approximated solution $u^{\Delta}$ to the \ref{eq:theory:conservlawsode} obtained via conservative and consistent scheme should converge strongly. 
+By \textit{conservative} we understand a scheme such that 
+
+\begin{equation}
+\int_{\text{I\!R}^d} T^{\Delta}_s(\upsilon)\text{d}x = \int_{\text{I\!R}^d}\upsilon\text{d}x, \hspace{10mm} \text{for any } \upsilon\in L^1(\text{I\!R}^d),
+\end{equation}
+
+where $L^1$ is norm and the strong convergence implies that this $L^1$ is the norm to the function $u$. 
+
+Thus, the important point is to obtain a conditions that is \textit{sufficient for a scheme to be convergent}. 
+Then, the Lax-Wendroff theorem will ensure that this solution is a weak solution. 
+It is however important to note that the theorem does not guarantee that the solution also entropic, and an additional criterion of satisfying the entropy inequality, then has to be imposed. 
+
+%% Deriving the numerical scheme that is convergent and leads to an entropic solution
+Let us then proceed with derivation of the conditions that is sufficient for \textit{convergence}. 
+We start by introducing the total-variation of a function $u$, belonging to $L^1(\Omega)$ in a domain $\Omega$
+
+\begin{equation}
+\text{TV}(\upsilon;\Omega):=\sup\Bigg\{ \int_{\Omega} \upsilon\nabla\cdot\boldsymbol{\phi}\text{d}x: \boldsymbol{\phi}\in [C_0 ^1 (\Omega)]^d, ||\boldsymbol{\phi}||_{L^{\infty}(\Omega)}\leq 1 \Bigg\}, \hspace{5mm} \text{ for any }\boldsymbol{\phi} \in C_0 ^1 (\Omega)
+\end{equation}
+
+where $C_0 ^1(\Omega)$ is the space of continuously differentiable vector functions $\boldsymbol{\phi}$ of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
+
+It is possible to show that (\textit{e.g.,} \cite{Luigi:2002}) if $\text{TV}(\upsilon ; \Omega) < \infty$, then $\text{TV}(\upsilon ; \Omega) = |D\upsilon|(\Omega)$ where $|\cdot|$ stands for the \textit{vector-valued measure} $D\upsilon$ or 
+
+\begin{equation}
+\text{TV}(\upsilon; \Omega) = \int_{\Omega}|D\upsilon|\text{d}x
+\end{equation}
+
+where $D\upsilon$ is a gradient of $\upsilon$ is a sense of distributions. 
+
+Further we introduce the vector space BV, $\text{BV}(\Omega)$, that is the space of all functions in $L^1(\Omega)$ with \textit{finite total variation}. This is a \textit{Banach space} with respect to the norm 
+
+\begin{equation}
+|| \upsilon ||_{\text{BV}(\Omega)} = \int_{\Omega}\big(|\upsilon| + |D\upsilon|\big)\text{d}x.
+\end{equation}
+
+The importance of BV spaces lies in the following. 
+It was shown \cite{Conway:1966} that for any $t\geq 0$ $u(t)\in \text{BV}(\text{I\!R}^d)$, and if the initial data $u_o\in \text{BV}(\text{I\!R}^d)$, then the function $u \ in \text{BV}(\text{I\!R}\times\text{I\!R}^d)$. 
+This constitutes the invariance property of the BV spaces. 
+It is important to note, however, that the validity is confirmed only for scalar conservation laws. 
+A system of conversational laws on the other hand can have a solution that is not BV even if the initial data was in BV space. 
+Consider for example an Euler equation in Lagrangian coordinates. 
+It was shown that the solution can develop vacuum regions, \textit{i.e.,} not BV, if the initial data exhibit sufficiently large variations, while still being in BV space. 
+Such a solution becomes an $L^1$ function or a \textit{Radon measure} \cite{Chen:2006}. 
+Another reason why BV are important is that boudned sets in BV$(\Omega)$ are sequentially compact in $L^1 _{\text{loc}}(\Omega)$ \textit{e.g.,} \cite{Luigi:2002}. 
+This implies that for any sequence of functions $[\upsilon_n]\in\text{BV}(\Omega)$ there is a subsequence converging in the $L^1$-norm to a function $L^1 _{\text{loc}}(\omega)$. 
+
+Then, the goal is to construct a numerical scheme that is able to mimic the BV-invariance of the exact conservation laws. 
+Then the Lax-Wendroff Theorem would assure that the numerical scheme that is $L^1$ stable if consistent produces a sequence of solutions, for different discretization parameter $\Delta$, that will converge in $L^1$-norm to a weak solution as we decrease $\Delta$. 
+It is however important to note, that not a sequence of solutions, but a union of subsequences $[u^{\Delta}]$ is produced, each of which is converging to a possible different weak solution. 
+If this is not the case, then there exist a sequence $\{u^{\Delta_i}\}$ and $\epsilon > 0$ such that $\Delta_i\rightarrow 0 $ when $i\rightarrow \infty$ and $\text{dist}(W,u^{\Delta_i})>\epsilon$ for any $i$. 
+Such schemes are called \textit{TV-stable}. The important property of such scheme is, that for all initial data $u_0\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d)$ there exist $\Delta_0 > 0$ and $C\geq 0$ such that 
+
+\begin{equation}
+\text{TV}(T_s ^{\Delta}(u_0); \text{I\!R}^d)\leq C \text{ for any } \Delta < \Delta_0.
+\end{equation}
+
+For example, if a scheme shows the property 
+
+\begin{equation}
+\text{TV}(T_{\Delta t} ^{\Delta}(\upsilon_0); \text{I\!R}^d) \leq \text{TV}(\upsilon,  \text{I\!R}^d), \text{ for any } \upsilon\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d),
+\end{equation}
+
+it is one of the \textit{total-variation diminishing} (TVD) schemes. 
+
+In the context of non-linear scalar conservation laws, an example of a convergent scheme is a \textit{monotone} scheme \textit{i.e.,}
+
+\begin{equation}
+u \geq \upsilon \text{ a.e. } \rightarrow \hspace{5mm} T_{s}^{\Delta}(u) \geq T_{s}^{\Delta}(\upsilon).,
+\end{equation}
+
+and if $T_{s}^{\Delta}$ is \textit{conservative and monotone}, it does satisfy the strong stability condition 
+
+\begin{equation}
+|| T^{\Delta} _{\Delta t} - T^{\Delta} _{\Delta t}(\upsilon)||_{L^1(\text{I\!R}^d)}, \text{  for any  } u.\upsilon\in L^1(\text{I\!R}^d),
+\end{equation}
+
+\textit{i.e.,} it is an $L^1$-contraction \cite{Crandall:1980proc}, which implies that the method is TVD \cite{LeVeque:1992}. 
+Crandall and Majda \cite{Crandall:1980} has shown that numerical solution thus, obtained with a consistent stable and \textit{momotone scheme converges to a weak solution} of \ref{eq:theory:conservlaws}. 
+In addition authors showed that the entropy inequality is satisfied by these schemes and hence the numerical solution converges to an entropic (unique) solution of the \ref{eq:theory:conservlaws}. 
+The accuracy of the scheme has however been shown to be limited to the first order by Harten et al. \cite{Harten:1976}. 
+Thus, while requiring a scheme to be monotonic allows for a non-linear stability, it prohibits the higher order accuracy.
+
+The solution to the problem was first to use the non-linear dissipation methods that reduces convergence only locally to the tirst order in the vicinity of the dinsintiniuties. 
+These schemes are high-order accuracy, high resolution shock-capturing (HRSC) schemes. 
+They are not monotone, while being TVD in one dimentional case. And Goodman and LeVeque \cite{Goodman:1985} has shown that this is a limitation of TVD schemes. Than can be designed to be any order of accuracy in 1D but can only but in multidimensional cases they are at most first-order accuracy. 
+
+Multiple other high order accuracy schemes have been proposed with however weaker conditions of non-linear stability and not yet fully explored convergence. 
+For example, schemes that satisfy the \textit{maximum-principle} \textit{i.e.,} such that if $m < u_0 < M$ then $u^{\Delta}(t,\cdot)\in[m, M]$. 
+Such is the second-order central-scheme by Kurganov and Tadmor \cite{Kurganov:2000}. 
+
+It is however remains that the commonly used modern multidimensional HRSC schemes are not TVD or even has been shown to be TV-stable. 
+Numerical evidence to support a hypothesis that these schemes converge to the entropic solution of conservation laws, -- the mathematical proof -- is yet to be provided. 
+Additionally, even the stability and convergence in one-dimensional case has not been proven for a general system of non-linear conservation laws, \cite{LeVeque:2002}, while there also numerical evidence for the convergence of these schemes. 
+
+It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}.
+Similarly, to prove the convergence of their numerical approximation likely requires  better understanding of the mathematical properties of systems of conservation laws. 
+In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. 
+And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
+
+
+\subsubsection{Finite-Volume Methods}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
