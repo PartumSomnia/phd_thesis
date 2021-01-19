@@ -1,0 +1,246 @@
+%% ============================
+%%
+%% Appendix A
+%%
+%% ============================
+
+\chapter{Mathematical Background}
+\label{app:math_back}
+
+
+%% Diff.forms, external prodcuts; Hoge star 
+\subsection{More on the tangent and cotangent spaces}
+
+Tangent space to $\mathcal{M}$ is denoted with $T_p(\mathcal{M})$.
+The cotangent space $T_p ^* \mathcal{M}$
+
+%% ---------------------------
+
+\subsection{Differential forms}
+\gray{copied}
+
+They are usefull for multivariable calculus independent of coordinates. Used for integrands over curves, manifolds. For example, differential form can be used to define a volume element as $f(x,y,z)dx \wedge dy \wedge dz$, where $\wedge$ is the \textit{wedge product} defined below.
+
+Albegra of differential forms is organized to reflect the orientation of the domain of integration. For instance: the \textit{exterior product} (see below) $d$ that converts $k$-from into $k+1$-form. 
+This operation is similar to the divergence and the curl of a vector field.
+
+Differential $1$-forms are naturally dual to \textit{vector fields} on a manifold. Pairing is done via \textit{inner product}.
+
+If there are two \textit{manifolds}, then the albegra of diff.forms and their exterior derivatives is preserved by the \textbf{pullblack} under the smooth function. 
+This allows geometrically invariant information to be moved from one space to another via the pullback.
+
+Let $\mathcal{M}$ be an orientated $m$-dimentional manifold and $\mathcal{M}'$ is the same manifold with the opposite orientation and $\omega$ is an $m$-form, then 
+
+\begin{equation}
+\int_{\mathcal{M}}\omega = -\int_{\mathcal{M}'}\omega.
+\end{equation}
+
+The \textit{exterior algebra} is used to make the notion of an oriented density precise.
+
+The basic $1$-forms are \textbf{differentials} of the coordiantes $dx^1,...,dx^n$. 
+Each of them is a \textbf{covector} that measures a small displacement in the corresponding coordinate direction. A general $1$-form thus is the combination of these differentials 
+\begin{equation}
+f_1dx^1\cdot\cdot\cdot f_ndx^n
+\end{equation}
+where $f_k=f_k(x^1,...,x^n)$ are functions of all the coordiantes. 
+
+\textit{Wedge product} is similar to \textit{cross product}, and is used to build higher differential forms out of lower ones, as the cross product in vector calculus.
+
+The \textit{Exterior derivative}, operator $d$ is a generalization of a differential of a function. 
+Let $\omega=fdx^I$ be a simple $k$-form. Then its exterior derivative $d\omega$ is a $(k+1)$-form set by taking differential of the coefficient functions
+\begin{equation}
+d\omega = \sum_{i=1}^n \frac{\partial f}{\partial x^i}dx^i \wedge dx^I
+\end{equation}
+Thus a \textit{deferential form}, lets say, differential $2$-form is called an exterior derivative $da$ of $a=\sum_{j=1}^{n}f_j dx^j$. 
+It is given by
+\begin{equation}
+da = \sum_{j=1}^n df_j \wedge dx^j = \sum_{i,j=1}^n \frac{\partial f_j}{\partial x^i}dx^i\wedge dx^j.
+\end{equation}
+Overall, the $da=0$ is required for a function $f$ such that $a=df$.
+
+On as smooth manifold $\mathcal{M}$ the differential from of degree $k$ is a \textit{smooth section} of the $k$th \textit{exterior power} of the \textit{cotangent bundle} of $\mathcal{M}$. 
+Then, the set of all the $k-$forms on $\mathcal{M}$ is a \textit{vector space} $\Omega^k(\mathcal{M})$. 
+The formal definition then stands. At any point $p\in \mathcal{M}$ a $k-$form $\beta$ defines an element 
+\begin{equation}
+\beta_p\in\Lambda^kT^* _p \mathcal{M}
+\end{equation}
+where $T_p\mathcal{M}$is the \textit{tangent space} tp $\mathcal{M}$ at $p$. The $T^* _p \mathcal{M}$ is its \textit{dual space} (cotangent space). Thus, $\beta$ is also a linear functional such that $\beta_p:\Lambda^k T_p \mathcal{M}\rightarrow I\!R$
+
+%% -----------------------------------------------------
+
+\subsection{More on the algebra of differential forms}
+
+If $\phi$ and $\psi$ are the 2-forms given for example as 
+\begin{equation}
+\phi = x dx - y dy \hspace{5mm} \text{and} \hspace{5mm}\psi = z dx + x dz
+\end{equation}
+Then the \textbf{exterior product} is given by 
+\begin{align}
+\phi\wedge\psi &= (x dx - y dy)\wedge(zdx + xdz) = \\
+&=xzdxdx+x^2dxdz-yzdydx-yxdydz= \\
+&=yzdxdy + x^2 dx dz - xydydz
+\end{align}
+as $dxdx=0$ and $dydx=-dxdy$. 
+The product of two $1$-forms is a $2$-form.
+In general, the \textbf{wedge product} of a $p$-form and $q$-form is a $(p+q)$-form.
+
+In other words, consider a surface $\mathcal{M}$ and two $1$-forms on it $\phi$ and $\psi$ Then the \textbf{wedge product} is 
+\begin{equation}
+(\phi\wedge\psi)(v,w)=\phi(v)\psi(w) - \phi(w)\psi(v)
+\end{equation}
+for any $v$ and $w$ tangent vectors to $\mathcal{M}$.
+
+\paragraph{Properties of the wedge product.} The exterior algebra main idea is that the operations are designed to create \textbf{the permutational antisymmetry}. 
+Let the $dx_i$ be the basis $1$-from and $\omega_j$ are the orbitrary $p$-form (of order $p_j$), and $a$, $b$ be arbitrary scalars. 
+Then the \textit{wedge product} is defined to have properties:
+\begin{align}
+(a\omega_1+b\omega_2)\wedge\omega_3 &= a\omega_1\wedge\omega_3+b\omega_2\wedge\omega_3 \hspace{5mm} (p_1 = p_2), \\
+(\omega_1\wedge\omega_2)\wedge\omega_3 &= \omega_1\wedge(\omega_2\wedge\omega_3), \hspace{5mm} a(\omega_1\wedge\omega_2) =  (a\omega_1)\wedge\omega_2\\
+dx_i\wedge dx_j &= -dx_j\wedge dx_i
+\end{align}
+Thus, any arbitrary differential form can be reduced to \textbf{a} coefficient multiplying $dx_i$ or a wedge product of the generic form 
+\begin{equation}
+dx_i\wedge dx_j \wedge...\wedge dx_p
+\end{equation}
+with the properties allowing to put all coefficients together as 
+\begin{equation}
+a dx_1 \wedge b dx_2 = - a(b dx_2 \wedge dx_1) = -ab(dx_2 \wedge dx_1) = ab(dx_1 \wedge dx_2)
+\end{equation}
+
+\paragraph{Wedge product acting on tangent vectors}.
+The $\wedge$ of two tangent vectors $\boldsymbol{u}\wedge\boldsymbol{v}$, where ($\boldsymbol{u}, \boldsymbol{v}\in T_p(\mathcal{M})$) is an antisymmetric tensor product that in addition to bilinearity requires antisymmetry. 
+\begin{align}
+\boldsymbol{v} =& v^1e_1 + v^2 e_2 + v^3 e_3 \\
+\boldsymbol{u} =& u^1e_1 + u^2 e_2 + u^3 e_3 \\
+\boldsymbol{v}\wedge\boldsymbol{u} =& (v^1u^1 - v^2u^1)(e_1\wedge e_2) + \\
+& + (v^1u^3 - v^3u^1)(e_1\wedge e_1) + \\
+& + (v^2u^3 - v^3u^2)(e_2\wedge e_1)
+\end{align}
+mimicking the behavior of the cross product. 
+However, this can easly be extended to higher dimensions. 
+
+Important, that the resulting object of $\boldsymbol{v}\wedge\boldsymbol{u}$ does not belong to $T_p M$. It is called an \textbf{alternating bivector} and is an element of the vector space $\Lambda^2 T_p (\mathcal{M})$ ,that is called -- \textbf{second exterior power} of $T_p \mathcal{M}$.
+
+Generally one obtains $\Lambda^k T_p (\mathcal{M})$ that is a linear subspace of $T_p ^k (\mathcal{M})$.
+
+Note that the exterior product on the \textit{cotangent spaces}, $T_p ^* \mathcal{M}$ is compatible with \textit{wedge product} on $T_p\mathcal{M}$ and is usually denoted with the same symbol and yields
+$(\boldsymbol{\alpha}\wedge\boldsymbol{\beta})\in\Lambda^2 T_p ^* \mathcal{M}$.
+
+%% ------------------------------------------------------
+
+\subsection{Differential forms on a Reimannian maniforld}
+
+There metric defines a fiber-wise isomorphism of the tangent and cotangent spaces. This allows to convert vector fields to covector field and vice versa. It also allows the definition of the \textit{Hodge star operator}.
+
+Hodge star operator $\star$ is a linear map, defined on the exterior algebra of a finite-dimensional oriented vector space endowed with a non-degenerate symmetric bilinear form. Applying the operator to the element of the algebra produces the \textit{Hodge dual} of the element.
+
+Example. Consider a $3D$ Euclidean space. Let there be an orientated plane, that is presented by the exterior product $\wedge$ of two basis vectors. Then its \textit{Hodge dual} is the normal vector given by the cross product. 
+
+The \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
+
+The $\star$ can be applied to the \textit{cotangent bundle} of a pseudo-reimanian manifold -- to all differential $k$-forms. This allows the definition of a differential as a \textit{Hodge adjoint} of the exteior derivative. 
+
+\paragraph{Formal definition}. Let $V$ be a $n$-dimensional vector-space with non-degenerate symmetric bilinear form $\langle\cdot,\cdot\rangle$ -- the \textit{inner product}. 
+This induces an inner product on $k-$vectors $\alpha,\beta\in\Lambda^k V$ for $0\leq k \leq n$ by defining it on decomposable $k$-vectors $\alpha = \alpha_1\wedge\cdots\wedge\alpha_k$ and $\beta=\beta_1\wedge\cdots\wedge\beta_k$.
+
+The \textit{Hodge star} operator is a linear operator on the exterior algebra of $V$, mapping $k$-vectors to $(n-k)$-vectors for $0\leq k \leq n$. It has following property that defines it completely
+\begin{equation}
+\alpha\wedge(\star\beta) = \langle\alpha,\beta\rangle\omega 
+\end{equation}
+for every pair of $k-$vectors $\alpha\beta\in\Lambda^kV$.
+Here the $\omega\in\Lambda^nV$ is the unit $n-$vector defined in terms of an oriented orthonormal basis $\{e_1,...,e_n\}$ of $V$ as
+\begin{equation}
+\omega := e_1 \wedge \cdots \wedge e_n.
+\end{equation}
+
+Dually, in the space $\Lambda^n V^*$ of $n-forms$, the dual $\omega$ is the column form $\textbf{det}$, the function whose value on $v_1\wedge\cdots\wedge v_n$ is the determinant of the $n\times n$ matrix assembled from the column vectors of $v_i$ in $e_i$ coordinates. Thus the dual definition is 
+\begin{equation}
+\text{det}(\alpha\wedge\star\beta) = \langle\alpha,\beta\rangle.
+\end{equation}
+or equivalently 
+\begin{align}
+\alpha =& \alpha_1\wedge\cdots\wedge\alpha_k \\
+\beta =& \beta_1\wedge\cdots\wedge\beta_k \\
+\star\beta =& \beta_1 ^{\star} \wedge\cdots\wedge \beta_{n-k} ^ {\star} \\
+\text{det}(\alpha_1\wedge\cdots\wedge\alpha_k\wedge\beta_1 ^{\star}\wedge\cdots\wedge\beta_{n-k}^{\star}) =& \text{det}(\langle\alpha_i,\beta_j\rangle)
+\end{align}
+
+\paragraph{Examples}.
+Consider 2D space with normalized Euclidian metric and orientation given by ordering $(x,y)$. The \textit{Hodge star} on $k-$forms is given by 
+
+\begin{align}
+\star 1 &= dx \wedge dy \\
+\star dx &= dy \\
+\star dy &= -dx \\
+\star(dx \wedge dy) &= 1.
+\end{align}
+
+Consider a more complex example. A plane that can be regarded as a vector space with a standard sesquilinear form as the metric. 
+There the \textit{Hodge operator} has a property that it is invariant under the holomorphic changes of coordinates. 
+Consider $z = x + iy$ holomorphic function of $w=u + iv$. Then in the new coordinates 
+
+\begin{align}
+\alpha &= pdx +qdy \\
+\star \alpha &= -q dx + p dy
+\end{align}
+
+Next, consider a 3D space. 
+Here the $\star$ can be regarded as a correspondence between vectors and bivectors. 
+Thus in Eucledian $\boldsymbol{R}^3$ space with basis $dx,dy,dz$, of one-forms, one finds
+\begin{align}
+\star dx =& dy\wedge dz \\
+\star dy =& dz\wedge dx \\
+\star dz =& dx \wedge dy \\
+\end{align}
+The relations to the exterior and cross product are:
+\begin{equation}
+\star(\boldsymbol{u}\wedge\boldsymbol{v})=\boldsymbol{u}\times\boldsymbol{v}, \hspace{5mm}\star(\boldsymbol{u}\times\boldsymbol{v}) = \boldsymbol{u}\wedge\boldsymbol{v}
+\end{equation}
+
+Thus in 3D the $\star$ provides and isomorphism between vectors and bivectors, so each axial vector $\boldsymbol{a}$ is associated with the bivector $\boldsymbol{A}$ as $\boldsymbol{A} = \star\boldsymbol{a}$ and $\boldsymbol{a} = \star\boldsymbol{A}$. It can also mean a correspondence between the axis and infinitesimal rotation around the axis with the speed equal to the length of the axis vector.
+
+Consider a tensor $dx \otimes dy$ that corresponds to the matrix with one $dx$ row and $dy$ column. The wedge $dx\wedge dy = dx\otimes dy - dy\otimes dx$ is a 3 by 3 \textit{skew-symmetric matrix} with all $0$ exept $(0,1)$ and $(1,0)$ components that are $1$. 
+So the $\wedge$ operator turns $\boldsymbol{v} = adx + bdy + cdz$ into $\star\boldsymbol{v}\approx$ $3\times 3$ matrix with $0$ on diaoganals.
+
+Next, consider $4D$ space.
+Here $\star$ acts as an endomorphism of the second exterior power, mapping $2$-forms into $2$-forms. 
+Consider the Minkowski space time with signature $(+,-,-,-)$ and coordinates $(t,x,y,z)$, there we have
+\begin{align}
+\star dt &= dx \wedge dy \wedge dz \\
+\star dx &= dt \wedge dy \wedge dz \\
+\star dy &= -dt \wedge dx \wedge dz \\ 
+\star dz &= dt \wedge dx \wedge dy 
+\end{align}
+
+\paragraph{Wedge product on manifold}
+For an $n-$dimensional oriented pseudo-Reimannian manifold $\mathcal{M}$ we apply the construction such that to each cotangent vector space $T^* _p \mathcal{M}$ and its exterior powers $\Lambda^k T_p ^* \mathcal{M}$ and hence to all differential $k-$forms $\xi\in\Omega^k(\mathcal{M})=\Gamma(\Lambda^k T^* \mathcal{M})$, the global sections of the bundle are $\Lambda^k T^*\mathcal{M}\rightarrow \mathcal{M}$. 
+The Reimannian metric induces inner product on $\Lambda^k T_p ^* \mathcal{M}$ at each point $p\in\mathcal{M}$. We define the \textit{Hodge dual} of a $k-$form $\xi$ defining $\star\xi$ as a unique $(n-k)$-form satisfying
+\begin{equation}
+\eta\wedge\star\xi = \langle\eta,\xi\rangle\omega
+\end{equation}
+for every $k-$form $\eta$ where $\langle\eta,\xi\rangle$ is a real value function on $\mathcal{M}$ and the volume form $\omega$ is induced by the Reimannian metric.
+
+\paragraph{In the coordinate form}
+Consider an orthonormal basis $\{ \frac{\partial}{\partial x_1}, \cdots,\frac{\partial}{\partial x_n} \}$ the a tangent space $V=T_p\mathcal{M}$. And its dual basis $\{ dx_1, ..., dx_n \}$ in $V^* = T_p ^*\mathcal{M}$, with the metric matrix $g_{ij} = \big(\langle\frac{\partial}{\partial x_i},\frac{\partial}{\partial x_j}\rangle\big)$ and its inverse matrix $g^{ij} = \big(\langle dx_i, dx_j \rangle\big)$. The Hodge dual of a decomposable $k$-form is then 
+\begin{equation}
+\star(dx^{i_1}\wedge\cdots\wedge dx^{i_k}) = \frac{\sqrt{|\text{det}[g_{ab}]|}}{(n-k)!}g^{i_1 j_1}\cdots g^{i_k j_k} \epsilon_{j_1 ... j_n} dx^{j_{k+1}}\wedge\cdots\wedge dx^{j_n}
+\end{equation}
+
+%%
+
+\subsection{Conclusion}
+
+In this section we aimed to define certain mathematical concepts crucial for understanding next sections of this chapter.
+
+Particular attentions deserve the concept of tangent vectors $\partial x_i$ and cotangent vectors $\alpha_i$ that on a manifold form tangent $T_p \mathcal{M}$ and contangent $T_p^*\mathcal{M}$ spaces. The manifold that assembles all the tangent vectors is denoted with $T\mathcal{M} = \{ (x,y) | x\in \mathcal{M}, y \in T_x \mathcal{M} \}$, with the projection $\pi:T\mathcal{M}\rightarrow \mathcal{M}$, while the cotangent bundle is a smooth manifold that assembles all the cotangent spaces.
+
+The operation of importance are the \textit{inner product} $\langle \cdot,\cdot \rangle : V \times V \rightarrow \mathcal{F}$, that is linear, positive and conjugate-define, and it allows the paring between vectors and differential forms; 
+and the \textit{outer, Wedge, product} which, acting on vectors, mimics the behavior of the cross product, and acting on differential forms converts $k$-from into $k+1$-form, allowing for instance to define a volume element, $f(x,y,z)dx \wedge dy \wedge dz$. 
+
+Another important concept related to the differential forms on a Reimannian manifold is the Hodge star operator, that allows to convert vector fields into the co-vector fields and vise versa.
+
+For example, for an orientatned plane in Eqclidean space,
+the Hodge dual of the $\wedge$ product of two basis vectors is the normal vector (given by the cross product).
+
+Thus \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
+

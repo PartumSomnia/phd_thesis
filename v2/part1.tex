@@ -35,2564 +35,338 @@
 %%
 %% ===========================================================================
 
-\chapter{Theoretical Background} %% [ Based on the thesis of David Radice ]
+\chapter{Numerical Relativity} %% [ Based on the thesis of David Radice ]
 
-%% --------------------------------------
-
-\section{Basic Notations and definitions}
-
-%% Diff.forms, external prodcuts; Hoge star 
-\subsection{More on the tangent and cotangent spaces}
-
-Tangent space to $\mathcal{M}$ is denoted with $T_p(\mathcal{M})$.
-The cotangent space $T_p ^* \mathcal{M}$
-
-%% ---------------------------
-
-\subsection{Differential forms}
-\gray{copied}
-
-They are usefull for multivariable calculus independent of coordinates. Used for integrands over curves, manifolds. For example, differential form can be used to define a volume element as $f(x,y,z)dx \wedge dy \wedge dz$, where $\wedge$ is the \textit{wedge product} defined below.
-
-Albegra of differential forms is organized to reflect the orientation of the domain of integration. For instance: the \textit{exterior product} (see below) $d$ that converts $k$-from into $k+1$-form. 
-This operation is similar to the divergence and the curl of a vector field.
-
-Differential $1$-forms are naturally dual to \textit{vector fields} on a manifold. Pairing is done via \textit{inner product}.
-
-If there are two \textit{manifolds}, then the albegra of diff.forms and their exterior derivatives is preserved by the \textbf{pullblack} under the smooth function. 
-This allows geometrically invariant information to be moved from one space to another via the pullback.
-
-Let $\mathcal{M}$ be an orientated $m$-dimentional manifold and $\mathcal{M}'$ is the same manifold with the opposite orientation and $\omega$ is an $m$-form, then 
-
-\begin{equation}
-\int_{\mathcal{M}}\omega = -\int_{\mathcal{M}'}\omega.
-\end{equation}
-
-The \textit{exterior algebra} is used to make the notion of an oriented density precise.
-
-The basic $1$-forms are \textbf{differentials} of the coordiantes $dx^1,...,dx^n$. 
-Each of them is a \textbf{covector} that measures a small displacement in the corresponding coordinate direction. A general $1$-form thus is the combination of these differentials 
-\begin{equation}
-f_1dx^1\cdot\cdot\cdot f_ndx^n
-\end{equation}
-where $f_k=f_k(x^1,...,x^n)$ are functions of all the coordiantes. 
-
-\textit{Wedge product} is similar to \textit{cross product}, and is used to build higher differential forms out of lower ones, as the cross product in vector calculus.
-
-The \textit{Exterior derivative}, operator $d$ is a generalization of a differential of a function. 
-Let $\omega=fdx^I$ be a simple $k$-form. Then its exterior derivative $d\omega$ is a $(k+1)$-form set by taking differential of the coefficient functions
-\begin{equation}
-d\omega = \sum_{i=1}^n \frac{\partial f}{\partial x^i}dx^i \wedge dx^I
-\end{equation}
-Thus a \textit{deferential form}, lets say, differential $2$-form is called an exterior derivative $da$ of $a=\sum_{j=1}^{n}f_j dx^j$. 
-It is given by
-\begin{equation}
-da = \sum_{j=1}^n df_j \wedge dx^j = \sum_{i,j=1}^n \frac{\partial f_j}{\partial x^i}dx^i\wedge dx^j.
-\end{equation}
-Overall, the $da=0$ is required for a function $f$ such that $a=df$.
-
-On as smooth manifold $\mathcal{M}$ the differential from of degree $k$ is a \textit{smooth section} of the $k$th \textit{exterior power} of the \textit{cotangent bundle} of $\mathcal{M}$. 
-Then, the set of all the $k-$forms on $\mathcal{M}$ is a \textit{vector space} $\Omega^k(\mathcal{M})$. 
-The formal definition then stands. At any point $p\in \mathcal{M}$ a $k-$form $\beta$ defines an element 
-\begin{equation}
-\beta_p\in\Lambda^kT^* _p \mathcal{M}
-\end{equation}
-where $T_p\mathcal{M}$is the \textit{tangent space} tp $\mathcal{M}$ at $p$. The $T^* _p \mathcal{M}$ is its \textit{dual space} (cotangent space). Thus, $\beta$ is also a linear functional such that $\beta_p:\Lambda^k T_p \mathcal{M}\rightarrow I\!R$
-
-%% -----------------------------------------------------
-
-\subsection{More on the algebra of differential forms}
-
-If $\phi$ and $\psi$ are the 2-forms given for example as 
-\begin{equation}
-\phi = x dx - y dy \hspace{5mm} \text{and} \hspace{5mm}\psi = z dx + x dz
-\end{equation}
-Then the \textbf{exterior product} is given by 
-\begin{align}
-\phi\wedge\psi &= (x dx - y dy)\wedge(zdx + xdz) = \\
-&=xzdxdx+x^2dxdz-yzdydx-yxdydz= \\
-&=yzdxdy + x^2 dx dz - xydydz
-\end{align}
-as $dxdx=0$ and $dydx=-dxdy$. 
-The product of two $1$-forms is a $2$-form.
-In general, the \textbf{wedge product} of a $p$-form and $q$-form is a $(p+q)$-form.
-
-In other words, consider a surface $\mathcal{M}$ and two $1$-forms on it $\phi$ and $\psi$ Then the \textbf{wedge product} is 
-\begin{equation}
-(\phi\wedge\psi)(v,w)=\phi(v)\psi(w) - \phi(w)\psi(v)
-\end{equation}
-for any $v$ and $w$ tangent vectors to $\mathcal{M}$.
-
-\paragraph{Properties of the wedge product.} The exterior algebra main idea is that the operations are designed to create \textbf{the permutational antisymmetry}. 
-Let the $dx_i$ be the basis $1$-from and $\omega_j$ are the orbitrary $p$-form (of order $p_j$), and $a$, $b$ be arbitrary scalars. 
-Then the \textit{wedge product} is defined to have properties:
-\begin{align}
-(a\omega_1+b\omega_2)\wedge\omega_3 &= a\omega_1\wedge\omega_3+b\omega_2\wedge\omega_3 \hspace{5mm} (p_1 = p_2), \\
-(\omega_1\wedge\omega_2)\wedge\omega_3 &= \omega_1\wedge(\omega_2\wedge\omega_3), \hspace{5mm} a(\omega_1\wedge\omega_2) =  (a\omega_1)\wedge\omega_2\\
-dx_i\wedge dx_j &= -dx_j\wedge dx_i
-\end{align}
-Thus, any arbitrary differential form can be reduced to \textbf{a} coefficient multiplying $dx_i$ or a wedge product of the generic form 
-\begin{equation}
-dx_i\wedge dx_j \wedge...\wedge dx_p
-\end{equation}
-with the properties allowing to put all coefficients together as 
-\begin{equation}
-a dx_1 \wedge b dx_2 = - a(b dx_2 \wedge dx_1) = -ab(dx_2 \wedge dx_1) = ab(dx_1 \wedge dx_2)
-\end{equation}
-
-\paragraph{Wedge product acting on tangent vectors}.
-The $\wedge$ of two tangent vectors $\boldsymbol{u}\wedge\boldsymbol{v}$, where ($\boldsymbol{u}, \boldsymbol{v}\in T_p(\mathcal{M})$) is an antisymmetric tensor product that in addition to bilinearity requires antisymmetry. 
-\begin{align}
-\boldsymbol{v} =& v^1e_1 + v^2 e_2 + v^3 e_3 \\
-\boldsymbol{u} =& u^1e_1 + u^2 e_2 + u^3 e_3 \\
-\boldsymbol{v}\wedge\boldsymbol{u} =& (v^1u^1 - v^2u^1)(e_1\wedge e_2) + \\
-& + (v^1u^3 - v^3u^1)(e_1\wedge e_1) + \\
-& + (v^2u^3 - v^3u^2)(e_2\wedge e_1)
-\end{align}
-mimicking the behavior of the cross product. 
-However, this can easly be extended to higher dimensions. 
-
-Important, that the resulting object of $\boldsymbol{v}\wedge\boldsymbol{u}$ does not belong to $T_p M$. It is called an \textbf{alternating bivector} and is an element of the vector space $\Lambda^2 T_p (\mathcal{M})$ ,that is called -- \textbf{second exterior power} of $T_p \mathcal{M}$.
-
-Generally one obtains $\Lambda^k T_p (\mathcal{M})$ that is a linear subspace of $T_p ^k (\mathcal{M})$.
-
-Note that the exterior product on the \textit{cotangent spaces}, $T_p ^* \mathcal{M}$ is compatible with \textit{wedge product} on $T_p\mathcal{M}$ and is usually denoted with the same symbol and yields
-$(\boldsymbol{\alpha}\wedge\boldsymbol{\beta})\in\Lambda^2 T_p ^* \mathcal{M}$.
-
-%% ------------------------------------------------------
-
-\subsection{Differential forms on a Reimannian maniforld}
-
-There metric defines a fiber-wise isomorphism of the tangent and cotangent spaces. This allows to convert vector fields to covector field and vice versa. It also allows the definition of the \textit{Hodge star operator}.
-
-Hodge star operator $\star$ is a linear map, defined on the exterior algebra of a finite-dimensional oriented vector space endowed with a non-degenerate symmetric bilinear form. Applying the operator to the element of the algebra produces the \textit{Hodge dual} of the element.
-
-Example. Consider a $3D$ Euclidean space. Let there be an orientated plane, that is presented by the exterior product $\wedge$ of two basis vectors. Then its \textit{Hodge dual} is the normal vector given by the cross product. 
-
-The \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
-
-The $\star$ can be applied to the \textit{cotangent bundle} of a pseudo-reimanian manifold -- to all differential $k$-forms. This allows the definition of a differential as a \textit{Hodge adjoint} of the exteior derivative. 
-
-\paragraph{Formal definition}. Let $V$ be a $n$-dimensional vector-space with non-degenerate symmetric bilinear form $\langle\cdot,\cdot\rangle$ -- the \textit{inner product}. 
-This induces an inner product on $k-$vectors $\alpha,\beta\in\Lambda^k V$ for $0\leq k \leq n$ by defining it on decomposable $k$-vectors $\alpha = \alpha_1\wedge\cdots\wedge\alpha_k$ and $\beta=\beta_1\wedge\cdots\wedge\beta_k$.
-
-The \textit{Hodge star} operator is a linear operator on the exterior algebra of $V$, mapping $k$-vectors to $(n-k)$-vectors for $0\leq k \leq n$. It has following property that defines it completely
-\begin{equation}
-\alpha\wedge(\star\beta) = \langle\alpha,\beta\rangle\omega 
-\end{equation}
-for every pair of $k-$vectors $\alpha\beta\in\Lambda^kV$.
-Here the $\omega\in\Lambda^nV$ is the unit $n-$vector defined in terms of an oriented orthonormal basis $\{e_1,...,e_n\}$ of $V$ as
-\begin{equation}
-\omega := e_1 \wedge \cdots \wedge e_n.
-\end{equation}
-
-Dually, in the space $\Lambda^n V^*$ of $n-forms$, the dual $\omega$ is the column form $\textbf{det}$, the function whose value on $v_1\wedge\cdots\wedge v_n$ is the determinant of the $n\times n$ matrix assembled from the column vectors of $v_i$ in $e_i$ coordinates. Thus the dual definition is 
-\begin{equation}
-\text{det}(\alpha\wedge\star\beta) = \langle\alpha,\beta\rangle.
-\end{equation}
-or equivalently 
-\begin{align}
-\alpha =& \alpha_1\wedge\cdots\wedge\alpha_k \\
-\beta =& \beta_1\wedge\cdots\wedge\beta_k \\
-\star\beta =& \beta_1 ^{\star} \wedge\cdots\wedge \beta_{n-k} ^ {\star} \\
-\text{det}(\alpha_1\wedge\cdots\wedge\alpha_k\wedge\beta_1 ^{\star}\wedge\cdots\wedge\beta_{n-k}^{\star}) =& \text{det}(\langle\alpha_i,\beta_j\rangle)
-\end{align}
-
-\paragraph{Examples}.
-Consider 2D space with normalized Euclidian metric and orientation given by ordering $(x,y)$. The \textit{Hodge star} on $k-$forms is given by 
-
-\begin{align}
-\star 1 &= dx \wedge dy \\
-\star dx &= dy \\
-\star dy &= -dx \\
-\star(dx \wedge dy) &= 1.
-\end{align}
-
-Consider a more complex example. A plane that can be regarded as a vector space with a standard sesquilinear form as the metric. 
-There the \textit{Hodge operator} has a property that it is invariant under the holomorphic changes of coordinates. 
-Consider $z = x + iy$ holomorphic function of $w=u + iv$. Then in the new coordinates 
-
-\begin{align}
-\alpha &= pdx +qdy \\
-\star \alpha &= -q dx + p dy
-\end{align}
-
-Next, consider a 3D space. 
-Here the $\star$ can be regarded as a correspondence between vectors and bivectors. 
-Thus in Eucledian $\boldsymbol{R}^3$ space with basis $dx,dy,dz$, of one-forms, one finds
-\begin{align}
-\star dx =& dy\wedge dz \\
-\star dy =& dz\wedge dx \\
-\star dz =& dx \wedge dy \\
-\end{align}
-The relations to the exterior and cross product are:
-\begin{equation}
-\star(\boldsymbol{u}\wedge\boldsymbol{v})=\boldsymbol{u}\times\boldsymbol{v}, \hspace{5mm}\star(\boldsymbol{u}\times\boldsymbol{v}) = \boldsymbol{u}\wedge\boldsymbol{v}
-\end{equation}
-
-Thus in 3D the $\star$ provides and isomorphism between vectors and bivectors, so each axial vector $\boldsymbol{a}$ is associated with the bivector $\boldsymbol{A}$ as $\boldsymbol{A} = \star\boldsymbol{a}$ and $\boldsymbol{a} = \star\boldsymbol{A}$. It can also mean a correspondence between the axis and infinitesimal rotation around the axis with the speed equal to the length of the axis vector.
-
-Consider a tensor $dx \otimes dy$ that corresponds to the matrix with one $dx$ row and $dy$ column. The wedge $dx\wedge dy = dx\otimes dy - dy\otimes dx$ is a 3 by 3 \textit{skew-symmetric matrix} with all $0$ exept $(0,1)$ and $(1,0)$ components that are $1$. 
-So the $\wedge$ operator turns $\boldsymbol{v} = adx + bdy + cdz$ into $\star\boldsymbol{v}\approx$ $3\times 3$ matrix with $0$ on diaoganals.
-
-Next, consider $4D$ space.
-Here $\star$ acts as an endomorphism of the second exterior power, mapping $2$-forms into $2$-forms. 
-Consider the Minkowski space time with signature $(+,-,-,-)$ and coordinates $(t,x,y,z)$, there we have
-\begin{align}
-\star dt &= dx \wedge dy \wedge dz \\
-\star dx &= dt \wedge dy \wedge dz \\
-\star dy &= -dt \wedge dx \wedge dz \\ 
-\star dz &= dt \wedge dx \wedge dy 
-\end{align}
-
-\paragraph{Wedge product on manifold}
-For an $n-$dimensional oriented pseudo-Reimannian manifold $\mathcal{M}$ we apply the construction such that to each cotangent vector space $T^* _p \mathcal{M}$ and its exterior powers $\Lambda^k T_p ^* \mathcal{M}$ and hence to all differential $k-$forms $\xi\in\Omega^k(\mathcal{M})=\Gamma(\Lambda^k T^* \mathcal{M})$, the global sections of the bundle are $\Lambda^k T^*\mathcal{M}\rightarrow \mathcal{M}$. 
-The Reimannian metric induces inner product on $\Lambda^k T_p ^* \mathcal{M}$ at each point $p\in\mathcal{M}$. We define the \textit{Hodge dual} of a $k-$form $\xi$ defining $\star\xi$ as a unique $(n-k)$-form satisfying
-\begin{equation}
-\eta\wedge\star\xi = \langle\eta,\xi\rangle\omega
-\end{equation}
-for every $k-$form $\eta$ where $\langle\eta,\xi\rangle$ is a real value function on $\mathcal{M}$ and the volume form $\omega$ is induced by the Reimannian metric.
-
-\paragraph{In the coordinate form}
-Consider an orthonormal basis $\{ \frac{\partial}{\partial x_1}, \cdots,\frac{\partial}{\partial x_n} \}$ the a tangent space $V=T_p\mathcal{M}$. And its dual basis $\{ dx_1, ..., dx_n \}$ in $V^* = T_p ^*\mathcal{M}$, with the metric matrix $g_{ij} = \big(\langle\frac{\partial}{\partial x_i},\frac{\partial}{\partial x_j}\rangle\big)$ and its inverse matrix $g^{ij} = \big(\langle dx_i, dx_j \rangle\big)$. The Hodge dual of a decomposable $k$-form is then 
-\begin{equation}
-\star(dx^{i_1}\wedge\cdots\wedge dx^{i_k}) = \frac{\sqrt{|\text{det}[g_{ab}]|}}{(n-k)!}g^{i_1 j_1}\cdots g^{i_k j_k} \epsilon_{j_1 ... j_n} dx^{j_{k+1}}\wedge\cdots\wedge dx^{j_n}
-\end{equation}
-
+%% ===========================================================================
+%%
 %%
 
-\subsection{Conclusion}
+In this thesis we perform and analyze numerical relativity simulations of merging neutron stars. These simulations are performed via solving the equations of general relativity, hydrodynamics and radiation, neutrino, transport via special numerical schemes. 
 
-In this section we aimed to define certain mathematical concepts crucial for understanding next sections of this chapter.
+In this chapter we provide a brief description of the main equations and methods used to produce simulations analyzed in this thesis. For the sace of bravity we limit the discussion to the main results and implication important for our work.
 
-Particular attentions deserve the concept of tangent vectors $\partial x_i$ and cotangent vectors $\alpha_i$ that on a manifold form tangent $T_p \mathcal{M}$ and contangent $T_p^*\mathcal{M}$ spaces. The manifold that assembles all the tangent vectors is denoted with $T\mathcal{M} = \{ (x,y) | x\in \mathcal{M}, y \in T_x \mathcal{M} \}$, with the projection $\pi:T\mathcal{M}\rightarrow \mathcal{M}$, while the cotangent bundle is a smooth manifold that assembles all the cotangent spaces.
+For the underlying principles of the Eintein's theory of General Relativity, for which we here the reado to \red{[GR refs]}.
 
-The operation of importance are the \textit{inner product} $\langle \cdot,\cdot \rangle : V \times V \rightarrow \mathcal{F}$, that is linear, positive and conjugate-define, and it allows the paring between vectors and differential forms; 
-and the \textit{outer, Wedge, product} which, acting on vectors, mimics the behavior of the cross product, and acting on differential forms converts $k$-from into $k+1$-form, allowing for instance to define a volume element, $f(x,y,z)dx \wedge dy \wedge dz$. 
+For the discussion and derivation of general relativistic hydrodynamics and refer the interested reader to \red{[GRHD refs]}.
 
-Another important concept related to the differential forms on a Reimannian manifold is the Hodge star operator, that allows to convert vector fields into the co-vector fields and vise versa.
-
-For example, for an orientatned plane in Eqclidean space,
-the Hodge dual of the $\wedge$ product of two basis vectors is the normal vector (given by the cross product).
-
-Thus \textit{Hodge operator} $\star$ is a one-to-one mapping of $k-$ to $(n-k)$-vectors.
+For the Discussion on the radiation transport we refer to \red{GR-Rad refs}
 
 
-%% --------------------------------------
+%% ===========================================================================
 
-\section{General-relativistic hydrodynamics}
+\section{Basics of numerical relativity}
 
-%% --------------------------------------
+%% ===========================================================================
 
 
-This section is meant to sketch several important parts of the mathematical background. 
-We focus on the aspects relevant for the tools and methods employed in out discussion. 
-We do not aim to provide a comprehensive overview. 
-The chapter is divided into 
-\todo{list the parts and their content}
 
-%% [ GENERAL RELATIVITY from EFE to CCZ4 ]
+
+
+
+\section{Radiation}
+
+
+
+
+\subsection{Neutrino leackage scheme}
+
+
+
+\subsection{Neutrino M0 scheme}
+
+
+
+\section{Initial Data}
+
+\red{To explain: 
+    pseudo-spectral code; 
+    neutrino-less beta-equilibrium}
+
+The initial data is computer via pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}
+The code generates the binary neturon stars in a qusi-circular orbit, that revolve only few times before merging.
+The EOS for the minimum temperature slice of the EOS table used for the evolution assuming neutrino-less beta-equilibrium.
+Assuming constant temperature, we also remove the photon energy contribution to the pressure.
+
+In the evolution code, passing the initial data, the mapping is done from the zero tem
+In the evolution code, the electron fraction is set by the beta equilibrium condition. 
+The specific internal energy is reset in accoradance with minimum temperature slice of the EOS table used for evolution.
+
+Errors present in the initial data in intriduced during the mapping result in a small oscillations of netron stars.
+In terms of relative changes in central density these amounts to $\sim2-3\%$ \cite{Radice:2018pdn}
+
+\section{WhickyTHC}
+
+\texttt{WhiskyTHC} is ...
+\cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}
+
+
+%% GR Hydrodynamics
+The code evolves the proton and neutron number densities, $n_n$ and $n_p$
+respectively, as 
+
+\begin{equation}
+\label{eq:wthc:pndens}
+    \nabla_\nu (n_p u^\mu) = R_p^\mu \ \ , \ \ 
+    \nabla_\nu (n_n u^\mu) = R_n^\mu \ .
+\end{equation}
+
+Here $u^{\mu}$ is the fluid four-velocity, $R_p = -R_n$ is the net
+lepton number deposition rate due to the absorption and emission of neutrinos 
+and antineutrinos (\red{see Section XXX})
+
+The number densities are related as $n_p=Y_e n$ where $n = n_p + n_e$ is the baryon 
+number density and $Y_e$ is electron fraction.
+
+The matter of a neutron star is approximated with ideal fluid with stress-energy tensor
+
+\begin{equation}
+T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + Pg_{\mu\nu}
+\end{equation}
+
+where $\rho=m_{\rm b} n$ is the baryon rest-mass density, 
+$n$ the baryon number density, $m_{\rm b} \simeq 10^{-24}\,$g 
+the neutron mass, 
+$h=1+\epsilon + P/\rho$ the specific enthalpy, 
+$\epsilon$ the specific internal energy (energy density),
+and $P$ is pressure
+
+The Euler equation for balance of energy and momentum reads
+
+\begin{equation}
+\label{eq:wthc:euler}
+\nabla_\nu T^{\mu\nu} = Q u^\mu \ ,
+\end{equation}
+
+where $Q$ is the net energy deposition rate doe to absorption
+and emission of neutrinos (\red{see Section XXX})
+
+
+%% Numerical methods
+High resolution shock capturing methods are used to discritize equations 
+\eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens}.
+Specifically, central Kurganov-Tadmor type scheme \cite{Kurganov:2000} with 
+HLLE flux formula \cite{Einfeldt:1988}
+and non-oscillatory reconstruction of the primitive variables with the MP5 scheme of
+\cite{Suresh:1997}.
+
+Shock capturing schemes require the presence of a low density atmosphere around neutron stars.
+The constant value of $\rho_0 = m_p n \approx 6\times 10^4$~\gcm.
+
+
+\begin{sidenote}
+    \textbf{David:}  \\
     
-%% ---
-
-\subsection{The Cauchy Problem in General Relativity}
-
-%% ---
-
-In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. 
-We start by introducing notations and the basics of GR. 
-We summarize the Einstein field equations. 
-Then we continue with how EFE can be split in a set of evolutionary equations and constraints. 
-For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. 
-In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to evolve spacetimes with singularities. 
-This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
-
-%% --- 
-\subsubsection{Euler-Lagrange equations}
-%% ---
-
-\red{Requires understanding of: vectors, differential forms and tensors;
-    differential equation types: ellipitc, parabolic, hyperbolic, their nmerical advantages;
-    smooth manifolds, Lorenzian maniforld and metric, affine connection (Levi-Civita connection), covariant derivatives, action pinciple, lagrange field theory, variation of the action, Einstein-Hilbert action, Ricci scalar and Ricci tensor, Riemann tensor;
-    spacelike, timelike and null hypersurface, hyperbolic space-time, space-time foliation,
-    Lie-derivative along the vector field, Lagrangian density, Legendre transformation, Hamiltonian,
-    extrinsic curvature, Codazzi equations, Gauss equations,
-    palantini-type vatiation
-    gauge conditions: slicing and spatial,}
-
-We consider a spacetime defined by the real \textit{smooth manifold} $\mathcal{M}$ and \textit{Lorentzian metric} $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. 
-The $\nabla$ denotes the \textit{affine connection} associated with $\boldsymbol{g}$, the Levi-Civita connection.
-We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$.
-The $\nabla\boldsymbol{T}$ denotes the \textit{covariant derivative} of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.
-
-The scalar product of two vectors then 
-
-\begin{equation}
-\boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}
-\end{equation}
-
-The action of a linear form on a vector however is represented as 
-
-\begin{equation}
-\langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}
-\end{equation}
-
-Let the $\boldsymbol{\alpha}$ be the \textit{totally antisymmetric symbol} that expresses through coordinates $x^{\mu}$ as
-
-\begin{equation}
-\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
-\end{equation}
-
-where $\wedge$ denotes \textit{exterior product}. 
-Then, proper \textit{volume pseudo-form} of the spacetime is
-
-\begin{equation}
-\boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha},
-\end{equation}
-
-where $g$ denotes the determinant of the spacetime metric.
-
-In GR, the spacetime is represented by \textit{Lorentzian manifold} $\mathcal{M}$ and $g$, the \textit{Lorentzian metric}.
-
-The \textit{action principle} of the \textit{Lagrangian field theory} on the spacetime $(\mathcal{M}; \boldsymbol{g})$ is
-
-\begin{equation}
-S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int_{\mathcal{M}}\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}),
-\end{equation}
-
-where $\boldsymbol{q}$ are a set of generalized coordinates for the fields described by the theory, $\nabla$ is the Levi-Civita connection, $\mathcal{L}$ is a scalar density of a scalar quantity $\lambda$ as $\lambda(\boldsymbol{q},\nabla\boldsymbol{q})$. 
-
-Varying the action with respect to the $\boldsymbol{q}$
-
-\begin{equation}
-\delta S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \delta\int\boldsymbol{\alpha}\mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\partial\mathcal{L}}{\partial\boldsymbol{q}}\delta\boldsymbol{q}+\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\nabla\boldsymbol{q}\Big)
-\end{equation}
-
-As $\delta$ and $\nabla$ commute, and partially integrating $\nabla$, we obtain
-
-\begin{equation}
-\partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = \int\boldsymbol{\alpha}\Big(\frac{\mathcal{L}}{\partial\boldsymbol{q}}-\nabla\frac{\partial \mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big)\delta\boldsymbol{q} + \int_{\mathcal{M}}\boldsymbol{\alpha}\nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\delta\boldsymbol{q}\Big)
-\end{equation}
-
-The last term is a boundary term and in order to vanish we impose boundary condition. 
-Assume that the fields are defined over only a \textit{compact domain}. \\
-As the choice of $\partial\boldsymbol{q}$ is arbitrary, the 
-
-\begin{equation}
-\partial S(\boldsymbol{q}, \nabla\boldsymbol{q}) = 0
-\end{equation}
-
-and the \textit{Euler-Lagrange equations} are
-
-\begin{equation}
-\frac{\partial \mathcal{L}}{\partial\boldsymbol{q}} - \nabla\Big(\frac{\partial\mathcal{L}}{\partial(\nabla\boldsymbol{q})}\Big) = 0
-\label{eq:theory:eulerlagrange}
-\end{equation}
-
-%% ---
-\subsubsection{The Hilbert Action}
-%% ---
-
-The \textit{Einstein-Hilbert action} allows to obtain an \textit{Einstein field equations} through the \textit{principle of least action}. Here we briefly underline the procedure.
-
-Introduce action that describes the gravitational field, and a matter field $\mathcal{L}_m$:
-
-\begin{align}
-S_g &= \int\frac{1}{2\kappa}R\epsilon, \\
-S_m &= \int\mathcal{L}_{m}\epsilon,
-\end{align}
-
-where $R$ is the Ricci scalar and $\kappa$ is the  Einstein's constant.
-
-The full action then:
-
-\begin{equation}
-S = \int\Big(\frac{1}{2\kappa}R+\mathcal{L}_m\Big)\epsilon
-\end{equation}
-
-The action principle dicatates, that $\delta S = 0$  with respect to the inverse metric $g^{\mu\nu}$. 
-
-\begin{equation}
-\int\Bigg[\frac{1}{2\kappa}\Big(\frac{\delta R}{\delta g^{\mu\nu}}+\frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}}\Big) + \frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}}\Bigg]\delta g^{\mu\nu}\epsilon
-\end{equation}
-
-Owing to the arbitrariness of $\delta g^{\mu\nu}$, the integrand must be zero. 
-
-\begin{equation}
-\frac{\delta R}{\delta g^{\mu\nu}} + \frac{R}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -2\kappa\frac{1}{\sqrt{-g}}\frac{\delta(\sqrt{-g}\mathcal{L}_m)}{\delta g^{\mu\nu}} = -\frac{2\kappa}{\sqrt{-g}}\frac{\delta S_m}{\delta g_{\mu\nu}} := \kappa T_{\mu\nu},
-\label{eq:theory:action1}
-\end{equation}
-
-where we introduced the stress-energy tensor $T_{\mu\nu}$ and the matter action $S_m$ for future use. \\
-
-\gray{this matter action is used in deriving the $T_{\mu} ^{\nu}$ i the invariant fluid formalism}
-
-The continuation of this derivation requires taking variation of the Riccia scalar $R$ and the determinant of the metric $\sqrt{-g}$. 
-As this is a length procedure, we provide here the result. 
-
-\begin{equation}
-\frac{\delta R}{\delta g^{\mu\nu}} = R_{\mu\nu},
-\label{eq:theory:deltaR}
-\end{equation}
-
-where the $R_{\mu\nu}$ is the Ricci curvature tensor.
-
-\begin{equation}
-\frac{1}{\sqrt{-g}}\frac{\delta\sqrt{-g}}{\delta g^{\mu\nu}} = -\frac{1}{2}g_{\mu\nu}.
-\label{eq:theory:deltagmuny}
-\end{equation}
-
-Substituting Eq. \ref{eq:theory:deltaR} and Eq. \ref{eq:theory:deltagmuny} into equation of motion Eq.  \ref{eq:theory:action1} we obtain the Einstein's field equation 
-
-\begin{equation}
-R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
-\label{eq:theory:EFE}
-\end{equation}
-
-where in the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$.
-
-%% ---
-\subsubsection{3+1 Decomposition of Einstein field equations}
-%% ---
-
-The Einstein field equations (\ref{eq:theory:EFE}) represent a set of $10$ non-linear partial differential equations.
-These equations can be defined on a while metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter, the boundary conditions on $\partial\Omega$ are required. 
-
-It is convenient to chose a \textit{null hyersurface} $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. 
-This, however, requires the spacetime to be \textit{strongly hyperbolic}, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. 
-This foliation can be understood as splitting the spacetime into a set of \textit{spacelike} hypersurfaces $\Sigma_t$. 
-
-
-\paragraph{Spacelike Foliations}
-
-
-Let the $t$ be the global smooth functions such that, 
-
-\begin{equation}
-\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\},
-\end{equation}
-
-and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. 
-This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field.
-Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the \textit{Lie derivative} of the $\boldsymbol{q}$ along the vector $\vec{t}$.
-
-Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. 
-A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a pert normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the diretion to $\Sigma_{t+dt}$. 
-Then, the vector $\vec{t}$ can be written as 
-
-\begin{equation}
-\vec{t} = \alpha\vec{n}+\vec{\beta}.
-\end{equation}
-
-$\vec{\beta}$ is called \textit{shift vector} and $\alpha$ is called \textit{lapse-function}. 
-
-The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, \textit{Riemannian metric} $\boldsymbol{\gamma}$ as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n}$, where $\underline{n}$ is the 1-form associated to the vector $\vec{n}$. \red{and?}
-The \textit{Levi-Civita connection} can be computed by projecting the $\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
-
-There are exist coordinates that are adapted to the foliation, namely $\{t, x^i\}$ with $\vec{\partial}_i\cdot \vec{n} = 0$. 
-In these coordiantes the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$. 
-
-The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ and can be expressed in terms of $\alpha$ and $\vec{\beta}$ as
-
-\begin{align}
-\text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
-\text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
-\text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i,
-\end{align}
-
-where we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
-
-The line-element can be thus written as
-\begin{equation}
-ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
-\end{equation}
-
-
-\paragraph{Ex-curse: Hamiltonian Field Theory}
-
-
-First we recall the generalized coordinates $\boldsymbol{q}$ and their \textit{covariant derivatives} $\nabla\boldsymbol{q}$. 
-
-In light of the spacetime decomposition discussed above, we divide the $\boldsymbol{\alpha}$ into the time $dt$ and spatial parts represented by the \textit{antisymmetric symbol} ${^{(3)}\boldsymbol{\alpha}}$ as 
-
-\begin{equation}
-\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3 = dt \wedge {^{(3)}\boldsymbol{\alpha}}.
-\end{equation}
-
-Next, we introduce the "time derivative" as a \textit{Lie derivative along the vector field} $\vec{t}$ as 
-
-\begin{equation}
-\dot{\boldsymbol{q}} := \mathcal{L}_{\vec{t}}\boldsymbol{q}.
-\end{equation}
-
-As the $\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q})$ is the \textit{Lagrangian density}, a conjugate momentum can be defined as 
-
-\begin{equation}
-\boldsymbol{p} := \frac{\partial\Lambda}{\partial\dot{\boldsymbol{q}}},
-\end{equation}
-
-Assuming that $\boldsymbol{p}$ and $\nabla\boldsymbol{q}$ can be expressed as a function of $\boldsymbol{q}$ and $\boldsymbol{p}$, inspired by the \textit{Legendre transformation}, we define the \textit{Hamiltonian} and its density as
-
-\begin{align}
-\mathcal{H} &= \boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q}, \nabla\boldsymbol{q}) \\
-H &= \int_{\Sigma}\mathcal{H}{^{(3)}\boldsymbol{\alpha}}
-\end{align}
-
-Additionally we define the quantity 
-
-\begin{equation}
-J = \int_{0}^{t}H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt\int_{\Sigma}\mathcal{H}(\boldsymbol{q},\boldsymbol{p}){^{(3)}\boldsymbol{\alpha}} = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Big(\boldsymbol{p}\cdot\dot{\boldsymbol{q}} - \mathcal{L}(\boldsymbol{q},\nabla\boldsymbol{q})\Big).
-\end{equation}
-
-Consider the variation of the $J$ with respect to the $\delta\boldsymbol{p}$ and $\delta\boldsymbol{q}$ as
-
-\begin{equation}
-\delta J = \int_{0}^{t}\delta H(\boldsymbol{q},\boldsymbol{p})dt = \int_{0}^{t}dt (\dot{\boldsymbol{q}}\delta\boldsymbol{p}+\boldsymbol{p}\delta\dot{\boldsymbol{q}}) - \int_{0}^{t}dt\delta\Lambda(\boldsymbol{q}, \nabla\boldsymbol{q}).
-\end{equation}
-
-Consider the last term. The variation of the Lagrangian is
-
-\begin{equation}
-\delta\Lambda = \int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}\Bigg[\frac{\delta\Lambda}{\delta\dot{\boldsymbol{q}}}\delta\dot{\boldsymbol{q}}+\frac{\delta\Lambda}{\delta\boldsymbol{q}}\delta\boldsymbol{q}\Bigg],
-\end{equation}
-
-The first term in the square brackets can be reduced to $\boldsymbol{p}\delta\dot{\boldsymbol{q}}$, using the definition of the conjugate momentum. 
-The second term can be treated, applying the Euler-Lagrange equations (\ref{eq:theory:eulerlagrange}). 
-These manipulations result in
-
-\begin{equation}
-\delta\Lambda = \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\boldsymbol{p}\delta\dot{\boldsymbol{q}} + \dot{\boldsymbol{p}}\delta\boldsymbol{q}).
-\end{equation}
-
-Thus we obtain that 
-
-\begin{equation}
-\int_{0}^{t} \delta H(\boldsymbol{q},\boldsymbol{p})dt =   \int_{0}^{t}dt\int_{\Sigma}{^{(3)}\boldsymbol{\alpha}}(\dot{\boldsymbol{q}}\cdot\delta\boldsymbol{p}-\dot{\boldsymbol{p}}\cdot\delta\boldsymbol{q}),
-\end{equation}
-
-and as $\delta\boldsymbol{p}$ and $\delta\boldsymbol{p}$ are arbitrary, the \textit{Hamilton equations} read
-
-\begin{equation}
-\dot{\boldsymbol{q}}=\frac{\delta H}{\delta\boldsymbol{p}}, \hspace{5mm} \dot{\boldsymbol{p}} = -\frac{\delta H}{\delta\boldsymbol{q}}.
-\label{eq:theory:hamiltoneqs}
-\end{equation}
-
-The Hamiltonian formalism can be used to re-derive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution.
-
-
-\paragraph{Extrinsic Curvature and Constraint equations}
-
-
-We define the \textit{extrinsic curvature} of a $D-1$-surface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$. 
-Note, that the $\boldsymbol{K}$ does not depend on $\alpha$ and $\vec{\beta}$, it is a purely spatial tensor. 
-The components of the extrinsic curvature are 
-
-\begin{equation}
-K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
-\label{eq:theory:extrcurvdef}
-\end{equation}
-
-where $\mathcal{L}_{\vec{n}}$ is the Lie derivative along the vector field $\vec{n}$. \\
-From the (\ref{eq:theory:extrcurvdef}) the extrinsic curvature can be interpreted as a "speed of the $\vec{n}$ during the parallel transport along the hypersurface $\Sigma_t$".
-
-\textit{Codazzi equations} relate the $4D$ Ricci tensor to the extrinsic curvature as
-
-\begin{equation}
-D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta}=R_{\gamma\delta}n^{\delta}{\gamma^{\gamma}}_{\beta},
-\label{eq:theory:formomentum}
-\end{equation}
-
-here $K$ is a trace of the tensor $\boldsymbol{K}$.
-
-Gauss equation relates the $3D$ \textit{Riemann tensor} $^3{R_{\alpha\beta\gamma}}^{\delta}$ to the $4D$ one and the $\boldsymbol{K}$ as 
-
-\begin{equation}
-^3{R_{\alpha\beta\gamma}}^{\delta} = {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}{\gamma^{\lambda}}_{\gamma}{\gamma^{\delta}}_{\sigma}{R_{\mu\nu\lambda}}^{\delta}-K_{\alpha\gamma}{K_{\beta}}^{\delta}+K_{\beta\gamma}{K^{\delta}}_{\alpha}.
-\label{eq:theory:forhamiltconst}
-\end{equation}
-
-The \textit{momentum constraint} thus can be obtained by substituting the (\ref{eq:theory:EFE}) into  (\ref{eq:theory:formomentum}) which yields
-
-\begin{equation}
-D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} = -8\pi{\gamma^{\alpha}}_{\beta} n^{\gamma}T_{\alpha\gamma}=:8\pi j_{\beta},
-\label{eq:theory:momconstraint}
-\end{equation}
-
-where $j^{\alpha}$ is the ADM momentum density.
-
-The \textit{Hamiltonian constraint} can be obtained by substituting EFE (\ref{eq:theory:EFE}) into the (\ref{eq:theory:forhamiltconst}), yielding 
-
-\begin{equation}
-^3 R+ K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2G^{\alpha\beta}n_{\alpha}n_{\beta} = 16\pi n_{\alpha}n_{\beta} T^{\alpha\beta} =: 16\pi E,
-\label{eq:theory:hamilconstraint}
-\end{equation}
-
-where $E$ is the ADM energy density.
-
-The obtained constraint equations represent a set of \textit{elliptic equations} that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. 
-It is however, possible to show that Einstein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future.
-
-
-\paragraph{The Hamiltonian Formulation of the Einstein Equations, ADM equations}
-
-
-\gray{deriving the evolution equations, ADM formulation}
-
-%% Part 1 [Extrinsic curvature]
-
-Here we briefly sketch to path of derivation of the Einstein field equations in the Hamiltonian framework. We will elude most of the intimidate and computationally extensive steps, as well as derivation of the boundary terms. For this we refer to \cite{Poisson:2004}.
-
-First it is useful to note that determinant of the three-metric $\sqrt{\gamma}$ can be expressed as $\sqrt{\gamma}=\sqrt{-g}/\alpha$. 
-The $p$ is the trace of the canonical momentum $\boldsymbol{p}$.
-
-Now, consider the \textit{scalar curvature}, $R$,
-
-\begin{align}
-G_{\mu\nu} &= R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} \\
--Rg_{\mu\nu}n^{\nu}n^{\mu} &= 2(G_{\mu\nu} n^{\nu}n^{\mu}-R_{\mu\nu}n^{\mu}n^{\mu})\\
--Rn_{\mu}n^{\mu}& = 2(G_{\mu\nu}n^{\nu}n^{\mu} - R_{\mu\nu}n^{\mu}n^{\mu}) \\
-R &= 2(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu}).
-\end{align}
-
-From the \textit{Gauss-Codacci equation} (\ref{eq:theory:momconstraint}), which relates the spatial curvature $^{(3)}R$ to the spacetime curvature $R$, we have the following constraint relationship
-
-\begin{equation}
-2G_{\mu\nu}n^{\mu}n^{\nu} = {^{(3)}R} + K^2 - K_{\mu\nu}K^{\mu\nu}.
-\end{equation}
-
-The $R_{\mu\nu}n^{\mu}n^{\nu})$ can be expressed as a combination of extrinsic curvature and total divergences as follows.
-From the definition of the Ricci tensor $R_{\mu\nu}$, we have:
-
-\begin{align}
-R_{\mu\nu} &= {R_{\mu\gamma\nu}}^{\gamma} \\
-R_{\mu\nu}n^{\mu}n^{\nu} &= {R_{\mu\gamma\nu}}^{\gamma} \\
-&= -(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\mu})n^{\gamma}n^{\nu} \\
-&= n^{\mu}(\nabla_{\mu}\nabla_{\gamma} - \nabla_{\gamma}\nabla_{\nu})n^{\gamma} \\
-&= (\nabla_{\mu}n^{\mu})(\nabla_{\gamma}n^{\gamma}) - \nabla_{\mu}(n^{\mu}\nabla_{\gamma}n^{\gamma}) - (\nabla_{\gamma}n^{\mu})(\nabla_{\mu}n^{\gamma}) + \nabla_{\gamma}(n^{\mu}\nabla_{\mu}n^{\gamma}) \\
-&= K^2 - K_{\mu\gamma}K^{\mu\gamma} - \nabla_{\mu}(n^{\mu}\nabla_{\gamma}n^{\gamma}) + \nabla_{\gamma}(n^{\mu}\nabla_{\mu}n^{\gamma})
-\end{align}
-
-In case of variations with compact support, that we are interested in, the total divergences -- last two terms -- can be neglected. 
-Then the result is
-
-\begin{equation}
-R_{\mu\nu}n^{\mu}n^{\nu}= K^2 - K_{\mu\nu}K^{\mu\nu}.
-\label{eq:theory:rmunu_as_func_k}
-\end{equation}
-
-%% part 2 [Canonical momentum and Hamiltonian]
-
-Using the fact that $\sqrt{\gamma}=\sqrt{-g}/\alpha$ and the (\ref{eq:theory:rmunu_as_func_k}) we obtain the Lagrangian density in terms of the variables on the hypersurface:
-
-\begin{align}
-\Lambda &= \sqrt{-g}R \\
-&= \alpha\sqrt{\gamma}R \\
-&= 2\alpha\sqrt{\gamma}(G_{\mu\nu}n^{\mu}n^{\nu} - R_{\mu\nu}n^{\mu}n^{\nu})\\ 
-&= 2\alpha\sqrt{\gamma}\Big(\frac{1}{2}[{^{(3)}R} - K_{\mu\nu}K^{\mu\nu} + K^2] - K^2 - K_{\mu\nu}K^{\mu\nu}\Big)
-\end{align}
-
-Together with the contribution from matter fields, we obtain
-
-\begin{equation}
-\Lambda = \Lambda_g+\Lambda_m= \frac{1}{16\pi}\alpha({^{(3)}R} + K_{\mu\nu}K^{\mu\nu} - K^2)\sqrt{\gamma}+\Lambda_m
-\end{equation}
-
-Next we note that the extrinsic curvature of a
-surface $\Sigma$ is defined as $K_{\mu\nu} = \nabla_{\mu}n_{\nu}$. 
-
-To relate $K_{\mu\nu}$ to the metric, we make use of the following property of Lie derivatives:
-
-\begin{align}
-\mathcal{L}_{\vec{n}}g_{\mu\nu} &= n^{\gamma}\nabla_{\gamma}g_{\mu\nu} + g_{\gamma\nu}\nabla_{\mu}\upsilon^{\gamma} + g_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma} \\
-&= \nabla_{\mu}n_{\nu}+\nabla_{\nu}\upsilon_{\nu} \\
-&=2\nabla_{\mu}n_{\nu}
-\end{align}
-
-where the second line holds when $\nabla_{\gamma}\mu$ is the natural derivative operator corresponding to the metric $g_{\mu\nu}$ and the third line holds because $K_{\mu\nu}$ is symmetric.
-
-Substituting this into our definition of $K_{\mu\nu}$,
-
-\begin{align}
-K_{\mu\nu} &= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}g_{\mu\nu} \\
-&= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}(\gamma_{\mu\nu}-n_{\mu}n_{\nu}) \\
-&= -\frac{1}{2}\mathcal{L}_{\vec{\vec{n}}}\gamma_{\mu\nu} \\
-&= -\frac{1}{2}[n^{\gamma}\nabla_{\gamma}\gamma_{\mu\nu} + \gamma_{\gamma\nu}\nabla_{\mu}\upsilon^{\nu} + h_{\mu\gamma}\nabla_{\nu}\upsilon^{\gamma}] \\
-&= -\frac{1}{2\alpha}[\alpha n^{\gamma}\nabla_{\gamma}\gamma_{\mu\nu} + \gamma_{\gamma\nu}\nabla_{\mu}\alpha\upsilon^{\nu} + h_{\mu\gamma}\nabla_{\nu}\alpha\upsilon^{\gamma}] \\
-&= -\frac{1}{2\alpha}{\gamma_{\mu}}^{\gamma}{\gamma_{\nu}}^{\delta}[\mathcal{L}_{\vec{t}}\gamma_{\gamma\delta}-\mathcal{L}_{\vec{\beta}}\gamma_{\gamma\delta}] \\
-&= -\frac{1}{2\alpha}{\gamma_{\mu}}^{\gamma}{\gamma_{\nu}}^{\delta}[\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu}]
-\end{align}
-
-and on the hypersurface $\Sigma$ the \textit{projection operators} are not needed. So we obtain
-
-\begin{equation}
-K_{\mu\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu}=-\frac{1}{2\alpha}(\partial_t\gamma_{\mu\nu}-D_{\mu}\beta_{\nu}-D_{\nu}\beta_{\mu})
-\end{equation}
-
-which allows us to express the canonical momentum $p^{\mu\nu}$ as
-
-\begin{align}
-p^{\mu\nu} &= \frac{\partial\Lambda}{\partial\dot{\gamma}_{\mu\nu}} \\
-&= -\frac{\sqrt{\gamma}}{16\pi}\alpha\Bigg[\frac{\partial {^{(3)}R}}{\partial\dot{\gamma}_{\mu\nu}} + \frac{\partial(K_{\mu\nu}K^{\mu\nu})}{\partial\dot{\gamma}_{\mu\nu}} - \frac{\partial K^2}{\partial\dot{\gamma}_{\mu\nu}}\Bigg] \\
-&= \frac{\sqrt{\gamma}}{16\pi}(K\gamma^{\mu\nu} - K^{\mu\nu}),
-\end{align}
-
-where 
-
-\begin{equation}
-\frac{\partial K_{\mu\nu}}{\partial \dot{\gamma}_{\mu\nu}} = \frac{1}{2\alpha}, \hspace{5mm} \frac{\partial {^{(3)}R}}{\partial \dot{\gamma}_{\mu\nu}} = 0, \hspace{5mm}\frac{\partial K^2}{\partial \dot{\gamma}_{\mu\nu}} = \frac{\gamma^{\mu\nu}K}{\alpha}
-\end{equation}
-
-assuming that there is no explicit dependency of the $\Lambda$ on $dot{\gamma}_{\mu\nu}$.
-
-Since, $\alpha$ and $\vec{\beta}$ are related to the the \textit{gauge freedom}, -- there are many ways the manifold $\mathcal{M}$ can be split into hypersurfaces -- the momenta associated with these functions and vectors is zero.
-
-Thus, the \textit{Hamiltonian density} is
-
-\begin{align}
-\mathcal{H} &= p^{\mu\nu}\dot{\gamma}_{\mu\nu} - \Lambda \\
-&= -\sqrt{\gamma}\alpha{^{(3)}R} + \frac{\alpha}{\sqrt{\gamma}}\Big[p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}p^2\Big] + 2p^{\mu\nu} D_{\mu}\beta_{\mu} -\Lambda_m \\
-%    &=  \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[-{^{(3)}R}+h^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}h^{-1}p^2\Big] - 2\beta_{\nu}\big[D_{\mu}(h^{-1/2}p^{\mu\nu})\big] + D_{\mu}(h^{-1/2}\beta_{\nu}p^{\mu\nu})\Bigg\} \\
-&= \frac{\sqrt{\gamma}}{16\pi}\Bigg\{\alpha\Big[ -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2\Big] +  2\beta_{\nu}\Big[D_{\mu}(\gamma^{-1/2}p^{\mu\nu})\Big] - 2D_{\mu}(\gamma^{-1/2}\beta_{\nu}p^{\mu\nu}) \Bigg\} - \Lambda_m,
-\end{align}
-
-where we restored the correct $16\pi$ factor in the last line.
-
-As we consider variations with compact suppot, the last boundary term, can be neglected.
-
-%% part 3 [Arriving at constraint equations (again)]
-
-Now we consider the variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$
-
-\begin{align}
-\frac{\delta S_m}{\delta \alpha} &=-\alpha\frac{\delta S_m}{\delta g_{00}} = -\alpha\sqrt{-g}T^{00} = -\alpha^2\sqrt{\gamma}T^{00} = -\sqrt{\gamma}T^{\mu\nu}n_{\mu}n_{\nu} \\
-\frac{\delta S_m}{\delta \beta_{\mu}} &= \frac{\delta S_m}{\delta g_{\mu 0}} =\frac{1}{2}\sqrt{-g}T^{\mu 0} = -\frac{1}{2} \sqrt{\gamma}T^{\mu\nu}n_{\nu}.
-\end{align}
-
-As the variation of the Hamiltonian $H$ with respect to a quantity with vanishing canonical momentum is zero, we obtain two equations 
-
-\begin{align}
-\frac{\delta H}{\delta \alpha} &= 0 = -{^{(3)}R} + \gamma^{-1}p^{\mu\nu}p_{\mu\nu}-\frac{1}{2}\gamma^{-1}p^2 + 16\pi T^{\mu\nu}n_{\mu}n_{\nu} \\
-\frac{\delta H}{\delta \beta_{\mu}} &= 0 = - D_{\mu}(\gamma^{-1/2}p^{\mu\nu}) + 8\pi{\gamma^{\mu}}_{\nu}n_{\gamma}T^{\nu\gamma}.
-\label{eq:theory:hamiltonianvariation}
-\end{align}
-
-Note, that the $\delta H / \delta\beta_{\mu}$ is actually a \textit{Frech\'et differential} $dH$, $\delta \beta_{\mu}$, which is writes as
-
-\begin{equation}
-\langle dH,\delta\beta \rangle = \delta\beta_{\mu}\big[-D_{\nu}(\gamma^{-1/2}p^{\mu\nu})+8\pi n_{\gamma}T^{\mu\nu}\big], 
-\end{equation}
-
-containing $\delta\beta_{\mu}$ which is spatial. 
-
-Thus only the spatial part is being constrained in the equation above. 
-To account for that the projector ${\gamma^{\mu}}_{\nu}$ is added to the $\delta H/\delta \beta_{\mu}$.
-
-The pair of equations (\ref{eq:theory:hamiltonianvariation}) is in fact the constraint equations derived before, namely the (\ref{eq:theory:momconstraint}) and (\ref{eq:theory:hamilconstraint}), and as we now see, they are related to the coordinate freedom of $\mathcal{M}$ decomposition and a coodrinate freedom on hypersurfaces.
-
-%% Part 4 [hamiltonian equations for metric -- evolution equations]
-
-Proceeding with the Hamiltonian formalism we note that equation \ref{eq:theory:hamiltoneqs} leads to the evolution equations for the three-metric, assuming that $\Lambda$ explicitly does not depend on the momentum
-
-\begin{equation}
-\dot{\gamma}_{\mu\nu} =\frac{\delta H}{\delta p^{\mu\nu}} = 2\gamma^{-1/2}\alpha\big(p_{\mu\nu}-\frac{1}{2}\gamma_{\mu\nu}p\big) - D_{\nu}\beta_{\mu}-D_{\mu}\beta_{\nu}
-%    -2D_{(\mu}\beta_{\nu)},
-\label{eq:theory:_adm_metric_evo}
-\end{equation}
-
-The evolution equations for the canonical momentum can read
-
-\begin{align}
-\dot{p}^{\mu\nu} = -\frac{\delta H}{\delta \gamma_{\mu\nu}} = &+ \alpha\gamma^{1/2}\big({^{(3)}R}^{\mu\nu}-\frac{1}{2}{^{(3)}R\gamma^{\mu\nu}}\big) \\
-& - \frac{1}{2}\alpha\gamma^{-1/2}\gamma^{\mu\nu}\big(p_{\gamma\delta}p^{\gamma\delta}-\frac{1}{2}p^2\big) \\
-& + 2\alpha\gamma^{-1/2}\big(p^{\mu\gamma}{p^{\nu}}_{\gamma}-\frac{1}{2}pp^{\mu\nu}\big) \\
-& - \gamma^{1/2}\big(D^{\mu}D^{\nu}\alpha-\gamma^{\mu\nu}D^{\gamma}D_{\gamma}\alpha\big) \\
-& - \gamma^{1/2}D_{\gamma}\big(\gamma^{-1/2}\beta^{\gamma}p^{\mu\nu}\big) \\
-&+ 2p^{\gamma(\mu}D_{\gamma}\beta^{\nu)} + 8\pi \alpha \gamma^{1/2}S^{\mu\nu},
-\label{eq:theory:_adm_mom_evo}
-\end{align}
-
-where $A_{(\mu\nu)} = 0.5(A_{\mu\nu}+A_{\nu\mu})$ the convention used, and where $S^{\mu\nu}={\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}T^{\alpha\beta}$. 
-
-Additionally, taking the variation of the matter field we noted that
-
-\begin{equation}
-\frac{\delta S}{\delta \gamma_{ik}} = \frac{\delta S_m}{\delta g_{ik}} = \frac{1}{2}\sqrt{-g}T^{ik}.
-\end{equation}
-
-The set of equations (\ref{eq:theory:hamiltonianvariation}), (\ref{eq:theory:_adm_metric_evo}) and (\ref{eq:theory:_adm_mom_evo}) comprise the ADM system. 
-A more widely used from of these equations is in turns of $\gamma_{ij}$ and $K_{ij}$ that reads
-
-\begin{align}
-(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} &= -2\alpha K_{ik}; \\
-(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} &= -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
-{^{(3)}R} + K^2 - K_{ik}K^{ik} &= 16\pi E; \\
-D_{i}K-D_{k}{K^k}_i &= 8\pi j_i,
-\label{eq:theory:adm}
-\end{align}
-
-where $S = \gamma^{ij}S_{ij}$.
-
-These equations constitute the IVP for Einstein field equations and are known as ADM equations. 
-The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
-
-\todo{make sure that the coefficients in formuals are consistent, $16\pi$ might me missing or $-$}
-\todo{Makse sure that $\Lambda$ stands for largangian density and $\mathcal{L}$ for lie derivative}
-
-
-\paragraph{Strongly Hyperbolic Formulations of the Einstein Equations}
-
-
-It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only \textit{weekly hyperbolic} \cite{Baumgarte:2002jm}. 
-It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}. 
-
-In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. 
-In particular, the \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
-the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
-the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. 
-We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for new and better formulations of Einstein equations for numerical applications is ongoing. 
-We limit ourselves to sketching only the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}. 
-The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
-
-
-\paragraph{The CCZ4 Formulation}
-
-
-The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- \textit{strongly-hyperbolic}. 
-This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
-
-First, consider the covariant Lagrangian
-
-\begin{equation}
-\Lambda = g^{\mu\nu}[R_{\mu\nu} + 2\nabla_{\mu}Z_{\nu}]\sqrt{g} + \Lambda_m,
-\end{equation}
-
-and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}, leads to the evolution equations
-
-\begin{equation}
-R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
-\label{eq:theory:z4fieldeq}
-\end{equation}
-
-and two sets of constraint equations
-
-\begin{equation}
-\nabla_{\rho} g^{\mu\nu} = 0, 
-\label{eq:theory:z4connect}
-\end{equation}
-
-and
-
-\begin{equation}
-Z_{\mu} = 0,
-\end{equation}
-
-where the latter is called an \textit{algebraic constraint}. 
-If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
-
-The Einstein field equations themselves are recovered from (\ref{eq:theory:z4connect}) and (\ref{eq:theory:z4fieldeq}) when the algebraic constraint is satisfied. 
-
-The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. 
-This allows to obtain the solution of the Einstein equations. 
-
-However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. 
-To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
-
-A further modified version of Z4 was introduced by \cite{Alic:2011gg}. 
-It incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture}, that will be discussed later. 
-The CCZ4 system reads 
-
-\begin{align}
-\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
-\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
-& + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
-& -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
-\partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
-\partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
-& - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
-\partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
-& + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
-\partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 	3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
-& - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
-& - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
-& -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
-\label{eq:theory:ccz4equations} % used for Whisky Code description
-\end{align}
-
-where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
-
-\begin{align}
-\widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
-\widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
-\end{align}
-
-And as one sees, the ecolution of $Z_i$ is now included in $\hat{\Gamma}$. 
-\todo{understand the conformal stuff and add some steps to show how the ccz4 was made}
-
-
-\paragraph{Gauge conditions}
-
-
-During the discussion of the original ADM system, the choice of the lapse function, \textit{i.e} \textit{slicing condition}, and shift vector \textit{i.e} \textit{spatial gauge condition} was left open. 
-The right choice however, is crucial for the stable evolution and in itself presents a broad and rapidly evolving subject. Here we are going to discuss only the gauge that is relevant for our work. 
-
-\begin{itemize}
-    \item \textit{Slicing conditions} 
-    One of the widely used conditions is so called "maximal slicing" that sets $K=0$, which in turn results in the equation
-    \begin{equation}
-    D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
-    \end{equation}
-    This conditions has an advantage of being \textit{singularity-avoiding}. 
-    For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. 
-    However implementation of this condition in from of a \textit{elliptic equations} is computationally expensive.
-    A class of slicing conditions in form of \textit{hyperbolic equations} that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
-    \begin{equation}
-    (\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
-    \label{eq:theory:gauge_onepluslog}
-    \end{equation}
-    which in CCZ4 reads 
-    \begin{equation}
-    (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
-    \end{equation}
-    where $f(\alpha)$ is a positive function. 
-    For many numerical applications, including those that are discussed in this work, the "$1 + \log$" slicing is adopted with the $\beta_i=0$. 
-    Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
-    \begin{equation}
-    \alpha = 1 + \log\gamma
-    \end{equation}
-    This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
-    \todo{add/modify some text.}
+    I've been reading that for high-resolution shock-capturing, the finite differencing techniques are more efficient and simpler in implementation. However, most codes for MHD and radiation MHD that I find are using finite-volume methods. I am very curious why?..
     
-    \item \textit{Spatial gauge conditions}
-    The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
-    One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
-    \begin{align}
-    \partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
-    \partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
-    \end{align}
-    where $\eta$ is a dumping coefficient.
-    This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. 
-    It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a \textit{zero-speed mode}, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
-    A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes:
-    \begin{align}
-    (\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
-    (\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
-    \end{align}
-    was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
-\end{itemize}
+    THC actually has both FD and FV schemes implemented
+    FV is exactly conservative and there is a better way to do AMR with it
+    FD is better because it is much simpler at higher order
+    with THC when we want to do high order precision things we use FD
+    when we do messy simulations with microphysics, for which robustness and conservation are more important than formal order of convergence, we use FV
+    to be more precise we actually use the Kurganov-Tadmor central scheme, not a Godunov-type FV scheme
+    but people always mixes the two (see e.g., the discussion in my PhD thesis)
+    
+    So, our simulations with microphysical eos andneutrinos are performed using the KT FV scheme?
+    
+    yes KT FV
+\end{sidenote}
 
+To increase a formal order of accuracy in a current generation numerical codes, flux-conservative finite-difference HRSC schemes is the simplest approach. Its direct competitor, high-order finite volume schemes are more computationally expensive, as they require solution of multiple Riemann problems at the interface between regions \cite{Reisswig:2009us,Shu:2001rep}, as well as complex averaging and de-averaging procedures \cite{Tchekhovskoy:2007zn} 
 
-%% --- 
+In this thesis we adopt \gray{ere David presents a new code}, the Templ
+ated-Hydrodynamics Code (THC), developed using Cactus framework \cite{Goodale:2003} \red{cite David}. In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed. 
+The reconstruction in characteristic fields is available for up to 7th order, as well as, the Roe flux split with a entropy-fix prescription. 
 
-\subsection{Conclusion}
+The "tempalted" in the code name stands for a modern paradigm in C++ programming, the tempalated programming, which means, that part of the code can be generated from the prescribed templates at compiling time. 
+This paradigm allows for a creation of complex modular codes avoiding computational costs, that plague classical polymorphism. 
+The "templated" programming allows to inline all the needed functions and classes at compiling time, \cite{Yang:2001}. 
 
-%% --- 
+The following reconstruction schemes are implemented:
+MP5, classical monotonicity preserving \cite{Suresh:1997,Mignone:2010},
+the weighted essentially non oscillatory (WENO) schemes WENO5 and WENO7 \cite{Liu:1994,Jiang:1996,Shu:1997},
+and two bandwidth-optimized WENO schemes WENO3B and WENO4B \cite{Martin:2006,Taylor:2007}, constructed for modeling the compressible turbulence. 
+Note, that the number in scheme name stands for a formal order of accuracy. 
 
-%% Subsection 1 [Euler-Lagrange equations]
-In this section we have shown a derivation of \textit{Euler-Lagrange equations} from the variation of the action of \textit{Lagrange field theory} with respect to the \textit{generalized coordinates of the field}, and assuming the compact domain for boundary conditions.
-%% Subsection 2 [The Hilbert Action]
-Then, we sketched how the \textit{Einstein field equations} can be derived from the \textit{Einstein-Hilbert action}, that describes gravitational and matter fields, through the \textit{principle of least action}.
-%% Subsection 3 [3+1 Decomposition of Einstein field equations]
-Then we discussed how the Einstein field equations, which are the $10$ non-linear partial differential equations, can be decomposed into the $3+1$ system of equations, commonly adopted in numerical applications.
-This is done by assuming the space-time to be strongly hyperbolic, and defining the initial data on the numm hypersurface and performing the space-time foliation, -- in other words -- splitting the spacetime into a set of \textit{spacelike} hypersurfaces.
-There, the transition from one hyersurface to another is conveniently done with the help of vector $\vec{t} = \alpha\vec{n}+\vec{\beta}$. This "time flow vector" is composed of the part tangent to the hypersurface (to which the transition is done), the so-called \textit{shift}, $\vec{\beta}$; and the part, normal to the previous hypersurface in the direction of the next one, the lapse function $\alpha$. 
-The space-time metric is then decomposed into the spatian, \textit{Riemannian metric} and time part.
-%% paragraph []
-In light of the spacetime decomposition, the Hamiltonian formalism can be used to re-derive the field-equations in a from that once the initial data is specified on a hypersurface $\Sigma_0$ for $\boldsymbol{q}$ and $\boldsymbol{p}$, the equations (\ref{eq:theory:hamiltoneqs}) would govern whole the evolution. 
-Such form consists of a set of constraint and evolution equations.
-%% Extrisnsic curvature and momentum constraint.
-To obtain them, first the concept of the extrinsic curvature is introduced, which can be thought of as a speed of the norm to the hypersurface, $\vec{n}$, during its parallel transport along the hypersurface $(\Sigma_t)$.
-%% constraint equations
-Then, the first, \textit{momentum constraint}, can be obtained by inserting the EFE intor the Codazzi equation, that relates the $3D$ Ricci tensor to the extrinsic curvature. 
-The second, the \textit{Hamiltonian constraint} is derived by substituting the EFE into the gauss equation that relates the $4D$ Riemann tensor with the $3D$ one and extrinsic curvature.
-%% on the constraint equations
-The obtained constraint equations represent a set of \textit{elliptic equations} that must be satisfied on every hyprsurface $\Sigma_i$ of the foliation. 
-It is however, possible to show that Einstein equations preserve the constraints, meaning that if they are satisfied at the initial slice $\Sigma_0$ they will be satisfied at any time in the future. 
-%% paragraph [The Hamiltonian Formulation of the Einstein Equations]
-The derivation of the evolution equations can be summarized as follows. 
-%% --- Part 1 [Extrinsic curvature]
-We begin by expressing the extrinsic curvature $R$, through $G_{\mu\nu}$ and $R_{\mu\nu}$. 
-Then, we utilize \textit{Gauss-Codacci equation} (the momentum constraint), that relates spatial curvature $^{(3)}R$ to the spacetime curvature $R$.
-Next, we note that from its definition, the Ricci tensor, $R_{\mu\nu}$, can be expressed as a combination of extrinsic curvature, $K$, and $K_{\mu\gamma}K^{\mu\gamma}$ and total divergences, which in the case of variations with compact support, nullifies. 
-The result is a simple relation between the Ricci tensor $R_{\mu\nu}$ and extrinsic curvature $K$ and $K_{\mu\nu}K^{\mu\nu}$, written as 
-$R_{\mu\nu}n^{\mu}n^{\nu}= K^2 - K_{\mu\nu}K^{\mu\nu}$
-%% --- Part 2 [Deriving Canonical momentum and Hamiltonian]
-Now we can write the Lagrangian density, $\Lambda$ in terms of the variables on the hypersurface, which consists of the gravity and matter parts, as $\Lambda = \Lambda_g+\Lambda_m$. 
-Then, we relate the extrinsic curvature on the hypersurface, $K_{\mu\nu}$, to the metric, making use of a certain property of Lie derivative. 
-Then we arrive at an expression for the canonical momentum, $p^{\mu\nu}$, and in turn, to the Hamiltonian density $\mathcal{H}$.
-%% --- Part 3 [Arriving at constraint equations (again)]
-Now we consider the variation of the matter action $S_m$ with respect to the $\alpha$ and $\vec{\beta}$ and the variation of the Hamiltonian $H$.
-This gives a set of equations, in which only the spatial part is constrained, which requires an addition of a projector. Thus, we have arrived to the pair of constrained equations, derived before. However, now we see that they are related to the coordinate freedom of $\mathcal{M}$ decomposition and a coordinate freedom on hypersurfaces.
-%% --- Part 4 [hamiltonian equations for metric -- evolution equations]
-Recalling the Hamiltonian system of equations (canonical equations), we note that they lead to the evolution equations for the three-metric, $\dot{\gamma}_{\mu\nu}$. Then we obtain the evolution equations for the canonical momentum $\dot{p}^{\mu\nu}$. The set of equations we obtain, then, comprise the so-called ADM system.
-%% --- Remarks 
-These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
-%% Hyperbolicity -- Formulations
-The ADM formulation in its basic form, derived as described above, is however weakly hyperbolic \cite{Baumgarte:2002jm} and not very well suited for numerical applications, as errors tend to couple to non-zero velocity modes \cite{Alcubierre:1999rt}.
-A search for a better formulation of EFE is an ongoing effort. Following formualtions have been developed. 
-The \textit{generalized-harmonic formulation} \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
-the \textit{BSSNOK} formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
-the \textit{Z4} formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
-In the following we briefly discuss the formulation of relevance to this thesis, the \textit{conformal-covariant variant of the Z4 formulation}, also known as \textit{Z4c}.
-%% --- CCZ4
-The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- strongly-hyperbolic. 
-This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
-%% --- derivation 
-The procedure involves invoking again the Lagrangian, (ogf gravity and matter) and applying \textit{Palatini-type variational principle} \cite{Bona:2010is}. This results in a evolution equations and two sets of constraint equations and $Z_{\mu}=0$ equation, which is called the algebraic constraint. If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
-Then, the Einstein field equations themselves are recovered from the obtained set of evolution and constraint equations if the algebraic constraint is satisfied.
-The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. This allows to obtain the solution of the Einstein equations. 
-However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
-A further modified version that incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture} was introduced by \cite{Alic:2011gg}.
-%% --- Gauge conditions
-During the derivation of the ADM system, the choice of the lapse function, \textit{i.e} slicing condition, and shift vector \textit{i.e} spatial gauge condition was left open. The right choice however, is crutual for the stable evolution and in itself presents a broad and rapidly evolving subject.
-The \textit{Slicing condition} called 'maximal slicing', for instance, has a property of being \textit{singularity-avoiding}, -- avoiding $\alpha$ going to $\infty$ at the vicinity of a singularity of a Schwarzschild black hole \cite{Geyer:1995}.
-Of particular relevance is the so-called "$1 + \log$" slicing, that states th.at $\beta_i=0$ and $\alpha = 1 + \log\gamma$, where $\gamma$ is \gray{trace of the three-metric}. This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
-The requirements for the \textit{Spatial gauge conditions} are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution. 
-One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}. It has however some undesired numerical properties -- zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}. These problems are addressed by the modified \textit{Gamma driver}, gauge that does not have zero or small speed modes that was proposed by \cite{vanMeter:2006vi} and applied to study binary black holes by \cite{Campanelli:2005dd}.
+In this \red{section} we briefly state the details of the \texttt{THC} algorithm and highlight the results of the comparison between different reconstruction schemes for modeling relativistic turbulence. 
 
-%% [ RELATIVISTC HYDRODYNAMICS ]
-
-%% ---
-
-\subsection{The Equations of General-Relativistic Hydrodynamics}
-
-%% --- 
-
-In this section we discuss the equations of general relativistic hydrodynamics. 
-We consider the fluid on a Lorentzian manifold and how its flow affects the spacetime.
-
-The topics that we are going to touch are:
-
-\begin{itemize}
-    \item fluid kinematics,
-    \item equations of motion for perfect fluids (assuming that there is no thermal conduction or viscosity)
-    \item the “Valencia formulation” of the hydrodynamic equations.
-\end{itemize}
-
-
-We note that the following description is very brief and is based on the following works: \cite{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013} to which we refer the reader for more details.
-
-%% P.1 Introduction. Difference in fluid treatment in Newtonain and Relativity cases
-In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities such as energy density, mass, momentum density. 
-However, in general and special relativity, these quantities are not well defined and depend on the observer. 
-In other words, different observers perceive the the same fluid being in different thermodynamic state. 
-Hence, a description of the fluid dynamics in general and special relativity requires a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, that are observer-dependent, but implicitly by a "flow" in spacetime. 
-These are \textit{flux-conservative formulations} of hydrodynamics.
-
-The Eulerian specification of the flow field is a way of looking at fluid motion that focuses on specific locations in the space through which the fluid flows as time passes. Hence, the Eulerian observer is the observer that is at rest in space.
-
-Consider the classical mass density, a scalar $\rho$, usually defined as total umber of particles $N$ of rest-mass $m$ in the volume $V$. Then, the total mass is given by
-
-\begin{equation}
-\int_V \rho \text{d}^3x = m\int_V n \text{d}^3 x = mN.
-\end{equation}
-
-However, while the number of particles $N$ would be the same regardless of the observer, the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. 
-Hence, the $n$ would be different. 
-One of the solutions is to chose a frame of reference, say comoving with the fluid and define the $\rho$ there. However, this would hinder our ability to generalize to other reference frames.
-An even better solution is to construct a \textit{covariant description in terms of invariant quantities}. 
-
-%% P.2 Covarient descriptoion of the fluid 
-%% P.2.1. Define the mass flow
-We start by defining the \textit{flow of the fluid density} in space-time, the $3$ pseudo-form $\boldsymbol{\rho}$ that on any three dimensional submanifold describes the \textit{flow of mass}, transverse to the submanifold as
-
-\begin{equation}
-\int_{\Sigma} \boldsymbol{\rho},
-\end{equation}
-
-where $\Sigma$ be a spacelike hypersurface, $\vec{n}$ is the future-oriented normal vector. 
-This is the density measured by an observer with $4$-velocity $\vec{n}$. 
-
-To define a \textit{mass flow} measured by an Eulerian observer across any spacelike surface $\Omega\subset\Sigma$, we need to construct a two-form $\boldsymbol{\rho}(\vec{n}, \cdot, \cdot)$ given by the interior product between the $3$ pseudo-form $\boldsymbol{\rho}$ and $\vec{n}$. 
-Then the mass flow is 
-
-\begin{equation}
-\int_{\Omega} i_{\vec{n}}\boldsymbol{\rho}.
-\end{equation}
-
-The \textit{conservation of the number of particles of the fluid} is expressed by the vanishing exterior product of the density form, i.e. $\text{d}\boldsymbol{\rho}=0$, or in an integral form 
-
-\begin{equation}
-\int_{\partial\Omega} \boldsymbol{\rho} = \int_{\Omega}\text{d}\boldsymbol{\rho} = 0,
-\end{equation}
-
-that reads as the following: the net flow across any sufficiently regular surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
-
-%% P.2.2. Define the flux associated with the flow, in this case of a rest-mass density four-vector
-Next we define a \textit{flux}. First, let us reintroduce the volume pseudo-form
-
-\begin{equation}
-\text{Vol}_x ^4 = \sqrt{-g}dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
-\end{equation}
-
-where $g$ is the determinant of the spacetime metric. 
-
-On the submanifold $\Sigma$, the intrinsic volume then would be defined as 
-
-\begin{equation}
-\text{Vol}_x ^3 = i_{\vec{n}} \text{Vol}_x ^4.
-\end{equation}
-
-A \textit{flux of a vector field} can be described by a three-form, for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
-
-A vector field associated with density is called \textit{rest-mass density four-vector} and is denoted by $\vec{j}$.
-
-It is constructed from the one-form by raising indexes, $\vec{j} = {^{\#}\underline{j}}$. 
-The one-form $\underline{j}$ is obtained as $\underline{j}\star\boldsymbol{\rho}$, where $\star$ is the \textit{Hodge dual operator} (see \textit{e.g.,} \cite{Frankel:1982dva}). 
-
-Then if the $\boldsymbol{\rho} = i_{\vec{j}}\text{Vol}_x ^4$, the flux of $\vec{j}$ can be shown as 
-
-\begin{equation}
-\int_{\Sigma} \boldsymbol{\rho} = - \int_{\Sigma}\vec{j}\cdot\vec{n}\text{Vol}_x ^3,
-\end{equation}
-
-where $\vec{n}$ is the future-oriented unit-timelike normal to $\Sigma$.
-
-%% --- for liuville theorem
-\textcolor{gray}{
-    [Direct copy... maybe not needed] More generally the flux associated with a flow defined by a vector field, $\vec{X}$, across a hypersurface, $\Sigma$, transverse to it and with normal $\vec{\nu}$ (with appropriate sign depending on the signature of the metric and on $\Sigma$), is given 
-    \begin{equation}
-    \int_{\Sigma} \star\underline{X} = \int_{\Sigma}i_{\vec{X}}\text{Vold}^n = \int_{\sigma}i_{\vec{X}}\big[\underline{\nu}\wedge\text{Vol}^{n-1}\big] = \int_{\Sigma}\vec{X}\cdot\vec{\nu}\text{Vol}^{n-1}
-    \label{eq:theory:flux_of_flow}
-    \end{equation}
-}
-\textcolor{red}{this piece is used in Liuille theorem though}
-
-We note that $\vec{j}$ is timelike (or null).
-It is given by the flux of particles across any future-oriented spacelike hypersurface is positive (or zero). 
-If $\vec{j}$ is timelike, there exists a unique decomposition 
-
-\begin{equation}
-\vec{j} = \rho \vec{u},
-\label{eq:theory:defofjandu}
-\end{equation}
-
-where the scalar $\rho$ can be seen as density in the comoving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
-
-The divergence of vecotor $j$ then gives a familiar mass conservation expression
-
-\begin{equation}
-0 = \nabla_{\mu} j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
-\label{eq:theory:nablamu_jmu}
-\end{equation}
-
-\textcolor{gray}{
-    Similarly energy and momentum of a fluid can be defined, using the Cartan formalism... but this is a PAIN! and is done to show that div(T)=0 is not really energy/momentum conservation...
+\gray{
+The section is structured as following. First we overview several detain of \texttt{THC} code, discussing the numerical algorithms, in particular with respect to the equations of Newtonian and special relativistic hydrodynamics. Then we state several results. Then we view the linear and non-linear development of the relativistc Kelvin-Helmholtz instability (KHI) in 3D. 
 }
 
-Next, let us introduce the mixed tensor $\boldsymbol{T}$. 
-Since the three-forms are equivalent to vectors, we can define a flow of the $\nu$ momentum across the volume element orthogonal to $dx^{\mu}$ as 
 
-\begin{equation}
-{T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu}).
-\end{equation}
+\subsubsection{The \texttt{THC} code }
+\red{Presentation and tests inf HYDRODYNAMIC part of the code only}
 
-${T^{\mu}}_{\nu}$ is the stress energy tensor that was already introduced earlier \ref{eq:theory:action1}. 
+Here the infrastructure of \texttt{THC} is presented in addition to the formulation of Newtonian and special-relativistc HD. 
 
-Note, that if the Einstein equation are satisfied the Bianchi identities dictate that the $\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
-
-\begin{equation}
-\nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
-\label{eq:theory:nablamu_tmunu}
-\end{equation}
-
-However, this statement does not imply the conservation of the energy and momentum of the fluid in a general sense. 
-The conservation of the $\nu$-momentum requires $\vec{\partial}_{\nu}$ to be a Killing vector.
-
-
-\paragraph{Dynamics of a Relativistic Fluid}
-
-
-%% Introduction
-In the previous subsection we have introduced the fluid kinematic, and defined the important quantities such as mass, energy and momentum and their "conservation" in \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}.
-
-In this \gray{thesis} chapter we consider only the \textit{perfect fluid}, meaning that in the co-moving frame, there is not heat conduction and there is no viscosity. 
-\todo{actually we do have a viscous part -- you have to add this...}. 
-
-The former criterion implies that the fluid is in \textit{local thermodynamic equilibrium} (LTE). 
-The latter however requires more explanation. 
-The mathematical formulation of viscous, thermally conducting fluids in general-relativity, especially with respect to the numerical applications is still an active area of research  (see e.g., \cite{Andersson:2006nr} and references therein). 
-\textcolor{red}{however in recent years there have been some progress GRELS models and David's implementation I must add!}.
-
-%% Constructing a stress-energy tensor
-Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. 
-To construct it, we return to the fluid's four velocity $\vec{u}$ from (\ref{eq:theory:defofjandu}). 
-If $e_{i}$ is the basis vector, the scalar product $\vec{u}\cdot\vec{e}_i=0$ and $\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$. 
-Then the orthonormal tetrad $\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. 
-
-Tensor $\boldsymbol{T}$ is the stress-energy tensor with the following components: 
+\textcolor{gray}{Here I will outline some results for my own understanding. This is not to be put in the thesis, as I am not working with the code development.}
+\textcolor{red}{NOT REFPHRASED}
 
 \begin{itemize}
-    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$
-    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction.
-    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
+    \item \textbf{Strong shock}. Classical one-dimensional shock tube. Even at this fairly low resolution, all the schemes are able to capture well both the shock wave and the rarefaction wave, showing the good behavior of the entropy fix. The contact discontinuity is resolved, but not without oscillations (due to the high Mach number of the shock wave, i.e., $\mathcal{M}=360$.
+    \item \textbf{Blast wave}. larger density contrast at the contact discontinuity. The MP5 scheme is able to properly capture the constant state between the shock wave and the contact discontinuity, while the WENO schemes result in more “rounded” solutions.
+    \item \textbf{Rotated Sod test}. Three-dimensional shock-tube test in Newtonian hydrodynamics. All the schemes are able to properly capture the main features of the solution: the discontinuities are captured within 1 or 2 gridpoints and both WENO5 and MP5 are able to capture the plateau in the velocity. Overall, these tests demonstrate the accuracy of the dimensionally unsplit approach that we use to treat the multi-dimensional case.
+    \item \textbf{Double Mach reflection test} Our algorithm is able to introduce enough numerical dissipation to avoid the odd-even decoupling. All things considered, we find that the best performance is given by the MP5 scheme.
 \end{itemize}
 
-Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively described by a scalar $p$, that we call \textit{pressure} as
-
-\begin{equation}
-\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k,
-\end{equation}
-
-Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
-
-\begin{equation}
-\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
-\end{equation}
-
-Defining the \textit{enthalpy} of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, we rewrite $\boldsymbol{T}$ as 
-
-\begin{equation}
-\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
-\label{eq:theory:stressenergytensor}
-\end{equation}
-
-In addition to the fluid kinematics (eqs. \ref{eq:theory:nablamu_jmu} and \ref{eq:theory:nablamu_tmunu}) and the description of motion (eq. \ref{eq:theory:stressenergytensor}), the relation between the \textit{pressure}, \textit{internal energy} and \textit{density} is needed to fully describe the dynamics of the fluid. 
-This relation is usually called the \textit{equation of state}.
-
-The commonly adopted equations (EoS) of state are the the ideal-gas, or gamma-law EoS $\rho = (\Gamma-1)\rho\epsilon$, where $\Gamma$ is the polytropic index of the gas, the polytropic EoS $p = K\rho^{\Gamma}$ and the microphysical equation of state 
-\todo{that you need to discuss more..., as we use only it.}
-
-Combined with an EoS, equations \ref{eq:theory:adm}, \ref{eq:theory:nablamu_jmu}, \ref{eq:theory:nablamu_tmunu} and \ref{eq:theory:stressenergytensor} form a hyperbolic
-system of equations that can be evolved, once initial data is prescribed. 
-The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
-
-
-\paragraph{Conservative Formulations}
-
-%% Introcution
-In the pioneering works of May and White \cite{May:1966} and Wilson \cite{Wilson:1972} the equations of general relativistic hydrodynamics were solved using the finite-difference (FD) schemes after casting them into a from of non-linear advection-like equations. 
-
-To avoid excessive oscillations at shocks a combination of upwinding and artificial-viscosity methods was employed. 
-This however led to several limitations, such as difficulty with tunning the artificial viscosity to still allow shocks to develop, and the limit on a flows being only mildly relativistic \cite{Font:2008fka}. 
-
-A next big advancement in the numerical relativistic hydrodynamics was made after the non-conservative nature of the Wilson’s approach was pointed out \cite{Marti:1991wi} and the conservation formulation was developed. 
-
-%% Introduction :: valencia formuilation
-An important example of the conservation formulation that is adopted to $3 + 1$ formalism is the "Valencia formulation" \cite{Banyuls:1997} that can be represented as following
-
-\begin{equation}
-\frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
-\label{eq:theory:valencia_formalism}
-\end{equation}
-
-where $u$ is a “vector” of \textit{primitive quantities}, such as the rest-mass density or the specific internal energy, $\boldsymbol{F}^0$ is a “vector” of \textit{conserved quantities} and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ are their fluxes and sources respectively.
-
-This formulation allowed to study ultra-relativistic flows and resolve shocks without spurious oscillations and without need for artificial viscosity.
-
-It was shown to be especially well suited for use with numerical methods that take into account the conservation laws. 
-These are the finite-volume (FV) high-resolution shock capturing (HRSC) methods, that will be discussed in \red{Chapter} \ref{chapter:num_methods}
-
-Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods (\textit{e.g.,} \cite{Giacomazzo:2010bx} \cite{Rezzolla:2011da} and references therein \todo{add recolla/bernuzzi/radice/shibata}).
-
-There are other conservative formulations and methods (see \textit{e.g.,} \cite{Papadopoulos:1999kt})
-However, we will limit our focus to the "Valencia formulation".
-
-%% Derivation of the valencia formulation
-To begin we split the four-velocity $\vec{u}$ into the component parallel to the normal vector $\vec{n}$ and a purely spatial component as
-
-\begin{equation}
-\vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon}),
-\end{equation}
-
-where naturally the Lorentz factor, measured by the Eulerian observer 
-$W = (-\vec{u}\cdot\vec{n})$ emerges, and the $\upsilon$ is the fluid three-velocity measured by the Eulerian observer, 
-
-\begin{equation}
-\vec{\upsilon} = \frac{\vec{u}}{W} -\vec{n},
-\end{equation}
-
-components of which are
-
-\begin{equation}
-\upsilon^i = \frac{u^i}{W}+ \frac{\beta^i}{\alpha}, \hspace{10mm} \upsilon_i= \frac{u_{i}}{W}.
-\end{equation}
-
-Divergence of the rest-mass density four-vector $j$, (\ref{eq:theory:nablamu_jmu}) can easily be cast as 
-
-\begin{eqnarray}
-0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{t}[\sqrt{\gamma}\rho W] + \frac{1}{\sqrt{-g}}\partial_{i}[\sqrt{\gamma}\rho(\alpha \upsilon^{i} - \beta^{i})]
-\end{eqnarray}
-
-where $D= \rho W = -\vec{j}\cdot \vec{n}$ is the conserved density.
-
-To write the energy and momentum equations we note that for any vector field $\vec{p} $ \cite{Rezzolla:2013}, 
-
-\begin{equation}
-\nabla_{\mu}[{T^{\mu}}_{\nu}p^{\nu}].
-\end{equation}
-
-To obtain the \textit{Valencia formulation} we set $\vec{p}$ to have zeroth component $-\vec{n}$ and spatial components $\vec{\partial}_i$. 
-Then the
+and in special relativity 
 
 \begin{itemize}
-    \item ${T^0}_{\nu}p^{\nu}$ represent the conserved quantities,
-    \item ${T^i}_{\nu}p^{\nu}$ are associated fluxes,
-    \item ${T^{\mu}}_{\nu}p^{\nu}$ are sources
+    \item \textbf{Adiabatic smooth flow} Test code with the smooth solutions. One-dimensional, large-amplitude, smooth, wave propagating in an isentropic fluid. A good-enough approximation of the exact solution was obtained by computing it on a very fine Lagrangian grid (1e6 points) and interpolated on the Eulerian grid. Instead of the third-order SSP-RK scheme, we adopt here a fourth-order RK time integrator. Our schemes approach the expected convergence order only asymptotically, at very high resolution. The reason for this behaviour is in the “kinks” ahead and behind the pulse, where the numerical error is largest. These regions are “misinterpreted” as discontinuities by the shock-detection part of our schemes, unless they are resolved with enough gridpoints. The best performing scheme in this test is the MP5 one. Formation of the shock gradually degrades the overall convergence order to the 1st.
+    \item \textbf{Blast wave}. Relativistic fluids can exhibit much stronger shock waves. MP5 scheme requires twice as small CFL as other schemes to prevent large oscillations and yields non-physical values. \textcolor{gray}{there is a finite-volume code \texttt{Whisky}, \cite{Baiotti:2010zf,Baiotti:2004wn} with the HLLE approximate Riemann solver \cite{Toro:1999} and PPM reconstruction \cite{Colella:1984}. } If the timestep is sufficiently small, on the other hand, the MP5 algorithm results in very accurate solutions, as in the Newtonian case. \texttt{THC} here performs better then \texttt{Whisky}.
+    \item \textbf{Shock-heating} relativistic effects can enhance the density contrasts in shock waves. shocks whose collision compresses the fluid. Kinetic energy into thermal energy, that is, through “shock heating”. For a Lorentz factor of a 1000, $\Gamma=4/3$, for a Newtonian fluid the compression ratio $\approx7$, while for spec. relativ. it is $\approx 4000$. The WENO5 and WENO7 solutions are affected by some small wall-heating effect, slight underdensity. The MP5 scheme, on the other hand, yields a solution which is essentially free from oscillations.
+    \item \textbf{Transverse shock}. the equations for the momentum in the different directions are coupled together by the Lorentz factor: even in one-dimensional problems the application of a transverse velocity can change completely the solution. This feature was first pointed out by \cite{Pons:2000} and \cite{Rezzolla:2002ra}, and then used by \cite{Rezzolla:2002cc} and \cite{Aloy:2006rd} to discover a new physical effect, see also [\cite{Mignone:2005ns}, \cite{Zhang:2005qy}] for a description of the numerical consequences of this property]. The MP5 scheme overestimates slightly the density contrast, but all of the algorithms are able to capture the correct location of the shock wave.
+    \item \textbf{Spherical explosion}. No analytic solution is known in this case. As in the one-dimensional case, a small timestep is necessary in order to avoid numerical oscillations with the MP5 algorithm, while the other schemes appear to be stable even with a timestep which is twice as large.
+    \item \textbf{Kelvin-Helmholtz instability in 2D}. The instability is seeded by adding a small perturbation in the transverse component of the velocity. we use periodic boundary conditions in all the directions. Compare first growth rate of the transverse velocity during the linear-growth phase of the KHI. Important to including the contact wave in the approximate Riemann solver in the case of a finite-volume code. We also note the importance of avoiding excessive dissipation in the contact discontinuity. The behaviour of the MP5 scheme, as well as that of the bandwidthoptimized WENO schemes, is more surprising: all of these schemes overestimate the growth of the RMS transverse velocity at low resolution. Some insight about the numerical viscosity can be gained by looking at the topology of the flow during the linear-growth phase of the KHI. These secondary instabilities, although only numerical artifacts (see below), appear only in schemes able to properly treat the initial contact discontinuity. They are not to be genuine features of the solution and, rather, tend to disappear as the resolution is increased. Conclusion: secondary instabilities are triggered by the non-linear dissipation mechanism of the different schemes, emerge neatly when computed with numerical schemes that treat properly the initial contact discontinuity, but do not have a physical meaning. Solution: adding more numerical viscosity [219] or as David suggests, physical viscosity. A more quantitative way of estimating the numerical viscosity of the code: The one-dimensional power spectrum can be used to quantify the typical scale of structures, such as the secondary vortices discussed above, stretched in the direction of the bulk shear flow. Even more unexpected is the ability of the MP5 scheme to resolve small scales structures and that, on the basis of the argument about the development of the secondary instabilities, should be more dissipative than WENO4B, but which instead appears to yield more small-scale structures in the rest-mass density.
 \end{itemize}
 
-with the former being 
+\paragraph{The relativistic Kelvin-Helmholtz instability in 3D}
+\textcolor{red}{Important for GRBs}
 
-\begin{equation}
-S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i), \hspace{10mm} E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})
-\end{equation}
+analysis is meant to assess how the different methods reproduce the same turbulent initial-value problem and to provide some insight on the spectral properties of the different schemes. The relativistic KHI [see, e.g., [51]] is of particular interest because of its relevance for the stability of relativistic jets [see, e.g., [251, 250]], and because of its potential role in the amplification of magnetic fields in gamma-ray bursts [see, e.g., [338]], and binary neutron-star mergers [25, 143, 240, 274].
 
-for numerical reasons we will replace the total internal energy density $E$ with $\tau = E-D$, where $D$ is the rest mass density. 
-This is done to avoid errors emerging due to $E$ being much smaller then $D$. 
-
-Now we can combine the obtained expressions for the conserved quantities, associated fluxes and sources with eq. (\ref{eq:theory:valencia_formalism}) and obtain
-
-\begin{equation}
-\frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}),
-\label{eq:theory:grhdeq_thc} % used for THC section Code
-\end{equation}
-
-where \textit{primitive quantities} being
-
-\begin{equation}
-\boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon],
-\end{equation}
-
-the \textit{conserved ones} are 
-
-\begin{equation}
-\boldsymbol{F}^0(\boldsymbol{u}) = [D,\: S_j,\: \tau] = [\rho W,\: \rho h W^2 \upsilon_j,\: \rho h W^2 - p - \rho W],
-\end{equation}
-
-and the \textit{associated} fluxes are 
-
-\begin{equation}
-\boldsymbol{F}^i(\boldsymbol{u})=\Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg]
-\end{equation}
-
-and finally \textit{sources} are
-
-\begin{equation}
-\boldsymbol{S}(\boldsymbol{u}) = \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
-\end{equation}
-
-The from of the obtained general relativistic hydrodynamics equations resemble the one of the Newtonian gas dynamics. If the latter is adopted for numerical solutions. 
-
-There are however several complications. 
-
-In particular there is no explicit inverse relation between the primitive quantities and the conserved ones. 
-Thus one has to resort to the root-finding algorithms to reconstruct them (More on this in later chapters). 
-In addition, it was pointed out that the $W$ couples the equation for the momenta in different direction \cite{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. 
-This leads to the fact that the dynamics of the shock wave can be affected by the non-zero tangential velocity. 
-Hence, the increased complexity if he problem of GR hydrodynamics \cite{Mignone:2005ns,Zhang:2005qy}.
-
-
-%% ---
-
-\subsubsection{Conclusion}
-
-%% ---
-
-%% Fluid Kinetics -- definitions & conserevation
-In this section we discuss the equations of general relativistic hydrodynamics. 
-We consider the fluid on a Lorentzian manifold and how its flow affects the spacetime; the fluid kinematics, dynamics in the absence of heat conduction and finally, the Valencia formulation".
-%% Intro -- Newtonand and Realtivity desciptions
-Notably the description of the fluid in the specail and general relativity differs from the one in the Newtonian case, as in the former, the fluid thermodynamic state is observer-dependent.
-The "flux-conservative formulations" of hydrodynamics aim to address this issue by describing the fluid implicitly by a flow in space-time. 
-The covariant description in terms of invariant quantities of the fluid, that is independent of the frame of reference, is required. 
-%% Building the covariant fluid description
-First, define the flow of \textit{fluid density} in space-time, $\boldsymbol{\rho}$, and the \textit{mass-flow} measured by an Eulerian observer (an integral of $\boldsymbol{\rho}$ over the spacelike hypersurface $\Sigma$). 
-The conservation of the number of particles reads $\text{d}\boldsymbol{\rho}=0$. 
-Next, the \textit{rest-mass density four-vector}, $\vec{j}$, which is a vector field associated with density, is defined. This four-vector is time-like or null as it is given by the flux of particles across any future-oriented spacelike hypersurface. 
-If the former case there exists unique decomposition: $\vec{j} = \rho \vec{u}$, where $\rho$ can be seen as density in the comoving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
-The divergence of vecotor $j$ then gives a mass conservation, $0 = \nabla_{\mu}j^{\mu}$
-Next, the mixed tensor $\boldsymbol{T}$ is introduced to described flow of the $\nu$ momentum across the volume element orthogonal to $dx^{\mu}$ as ${T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu})$.
-The ${T^{\mu}}_{\nu}$ is the \textit{stress-energy tensor}. Notably, $\nabla_{\mu}{T^{\mu}}_{\nu} = 0$, if Einstein equations satisfies Bianchi identities, which however does not imply the conservation of the energy and momentum of the fluid in a general sense. For that the $\vec{\partial}_{\nu}$ ought to be a Killing vector
-The $0 = \nabla_{\mu}j^{\mu}$ and $\nabla_{\mu}{T^{\mu}}_{\nu} = 0$ can be still through of as a mass, energy and momentum conservation.
-
-%% Paragraph : dynamics of the relativistc fluid
-We limit the discussion to the ideal fluid, omitting the effects of heat condition and viscosity.
-\red{we remark on the effective treatment of viscosity in the ... somewhere} 
-Taking the fluid's four velocity, $\vec{u}$, the stress-energy of the perfect fluid $\boldsymbol{T}$, has the following components:
-$\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$;
-$\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction;
-$\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
-The force exchange in the absence of viscosity can be effectively described by a scalar $p$, 
-$\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k$.
-Thus, the stress-energy tensor reads
-\begin{equation}
-\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
-\end{equation}
-Defining the \textit{enthalpy} of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, we rewrite $\boldsymbol{T}$ as 
-\begin{equation}
-\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
-\end{equation}
-In addition to the fluid kinematics,
-$0 = \nabla_{\mu} j^{\mu}$ \ref{eq:theory:nablamu_jmu}
-$0 = \nabla_{\mu}{T^{\mu}}_{\nu}$\ref{eq:theory:nablamu_tmunu}
- and the description of motion
-$\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}$ \ref{eq:theory:stressenergytensor},
-an additional relation is required, called the \textit{equation of state}.
-\red{in this thesis we focus on the microphysical equations of state}
-Combined with an EoS, equations \ref{eq:theory:adm}, \ref{eq:theory:nablamu_jmu}, \ref{eq:theory:nablamu_tmunu} and \ref{eq:theory:stressenergytensor} form a hyperbolic
-system of equations that can be evolved, once initial data is prescribed. 
-The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
-
-%% The General-Relativistic Boltzmann Equation
-
-
-%% ---------- 
-\subsubsection{The General-Relativistic Boltzmann Equation}
-%% -----------
-
-\red{To understand this one has to know:
-    manifolds, tangent vectors, tangent bundles, unit vectors and subbundles,
-    vector fields, incompressible vector fields, 
-    natural topology on a tangent bundle and natural projection;
-    coordinate patch, and coordinate transformation between patches;
-    connections on tangent bundles; push-forward, and pull-back operations
-}
-
-In special relativity the Boltzmann equation was expressed by Synge \cite{Synge:1957}. 
-Later Chernikov \cite{Chernikov:1962} and Tauber and Weinberg \cite{Tauber:1961} proposed its extension to the general relativity.
-
-The list of applications of the Boltzmann equation was limited to the relativistic gas at first \cite{Israel:1963}. 
-Later the list was supplemented by transient relativistic thermodynamics \cite{Israel:1979wp}, radiative transfer \cite{Lindquist:1966}, core-collapse supernovae \cite{Bruenn:1985} and others (see \textit{e.g.}, \cite{Cercignani:2002} and references therein).
-
-Different formulations of the general relativistic Boltzmann equation exists in the literature.
-Lindquist \cite{Lindquist:1966} and Ehlers \cite{Ehlers:1971} proposed a geometrical interpretation. 
-Later, a formulation based on Riemannian structure of tangent bundles was proposed by Sasaki \cite{Sasaki:1958,Sasaki:1962}. 
-In addition, Debbasch and van Leuuwen \cite{Debbasch:2009a,Debbasch:2009b} recently provided a detailed derivation, albeit strongly focused on the algebraic aspects while eluding simple geometrical interpretation. 
-
-Here we recall the detailed derivation of the general relativistic Boltzmann equation, using modern differential geometry notation by \red{Radice thesis}.
-
-\textcolor{red}{This.Is.Tough. Pure math. Copied from David + his sources.}
-
-
-\paragraph{The geometry of the tangent bundle}
-
-
-Let the $\mathcal{M}$ be $4$ dimensional differential \textit{manifold} such that $(\mathcal{M},\: g_{\alpha\beta})$ form the $C^2$ spacetime. 
-The set of \textit{tangent vectors} of $\mathcal{M}$ constitutes \textit{tangent bundle} of $\mathcal{M}$, the we denote as $T\mathcal{M}$. 
-The set of all \textit{unit vectors} of $\mathcal{M}$ constitute the \textit{subbundle} of $T\mathcal{M}$.
-
-\textcolor{gray}{incompressible vector field}.
-\textit{Every Killing vector field of $\mathcal{M}$ is in incompressible vector field}
-
-
-\paragraph{Extended transformation and extended tensors}
-
-\red{excurse in basic theory}
-
-
-Let the $T\mathcal{M}$ be the set of all the \textit{tangent vectors} of $\mathcal{M}$. 
-The $T\mathcal{M}$ has a \textit{natural topology}, bundle structure with $\mathcal{M}$ and the base - linear vector space $E^i$. 
-We call $T\mathcal{M}$ the \textit{tangent bundle} of $\mathcal{M}$. 
-There exists a \textit{natural projection}, or a projection map $\pi:\: T\mathcal{M}\rightarrow\mathcal{M}$.
-
-Let $U$ be a coordinate neighborhood, or a \textit{coordinate patch} of $\mathcal{M}$ with $n$ variables $x^{\alpha}$ as coordinates. 
-Then, every \textit{tangent vector} of $\mathcal{M}$ at a point $p\in U$ is described with $2n$ variables $(x^i,\upsilon^{\alpha})$. Here $x^{\alpha}$ are coordinates of $p$ with respect to the coordinate patch ${x^{\alpha}}$ and $\upsilon^{\alpha}$ are components of a \textit{tangent vector} in the \textit{natural frame} that constitutes by the vectors $\partial/\partial x^4$ at $q$. Thus, the vector $\vec{p}$ at $q$ can be written as:
-
-\begin{equation}
-\vec{p} = p^{\alpha}\frac{\partial}{\partial^{\alpha}}
-\end{equation}
-
-and its dual as 
-
-\begin{equation}
-\underline{p} = p_{\alpha}dx^{\alpha}:=g_{\alpha\beta}p^{\beta}dx^{\alpha}
-\end{equation}
-
-In addition we introduce a \textit{coordiante patch} $TU$, $\{z^A\}$, where $A$ runs from $0$ to $7$ of $T\mathcal{M}$ as 
-
-\begin{equation}
-z^{\alpha} = z^{\alpha}, \hspace{10mm} z^{\alpha+4} = p^{\alpha}.
-\end{equation}
-
-Now, let the $U(x^{\alpha})$ and $\hat{U}(\hat{x}^{\alpha})$ be the two coordinate patches of $\mathcal{M}$ such that $U\cap\hat{U}$ is not empty. 
-Then the \textit{intersection} of the coordinate patches is also not empty. 
-For every coordinate transformation of $\mathcal{M}$, there exists a corresponding matrix $\frac{\partial \hat{x}^{\alpha}}{\partial x^{\beta}}$.
-
-The \textit{coordinate transformation} is then
-
-\begin{equation}
-\hat{x}^{\mu} = \hat{x}^{\mu}(x), \hspace{5mm} \hat{p}^{\mu} = \frac{\partial\hat{x}^{\mu}}{\partial x^{\nu}}p^{\nu}
-\end{equation}
-
-which denotes the extended transforation of the $\hat{x}^{\mu} = \hat{x}^{\mu}(x)$.
-
-The corresponding Jacobian matrix is 
-\renewcommand\arraystretch{1.6} %% it stretches the matrix
-\begin{equation}
-\frac{\partial\hat{z}^A}{\partial z^B} = 
-\begin{pmatrix}
-\frac{\partial\hat{x}^{\alpha}}{\partial x^{\beta}} & 0 \\
-\frac{\partial^2\hat{x}^{\alpha}}{\partial x^{\beta} \partial x^{\gamma}}p^{\gamma} & \frac{\partial\hat{x}^{\alpha}}{\partial x^{\beta}} 
-\end{pmatrix}
-\end{equation}
-\renewcommand\arraystretch{1.0}
-
-
-\paragraph{Vectors on $T\mathcal{M}$}
-
-
-As we will need to introduce \textit{connections on a tangent bundle}, here we discuss the \textit{double tangent bundle}, or a second tangent bundle. 
-Since $T\mathcal{M}$ is a \textit{vector bundle} on its own right, its \textit{tangent bundle} has the secondary vector bundle structure $TT\mathcal{M}$. 
-Let the point $b\in TU$ and $T_b T\mathcal{M}$ be the \textit{tangent space} to $T\mathcal{M}$ at $b$.
-Given a vector $\partial/\partial x^{\alpha}$ at a point $b$, it can be "pushed forward" to the point on the $TT\mathcal{M}$ by means of so called \textit{differential of} $\pi$, written as $\pi_*$ \cite{Frankel:2002}.
-
-On a natural basis the \textit{push-forward} acts as 
-
-\begin{equation}
-\pi_*\Big[\frac{\partial}{\partial x^{\alpha}}\Big] = \frac{\partial}{\partial x^{\alpha}}, \hspace{5mm} \pi_* \Big[\frac{\partial}{\partial p^{\alpha}}\Big] = 0,
-\end{equation}
-
-and the \textit{pull back} as  
-
-\begin{equation}
-\pi^* {\text d} x^{\alpha} = {\text d} x^{\alpha}.
-\end{equation}
-
-Consider a vector field $\vec{X} \ in TT\mathcal{M}$ in a vicinity of the point $b$, which is associated with the point $q$ of $\mathcal{M}$ and vector $\vec{x}\in T_{q}\mathcal{M}$. 
-Let $b{\lambda}$ be the flow of $b$ generated by $\vec{X}$. 
-The $b(\lambda)$ is associate with $q(\lambda)$, the \textit{one parameter family of points} of $\mathcal{M}$. 
-The $b(\lambda)$ is also associated with $\vec{x}(\lambda)$ the \textit{one parameter family of vectors} on $T\mathcal{M}$.
-
-The vector field $\vec{X}$ is called \textit{vertical} if the $q(\lambda)\in\mathcal{M}$ are constant along the flow.
-Similarly, the vector field $\vec{X}$ is called \textit{horizontal} if $\vec{x}(\lambda)\in T_p \mathcal{M}$ is "constant" along the flow, meaning that $\vec{x}(\lambda)$ is just $\vec{x}$ that is \textit{parallel transported} to $q(\lambda)$.
-
-As there is no unique way to perform a \textit{parallel transport}, the linear connection $\nabla$ on $\mathcal{M}$ has to be chosen. 
-This choice is akin choosing two vector spaces $\mathcal{O}_b$ and $\mathcal{V}_b$ of the horizontal and vectical vectors respectively at each point $b$ that the direct sum of these spaces yields
-
-\begin{equation}
-\mathcal{O}_b\oplus \mathcal{V}_p = T_b T\mathcal{M}.
-\end{equation}
-
-Having the connection allows to prescribe a manner of \textit{lifting curves} from the base manifold $T\mathcal{M}$ into the $T_b T\mathcal{M}$.
-\textcolor{red}{I need to fix this and understand}. 
-A \textit{lift} is the unique horizontal vector $\vec{X}\in T_bT\mathcal{M}$ whose projection is a vector $\vec{x}\in T_q\mathcal{M}$.
-
-\textcolor{red}{fill it}
-
-Let us now define a \textit{connection vector basis} adopted to the aforementioned split of $T_b T\mathcal{M}$ $\{\text{D}/\partial x^A \}:=\{\text{D}/\partial x^{\alpha}, \partial/\partial p^{\alpha} \}$ where 
-
-\textcolor{red}{I did not find where this is derived from... difficult}
-
-\begin{equation}
-\frac{\text{D}}{\partial x^{\alpha}}{\partial x^{\alpha}} := \frac{\partial}{\partial x^{\alpha}} - {\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}}.
-\end{equation}
-
-Similarly a connection can be build for differential forms. 
-Using the pull-back $\pi^*$ the dual basis $\{ \text{D}z^{A} \}:=\{\text{d}x^{\alpha}, \text{D}p^{\alpha}\}$ that satisfies 
-
-\begin{equation}
-\text{D} = \text{d} p ^{\alpha} + {Gamma^{\alpha}}_{\beta\gamma}p^{\gamma}\text{d}x^{\beta}.
-\end{equation}
-
-
-\paragraph{Metric on $T\mathcal{M}$}
-
-
-Note that 
-
-\begin{equation}
-\frac{\partial^2 \hat{x}^{\mu}}{\partial x^{\nu}\partial x^{\lambda}}p^{\lambda} = {\hat{\Gamma}^{\mu}}_{\delta\gamma}p^{\lambda}\frac{\partial\hat{x}^{\delta}}{\partial x^{\nu}}.
-\end{equation}
-
-Let us assume that for any point $b\in T\mathcal{M}$ there exist an open set $TU$, such that $b\in TU$ with a coordinate system on $TU$ that satisfies
-
-\begin{equation}
-G_{AB} = (\boldsymbol{\eta}\otimes\boldsymbol{\eta})_{AB},
-\end{equation}
-
-where $\boldsymbol{\eta} = \text{diag}(-1, 1, 1, 1)$. 
-
-Let the $\hat{x}^A$ denote the generic coordinate system on $TU$. 
-Then the metric in this coordinate system can be expressed as
-
-\begin{align}
-\hat{G}_{\mu\nu} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}\eta_{\alpha\beta} + \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}{\hat{\Gamma}^{\gamma}}_{\:\:\:\alpha\lambda}p^{\lambda}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}{\hat{\Gamma}^{\delta}}_{\:\:\:\beta\xi}p^{\xi}\eta_{\gamma\delta}; \\
-\hat{G}_{\mu\: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\gamma}}{\partial x^{\nu}}{\hat{\Gamma}^{\beta}}_{\:\:\:\gamma\lambda}p^{\lambda}\eta_{\alpha\beta}; \\
-\hat{G}_{\mu+4 \: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}} \eta_{\alpha\beta}
-\end{align}
-
-and the line element 
-
-\begin{align}
-dS^2 &= \hat{G}_{AB}d\hat{z}^A d\hat{z}^B = \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}[\text{d}p^{\mu} + {\hat{\Gamma}^{\mu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] [\text{d}p^{\nu} + {\hat{\Gamma}^{\nu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] \\
-&= \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}\text{D}\hat{x}^{\mu}\text{D}\hat{x}^{\nu}
-\end{align}
-
-It is possible to show that the \textit{determinant} $|\text{det}\boldsymbol{G}| = g^{2}$ as the transformation from the natural frame to the connection frame is \textit{unimodular} \cite{Lindquist:1966}. 
-Thus the \textit{volume pseudo-form} on $T\mathcal{M}$ is in the coordiante patch $TU$
-
-\begin{align}
-\text{Vol}^8 &:= -g \text{d}x^{0} \wedge \text{d}x^{1} \wedge ... \wedge \text{d}p^{3} := - g\text{d}^{4}x \text{d}^{4}p, \\
-&:= -g \text{d}x^{0} \wedge \text{d}x^{0} \wedge ... \wedge \text{D}p^{3} :=-g \text{d}^{4}x\text{D}^4 p
-\end{align}
-
-\textcolor{red}{I kinda gave up here and just copied.}
-
-
-\paragraph{the Liuville theorem}
-
-
-Let us start by introducing a \textit{cotangent bundle}. 
-Let $\mathcal{M}$ be a \textit{differentiable manifold}. 
-Similarly to the construction of the tangent bundle, we can make a set of covectors on a given manifold into a vector bundle over $\mathcal{M}$, denoted $T^*\mathcal{M}$ and called \textit{cotangent bundle} of $\mathcal{M}$. 
-Similarly we can define a contangent bundle of a tangent one $T^*T\mathcal{M}$. 
-The contangent bundle $T^*\mathcal{M}$ is the vector bundle dual to the tangent bundle $T\mathcal{M}$. 
-
-Let us start by defining \textit{Poincar\'e} 1-form on $T\mathcal{M}$, $\underline{\lambda}\in T^* T\mathcal{M}$. 
-Consider point $q$ on a manifold $\mathcal{M}$ and a point $A$ associated with $q$ on a tangent bundle $T\mathcal{M}$. 
-Let there be a 1-form $\underline{\alpha}\in T^* _q\mathcal{M}$. 
-The $\underline{\lambda}$ and $\underline{\alpha}$ are uniquely connected $\underline{\lambda} = \pi^* \alpha$, and the former is called the \textit{Poincar\'e} 1-form. 
-In local coordinate patch, $TU$ it is expressed as
-
-\begin{equation}
-\underline{\lambda} = p_{\alpha} \text{d}x^{\alpha}.
-\end{equation}
-
-the associated vector is 
-
-\begin{equation}
-\vec{\lambda} = p^{\alpha} \frac{\text{D}}{\partial x^{\alpha}} = p^{\alpha}\frac{\partial}{\partial x^{\alpha}} - p^{\alpha}{\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}},
-\end{equation}
-
-is called the $\textit{geodesic flow field}$.
-
-This flow represents a phase-space flow of particles moving along geodesics.
-
-Consider a mass shell, that at a point $q\in U$ can be defined as a set:
-
-\textcolor{red}{remider: I have no idea how is this possible...}
-
-\begin{equation}
-\mathcal{S}_m = \big\{ p^{\alpha}\in T_q\mathcal{M}: p_{\mu}p^{\mu}+m^2 =:f(p) = 0 \big\}.
-\end{equation}
-
-The normal to the mass-shell is 
-
-\begin{align}
-\text{if } m &\neq 0 \hspace{5mm} \underline{\pi}:=\frac{q}{2m}\text{d}f, \hspace{5mm} \text{d}f = \frac{\partial f}{\partial x^{\mu}} + \frac{\partial f}{\partial p^{\mu}}\text{d}p^{\mu} = 2p_{\mu}\text{d}p^{\mu}, \\
-\text{if } m &= 0 \hspace{5mm} \underline{\pi}:=\frac{1}{2}\text{d}f
-\end{align}
-
-Next, we introduce a unique form $\underline{\nu}$ whose restriction on $T_q\mathcal{M}$ is equal to $\underline{\pi}$. 
-
-\begin{align}
-\text{if } m &\neq 0 \hspace{5mm} \underline{\nu} = \frac{1}{m}p_{\alpha}\text{D}p^{\alpha} \\
-\text{if } m &= 0 \hspace{5mm} \underline{\nu} = p_{\alpha}\text{D}p^{\alpha}
-\end{align} 
-
-Note that $\underline{\nu} = 0$, meaning that the $\underline{\nu}$ is \textit{irrotational}. 
-It becomes clear if we re-express it as 
-
-\begin{equation}
-\underline{\nu} = \frac{1}{2m}\frac{\text{D}f}{\partial p^{\alpha}}\text{D}p^{\alpha}
-\end{equation} 
-
-for massive particle case. For the mass-less the procedure is analogous.
-
-It can be shown that $\underline{\lambda}$ is incompressible \textit{i.e.,} $\text{d}^{\star}\underline{\lambda} =\star \text{d}\star\underline{\lambda} =0$.
-
-In addition, both $\underline{\lambda}$ and $\underline{\nu}$ are \textit{harmonic forms} as 
-
-\begin{equation}
-\nabla\underline{\nu} = 0 , \hspace{5mm}
-\nabla\underline{\lambda} = [\text{dd}^{\star} + \text{d}^{\star}\text{d}]\underline{\lambda} = 0.
-\end{equation}
-
-Let us now consider the density of states in the phase space, of particles moving along the geodeiscs with velocities on the mass shell.
-
-In the previous section we introduced a \textit{flux of the vector field} $\vec{X}$ across $\Sigma$ in \ref{eq:theory:flux_of_flow}, we define the following six-form
-
-\begin{align}
-\boldsymbol{\omega} &= \star\big(\underline{\nu}\wedge\underline{\lambda}\big) = i_{\vec{\lambda}} i_{\vec{\nu}}\text{Vol}^8 \\
-&= i_{\vec{\lambda}}\Big[i_{\vec{\nu}}\big(\text{Vol}^{4}_{x}\wedge\text{Vol}^{4}_{p}\big)\Big] = i_{\vec{\lambda}} \big[\text{Vol}^{4}_{x}\wedge\text{Vol}^{3}_{p}\big],
-\end{align}
-
-where we used the definition of $\text{Vol}^8$. 
-
-The introduced four forms read,
-
-\begin{align}
-\text{Vol}_x ^4 &:= \sqrt{-g} \text{d}x^{0} \wedge \text{d}x^{1} \wedge \text{d}x^{2} \wedge \text{d}x^{3}, \\
-\text{Vol}_p ^4 &:= \sqrt{-g} \text{D}p^{0} \wedge \text{D}p^{1} \wedge \text{D}p^{2} \wedge \text{D}p^{3}, \\
-\text{Vol}_p ^3 &:= i_{\vec{\nu}}\text{Vol}_p ^4,
-\end{align}
-
-where the four-forms are on the $TU$ and the latter three-form is on the mass shell $S_m$.
-
-Consider coordinates adopted to the mass-shell, where $\underline{\nu} = (p_0/m)\text{D}p^0$ and $\underline{\nu} = p_0\text{D}p^0$ in the massive and massless cases respectively, the three-form becomes
-
-\begin{equation}
-\text{Vol}^3 _p =\frac{\sqrt{-g}}{-p_0}\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3
-\end{equation}
-
-Now we have a three-form $\text{Vol}^3 _p$ and a four-form $\text{Vol}_x ^4$. 
-In the context of the ADM foliation, we split spacetime manifold as $\mathcal{M}=\mathcal{R}\times\Sigma$, with $x^0 = \text{const}$ being constant hypersurfaces with normal $\underline{n} = - \alpha\text{d}x^0$ and $\alpha$ -- the lapse function. We can now simplify the $\boldsymbol{\omega}$, splitting $\text{Vol}_x ^3$ as 
-
-\begin{align}
-\text{Vol}_x ^4 &= -\underline{n}\wedge\text{Vol}_x ^3 \hspace{5mm} \text{where,} \\
-\text{Vol}_x ^3 &= i_{\vec{n}}\text{Vol}_x ^4 = \sqrt{\gamma}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3
-\end{align}
-
-and the $\boldsymbol{\gamma}$ is the three-metric induced on the slices.
-
-The resulted coordinates, adapted to the mass shell and the spacetime foliation read
-
-\begin{align}
-\boldsymbol{\omega} &=-(\vec{p}\cdot\vec{n})\frac{1}{-p_0}\sqrt{\gamma}\sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3 \\
-&= \frac{p^0}{-p_0}|g|\text{d}x^1 \wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3
-\end{align}
-
-Now, consider a six-vector, $\delta_i x \delta_i p$ with $i\in\{1,2,3\}$. 
-The $\delta_i x$ are tangent vectors to the slice $\Sigma$ and the $\delta_i p$ are tangent to mass shell $S_m$.
-
-The action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$ yields
-
-\begin{align}
-\boldsymbol{\omega}(\delta_1 x,...,\delta_3 p) =& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
-& \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) \\
-& \hspace{2mm} -\frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}p,\delta_{2}p,\delta_{3}p)\times \\
-& \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 x, \delta_2 x, \delta_3 x) = \\
-=& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
-& \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) = \\
-=& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
-& \hspace{10mm} \Big[\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p), \\
-\end{align}
-
-where we used that $\text{d}x^i(\delta_j p)=0$ and the relation
-
-\begin{equation}
-\text{D}p^{i}(\delta_j p) = \text{d}p^{i}(\delta_j p) - {\Gamma^i}_{\alpha\beta}p^{\alpha}\text{d}x^{\beta}(\delta_j p) = \text{d}p^i(\delta_j p)
-\end{equation}
-
-Thus, on the space-like hypersurface $\Sigma$ and on the mass shell we have
-
-\begin{equation}
-\boldsymbol{\omega} = \frac{p^0}{-p_0}|g|\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\wedge\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3 =: \boldsymbol{\Omega}
-\end{equation}
-
-The $\boldsymbol{\Omega}$ can be split as 
-
-\begin{align}
-\boldsymbol{\Omega} &= \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}, \hspace{5mm} \text{where} \\
-\boldsymbol{\Lambda} &= p^0 \sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \\
-\boldsymbol{\Pi} &=  \frac{1}{-p_0}\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3
-\end{align}
-
-The defined forms $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ can be written in a coordinate-independent way at any point $q\in\mathcal{M}$ as 
-
-\begin{equation}
-\boldsymbol{\Lambda} = \star_{\mathcal{M}}\underline{\lambda}, \hspace{5mm} \boldsymbol{\Pi} = \star_{T_q\mathcal{M}}\underline{\pi}
-\end{equation}
-
-and this are intrinsic forms in $T\mathcal{M}$. 
-In addition, the $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the proper geodesics flux
-volume form on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively.
-
-Let us now consider the geodesic flow $\vec{\lambda}$. 
-It generates a "tube" in a phase space, that we limit with $S_1$ and $S_2$ sections. 
-Then the flux of points in phase space associated with geodesic flow is $\int_{S}\boldsymbol{\omega}$. 
-It is possible to show that the flux satisfies
-
-\begin{equation}
-\int_{S_1}\boldsymbol{\omega} = \int_{S_2}\boldsymbol{\omega}
-\label{eq:theory:liuville}
-\end{equation}
-
-which is the \textit{Liouville’s Theorem} in the relativistic case.
-
-To see that this is indeed the case, consider the \textit{exterior differential} of $\boldsymbol{\omega}$
-
-\begin{equation}
-\star\text{d}\omega = \text{d}^{\star}(\underline{\nu}\wedge\underline{\lambda}) = d^{\star}\underline{\nu}\wedge\underline{\lambda} + \underline{\nu}\wedge\text{d}^{\star}\underline{\lambda}.
-\end{equation}
-
-The $\text{d}^{\star}=\text{const}=k$ as $\text{dd}^{\star}\underline{\nu}=0$. 
-In addition, the $\text{d}^{\star}\underline{\lambda}=0$. 
-This allow us to write 
-
-\begin{equation}
-\text{d}\omega = -k(\star\lambda).
-\end{equation}
-
-We note the $\star\underline{\lambda}$ is the volume form of the hypersurfaces orthogonal to $\vec{\lambda}$. 
-Hence, the $\star\underline{\lambda}[\vec{\lambda},...]=0$ along the "tube" in phase space. 
-
-\begin{equation}
-\int_S\text{d}\boldsymbol{\omega} = 0.
-\end{equation}
-
-the \ref{eq:theory:liuville} is recovered, if we use the \textit{Stoke’s Theorem}, and using the fact that the $\boldsymbol{\omega}$ vanishes along the part of the boundary tangent to $\vec{\lambda}$.
-
-\textcolor{red}{Note that I still have no Idea what I have written. I need to go through the original materal, which I could not find... at least I could not find what I could read and understand. }
-
-
-\paragraph{The Boltzmann equation}
-
-
-Let us introduce the phase space version of the \textit{mass flux}, the 6-form representing the number of phase-space trajectories crossing $S$ of the phase tube between $S_1$ and $S_2$ cross sections. 
-
-In the absence of collisions we obtain 
-
-\begin{equation}
-    \int_{S_1}\boldsymbol{\mu} = \int_{S_2}\boldsymbol{\mu}.
-\end{equation}
-
-Remembering that $\boldsymbol{\omega}$ represents the \textit{density of states} in phase space of particles moving along geodesics, we obtain 
-
-\begin{equation}
-    \boldsymbol{\mu} = F\boldsymbol{\omega},
-\end{equation}
-
-where $F$ is \textit{invariant distribution function}, \textcolor{gray}{i.e. $F$ is the Radon-Nikodym derivative of $\boldsymbol{\mu}$ with re $\boldsymbol{\omega}$}.
-
-Consider now that collisions change the number of phase trajectories as 
-
-\begin{equation}
-    \delta N = \int_{S_2} \boldsymbol{\mu} - \int_{S_1}\boldsymbol{\mu} = \int_S \text{d}\boldsymbol{\mu} = \int_S \text{d}F\wedge\boldsymbol{\omega}.
-\end{equation}
-
-where 
-
-\begin{equation}
-    \text{d}F\wedge\boldsymbol{\omega} = \text{d}F\wedge\star (\underline{\nu}\wedge\underline{\lambda}) = \langle\text{d}F,\underline{\lambda}\rangle\star\underline{\nu} - \langle\text{d}F,\underline{\nu}\rangle\star\underline{\lambda},
-\end{equation}
-
-where $\langle\cdot,\cdot\rangle$ is a scalar product between forms and can be written as
-
-\begin{equation}
-    \langle\boldsymbol{\alpha},\boldsymbol{\beta}\rangle\text{Vol}^8 := \boldsymbol{\alpha}\wedge\star\boldsymbol{\beta},
-\end{equation}
-
-and with the $\star\underline{\lambda}=0$ on $S$ we obtain 
-
-\begin{equation}
-    \delta N = \int_S\langle\text{d}F\underline{\lambda}\rangle\star\underline{\nu} = \int_S\mathcal{C}[F]\star\underline{\nu},
-\end{equation}
-
-where we denoted the effect of collisions as
-
-\begin{equation}
-    \langle\text{d}F\underline{\lambda}\rangle = \mathcal{C}[F].
-\end{equation}
-
-This is the \textit{Boltzmann equation}. 
-
-In component from it reads as 
-
-\begin{equation}
-    p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{\gamma}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{\gamma}} =\mathcal{C}[F].
-\end{equation}
-
-In the coordinate system adapted to the equation, when $P^0 = p^0(p^i)$, the equation reads \cite{Cercignani:2002}:
-
-\begin{equation}
-    p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{i}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{i}} =\mathcal{C}[F].
-\end{equation}
-
-Remembering that the $\underline{\lambda}$ is incompressible, we can write
-
-\begin{equation}
-    \langle\text{d}F,\underline{\lambda}\rangle = \text{d}^{\star}[F,\underline{\lambda}],
-\end{equation}
-
-This allows to obtain a conservative formulation of the Boltzmann equation, that indicates the conservation of the number of particles \cite{Cardall:2002bp}
-
-\begin{equation}
-    \text{d}^{\star}[F\underline{\lambda}] = \mathcal{C}[F].
-\end{equation}
-
-Next, we re-introduce the Levi Civita connection $\nabla$ in phase space. 
-For incompressible $\underline{\lambda}$ it gives
-
-\begin{equation}
-    \nabla_A\lambda^A=0,
-\end{equation}
-
-while the \textit{Boltzmann equation} becomes 
-
-\begin{equation}
-    \lambda^A\partial_A F=\mathcal{C}[F]
-\end{equation}
-
-and its \textit{conservative} form 
-
-\begin{equation}
-    \nabla_A[Fp^{A}] = \mathcal{C}[F],
-    \label{eq:theory:liouvilletheorem}
-\end{equation}
-
-or in component form
-
-\begin{equation}
-    \frac{1}{|g|}\frac{\partial}{\partial x^{\mu}}\Bigg[|g|Fp^{\mu}\Bigg] + \frac{p_0}{|g|}\frac{\partial}{\partial p^{k}}\Bigg[\frac{|g|}{-p_0}{\Gamma^k}_{\alpha\beta}p^{\alpha}p^{\beta}F\Bigg] = \mathcal{C}[F].
-\end{equation}
-
-
-
-\paragraph{From the Boltzmann Equation to the Euler Equation}
-
-
-
-In order to derive from the Boltzmann equation the equations of hydrodynamics, we need to first define the needed varaibles of the kinetic description, such as \textit{mass} and \textit{energy} fluxes. 
-
-We not that the density flux can easly be obtained from $\boldsymbol{\mu}$. 
-
-We write the \textit{mass flow} then as 
-
-\begin{equation}
-\boldsymbol{\rho} = \int_{S_m} \boldsymbol{\mu}.
-\end{equation}
-
-Recalling the definition of the rest-mass density four-vector $J$, we note that
-
-\begin{equation}
-\int_{\Sigma}(-J^{\mu}n_{\mu})\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} Fp^0\boldsymbol{\Pi}\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} F\boldsymbol{\Omega} = \int_{\Sigma}\boldsymbol{\rho}
-\end{equation}
-
-Thus, the $J$ can be written as 
-\textcolor{red}{this is not clear how it was obtain. Must go through again.}
-
-\begin{equation}
-J^{\mu} = \int_{S_m}Fp^{\mu}\boldsymbol{\Pi}
-\end{equation}
-
-The second moment of the distribution function $F$ in a similar way gives the \textit{stress energy tensor} 
-
-\begin{equation}
-T^{\mu\nu} = \int_{S_m} F p^{\mu}p^{\nu}\boldsymbol{\Pi}
-\end{equation}
-
-the components of which in the frame comoving with the fluid are
-
-\begin{equation}
-T^{\mu\nu} = 
-\begin{pmatrix}
-E & \vec{F} \\
-\vec{F} & \boldsymbol{P} \\
-\end{pmatrix}
-\end{equation}
-
-where $E$ and $\vec{F}$ are the \textit{energy density} and \textit{flux} respectively, and $\boldsymbol{P}$ is the stress tensor. 
-
-The nature of the collisional operation ultimately defines the equilibrium configuration distribution function $F$ \cite{Cercignani:2002}, and thus the form of the stress-energy tenor. 
-
-Now we use the Liouville Theorem to obtain the equations of hydrodynamics. 
-To accomplish that we insert the $\boldsymbol{\Psi}$, a tensorial function of $p^i$, into the theorem, equation \ref{eq:theory:liouvilletheorem} on both sides and integrate with respect to $\boldsymbol{\Pi}$ as
-
-\begin{equation}
-\int_{\text{I\!R}}\nabla_{A}[F\lambda^A\boldsymbol{\Psi}]\boldsymbol{\Pi}=\int_{\text{I\!R}}\mathbb{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi}
-\end{equation}
-
-where we used that $\lambda^A\nabla_{A}\boldsymbol{\Psi}=0$ as $\vec{\lambda}$ is the geodesic flow. 
-
-Letting the $F$ decay for large momenta we obtain the \textit{transfer equation} \cite{Israel:1963,Cercignani:2002}:
-
-\begin{equation}
-\nabla_{\mu}\int_{\text{I\!R}} F\boldsymbol{\Psi}p^{\mu}\boldsymbol{\Pi} =\int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi},
-\label{eq:theory:transferequation}
-\end{equation}
-
-\textcolor{red}{check the sources. White intermediate steps}
-
-In a particular case of a simple gas $\Psi$ can be shown to be one of the $\{1,p^0,p^1,p^2,p^3\}$ \cite{Cercignani:2002}. 
-Then the right hand side of the transfer equation becomes 
-
-\begin{equation}
-\int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi} = 0.
-\end{equation}
-
-These $\boldsymbol{\Psi}$ are related to the quantities conserved by the collisional operator and are called \textit{collisional invariants}. 
-Choice of $1$ would yield the \textit{mass conservation}, 
-while $p^{\mu}$ -- the \textit{energy and momentum conservation}.
-
-Now, having canceled the R.H.S of the eq. \ref{eq:theory:transferequation}, we obtain the conservation laws in a following form
-
-\begin{equation}
-\nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
-\end{equation}
-
-
-\subsection{Overview}
-
-We start this section by revisiting the fundamental concepts, such as manifold, tangent and cotangent bundles, with vectors and differential forms defined on them, and operations such ans exterior, Wedge product and Hodge star operator. 
-
-Then we set ourselves a goal to obtain the covariant form of general relativistic hydrodynamics. 
-This includes the equations for space-time evolution adopted for use in numerical applications and Euler equations for the (ideal) fluid, which we aim to obtain through the Liuville's theorem and Boltzmann equations.
-
-To derive the Einstein field equations we perform the variation of the so-called Hilbert action, applying the Euler-Lagrange equation. For that we show a quick derivation of Euler-Lagrange equations, using the fact that the fields we are interested in are defined over only a compact domain and that the choice of the variation of coordinates is arbitrary, i.e. $\partial S(\boldsymbol{q}, \nabla \boldsymbol{q}) = 0$. 
-Then, in a similar way, the variation of the Hilbert action, yields the Einstein Field equation.
-
-For practical applications it is useful to express the EFE as a initial value boundary problem. 
-The Hamiltonian formalism allows to do that, which we briefly review. We then sketch the $3+1$ decomposition procedure, introducing the spacelike foliation, the shift vector $\vec{\beta}$ and lapse function $\alpha$, and extrinsic curvature.
-The goal is now to cast the EFE as a set of constraint equations, satisfied on every slice of the foliation, and evolution equations.
-%% that allow us to obtain the constraint equations, that has to be satisfied on every hyper-surface of the hypersurface. 
-Employing the EFE and Gauss-Codacci equations we write the Hamiltonian density, whose variation with respect to the variables of foliation $\alpha$ and $\beta$ yields constraint equation. 
-The evolution equations then are obtained through the variation of the Hamiltinan with respect to the three-metric and momentum.
-
-The obtained ADM system is however not well suited for numerical applications, being only weekly hyperbolic. 
-We thus briefly touch on a strongly hyperbolic formulation, the Z4 formulation, that exhibit such usefull for numeric properties as constraint violation dampening (constrain preservation) and its evolution, the CCZ4 formulation that is further adopted for BH evolution. 
-
-The choice of the space-time foliation, the chose of $\alpha$ and $\vec{\beta}$ is left free however. 
-Their choice refers to the gauge conditions. 
-We recall the most widely used "maximal slicing" and $1+\log$ conditions.
-
-
-
-Then we proceed with deriving equations of general relativistc hydrodynamics, aiming to provide a flux-conservative formulation. 
-We first define the kinematics of the relativistic fluid, \textit{i.e.,} a covariant description in terms of invariant quantities. 
-With this goal in mind we define the rest-mass density vector, whose nullified divergence is the number of particles conservation. 
-Then we re-introduce the stress energy tensor ans show that via Bianki identities, its divergence also vanishes.
-
-To discuss the dynamics of the fluid, we first, set its type. 
-We consider the fluid with no thermal conductivity and no viscosity, \textit{i.e.}, the perfect fluid. 
-In addition to fluid kinematics and the stress-energy tensor, describing its motion, the equation of state is needed. 
-Together they from a hyperbolic system of equations that describes the evolution of the fluid in space-time, once the initial data is set.
-
-For the reasons of numerical stability, a special formulation of the equations of general relativistic hydrodynamics is required. 
-Such is the Valencia formulation. The main idea is to contract an advection-like equations for fluxes of conserved quantities, from which the primitive quantities can be reconstructed.
-
-To derive these fluxes we first decompose the four velocity into the component parallel to the normal to the hypersurface and a purely spatial part. 
-This leads us to the definition of the conserved density. Then we introduce a vector whose zeroth component is just a norm and spatial component which is a \textcolor{gray}{tangent vector to hypersurface}. 
-This allows us to write the conserved and primitive quantities of the formulation, as well as the source term. 
-\todo{not all quntities in Val.Form. are clear. What is $S_j$ and $\epsilon$}
-
-Then we set an goal of writing the Euler equation for the fluid, based on the phase-spahce decription of it, with a help of Luiville's theorem and general-relativistic Boltzmann equation, the latter of which is derived via geometrical approach.
-To do that we first introduce necessary tools, namely vectors, co-vectors, tangent and cotangent bundles.
-There are $2n$ components with the first $n$ being coordinates and the second $n$ being impulses. 
-In addition, we introduce the coordinate transformation and finally, the metric on the tangent bundle.
-
-Having tools set, we derive the Liuville theorem. In order to do that we write phase-space flow of particles moving along geodesics which is represented by the Poincare 1-form and associated vector.
-In addition we define a mass shell, a norm to it and a irrotational form on a tangent bundle. 
-Together with the Poincare form it allows us to define the density of the phase-space trajectories which we denote as a Hodge operator of the wedge product of these two forms. 
-After some calculations, we obtain that this form can be expressed in a coordinate independent way as a split of two forms, the proper geodesics flux forms on the hypersurface and the mass shell respectively.
-By considering the "phase tube" with two crossections, we observe that integrated flux is conserved, which constitutes the Liouville\'s Theorem.
-
-After that we proceed with deriving the Boltzmann equation. 
-We start by introducing the number of phase-space trajectories crossing the section of a "phase tube". 
-The relation between the number of the phase space trajectories and the density defined above, yields the invariant distribution function. 
-Considering the change in the number of particles due to collisions. 
-The change in scalar product between the exterior derivative of the distribution function and Poincare 1-form due to collisions constitutes the Boltzmann equation. 
-\textcolor{red}{revise this.}. 
-Re-introducing the Levi Civita connection in phase space, and taking an advantage of the incompressibility if the poincare 1-form, we obtain a conservative form of the Boltzmann equation.
-
-From Boltzmann equation we can now obtain an equations of hydrodynamics. For that we first redefine the variables of the kinetic description, such as mass and energy fluxes, recalling the definition of the rest-mass density four-vector. 
-Similarly how the vector can be now expressed as a first moment of the distribution function, the second moment gives the stress energy tensor. However, we note that the nature of the collisional operation ultimately defines the equilibrium configuration distribution function and thus the form of the stress-energy tenor.
-
-Next we use the Liouville Theorem to obtain the equations of hydrodynamics introducing a tensorial function of the momenta, that is related to the quantities conserved by the collisional operator and are called collisional invariants into the integral form of the theorem. 
-Letting the distribution function decay for large momenta we obtain the transfer equation. 
-For a simple gas this can be reduced to already familiar equations where divergence of the rest mass vector $J$ and stress energy tensor is zero.
-
-
-%% --------------------------------------
-
-\section{Numerical Approximation of Conservation Laws}
-
-%% --------------------------------------
-
-\red{source called them 'coservational laws' -- but there seesm to be no such term}
-
-In this chapter we aim to briefly remark on the theory of the numerical approximation of conservation laws. 
-Owing to their key importance in physics, there is quite an extensive amount of literature concerning the topic. 
-We therefore select the aspects that are of relevance to this work, namely high-order, state-of-the-art numerical methods for the solution of conservation laws. 
-For the sake of compactness we would refrain from stating complete descriptions of these schemes, focusing on key ideas behind them, their advantages and drawbacks in the context of general-relativistic hydrodynamics.
-
-This section is structured as following. 
-In Section \red{fill me, if it is needed for just a Section?..}
-
-%% --------------------------------------
-\subsection{Theoretical Background}
-%% --------------------------------------
-
-In this \red{subsection} we briefly recall the basics behind the mathematical theory of conservation laws and subsequently, their numerical application. 
-We start by defining the \textit{weak} and \textit{entropic} solutions, and present certain results regarding \textit{existence} and \textit{uniqueness} of these solutions for conservation laws. 
-We then proceed with reviewing numerical approximation to conservation laws, as well as concepts of consistency, stability and convergence, \textcolor{gray}{briefly stating the Lax-Richtmeyer theorem}. 
-Then we conclude with reviewing the extension to the case of non-linear equations. 
-This subsection is based on the descriptions provided in \cite{LeVeque:1992,Tadmor1998}, and we refer the reader to these sources for more in-depth discussion.
-
-%% Analytical properties and requirements for conservation laws
-\subsubsection{Conservation Laws}
-
-
-Let us consider the conservation laws in the following form
-
-\begin{align}
-\partial_t\boldsymbol{u} + \nabla\cdot\boldsymbol{f}(\boldsymbol{u}) = 0, \hspace{10mm} &(t,x)\in \text{I\!R}_{+}\times\text{I\!R}^d , \\
-\boldsymbol{u}(0, x) = \boldsymbol{u}(x), \hspace{18mm} &x\in \text{ I\!R},
-\label{eq:theory:conservlaws}
-\end{align}
-
-where $\boldsymbol{u}$ is the vector of $m$ unknowns, $\boldsymbol{f}=(\boldsymbol{\boldsymbol{f}^1,...,\boldsymbol{f}^m})$ is a $d$-dimensional flux and $\boldsymbol{u_0}\in\big[L^{\infty}(\text{I\!R}^d)\big]^m$ is the initial data. 
-
-Investigations of the system \ref{eq:theory:conservlaws} showed that irrespective of the initial data, the solution can develop \textit{discontinuities} (shocks) in a finite time. 
-Thus, the system should be viewed in \textit{distribution formalism}. 
-There, if for all test functions $\upsilon\in C_0 ^1 (\text{I\!R}^{d+1})$ and $i=1,2,...,m$  there is
-
-\begin{equation}
-\int_{0}^{\infty}\text{d}t\int_{\text{I\!R}^d}\big[u^i \partial_t\upsilon + \boldsymbol{f}^i(\boldsymbol{u})\cdot\nabla\upsilon\big]\text{d}x = \int_{\text{I\!R}^d} u_0 ^i \upsilon \text{d}x,
-\end{equation}
-
-then, the vector $\boldsymbol{u}\in\big[\text{I\!R}_{+}\times\text{I\!R}^d\big]^m$ is a \textit{weak solution} of \ref{eq:theory:conservlaws}.
-
-It can be shown that \textit{multiple weak solutions} are allowed even for a scalar conservation law. 
-Let us then consider the concept of the \textit{entropic solution}. 
-A convex function \textcolor{red}{what is it?}, $\eta(\boldsymbol{u})$, is said to be an entropy function if its Hesian \textcolor{red}{what is it???}, $\nabla_{\boldsymbol{u}}^2\eta$, symmetrizes the spatial Jacobian, $\nabla_{\boldsymbol{u}}f^i$ \textcolor{red}{WHAT IS IT?!},
-\red{Write a better definition of an entropic solution to conservation laws}
-
-\begin{equation}
-\nabla_{\boldsymbol{u}}^2\eta\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{f}^i]^{T}\cdot\nabla_{\boldsymbol{u}}^2\eta, \hspace{10mm} i = 1, ... , m.
-\end{equation}
-
-Here we infer the \textit{compatibility relation}, introducing the \textit{entropy flux} $\boldsymbol{\psi} = (\boldsymbol{\psi}^1,...,\boldsymbol{\psi}^m)$, as 
-
-\begin{equation}
-[\nabla_{\boldsymbol{u}}\eta]^T\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{\psi}^i]^T, \hspace{15mm} i = 1,...,m.
-\end{equation}
-
-The pair $\eta\boldsymbol{\psi}$ is referred to as \textit{entropy pair}.
-
-Then, the \textit{entropic solution} is a weak solution that for any \textit{entropy pair} $(\eta\boldsymbol{\psi})$, admits
-
-\begin{equation}
-\partial_t\eta(\boldsymbol{u}) + \nabla\cdot\boldsymbol{\psi}(\boldsymbol{u})\leq 0.
-\end{equation}
-
-Concerning distributions, the \textit{entropic solution} requires that for any positive test function $\upsilon\in C_0 ^1 (\text{I\!R}_+\times\text{I\!R}^d)$  
-
-\begin{equation}
-\int_{\text{I\!R}_+\times\text{I\!R}^d} \big[\eta(\boldsymbol{u})\partial_t\upsilon + \boldsymbol{\psi}(\boldsymbol{u}) \cdot \nabla\upsilon \big]\text{d}t\text{d}x = 0
-\end{equation}
-
-It is possible to show \cite{LeVeque:1992}, that this condition in a scalar cast is equivalent to making characteristic line impinged into shock waves. 
-This constitutes that the process that resulted in a shock forming is \textit{irreversible} and that the time-symmetry is not longer applies. 
-
-Considering the scalar case, where $m=1$, it is possible to prove the existence and \textit{uniqueness of the entropic solution} under very general conditions \cite{Kruzkov:1970}. 
-It is also can be extended to \textit{measure-valued solutions} \cite{DiPerna:1985} and to the case of conservation laws on manifolds \cite{Benartzi:2007}.
-
-On the other hand, uniqueness and stability of entropic solutions is not well understood in case of systems of conservation laws, as not even the existence of $(\eta\boldsymbol{\psi})$ for the general system of equation has been proven. 
-In \cite{Chen:2009} a novel approach has been employed, based on divergence-measure vector fields. For one dimensional Riemann problem, where the initial data in a form 
-
-\begin{equation}
-\boldsymbol{u}_0(x) = 
-\begin{dcases}
-\boldsymbol{u}^L, \hspace{5mm} \text{if } x<0; \\
-\boldsymbol{u}^R, \hspace{5mm} \text{if } x>0.
-\end{dcases}
-\end{equation}
-
-it allowed to prove the existence, uniqueness and stability of the entropic solution of the Euler equations for a classical ideal-gas \cite{Chen:2003}.
-
-However the mere exestiance of the weak solution to the Riemann problem for general equation of state is not guaranteed \cite{Curtis:1972}. 
-(For more recent results regarding classical Euler equations, see the review \cite{Chen:2006}). 
-
-On the other hand, using Glimm’s method \cite{Glimm:1965} the existence of solutions to the Riemann problem was shown in the relativistic case but for the ultrarelativistic equation of state \cite{Smoller:1993}. 
-
-For \textit{strictly hyperbolic systems} \textit{i.e.,} when $\nabla_{\boldsymbol{u}}\boldsymbol{f}$ has a complete set of real eigenvalues and eigenvectors, the existence of weak solutions was proven in case when the initial data having small enough initial jump \cite{Lax:1957}.
-
-
-%% for some defintiions
-\subsubsection*{Infimum and Supremum}
-
-The \textit{infimum (inf)} of a subset $S$ of a partially ordered set $T$ is the greatest element of $T$ that is less than or equal to all elements of $S$.
-The \textit{supremum (sup)} of a subset $S$ of a partially ordered set $T$ is the least element in $T$ that is greater than or equatl to all elements of $S$. 
-
-The upper bound of a subset $S$ of a partially ordered set (P,$\leq$) is an element $b$ of $P$ such that $b\geq x$ for all $x$ in $S$. 
-
-If a supremum of a subset $S$ exists, it is unique. 
-The supremum of a subset $S$ of partially ordered set $P$ does not necessarily belongs to $S$. But if it does, it is the maximum, or the greatest element of $S$. 
-
-Consider examples of suprema. The supremum of a set of real numbers of $\{1,2,3\}$ is $3$. The number $4$ is an upper bound but it is not the least upper bound and hence not the supremum. 
-
-\begin{align}
-\sup\{x\in\text{I\!R}|0<x<1\} = 1. \\
-\sup\{(-1)^n - 1/n | n = 1,2,3,... \} = 1. \\
-\sup\{x\in\mathbb{Q} | x^2 < 2\} = \sqrt{2}
-\end{align}
-
-
-%% Numerical treatment of the conservation laws
-\subsubsection{Consistency, Stability and Convergence}
-
-
-Now we consider how the conservation laws can be treated numerically. 
-We limit the discussion to the $m=1$ case, as the non-linear theory is well established only for the scalar fields. 
-Thus we define a problem as 
-
-\begin{align}
-\partial_t u + \nabla\cdot\boldmath(u) = 0&, \hspace{10mm} (t,x) \in I\!R_{+}\times I\! R^d \\ 
-u(0, x) = u_o(x)&, \hspace{15mm} x\in I\!R^{d},
-\end{align}
-
-where $u$ is now just a scalar function. 
-
-Let us introduce the following notation. 
-The form of equations \ref{eq:theory:conservlaws} allows us to view the solution to this system in a form of a "curve" in an infinite dimensional vector sapce $L^{\infty}I\!(R^d)$, or as a sequence of \textit{bounded functions} $u(t,\cdot)\in L^{\infty}(I\! R^d)$, that we can consider only being functions of time $u(t)$ with values in the vector space. 
-Owing to the curve being bounded in $L^{\infty}(I\!R^d)$, the sequence of bounded functions read $u(t)\in L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$. 
-Then the system  \ref{eq:theory:conservlaws} can be seen as a system of ordinary differential equations (ODEs), which can be represented as 
-
-\begin{equation}
-\frac{\text{d}u(t)}{\text{d}t} = \mathcal{L}[u(t)], \hspace{10mm} u(0) = u_0,
-\label{eq:theory:conservlawsode}
-\end{equation}
-
-where we associate the operator $\mathcal{L}(\cdot)$ with the $-\nabla\cdot\boldsymbol{f}(\cdot)$. 
-It is important to remember, that as the $u(t)$ is not a smooth function of time, the equation \ref{eq:theory:conservlawsode} should be considered from a point of view of distributions. 
-In addition, we note that stating $u(0) = u_0$ is in all mathematical rigor is a restriction of general functions $L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$ to the set of \textit{zero Lebesgue measure}, which is not define. 
-For the purpose of keeping the discssion brief we refer to the \cite{Kruzkov:1970} for the related discussion. 
-For the numerical applications we further restrict $u(t)$ to be a smooth function of time, and leave the mathematical subtleties out of discussion. 
-
-Transitioning from general formulation \ref{eq:theory:conservlaws} to one adopted for a scalar function $u(t)$ \ref{eq:theory:conservlawsode}, we can introduce the numerical approximation, that is depended in a \textit{discretization parameter} $\Delta$. 
-This approximation reads
-
-\begin{equation}
-\frac{\text{d}u^{\Delta}(t)}{\text{d}t} = L^{\Delta}[u^{\Delta}(t)], \hspace{10mm} u^{\Delta}(0) = P^{\Delta}[u_0],
-\label{eq:theory:conservlawsodepde}
-\end{equation}
-
-where $u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \textit{i.e.,} $u^{\delta}\approxeq u u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator. 
-However, as the error associated with it is negligible in comparison with other errors arising in discretization of conservation laws, we will ignore it, effectively assuming that $u^{\Delta}(0) = u_0$. 
-One of such errors is the trucaction error. 
-
-The \textit{ local truncation error } can be defined as 
-
-\begin{equation}
-r^{\Delta} = L^{\Delta}[u(t)] - \mathcal{L}[u(t)],
-\end{equation}
-
-where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. 
-We call a numerical scheme \textit{consistent} if the $r^{\Delta}\rightarrow 0$ when $\Delta\rightarrow 0$ in a given norm for all possible initial data $u_0$. 
-Note, however, that the choice of norm is problem- and method- dependent and may limit the allowable initial data. 
-
-We then call a scheme to be \textit{ of order $r$ } if 
-
-\begin{equation}
-|| r^{\Delta}(t) || = \mathcal{O}(\Delta^r).
-\end{equation}
-
-A scheme is considered to be \textit{stable} if the norm $L^{\Delta}$ is limited 
-
-\begin{equation}
-|||L^{\Delta}||| := \sup \frac{||L^{\Delta}||}{||\upsilon||}\leq C,
-\end{equation}
-
-where $\sup$ is the supremum, $C\geq 0$ is a constant independent of $\upsilon$. 
-A scheme is considered to be \textit{convergent} if 
-
-\begin{equation}
-\lim_{\Delta\rightarrow 0} ||u^{\Delta}(t)-u(t)|| = 0, \hspace{10mm} \text{a.e. } t\in \text{I\!R}_{+}.
-\end{equation}
-
-The relation between the consistency, stability and convergence is given by the 
-\textit{Lax-Richtmeyer equivalence theorem} \cite{Lax:1956}. 
-
-It states that the numerical approximation of well-posed problems is convergent if and only if the scheme is stable and consistent. 
-
-In addition, consider a scheme of the order $r$, then
-
-\begin{equation}
-|| u^{\Delta}(t) - u(t) || = \mathcal{O}(\Delta^r).
-\end{equation}
-
-However, in the non-linear case, the \textit{non-linear stability} is required in addition to the stability and consistency are to assure convergence. 
-
-
-
-\subsubsection*{Measure in mathematics}
-\red{Wikipedia:)}
-
-Measure of a set is a systematic way to assign a number to each suitable subset of that set intuitively interpreted as its size. 
-Thus, a measure is a generalization of length, area, volume. 
-
-Example: \textit{Lebesgue measure on a Euclidean space} that assigned the conventional length area and volume to Euclidean geometry to the suitable subsets of the $n-$dimensional Euclidean space $\mathbb{R}^n$. 
-For instance the Lebesgue measure of the interval $[0,1]$ in the real numbers is this length. 
-
-Measure is a function, that assigns a non-negative real number to certain subsets of a set $X$. It mist be countably addictive. 
-
-The formal defitinion: 
-let $X$ be a set and $\Sigma$ a $\sigma$-algebra over $X$. A function $\mu$ from $\Sigma$ to the extended real number line is called measure if it sutisfies the following property:
 \begin{itemize}
-    \item Non negativity: For all $E$ in $\Sigma$ we have $\mu(E)\geq 0$
-    \item Null empty set: $\mu(\emptyset) = 0$.
-    \item Countable addictivity or $\sigma$ addictivity: for all countable collections $\{E_k\}_{k=1}^{\infty}$ of pairwise disjoint sets in $\Sigma$: $\mu\Big(U_{k=1}^{\infty}E_k\Big) = \sum_{k=1}^{\infty}\mu(E_k)$.
+    \item \textbf{The linear evolution of the instability} Consider the evolution of the instability during its linear-growth phase. As expected, all the numerical schemes, with the exception of MINMOD, are in very good agreement with the 2D solution up to the end of the linear-growth phase, when 3D effects become important and turbulence starts to play an important role in the dynamics. It is interesting to note that MINMOD, which is the most dissipative of the schemes we are using, is actually overestimating the growth of the KHI.
+    This suggests that \textbf{some care should be taken when interpreting the results from under-resolved simulations}. secondary vortices are produced in more least dissipative methods.
+    \item \textbf{The non-linear evolution of the instability} The linear-growth phase of the KHI instability ends when the primary vortices become unstable to secondary instabilities and the flow starts the transition to turbulence. Three-dimensional effects dominate. Use the tracer scalar field to track the evolution.
+    \item \textbf{The non-linear evolution of the instability}. when the primary vortices become unstable to secondary instabilities and the flow starts the transition to turbulence. three-dimensional effects dominate.
+    \item \textbf{Fully-Developed turbulence} By far the most interesting quantity to study is the three-dimensional velocity power spectrum. conclusions. importance of the use of high order    schemes (avoid bottle-neck, otherwise power-spectrum shows an excess due to viscous effects.) use of WENO4B over WENO5 is well justified, since WENO4B is roughly twice as expensive as     WENO5 in 3D. Tthe main differences between the bandwidth-optimized schemes and their traditional counterparts seem to lay in the bottleneck region WENO3B and WENO4B have a much less pronounced bottleneck with respect to WENO5, WENO7 and MP5.
+\end{itemize} 
+
+\subsubsection{Driven Relativistic Turbulence}
+
+Consider an idealized model of an ultrarelativistic fluid. The fluid is modeled as perfect. We evolve the equations describing conservation of energy and momentum in the presence of an externally imposed Minkowskian force. To solve the equations of relativistic hydrodynamics in 3D we use the THC code described in this chapter and published in \cite{Radice:2012cu}. In particular, here, we use the MP5 reconstruction in local characteristic variables [165].
+
+\begin{itemize}
+    \item \textbf{Basic flow properties} All in all, this is one of our main results: the velocity power spectrum in the inertial range is universal, that is, insensitive to relativistic effects, at least in the subsonic and mildly supersonic cases. Note that this does not mean that
+    relativistic effects are absent or can be neglected when modelling relativistic turbulent flows.
+    \item \textbf{Intermittency} local appearance of anomalous, short-lived flow features.
+    \item \textbf{Conclusion} \textcolor{red}{We have presented THC, a new multi-dimensional, finite-difference, high-resolution shock-capturing code for classical and special-relativistic hydrodynamics... -- [FULL description of THC]}
 \end{itemize}
 
-\paragraph{Lebesgue measure}
 
-This is a standard way of assigning a measure to subset of $n-$dimensional Euclidean space. 
-For $n=1,2,3$ it coincides with simply length, area and volume. 
-In general it is also called a $n-$dimensional volume or $n-$volume. 
-Usually a measure of the Lebesgue-measurable set $A$ is denoted with $\lambda(A)$. 
 
-Formal definition: 
-Given a subset $E\subseteq\mathbb{R}$ with the length of interval $I=[a,b]$ (or $I=(a,b)$) given by $l(I) = b-a$ Lebesgue outer measure $\lambda^*(E)$ is defined as 
-
-\begin{equation}
-\lambda^*(E) = \inf\Bigg\{\sum_{k=1}^{\infty}l(I_k):(I_k)_{k\in N} \text{ is a sequence of open intervals with } \subseteq U_{k=1}^{\infty}I_k\Bigg\}
-\end{equation}
-
-The first part of the definition states that the subset $E$ of the real numbers is reduced to its outer measure by coverage by sets of open intervals. 
-Each of these sets of intervals $I$ covers $E$ in the sense that when the intervals are combined together by union, they contain $E$. 
-The total length of any covering interval set can easily overestimate the measure of $E$, because $E$ is a subset of the union of the intervals, and so the intervals may include points which are not in $E$. 
-The Lebesgue \textit{outer} measure emerges as the greatest lower bound (\textit{infimum}) of the lengths from among all possible such sets. 
-Intuitively, it is the total length of those interval sets which fit $E$ most tightly and do not overlap.
-
-%That characterizes the Lebesgue outer measure. Whether this outer measure translates to the Lebesgue measure proper depends on an additional condition. 
-%This condition is tested by taking subsets $A$ of the real numbers using $E$ as an instrument to split $A$ into two partitions: the part of $A$ which intersects with $E$ and the remaining part of $A$ which is not in $E$: the set difference of $A$ and $E$. These partitions of $A$ are subject to the outer measure. If for all possible such subsets $A$ of the real numbers, the partitions of $A$ cut apart by $E$ have outer measures whose sum is the outer measure of $A$, then the outer Lebesgue measure of $E$ gives its Lebesgue measure. Intuitively, this condition means that the set $E$ must not have some curious properties which causes a discrepancy in the measure of another set when $E$ is used as a "mask" to "clip" that set, hinting at the existence of sets for which the Lebesgue outer measure does not give the Lebesgue measure. (Such sets are, in fact, not Lebesgue-measurable.)
-
-\paragraph{$L^p$ space}
-
-
-The $L^p$ spaces are function spaces defined using a natural generalization of the $p-$form for a finite-dimensional vector space. 
-They are also called \textit{Lebesgue spaces}. 
-$L^p$ spaces form an important class of \textit{Banach spaces} in functional analysis, and of topological vector spaces.
-
-
-\paragraph{$p-$form in finite dimensions}
-
-
-Consider a length vector $x=(x-1, x_2...,x_n)$ in the $n-$ dimensional real vector space $R^n$ is usually given by the Euclidean norm 
-
-\begin{equation}
-||x||_2 = (x_1 ^2 + ... + x_n ^2)^{1/2}.
-\end{equation}
-
-For real numbers the $p-$norm or $L^p$-norm of $x$ is defined by
-
-\begin{equation}
-||x||_p = (|x_1|^p + ... + |x_n|^p)^{1/p}.
-\end{equation}
-
-\textit{$l^p$ spaces}
-an $L^p$ space may be defined as a space of measurable functions for which the $p-$th power of an absolute value is Lebesgue integrable where functions which agree almost everywhere are identified.
-
-
-\paragraph{Total variation}
-
-
-The total variation of a real-valued function $f$ defined on an interval $[a,b]\subset R$ is the quantity 
-
-\begin{equation}
-V_b ^a (f) = \sup_{\mathcal{P}}\sum_{i=0}^{n_p -1}|f(x_{i+1} - f(x_i)|,
-\end{equation}
-
-where the supremum runs over the set of all partitions $\mathcal{P} = \{\mathcal{P}=\{x_0,...,x_{np}\}|P\text{ is the partition of }[a,b]\}$ of the given interval. 
-
-
-\paragraph{total variation for function of $n>1$ real variables}
-
-
-Let $\Omega$ be an open subset of $\mathbb{R}^n$. 
-Given a function $f$ belonging to $L^1(\Omega)$, the total variation of $f$ in $\Omega$ is defined as 
-
-\begin{equation}
-V(f,\Omega):=\sup\Bigg\{\int_{\Omega}f(x)\text{div}\phi(x)\text{d}x:\phi\in C_{c}^1(\Omega, \mathbb{R}), ||\phi||_{L^{\infty}(\Omega)}\leq 1\Bigg\}
-\end{equation}
-
-where $C_c ^1(\Omega, \mathbb{R}^n)$ is the set of continuously differentiable vector functions of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
-
-
-\paragraph{Bounded variation}
-
-
-A function of bounded variation also known as $BV$ function is a real valued function whose total variation $TV$ is bounded or finite. 
-
-In case of a continuous function of one variable, for that function to be of bounded variation implies that the distance along the direction of the $y-$axis, neglecting the $x-$axis motion contribution, traversed by a point, moving along the gap, has a finite value. 
-
-In case of several variables a function $f$ defined on an open subset $\Omega$ of $\mathbb{R}^n$ is staid to have bounded variation it its distributional derivative is a vector-valued finite Radon measure.
-
-Importantly, functions of bounded variation form an algebra of dinsontinous functions whose first derivative exists almost everywhere. 
-
-Thus, they can be used to define generalized solutions of nonlinear problems involving functionals. ODE, PDE.
-
-Returning to the definition of the total variation $TV$ for a function of one variable, $V_a ^b (f)$. 
-If $f$ is differentiable and its derivative is Reimann-integrable, its total variation is the vertical component of the arc-length of its graph, \textit{i.e.,}
-
-\begin{equation}
-VC_a ^b(f) - \int_a ^b |f'(x)|\text{d}x.
-\end{equation}
-
-A condinous real-valued function $f$ on the real line is said to be of bounded variation \textit{BV function} on a chosen interval $[a, b]\subset \mathbb{R}$ if its total variation is finitie, \textit{i.e.,}
-
-\begin{equation}
-f\in\text{BV}([a,b]) \leftrightarrows V_a ^b (f) < +\infty
-\end{equation}
-
-The space of bounded varaition (BV functions) can be defined as 
-
-\begin{equation}
-\text{BV}(\Omega) = \{u\in L^1(\Omega): V(u, \Omega) < +\infty\}
-\end{equation}
-
-
-\subsubsection{Non-Linear Equations and Non-Linear Stability}
-
-
-The system \ref{eq:theory:conservlawsodepde} is a system of ordinary differential equations, where the discretization of time has to made as well as space. 
-However, up to now we were discussing only the latter, introducing the operator $\mathcal{L}$ and its approximation $L^{\Delta}$. 
-The reason for that is the following. The spatial discretization introduces much more prominent truncation error than the time discretization, which allowed us to limit the discussion of non-linear conservation laws to different choices in constructing $L^{\Delta}$. 
-However, the properties of the time discretization start to play an important role in the context of non-linear stability and convergence of numerical schemes in the non-linear case. 
-Thus, we shall discuss a \textit{fulli descrete} schemes.
-
-Let us start by introducing a one-parameter family of evolution operators $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$. 
-Following \cite{Kruzkov:1970}, the $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$ allows an operation of composition that forms a semi-group and the $\mathcal{T}_t(u_0)$ yields a solution \ref{eq:theory:conservlaws} at a time $t$, given the initial data $u_0$, \textit{i.e.,}
-
-\begin{equation}
-u(t) = \mathcal{T}_t(u_0), \hspace{10mm} \mathcal{T}\circ\mathcal{T}_t = \mathcal{T}_{t+s}.
-\end{equation}
-
-Its discrete version then
-
-\begin{equation}
-u^{\Delta}(k\Delta t) = T^{\Delta}_{\Delta t}(u_0), \hspace{10mm} T^{\Delta}_s\circ T^{\Delta}_t = T^{\Delta} _{t+s}
-\end{equation}
-
-\textit{i.e.,}
-
-\begin{equation}
-u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)]
-\end{equation}
-
-in a fully discrete form.
-
-Importantly, there is only one discretization parameter $\Delta$ for time and space. 
-This is allowed due to the \textit{Courant–Friedrichs–Lewy} (CFL) condition, which is in essence a linear stability condition of a time-integrator, that links two discretizations. 
-
-For a fully-discrete from, the \textit{truncation error} reads 
-
-\begin{equation}
-r^{\Delta}(t) = T^{\Delta}_{\Delta t}[u(t)] - u(t + \Delta t) = T^{\Delta}_{\Delta t}[u(t)] - \mathcal{T}_{\Delta t}[u(t)],
-\end{equation}
-
-where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. 
-
-For consistency, it is required that the norm $||\cdot||$, $||r^{\Delta}(t)||\rightarrow 0$ when $\Delta\rightarrow 0$. 
-
-A scheme is said to be \textit{ of an order $r$ } if $||r^{\Delta}(t) = \mathcal{O}(\Delta^r)||$. 
-A scheme is regarded to be \textit{linearly stable} if 
-
-\begin{equation}
-|||T^{\Delta}_{\Delta t}||| \leq C,
-\end{equation}
-
-where $C$ is a constant. 
-
-%% constructing a numerical sheme [INTRO]
-Let us consider how a numerical scheme in a non-linear case then can be constructed. 
-The Lax-Wendroff theorem \cite{Lax:1960} reads, that for a function $u$ to be a weak solution of \ref{eq:theory:conservlaws}, the numerically approximated solution $u^{\Delta}$ to the \ref{eq:theory:conservlawsode} obtained via conservative and consistent scheme should converge strongly. 
-By \textit{conservative} we understand a scheme such that 
-
-\begin{equation}
-\int_{\text{I\!R}^d} T^{\Delta}_s(\upsilon)\text{d}x = \int_{\text{I\!R}^d}\upsilon\text{d}x, \hspace{10mm} \text{for any } \upsilon\in L^1(\text{I\!R}^d),
-\end{equation}
-
-where $L^1$ is norm and the strong convergence implies that this $L^1$ is the norm to the function $u$. 
-
-Thus, the important point is to obtain a conditions that is \textit{sufficient for a scheme to be convergent}. 
-Then, the Lax-Wendroff theorem will ensure that this solution is a weak solution. 
-It is however important to note that the theorem does not guarantee that the solution also entropic, and an additional criterion of satisfying the entropy inequality, then has to be imposed. 
-
-%% Deriving the numerical scheme that is convergent and leads to an entropic solution
-Let us then proceed with derivation of the conditions that is sufficient for \textit{convergence}. 
-We start by introducing the total-variation of a function $u$, belonging to $L^1(\Omega)$ in a domain $\Omega$
-
-\begin{equation}
-\text{TV}(\upsilon;\Omega):=\sup\Bigg\{ \int_{\Omega} \upsilon\nabla\cdot\boldsymbol{\phi}\text{d}x: \boldsymbol{\phi}\in [C_0 ^1 (\Omega)]^d, ||\boldsymbol{\phi}||_{L^{\infty}(\Omega)}\leq 1 \Bigg\}, \hspace{5mm} \text{ for any }\boldsymbol{\phi} \in C_0 ^1 (\Omega)
-\end{equation}
-
-where $C_0 ^1(\Omega)$ is the space of continuously differentiable vector functions $\boldsymbol{\phi}$ of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
-
-It is possible to show that (\textit{e.g.,} \cite{Luigi:2002}) if $\text{TV}(\upsilon ; \Omega) < \infty$, then $\text{TV}(\upsilon ; \Omega) = |D\upsilon|(\Omega)$ where $|\cdot|$ stands for the \textit{vector-valued measure} $D\upsilon$ or 
-
-\begin{equation}
-\text{TV}(\upsilon; \Omega) = \int_{\Omega}|D\upsilon|\text{d}x
-\end{equation}
-
-where $D\upsilon$ is a gradient of $\upsilon$ is a sense of distributions. 
-
-Further we introduce the vector space BV, $\text{BV}(\Omega)$, that is the space of all functions in $L^1(\Omega)$ with \textit{finite total variation}. This is a \textit{Banach space} with respect to the norm 
-
-\begin{equation}
-|| \upsilon ||_{\text{BV}(\Omega)} = \int_{\Omega}\big(|\upsilon| + |D\upsilon|\big)\text{d}x.
-\end{equation}
-
-The importance of BV spaces lies in the following. 
-It was shown \cite{Conway:1966} that for any $t\geq 0$ $u(t)\in \text{BV}(\text{I\!R}^d)$, and if the initial data $u_o\in \text{BV}(\text{I\!R}^d)$, then the function $u \ in \text{BV}(\text{I\!R}\times\text{I\!R}^d)$. 
-This constitutes the invariance property of the BV spaces. 
-It is important to note, however, that the validity is confirmed only for scalar conservation laws. 
-A system of conversational laws on the other hand can have a solution that is not BV even if the initial data was in BV space. 
-Consider for example an Euler equation in Lagrangian coordinates. 
-It was shown that the solution can develop vacuum regions, \textit{i.e.,} not BV, if the initial data exhibit sufficiently large variations, while still being in BV space. 
-Such a solution becomes an $L^1$ function or a \textit{Radon measure} \cite{Chen:2006}. 
-Another reason why BV are important is that boudned sets in BV$(\Omega)$ are sequentially compact in $L^1 _{\text{loc}}(\Omega)$ \textit{e.g.,} \cite{Luigi:2002}. 
-This implies that for any sequence of functions $[\upsilon_n]\in\text{BV}(\Omega)$ there is a subsequence converging in the $L^1$-norm to a function $L^1 _{\text{loc}}(\omega)$. 
-
-Then, the goal is to construct a numerical scheme that is able to mimic the BV-invariance of the exact conservation laws. 
-Then the Lax-Wendroff Theorem would assure that the numerical scheme that is $L^1$ stable if consistent produces a sequence of solutions, for different discretization parameter $\Delta$, that will converge in $L^1$-norm to a weak solution as we decrease $\Delta$. 
-It is however important to note, that not a sequence of solutions, but a union of subsequences $[u^{\Delta}]$ is produced, each of which is converging to a possible different weak solution. 
-If this is not the case, then there exist a sequence $\{u^{\Delta_i}\}$ and $\epsilon > 0$ such that $\Delta_i\rightarrow 0 $ when $i\rightarrow \infty$ and $\text{dist}(W,u^{\Delta_i})>\epsilon$ for any $i$. 
-Such schemes are called \textit{TV-stable}. The important property of such scheme is, that for all initial data $u_0\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d)$ there exist $\Delta_0 > 0$ and $C\geq 0$ such that 
-
-\begin{equation}
-\text{TV}(T_s ^{\Delta}(u_0); \text{I\!R}^d)\leq C \text{ for any } \Delta < \Delta_0.
-\end{equation}
-
-For example, if a scheme shows the property 
-
-\begin{equation}
-\text{TV}(T_{\Delta t} ^{\Delta}(\upsilon_0); \text{I\!R}^d) \leq \text{TV}(\upsilon,  \text{I\!R}^d), \text{ for any } \upsilon\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d),
-\end{equation}
-
-it is one of the \textit{total-variation diminishing} (TVD) schemes. 
-
-In the context of non-linear scalar conservation laws, an example of a convergent scheme is a \textit{monotone} scheme \textit{i.e.,}
-
-\begin{equation}
-u \geq \upsilon \text{ a.e. } \rightarrow \hspace{5mm} T_{s}^{\Delta}(u) \geq T_{s}^{\Delta}(\upsilon).,
-\end{equation}
-
-and if $T_{s}^{\Delta}$ is \textit{conservative and monotone}, it does satisfy the strong stability condition 
-
-\begin{equation}
-|| T^{\Delta} _{\Delta t} - T^{\Delta} _{\Delta t}(\upsilon)||_{L^1(\text{I\!R}^d)}, \text{  for any  } u.\upsilon\in L^1(\text{I\!R}^d),
-\end{equation}
-
-\textit{i.e.,} it is an $L^1$-contraction \cite{Crandall:1980proc}, which implies that the method is TVD \cite{LeVeque:1992}. 
-Crandall and Majda \cite{Crandall:1980} has shown that numerical solution thus, obtained with a consistent stable and \textit{momotone scheme converges to a weak solution} of \ref{eq:theory:conservlaws}. 
-In addition authors showed that the entropy inequality is satisfied by these schemes and hence the numerical solution converges to an entropic (unique) solution of the \ref{eq:theory:conservlaws}. 
-The accuracy of the scheme has however been shown to be limited to the first order by Harten et al. \cite{Harten:1976}. 
-Thus, while requiring a scheme to be monotonic allows for a non-linear stability, it prohibits the higher order accuracy.
-
-The solution to the problem was first to use the non-linear dissipation methods that reduces convergence only locally to the tirst order in the vicinity of the dinsintiniuties. 
-These schemes are high-order accuracy, high resolution shock-capturing (HRSC) schemes. 
-They are not monotone, while being TVD in one dimentional case. And Goodman and LeVeque \cite{Goodman:1985} has shown that this is a limitation of TVD schemes. Than can be designed to be any order of accuracy in 1D but can only but in multidimensional cases they are at most first-order accuracy. 
-
-Multiple other high order accuracy schemes have been proposed with however weaker conditions of non-linear stability and not yet fully explored convergence. 
-For example, schemes that satisfy the \textit{maximum-principle} \textit{i.e.,} such that if $m < u_0 < M$ then $u^{\Delta}(t,\cdot)\in[m, M]$. 
-Such is the second-order central-scheme by Kurganov and Tadmor \cite{Kurganov:2000}. 
-
-It is however remains that the commonly used modern multidimensional HRSC schemes are not TVD or even has been shown to be TV-stable. 
-Numerical evidence to support a hypothesis that these schemes converge to the entropic solution of conservation laws, -- the mathematical proof -- is yet to be provided. 
-Additionally, even the stability and convergence in one-dimensional case has not been proven for a general system of non-linear conservation laws, \cite{LeVeque:2002}, while there also numerical evidence for the convergence of these schemes. 
-
-It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}.
-Similarly, to prove the convergence of their numerical approximation likely requires  better understanding of the mathematical properties of systems of conservation laws. 
-In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. 
-And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
-
-
-\subsubsection{Finite-Volume Methods}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Finite-Differencing Methods: General Spacetimes}
+\red{Presentation of GR+Hydro part -- whiskythc}
+
+
+Goal is to model the inspiral of BNS to produce accurate waveforms. 
+\textcolor{red}{here, we describe our new high order, high-resolution shockcapturing, finite-differencing code: \texttt{WhiskyTHC}, which constitutes the extension to general relativity of the \texttt{THC} code.}
+
+
+\subsubsection{WhiskyTHC}
+\textcolor{red}{marginally rephrased}
+
+\begin{itemize}
+    \item \textbf{Numerical Methods}. 
+    \textcolor{gray}{[high order, high-resolution shockcapturing, finite-differencing code]} 
+    
+    \texttt{WhiskyTHC} is a result of combination of two \texttt{Whisky} \cite{Baiotti:2004wn} and \texttt{THC} \cite{Radice:2012cu}. High-order flux-vector splitting finite-differencing techniques has come from the former, while the module for the recovery of the primitive quantities as well as the equation of state framework from the latter \cite{Galeazzi:2013mia}. Tabulated temperature and composition dependent equation of states can be used \textcolor{gray}{however David used only polytrops}. 
+    
+    Overall, \texttt{WhiskyTHC} solves the equations of general-relativistic hydrodynamics in conservation form \ref{eq:theory:grhdeq_thc}. using a finite difference scheme \textcolor{red}{we however are using FV? Be carefull with which methods are used exactly}. 
+    
+    The flux reconstruction is done in
+    local-characteristic variables using the MP5 scheme, see \textit{e.g.,} \cite{Rezzolla:2013}. The space-time is evolved using the CCZ4 formulation \ref{eq:theory:ccz4equations}, solved via finite difference code publicly available through \texttt{Einstein Toolkit}, \cite{McLachlan,Loffler:2011ay}. There, the central stencil is used throughout, and only terms associated with the advection along the shift vector are treated using the upwinded by one grid point stencil. The accuracy of the scheme is availalbe at 6th and 8th order, while 4th is commonly employed. 
+    In addition, the fifth order Kreiss-Oliger style artificial dissipation \cite{Kreiss:1973} is added to aid with non0linear stability. 
+    The code is build on the \texttt{Carpet} AMR driver \cite{Schnetter:2003rb} from the \texttt{Cactus} computational toolkit \cite{Goodale:2003}, incorporating a provided by \texttt{Carpet} Berger-Oliger-style mesh refinement \cite{Berger:1989,Berger:1984} with sub-cycling in time and re-fluxing. 
+    \textcolor{red}{in Thesis it is said, -- no refluxing was done yet}
+    
+    
+    \item \textbf{Atmosphere Treatment} The atmosphere is referred to an artificial density floor in the simulation domain. It is introduced in order to tackle the challenges arising when considering boundary between the fluid and vacuum in Eulerian (relativistic) hydrodynamics codes \cite{Galeazzi:mThesis:2008,Kastaun:2006,Millmore:2009dk}. 
+    The defining property of the atmosphere is that the rest mass density and coordinate velocity are reset to a floor values once the former falls below a certain threshold value during the evolution \cite{Font:2001ew,Baiotti:2004wn}.
+    While showing a reasonable results in second order codes, in higher order ones the numerical oscillations lead to the creation of vacuum nonetheless, that in light of the aforemention atmosphere effect result in the mass and energy violation \cite{Radice:2011qr}. 
+    For codes that rely on characteristic variables, the degeneracy in low-density, low-temperature limits also plagues the computation. This problem is the main reason behind the popularity of robust shock capturing codes, even though they are of first order in the general-relativistic hydrodynamics codes. Vacuum treatment for higher order codes is of main challenges to overcome. 
+    
+    \begin{itemize}
+        \item \textit{Standard Atmosphere Treatment} or \textit{"ordinary MP5 approach"} is based on setting density that falls below $(1+\epsilon)\rho_{\text{atmo}}$ to the atmosphere density, velocity to zero and internal energy to the one prescribed by the polytropic EoS. The $\rho_{\text{atmo}}$ is usually related to a certain characteristic density, \textit{e.g.,} maximum density at the beginning of the simulation as $\rho_{\text{atmo}} = 10^{-7,-9}\rho_{\text{max}}$. The tolerance parameter $\epsilon$ is usually set to $10^{-2}$ and accounts for excessive oscillations of the fluid–vacuum interface. 
+        
+        \item \textit{An Improved Atmosphere Treatment} or \textit{"MP5+LF"} In this approach the component-wise Lax-Friedrichs flux split is turned on when a certain density is reached. This increases the dissipation of the scheme and allows to avoid problems arising in characteristic reconstruction, associated with the degeneracy of the characteristic variables close to vacuum. Unfortunately, if the \red{ejection of low velocity and density matter is concerned}, this approach may yield oscillatory solutions and thus creates artifacts. 
+        
+        \item \textit{Positivity Preserving Limiter} a novel approach based on the use of PPL proposed in \cite{Hu:2013}. Here we provide a brief overview. 
+        
+        Consider a simple scalar conservation law in 1D
+        
+        \begin{equation}
+        \frac{\partial u}{\partial t} + \frac{\partial f(u)}{\partial x} = 0
+        \label{eq:theory:whickythc:atmo:conslaw}
+        \end{equation}
+        
+        Since for a SSP time integrator a time update is convex combination of Euler steps, for which the positivity of $u$ is guaranteed for any scheme, the general discrete from of \ref{eq:theory:whickythc:atmo:conslaw} can be written as 
+        
+        \begin{equation}
+        \frac{u_{i}^{n+1} - u_{i}^{n}}{\Delta^0} = \frac{f_{i-1/2} - f_{i+1/2}}{\Delta^1}
+        \end{equation}
+        
+        And if $\lambda = \Delta^0/\Delta^1$, then 
+        
+        \begin{equation}
+        u_{i}^{n+1} = \frac{1}{2}(u_{i}^{+} + u_{i}^{-}) = \frac{1}{2}\Big[ (u_{i}^{n} + 2\lambda f_{i-1/2}) + (u_{i}^{n} - 2\lambda f_{i+1/2})\Big].
+        \end{equation}
+        
+        where then $u_{i}^{n+1} = u_{i}^{+} + u_{i}^{-}$ and $u_{i}^{n} = u_{i}^{n} - 2\lambda f_{i+1/2}$. Notably, the $u_{i}^{+}$ and $u_{i}^{-}$ as well as $u_{i}^{n+1}$ are positive. 
+        In \cite{Hu:2013} it was pointed out that if a first-order Lax-Friedrichs scheme with $\lambda\leq 1/2a$ (with $a$ being the maximum propagation speed) is used for evaluating $f_{i\pm 1/2}$, the $u_{i}^{\pm}\geq \text{min}_i u_{i}^{n}$ \cite{Zhang:2010}. \textcolor{red}{not understand that}. Then the suggested point is ti change the $f_{i+1/2}$ to be 
+        
+        \begin{equation}
+        f_{i+1/2} = \theta f_{i+1/2}^{\text{HO}} + (1-\theta)f_{i+1/2}^{\text{LF}},
+        \end{equation}
+        
+        where $f_{i+1/2}^{\text{HO}}$ is the high-order flux of the original scheme, and $f_{i+1/2}^{\text{LF}}$ is the flux associated with the first order Lax-Friedrichs scheme, and $\theta\in[0,\:1]$. If the spatial location is far from vacuum, then the original high accuracy scheme can be used, so the $\theta$ remains $1$. However, in the vicinity of the vacuum, the $\theta$ decreases, to assure that $u_{i}^{\pm}$ remains positive. This is always possible since the Lax-Friedrichs scheme, used for $f_{i+1/2}^{\text{LF}}$ is positivity preserving.
+        
+        In a multidimensional case the the component-vise extension is employed. \textcolor{red}{formula that I will not used for $u_{i,j,k}^{n+1}$}.
+        
+        In \cite{Hu:2013} the extension of the method to the system of conservation laws was also proposed. 
+        
+        The complications however are present when the source terms are treated. While for a simplified case of classical gas dynamics it might require a lower timestep, in the general relativistic case and general tabulated EOS, the positivist of pressure is difficult to assure due to complexity of the energy source terms. It can be mitigated by enforcing a floor value on the pressure.
+        
+        Note, that adopting a positivity preserving limiter to treat the transition between matter and vacuum, still implies replacing the vacuum with low density fluid at rest, is not a physically accurate approach. That would rely on treating the transition as a free boundary (see \textit{e.g.,} \cite{Kastaun:2006}) The advantage of positivity preserving limiter with respect to a classical atmosphere treatment, is that it allows to have a value of $\rho_{\text{atmo}}$ that does not require further tuning and can be arbitrary small, and assure that the solution is locally conserved. 
+        
+        \textcolor{red}{In our models} we employ this approach as follows, at the meginning of the simulations we set the floor density, relying in the subsequent evolution on a positivity preserving limiters to ensure the atmosphere well behaviour. Due to negligeble density of the atmosphere its accretion has a negligeble effect on the evolved object. 
+        
+        
+    \end{itemize}
+    
+    \item \textbf{Single Neutron Stars: Fixed space-time} here the atmosphere test showed that using the standard atmosphere leads to the mass conservation violation on a small degree, however, it also shows an appearance of a "jet+-like structure along the axes where grid points are aligned with the star's surface. These aritifical outflows are driven by the numerical oscillations creating an imbalance at the surface MP5+LF on the other hand shows no artificial matter streams due to its conservative nature
+    
+    \item \textbf{Single Neutron Stars: Full-GR}
+    
+    \item \textbf{Non-linear Oscillations: the Migration Test} Here the setup is the following, a neutron star in Full GR is set with an initial oscillation, that forces a star to first contract and then re-bounce. This re-bounce creates the ejecta. Different prescriptions show this ejecta, but the MP5-LF is inadequate in this test, introducing the structure in the outflow (numerical osculations/fragmentation). Origin: component-wise reconstruction in low density regions.
+    
+    \item \textbf{Gravitational Collapse to Black-Hole}
+    
+    \item \textcolor{red}{\textbf{Binary Neutron Stars} [Copied. Not rephrased]} 
+    Models having an initial small separation of 45 km. Compare it to \texttt{Whisky} code, that is a second-order finite-volume code, with high-order primitive reconstruction and implements several different approximate Riemann solvers, \textcolor{red}{David used PPM reconstruction [95] and of the HLLE Riemann solver \cite{Harten:1983}, \cite{Einfeldt:1988}].} 
+    
+    The initial data we consider describes two neutron stars in quasi-circular orbit. It is computed in the conformally-flat approximation using the Lorene pseudo-spectral code \cite{Gourgoulhon:2000nn} and has been made publicly available by the Meudon group \cite{Lorene}. 
+    The EoS assumed for the initial data is polytropic. \textcolor{gray}{In our case it is cold EOS, a slice from finite temperature EOS} while the evolution is performed using the ideal-gas EoS to allow for thermal effects in the merger phase. \textcolor{gray}{In our case it is finite temperature EOS}. 
+    Discussion on baryonic masses and compactness $c=M_{\infty}/R_{\infty}$, where $R_{\infty}]$ is the areal radius.
+    
+    \begin{itemize}
+        \item \textit{Small separation} Grid discussion: extend, symmetries \textit{e.g.,} we assume reflection
+        symmetry across the $xy$ plane and $\pi$ symmetry across the yz plane. Number of refinement levels. Static grid or AMR. 
+        Evolution via CCZ4 with damping constants $\kappa_1=?$, $\kappa_2=?$ and $\kappa_3=?$ and with beta-driver $\eta=?$. The space time evolved. Space-time is evolved via fourth order finite-differencing and with fifth order Kreiss-Oliger artificial dissipation \textcolor{red}{I need to find what is used in our runs}.
+        
+        Study the graviational radiation via looking ad the $l=2$ $m=2$ mode of the $Weyl$ scalar $\Psi_4$ extracted at a fixed coordinate radius of $r=450M_{\odot}$. Strain is not computed as it involves other uncertainties \cite{Boyle:2009vi,Reisswig:2009us,Reisswig:2009rx,Reisswig:2010di}. 
+        
+        The dynamics of the inspiral and merger of BNS has been described many times and in great detail in the literature \textit{e.g.,} \cite{Baiotti:2008ra}. We only mention that the two neutron stars
+        inspiral for about 2:5 orbits, touch and quickly merge into a single black-hole. For this particular model no significant disk is left behind. The gravitationalwave signal consists.
+        For GW plot 22 mode of $\Psi_4$ as extracted at $r=450M_{\odot}$ and as a function of the retarded time $t-r_*$ where $r_* = r + 2M_{\text{ADM}}\log(r/(2M_{\text{ADM}})-1)$.
+        
+        Results: 1. treatment of the neutron star surface is not a leading source of error in binary neutron star simulations, as far as the inspiral GW signal is concerned. \texttt{WhiskyTHC} shows a smaller dephasing significantly smaller de-phasing: the difference between the low and the high resolution is about 0.6 radians, which is a factor four smaller than the one shown by \texttt{Whisky}. 
+        Observation: merger happens earlier as we increase the resolution. For each run we compute the phase, $\phi$, of the 22 mode of $\Psi_4$ from its definition, $(\Psi_4)_{22} = A e^{i\phi}$. 
+        
+        We should stress that this error estimate only reflects the numerical truncation error. Other systematic errors and, in particular, finite extraction radius effects and inaccuracies in the initial data, are also present and might be relevant (especially for WhiskyTHC). On the other hand, here we are interested only in evaluating the accuracy of the two numerical methods.
+        
+        \item \textit{Large separation} [mostly skipped]
+        Notice that  contact happens before the bare contact angular frequency \cite{Damour:2012yf} 
+        \begin{equation}
+        0.15276 = M\omega_{\text{contact}} := 2C^{3/2}, \hspace{5mm} \omega:=\dot{\phi}
+        \end{equation}
+        is reached. This is in any case expected because this approximation of the contact frequency does not take tidal deformations into account.
+    \end{itemize}
+    
+    \item \textbf{Conclusion}
+    
+\end{itemize}
 
 
 

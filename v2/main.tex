@@ -1,4 +1,227 @@
 \documentclass[11pt,a4paper,headinclude=true,DIV=14,BCOR=8mm,chapterprefix,listof=totoc,twoside,openright,abstracton]{scrbook}
+
+
+%% packages
+\usepackage[headsepline]{scrpage2}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[intlimits]{amsmath}
+\usepackage{xcolor}
+\usepackage{verbatim}
+\usepackage{appendix}
+\usepackage{hyperref}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{natbib}
+\usepackage{xr}
+\usepackage{wrapfig}
+\usepackage[framemethod=tikz]{mdframed} % for a block of text
+\usepackage{etoolbox}
+
+%% properties
+\setlength{\parindent}{0pt}
+\setcitestyle{aysep={}} 
+\bibliographystyle{apalike}
+\setcitestyle{citesep={,}}
+\newtoggle{Full}
+\togglefalse{Full}
+\geometry{a4paper, tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm, headheight=3em, headsep=2em, footskip=1cm}
+
+%% commands / macro
+\newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
+\newcommand{\red}[1]{\textcolor{red}{#1}} 
+\newcommand{\gray}[1]{\textcolor{gray}{#1}} 
+\newcommand{\magenta}[1]{\textcolor{magenta}{#1}} %% For terms/concepts to remember 
+\newcommand{\swind}{spiral-wave wind}
+\newcommand{\nwind}{$\nu$-component}
+\newcommand{\gcm}{g cm$^{-3}$}
+\newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
+
+%% head
+\title{PhD thesis}
+\author{Vsevolod Nedora}
+\date{today}
+
+
+%% ==================== START ================
+\begin{document}
+
+\maketitle
+
+\mainmatter
+
+%% ================= Targeted structure ====
+%%
+%% Part 1: Numerical relativity simulations of neutron star mergers
+%%         Ch.1. Introduction
+%%         Ch.2. Theoretical Background
+%%               Sec.1. General-relativistic hydrodynamics
+%%               Sec.2. Numerical Approximations of conservation laws
+%%               Sec.3. High order numerical methods for Rel.Hydro.
+%%               Sec.4. Relativistiv Radiation transport
+%%               Sec 5. Microphysical equation of starts of nuclear matter
+%%         Ch.3. Numerical relativity simulations
+%%               Sec.1. Evolution code and Initial Data code
+%%               Sec.2. Data analysis methods
+%%         Ch.4. Results and Conclusions
+%% Part 2: Electromagnetic counterparts to neutron star mergers
+%%         Ch.1. Introduction
+%%         Ch.2. Theoreticak Background
+%%               Sec.1. Nucleosynthesos in binary neutron star ejecta
+%%               Sec.2. Kilonova
+%%               Sec.3. Short Gamma Ray Burst afterglow
+%%               Sec.4. Ejecta aftergkiw
+%%         Ch.2. Methods for modelling Kilonova and non-thermal afterglows
+%%               Sec.1. MKN code
+%%               Sec.2. PyBlast code (my code)
+%%         Ch.3. Results and Conclusions
+%% ======================
+
+
+%% ================== ABSTRACT ===============
+\begin{center}
+    \textbf{Abstract} \\[1cm]
+\end{center}
+
+
+%% ============================================================================ PART 1 :: MODELS / Simulations
+\part{Numerical relativity simulations of neutron star mergers}
+
+%% ============================================================= Chapter :: Introduction 
+\chapter{Introduction}
+
+In this thesis we perform and analyze numerical relativity simulations of merging neutron stars. 
+These simulations are performed via solving the equations of general relativity, hydrodynamics and radiation, neutrino, transport via special numerical schemes. 
+
+In this chapter we provide a brief description of the main equations and methods used to produce simulations analyzed in this thesis. 
+For the sace of bravity we limit the discussion to the main results and implication important for our work.
+For the underlying principles of the Eintein's theory of General Relativity, for which we here the reado to \red{[GR refs]}.
+For the discussion and derivation of general relativistic hydrodynamics and refer the interested reader to \red{[GRHD refs]}.
+For the Discussion on the radiation transport we refer to \red{GR-Rad refs}
+
+%% ============================================================ Chapter :: Theory/Methods 
+\chapter{Numerical Relativity}
+
+%% ======================================== Code used
+\section{Used codes and setup}
+
+\subsection{Initial Data}
+
+The initial data is computer via pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}
+The code generates the binary neutron stars in a qusi-circular orbit, that revolve only few times before merging.
+The EOS for the minimum temperature slice of the EOS table used for the evolution assuming neutrino-less beta-equilibrium.
+Assuming constant temperature, we also remove the photon energy contribution to the pressure.
+
+In the evolution code, passing the initial data, the mapping is done from the zero tem
+In the evolution code, the electron fraction is set by the beta equilibrium condition. 
+The specific internal energy is reset in accoradance with minimum temperature slice of the EOS table used for evolution.
+
+Errors present in the initial data in introduced during the mapping result in a small oscillations of netron stars.
+In terms of relative changes in central density these amounts to $\sim2-3\%$ \cite{Radice:2018pdn}
+
+\subsection{WhiskyTHC}
+
+\texttt{WhiskyTHC} is ...
+\cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}
+
+
+%% GR Hydrodynamics
+The code evolves the proton and neutron number densities, $n_n$ and $n_p$
+respectively, as 
+
+\begin{equation}
+\label{eq:wthc:pndens}
+\nabla_\nu (n_p u^\mu) = R_p^\mu \ \ , \ \ 
+\nabla_\nu (n_n u^\mu) = R_n^\mu \ .
+\end{equation}
+
+Here $u^{\mu}$ is the fluid four-velocity, $R_p = -R_n$ is the net
+lepton number deposition rate due to the absorption and emission of neutrinos 
+and antineutrinos (\red{see Section XXX})
+
+The number densities are related as $n_p=Y_e n$ where $n = n_p + n_e$ is the baryon 
+number density and $Y_e$ is electron fraction.
+
+The matter of a neutron star is approximated with ideal fluid with stress-energy tensor
+
+\begin{equation}
+T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + Pg_{\mu\nu}
+\end{equation}
+
+where $\rho=m_{\text{b}} n$ is the baryon rest-mass density, 
+$n$ the baryon number density, $m_{\text{b}} \simeq 10^{-24}\,$g 
+the neutron mass, 
+$h=1+\epsilon + P/\rho$ the specific enthalpy, 
+$\epsilon$ the specific internal energy (energy density),
+and $P$ is pressure
+
+The Euler equation for balance of energy and momentum reads
+
+\begin{equation}
+\label{eq:wthc:euler}
+\nabla_\nu T^{\mu\nu} = Q u^\mu \ ,
+\end{equation}
+
+where $Q$ is the net energy deposition rate doe to absorption
+and emission of neutrinos (\red{see Section XXX})
+
+
+%% Numerical methods
+High resolution shock capturing methods are used to discritize equations 
+\eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens}.
+Specifically, central Kurganov-Tadmor type scheme \cite{Kurganov:2000} with 
+HLLE flux formula \cite{Einfeldt:1988}
+and non-oscillatory reconstruction of the primitive variables with the MP5 scheme of
+\cite{Suresh:1997}.
+
+Shock capturing schemes require the presence of a low density atmosphere around neutron stars.
+The constant value of $\rho_0 = m_p n \approx 6\times 10^4$~\gcm.
+
+The rest-mass consirvation in the presence of artificial atmosphere is assured via 
+positivity-preserving limiter from \cite{Radice:2013xpa}
+
+The local number densities of neutrons and protons separately, are assured via 
+multi-fluid advection method of \cite{Plewa:1998nma}
+
+The outflow properties are extracted when the density exceeds the atmosphere density
+by several orders of magnitude.
+
+%% Spacetime evolution
+The spacetime is evolved using the Z4c formulation of Einstein's equations
+\cite{Bernuzzi:2009ex,Hilditch:2012fp} as implemented in the \texttt{CTGamma} code
+\cite{Pollney:2009yz,Reisswig:2013sqa} which is part of the \texttt{Einstein Toolkit} 
+\cite{Loffler:2011ay}.
+
+The non-linear stability of evolution is assured via Kreiss-Oliger dissipation. 
+The spacial discritisation is done via fourth-order finite-differencing implemented in \texttt{CTGamma}.
+
+The method of lines, MOL, couples the space-time evolution and hydrodynamics. 
+
+Time integrator of choice is strongly-stability preserving third-order Runge-Kutta scheme \cite{Gottlieb:2009}
+
+
+ 
+%% ================================================================= APPENDIXES 
+\appendix
+%% \include{appendix_gr} %% GR
+
+%% ================================================================= REFERENCES
+\backmatter
+\bibliography{../references}
+
+
+%% ========================= END
+\end{document}
+
+
+
+
+\documentclass[11pt,a4paper,headinclude=true,DIV=14,BCOR=8mm,chapterprefix,listof=totoc,twoside,openright,abstracton]{scrbook}
 %% \documentclass[11pt,a4paper,headinclude=true,DIV=14,BCOR=8mm,chapterprefix,listof=totoc,twoside,openright,abstracton]{scrbook}
 
 \usepackage[headsepline]{scrpage2}
@@ -45,6 +268,8 @@
 
 \newcommand{\swind}{spiral-wave wind}
 \newcommand{\nwind}{$\nu$-component}
+
+\newcommand{\gcm}{g cm$^{-3}$}
 
 \newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
 
@@ -124,7 +349,7 @@
 %%
 %% =======================
 
-\include{part1}
+%% \include{part1}
 
 %% =======================
 %%
@@ -132,7 +357,7 @@
 %%
 %% =======================
 
-\include{part2}
+%% \include{part2}
 
 %% =======================
 %%
@@ -140,7 +365,7 @@
 %%
 %% =======================
 
-\appendix
+%% \appendix
 %% \include{appendix_gr} %% GR
 %% \include{AppendixB} %% Nuc
 
@@ -150,8 +375,7 @@
 %%
 %% =======================
 
-\backmatter
-\bibliography{../references}
+%% \bibliography{../references}
 
 % \listoffigures
 % \listoftables
