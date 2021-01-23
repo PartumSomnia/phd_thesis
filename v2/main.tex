@@ -130,7 +130,8 @@ In terms of relative changes in central density these amounts to $\sim2-3\%$ \ci
 \cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}
 
 
-%% GR Hydrodynamics
+\subsubsection{Hydrodynamics}
+
 The code evolves the proton and neutron number densities, $n_n$ and $n_p$
 respectively, as 
 
@@ -170,8 +171,8 @@ The Euler equation for balance of energy and momentum reads
 where $Q$ is the net energy deposition rate doe to absorption
 and emission of neutrinos (\red{see Section XXX})
 
+\subsubsection{Numerical methods}
 
-%% Numerical methods
 High resolution shock capturing methods are used to discritize equations 
 \eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens}.
 Specifically, central Kurganov-Tadmor type scheme \cite{Kurganov:2000} with 
@@ -202,8 +203,116 @@ The spacial discritisation is done via fourth-order finite-differencing implemen
 
 The method of lines, MOL, couples the space-time evolution and hydrodynamics. 
 
-Time integrator of choice is strongly-stability preserving third-order Runge-Kutta scheme \cite{Gottlieb:2009}
+Time integrator of choice is strongly-stability preserving third-order Runge-Kutta scheme \cite{Gottlieb:2009}.
+The timestep is regulated by the Courant-Friedrichs-Lewy (CFL) condition, that required CFL factor 
+to be $<0.25$ for numerical stability. To assure taht the positivity-preserving limiter implemented in \texttt{WhiskyTHC} maintains the density positive, the CFL factor is set to $0.15$.
 
+\subsubsection{AMR}
+
+The code uses the Berger-Oliger conservative adaptive mesh renement (AMR) \cite{Berger:1984} with 
+sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} \cite{Berger:1989,Reisswig:2012nc} as provided by the \texttt{Carpet module} of the \texttt{Einstein Toolkit} 
+\cite{Schnetter:2003rb}. 
+
+
+\subsubsection{Neutrino scheme}
+
+\begin{table}
+    \caption{
+        Weak reactions employed in our simulations and references for their implementation.
+        In the left column, $\nu \in \{\nu_e, \bar{\nu}_e, \nu_{x}\}$ denotes any neutrino species, 
+        $\nu_{x}$ any heavy-lepton neutrinos, $N \in\{n, p\}$ a nucleon, and $A$ any nucleus.
+        In the central column the role of each reaction is highlighted, with "P" standing for 
+        production, "A" for absorption opacity and "S" for scattering opacity. When two roles are
+        indicated, the second refers to the inverse ($\leftarrow$) reaction.}
+    \label{tab:leakage}
+    \begin{center}
+        \begin{tabular}{lll}
+            \hline\hline
+            Reaction & Role &  Ref. \\ 
+            \hline
+            $p + e^- \leftrightarrow \nu_e + n $          & P,A & \cite{Bruenn:1985}  \\
+            $n + e^+ \leftrightarrow \bar{\nu}_{e} + p $  & P,A & \cite{Bruenn:1985}  \\
+            $e^+ + e^- \rightarrow \nu + \bar{\nu}$       & P & \cite{Ruffert:1995fs} \\
+            $\gamma + \gamma \rightarrow \nu + \bar{\nu}$ & P & \cite{Ruffert:1995fs} \\
+            $N + N \rightarrow \nu + \bar{\nu} + N  + N$  & P & \cite{Burrows:2004vq} \\
+            $\nu + N \rightarrow \nu + N$                 & S & \cite{Ruffert:1995fs} \\
+            $\nu + A \rightarrow \nu + A$                 & S & \cite{Shapiro:1983du} \\
+            \hline\hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+%% Leackage
+The change in material composition ($Y_e$) is treated according to the leakage scheme \cite{Galeazzi:2013mia,Radice:2016dwd}. 
+For other methods see \cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
+The scheme consideres three neutrino species: electron neutrino $\nu_e$, electron antineutrino $\bar{\nu}_e$ and an single species $\nu_x$ for heavy-lepton neutrinos.
+The reactions traced by the scheme are listed in the table \ref{tab:leakage}.
+
+Following the sources listed in the table, the neutrino production rate $R_{\nu}$ for $\nu\in\{\nu_e,\bar{\nu}_e,\nu_x\}$ are computed alongside the respective energy relase $Q_{\nu}$ and
+opacities: $\kappa_{\nu;a}$ and $\kappa_{\nu;s}$ for absorption and scattering respectively.
+
+Neutrinos are assumed to obey the Fermi-Dirac distribution. Their chemical potential is governed by the $\beta$-equilibrium with thermal neutrinos \cite{Rosswog:2003rv}
+
+Additionally, there are two types of opacities, the density weighted opacities $\kappa_{\nu;a}^0$ and $\kappa_{\nu;s}^0$ and energy density weighted opacities $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$. 
+The former are related to the rate at which neutrinos escape the material, while the latter set the rate 
+at which energy escapes the material as neutrinos escape \cite{Ruffert:1995fs}.
+
+The optical depth, $\tau_{\nu}^{\alpha}$ is computed taking into account total neutrino opacities $\kappa_{\nu;a}^j + \kappa_{\nu;s}^j$ \cite{Neilsen:2014hha}.
+
+Optical depth is then used to estimate the effective emission rates \cite{Ruffert:1995fs}
+
+\begin{equation}
+    R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{-1}}
+\end{equation}
+
+whete $t_{\text{diff}}$ is the diffusion time
+
+\begin{equation}
+    t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0}
+\end{equation}
+
+and the neutrino emission timescale 
+
+\begin{equation}
+    t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
+\end{equation}
+
+and $n_{\nu}$ is the neutrino number density estimated based om the beta equilibrium with \red{(thermal?)} neutrinos.
+The $\mathcal{D}$ is a tuning parameter set to $6$.
+
+Similarly, the effective energy emission rate $Q_{\nu}^{\text{eff}}$ are computed with $\tau_{\nu}^1$, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$.
+
+Further, the neutrinos are divided into two categories. 
+The neutrinos that cannot escape, trapped, 
+The neutrinos that escape according to the effective rate $R_{\nu}^{\text{eff}}$,
+with and average energy $U_{\nu}^{\text{eff}}/R_{\nu}^{\text{eff}}$ are the free streaming neutrinos $n_{\nu}^{\text{fs}}$. 
+These neutrinos are treated afterwards according to the M0 scheme \cite{Radice:2016dwd}.
+
+The rest are the trapped neutrinos. Their effect on the pressure is neglected as it was shown to be weak 
+in the NS conditions \cite{Galeazzi:2013mia}.
+
+%% M0 scheme
+In the M0 scheme the evolution of the number density of free steaming neutrinos is done under the assumption.
+Neutrons are assumed to be moving along the radial null rays with four vector $k^{\alpha}$. The vector is normalized such that $k^{\alpha}u_{\alpha}=-1$. 
+Then the number density of the free neutrinos in the fluid rest frame $n_{\nu}^{\text{fs}}$ follows \cite{Radice:2016dwd}
+
+\begin{equation}
+    \nabla_{\alpha}[n_{\nu}^{\text{fs}}k^{\alpha}] = R_{\nu}^{\text{eff}} - \kappa_{\nu;a}^{\text{eff}}n_{\nu}^{\text{fs}},
+\end{equation}
+
+where $R_{\nu}^{\text{eff}}$ is the effective luminocity (\red{emission })
+
+
+
+
+
+
+
+\subsection{Setup}
+The simulation domain is a cube of $3.024$~km each side, whose center is at the center of mass pf the binary.
+The AMR structure has $7$ refinemnt levels, with the finest convering both compact objects during the inspiral and the remnant postmerger.
+We consider several resolution setups. Low resolution (LR) simulations have $h=246$~m, standard resolution (SR) 
+have $h=185$~m and high resolution (HR) $h=123$~m for the final refinemnt level.
 
  
 %% ================================================================= APPENDIXES 
