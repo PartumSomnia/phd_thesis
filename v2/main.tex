@@ -263,6 +263,7 @@ Optical depth is then used to estimate the effective emission rates \cite{Ruffer
 
 \begin{equation}
     R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{-1}}
+    \label{eq:method:whisky:Rnueff}
 \end{equation}
 
 whete $t_{\text{diff}}$ is the diffusion time
@@ -297,22 +298,204 @@ Neutrons are assumed to be moving along the radial null rays with four vector $k
 Then the number density of the free neutrinos in the fluid rest frame $n_{\nu}^{\text{fs}}$ follows \cite{Radice:2016dwd}
 
 \begin{equation}
+    \label{eq:method:whisky:eq7}
     \nabla_{\alpha}[n_{\nu}^{\text{fs}}k^{\alpha}] = R_{\nu}^{\text{eff}} - \kappa_{\nu;a}^{\text{eff}}n_{\nu}^{\text{fs}},
 \end{equation}
 
-where $R_{\nu}^{\text{eff}}$ is the effective luminocity (\red{emission })
+where $R_{\nu}^{\text{eff}}$ is the effective luminosity (\red{emission }) \eqref{eq:method:whisky:Rnueff}. 
+The effective absorption rate then
+
+\begin{equation}
+    \kappa_{\nu,a}^{\text{eff}} = e^{-\tau_{\nu}^0}\Big( \frac{E_{\nu}^{\text{fs}}}{E_{\nu}^{\beta}} \Big)^2 \kappa_{\nu,a}^0.
+\end{equation}
+
+where $E_{\nu}^{\text{fs}}$ is the average energy of the free-streaming neutrinos, and 
+$E_{\nu}^{\beta}$ is the average energy on the neutrinos that are in $\beta$-equilibrium.
+$E_{\nu}^{\text{fs}}$ and $E_{\nu}^{\beta}$ are defined in the restframe of the fluid.
+
+The energy of the free-sctreaming neutrinos is computed assuming the \red{stationarity of the metric}.
+Having the $\partial_t$ killing vector thus allows to have $p_{\nu}^{\alpha}(\partial_t)_{\alpha}$ conserved, 
+where $p_{\nu}^{\alpha}$ is the neutrinos four-momentum.
+
+Then, the average energy density of free-streaming neutirions obays
+
+\begin{equation}
+   \label{eq:method:whisky:eq9}
+    k^t\partial_t(E_{\nu}^{\text{fs}}\chi) + k^{r}\partial_r(E_{\nu}^{\text{fs}}\chi) = \frac{\chi}{n_{\nu}^{\text{fs}}}(Q_{\nu}^{\text{eff}}-E_{\nu}^{\text{fs}}R_{\nu}^{\text{eff}}),
+\end{equation}
+
+where $\chi=-k^{\alpha}(\partial_t)_{\alpha}$.
+
+%% Coupling, neutrinos and hydro
+The coupling between the matter and neutirnos is done via operator split approach \cite{Radice:2016dwd}.
+For equation \eqref{eq:wthc:pndens} reads
+
+\begin{equation}
+    R_p = (\kappa_{\nu_e;a}^{\text{eff}}n_{\nu_e}^{\text{fs}} - \kappa_{\bar{\nu}_e;a}^{\text{eff}}n_{\bar{\nu}_e}^{\text{fs}}) - (R_{\nu_e}^{\text{eff}} - R_{\bar{\nu}_e}^{\text{eff}}).
+\end{equation}
+
+For the Euler equation \eqref{eq:wthc:euler} reads
+
+\begin{equation}
+    Q = (\kappa_{\nu_e;a}^{\text{eff}}n_{\nu_e}^{\text{fs}}E_{\nu_e} + 
+    \kappa_{\bar{\nu}_e;a}^{\text{eff}}n_{\bar{\nu}_e}^{\text{fs}}E_{\bar{\nu}_e}) - 
+    (Q_{\nu_e}^{\text{eff}} + Q_{\bar{\nu}_e}^{\text{eff}} + Q_{\nu_x}^{\text{eff}}).
+\end{equation}
+
+The M0 scheme of \cite{Radice:2016dwd}, while less complex then frequency-integrated M1 schemes used by 
+\cite{Sekiguchi:2015dma} and \cite{Foucart:2015vpa}, it is advantagous with respect to the computational efficiency.
+It also includes approximations of the Doppler and gravitaional effects. 
+Additionally, the unphysical radaition shocks above the merger remnant, that commonly present in M1 schemes \cite{Foucart:2018gis}, do not develop in M0 scheme.
 
 
+\subsubsection{Viscosity}
+
+Large scale magnetic fields are of prime importance for studying the emergence of magnetically and reconnection driven outflows and collimated jets postmerger \cite{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
+
+Additionally, \gray{global} magnetic fields and caused by them magnetic stresses are important for the self-consistent treatment of the angular momentum transport in the merger remnant \cite{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}.
+
+Such effects are studied with high-resolution general-relativistic magnetohydrodynamics (GRMHD) simulations.
+
+The code that we employ, \texttt{WhiskyTHC} does not have magnetic fields. 
+However, the possible effects that angular momentum transport might have on the simulation evolution
+can be investigated via an inclusion of \textit{effective viscosity}.
+This method has been shown to reproduce main features of MHD dynamics with application to post-merger accretion
+disks \cite{Fernandez:2018kax}.
+
+%% Method 
+To account for the effect of subgrid-scale turbulent angular momentum transport, 
+the general-relativistic large eddy simulations method (GRLES; \cite{Radice:2017zta}) is employed.
+
+The stress-energy tensor of the fluid $T^{\mu\nu}$ is decomposed as 
+
+\begin{equation}
+    T_{\mu\nu} = En_{\mu}n_{\nu} + S_{\mu}n_{\nu} + S_{\nu}n_{\mu} + S_{\mu\nu}
+\end{equation}
+
+where the first term of the RHS is the familiar 
+
+\begin{equation}
+    E = T_{\mu\nu}n^{\mu}n^{\nu} = \rho h W^2 - p
+\end{equation}
+
+and the second 
+
+\begin{eqnarray}
+    & S_{\mu} = -\gamma_{\mu\alpha}n_{\beta}T^{\alpha\beta} = \rho h W^2 \upsilon_{\mu} \\
+    & S_{\mu\nu} = \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} + \tau_{\mu\nu}
+\end{eqnarray}
+
+where $n_{\mu}$ is the normal to the space-like slice hyper-surface, while $\gamma_{\mu\nu}$ is the spatianl metric, $\upsilon^{\mu}$ is the three velocity and $W$ is the Lorentz factor. 
+The $\tau_{\mu\nu}$ is a purely spatial tensor representing the effect of the subgrid turbulence. 
+It reads \cite{Radice:2017zta}
+
+\begin{equation}
+    \tau_{ij} = -2\nu_T(\rho + p)W^2 \Big[ \frac{1}{2}(D_i\upsilon_j + D_j\upsilon_i) - \frac{1}{3}D_k\upsilon^k\gamma_{ij} \Big]
+\end{equation}
+
+where $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, $c_s$ is the sound speed.
+The $D_i$ here are the \red{covariant derivatives compatible with spatial metric}. 
+
+The parameter $l_{\text{mix}}$ is a free parameter that can be varied to study the impact of the turbulence
+on the results. \red{Alternatively it cen be set as a function of density. See Radice Paper}
+
+Notably, in the context of accretion disks, the turbulent viscosity is typically linked to the dinensionless constant 
+$\alpha$ (so called $\alpha$-viscosity???) that is realted to the mixing length as 
+
+\begin{equation}
+    l_{\text{mix}} = \alpha c_s \Omega^{-1}
+\end{equation}
+
+where $\Omega$ is the angular velocity of the fluid \cite{Shakura:1972te}.
+
+The value of $l_{\text{mix}}$ can be constrained by very high resolution GRMHD simulations with seed magnetic field
+stron enough that the magnetorotational instability (MRI) is resolved. Such simulation was recently performed by 
+ \cite{Kiuchi:2017zzg}. Thus study yielded the $\alpha$ values for various density shells.
+Together with the $c_s$ and $\Omega$, form \red{our} simulations, the $l_{\text{mix}}\in(0,30)$~m \cite{Radice:2018pdn}
+
+Additionally, the $l_{\text{mix}})$ can be computed from ....
+
+In out models the $l_{\text{mix}}\in(0,30)$ is computed according to \red{New Radice Ppaer}
+
+%% Method for inculding the Viscosity term.
+The direct application of finite volume Godunov-type methods to discretize the stress-energy tensor 
+that includes $\tau_{\mu\nu}$ would lead to the development of the \red{odd-even} decoupling instability \cite{Lowrie:2002}.
+\texttt{WhiskyTHC} avoids this problem by discritizing the terms araising from the derivatives of $\tau_{\mu\nu}$
+in a flux-conservative fashion via proper combination of left and right biased finite-differencing operators \cite{Radice:2018pdn}.
 
 
+%% ======================================== EOS used
+\section{EOS}
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/tov_mr.pdf}
+    \caption{Mass-radius relations for the EOSs used in this work. 
+        Markers along the sequences indicate the NSs smulated in this work.}  
+    \label{fig:method:tov_mr}
+\end{figure}
+
+For our models we use $5$ microphysical equation of states, namely the 
+DD2 \cite{Typel:2009sy,Hempel:2009mc}, 
+BLh, \red{Fill Refs}
+LS220, \cite{Lattimer:1991nc}
+SFHo \cite{Steiner:2012rk} and 
+SLy4. \red{Refs}
+.
+
+The maximum neutron star masses and radii that these EOS predict are in line with the current astrophysical constraints, 
+\textit{e.g.,} LIGO/Virgo constrain on tidal deformability 
+\cite{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}
+
+Specifically, the LS220 is based on the liquid droplet Skyrme model. It has a especially steep dependency of its symmetry 
+energy on density.
+
+The DD2 and SFHo are based on nuclear statistical equilibrium.
+In these EOSs a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these EOSs mean-field nuclear interactions have different parameterizations and values.
+
+To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
+The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
+for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which 
+in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
+
+In \red{all?.. except BLh?} EOS the finite temeperature behaviour of EOSs is largely set by the nucleon effective mass.
+Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
+For LS220, the nucleon mass is its bare nucleon mass (for any density) \gray{so... $m_{N}^*=m_{N}$??}.
+For SFHo, $m_N ^* / m_N = 0.76$ at saturation density.
+For DD2 $m_N^*/m_N = 0.56$
+For BLh $\red{None}$
+For SLy4 $\red{None}$
+where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
 
 
 
 \subsection{Setup}
+
+
+
 The simulation domain is a cube of $3.024$~km each side, whose center is at the center of mass pf the binary.
 The AMR structure has $7$ refinemnt levels, with the finest convering both compact objects during the inspiral and the remnant postmerger.
+
 We consider several resolution setups. Low resolution (LR) simulations have $h=246$~m, standard resolution (SR) 
 have $h=185$~m and high resolution (HR) $h=123$~m for the final refinemnt level.
+
+In the simulations where the neutirno M0 scheme is included, it is switched on shortly before the merger. 
+The equations \eqref{eq:method:whisky:eq7} and \eqref{eq:method:whisky:eq9} are solved on the uniform spherical grid
+with radius $\approx 756$~km, and resolution $n_r\times n_{\theta}\times n_{\phi} = 3096 \times 32 \times 64$
+grid points.
+
+A subset of models discussed in this thesis include the effective treatment of viscosity. 
+
+We consider \red{$33$} distinct binary with total masses $\red{[None,None]}$ and mass-ratio $q\in[1.00,1.82]$.
+In all models the neutrino leackage plus M0 scheme. Most models were computed at at least two resolutions. 
+Most our models also include the effect of subgrid turbulence, viscosity.
+
+\gray{Summary of all results in given in the table...}
+
+\gray{Each run is nameed as}
+
+\gray{We simulate each model for at least $\red{None}$~ms after the merger or a few milliseconds after BH formation}
+
 
  
 %% ================================================================= APPENDIXES 
@@ -326,6 +509,27 @@ have $h=185$~m and high resolution (HR) $h=123$~m for the final refinemnt level.
 
 %% ========================= END
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
