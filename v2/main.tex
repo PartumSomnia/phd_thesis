@@ -107,14 +107,173 @@ For the Discussion on the radiation transport we refer to \red{GR-Rad refs}
 %% ============================================================ Chapter :: Theory/Methods 
 \chapter{Numerical Relativity}
 
+\section{Theoretical Background}
+
+\subsection{General Relativistic Hydrodynamics}
+
+\subsection{General Relativistic Radiation Transport}
+
+\subsection{Numerical Methods}
+
+%% ======================================== EOS used
+\subsection{Microphysical EOS}
+
+This subsection is based on the recent publications 
+\cite{Perego:2019adq,Bernuzzi:2020txg,Nedora:2020pak}
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/tov_mr.pdf}
+    \caption{Mass-radius relations for the EOSs used in this work. 
+        Markers along the sequences indicate the NSs smulated in this work.}  
+    \label{fig:method:tov_mr}
+\end{figure}
+
+For our models we employ $5$ finite-temperature, composition-dependent equations of state, namely the 
+HS(DD2) (hereafter DD2) \cite{Typel:2009sy,Hempel:2009mc}, 
+BLh, \cite{Bombaci:2018ksa}, 
+LS220, \cite{Lattimer:1991nc}, 
+HS(SFHo), (hereafter SFHo) \cite{Steiner:2012rk} and 
+SLy4-SOR EOS (hereafter SLy4) \cite{daSilvaSchneider:2017jpg}.
+
+All EOS \red{except DD2???} include neutrinos $n$, protons $p$, nuclei, electrons, positrons, and photons
+as important thermodynamic degrees of freedom.
+
+The radii and maximum masses of neutron stars composed of the cold, neutrino-less $\beta$-equilibrium matter,
+from these EOS, fall in line with the current astrophysical constraints, 
+\textit{e.g.,} LIGO/Virgo constrain on tidal deformability 
+\cite{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}
+
+All EOS models have symmetry energy at saturation density that are in argeement with experimental limits.
+Notably, the LS220 has a especially steep dependency of its symmetry energy on density (\textit{e.g.,} \cite{Lattimer:2012xj,Danielewicz:2013upa}. Thus, this EOS might predict too low symmetry energy below the saturation density. 
+
+%% LS220
+The LS220 EOS is based on a non-relativistic (liquid droplet) Skyrme model.
+The absolute value of the nuclear bulk incompressibility is set to $220$~MeV, hence, the name.
+The EOS includes surface effects and it models $\alpha$-particles as an ideal, classical
+non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued. 
+%Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
+%particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
+%Heavy nuclei are considered with single nucleus approximation. 
+The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
+
+%% DD2
+DD2 (and SFHo) employs the statistical equilibrium to treat the ensemble of several thousands nuclei.
+The high-density nuclear matter is treated via RMF approach for unbound nucleons \cite{Hempel:2009mc}.
+The excluded volume mechanism is utilized for the phase transition from nuclei to homogeneous
+nuclear matter (when densities approch the nuclear saturation density).
+DD2 employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions.
+
+%% SFHo [more rephrasing needed!]
+Similar to DD2, SFHo combines a statistical ensemble of numerous nuclei, under the assumption of nuclear
+statistical equilibrium (NSE) to treat the homogeneous matter, 
+with the relativistic mean field approach for the unbound nucleons to treat high-density homogeneous nuclear matter.
+It however employs a different parameterizations and values for modeling the mean-field nuclear interactions, 
+which is motivated by neutron star radius measurements from low-mass X-ray
+binaries (\cite{Steiner:2012rk} and references therein).
+
+The DD2 and SFHo are based on nuclear statistical equilibrium.
+In these EOSs a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these EOSs mean-field nuclear interactions have different parameterizations and values.
+
+%% SLy4
+The SLy4 EOS eomplyed in this work is the finite temperature extension \cite{daSilvaSchneider:2017jpg}
+of the basic SLY4 Skryme parametrisation for cold nuclear NS matter \cite{Douchin:2001sv}.
+The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
+treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
+This is the more advanced version of LS220 model.
+When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
+free energy is chosen, (first order transition).
+
+%% BLh
+BLh is a new finite temperature EOS \cite{Logoteta:2020yxf}
+This EOS is a finite temperature extension of the cold, $\beta$-equilibrium EOS, \cite{Bombaci:2018ksa},
+which was applied to model the BNS merger in \cite{Endrizzi:2018uwl}
+The equation of state is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach.
+where microphysical approach based on a specific nuclear interaction is employed for the homogeneous nuclear phase.
+The interactions between nucleos are described through a potential derived perturbatively 
+in Chiral-Effective-Field theory \cite{Machleidt:2011zz}
+The two body interactions are modelled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
+Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
+The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
+The non-homogeneous phase of the EOS is treated by smoothly connecting the high density BLh EOS to the low-density oart of the SFHo EOS.
+
+
+
+
+\subsubsection{Finite temperature treatment}
+
+%% LS220 and SLy4
+In the EOSs that are based on the Skyrme effecrive nuclear interatcions, \textit{e.g.,} LS220 and SLy4
+the thermal effects are added in the following form. 
+Consider a zero temperature internal energy functional, which depends explicitly on the nuclear density.
+The part of this functional that is resposible for interactions is divided into the 
+subpart that represents the two-body nucleon-nucleon interactions, (it is quadratic in nuclear density) and a 
+subpart that mimics the effect of many body nuclear forces (proportional to the nuclear density in certain power).
+Then, both the single particle potentials as well as kinetic energy effective mass dependence play a role
+in the temperature dependence of the nuclear effective interaction.
+The single particle potential are computed via the variation of the internal energy with respect to the 
+neutron and proton densities.
+Thus, the smaller the effective masss the larger are kinetic energies and hence, hgiher matter temperature. 
+If the entropy remains unchainged.
+Thus, the finite temeperature behaviour of these EOSs is largely set by the nucleon effective mass.
+%Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
+For LS220, the nucleon mass is its bare nucleon mass (for any densities) \gray{so... $m_{N}^*=m_{N}$??}.
+For SFHo, $m_N ^* / m_N = 0.76$ at saturation density. 
+For DD2 $m_N^*/m_N = 0.56$ 
+For BLh $\red{None}$ 
+For SLy4 $m_N^*/m_N=0.70$ at saturation density. 
+where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
+
+%% SFHo (and DD2??)
+For the SFHo (\red{and DD2??}) EOS, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
+meson exchanges for descibing nuclear interactions, and the mean-field approximation is used
+to solve the resulted Euler-Largrange equations. 
+The thermal effects for various species are introduced via Fermi-Dirac distributions at finite temperatures.
+Then, self consitent solution of the mean filed eqution introduces the temperature dependence into other 
+thermodynamic quantities (through fiurst mesons and nucleon fields)
+
+%% BLh
+The BLh EOS employs a different approach to incorporate temperature effects.
+The method is based on evaluating the free energy in the Brueckner-Hartree-Fock, which in turn requires,
+the effective in-medium nuclear interactions to be defined (starting from the bare nuclear potential).
+The effective interaction 
+\gray{This effective interaction is obtained by solving
+the Bethe-Goldstone integral equation which describe the nucleonnucleon
+scattering in the nuclear medium and properly takes into
+account the Pauli principle}.
+Then, the nucleon single particle potentials are evaluated (via integration of the on-shell effective inteaction matrix)
+, which represent the mean field that a nucleon with a certain momenum experience sorrounded by other nucleons.
+The nucleon single particle potentials, then, allow to evaulate the free energy, and subsequently, 
+other thermodynamic quantities.
+Notable difference with outher EOS disucssed here is that the many-body correlations extand beyong the mean field approximation, and are not present in other EOS. 
+
+\subsubsection{TOV}
+
+To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
+The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
+for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
+
+
 %% ======================================== Code used
 \section{Used codes and setup}
 
 \subsection{Initial Data}
 
-The initial data is computer via pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}
-The code generates the binary neutron stars in a qusi-circular orbit, that revolve only few times before merging.
-The EOS for the minimum temperature slice of the EOS table used for the evolution assuming neutrino-less beta-equilibrium.
+For Each EOS considered, we compute the irrotational BNS configurations in quasi-circular orbit.
+
+
+We employ the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, that 
+solves the general relativistic initial data problem.
+The initial separation (of the qusi-circular orbit) is chosen $\sim40$~km and that corresponds to $~2-3$ orbits before merger.
+
+The EOS table used for the initial data computation is the minimum temperature slice
+$T\sim 0.5 - 0.1$~MeV of the finite temperature EOS table used for the evolution.
+The assumpution of the neutrino-less beta-equilibrium is made.
+At constant temperature, at lowest densities, the photon energy (radiation) is a dominant contribution to 
+pressure. Thus, we substruct this contribution from the tables.
+%Addiitionally, the assuming constant temperature, we also remove the photon (radiation) energy contribution to the pressure (which dominates at the lowest densities)
+
+The EOS table for the minimum temperature slice of the EOS table used for the evolution assuming neutrino-less beta-equilibrium.
 Assuming constant temperature, we also remove the photon energy contribution to the pressure.
 
 In the evolution code, passing the initial data, the mapping is done from the zero tem
@@ -171,7 +330,9 @@ The Euler equation for balance of energy and momentum reads
 where $Q$ is the net energy deposition rate doe to absorption
 and emission of neutrinos (\red{see Section XXX})
 
+
 \subsubsection{Numerical methods}
+
 
 High resolution shock capturing methods are used to discritize equations 
 \eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens}.
@@ -350,6 +511,7 @@ Additionally, the unphysical radaition shocks above the merger remnant, that com
 
 \subsubsection{Viscosity}
 
+
 Large scale magnetic fields are of prime importance for studying the emergence of magnetically and reconnection driven outflows and collimated jets postmerger \cite{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
 
 Additionally, \gray{global} magnetic fields and caused by them magnetic stresses are important for the self-consistent treatment of the angular momentum transport in the merger remnant \cite{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}.
@@ -424,48 +586,6 @@ that includes $\tau_{\mu\nu}$ would lead to the development of the \red{odd-even
 in a flux-conservative fashion via proper combination of left and right biased finite-differencing operators \cite{Radice:2018pdn}.
 
 
-%% ======================================== EOS used
-\section{EOS}
-
-\begin{figure}[t]
-    \centering 
-    \includegraphics[width=0.49\textwidth]{./figs/tov_mr.pdf}
-    \caption{Mass-radius relations for the EOSs used in this work. 
-        Markers along the sequences indicate the NSs smulated in this work.}  
-    \label{fig:method:tov_mr}
-\end{figure}
-
-For our models we use $5$ microphysical equation of states, namely the 
-DD2 \cite{Typel:2009sy,Hempel:2009mc}, 
-BLh, \red{Fill Refs}
-LS220, \cite{Lattimer:1991nc}
-SFHo \cite{Steiner:2012rk} and 
-SLy4. \red{Refs}
-.
-
-The maximum neutron star masses and radii that these EOS predict are in line with the current astrophysical constraints, 
-\textit{e.g.,} LIGO/Virgo constrain on tidal deformability 
-\cite{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}
-
-Specifically, the LS220 is based on the liquid droplet Skyrme model. It has a especially steep dependency of its symmetry 
-energy on density.
-
-The DD2 and SFHo are based on nuclear statistical equilibrium.
-In these EOSs a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these EOSs mean-field nuclear interactions have different parameterizations and values.
-
-To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
-The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
-for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which 
-in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
-
-In \red{all?.. except BLh?} EOS the finite temeperature behaviour of EOSs is largely set by the nucleon effective mass.
-Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
-For LS220, the nucleon mass is its bare nucleon mass (for any density) \gray{so... $m_{N}^*=m_{N}$??}.
-For SFHo, $m_N ^* / m_N = 0.76$ at saturation density.
-For DD2 $m_N^*/m_N = 0.56$
-For BLh $\red{None}$
-For SLy4 $\red{None}$
-where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
 
 
 
