@@ -104,6 +104,15 @@ For the underlying principles of the Eintein's theory of General Relativity, for
 For the discussion and derivation of general relativistic hydrodynamics and refer the interested reader to \red{[GRHD refs]}.
 For the Discussion on the radiation transport we refer to \red{GR-Rad refs}
 
+%% from GRLES Raduce paper
+Multimessenger observations of BNS mergers are starting to constrain the poorly known properties of
+matter at extreme densities [11,12,20–36] and the physical processes powering short g-ray bursts (SGRBs)
+[37–42]. They are also beginning to reveal the role played by compact binary mergers in the chemical
+enrichment of the galaxy with r-process elements [8,13,43–62]. The key to the solution of some of the most
+pressing open problems in nuclear and high-energy astrophysics – such as the origin of heavy elements,
+the nature of neutron stars (NSs), and the origin of SGRBs – is encoded in these and future observations.
+However, theory is essential to turn observations into answers.
+
 %% ============================================================ Chapter :: Theory/Methods 
 \chapter{Numerical Relativity}
 
@@ -118,8 +127,8 @@ For the Discussion on the radiation transport we refer to \red{GR-Rad refs}
 %% ======================================== EOS used
 \subsection{Microphysical EOS}
 
-This subsection is based on the recent publications 
-\cite{Perego:2019adq,Bernuzzi:2020txg,Nedora:2020pak}
+This subsection is based introduction in the recent publications 
+\cite{Radice:2018pdn,Perego:2019adq,Bernuzzi:2020txg,Nedora:2020pak}
 
 \begin{figure}[t]
     \centering 
@@ -136,7 +145,7 @@ LS220, \cite{Lattimer:1991nc},
 HS(SFHo), (hereafter SFHo) \cite{Steiner:2012rk} and 
 SLy4-SOR EOS (hereafter SLy4) \cite{daSilvaSchneider:2017jpg}.
 
-All EOS \red{except DD2???} include neutrinos $n$, protons $p$, nuclei, electrons, positrons, and photons
+All EOS include neutrinos $(n)$, protons $(p)$, nuclei, electrons, positrons, and photons
 as important thermodynamic degrees of freedom.
 
 The radii and maximum masses of neutron stars composed of the cold, neutrino-less $\beta$-equilibrium matter,
@@ -156,13 +165,15 @@ non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued
 %particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
 %Heavy nuclei are considered with single nucleus approximation. 
 The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
+LS220 does not satisfy the constraints from Chiral effective field theory \cite{Hempel:2017ikt}
 
 %% DD2
 DD2 (and SFHo) employs the statistical equilibrium to treat the ensemble of several thousands nuclei.
 The high-density nuclear matter is treated via RMF approach for unbound nucleons \cite{Hempel:2009mc}.
 The excluded volume mechanism is utilized for the phase transition from nuclei to homogeneous
 nuclear matter (when densities approch the nuclear saturation density).
-DD2 employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions.
+DD2 employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions \cite{Typel:2009sy}.
+It was however noted that DD2 is not in very good agreement with the so-called flow-constraint \cite{Danielewicz:2002pu}.
 
 %% SFHo [more rephrasing needed!]
 Similar to DD2, SFHo combines a statistical ensemble of numerous nuclei, under the assumption of nuclear
@@ -172,7 +183,8 @@ It however employs a different parameterizations and values for modeling the mea
 which is motivated by neutron star radius measurements from low-mass X-ray
 binaries (\cite{Steiner:2012rk} and references therein).
 
-The DD2 and SFHo are based on nuclear statistical equilibrium.
+The DD2 and SFHo are based on nuclear statistical equilibrium, but 
+different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
 In these EOSs a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these EOSs mean-field nuclear interactions have different parameterizations and values.
 
 %% SLy4
@@ -180,19 +192,19 @@ The SLy4 EOS eomplyed in this work is the finite temperature extension \cite{daS
 of the basic SLY4 Skryme parametrisation for cold nuclear NS matter \cite{Douchin:2001sv}.
 The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
 treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
-This is the more advanced version of LS220 model.
+Which is a more advanced version of LS220 treatment (model).
 When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
 free energy is chosen, (first order transition).
 
 %% BLh
 BLh is a new finite temperature EOS \cite{Logoteta:2020yxf}
 This EOS is a finite temperature extension of the cold, $\beta$-equilibrium EOS, \cite{Bombaci:2018ksa},
-which was applied to model the BNS merger in \cite{Endrizzi:2018uwl}
+which was applied to model the BNS merger in \cite{Endrizzi:2018uwl}.
 The equation of state is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach.
 where microphysical approach based on a specific nuclear interaction is employed for the homogeneous nuclear phase.
 The interactions between nucleos are described through a potential derived perturbatively 
 in Chiral-Effective-Field theory \cite{Machleidt:2011zz}
-The two body interactions are modelled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
+The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
 Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
 The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
 The non-homogeneous phase of the EOS is treated by smoothly connecting the high density BLh EOS to the low-density oart of the SFHo EOS.
@@ -201,6 +213,11 @@ The non-homogeneous phase of the EOS is treated by smoothly connecting the high 
 
 
 \subsubsection{Finite temperature treatment}
+
+Thermal effects are included a different way in these EOS. 
+In particular particle correlations beyond the mean field approximation are included only in the BLh EOS.
+In other EOS thermal effects enter in the nucleon effective mass, that depend on temperature and density.
+These effects, however, are important for the thermal evolution of the NS matter.
 
 %% LS220 and SLy4
 In the EOSs that are based on the Skyrme effecrive nuclear interatcions, \textit{e.g.,} LS220 and SLy4
@@ -225,7 +242,7 @@ For SLy4 $m_N^*/m_N=0.70$ at saturation density.
 where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
 
 %% SFHo (and DD2??)
-For the SFHo (\red{and DD2??}) EOS, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
+For the SFHo and DD2 EOS, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
 meson exchanges for descibing nuclear interactions, and the mean-field approximation is used
 to solve the resulted Euler-Largrange equations. 
 The thermal effects for various species are introduced via Fermi-Dirac distributions at finite temperatures.
@@ -236,7 +253,6 @@ thermodynamic quantities (through fiurst mesons and nucleon fields)
 The BLh EOS employs a different approach to incorporate temperature effects.
 The method is based on evaluating the free energy in the Brueckner-Hartree-Fock, which in turn requires,
 the effective in-medium nuclear interactions to be defined (starting from the bare nuclear potential).
-The effective interaction 
 \gray{This effective interaction is obtained by solving
 the Bethe-Goldstone integral equation which describe the nucleonnucleon
 scattering in the nuclear medium and properly takes into
@@ -246,28 +262,27 @@ Then, the nucleon single particle potentials are evaluated (via integration of t
 The nucleon single particle potentials, then, allow to evaulate the free energy, and subsequently, 
 other thermodynamic quantities.
 Notable difference with outher EOS disucssed here is that the many-body correlations extand beyong the mean field approximation, and are not present in other EOS. 
+This EOS was first employed for the BNS merger simulations in \cite{Bernuzzi:2020txg}.
 
 \subsubsection{TOV}
 
 To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
 The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
 for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
-
+Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 
 %% ======================================== Code used
-\section{Used codes and setup}
+%% \section{Used codes and setup}
 
-\subsection{Initial Data}
+\section{Initial Data}
 
 For Each EOS considered, we compute the irrotational BNS configurations in quasi-circular orbit.
-
-
 We employ the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, that 
 solves the general relativistic initial data problem.
 The initial separation (of the qusi-circular orbit) is chosen $\sim40$~km and that corresponds to $~2-3$ orbits before merger.
 
 The EOS table used for the initial data computation is the minimum temperature slice
-$T\sim 0.5 - 0.1$~MeV of the finite temperature EOS table used for the evolution.
+$(T\sim 0.5 - 0.1)$~MeV of the finite temperature EOS table used for the evolution.
 The assumpution of the neutrino-less beta-equilibrium is made.
 At constant temperature, at lowest densities, the photon energy (radiation) is a dominant contribution to 
 pressure. Thus, we substruct this contribution from the tables.
@@ -276,20 +291,22 @@ pressure. Thus, we substruct this contribution from the tables.
 The EOS table for the minimum temperature slice of the EOS table used for the evolution assuming neutrino-less beta-equilibrium.
 Assuming constant temperature, we also remove the photon energy contribution to the pressure.
 
-In the evolution code, passing the initial data, the mapping is done from the zero tem
+%In the evolution code, passing the initial data, the mapping is done from the zero temerature
 In the evolution code, the electron fraction is set by the beta equilibrium condition. 
 The specific internal energy is reset in accoradance with minimum temperature slice of the EOS table used for evolution.
 
 Errors present in the initial data in introduced during the mapping result in a small oscillations of netron stars.
 In terms of relative changes in central density these amounts to $\sim2-3\%$ \cite{Radice:2018pdn}
 
-\subsection{WhiskyTHC}
+
+\section{Evolution with WhiskyTHC}
+
 
 \texttt{WhiskyTHC} is ...
 \cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}
 
 
-\subsubsection{Hydrodynamics}
+\subsection{Hydrodynamics}
 
 The code evolves the proton and neutron number densities, $n_n$ and $n_p$
 respectively, as 
@@ -303,6 +320,8 @@ respectively, as
 Here $u^{\mu}$ is the fluid four-velocity, $R_p = -R_n$ is the net
 lepton number deposition rate due to the absorption and emission of neutrinos 
 and antineutrinos (\red{see Section XXX})
+
+The $R_{p,n}$ is computed according to the neutrino M0 scheme \cite{Radice:2016dwd,Radice:2018pdn}
 
 The number densities are related as $n_p=Y_e n$ where $n = n_p + n_e$ is the baryon 
 number density and $Y_e$ is electron fraction.
@@ -324,14 +343,14 @@ The Euler equation for balance of energy and momentum reads
 
 \begin{equation}
 \label{eq:wthc:euler}
-\nabla_\nu T^{\mu\nu} = Q u^\mu \ ,
+\nabla_\nu T^{\mu\nu} = Q u^{\mu} \ ,
 \end{equation}
 
 where $Q$ is the net energy deposition rate doe to absorption
-and emission of neutrinos (\red{see Section XXX})
+and emission of neutrinos also treated with the M0 scheme.
+ 
 
-
-\subsubsection{Numerical methods}
+\subsection{Numerical methods}
 
 
 High resolution shock capturing methods are used to discritize equations 
@@ -368,14 +387,17 @@ Time integrator of choice is strongly-stability preserving third-order Runge-Kut
 The timestep is regulated by the Courant-Friedrichs-Lewy (CFL) condition, that required CFL factor 
 to be $<0.25$ for numerical stability. To assure taht the positivity-preserving limiter implemented in \texttt{WhiskyTHC} maintains the density positive, the CFL factor is set to $0.15$.
 
-\subsubsection{AMR}
+
+\subsection{AMR}
 
 The code uses the Berger-Oliger conservative adaptive mesh renement (AMR) \cite{Berger:1984} with 
 sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} \cite{Berger:1989,Reisswig:2012nc} as provided by the \texttt{Carpet module} of the \texttt{Einstein Toolkit} 
 \cite{Schnetter:2003rb}. 
 
 
-\subsubsection{Neutrino scheme}
+
+\subsection{Neutrino scheme}
+
 
 \begin{table}
     \caption{
@@ -512,11 +534,52 @@ Additionally, the unphysical radaition shocks above the merger remnant, that com
 \subsubsection{Viscosity}
 
 
+This subsection is based on the GRLESS paper \cite{Radice:2017zta}, the calibrated model \cite{Radice:2020ids},
+and its application to the BNS \cite{Radice:2017lry} for dynamical ejecta and summary of this study in 
+\cite{Radice:2018pdn}.
+
+%% Motivation
+
+The fluid flow inside remnants of binary neutron star mergers is expected to be turbulent. 
+This is becasuse the magnetohydrodynamics instabilities,
+such as such as the Kelvin-Helmholtz (KH) instability and the magnetorotational instability (MRI) 
+activated at scales too small to be resolved in simulations.
+The effect of these instabilities can be assesed via eddy simulation technique \cite{Radice:2017zta},
+which allow to investigate the subgrid-scale turbulent transport in GR.
+
 Large scale magnetic fields are of prime importance for studying the emergence of magnetically and reconnection driven outflows and collimated jets postmerger \cite{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
 
 Additionally, \gray{global} magnetic fields and caused by them magnetic stresses are important for the self-consistent treatment of the angular momentum transport in the merger remnant \cite{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}.
 
 Such effects are studied with high-resolution general-relativistic magnetohydrodynamics (GRMHD) simulations.
+
+However, despite rapid progress of GRMHD simulations \cite{Rezzolla:2011da,Kiuchi:2014hja,Ruiz:2016rai},
+the degree to which the magnetoturbulence affects the structure and the lifetime of the remnant 
+before collapse is still uncertain.
+And while the magnetorotational instability (MRI) \cite{Balbus:1991} is believed to be present within the 
+massive neutron stars, and be responsible for the redistribution of angular momentum, affecting the 
+remnant lifetime, \cite{Duez:2006qe,Siegel:2013nrw}, the fastest growing modes of the MRI remains beyond 
+reach even at very high resolutions \cite{Kiuchi:2014hja}.
+Setting artificially large initial magnetic allows to raise the cutoff length scales associated with some of these instabilities to study the effects, but even then simulations fail to capture the dynamics of the turbulent cascade at the viscous scale, at which neutrino viscosity and drag damps the turbulent eddies \cite{Guilet:2016sqd}. This, however, is of large importance for BNS merger simulations.
+
+THere is a possibility of accounting for the turbulent angular momentum transport via effective viscosity
+\cite{Duez:2004nf}, this approach has theoretical limitations and numerical difficulties \cite{Radice:2017zta}.
+
+Another possible alternative is to consider and effective viscosity via and effective model based on 
+general relativisitc extension of the Newtonian large-eddy simulation (LES) (\textit{e.g.,} \cite{Miesch:2015les}). The model returns Navier-Stokes equations in the Newtonian limit, but it is not 
+a relativistic theory if viscous flows \cite{Radice:2017zta}.
+In essence, general-relativistic large-eddy simulation, (GRLES), main idea is to evolve the coarse-grained GRHD equations with a turbulent closure models.
+However, the results from these simulations inevitably depend on the adopted subgrid model. 
+These models are calibrated to capture the effect of turbulence operating at sub-grid scales,
+using either the dimensional analysis and linear perturbation theory \cite{Radice:2017zta}, or a very high resolution GRMHD simulations where most of the relevant unstable scales of MRI are resolved (with however large initial magnetic field), \textit{e.g.,} \cite{Kiuchi:2017zzg}.
+
+It is however, not the only approach to study turbulence while avoiding ultra-high resolution GRMHD simulations. An approach based on the Israel-Stewart formalism was proposed by Shibata and collaborators \cite{Shibata:2017jyf}.
+A method that extends further to GRMHD and includes more rigorous formulation \gray{with terms neglected here} was proposed in \cite{Carrasco:2019uzl,Vigano:2020ouc}. 
+Machine learning was suggested as method to calibrate the subgrid turbulence for 2D MHD \cite{Rosofsky:2020}. 
+A version of the GRLES approach was implemented into the Spectral Einstein Code (SpEC) for 2D axisymmetric \cite{Jesse:2020oss}.
+
+
+Recently a further facilitation of the mathematical basis behind the \gray{GRlES} method discussed here was published by Eyink and Drivas \cite{Eyink:2017zfz}.
 
 The code that we employ, \texttt{WhiskyTHC} does not have magnetic fields. 
 However, the possible effects that angular momentum transport might have on the simulation evolution
@@ -525,44 +588,175 @@ This method has been shown to reproduce main features of MHD dynamics with appli
 disks \cite{Fernandez:2018kax}.
 
 %% Method 
-To account for the effect of subgrid-scale turbulent angular momentum transport, 
-the general-relativistic large eddy simulations method (GRLES; \cite{Radice:2017zta}) is employed.
 
-The stress-energy tensor of the fluid $T^{\mu\nu}$ is decomposed as 
+Recall the Valencia formalism of the GRHD \cite{Banyuls:1997}. 
+The fluid four-velocity is represented as a sun of the vector on the hypersurface $t=\text{const}$, and
+a vector ortogonal to it, $n^{\mu}$ and reads
+
+\begin{equation}
+    u^{\mu} = (-u_{\mu}n^{\mu})(n^{\mu}+\upsilon^{\mu}) = W(n^{\upsilon} + \upsilon^{\mu})
+\end{equation}
+
+where $W$ is the Lorentz factor, $\upsilon^{\mu}$ is the fluid three-velocity.
+
+The proton and neutron \red{currents} can be expressed as
+
+\begin{eqnarray}
+    J^{\mu}_n = n_n W(n^{\mu} + \upsilon^{\mu}) = D_n (n^{\mu} + \upsilon^{\mu}) \\
+    J^{\mu}_p = n_p W(n^{\mu} + \upsilon^{\mu}) = D_p (n^{\mu} + \upsilon^{\mu})
+\end{eqnarray}
+
+respectively.
+
+
+%To account for the effect of subgrid-scale turbulent angular momentum transport, 
+%the general-relativistic large eddy simulations method (GRLES; \cite{Radice:2017zta}) is employed.
+%We briefly review here the method.
+
+Consider the stress energy tensor of a perfect fluid
+
+\begin{equation}
+    T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + pg_{\mu\nu},
+\end{equation}
+
+where $\rho$ is the density, $h$ is the specific enthalpy, $u_{\mu}$ is the four-velocity, and 
+$g_{\mu\nu}$ is the spacetime metric.
+
+Following the $3+1$ decomposition, where the spacetime is divided into space-like slices with 
+the normal to the space-like slice hyper-surface, $n^{\mu}$.
+The decomposition of the $T_{\mu\nu}$ with respect to the $n^{\mu}$ reads
 
 \begin{equation}
     T_{\mu\nu} = En_{\mu}n_{\nu} + S_{\mu}n_{\nu} + S_{\nu}n_{\mu} + S_{\mu\nu}
 \end{equation}
 
-where the first term of the RHS is the familiar 
+where the first term of the RHS is the energy
 
 \begin{equation}
     E = T_{\mu\nu}n^{\mu}n^{\nu} = \rho h W^2 - p
 \end{equation}
 
-and the second 
+and the second and the third respectively,
 
 \begin{eqnarray}
     & S_{\mu} = -\gamma_{\mu\alpha}n_{\beta}T^{\alpha\beta} = \rho h W^2 \upsilon_{\mu} \\
-    & S_{\mu\nu} = \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} + \tau_{\mu\nu}
+    & S_{\mu\nu} = \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} \gray{ + \tau_{\mu\nu}}
 \end{eqnarray}
 
-where $n_{\mu}$ is the normal to the space-like slice hyper-surface, while $\gamma_{\mu\nu}$ is the spatianl metric, $\upsilon^{\mu}$ is the three velocity and $W$ is the Lorentz factor. 
-The $\tau_{\mu\nu}$ is a purely spatial tensor representing the effect of the subgrid turbulence. 
-It reads \cite{Radice:2017zta}
+where while $\gamma_{\mu\nu}$ is the spatianl metric, $\upsilon^{\mu}$ is the three velocity and $W$ is the Lorentz factor, and $p$ is the pressure. 
+
+Neglecting the neutrino source terms \gray{to simplify notations}, the equations of energy and momentum conservation, the GRHD equations, are 
+
+\begin{eqnarray}
+\label{eq:method:whisky:emomcons_lk}
+    \partial_t(\sqrt{\gamma}D_n) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_n \Big] = 0, \\
+    \partial_t(\sqrt{\gamma}D_p) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_p \Big] = 0, \\
+    \partial_t(\sqrt{\gamma}S_i) + \partial_j\Big[ \alpha \sqrt{\gamma} (S_i^{\; j} + S_i n^j) \Big] = 
+    \alpha \sqrt{\gamma}\Big( \frac{1}{2} S^{jk} \partial_i \gamma_{jk} \frac{1}{\alpha} S_k \partial_i \beta^k - E\partial_i \log(\alpha) \Big) \\
+    \partial_t(\sqrt{\gamma}E) + \partial_j\Big[ \alpha \sqrt{\gamma} (S^{j} + E n^j) \Big] = 
+    \alpha \sqrt{\gamma}\Big( K_{ij}S^{ij} - S^i\partial_i \log(\alpha) \Big) 
+\end{eqnarray}
+
+where $\alpha$ is the lapse function, $\beta^i$ is the shift vector, $\gamma_{ij}$ is the three metric and $K_{ij}$ is the extrinsic curvature, and $\sqrt{\gamma}$ is the spatial volume element.
+
+These equations are then closed with the EOS and \red{Euler equations} for conservation of baryon and 
+lepton numbers \red{\textit{e.g.,} eq.\eqref{eq:wthc:euler} and neutirno equation ???}.
+
+However, while modes of all scales are present in the equations \eqref{eq:method:whisky:emomcons_lk}, 
+only the 'resolved' models can evolve in the numerical simualtions. 
+\gray{In other works, in numerical applications the 'coarse-grained' version of hydrodynamic equations
+is considered.}.
+
+Following the LES model, the linear filtering operator, $u\rightarrow \bar{u}$ is introduced, that 
+discards the modes \gray{features} below \gray{smaller} a given scale $\Delta$.
+As these eqautions are disctitized via finite volume scheme, the cell-averaging operator was chosen to
+perform filtering. These modifies the equations \eqref{eq:method:whisky:emomcons_lk}, as
+$S\rightarrow\bar{S}$, $E\rightarrow\bar{E}$.
+
+Assuming that the metric, a being a large scale quantity, is not changed during the averaging, the resulted system of averaged equations reads
+
+\begin{eqnarray}
+    \label{eq:method:whisky:emomcons_lk_filt}
+    \partial_t(\sqrt{\gamma}\overline{D_n}) + \partial_j\Big[ \alpha\sqrt{\gamma}(\overline{D_n\upsilon^j} + \overline{D_n}n^j) \Big] = 0, \\
+    \partial_t(\sqrt{\gamma}\overline{D_p}) + \partial_j\Big[ \alpha\sqrt{\gamma}(\overline{D_p\upsilon^j} + \overline{D_p}n^j) \Big] = 0, \\
+    \partial_t(\sqrt{\gamma}\overline{S_i}) + \partial_j\Big[ \alpha \sqrt{\gamma} (\overline{S_i^{\; j}} + \overline{S_i} n^j) \Big] = 
+    \alpha \sqrt{\gamma}\Big( \frac{1}{2} \overline{S^{jk}} \partial_i \gamma_{jk} \frac{1}{\alpha} \overline{S_k} \partial_i \beta^k - \overline{E}\partial_i \log(\alpha) \Big) \\
+    \partial_t(\sqrt{\gamma}\overline{E}) + \partial_j\Big[ \alpha \sqrt{\gamma} (\overline{S^{j}} + \overline{E} n^j) \Big] = 
+    \alpha \sqrt{\gamma}\Big( K_{ij}\overline{S^{ij}} - \overline{S^i}\partial_i \log(\alpha) \Big) 
+\end{eqnarray}
+
+Notably, the equations are not closed. The equations are non-linear, and $\overline{D_{n}}$, $\overline{D_p}$, $\overline{S_i}$ and $\overline{E}$ are not sufficient to express all the terms.
+The closure is thus required.
+
+\begin{eqnarray}
+    \bar{S_i\upsilon_j} &= \bar{S_i}\bar{\upsilon_j} + \tau_{ij}, \\
+    \overline{D\upsilon^i} &= \overline{D}\overline{\upsilon^i} + \mu^i
+\end{eqnarray}
+
+where $\tau_{ij}$ is the so-called subgrid-scale turbulence tensor \cite{Radice:2017zta} or stress,
+the $\mu^i$ sub-scale rest-mass diffusion.
+
+Notably, these terms are intrinsic to numerical discritisiation of the GRHD equations. 
+
+Additionally, the three velocity $\overline{\upsilon^i}$ is a non-linear function of the filtered quantities, and thus requires clusure. So does the pressure, as the adopted equations of state are non-linear:
 
 \begin{equation}
-    \tau_{ij} = -2\nu_T(\rho + p)W^2 \Big[ \frac{1}{2}(D_i\upsilon_j + D_j\upsilon_i) - \frac{1}{3}D_k\upsilon^k\gamma_{ij} \Big]
+    \overline{p} = p(\overline{D_{n,p}},\overline{S_i},\overline{E}) + \Pi
 \end{equation}
 
-where $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, $c_s$ is the sound speed.
-The $D_i$ here are the \red{covariant derivatives compatible with spatial metric}. 
+In this formulations, \cite{Radice:2020ids}, these corrections are neglected on the basis of post-merger dynamicc exhibiting subrelativistic and subsonic anc can be effectively described by $\tau_{ij}$.
 
-The parameter $l_{\text{mix}}$ is a free parameter that can be varied to study the impact of the turbulence
-on the results. \red{Alternatively it cen be set as a function of density. See Radice Paper}
+However, see \cite{Carrasco:2019uzl,Vigano:2020ouc} for a general treatment.
 
-Notably, in the context of accretion disks, the turbulent viscosity is typically linked to the dinensionless constant 
-$\alpha$ (so called $\alpha$-viscosity???) that is realted to the mixing length as 
+When $\tau_{ij}=0$, there is no subgrid trubulence. 
+The $\tau_{ij}$ can be computed following the analogy with Newtonian closure of \cite{Smagorinsky:1963}.
+ 
+\begin{align}
+    \tau_{ij} = &-2\nu_T\rho h W^2\Big[ \frac{1}{2}(\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big] = \\
+    &-2 \nu_T (\epsilon + p)W^2\Big[ \frac{1}{2} (\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big]
+\end{align}
+
+where $\nabla$ is the covariant derivative compatible with $\gamma_{ij}$, which is the spatial metric.
+
+The $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity,
+expressed through the mixing length $l_{\text{mix}}$, which is characteristic length scale of turbulence, and characteristic velocity, $c_s$, which is the sound speed.
+
+%The $\tau_{\mu\nu}$ is a purely spatial tensor representing the effect of the subgrid turbulence. 
+%It reads \cite{Radice:2017zta}
+
+% \begin{equation}
+%    \tau_{ij} = -2\nu_T(\rho + p)W^2 \Big[ \frac{1}{2}(D_i\upsilon_j + D_j\upsilon_i) - \frac{1}{3}D_k\upsilon^k\gamma_{ij} \Big]
+%\end{equation}
+
+%where $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, $c_s$ is the sound speed.
+%The $D_i$ here are the \red{covariant derivatives compatible with spatial metric}. 
+
+The mixing length parameter, $l_{\text{mix}}$, is related to the length over which the effects of turbulence are present. 
+
+The $\nu_T$ is not a physical viscosity and by definition it relates to the numerical grid and 
+eulerian observer $n^{\mu}$. 
+\gray{Indeed, for a certain scale to be resolved or not depends on the observer in relativity}.
+$\nu_T$ can be calibrated based on high resolution simulations \red{EXTEND Here To 2020 Paper}
+
+is a free parameter that can be varied to study the impact of the turbulence on the results. \red{Alternatively it can be set as a function of density. 
+See Radice Paper}
+
+For now $l_{\text{mix}}$ is free parameter.
+
+With respect to the MRI, it is natural to set $l_{\text{mix}} \sim \lambda_{\text{MRI}}$, where $\lambda_{\text{MRI}} \sim \Omega^{-1}B$ with $\Omega$ being the agular velocity and $B$ is the magnetic field strength \cite{Duez:2006qe}.
+Here $\lambda_{\text{MRI}}$ describes the scale at which turbulence is predominantly driven according to linear theory.
+
+Together, enegery and momenta consdervation equations with averaging operator, subgrid-scale turbulence tensor,
+eqution for $l_{\text{mix}}$, EOS and the continuity equations comprise the GRLES equation.
+
+In the \cite{Radice:2017lry} the effect of the subgrid turbulence on the dynamical ejecta was investigated, where $l_{\text{mix}}$ was a free parameter, varying between $0$ and $50$~m. 
+
+Simulations performed with the code that incorporates these equations are referred to as simulations
+with viscosity.
+
+
+Viscous flows in accretion disks is often described in terms of a dimensionless constant $\alpha$
+ (so called $\alpha$-viscosity???) that is related to the mixing length as 
 
 \begin{equation}
     l_{\text{mix}} = \alpha c_s \Omega^{-1}
@@ -570,14 +764,42 @@ $\alpha$ (so called $\alpha$-viscosity???) that is realted to the mixing length 
 
 where $\Omega$ is the angular velocity of the fluid \cite{Shakura:1972te}.
 
-The value of $l_{\text{mix}}$ can be constrained by very high resolution GRMHD simulations with seed magnetic field
-stron enough that the magnetorotational instability (MRI) is resolved. Such simulation was recently performed by 
- \cite{Kiuchi:2017zzg}. Thus study yielded the $\alpha$ values for various density shells.
-Together with the $c_s$ and $\Omega$, form \red{our} simulations, the $l_{\text{mix}}\in(0,30)$~m \cite{Radice:2018pdn}
+The value of $\alpha$ can be constrained by very high resolution GRMHD simulations with seed magnetic field $(10^{15}~G)$ strong enough that the magnetorotational instability (MRI) within the remnant is resolved. 
+Such simulation, performed by \cite{Kiuchi:2017zzg} yielded average values of $\alpha$ for various rest-mass density shells.
+Together with the sound speend and angular velocity, the mixing length can thus be estimated \cite{Radice:2020ids}, and Fig.1 there 
 
-Additionally, the $l_{\text{mix}})$ can be computed from ....
+\begin{equation}
+    l_{\text{mix}} = 
+    \begin{cases}
+        \alpha \xi \exp(-|b\xi|^{5/2}) \: [m], \: &\text{ if } \xi > 0, \\
+        0, &\text{ otherwise }
+    \end{cases}
+\end{equation}
 
-In out models the $l_{\text{mix}}\in(0,30)$ is computed according to \red{New Radice Ppaer}
+where 
+
+\begin{equation}
+    \xi = \log_{10}\Big( \frac{m_p(n_p + n_n)}{\rho^*} \Big)
+\end{equation}
+
+with the constants $a$, $b$ and $\rho^*$ reported there.
+
+It was observed that even for a highly magnetized binary, simulated by \cite{Kiuchi:2017zzg} the $l_{\text{mix}}$ is rather small. The turbulence appear weaker within the merger remannt at higher densities, as the angular velocity, growing with radius, stabilizes the flow against MRI (\textit{e.g.,} \cite{Radice:2017lry}). 
+For lower densities, $\rho<10^{10}$~\gcm, the $l_{\text{mix}}$ is also descrising, but due to the fitting procedure, the log-linear extrapolation into the region where the $\alpha$ velues are not available \cite{Kiuchi:2017zzg}.
+The turbulence appear the strongest in the NS mantel at densities between $10^{9}$~\gcm and $10^{13}$~\gcm,
+\red{the region that we woul later call Disk???}
+
+
+
+
+
+
+
+%Together with the $c_s$ and $\Omega$, form \red{our} simulations, the $l_{\text{mix}}\in(0,30)$~m \cite{Radice:2018pdn}
+
+%Additionally, the $l_{\text{mix}})$ can be computed from ....
+
+%In out models the $l_{\text{mix}}\in(0,30)$ is computed according to \red{New Radice Ppaer}
 
 %% Method for inculding the Viscosity term.
 The direct application of finite volume Godunov-type methods to discretize the stress-energy tensor 
@@ -586,7 +808,7 @@ that includes $\tau_{\mu\nu}$ would lead to the development of the \red{odd-even
 in a flux-conservative fashion via proper combination of left and right biased finite-differencing operators \cite{Radice:2018pdn}.
 
 
-
+\paragraph{title}
 
 
 \subsection{Setup}
