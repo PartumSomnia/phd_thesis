@@ -40,6 +40,7 @@
 \newcommand{\swind}{spiral-wave wind}
 \newcommand{\nwind}{$\nu$-component}
 \newcommand{\gcm}{g cm$^{-3}$}
+\newcommand{\dd}{\text{d}}
 \newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
 
 %% head
@@ -274,7 +275,7 @@ Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 %% ======================================== Code used
 %% \section{Used codes and setup}
 
-\section{Initial Data}
+\subsection{Initial Data}
 
 For Each EOS considered, we compute the irrotational BNS configurations in quasi-circular orbit.
 We employ the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, that 
@@ -299,7 +300,7 @@ Errors present in the initial data in introduced during the mapping result in a 
 In terms of relative changes in central density these amounts to $\sim2-3\%$ \cite{Radice:2018pdn}
 
 
-\section{Evolution with WhiskyTHC}
+\subsection{Evolution with WhiskyTHC}
 
 
 \texttt{WhiskyTHC} is ...
@@ -398,6 +399,36 @@ sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} 
 
 \subsection{Neutrino scheme}
 
+This subsection is based on the recent papers by \cite{Radice:2016dwd} where the implemented 
+into the \texttt{WhiskyTHC} leackage and M0 schemes are described 
+and \cite{Radice:2018pdn} where the scheme is summarized. 
+\gray{for now we neglect the long fundamental paper \cite{Galeazzi:2013mia} describing the leakage scheme}
+
+For other methods see \cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
+
+Neutrino transport is of prime importance for shaping the composition of the ejecta
+\cite{Wanajo:2014,Sekiguchi:2015dma,Foucart:2015vpa,Foucart:2015gaa},
+affecting the nucleosynthesis in the ejecta \cite{Wanajo:2014,Goriely:2015fqa} and the thermal
+electromagnetic counterpart, Kilonova (Macronova) \cite{Metzger:2014ila,Lippuner:2015gwa}
+
+
+In this subsection a brief overview of the neutrino radaition transport, implemented in the 
+\texttt{WhiskyTHC} is outlined.
+
+We begin by considering the so-called gray (energy-averaged) leackage scheme that descibes the 
+neutrino cooling.
+This scheme is very popular in core-collapse supernovae models as well as binary neutron star models.
+\cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Perego:2015agy}
+
+The foundation of the scheme described here is presented in \cite{Galeazzi:2013mia}.
+The method is similar to that of the \cite{Ruffert:1995fs}.
+And, as in the \cite{Rosswog:2003rv}, the opacities are computed on the basis local thermodynamical equilibrium chemical potential for the neutrinos.
+
+
+The goal of the leackage scheme is to describe a series of effective emissivities $R^{\text{eff}}$ and $Q^{\text{eff}}$ for electron neutrinos, $\nu_e$, anti-electron neutrinos $\bar{\nu}_e$ and the heavy-lepton neutrinos, which we collectively label as $\nu_x$.
+The optical depth is then used to reduce the intrinsic emissivites, mimicking the effect of the diffusion of radiation from the optically thick regions.
+This scheme also includes the heating effects by the free-streaming neutrinos, \textit{i.e.,} neutrino absorption. \gray{ which was shown to be important for altering the ejecta composition }.
+
 
 \begin{table}
     \caption{
@@ -426,15 +457,17 @@ sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} 
 \end{table}
 
 %% Leackage
-The change in material composition ($Y_e$) is treated according to the leakage scheme \cite{Galeazzi:2013mia,Radice:2016dwd}. 
-For other methods see \cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
+%The change in material composition ($Y_e$) is treated according to the leakage scheme \cite{Galeazzi:2013mia,Radice:2016dwd}. 
+
 The scheme consideres three neutrino species: electron neutrino $\nu_e$, electron antineutrino $\bar{\nu}_e$ and an single species $\nu_x$ for heavy-lepton neutrinos.
 The reactions traced by the scheme are listed in the table \ref{tab:leakage}.
 
-Following the sources listed in the table, the neutrino production rate $R_{\nu}$ for $\nu\in\{\nu_e,\bar{\nu}_e,\nu_x\}$ are computed alongside the respective energy relase $Q_{\nu}$ and
+Following the sources listed in the table, the neutrino production rate $R_{\nu}$ for $\nu\in\{\nu_e,\bar{\nu}_e,\nu_x\}$ are computed alongside the respective energy release $Q_{\nu}$ and
 opacities: $\kappa_{\nu;a}$ and $\kappa_{\nu;s}$ for absorption and scattering respectively.
 
-Neutrinos are assumed to obey the Fermi-Dirac distribution. Their chemical potential is governed by the $\beta$-equilibrium with thermal neutrinos \cite{Rosswog:2003rv}
+Neutrinos are assumed to obey the Fermi-Dirac distribution. Their chemical potential is governed by the $\beta$-equilibrium with thermal neutrinos \cite{Rosswog:2003rv}.
+Thus, for the calculation of the opacities, local thermodynamical equilibrium chemical potential
+is assumed for the neutrinos.
 
 Additionally, there are two types of opacities, the density weighted opacities $\kappa_{\nu;a}^0$ and $\kappa_{\nu;s}^0$ and energy density weighted opacities $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$. 
 The former are related to the rate at which neutrinos escape the material, while the latter set the rate 
@@ -461,7 +494,7 @@ and the neutrino emission timescale
     t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
 \end{equation}
 
-and $n_{\nu}$ is the neutrino number density estimated based om the beta equilibrium with \red{(thermal?)} neutrinos.
+and $n_{\nu}$ is the neutrino number density estimated based on the beta equilibrium with \red{(thermal?)} neutrinos.
 The $\mathcal{D}$ is a tuning parameter set to $6$.
 
 Similarly, the effective energy emission rate $Q_{\nu}^{\text{eff}}$ are computed with $\tau_{\nu}^1$, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$.
@@ -475,7 +508,152 @@ These neutrinos are treated afterwards according to the M0 scheme \cite{Radice:2
 The rest are the trapped neutrinos. Their effect on the pressure is neglected as it was shown to be weak 
 in the NS conditions \cite{Galeazzi:2013mia}.
 
+%% M0 Appendix A from Radice:2016dwd, Neutrin transport details
+\subsubsection{The Boltzmann equations for Free-Streaming Neutrinos}
+
+Neutrinos are considered as massless particles, propagating in the fluid
+with four-velocity is $u^{\alpha}$.
+The neutrino four-momentum, $p^{\alpha}$, can be decomposed as \cite{Thorne:1981}
+
+\begin{equation}
+    p^{\alpha} = (-p_{\beta}u^{\beta})(u^{\alpha} + r^{\alpha}),
+\end{equation}
+
+where $E_{\nu}=-p_{\alpha}u^{\alpha}$ is the neutrino energy measured by \red{Eulerian} observer,
+comoving with the fluid, $r^{\alpha}$ is the unit space-like vector, orthogonal to the 
+fluid's $u^{\alpha}$, or in other words $r_{\alpha}r^{\alpha}=1$ and $u_{\alpha}r^{\alpha}=0$.
+Additionally, $r^{\alpha}$ can be interpreted as the direction along which neutrinos move,
+as seen by the \red{Eulerian} observer comoving with the fluid.
+
+The four-vector of the neutrinos is
+
+\begin{equation}
+    \label{eq:method:whisky:neut:k}
+    k^{\alpha} = u^{\alpha} + r^{\alpha}
+\end{equation}
+
+with $k_{\alpha}k^{\alpha} = 0$.
+
+Next, the affine parameter, that parameterizes the neutrino's worldline is introduced
+
+\begin{equation}
+    l = \int (-p_{\alpha u^{\alpha}})\dd s \text{ so that } \Big( \frac{\partial}{\partial l} \Big)^{\alpha} = k^{\alpha}.
+\end{equation}
+
+Now, with $l$, the Boltzmann equations for the neutrino radiation transport read \cite{Thorne:1981}
+
+\begin{equation}
+    \frac{D F}{D l} = \mathbb{C}[F]
+\end{equation}
+
+where $F$ is the distribution fuction for a give neutrino species, and $\mathbb{C}$ is the
+'collisional operator' \red{See Rdice Thesis} the contains information regarding the interactions between neutrinos and the background fluid (in the frame of the fluid). 
+The $D/Dl$ is the total derivative in phase space along $p^{\alpha}$ and it reads 
+
+\begin{equation}
+    \label{eq:method:whisky:neut:bolzeq}
+    \frac{DF}{Dl} = k^{\alpha} \Big[ \frac{\partial F}{\partial x^{\alpha}} - \Gamma^{\delta}_{\:\:\alpha\beta}p^{\beta}\frac{\partial F}{\partial p^{\delta}} \Big],
+\end{equation}
+
+where $\Gamma^{\delta}_{\:\:\alpha\beta}$ are the Christoffel symbols.
+
+
+\subsubsection{Neutrino number density evolution}
+
+Neutrinos are split into two categories. 
+Trapped neutrinos are treated with leackage scheme.
+Free streaming neutrinos are evolved according to the moment scheme. Specifically, the propagation
+of the neutrinos along the radial rays is considered tracking the change in their average energy.
+
+Free streaming neutrino evolve according to the Boltzmann equation \eqref{eq:method:whisky:neut:bolzeq}.
+The source term is given by the neutrino leakage scheme, taking the effective emissivity from it.
+The collisional term is approximated in a way that it only includes neutrino absorption and emission. Scattering is neglected.
+
+For the evaluation of the absorption opacities, (of $\nu_{e}$ and $\bar{\nu}_{e}$) the local thermodynamic equilibrium is assumed.
+
+The neutrino number density (in the fluid rest frame) for neutrinos of a give flavor, $n_X$, can be expressed
+through the neutrino number current $J_{X}^{\alpha}$ that reads \cite{Lindquist:1966},
+
+\begin{equation}
+    J_{X}^{\alpha} = \int F p^{\alpha} \frac{\dd^3 p}{-p_0}
+\end{equation}
+
+as $n_X = - u_{\alpha} J_{X}^{\alpha}$.
+
+The balance equation (between absorption and emission of neutrinos) can be obtained from the 
+first moment of the Boltzmann equation \cite{Thorne:1981,Shibata:2011kx}
+
+\begin{equation}
+    \label{eq:method:whisky:neut:balanseq}
+    \nabla_{\alpha}J_{X}^{\alpha} = R_{X}^{\text{eff}} - \kappa_X n_X,
+\end{equation}
+
+where $\kappa_X$ is the absorption opacity and $R_X^{\text{eff}}$ is the effective neutrino emission rate.
+
+While the equation \eqref{eq:method:whisky:neut:balanseq} is exact, in order to be solved, it requires closure. 
+In this method the closure is given by considering neutrinos only propagating radially and at a speed of light, \textit{e.g.,}
+
+\begin{equation}
+    J_{X}^{\alpha} = n_X k^{\alpha},
+\end{equation}
+
+where $k^{\alpha}$ is the fiductial null vector, \eqref{eq:method:whisky:neut:k}, under the assumption that $r^{\alpha}$ is the radial null-vector, orthogonal to the fluid $u^{\alpha}$.
+This translates into the assumption that the free-streaming neutrinos are moving radially in a frame instantaneously comoving with the fluid.
+Then, the balance equation for $n_X$ reads
+
+\begin{equation}
+    \label{eq:mehtod:whisky:neut:balanseq2}
+    \partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) = \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X)
+\end{equation}
+
+where $g$ is the determentatn of the $4$-metric \gray{(in spherical coordinates)}.
+
+%% numerics
+The eqution \eqref{eq:mehtod:whisky:neut:balanseq2} is solved on a series of independent radial rays using a first order, fully-implicit finite volume method.
+Coupling with the hydrodynamics is done via interpolation at every timestep.
+\gray{For our models 2048 radial rays uniformly spaced in latittude and longitude were used with radial resolution of $244$~m [CONFIRM!]}.
+
+
+\subsubsection{Neutrino average energy evolution}
+
+Computation of the neutrino average energy is required to evaluate the matter composition and temperature changes.
+Here the additional assumtion is made, that the space-time is stationary, \textit{e.g.,} $t^{\alpha}:=(\partial_t)^{\alpha}$ is a Killing vector, which leads to the $(-p_{\alpha}t^{\alpha})$ to be a conserved quantity. Assuming that there is no interaciton with the fluid and the along the neutrino worldlines, \textit{e.g.,}
+
+\begin{equation}
+    \frac{\dd(-p_{\alpha}t^{\alpha})}{dl} = 0
+\end{equation}
+
+Then, the quentiy $\mathcal{E}_X = -p_{\alpha}t^{\alpha}$ is the energy of the neutrinos of species $X$ \gray{as seen by the coordinate observer, -- an unphysical observer with four-velocity $t^{\alpha}$}.
+
+Consider 
+
+\begin{equation}
+    \mathcal{E}_X = -p_{\alpha}t^{\alpha} = -E_{X} k_{\alpha}t^{\alpha} =: E_X \chi
+\end{equation}
+
+then, the eqution for the average neutrino energy reads
+
+\begin{equation}
+    \frac{\dd \mathcal{E}_X}{\dd l} = \frac{R^{\text{eff}_X}}{n_X}\Big( \chi \frac{Q_X^{\text{eff}}}{R_{X}^{\text{eff}}} - \mathcal{E}_X \Big) 
+\end{equation}
+
+where $Q_{x}^{\text{eff}}$ is the effective neutrino energy source (taken from the leackages scheme).
+
+For neutrinos radially moving, the equation reads
+
+\begin{equation}
+    n_X k^{t} \partial_t \mathcal{E}_X + n_{X} k^{r}\partial_{r}\mathcal{E}_X = (\chi Q_{X}^{\text{eff}} - \mathcal{E}_X R_X^{\text{eff}}).
+\end{equation}
+
+This eqution is solved on the same spherical grid using hte first order finite differencing method.
+
+\subsubsection{Coupling between hydrodynamics and neutrinos}
+
+
+
 %% M0 scheme
+Computation of the $n_{\nu_e}$, $n_{\bar{n}_e}$, $E_{\nu_e}$ and $E_{\bar{\nu}_e}$ is accomplished via the zeroth momentum (M0) of the free-streaming neutrino distribution function on a set of individual radial rays, with the closure adopted to post-merger geometry.
+
 In the M0 scheme the evolution of the number density of free steaming neutrinos is done under the assumption.
 Neutrons are assumed to be moving along the radial null rays with four vector $k^{\alpha}$. The vector is normalized such that $k^{\alpha}u_{\alpha}=-1$. 
 Then the number density of the free neutrinos in the fluid rest frame $n_{\nu}^{\text{fs}}$ follows \cite{Radice:2016dwd}
@@ -486,6 +664,7 @@ Then the number density of the free neutrinos in the fluid rest frame $n_{\nu}^{
 \end{equation}
 
 where $R_{\nu}^{\text{eff}}$ is the effective luminosity (\red{emission }) \eqref{eq:method:whisky:Rnueff}. 
+
 The effective absorption rate then
 
 \begin{equation}
@@ -534,64 +713,52 @@ Additionally, the unphysical radaition shocks above the merger remnant, that com
 \subsubsection{Viscosity}
 
 
-This subsection is based on the GRLESS paper \cite{Radice:2017zta}, the calibrated model \cite{Radice:2020ids},
-and its application to the BNS \cite{Radice:2017lry} for dynamical ejecta and summary of this study in 
-\cite{Radice:2018pdn}.
+This subsection is based on the GRLESS method paper \cite{Radice:2017zta}, its extension  \cite{Radice:2020ids}, and its application to the BNS \cite{Radice:2017lry} for dynamical ejecta and summary of this study in \cite{Radice:2018pdn}.
 
 %% Motivation
 
 The fluid flow inside remnants of binary neutron star mergers is expected to be turbulent. 
-This is becasuse the magnetohydrodynamics instabilities,
-such as such as the Kelvin-Helmholtz (KH) instability and the magnetorotational instability (MRI) 
+This is because the magnetohydrodynamics instabilities,
+such as the Kelvin-Helmholtz (KH) instability and the magnetorotational instability (MRI), are  
 activated at scales too small to be resolved in simulations.
-The effect of these instabilities can be assesed via eddy simulation technique \cite{Radice:2017zta},
-which allow to investigate the subgrid-scale turbulent transport in GR.
+%The effect of these instabilities can be assessed via large eddy simulation technique \cite{Radice:2017zta}, which allow to investigate the subgrid-scale turbulent transport in GR.
 
-Large scale magnetic fields are of prime importance for studying the emergence of magnetically and reconnection driven outflows and collimated jets postmerger \cite{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
+Large scale magnetic fields are of prime importance for studying the emergence of magnetically and \red{reconnection} driven outflows and collimated jets \cite{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
 
-Additionally, \gray{global} magnetic fields and caused by them magnetic stresses are important for the self-consistent treatment of the angular momentum transport in the merger remnant \cite{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}.
+Additionally, \gray{global} magnetic fields, and magnetic stresses induced by them are crucial for the self-consistent treatment of the angular momentum transport in the merger remnant \cite{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}.
 
-Such effects are studied with high-resolution general-relativistic magnetohydrodynamics (GRMHD) simulations.
-
-However, despite rapid progress of GRMHD simulations \cite{Rezzolla:2011da,Kiuchi:2014hja,Ruiz:2016rai},
+Such effects are studied with high-resolution general-relativistic magnetohydrodynamics (GRMHD) simulations. However, despite rapid progress of GRMHD simulations \cite{Rezzolla:2011da,Kiuchi:2014hja,Ruiz:2016rai},
 the degree to which the magnetoturbulence affects the structure and the lifetime of the remnant 
-before collapse is still uncertain.
+before collapse is still poorly constrained.
 And while the magnetorotational instability (MRI) \cite{Balbus:1991} is believed to be present within the 
-massive neutron stars, and be responsible for the redistribution of angular momentum, affecting the 
-remnant lifetime, \cite{Duez:2006qe,Siegel:2013nrw}, the fastest growing modes of the MRI remains beyond 
+massive neutron stars, and is responsible for the redistribution of angular momentum, affecting the 
+remnant lifetime, \cite{Duez:2006qe,Siegel:2013nrw}, the fastest growing modes of the MRI remain beyond 
 reach even at very high resolutions \cite{Kiuchi:2014hja}.
-Setting artificially large initial magnetic allows to raise the cutoff length scales associated with some of these instabilities to study the effects, but even then simulations fail to capture the dynamics of the turbulent cascade at the viscous scale, at which neutrino viscosity and drag damps the turbulent eddies \cite{Guilet:2016sqd}. This, however, is of large importance for BNS merger simulations.
 
-THere is a possibility of accounting for the turbulent angular momentum transport via effective viscosity
-\cite{Duez:2004nf}, this approach has theoretical limitations and numerical difficulties \cite{Radice:2017zta}.
+Setting artificially large initial magnetic allows to raise the cutoff length scales associated with some of these instabilities and study their effects, but even then simulations fail to capture the dynamics of the turbulent cascade at the viscous scale, at which neutrino viscosity and drag damps the turbulent eddies \cite{Guilet:2016sqd}. 
+% This, however, is of large importance for BNS merger simulations.
 
-Another possible alternative is to consider and effective viscosity via and effective model based on 
-general relativisitc extension of the Newtonian large-eddy simulation (LES) (\textit{e.g.,} \cite{Miesch:2015les}). The model returns Navier-Stokes equations in the Newtonian limit, but it is not 
-a relativistic theory if viscous flows \cite{Radice:2017zta}.
+THere is a possibility of including the turbulent angular momentum transport via effective viscosity
+\cite{Duez:2004nf}. 
+This approach has theoretical limitations and numerical difficulties, such as the emergence of unphysical effects in the Navier-Stokes equations describing relativistic viscous flows (\textit{e.g.,} \cite{Hiscock:1985}).
+
+Another possible alternative is to consider the effective viscosity via an effective model based on 
+general relativistic extension of the Newtonian large-eddy simulation (LES) (\textit{e.g.,} \cite{Miesch:2015les}). The model does return Navier-Stokes equations in the Newtonian limit, but it is not a relativistic theory of viscous flows \cite{Radice:2017zta}.
 In essence, general-relativistic large-eddy simulation, (GRLES), main idea is to evolve the coarse-grained GRHD equations with a turbulent closure models.
-However, the results from these simulations inevitably depend on the adopted subgrid model. 
+The results from these simulations, however, depend on the adopted subgrid model. 
 These models are calibrated to capture the effect of turbulence operating at sub-grid scales,
 using either the dimensional analysis and linear perturbation theory \cite{Radice:2017zta}, or a very high resolution GRMHD simulations where most of the relevant unstable scales of MRI are resolved (with however large initial magnetic field), \textit{e.g.,} \cite{Kiuchi:2017zzg}.
+
+Recently a further facilitation of the mathematical basis behind the \gray{GRlES} method discussed here was published by Eyink and Drivas \cite{Eyink:2017zfz}.
 
 It is however, not the only approach to study turbulence while avoiding ultra-high resolution GRMHD simulations. An approach based on the Israel-Stewart formalism was proposed by Shibata and collaborators \cite{Shibata:2017jyf}.
 A method that extends further to GRMHD and includes more rigorous formulation \gray{with terms neglected here} was proposed in \cite{Carrasco:2019uzl,Vigano:2020ouc}. 
 Machine learning was suggested as method to calibrate the subgrid turbulence for 2D MHD \cite{Rosofsky:2020}. 
-A version of the GRLES approach was implemented into the Spectral Einstein Code (SpEC) for 2D axisymmetric \cite{Jesse:2020oss}.
+A version of the GRLES approach was implemented into the Spectral Einstein Code (SpEC) for 2D axisymmetric simulations \cite{Jesse:2020oss}.
 
-
-Recently a further facilitation of the mathematical basis behind the \gray{GRlES} method discussed here was published by Eyink and Drivas \cite{Eyink:2017zfz}.
-
-The code that we employ, \texttt{WhiskyTHC} does not have magnetic fields. 
-However, the possible effects that angular momentum transport might have on the simulation evolution
-can be investigated via an inclusion of \textit{effective viscosity}.
-This method has been shown to reproduce main features of MHD dynamics with application to post-merger accretion
-disks \cite{Fernandez:2018kax}.
 
 %% Method 
-
-Recall the Valencia formalism of the GRHD \cite{Banyuls:1997}. 
-The fluid four-velocity is represented as a sun of the vector on the hypersurface $t=\text{const}$, and
-a vector ortogonal to it, $n^{\mu}$ and reads
+Next, we briefly summarize the GRLES model. We begin with the recalling the Valencia formalism of the GRHD \cite{Banyuls:1997}. The fluid four-velocity is represented as a sun of the vector on the hypersurface $t=\text{const}$, and a vector orthogonal to it, $n^{\mu}$ and reads
 
 \begin{equation}
     u^{\mu} = (-u_{\mu}n^{\mu})(n^{\mu}+\upsilon^{\mu}) = W(n^{\upsilon} + \upsilon^{\mu})
@@ -602,8 +769,8 @@ where $W$ is the Lorentz factor, $\upsilon^{\mu}$ is the fluid three-velocity.
 The proton and neutron \red{currents} can be expressed as
 
 \begin{eqnarray}
-    J^{\mu}_n = n_n W(n^{\mu} + \upsilon^{\mu}) = D_n (n^{\mu} + \upsilon^{\mu}) \\
-    J^{\mu}_p = n_p W(n^{\mu} + \upsilon^{\mu}) = D_p (n^{\mu} + \upsilon^{\mu})
+    J^{\mu}_n = n_n W(n^{\mu} + \upsilon^{\mu}) := D_n (n^{\mu} + \upsilon^{\mu}) \\
+    J^{\mu}_p = n_p W(n^{\mu} + \upsilon^{\mu}) := D_p (n^{\mu} + \upsilon^{\mu})
 \end{eqnarray}
 
 respectively.
@@ -619,31 +786,32 @@ Consider the stress energy tensor of a perfect fluid
     T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + pg_{\mu\nu},
 \end{equation}
 
-where $\rho$ is the density, $h$ is the specific enthalpy, $u_{\mu}$ is the four-velocity, and 
+where $\rho$ is the density, $h$ is the specific enthalpy, $u_{\mu}$ is the fluid four-velocity, and 
 $g_{\mu\nu}$ is the spacetime metric.
 
-Following the $3+1$ decomposition, where the spacetime is divided into space-like slices with 
-the normal to the space-like slice hyper-surface, $n^{\mu}$.
-The decomposition of the $T_{\mu\nu}$ with respect to the $n^{\mu}$ reads
+Following the $3+1$ decomposition, 
+where the spacetime is divided into space-like slices with 
+the normal to the space-like slice hyper-surface, $n^{\mu}$,
+the decomposition of the $T_{\mu\nu}$ with respect to the $n^{\mu}$ reads
 
 \begin{equation}
     T_{\mu\nu} = En_{\mu}n_{\nu} + S_{\mu}n_{\nu} + S_{\nu}n_{\mu} + S_{\mu\nu}
 \end{equation}
 
-where the first term of the RHS is the energy
+where the first term of the RHS is
 
 \begin{equation}
     E = T_{\mu\nu}n^{\mu}n^{\nu} = \rho h W^2 - p
 \end{equation}
 
-and the second and the third respectively,
+and the last two,
 
 \begin{eqnarray}
     & S_{\mu} = -\gamma_{\mu\alpha}n_{\beta}T^{\alpha\beta} = \rho h W^2 \upsilon_{\mu} \\
     & S_{\mu\nu} = \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} \gray{ + \tau_{\mu\nu}}
 \end{eqnarray}
 
-where while $\gamma_{\mu\nu}$ is the spatianl metric, $\upsilon^{\mu}$ is the three velocity and $W$ is the Lorentz factor, and $p$ is the pressure. 
+where while $\gamma_{\mu\nu}$ is the spatial metric, $\upsilon^{\mu}$ is the three velocity and $W$ is the Lorentz factor, and $p$ is the pressure. 
 
 Neglecting the neutrino source terms \gray{to simplify notations}, the equations of energy and momentum conservation, the GRHD equations, are 
 
@@ -663,17 +831,17 @@ These equations are then closed with the EOS and \red{Euler equations} for conse
 lepton numbers \red{\textit{e.g.,} eq.\eqref{eq:wthc:euler} and neutirno equation ???}.
 
 However, while modes of all scales are present in the equations \eqref{eq:method:whisky:emomcons_lk}, 
-only the 'resolved' models can evolve in the numerical simualtions. 
+only the 'resolved' modes can evolve in numerical simulations. 
 \gray{In other works, in numerical applications the 'coarse-grained' version of hydrodynamic equations
-is considered.}.
+is considered \cite{Radice:2017zta}.}.
 
 Following the LES model, the linear filtering operator, $u\rightarrow \bar{u}$ is introduced, that 
 discards the modes \gray{features} below \gray{smaller} a given scale $\Delta$.
-As these eqautions are disctitized via finite volume scheme, the cell-averaging operator was chosen to
+As these equations are disctitized via finite volume scheme, the cell-averaging operator was chosen to
 perform filtering. These modifies the equations \eqref{eq:method:whisky:emomcons_lk}, as
 $S\rightarrow\bar{S}$, $E\rightarrow\bar{E}$.
 
-Assuming that the metric, a being a large scale quantity, is not changed during the averaging, the resulted system of averaged equations reads
+Assuming that the metric, a being a large scale quantity, is not changed during the averaging, the resulted system of averaged equations reads \cite{Radice:2017zta}
 
 \begin{eqnarray}
     \label{eq:method:whisky:emomcons_lk_filt}
@@ -685,8 +853,9 @@ Assuming that the metric, a being a large scale quantity, is not changed during 
     \alpha \sqrt{\gamma}\Big( K_{ij}\overline{S^{ij}} - \overline{S^i}\partial_i \log(\alpha) \Big) 
 \end{eqnarray}
 
-Notably, the equations are not closed. The equations are non-linear, and $\overline{D_{n}}$, $\overline{D_p}$, $\overline{S_i}$ and $\overline{E}$ are not sufficient to express all the terms.
-The closure is thus required.
+Notably, the equations are not closed. 
+The equations are non-linear, and $\overline{D_{n}}$, $\overline{D_p}$, $\overline{S_i}$ and $\overline{E}$ are not sufficient to express all the terms.
+A closure is thus required.
 
 \begin{eqnarray}
     \bar{S_i\upsilon_j} &= \bar{S_i}\bar{\upsilon_j} + \tau_{ij}, \\
@@ -694,32 +863,29 @@ The closure is thus required.
 \end{eqnarray}
 
 where $\tau_{ij}$ is the so-called subgrid-scale turbulence tensor \cite{Radice:2017zta} or stress,
-the $\mu^i$ sub-scale rest-mass diffusion.
+and $\mu^i$ is the sub-scale rest-mass diffusion.
 
-Notably, these terms are intrinsic to numerical discritisiation of the GRHD equations. 
+Notably, these terms are intrinsic to numerical discretization of the GRHD equations. 
 
-Additionally, the three velocity $\overline{\upsilon^i}$ is a non-linear function of the filtered quantities, and thus requires clusure. So does the pressure, as the adopted equations of state are non-linear:
+Additionally, the three velocity $\overline{\upsilon^i}$ is a non-linear function of the filtered quantities, and thus requires closure. So does the pressure, as the adopted equations of state are non-linear:
 
 \begin{equation}
-    \overline{p} = p(\overline{D_{n,p}},\overline{S_i},\overline{E}) + \Pi
+    \overline{p} = p(\overline{D_{n,p}},\overline{S_i},\overline{E}) + \Pi.
 \end{equation}
 
-In this formulations, \cite{Radice:2020ids}, these corrections are neglected on the basis of post-merger dynamicc exhibiting subrelativistic and subsonic anc can be effectively described by $\tau_{ij}$.
+In the considered formulation \cite{Radice:2020ids}, these corrections are neglected on the basis of post-merger dynamics having subrelativistic and subsonic turbulence that can be effectively described by $\tau_{ij}$.
 
-However, see \cite{Carrasco:2019uzl,Vigano:2020ouc} for a general treatment.
+However, see \cite{Carrasco:2019uzl,Vigano:2020ouc} for a more general treatment.
 
-When $\tau_{ij}=0$, there is no subgrid trubulence. 
-The $\tau_{ij}$ can be computed following the analogy with Newtonian closure of \cite{Smagorinsky:1963}.
+% When $\tau_{ij}=0$, there is no subgrid turbulence. 
+following the analogy with Newtonian closure of \cite{Smagorinsky:1963}, the $\tau_{ij}$ can be computed \cite{Radice:2017zta}
  
 \begin{align}
     \tau_{ij} = &-2\nu_T\rho h W^2\Big[ \frac{1}{2}(\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big] = \\
     &-2 \nu_T (\epsilon + p)W^2\Big[ \frac{1}{2} (\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big]
 \end{align}
 
-where $\nabla$ is the covariant derivative compatible with $\gamma_{ij}$, which is the spatial metric.
-
-The $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity,
-expressed through the mixing length $l_{\text{mix}}$, which is characteristic length scale of turbulence, and characteristic velocity, $c_s$, which is the sound speed.
+where $\nabla$ is the covariant derivative compatible with $\gamma_{ij}$, which is the spatial metric, and $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, expressed through the mixing length $l_{\text{mix}}$, which is characteristic length scale of turbulence, and characteristic velocity, $c_s$, which is the sound speed.
 
 %The $\tau_{\mu\nu}$ is a purely spatial tensor representing the effect of the subgrid turbulence. 
 %It reads \cite{Radice:2017zta}
@@ -733,26 +899,21 @@ expressed through the mixing length $l_{\text{mix}}$, which is characteristic le
 
 The mixing length parameter, $l_{\text{mix}}$, is related to the length over which the effects of turbulence are present. 
 
+Together, enegery and momenta consideration equations with averaging operator, subgrid-scale turbulence tensor, equation for $l_{\text{mix}}$, EOS and continuity equations comprise the GRLES system.
+
+
 The $\nu_T$ is not a physical viscosity and by definition it relates to the numerical grid and 
-eulerian observer $n^{\mu}$. 
-\gray{Indeed, for a certain scale to be resolved or not depends on the observer in relativity}.
-$\nu_T$ can be calibrated based on high resolution simulations \red{EXTEND Here To 2020 Paper}
+Eulerian observer $n^{\mu}$. 
+\gray{Indeed, in relativity, for a certain scale to be resolved or not depends on the observer}.
+%$\nu_T$ can be calibrated based on high resolution simulations \red{EXTEND Here To 2020 Paper}
 
-is a free parameter that can be varied to study the impact of the turbulence on the results. \red{Alternatively it can be set as a function of density. 
-See Radice Paper}
+%is a free parameter that can be varied to study the impact of the turbulence on the results. \red{Alternatively it can be set as a function of density. 
+%See Radice Paper}
 
-For now $l_{\text{mix}}$ is free parameter.
+%For now $l_{\text{mix}}$ is free parameter.
 
-With respect to the MRI, it is natural to set $l_{\text{mix}} \sim \lambda_{\text{MRI}}$, where $\lambda_{\text{MRI}} \sim \Omega^{-1}B$ with $\Omega$ being the agular velocity and $B$ is the magnetic field strength \cite{Duez:2006qe}.
-Here $\lambda_{\text{MRI}}$ describes the scale at which turbulence is predominantly driven according to linear theory.
-
-Together, enegery and momenta consdervation equations with averaging operator, subgrid-scale turbulence tensor,
-eqution for $l_{\text{mix}}$, EOS and the continuity equations comprise the GRLES equation.
-
-In the \cite{Radice:2017lry} the effect of the subgrid turbulence on the dynamical ejecta was investigated, where $l_{\text{mix}}$ was a free parameter, varying between $0$ and $50$~m. 
-
-Simulations performed with the code that incorporates these equations are referred to as simulations
-with viscosity.
+With respect to the MRI, it is natural to set $l_{\text{mix}} \sim \lambda_{\text{MRI}}$, where $\lambda_{\text{MRI}} \sim \Omega^{-1}B$ with $\Omega$ being the angular velocity and $B$ is the magnetic field strength \cite{Duez:2006qe}.
+Here $\lambda_{\text{MRI}}$ describes the scale over which turbulence is predominantly driven according to linear theory.
 
 
 Viscous flows in accretion disks is often described in terms of a dimensionless constant $\alpha$
@@ -766,7 +927,7 @@ where $\Omega$ is the angular velocity of the fluid \cite{Shakura:1972te}.
 
 The value of $\alpha$ can be constrained by very high resolution GRMHD simulations with seed magnetic field $(10^{15}~G)$ strong enough that the magnetorotational instability (MRI) within the remnant is resolved. 
 Such simulation, performed by \cite{Kiuchi:2017zzg} yielded average values of $\alpha$ for various rest-mass density shells.
-Together with the sound speend and angular velocity, the mixing length can thus be estimated \cite{Radice:2020ids}, and Fig.1 there 
+Together with the sound speend and angular velocity, the mixing length can thus be estimated \cite{Radice:2020ids}, (and Fig.1 there) 
 
 \begin{equation}
     l_{\text{mix}} = 
@@ -782,12 +943,12 @@ where
     \xi = \log_{10}\Big( \frac{m_p(n_p + n_n)}{\rho^*} \Big)
 \end{equation}
 
-with the constants $a$, $b$ and $\rho^*$ reported there.
+with the constants $a$, $b$ and $\rho^*$ are constants.
 
-It was observed that even for a highly magnetized binary, simulated by \cite{Kiuchi:2017zzg} the $l_{\text{mix}}$ is rather small. The turbulence appear weaker within the merger remannt at higher densities, as the angular velocity, growing with radius, stabilizes the flow against MRI (\textit{e.g.,} \cite{Radice:2017lry}). 
-For lower densities, $\rho<10^{10}$~\gcm, the $l_{\text{mix}}$ is also descrising, but due to the fitting procedure, the log-linear extrapolation into the region where the $\alpha$ velues are not available \cite{Kiuchi:2017zzg}.
+It was observed that even for a highly magnetized binary, simulated by \cite{Kiuchi:2017zzg}, the $l_{\text{mix}}$ is rather small. The turbulence appear weaker within the merger remnant at higher densities, as the angular velocity, growing with radius, stabilizes the flow against MRI (\textit{e.g.,} \cite{Radice:2017lry}). 
+For lower densities, $\rho<10^{10}$~\gcm, the $l_{\text{mix}}$ is also decreasing, but due to the fitting procedure, the log-linear extrapolation into the region where the $\alpha$ values are not provided by \cite{Kiuchi:2017zzg}.
 The turbulence appear the strongest in the NS mantel at densities between $10^{9}$~\gcm and $10^{13}$~\gcm,
-\red{the region that we woul later call Disk???}
+\red{the region that we would later call Disk???}
 
 
 
@@ -807,6 +968,16 @@ that includes $\tau_{\mu\nu}$ would lead to the development of the \red{odd-even
 \texttt{WhiskyTHC} avoids this problem by discritizing the terms araising from the derivatives of $\tau_{\mu\nu}$
 in a flux-conservative fashion via proper combination of left and right biased finite-differencing operators \cite{Radice:2018pdn}.
 
+In the \cite{Radice:2017lry} the effect of the subgrid turbulence on the dynamical ejecta was investigated, where $l_{\text{mix}}$ was a free parameter, varying between $0$ and $50$~m. 
+
+Simulations performed with the code that incorporates these equations are referred to as simulations
+with viscosity.
+
+The code that we employ, \texttt{WhiskyTHC} does not have magnetic fields. 
+However, the possible effects that angular momentum transport might have on the simulation evolution
+can be investigated via an inclusion of \textit{effective viscosity}.
+This method has been shown to reproduce main features of MHD dynamics with application to post-merger accretion
+disks \cite{Fernandez:2018kax}.
 
 \paragraph{title}
 
