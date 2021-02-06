@@ -121,11 +121,12 @@ However, theory is essential to turn observations into answers.
 
 \subsection{General relativity \& $3+1$ decomposition}
 
+%% --- The Cauchy Problem in General Relativity
 In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to
 evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
 
-%% --- USED Notations 
-We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature (-,+,+,+). The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. 
+%% --- Euler-Lagrange equations --- USED Notations 
+We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. 
 
 We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$. 
 
@@ -153,7 +154,7 @@ where $g$ denotes the determinant of the spacetime metric.
 
 In GR, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$, the Loretzian metric. 
 
-%% --- EFE ----
+%% ---The Hilbert Action -> EFE ----
 The Einstein field equations read 
 
 \begin{equation}
@@ -186,6 +187,10 @@ $\vec{\beta}$ is called shift vector and $\alpha$ is called lapse-function.
 The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, Riemannian metric $\boldsymbol{\gamma}$  as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$. 
 The Levi-Civita connection can be computed by projecting the $\nabla$ on the space tangent to the hypersurface $\Sigma_t$.
 
+%% SKIPPING Ex-curse: Hamiltonian Field Theory
+%%          Extrinsic Curvature and Constraint equations
+%%          The Hamiltonian Formulation of the Einstein Equations
+
 It is possible to cast the Einstein field equation as a set of constraint equations that should be satisfied on each hypersurface of the foliation and a set of evolution equations that govern the evolution of the space time.
 Specifically, we focus on the ADM system (derivation for which see in the exercise Appendix \ref{app:adm})
 
@@ -200,9 +205,130 @@ D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
 where $S = \gamma^{ij}S_{ij}$.
 These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
 
+%% Strongly Hyperbolic Formulations of the Einstein Equations
 
+It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only weekly hyperbolic \cite{Baumgarte:2002jm}. It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}.  
+
+In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. In particular, the the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} and and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of Einstein equations for numerical applications is ongoing. We limit ourselves to sketching only the conformal-covariant variant of the Z4 formulation, also known as Z4c. The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
+
+%% The CCZ4 Formulation and Z4c formulalations
+
+The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- strongly-hyperbolic. This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
+
+The evolution equations then read
+
+\begin{equation}
+R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
+\label{eq:theory:z4fieldeq}
+\end{equation}
+
+and two sets of constraint equations
+
+\begin{equation}
+\nabla_{\rho} g^{\mu\nu} = 0, \text{ and } Z_{\mu} = 0,
+\label{eq:theory:z4connect}
+\end{equation}
+
+where the latter is called an algebraic constraint. If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
+
+The Einstein field equations themselves are recovered from (\ref{eq:theory:z4connect}) and (\ref{eq:theory:z4fieldeq}) when the algebraic constraint is satisfied. 
+
+The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. This allows to obtain the solution of the Einstein equations. 
+
+However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
+
+A new version of Z4 was recently introduced by \cite{Alic:2011gg}. It incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture}, that will be discussed later. 
+The CCZ4 system reads 
+
+%\begin{align}
+%\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
+%\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
+%& + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
+%& -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
+%\partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
+%\partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
+%& - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
+%\partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
+%& + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
+%\partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
+%& - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
+%& - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
+%& -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
+%\label{eq:theory:ccz4equations} % used for Whisky Code description
+%\end{align}
+
+%where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
+
+%\begin{align}
+%\widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
+%\widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
+%\end{align}
+
+\red{Additionally, there exist a Z4c formulation; that one is used in WhiskyTHC}
+
+%% --- Gauge conditions
+
+In order to complete the ADM system, the choice of the lapse function, \textit{i.e} slicing condition, and shift vector \textit{i.e} spatial gauge condition has to be made. The correct choice, is essential for the stable evolution and in itself presents a broad and rapidly evolving subject. Here we are going to discuss only the gauge that is relevant for our work. 
+
+Consider \textit{Slicing condition}. One of the widely used conditions is so called 'maximal slicing' that sets $K=0$, 
+%which in turn results in the equation
+%\begin{equation}
+%D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
+%\end{equation}
+This conditions has an advantage of being \textit{singularity-avoiding}. For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. However implementation of this condition in from of a elliptic equations is computationally expensive.
+
+A class of slicing conditions in form of hyperbolic equations that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
+
+\begin{equation}
+(\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
+\label{eq:theory:gauge_onepluslog}
+\end{equation}
+
+%which in CCZ4 reads 
+%\begin{equation}
+%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+%\end{equation}
+%
+%\begin{equation}
+%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+%\end{equation}
+
+%where $f(\alpha)$ is a positive function.
+For many numerical applications, including those that are discussed in this work, the "1 + log" slicing is adopted, the $\beta_i=0$. 
+Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
+
+\begin{equation}
+\alpha = 1 + \log\gamma
+\end{equation}
+
+This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
+
+Next, consider \textit{Spatial gauge conditions}.
+The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution.  
+One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
+
+%\begin{align}
+%\partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
+%\partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
+%\end{align}
+%where $\eta$ is a dumping coefficient.
+
+This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
+
+A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes,
+
+%\begin{align}
+%(\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
+%(\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
+%\end{align}
+
+was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
+
+
+
+%% ---------------------------------------------------------------------------
 \subsection{General Relativistic Hydrodynamics \& Valencia formulation}
-
+%% ---------------------------------------------------------------------------
 
 
 Eulerian observer, an observer orthogonal to the hypersurface of constant coordinate time.
@@ -406,10 +532,61 @@ The from of the obtained general relativistic hydrodynamics equations resemble t
 
 There are however several complications. In particular there is no explicit inverse relation between the primitive quantities and the conserved ones. Thus one has to resort to the root-finding algorithms to \textit{reconstruct} them \red{(More on this in later chapters)}. In addition, it was pointed out that the $W$ couples the equation for the momenta in different direction \cite{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. This leads to the fact that the dynamics of the shock wave can be affected by the non-zero tangential velocity. Hence, the increased complexity if he problem of GR hydrodynamics \cite{Mignone:2005ns,Zhang:2005qy}.
 
+%% --- SKIPPED The General-Relativistic Boltzmann Equation
+%%             the Liuville theorem
+%%             The Boltzmann equation
+%%             From the Boltzmann Equation to the Euler Equation
+
+Next, it is possible to obtain the conservation equations 
+
+\begin{equation}
+\nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
+\end{equation}
+
+from the general relativistic Boltzmann equation and Liuville theorem
+see Appendix \ref{app:eul}.
+
+
+%% --- OVERVIEW
+
+%We start this section by revisiting the fundamental concepts, such as manifold, tangent and cotangent bundles, with vectors and differential forms defined on them, and operations such ans exterior, Wedge product and Hodge star operator. \\
+%
+%Then we set ourselves a goal to obtain the general form of general relativistic hydrodynamics. This includes the equations for space-time evolution adopted adopted for use in numerical applications and Euler equations for the fluid, which we aim to obtain through the Liuville's theorem and Boltzmann equations. \\
+%
+%To derive the Einstein field equations we perform the variation of the so-called Hilbert action, applying the Euler-Lagrange equation. Thus we start by briefly deriving the Euler-Lagrange equations, using the fact that the fields we are interested in are defined over only a compact domain and that the choice of the variation of coordinates is arbitrary, i.e. $\partial S(\boldsymbol{q}, \nabla \boldsymbol{q}) = 0$. Then, in a similar way, the variation of the Hilbert action, yields the Einstein Field equation. \\
+%
+%For practical applications it is useful to express the EFE as a initial value boundary problem. The hamiltonian formalism allows to do that, which we briefly review. We then sketch the $3+1$ decomposition procedure, introducing the spacelike foliation and extrinsic curvature that allow us to obtain the constraint equations, that has to be satisfied on every hyper-surface of the hypersurface. Then, emplying the EFE and Gauss-Codacci equations we write the Hamiltonian density, whose variation with respcet to the variables of folliation $\alpha$ and $\beta$ yileds constraint equation. The evolution equations then are obtained through the variation of the Hamiltinan with respect to the three-metric and momentum. \\
+%
+%The obtained ADM system is however not well suited for numerical applications, being only weekly hyperbolic. We thus briefly touch on a strongly hyperbolic formulation, the Z4 formulation, that exhibit such usefull for numercs properties as constraint violation dumpening (constrain preservation) and its evolution, the CCZ4 formulation that is furhter adopted for BH evolution. \\
+%
+%After, we briefly touch on the gauge conditions, as in the 3+1 we are left with the freedom on how to do the foliation, namely, chosing the lapse function and shift vector. \\
+%
+%Then we proceed with deriving equations of general relativistc hydrodynamics, aiming to provide a flux-conservative formulation. We first define the kinematics of the relativistc fluid, \textit{i.e.,} a covariant description in terms of invariant quantities. With this goal in mind we define the rest-mass density vector, whose divergence give the number of particles conservation. Then we re-introduce the stress energy tensor ans show that via Bianki identities, its divergence alse vanishes. \\
+%
+%To discuss the dynmaics of the fluid, we first, set its type. We consider the fluid that hs and thermal conductivity and no viscosity, \textit{i.e.}, the perfect fluid. In addition to fluid kinematics and the stress-energy tensor, describing tis motion, we discuss an equation of state. Together they from a hyperbolic ssytem of equations that describes the evolution of the fluid in space-time, once the initial data is set.\\
+%
+%For the reasosns of numerical stability, a special formulation of the equations of general relativistic hydrodynamics is required. Such is the Valencia formulation. The main idea is to constract an advection-like equation for fluxes of conserved quantites, from which the promitive quantities can be reconstructed.\\ 
+%
+%To derive these fluxes we first decompose the four velocity into the component parallel to the normal to the hypersurface and a purely spatial part. This leads us to the defention of the conserved density. Then we introduce a vector whose zeroth component is just a norm and spatial component which is a \textcolor{gray}{tangent vector to hypersurface}. This allows us to write the conserved and primitive qiantities of the formulatio, as well as the sourve term. \todo{not all quntities in Val.Form. are clear. What is $S_j$ and $\epsilon$} \\
+%
+%Next we consider geometrical approach to the general-relativistic boltzmann equation \textcolor{gray}{still not sure why though}. To do that we first introduce necessary tools, namely vectors and tensors that are needed to define the phase-space. There there are $2n$ components with the first $n$ being coordinates and the second $n$ being impulses. In addition, we introduce the coordinate trnaformation and finally, the metric on the tangent bundle. \\
+%
+%Having tools set, we derive the Liuville theorem. In order to do that we write phase-space flow of particles moving along geodesics which is represented by the Poincare 1-form and associated vecotr. In addition we define a mass shell, a norm to it and a irrotational form on a tangent bundle. Together with the poincare form it allows us to define the denisty of the phase-space trjectories which we denote ad a Hodge operator of the wedge product of these two forms. After some calculations, we obtain that this form can be expressed in a coordiante independed way as a split of two froms, the proper geodeiscs flux froms on the hypersurface and the mass shell respectively. By considering the "phase tube" with two crossections, we arrive that itegrated flux is conserved, which constitutes the Liouville\'s Theorem. \\
+%
+%After that we proceed with deriving the Boltzmann equation. Which we start by intoducing the number of phase-space trajectories crossing the section of a "phase tube". The relation between the number of the phase space trajectoies and the density defined above, yilds the invariant distribution function. Considering the change in the number of particles due to collisions. The change in scalar product between the exteriour derivative of the distribution function and poincare 1-form due to collisions constitudes the Boltzmann equation. \textcolor{gray}{revise this.}. Re-introducing the Levi Civita connection in phase space, and taking an advantage of the incompressibility if the poincare 1-form, we obtain a conservative form of the Boltzmann equation. \\
+%
+%From Boltzmann equation we can now obtain an equations of hydrodynamics. For that we firs redefine the variables of the kinetic description, such as mass and energy fluxes, recalling the definition of the rest-mass density four-vector. Similarly how the vector can be now exprressed as a first moment of the distribution function, the second moment gives the sress energy tensor. However, we note that the nature of the collisional operation ultimately denes the equilibrium conguration distribution function and thus the form of the stress-energy tenor. \\
+%
+%Next we use the Liouville Theorem to obtain the equations of hydrodynamics introducing a tensorial function of the momenta, that is related to the quantities conserved by the collisional operator and are called collisional invariants into the integral form onf the theorem. Letting the distribution function decay for large momenta we obtain the transfer equation. For as simple gas this can be reduced to already familiar equations where divergence of the rest mass vector J and stress energy tensor is zero. 
+
 
 \subsection{General Relativistic Radiation Transport \& Boltzmann equation}
 
 \subsection{Numerical Methods (FV, FD, time integrator, atmosphere)}
+
+There many approaches to solving a system of conservation laws numerically.
+Schemes that are commonly adopted for hydrodynamic simulations are the finite-volume schemes, while schemes that are generally used for solving the EFE numerically are the finite differencing schemes. There are many variaions of these shemes with various degrees of accuracy, simplicity and performance. We omit the discussions of them here but provide a short overview in the Appendix 
+
 
 %% ======================================== EOS used
 \subsection{Microphysical EOS}
@@ -561,11 +738,283 @@ Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 
 
 
-%% ======================================== Code used
-%% \section{Used codes and setup}
-\section{Modeling binary neutron star merger with \texttt{WhiskyTHC}}
 
-\subsection{Initial Data}
+\subsection{Viscosity}
+
+
+This subsection is based on the GRLESS method paper \cite{Radice:2017zta}, its extension  \cite{Radice:2020ids}, and its application to the BNS \cite{Radice:2017lry} for dynamical ejecta and summary of this study in \cite{Radice:2018pdn}.
+
+%% Motivation
+
+The fluid flow inside remnants of binary neutron star mergers is expected to be turbulent. 
+This is because the magnetohydrodynamics instabilities,
+such as the Kelvin-Helmholtz (KH) instability and the magnetorotational instability (MRI), are  
+activated at scales too small to be resolved in simulations.
+%The effect of these instabilities can be assessed via large eddy simulation technique \cite{Radice:2017zta}, which allow to investigate the subgrid-scale turbulent transport in GR.
+
+Large scale magnetic fields are of prime importance for studying the emergence of magnetically and \red{reconnection} driven outflows and collimated jets \cite{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
+
+Additionally, \gray{global} magnetic fields, and magnetic stresses induced by them are crucial for the self-consistent treatment of the angular momentum transport in the merger remnant \cite{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}.
+
+Such effects are studied with high-resolution general-relativistic magnetohydrodynamics (GRMHD) simulations. However, despite rapid progress of GRMHD simulations \cite{Rezzolla:2011da,Kiuchi:2014hja,Ruiz:2016rai},
+the degree to which the magnetoturbulence affects the structure and the lifetime of the remnant 
+before collapse is still poorly constrained.
+And while the magnetorotational instability (MRI) \cite{Balbus:1991} is believed to be present within the 
+massive neutron stars, and is responsible for the redistribution of angular momentum, affecting the 
+remnant lifetime, \cite{Duez:2006qe,Siegel:2013nrw}, the fastest growing modes of the MRI remain beyond 
+reach even at very high resolutions \cite{Kiuchi:2014hja}.
+
+Setting artificially large initial magnetic allows to raise the cutoff length scales associated with some of these instabilities and study their effects, but even then simulations fail to capture the dynamics of the turbulent cascade at the viscous scale, at which neutrino viscosity and drag damps the turbulent eddies \cite{Guilet:2016sqd}. 
+% This, however, is of large importance for BNS merger simulations.
+
+THere is a possibility of including the turbulent angular momentum transport via effective viscosity
+\cite{Duez:2004nf}. 
+This approach has theoretical limitations and numerical difficulties, such as the emergence of unphysical effects in the Navier-Stokes equations describing relativistic viscous flows (\textit{e.g.,} \cite{Hiscock:1985}).
+
+Another possible alternative is to consider the effective viscosity via an effective model based on 
+general relativistic extension of the Newtonian large-eddy simulation (LES) (\textit{e.g.,} \cite{Miesch:2015les}). The model does return Navier-Stokes equations in the Newtonian limit, but it is not a relativistic theory of viscous flows \cite{Radice:2017zta}.
+In essence, general-relativistic large-eddy simulation, (GRLES), main idea is to evolve the coarse-grained GRHD equations with a turbulent closure models.
+The results from these simulations, however, depend on the adopted subgrid model. 
+These models are calibrated to capture the effect of turbulence operating at sub-grid scales,
+using either the dimensional analysis and linear perturbation theory \cite{Radice:2017zta}, or a very high resolution GRMHD simulations where most of the relevant unstable scales of MRI are resolved (with however large initial magnetic field), \textit{e.g.,} \cite{Kiuchi:2017zzg}.
+
+Recently a further facilitation of the mathematical basis behind the \gray{GRlES} method discussed here was published by Eyink and Drivas \cite{Eyink:2017zfz}.
+
+It is however, not the only approach to study turbulence while avoiding ultra-high resolution GRMHD simulations. An approach based on the Israel-Stewart formalism was proposed by Shibata and collaborators \cite{Shibata:2017jyf}.
+A method that extends further to GRMHD and includes more rigorous formulation \gray{with terms neglected here} was proposed in \cite{Carrasco:2019uzl,Vigano:2020ouc}. 
+Machine learning was suggested as method to calibrate the subgrid turbulence for 2D MHD \cite{Rosofsky:2020}. 
+A version of the GRLES approach was implemented into the Spectral Einstein Code (SpEC) for 2D axisymmetric simulations \cite{Jesse:2020oss}.
+
+
+%% Method 
+Next, we briefly summarize the GRLES model. We begin with the recalling the Valencia formalism of the GRHD \cite{Banyuls:1997}. The fluid four-velocity is represented as a sun of the vector on the hypersurface $t=\text{const}$, and a vector orthogonal to it, $n^{\mu}$ and reads
+
+\begin{equation}
+u^{\mu} = (-u_{\mu}n^{\mu})(n^{\mu}+\upsilon^{\mu}) = W(n^{\upsilon} + \upsilon^{\mu})
+\end{equation}
+
+where $W$ is the Lorentz factor, $\upsilon^{\mu}$ is the fluid three-velocity.
+
+The proton and neutron \red{currents} can be expressed as
+
+\begin{eqnarray}
+J^{\mu}_n = n_n W(n^{\mu} + \upsilon^{\mu}) := D_n (n^{\mu} + \upsilon^{\mu}) \\
+J^{\mu}_p = n_p W(n^{\mu} + \upsilon^{\mu}) := D_p (n^{\mu} + \upsilon^{\mu})
+\end{eqnarray}
+
+respectively.
+
+
+%To account for the effect of subgrid-scale turbulent angular momentum transport, 
+%the general-relativistic large eddy simulations method (GRLES; \cite{Radice:2017zta}) is employed.
+%We briefly review here the method.
+
+Consider the stress energy tensor of a perfect fluid
+
+\begin{equation}
+T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + pg_{\mu\nu},
+\end{equation}
+
+where $\rho$ is the density, $h$ is the specific enthalpy, $u_{\mu}$ is the fluid four-velocity, and 
+$g_{\mu\nu}$ is the spacetime metric.
+
+Following the $3+1$ decomposition, 
+where the spacetime is divided into space-like slices with 
+the normal to the space-like slice hyper-surface, $n^{\mu}$,
+the decomposition of the $T_{\mu\nu}$ with respect to the $n^{\mu}$ reads
+
+\begin{equation}
+T_{\mu\nu} = En_{\mu}n_{\nu} + S_{\mu}n_{\nu} + S_{\nu}n_{\mu} + S_{\mu\nu}
+\end{equation}
+
+where the first term of the RHS is
+
+\begin{equation}
+E = T_{\mu\nu}n^{\mu}n^{\nu} = \rho h W^2 - p
+\end{equation}
+
+and the last two,
+
+\begin{eqnarray}
+& S_{\mu} = -\gamma_{\mu\alpha}n_{\beta}T^{\alpha\beta} = \rho h W^2 \upsilon_{\mu} \\
+& S_{\mu\nu} = \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} \gray{ + \tau_{\mu\nu}}
+\end{eqnarray}
+
+where while $\gamma_{\mu\nu}$ is the spatial metric, $\upsilon^{\mu}$ is the three velocity and $W$ is the Lorentz factor, and $p$ is the pressure. 
+
+Neglecting the neutrino source terms \gray{to simplify notations}, the equations of energy and momentum conservation, the GRHD equations, are 
+
+\begin{eqnarray}
+\label{eq:method:whisky:emomcons_lk}
+\partial_t(\sqrt{\gamma}D_n) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_n \Big] = 0, \\
+\partial_t(\sqrt{\gamma}D_p) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_p \Big] = 0, \\
+\partial_t(\sqrt{\gamma}S_i) + \partial_j\Big[ \alpha \sqrt{\gamma} (S_i^{\; j} + S_i n^j) \Big] = 
+\alpha \sqrt{\gamma}\Big( \frac{1}{2} S^{jk} \partial_i \gamma_{jk} \frac{1}{\alpha} S_k \partial_i \beta^k - E\partial_i \log(\alpha) \Big) \\
+\partial_t(\sqrt{\gamma}E) + \partial_j\Big[ \alpha \sqrt{\gamma} (S^{j} + E n^j) \Big] = 
+\alpha \sqrt{\gamma}\Big( K_{ij}S^{ij} - S^i\partial_i \log(\alpha) \Big) 
+\end{eqnarray}
+
+where $\alpha$ is the lapse function, $\beta^i$ is the shift vector, $\gamma_{ij}$ is the three metric and $K_{ij}$ is the extrinsic curvature, and $\sqrt{\gamma}$ is the spatial volume element.
+
+These equations are then closed with the EOS and \red{Euler equations} for conservation of baryon and 
+lepton numbers \red{\textit{e.g.,} eq.\eqref{eq:wthc:euler} and neutirno equation ???}.
+
+However, while modes of all scales are present in the equations \eqref{eq:method:whisky:emomcons_lk}, 
+only the 'resolved' modes can evolve in numerical simulations. 
+\gray{In other works, in numerical applications the 'coarse-grained' version of hydrodynamic equations
+    is considered \cite{Radice:2017zta}.}.
+
+Following the LES model, the linear filtering operator, $u\rightarrow \bar{u}$ is introduced, that 
+discards the modes \gray{features} below \gray{smaller} a given scale $\Delta$.
+As these equations are disctitized via finite volume scheme, the cell-averaging operator was chosen to
+perform filtering. These modifies the equations \eqref{eq:method:whisky:emomcons_lk}, as
+$S\rightarrow\bar{S}$, $E\rightarrow\bar{E}$.
+
+Assuming that the metric, a being a large scale quantity, is not changed during the averaging, the resulted system of averaged equations reads \cite{Radice:2017zta}
+
+\begin{eqnarray}
+\label{eq:method:whisky:emomcons_lk_filt}
+\partial_t(\sqrt{\gamma}\overline{D_n}) + \partial_j\Big[ \alpha\sqrt{\gamma}(\overline{D_n\upsilon^j} + \overline{D_n}n^j) \Big] = 0, \\
+\partial_t(\sqrt{\gamma}\overline{D_p}) + \partial_j\Big[ \alpha\sqrt{\gamma}(\overline{D_p\upsilon^j} + \overline{D_p}n^j) \Big] = 0, \\
+\partial_t(\sqrt{\gamma}\overline{S_i}) + \partial_j\Big[ \alpha \sqrt{\gamma} (\overline{S_i^{\; j}} + \overline{S_i} n^j) \Big] = 
+\alpha \sqrt{\gamma}\Big( \frac{1}{2} \overline{S^{jk}} \partial_i \gamma_{jk} \frac{1}{\alpha} \overline{S_k} \partial_i \beta^k - \overline{E}\partial_i \log(\alpha) \Big) \\
+\partial_t(\sqrt{\gamma}\overline{E}) + \partial_j\Big[ \alpha \sqrt{\gamma} (\overline{S^{j}} + \overline{E} n^j) \Big] = 
+\alpha \sqrt{\gamma}\Big( K_{ij}\overline{S^{ij}} - \overline{S^i}\partial_i \log(\alpha) \Big) 
+\end{eqnarray}
+
+Notably, the equations are not closed. 
+The equations are non-linear, and $\overline{D_{n}}$, $\overline{D_p}$, $\overline{S_i}$ and $\overline{E}$ are not sufficient to express all the terms.
+A closure is thus required.
+
+\begin{eqnarray}
+\bar{S_i\upsilon_j} &= \bar{S_i}\bar{\upsilon_j} + \tau_{ij}, \\
+\overline{D\upsilon^i} &= \overline{D}\overline{\upsilon^i} + \mu^i
+\end{eqnarray}
+
+where $\tau_{ij}$ is the so-called subgrid-scale turbulence tensor \cite{Radice:2017zta} or stress,
+and $\mu^i$ is the sub-scale rest-mass diffusion.
+
+Notably, these terms are intrinsic to numerical discretization of the GRHD equations. 
+
+Additionally, the three velocity $\overline{\upsilon^i}$ is a non-linear function of the filtered quantities, and thus requires closure. So does the pressure, as the adopted equations of state are non-linear:
+
+\begin{equation}
+\overline{p} = p(\overline{D_{n,p}},\overline{S_i},\overline{E}) + \Pi.
+\end{equation}
+
+In the considered formulation \cite{Radice:2020ids}, these corrections are neglected on the basis of post-merger dynamics having subrelativistic and subsonic turbulence that can be effectively described by $\tau_{ij}$.
+
+However, see \cite{Carrasco:2019uzl,Vigano:2020ouc} for a more general treatment.
+
+% When $\tau_{ij}=0$, there is no subgrid turbulence. 
+following the analogy with Newtonian closure of \cite{Smagorinsky:1963}, the $\tau_{ij}$ can be computed \cite{Radice:2017zta}
+
+\begin{align}
+\tau_{ij} = &-2\nu_T\rho h W^2\Big[ \frac{1}{2}(\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big] = \\
+&-2 \nu_T (\epsilon + p)W^2\Big[ \frac{1}{2} (\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big]
+\end{align}
+
+where $\nabla$ is the covariant derivative compatible with $\gamma_{ij}$, which is the spatial metric, and $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, expressed through the mixing length $l_{\text{mix}}$, which is characteristic length scale of turbulence, and characteristic velocity, $c_s$, which is the sound speed.
+
+%The $\tau_{\mu\nu}$ is a purely spatial tensor representing the effect of the subgrid turbulence. 
+%It reads \cite{Radice:2017zta}
+
+% \begin{equation}
+%    \tau_{ij} = -2\nu_T(\rho + p)W^2 \Big[ \frac{1}{2}(D_i\upsilon_j + D_j\upsilon_i) - \frac{1}{3}D_k\upsilon^k\gamma_{ij} \Big]
+%\end{equation}
+
+%where $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, $c_s$ is the sound speed.
+%The $D_i$ here are the \red{covariant derivatives compatible with spatial metric}. 
+
+The mixing length parameter, $l_{\text{mix}}$, is related to the length over which the effects of turbulence are present. 
+
+Together, enegery and momenta consideration equations with averaging operator, subgrid-scale turbulence tensor, equation for $l_{\text{mix}}$, EOS and continuity equations comprise the GRLES system.
+
+
+The $\nu_T$ is not a physical viscosity and by definition it relates to the numerical grid and 
+Eulerian observer $n^{\mu}$. 
+\gray{Indeed, in relativity, for a certain scale to be resolved or not depends on the observer}.
+%$\nu_T$ can be calibrated based on high resolution simulations \red{EXTEND Here To 2020 Paper}
+
+%is a free parameter that can be varied to study the impact of the turbulence on the results. \red{Alternatively it can be set as a function of density. 
+%See Radice Paper}
+
+%For now $l_{\text{mix}}$ is free parameter.
+
+With respect to the MRI, it is natural to set $l_{\text{mix}} \sim \lambda_{\text{MRI}}$, where $\lambda_{\text{MRI}} \sim \Omega^{-1}B$ with $\Omega$ being the angular velocity and $B$ is the magnetic field strength \cite{Duez:2006qe}.
+Here $\lambda_{\text{MRI}}$ describes the scale over which turbulence is predominantly driven according to linear theory.
+
+
+Viscous flows in accretion disks is often described in terms of a dimensionless constant $\alpha$
+(so called $\alpha$-viscosity???) that is related to the mixing length as 
+
+\begin{equation}
+l_{\text{mix}} = \alpha c_s \Omega^{-1}
+\end{equation}
+
+where $\Omega$ is the angular velocity of the fluid \cite{Shakura:1972te}.
+
+The value of $\alpha$ can be constrained by very high resolution GRMHD simulations with seed magnetic field $(10^{15}~G)$ strong enough that the magnetorotational instability (MRI) within the remnant is resolved. 
+Such simulation, performed by \cite{Kiuchi:2017zzg} yielded average values of $\alpha$ for various rest-mass density shells.
+Together with the sound speend and angular velocity, the mixing length can thus be estimated \cite{Radice:2020ids}, (and Fig.1 there) 
+
+\begin{equation}
+l_{\text{mix}} = 
+\begin{cases}
+\alpha \xi \exp(-|b\xi|^{5/2}) \: [m], \: &\text{ if } \xi > 0, \\
+0, &\text{ otherwise }
+\end{cases}
+\end{equation}
+
+where 
+
+\begin{equation}
+\xi = \log_{10}\Big( \frac{m_p(n_p + n_n)}{\rho^*} \Big)
+\end{equation}
+
+with the constants $a$, $b$ and $\rho^*$ are constants.
+
+It was observed that even for a highly magnetized binary, simulated by \cite{Kiuchi:2017zzg}, the $l_{\text{mix}}$ is rather small. The turbulence appear weaker within the merger remnant at higher densities, as the angular velocity, growing with radius, stabilizes the flow against MRI (\textit{e.g.,} \cite{Radice:2017lry}). 
+For lower densities, $\rho<10^{10}$~\gcm, the $l_{\text{mix}}$ is also decreasing, but due to the fitting procedure, the log-linear extrapolation into the region where the $\alpha$ values are not provided by \cite{Kiuchi:2017zzg}.
+The turbulence appear the strongest in the NS mantel at densities between $10^{9}$~\gcm and $10^{13}$~\gcm,
+\red{the region that we would later call Disk???}
+
+%Together with the $c_s$ and $\Omega$, form \red{our} simulations, the $l_{\text{mix}}\in(0,30)$~m \cite{Radice:2018pdn}
+
+%Additionally, the $l_{\text{mix}})$ can be computed from ....
+
+%In out models the $l_{\text{mix}}\in(0,30)$ is computed according to \red{New Radice Ppaer}
+
+%% Method for inculding the Viscosity term.
+The direct application of finite volume Godunov-type methods to discretize the stress-energy tensor 
+that includes $\tau_{\mu\nu}$ would lead to the development of the \red{odd-even} decoupling instability \cite{Lowrie:2002}.
+\texttt{WhiskyTHC} avoids this problem by discritizing the terms araising from the derivatives of $\tau_{\mu\nu}$
+in a flux-conservative fashion via proper combination of left and right biased finite-differencing operators \cite{Radice:2018pdn}.
+
+In the \cite{Radice:2017lry} the effect of the subgrid turbulence on the dynamical ejecta was investigated, where $l_{\text{mix}}$ was a free parameter, varying between $0$ and $50$~m. 
+
+Simulations performed with the code that incorporates these equations are referred to as simulations
+with viscosity.
+
+The code that we employ, \texttt{WhiskyTHC} does not have magnetic fields. 
+However, the possible effects that angular momentum transport might have on the simulation evolution
+can be investigated via an inclusion of \textit{effective viscosity}.
+This method has been shown to reproduce main features of MHD dynamics with application to post-merger accretion
+disks \cite{Fernandez:2018kax}.
+
+
+
+
+
+
+%% ======================================== Code used
+\chapter{Evolution setup \& postprocessing tools}
+
+
+%% \section{Used codes and setup}
+%% \section{Modeling binary neutron star merger with \texttt{WhiskyTHC}}
+
+\section{Initial Data}
 
 For Each EOS considered, we compute the irrotational BNS configurations in quasi-circular orbit.
 We employ the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, that 
@@ -590,7 +1039,10 @@ Errors present in the initial data in introduced during the mapping result in a 
 In terms of relative changes in central density these amounts to $\sim2-3\%$ \cite{Radice:2018pdn}
 
 
-\subsection{Evolution with \texttt{WhiskyTHC}}
+
+\section{Evolution with \texttt{WhiskyTHC}}
+
+
 
 In this part we review the numerical relativity code that was used to model binary neutron star mergers analyzed in this thesis.
 The part is based on the David Radice PhD thesis where most of the methods are discussed \cite{Radice:2013apa}, and on the published results and regarding code structure and \cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}.
@@ -627,8 +1079,6 @@ Note, that adopting a positivity preserving limiter to treat the transition betw
 For the extensive tests of different reconstruction methods and atmosphere treatment we refer to the \cite{Radice:2013apa}.
 
 
-
-\texttt{WhiskyTHC} is ...
 \cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}
 
 
@@ -1218,279 +1668,11 @@ that assures the positvity of the solution.
 
 
 
-\subsection{Viscosity}
 
 
-This subsection is based on the GRLESS method paper \cite{Radice:2017zta}, its extension  \cite{Radice:2020ids}, and its application to the BNS \cite{Radice:2017lry} for dynamical ejecta and summary of this study in \cite{Radice:2018pdn}.
 
-%% Motivation
 
-The fluid flow inside remnants of binary neutron star mergers is expected to be turbulent. 
-This is because the magnetohydrodynamics instabilities,
-such as the Kelvin-Helmholtz (KH) instability and the magnetorotational instability (MRI), are  
-activated at scales too small to be resolved in simulations.
-%The effect of these instabilities can be assessed via large eddy simulation technique \cite{Radice:2017zta}, which allow to investigate the subgrid-scale turbulent transport in GR.
-
-Large scale magnetic fields are of prime importance for studying the emergence of magnetically and \red{reconnection} driven outflows and collimated jets \cite{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
-
-Additionally, \gray{global} magnetic fields, and magnetic stresses induced by them are crucial for the self-consistent treatment of the angular momentum transport in the merger remnant \cite{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}.
-
-Such effects are studied with high-resolution general-relativistic magnetohydrodynamics (GRMHD) simulations. However, despite rapid progress of GRMHD simulations \cite{Rezzolla:2011da,Kiuchi:2014hja,Ruiz:2016rai},
-the degree to which the magnetoturbulence affects the structure and the lifetime of the remnant 
-before collapse is still poorly constrained.
-And while the magnetorotational instability (MRI) \cite{Balbus:1991} is believed to be present within the 
-massive neutron stars, and is responsible for the redistribution of angular momentum, affecting the 
-remnant lifetime, \cite{Duez:2006qe,Siegel:2013nrw}, the fastest growing modes of the MRI remain beyond 
-reach even at very high resolutions \cite{Kiuchi:2014hja}.
-
-Setting artificially large initial magnetic allows to raise the cutoff length scales associated with some of these instabilities and study their effects, but even then simulations fail to capture the dynamics of the turbulent cascade at the viscous scale, at which neutrino viscosity and drag damps the turbulent eddies \cite{Guilet:2016sqd}. 
-% This, however, is of large importance for BNS merger simulations.
-
-THere is a possibility of including the turbulent angular momentum transport via effective viscosity
-\cite{Duez:2004nf}. 
-This approach has theoretical limitations and numerical difficulties, such as the emergence of unphysical effects in the Navier-Stokes equations describing relativistic viscous flows (\textit{e.g.,} \cite{Hiscock:1985}).
-
-Another possible alternative is to consider the effective viscosity via an effective model based on 
-general relativistic extension of the Newtonian large-eddy simulation (LES) (\textit{e.g.,} \cite{Miesch:2015les}). The model does return Navier-Stokes equations in the Newtonian limit, but it is not a relativistic theory of viscous flows \cite{Radice:2017zta}.
-In essence, general-relativistic large-eddy simulation, (GRLES), main idea is to evolve the coarse-grained GRHD equations with a turbulent closure models.
-The results from these simulations, however, depend on the adopted subgrid model. 
-These models are calibrated to capture the effect of turbulence operating at sub-grid scales,
-using either the dimensional analysis and linear perturbation theory \cite{Radice:2017zta}, or a very high resolution GRMHD simulations where most of the relevant unstable scales of MRI are resolved (with however large initial magnetic field), \textit{e.g.,} \cite{Kiuchi:2017zzg}.
-
-Recently a further facilitation of the mathematical basis behind the \gray{GRlES} method discussed here was published by Eyink and Drivas \cite{Eyink:2017zfz}.
-
-It is however, not the only approach to study turbulence while avoiding ultra-high resolution GRMHD simulations. An approach based on the Israel-Stewart formalism was proposed by Shibata and collaborators \cite{Shibata:2017jyf}.
-A method that extends further to GRMHD and includes more rigorous formulation \gray{with terms neglected here} was proposed in \cite{Carrasco:2019uzl,Vigano:2020ouc}. 
-Machine learning was suggested as method to calibrate the subgrid turbulence for 2D MHD \cite{Rosofsky:2020}. 
-A version of the GRLES approach was implemented into the Spectral Einstein Code (SpEC) for 2D axisymmetric simulations \cite{Jesse:2020oss}.
-
-
-%% Method 
-Next, we briefly summarize the GRLES model. We begin with the recalling the Valencia formalism of the GRHD \cite{Banyuls:1997}. The fluid four-velocity is represented as a sun of the vector on the hypersurface $t=\text{const}$, and a vector orthogonal to it, $n^{\mu}$ and reads
-
-\begin{equation}
-    u^{\mu} = (-u_{\mu}n^{\mu})(n^{\mu}+\upsilon^{\mu}) = W(n^{\upsilon} + \upsilon^{\mu})
-\end{equation}
-
-where $W$ is the Lorentz factor, $\upsilon^{\mu}$ is the fluid three-velocity.
-
-The proton and neutron \red{currents} can be expressed as
-
-\begin{eqnarray}
-    J^{\mu}_n = n_n W(n^{\mu} + \upsilon^{\mu}) := D_n (n^{\mu} + \upsilon^{\mu}) \\
-    J^{\mu}_p = n_p W(n^{\mu} + \upsilon^{\mu}) := D_p (n^{\mu} + \upsilon^{\mu})
-\end{eqnarray}
-
-respectively.
-
-
-%To account for the effect of subgrid-scale turbulent angular momentum transport, 
-%the general-relativistic large eddy simulations method (GRLES; \cite{Radice:2017zta}) is employed.
-%We briefly review here the method.
-
-Consider the stress energy tensor of a perfect fluid
-
-\begin{equation}
-    T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + pg_{\mu\nu},
-\end{equation}
-
-where $\rho$ is the density, $h$ is the specific enthalpy, $u_{\mu}$ is the fluid four-velocity, and 
-$g_{\mu\nu}$ is the spacetime metric.
-
-Following the $3+1$ decomposition, 
-where the spacetime is divided into space-like slices with 
-the normal to the space-like slice hyper-surface, $n^{\mu}$,
-the decomposition of the $T_{\mu\nu}$ with respect to the $n^{\mu}$ reads
-
-\begin{equation}
-    T_{\mu\nu} = En_{\mu}n_{\nu} + S_{\mu}n_{\nu} + S_{\nu}n_{\mu} + S_{\mu\nu}
-\end{equation}
-
-where the first term of the RHS is
-
-\begin{equation}
-    E = T_{\mu\nu}n^{\mu}n^{\nu} = \rho h W^2 - p
-\end{equation}
-
-and the last two,
-
-\begin{eqnarray}
-    & S_{\mu} = -\gamma_{\mu\alpha}n_{\beta}T^{\alpha\beta} = \rho h W^2 \upsilon_{\mu} \\
-    & S_{\mu\nu} = \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} \gray{ + \tau_{\mu\nu}}
-\end{eqnarray}
-
-where while $\gamma_{\mu\nu}$ is the spatial metric, $\upsilon^{\mu}$ is the three velocity and $W$ is the Lorentz factor, and $p$ is the pressure. 
-
-Neglecting the neutrino source terms \gray{to simplify notations}, the equations of energy and momentum conservation, the GRHD equations, are 
-
-\begin{eqnarray}
-\label{eq:method:whisky:emomcons_lk}
-    \partial_t(\sqrt{\gamma}D_n) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_n \Big] = 0, \\
-    \partial_t(\sqrt{\gamma}D_p) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_p \Big] = 0, \\
-    \partial_t(\sqrt{\gamma}S_i) + \partial_j\Big[ \alpha \sqrt{\gamma} (S_i^{\; j} + S_i n^j) \Big] = 
-    \alpha \sqrt{\gamma}\Big( \frac{1}{2} S^{jk} \partial_i \gamma_{jk} \frac{1}{\alpha} S_k \partial_i \beta^k - E\partial_i \log(\alpha) \Big) \\
-    \partial_t(\sqrt{\gamma}E) + \partial_j\Big[ \alpha \sqrt{\gamma} (S^{j} + E n^j) \Big] = 
-    \alpha \sqrt{\gamma}\Big( K_{ij}S^{ij} - S^i\partial_i \log(\alpha) \Big) 
-\end{eqnarray}
-
-where $\alpha$ is the lapse function, $\beta^i$ is the shift vector, $\gamma_{ij}$ is the three metric and $K_{ij}$ is the extrinsic curvature, and $\sqrt{\gamma}$ is the spatial volume element.
-
-These equations are then closed with the EOS and \red{Euler equations} for conservation of baryon and 
-lepton numbers \red{\textit{e.g.,} eq.\eqref{eq:wthc:euler} and neutirno equation ???}.
-
-However, while modes of all scales are present in the equations \eqref{eq:method:whisky:emomcons_lk}, 
-only the 'resolved' modes can evolve in numerical simulations. 
-\gray{In other works, in numerical applications the 'coarse-grained' version of hydrodynamic equations
-is considered \cite{Radice:2017zta}.}.
-
-Following the LES model, the linear filtering operator, $u\rightarrow \bar{u}$ is introduced, that 
-discards the modes \gray{features} below \gray{smaller} a given scale $\Delta$.
-As these equations are disctitized via finite volume scheme, the cell-averaging operator was chosen to
-perform filtering. These modifies the equations \eqref{eq:method:whisky:emomcons_lk}, as
-$S\rightarrow\bar{S}$, $E\rightarrow\bar{E}$.
-
-Assuming that the metric, a being a large scale quantity, is not changed during the averaging, the resulted system of averaged equations reads \cite{Radice:2017zta}
-
-\begin{eqnarray}
-    \label{eq:method:whisky:emomcons_lk_filt}
-    \partial_t(\sqrt{\gamma}\overline{D_n}) + \partial_j\Big[ \alpha\sqrt{\gamma}(\overline{D_n\upsilon^j} + \overline{D_n}n^j) \Big] = 0, \\
-    \partial_t(\sqrt{\gamma}\overline{D_p}) + \partial_j\Big[ \alpha\sqrt{\gamma}(\overline{D_p\upsilon^j} + \overline{D_p}n^j) \Big] = 0, \\
-    \partial_t(\sqrt{\gamma}\overline{S_i}) + \partial_j\Big[ \alpha \sqrt{\gamma} (\overline{S_i^{\; j}} + \overline{S_i} n^j) \Big] = 
-    \alpha \sqrt{\gamma}\Big( \frac{1}{2} \overline{S^{jk}} \partial_i \gamma_{jk} \frac{1}{\alpha} \overline{S_k} \partial_i \beta^k - \overline{E}\partial_i \log(\alpha) \Big) \\
-    \partial_t(\sqrt{\gamma}\overline{E}) + \partial_j\Big[ \alpha \sqrt{\gamma} (\overline{S^{j}} + \overline{E} n^j) \Big] = 
-    \alpha \sqrt{\gamma}\Big( K_{ij}\overline{S^{ij}} - \overline{S^i}\partial_i \log(\alpha) \Big) 
-\end{eqnarray}
-
-Notably, the equations are not closed. 
-The equations are non-linear, and $\overline{D_{n}}$, $\overline{D_p}$, $\overline{S_i}$ and $\overline{E}$ are not sufficient to express all the terms.
-A closure is thus required.
-
-\begin{eqnarray}
-    \bar{S_i\upsilon_j} &= \bar{S_i}\bar{\upsilon_j} + \tau_{ij}, \\
-    \overline{D\upsilon^i} &= \overline{D}\overline{\upsilon^i} + \mu^i
-\end{eqnarray}
-
-where $\tau_{ij}$ is the so-called subgrid-scale turbulence tensor \cite{Radice:2017zta} or stress,
-and $\mu^i$ is the sub-scale rest-mass diffusion.
-
-Notably, these terms are intrinsic to numerical discretization of the GRHD equations. 
-
-Additionally, the three velocity $\overline{\upsilon^i}$ is a non-linear function of the filtered quantities, and thus requires closure. So does the pressure, as the adopted equations of state are non-linear:
-
-\begin{equation}
-    \overline{p} = p(\overline{D_{n,p}},\overline{S_i},\overline{E}) + \Pi.
-\end{equation}
-
-In the considered formulation \cite{Radice:2020ids}, these corrections are neglected on the basis of post-merger dynamics having subrelativistic and subsonic turbulence that can be effectively described by $\tau_{ij}$.
-
-However, see \cite{Carrasco:2019uzl,Vigano:2020ouc} for a more general treatment.
-
-% When $\tau_{ij}=0$, there is no subgrid turbulence. 
-following the analogy with Newtonian closure of \cite{Smagorinsky:1963}, the $\tau_{ij}$ can be computed \cite{Radice:2017zta}
- 
-\begin{align}
-    \tau_{ij} = &-2\nu_T\rho h W^2\Big[ \frac{1}{2}(\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big] = \\
-    &-2 \nu_T (\epsilon + p)W^2\Big[ \frac{1}{2} (\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big]
-\end{align}
-
-where $\nabla$ is the covariant derivative compatible with $\gamma_{ij}$, which is the spatial metric, and $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, expressed through the mixing length $l_{\text{mix}}$, which is characteristic length scale of turbulence, and characteristic velocity, $c_s$, which is the sound speed.
-
-%The $\tau_{\mu\nu}$ is a purely spatial tensor representing the effect of the subgrid turbulence. 
-%It reads \cite{Radice:2017zta}
-
-% \begin{equation}
-%    \tau_{ij} = -2\nu_T(\rho + p)W^2 \Big[ \frac{1}{2}(D_i\upsilon_j + D_j\upsilon_i) - \frac{1}{3}D_k\upsilon^k\gamma_{ij} \Big]
-%\end{equation}
-
-%where $\nu_T = l_{\text{mix}}c_s$ is the turbulent viscosity, $c_s$ is the sound speed.
-%The $D_i$ here are the \red{covariant derivatives compatible with spatial metric}. 
-
-The mixing length parameter, $l_{\text{mix}}$, is related to the length over which the effects of turbulence are present. 
-
-Together, enegery and momenta consideration equations with averaging operator, subgrid-scale turbulence tensor, equation for $l_{\text{mix}}$, EOS and continuity equations comprise the GRLES system.
-
-
-The $\nu_T$ is not a physical viscosity and by definition it relates to the numerical grid and 
-Eulerian observer $n^{\mu}$. 
-\gray{Indeed, in relativity, for a certain scale to be resolved or not depends on the observer}.
-%$\nu_T$ can be calibrated based on high resolution simulations \red{EXTEND Here To 2020 Paper}
-
-%is a free parameter that can be varied to study the impact of the turbulence on the results. \red{Alternatively it can be set as a function of density. 
-%See Radice Paper}
-
-%For now $l_{\text{mix}}$ is free parameter.
-
-With respect to the MRI, it is natural to set $l_{\text{mix}} \sim \lambda_{\text{MRI}}$, where $\lambda_{\text{MRI}} \sim \Omega^{-1}B$ with $\Omega$ being the angular velocity and $B$ is the magnetic field strength \cite{Duez:2006qe}.
-Here $\lambda_{\text{MRI}}$ describes the scale over which turbulence is predominantly driven according to linear theory.
-
-
-Viscous flows in accretion disks is often described in terms of a dimensionless constant $\alpha$
- (so called $\alpha$-viscosity???) that is related to the mixing length as 
-
-\begin{equation}
-    l_{\text{mix}} = \alpha c_s \Omega^{-1}
-\end{equation}
-
-where $\Omega$ is the angular velocity of the fluid \cite{Shakura:1972te}.
-
-The value of $\alpha$ can be constrained by very high resolution GRMHD simulations with seed magnetic field $(10^{15}~G)$ strong enough that the magnetorotational instability (MRI) within the remnant is resolved. 
-Such simulation, performed by \cite{Kiuchi:2017zzg} yielded average values of $\alpha$ for various rest-mass density shells.
-Together with the sound speend and angular velocity, the mixing length can thus be estimated \cite{Radice:2020ids}, (and Fig.1 there) 
-
-\begin{equation}
-    l_{\text{mix}} = 
-    \begin{cases}
-        \alpha \xi \exp(-|b\xi|^{5/2}) \: [m], \: &\text{ if } \xi > 0, \\
-        0, &\text{ otherwise }
-    \end{cases}
-\end{equation}
-
-where 
-
-\begin{equation}
-    \xi = \log_{10}\Big( \frac{m_p(n_p + n_n)}{\rho^*} \Big)
-\end{equation}
-
-with the constants $a$, $b$ and $\rho^*$ are constants.
-
-It was observed that even for a highly magnetized binary, simulated by \cite{Kiuchi:2017zzg}, the $l_{\text{mix}}$ is rather small. The turbulence appear weaker within the merger remnant at higher densities, as the angular velocity, growing with radius, stabilizes the flow against MRI (\textit{e.g.,} \cite{Radice:2017lry}). 
-For lower densities, $\rho<10^{10}$~\gcm, the $l_{\text{mix}}$ is also decreasing, but due to the fitting procedure, the log-linear extrapolation into the region where the $\alpha$ values are not provided by \cite{Kiuchi:2017zzg}.
-The turbulence appear the strongest in the NS mantel at densities between $10^{9}$~\gcm and $10^{13}$~\gcm,
-\red{the region that we would later call Disk???}
-
-
-
-
-
-
-
-%Together with the $c_s$ and $\Omega$, form \red{our} simulations, the $l_{\text{mix}}\in(0,30)$~m \cite{Radice:2018pdn}
-
-%Additionally, the $l_{\text{mix}})$ can be computed from ....
-
-%In out models the $l_{\text{mix}}\in(0,30)$ is computed according to \red{New Radice Ppaer}
-
-%% Method for inculding the Viscosity term.
-The direct application of finite volume Godunov-type methods to discretize the stress-energy tensor 
-that includes $\tau_{\mu\nu}$ would lead to the development of the \red{odd-even} decoupling instability \cite{Lowrie:2002}.
-\texttt{WhiskyTHC} avoids this problem by discritizing the terms araising from the derivatives of $\tau_{\mu\nu}$
-in a flux-conservative fashion via proper combination of left and right biased finite-differencing operators \cite{Radice:2018pdn}.
-
-In the \cite{Radice:2017lry} the effect of the subgrid turbulence on the dynamical ejecta was investigated, where $l_{\text{mix}}$ was a free parameter, varying between $0$ and $50$~m. 
-
-Simulations performed with the code that incorporates these equations are referred to as simulations
-with viscosity.
-
-The code that we employ, \texttt{WhiskyTHC} does not have magnetic fields. 
-However, the possible effects that angular momentum transport might have on the simulation evolution
-can be investigated via an inclusion of \textit{effective viscosity}.
-This method has been shown to reproduce main features of MHD dynamics with application to post-merger accretion
-disks \cite{Fernandez:2018kax}.
-
-\paragraph{title}
-
-
-\subsection{Setup}
+\section{General Setup}
 
 
 
@@ -1518,11 +1700,37 @@ Most our models also include the effect of subgrid turbulence, viscosity.
 \gray{We simulate each model for at least $\red{None}$~ms after the merger or a few milliseconds after BH formation}
 
 
+
+\section{Postprocessing tools and methods}
+
+
+
+In order to investigate the neutron star merger dynamics and outflowing material we imploy the following methods and tools.
+
+
+\subsection{Density modes}
+
+\subsection{Angular momentum}
+
+\subsection{Ejecta}
+
+
+
+
+
+\chapter{Results and discussions}
+
+
+
+
+
  
 %% ================================================================= APPENDIXES 
 \appendix
 \include{app_efe}
 \include{app_adm}
+\include{app_eul}
+\include{app_num}
 %% \include{appendix_gr} %% GR
 
 %% ================================================================= REFERENCES
@@ -1532,6 +1740,17 @@ Most our models also include the effect of subgrid turbulence, viscosity.
 
 %% ========================= END
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
