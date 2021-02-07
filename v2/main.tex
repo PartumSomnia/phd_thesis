@@ -582,161 +582,472 @@ see Appendix \ref{app:eul}.
 
 \subsection{General Relativistic Radiation Transport \& Boltzmann equation}
 
+
+
+During the neutron star mergers, the thermodynamic conditions are such that the powerful 
+neutrino bursts can originate from the hot and shock heated NS matter \cite{Sekiguchi:2011zd}.
+At high densities and temperatures reaching several MeV, the weak interaction become increasingly important, moving the material away from the original chemical equilibrium with respect to the 
+$\beta$-processes, and emission of numerous neutrinos with neutrino luminosity reaching $\sim10^{53}$erg s$^{-1}$. 
+It was believed that such strong neutrino flux can power a GRB, however the baryon pollution of the polar region found in BNS simulations might make it difficult \red{[refs, i think it was Perego work]}.
+
+Neutrino transport is of prime importance for shaping the composition of the ejecta
+\cite{Wanajo:2014,Sekiguchi:2015dma,Foucart:2015vpa,Foucart:2015gaa},
+affecting the nucleosynthesis in the ejecta \cite{Wanajo:2014,Goriely:2015fqa} and the thermal
+electromagnetic counterpart, Kilonova (Macronova) \cite{Metzger:2014ila,Lippuner:2015gwa}
+
+Neutrino interactions depend on the matter composition, its density and temperature and on the neutrino energies. For instance, at rest-mass density $10^{12}$\gcm and temperature $\sim10$~MeV, the neutrino scattering on matter becomes so efficient, that they fall into the thermal equilibrium with it. 
+The mean free path of these neutrinos becomes of order of $\sim 50$~m. 
+These neutrinos are considered \textit{trapped}.
+
+At low densities, $<10^{11}$~\gcm, neutrinos with energy $<10$~MeV are no longer coupled to matter and their mean free path can reach tens of kilometers. Such neutrinos are considered \textit{free-streaming}.
+
+If there is a sharp density gradient present, \textit{e.g.,} a surface of a neutron star where density falls by several orders of magnitude, then the neutrinos can be effectively divided into trapped and free-streaming. 
+The transition region, however, is more difficult to treat and requires more accurate neutrino treatment, \textit{e.g.,} Monte Carly methods for solving Boltzmann equations \cite{Abdikamalov:2012zi}. Another alternative is the approximate, "ray-by-ray" \cite{Scheck:2007gw} multi-energy-group neutrino schemes [\textit{e.g.,} multi-group fluxlimited diffusion \cite{Mezzacappa:1993gn} and isotropic diffusion source approximation \cite{Liebendoerfer:2007dz}].
+
+This subsection is based in the work by \cite{Galeazzi:2013mia}, describing the so-called 
+gray (energy-averaged) neutrino leakage scheme, and on a \cite{Radice:2016dwd,Radice:2018pdn}, describing its implementation into the \texttt{WhiskyTHC} code. 
+
+Leakage scheme is used to treat neutrinos in the optically thick regime, the trapped neutrinos.
+This scheme is very popular in core-collapse supernovae models as well as binary neutron star models.
+\cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Perego:2015agy}
+
+In the optically thin regime, the neutrinos, the free-streaming neutrinos, and require a different more drict treatment. 
+We discuss here only the so-called M0 scheme, implemented in \texttt{WhickyTHC}, following the works of \cite{Radice:2016dwd,Radice:2018pdn}.
+
+For other neutrino treatment method see \cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
+
+
+\subsubsection{Neutrino leakage scheme}
+
+
+
+Non-equilibrium weak-interaction processes lead to the production of numerous neutrions from the hot, dense and neutron-rich matter, \textit{e.g.,} BNS merger remnant. The cooling effect associated with the neutrino emission, that could cause dynamical instabilities, is important for the structure and evolution of the remnant. 
+To evaluate the influence of thermal effects on the onset of dynamical instabilities, the long-term evolution, (several dynamical timescales of the object with $M$ mass and $R$ size $\tau_{\text{dyn}}\sim(M/R^3)^{1/2}\approx 1$~ms) is required.
+
+The reasonable approximation to radiation transport is to consider the instantaneous energy loss via neutrino emission and evolution of the electron fraction of the nuclear matter.
+
+Neutrino leakage scheme was first proposed by \cite{vanRiper:1981mko} to study the neutrino cooling through weak interaction in the core-collapse supernoave.
+%Neutrino leakage scheme is popular to model neutrino effects in core-collapse superniva and compact object mergers.
+
+The scheme allows to estimate the effect of neutrino radiation transport, specifically tracking the evolution of the local lepton number and the association energy loss via neutrino radiation.
+It has an advantage of being computationally efficient.
+
+The goal of the scheme is to describe a series of effective emissivities, $R^{\text{eff}}$, and $Q^{\text{eff}}$ for electron neutrinos, $\nu_e$, anti-electron neutrinos $\bar{\nu}_e$ and the heavy-lepton neutrinos, which we collectively label as $\nu_x$.
+The optical depth is then used to reduce the intrinsic emissivites, mimicking the effect of the diffusion of radiation from the optically thick regions.
+\red{This scheme also includes the heating effects by the free-streaming neutrinos, \textit{i.e.,} neutrino absorption}. \gray{ which was shown to be important for altering the ejecta composition }.
+
+%% GR is evolved following BSSNOK using \texttt{McLachlan} code.
+
+%% GRHD is a solved using \texttt{Whisky} code that considerers perfiect compressible fluid with an additional source terms to account for the composition, energy and momentum changes due to neutrino radiation.
+
+The following neutrino species are considered: electron neutrino, $\nu_e$, (and its anti-neutrino $\bar{\nu}_e$) and heavy lepton neutrino $\nu_{\tau,\mu}=\nu_X$ (and its antineutrino) \gray{that are a single component with statistical weight of 4.}.
+
+Neutrinos are assumed to be massless and in thermal equilibrium with the surrounding matter.
+As a result, the energy spectrum of the neutrinos follows a Fermi-Dirac distribution for
+ultrarelativistic particles at the temperature of the matter. 
+The chemical potential $\nu_e$ and $\bar{\nu}_e$ is assumed to the at equilibrium, \cite{Rosswog:2003rv},
+
+\begin{equation}
+\mu_{\nu_e}^{\text{eq}} = \mu_e - \mu_n - \mu_p = -\mu_{\bar{\nu}_e}^{\text{eq}}
+\end{equation}
+
+where $\mu_e$, $\mu_n$, $\mu_p$ are the relativistic chemical potentials including the rest-mass of the particle. 
+
+Next, we discuss how the neutrino emissivity, $Q_{\nu_{i}}$, can be evaluated from various weak-interaction processes present in the hot and dense matter of the NS. 
+The $Q_{\nu_{i}}$ is the energy emitted via neutrinos per second and baryon.
+The $R_{\nu_{i}}$ is the number of neutrinos emitted per second and baryon.
+The most important neutrino emission processes in the NS remnant are: 
+\begin{itemize}
+    \item electron and position capture on nucleons, the $\beta$-process,
+    \item electron-positron pair annihilation, 
+    \item transverse plasmon decay.
+\end{itemize}
+The scheme consideres three neutrino species: electron neutrino $\nu_e$, electron antineutrino $\bar{\nu}_e$ and an single species $\nu_x$ for heavy-lepton neutrinos.
+The reactions considered with in the sheme, implmeented in \texttt{WhiskyTHC} are  listed in the \ref{tab:leakage}.
+
+It is possible to evaluate the emission rates corresponding to these processes using only the quantities provided by the EOS tables.
+For instance, consider the strong neutrino emitting process, the direct Urca process, that consists of the $\beta$-decay, $e^+ + n \rightarrow p + \bar{\nu}_e$ and the electron capture on the free nucleons (n), $e^{-} + p \rightarrow n + \nu_e$ (the first two reactions in the table \ref{tab:leakage}). 
+This process moves the matter to the $\beta$-equilibrium, in which the rats of both reactions are the same, and the chemical potentials $\mu_{\nu_e,\bar{\nu}_e}=0$.
+For both, $\beta$-decay and electron capture, the $Q_{\text{pc}}(\bar{\nu}_e),Q_{\text{ec}}({\nu_e}) \propto T^{6}$ while $R_{\text{pc}}(\bar{\nu}_e),R_{\text{ec}}(\nu_e)\propto T^5$, where $T$ is the temperature \cite{Bruenn:1985}.
+\red{The steep dependency on temperature highlights the importance of the advance temperature effects treatment in the EOS}.
+At high temperatures but medium density, the plasmon decay is one of the major sources of neutrinos, where the plasmon is the quanta of electromagnetic field in plasma exhibiting two polarisation, among which only the tansverse polarisation is important in this context.
+\cite{P. J. Schinder, D. N. Schramm, P. J.Wiita, S. H. Margolis, and D. L. Tubbs, Astrophys. J. 313, 531 (1987).} 
+\red{But I am not sure that plasmon decay in included in the Leackage scheme on Whisky}
+
+In addition to the emission of neutrinos, the leakage scheme considers the neutrino absorption and scattering, (see "A" and "S" entries in the table \ref{tab:leakage}, $\nu+A\rightarrow\nu+A$ is the coherent neutrino scattering on heavy nuclei (with atomic mass number $A$), and $\nu+N\rightarrow\nu+N$ is the neutrino scattering on free nucleons).
+Of particular importance are the neutrino scattering on heavy nuclei, and on free nucleons, as well as electron-flavor neutrinos absorption on free nucleons. The mathematical forlulation of these opacities see \cite{Galeazzi:2013mia}, Appendix A.
+The neutrino scattering on nuclei becomes the dominant opacity source when the heavy neuclei are abundant, neuclei that form below nuclear saturation density ant low temperatures $<15$~MeV \cite{Rosswog:2003rv}.
+
+Taking the considered scattering and absorption processes, the local mean free-path is for each neutrino species is computed. From it, the energy-independent mean free path can be derived, that in turn depends only on the local thermodynamic condition. This allows to evaluate the energy-independent part of the optical depth and diffusion rates.
+The optical depth allows to asses the extend of the optically thick region (that is neutrino-species dependent) and it allows to asses the time needed for neutrino to diffuse out of the dense matter \red{diffusion timescale?}. 
+It should be noted that for the core of a neutron star this diffusion timescale is of order of seconds. This the neutrinos that are expected to contribute the most on the dynamical timescale are the nuetirnos abundantly emitted emitted at the \textit{neutrinosphere} and above \cite{Galeazzi:2013mia,Endrizzi:2018uwl}.
+\red{The diffusive number and energy emission rates per baryon are 'interpolated' between diffusive and free-streaming regimes.
+    So it seems that both, diffusion rates and free neutrino emission rates per baryon are computed here, using the ioptical depth to separate them. Then, the effective rates are computed via interpolation.}
+
+A quatity that is op particlular usefullness for describing neutrino cooling  is the neutrinosphere,
+defined as \cite{Galeazzi:2013mia}
+\begin{equation}
+\frac{Q_I}{Q_{I}^F} = \frac{2}{3}
+\end{equation}
+where $Q_I$ is the interpolated effective emission rate, $Q_I^F$ is the neutrino luminosity per baryon.
+The neutrino cooling is suppressed inside this region, and the neutrino escape timescale is the diffusion timescale. 
+The neutirnosphere is however can also be defined as $\tau=2/3$, \textit{e.g.,} \cite{Rosswog:2003rv,Endrizzi:2018uwl}.
+After the interpolation, the net net emission rate per baryon appearing $\mathcal{R}$ and and the luminosity per baryon $\mathcal{Q}$.
+
+Importantly, the assumption of the chemical equilibrium can lead to an overestimation of the neutrino emission rates in the transition region, etween the optically thin and thick.
+
+%% from Radice2018pdn
+
+Thus, the neutrino production rate $R_{\nu}$ for $\nu\in\{\nu_e,\bar{\nu}_e,\nu_x\}$ are computed alongside the respective energy release $Q_{\nu}$ and opacities: $\kappa_{\nu;a}$ and $\kappa_{\nu;s}$ for absorption and scattering respectively.
+
+%Neutrinos are assumed to obey the Fermi-Dirac distribution. Their chemical potential is governed by the $\beta$-equilibrium with thermal neutrinos \cite{Rosswog:2003rv}.
+Thus, for the calculation of the opacities, local thermodynamical equilibrium chemical potential
+is assumed for the neutrinos.
+
+Additionally, there are two types of opacities, the density weighted opacities $\kappa_{\nu;a}^0$ and $\kappa_{\nu;s}^0$ and energy density weighted opacities $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$. 
+The former are related to the rate at which neutrinos escape the material, while the latter set the rate at which energy escapes the material as neutrinos escape \cite{Ruffert:1995fs}.
+
+The optical depth, $\tau_{\nu}^{\alpha}$ is computed taking into account total neutrino opacities $\kappa_{\nu;a}^j + \kappa_{\nu;s}^j$ \cite{Neilsen:2014hha}.
+
+Optical depth is then used to estimate the effective emission rates \cite{Ruffert:1995fs}
+
+\begin{equation}
+R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{-1}}
+\label{eq:method:whisky:Rnueff}
+\end{equation}
+
+whete $t_{\text{diff}}$ is the diffusion time
+
+\begin{equation}
+t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0}
+\end{equation}
+
+and the neutrino emission timescale 
+
+\begin{equation}
+t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
+\end{equation}
+
+and $n_{\nu}$ is the neutrino number density estimated based on the beta equilibrium with \red{(thermal?)} neutrinos.
+The $\mathcal{D}$ is a tuning parameter set to $6$.
+
+Similarly, the effective energy emission rate $Q_{\nu}^{\text{eff}}$ are computed with $\tau_{\nu}^1$, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$.
+
+%Further, the neutrinos are divided into two categories. 
+%The neutrinos that cannot escape, trapped, 
+The effect of trapped neutrinos was shown to be weak in the NS conditions \cite{Galeazzi:2013mia} and thus neglected here.
+The neutrinos that escape according to the effective rate $R_{\nu}^{\text{eff}}$,
+with and average energy $U_{\nu}^{\text{eff}}/R_{\nu}^{\text{eff}}$ are the free streaming neutrinos $n_{\nu}^{\text{fs}}$. 
+These neutrinos are treated afterwards according to the M0 scheme \cite{Radice:2016dwd}.
+
+
+%% from Galezzi:2013 again
+Note that the total neutrino luminocity is an observer dependent quantity in relativity. 
+The reason is that the the neutrino energy emitted at a given point between coordinate times $t$ and $t+dt$, which hare measured by the coordinate observer with world line tangent to $t^{\mu}$. 
+Further assumption of stationarity is then required, \textit{e..g,} assuming $t^{\mu}$ is the killing vector. Then, the neutrino energy at infinity is $E_{\nu}^{\infty} = \sqrt{-g_{00}}E_{\nu}$, irrespective of the direction of emission.
+
+Summarizing, since (trapped) neutrinos are assumed to be in equilibrium with the baryonic matter, the number density and energy distribution of neutrinos is not evolved -- their contribution to the source terms $\Psi^{\beta}$ \gray{$Qu^{\mu}$} and $N$ \gray{$R_{p,n}$} is obtained from the matter properties.
+\gray{only the electron neutrinos are considered there, and only their degrees of freedom is accounted for by the electron fraction $Y_e=n_e/n_b$.
+    The electron fraction is changed only by the neutrinos (antineutrinos) according to the source term $N$.}
+
+%\gray{Galezzi:13:
+%    pressure and specific internal energy contain contributions of baryons, electrons, photons and trapped neutrinos
+%    \begin{align}
+%    p &= p_e + p_b + p_{\gamma} + p_{\nu_e,\bar{\nu}_e}... \\
+%    \epsilon &= \epsilon_e + \epsilon_b + \epsilon_{\gamma} + \epsilon_{\nu_e,\bar{\nu}_e} + ...
+%    \end{align}
+%    where the contribution from trapped electron-neutrinos $\nu_e$ and
+%    antineutrinos $\bar{\nu}_e$ in the dense baryonic component can be evaluated from the thermodynamic state of the fluid and assuming that the neutrinos are following a Fermi-Dirac distribution 
+%    \begin{align}
+%    p_{\nu_e,\bar{\nu}_e} &= p_{\nu_e} + p_{\bar{\nu}_e} = \frac{4\pi}{3}T^4[F_3(\eta_{\nu_e}) + F_3(\eta_{\bar{\nu}_e})], \\
+%    \epsilon_{\nu_e,\bar{\nu}_e} &= \epsilon_{\nu_e} + \epsilon_{\bar{\nu}_e} = \frac{1}{3}\frac{p_{\nu_e,\bar{\nu}_e}}{\rho}
+%    \end{align}
+%    where $\eta_{\nu_e} = \mu_{\nu_e}/T$ and $\eta_{\bar{\nu}_e} = \mu_{\bar{\nu}_e}/T$ are the degeneracy parameters for the electron-neutrinos and antineutrinos, $\mu_{\nu_e}$, $\mu_{\bar{\nu}_e}$ the corresponding chemical potentials and $T$ is the temperature, $F_3(\eta_{\nu_e})$ is the Fermi integral.
+%    There, the contributions of trapped neutrinos to pressure and internal energy is neglected, 
+%    $p_{\nu_{e},\bar{\nu}_e}=\epsilon_{\nu_e,\bar{\nu}_e}=0$.
+%    For the computation of the neutrino source term $N$, the neutrinos emission rates per baryond are introduced $R_{\nu_e}$ and $R_{\bar{\nu}_e}$ for electron neutrinos and antineutrinos respectively. Then in the fluid rest-frame the change in electrom fraction is $u^{\alpha}\nabla_{\alpha}(Y_e)=\matcal{R} = R_{\bar{\nu}_e} - R_{\nu_e}$. 
+%    Similarly, for the source term $\Psi^{\beta}$ that describes the radiative losses of energy and momentum due to neutrinos, the neutrino emissivity $Q$ is intorcued. Assumptions: emission is isotropic in the fluid's rest frame. Then the covarient equation reads 
+%    \begin{equation}
+%    \Psi^{\beta} = -\rho m_b^{-1}Qu^{\beta} = \rho m_b^{-1}\sum_I Q_I u^{\beta} = -\rho m_b^{-1} (Q_{\nu_e} + Q_{\bar{\nu}_e} + Q_{\nu_{\tau,\mu}}+Q_{\bar{\nu}_{\tau,\mu}})u^{\beta}
+%    \end{equation}
+%    Here, the emissivity due to the $\tau$ and $\mu$ neutrinos into a single contribution $ Q_{\nu_{\tau,\mu}}$.
+%    These equations, for numerical evolution, the equations are cast into a flux conservative formulation, based on the Valencia formulation, representing Eurler equtions and lepton/baryon number conservations as balance laws.
+%    \begin{equation}
+%    \partial_t (\sqrt{\gamma}\boldsymbol{q}) + \partial_t\Big( \sqrt{\gamma} \boldsymbol{f}^{(i)}(\boldsymbol{q}) \Big) = s(\boldsymbol{q}).
+%    \end{equation}
+%    where $\gamma$ is the determinant of the three-metric, while $\boldsymbol{f}^{(i)}(\boldsymbol{q})$ and $s(\boldsymbol{q})$ are the flux vectors and source terms, respectively \cite{Font:2008fka}.
+%}
+
+%The foundation of the scheme described here is presented in \cite{Galeazzi:2013mia}.
+%The method is similar to that of the \cite{Ruffert:1995fs}.
+%And, as in the \cite{Rosswog:2003rv}, the opacities are computed on the basis local thermodynamical equilibrium chemical potential for the neutrinos.
+
+
+%The scheme consideres three neutrino species: electron neutrino $\nu_e$, electron antineutrino $\bar{\nu}_e$ and an single species $\nu_x$ for heavy-lepton neutrinos.
+%The reactions traced by the scheme are listed in the table \ref{tab:leakage}.
+
+
+
+\gray{
+    Notably, the $E == n_{\alpha}n_{\beta}T^{\alpha\beta}$, 
+    $S_i = -\gamma_{i\alpha}n_{\beta}T^{\alpha\beta}$ and $S_{ij} = \gamma_{i\alpha}\gamma_{j\beta}T^{\alpha\beta}$ are the matter source terms where $n_{\alpha}=(-\alpha, 0, 0, 0)$ is the future pointing four-vector orthonormal to the space-like hypersurface, $S=S_{i}^{i}$ is the trace.
+}
+
+
+\subsubsection{neutrino M0 scheme}
+
+
+This part is based in \cite{Radice:2016dwd} and \cite{Radice:2018pdn}.
+%% M0 Appendix A from Radice:2016dwd, Neutrin transport details
+%\subsubsection{The Boltzmann equations for Free-Streaming Neutrinos}
+
+First, the Boltzmann equation is derived for the neutrinos, that are again
+assumed to be massless particles
+Neutrinos propagate propagating in the fluid
+with four-velocity is $u^{\alpha}$ and four-momentum, $p^{\alpha}$.
+The latter can be decomposed as \cite{Thorne:1981}
+
+\begin{equation}
+p^{\alpha} = (-p_{\beta}u^{\beta})(u^{\alpha} + r^{\alpha}),
+\end{equation}
+
+where $E_{\nu}=-p_{\alpha}u^{\alpha}$ is the neutrino energy measured by \red{Eulerian} observer,
+comoving with the fluid, $r^{\alpha}$ is the unit space-like vector, orthogonal to the 
+fluid's $u^{\alpha}$, or in other words $r_{\alpha}r^{\alpha}=1$ and $u_{\alpha}r^{\alpha}=0$.
+Additionally, $r^{\alpha}$ can be interpreted as the direction along which neutrinos move,
+as seen by the \red{Eulerian} observer comoving with the fluid.
+
+The four-vector of the neutrinos is
+
+\begin{equation}
+\label{eq:method:whisky:neut:k}
+k^{\alpha} = u^{\alpha} + r^{\alpha}
+\end{equation}
+
+with $k_{\alpha}k^{\alpha} = 0$.
+\red{2018pdn: The vector is normalized such that $k^{\alpha}u_{\alpha}=-1$}
+
+Next, the affine parameter, that parameterized the neutrino's worldline is introduced
+
+\begin{equation}
+l = \int (-p_{\alpha u^{\alpha}})\dd s \text{ so that } \Big( \frac{\partial}{\partial l} \Big)^{\alpha} = k^{\alpha}.
+\end{equation}
+
+Now, with $l$, the Boltzmann equations for the neutrino radiation transport read \cite{Thorne:1981}
+
+\begin{equation}
+\frac{D F}{D l} = \mathbb{C}[F]
+\end{equation}
+
+where $F$ is the distribution function for a give neutrino species, and $\mathbb{C}$ is the
+'collisional operator' \red{See Rdice Thesis} the contains information regarding the interactions between neutrinos and the background fluid (in the frame of the fluid). 
+The $D/Dl$ is the total derivative in phase space along $p^{\alpha}$ and it reads 
+
+\begin{equation}
+\label{eq:method:whisky:neut:bolzeq}
+\frac{DF}{Dl} = k^{\alpha} \Big[ \frac{\partial F}{\partial x^{\alpha}} - \Gamma^{\delta}_{\:\:\alpha\beta}p^{\beta}\frac{\partial F}{\partial p^{\delta}} \Big],
+\end{equation}
+
+where $\Gamma^{\delta}_{\:\:\alpha\beta}$ are the Christoffel symbols.
+
+
+%\subsubsection{Neutrino number density evolution}
+
+%Neutrinos are split into two categories. 
+%Trapped neutrinos are treated with leackage scheme.
+
+The obtained Boltzmann equation, \eqref{eq:method:whisky:neut:bolzeq}, allows to desribe the evolution of the free-straming neutrinons and track the evolution of their average energy.
+Assume, that the neutrinos propagate along the radial rays. 
+
+The source term is given by the neutrino leakage scheme, taking the effective emissivity from it.
+The collisional term is approximated in a way that it only includes neutrino absorption and emission. Scattering is neglected.
+
+For the evaluation of the absorption opacities, (of $\nu_{e}$ and $\bar{\nu}_{e}$) the local thermodynamic equilibrium is assumed.
+
+The neutrino number density (in the fluid rest frame) for neutrinos of a give flavor, $n_X$, can be expressed through the neutrino number current $J_{X}^{\alpha}$ that reads \cite{Lindquist:1966},
+
+\begin{equation}
+J_{X}^{\alpha} = \int F p^{\alpha} \frac{\dd^3 p}{-p_0}
+\end{equation}
+
+as $n_X = - u_{\alpha} J_{X}^{\alpha}$.
+
+The balance equation (between absorption and emission of neutrinos) can be obtained from the 
+first moment of the Boltzmann equation \cite{Thorne:1981,Shibata:2011kx}
+
+\begin{equation}
+\label{eq:method:whisky:neut:balanseq}
+\nabla_{\alpha}J_{X}^{\alpha} = R_{X}^{\text{eff}} - \kappa_X n_X,
+\end{equation}
+
+where $\kappa_X$ is the absorption opacity and $R_X^{\text{eff}}$ is the effective neutrino emission rate.
+
+While the equation \eqref{eq:method:whisky:neut:balanseq} is exact, in order to be solved, it requires closure. 
+In this method the closure is given by considering neutrinos only propagating radially and at a speed of light, \textit{e.g.,}
+
+\begin{equation}
+J_{X}^{\alpha} = n_X k^{\alpha},
+\end{equation}
+
+where $k^{\alpha}$ is the fiductial null vector, \eqref{eq:method:whisky:neut:k}, under the assumption that $r^{\alpha}$ is the radial null-vector, orthogonal to the fluid $u^{\alpha}$.
+This translates into the assumption that the free-streaming neutrinos are moving radially in a frame instantaneously comoving with the fluid.
+
+Then, the balance equation for $n_X$ reads
+
+\begin{equation}
+\label{eq:mehtod:whisky:neut:balanseq2}
+\partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) = \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X)
+\end{equation}
+
+where $g$ is the determent of the $4$-metric \gray{(in spherical coordinates)}.
+
+
+%\subsubsection{Neutrino average energy evolution}
+
+
+Nect, the computation of the neutrino average energy is required to evaluate the matter composition and temperature changes.
+
+Here the additional assumtion is made, that the space-time is stationary, \textit{e.g.,} $t^{\alpha}:=(\partial_t)^{\alpha}$ is a Killing vector, which leads to the $(-p_{\alpha}t^{\alpha})$ to be a conserved quantity.
+Assuming that there is no interaction with the fluid and the along the neutrino worldlines, \textit{e.g.,}
+
+\begin{equation}
+\frac{\dd(-p_{\alpha}t^{\alpha})}{\dd l} = 0
+\end{equation}
+
+Then, the quantity $\mathcal{E}_X = -p_{\alpha}t^{\alpha}$ is the energy of the neutrinos of species $X$ \gray{as seen by the coordinate observer, -- an unphysical observer with four-velocity $t^{\alpha}$}.
+
+%% --- MIGHT be a repetition
+%Consider 
+%
+%\begin{equation}
+%    \mathcal{E}_X = -p_{\alpha}t^{\alpha} = -E_{X} k_{\alpha}t^{\alpha} =: E_X \chi
+%\end{equation}
+%
+%then, the equation for the average neutrino energy reads
+%
+%\begin{equation}
+%    \frac{\dd \mathcal{E}_X}{\dd l} = \frac{R^{\text{eff}_X}}{n_X}\Big( \chi \frac{Q_X^{\text{eff}}}{R_{X}^{\text{eff}}} - \mathcal{E}_X \Big) 
+%\end{equation}
+%
+%where $Q_{X}^{\text{eff}}$ is the effective neutrino energy source (taken from the leakage scheme).
+%
+%For neutrinos radially moving, the equation reads
+%
+%\begin{equation}
+%    n_X k^{t} \partial_t \mathcal{E}_X + n_{X} k^{r}\partial_{r}\mathcal{E}_X = (\chi Q_{X}^{\text{eff}} - \mathcal{E}_X R_X^{\text{eff}}).
+%\end{equation}
+%
+%This eqution is solved on the same spherical grid using hte first order finite differencing method.
+
+
+%% M0 scheme
+Computation of the 
+neutrino number density and energy is 
+%$n_{\nu_e}$, $n_{\bar{n}_e}$, $E_{\nu_e}$ and $E_{\bar{\nu}_e}$ is 
+accomplished via the zeroth momentum (M0) of the free-streaming neutrino distribution function on a set of individual radial rays, with the closure adopted to post-merger geometry.
+
+%In the M0 scheme the evolution of the number density of free steaming neutrinos is done under the assumption.
+%Neutrons are assumed to be moving along the radial null rays with four vector $k^{\alpha}$. The vector is normalized such that $k^{\alpha}u_{\alpha}=-1$. 
+The number density of the free neutrinos in the fluid rest frame $n_{\nu}^{\text{fs}}$ follows \cite{Radice:2016dwd}
+
+\begin{equation}
+\label{eq:method:whisky:eq7}
+\nabla_{\alpha}[n_{\nu}^{\text{fs}}k^{\alpha}] = R_{\nu}^{\text{eff}} - \kappa_{\nu;a}^{\text{eff}}n_{\nu}^{\text{fs}},
+\end{equation}
+
+where $R_{\nu}^{\text{eff}}$ is the effective luminosity (\red{emission }) \eqref{eq:method:whisky:Rnueff}. 
+
+The effective absorption rate then
+
+\begin{equation}
+\kappa_{\nu,a}^{\text{eff}} = e^{-\tau_{\nu}^0}\Big( \frac{E_{\nu}^{\text{fs}}}{E_{\nu}^{\beta}} \Big)^2 \kappa_{\nu,a}^0.
+\end{equation}
+
+where $E_{\nu}^{\text{fs}}$ is the average energy of the free-streaming neutrinos, and 
+$E_{\nu}^{\beta}$ is the average energy on the neutrinos that are in $\beta$-equilibrium.
+$E_{\nu}^{\text{fs}}$ and $E_{\nu}^{\beta}$ are defined in the restframe of the fluid.
+
+The energy of the free-sctreaming neutrinos is computed assuming the \red{stationarity of the metric}.
+Having the $\partial_t$ killing vector thus allows to have $p_{\nu}^{\alpha}(\partial_t)_{\alpha}$ conserved, 
+where $p_{\nu}^{\alpha}$ is the neutrinos four-momentum.
+
+Then, the average energy density of free-streaming neutrinos obeys
+
+\begin{equation}
+\label{eq:method:whisky:eq9}
+k^t\partial_t(E_{\nu}^{\text{fs}}\chi) + k^{r}\partial_r(E_{\nu}^{\text{fs}}\chi) = \frac{\chi}{n_{\nu}^{\text{fs}}}(Q_{\nu}^{\text{eff}}-E_{\nu}^{\text{fs}}R_{\nu}^{\text{eff}}),
+\end{equation}
+
+where $\chi=-k^{\alpha}(\partial_t)_{\alpha}$.
+
+%% Coupling, neutrinos and hydro
+The coupling between the matter and neutirnos is done via operator split approach \cite{Radice:2016dwd}.
+For equation \eqref{eq:wthc:pndens} reads
+
+\begin{equation}
+R_p = (\kappa_{\nu_e;a}^{\text{eff}}n_{\nu_e}^{\text{fs}} - \kappa_{\bar{\nu}_e;a}^{\text{eff}}n_{\bar{\nu}_e}^{\text{fs}}) - (R_{\nu_e}^{\text{eff}} - R_{\bar{\nu}_e}^{\text{eff}}).
+\end{equation}
+
+For the Euler equation \eqref{eq:wthc:euler} reads
+
+\begin{equation}
+Q = (\kappa_{\nu_e;a}^{\text{eff}}n_{\nu_e}^{\text{fs}}E_{\nu_e} + 
+\kappa_{\bar{\nu}_e;a}^{\text{eff}}n_{\bar{\nu}_e}^{\text{fs}}E_{\bar{\nu}_e}) - 
+(Q_{\nu_e}^{\text{eff}} + Q_{\bar{\nu}_e}^{\text{eff}} + Q_{\nu_x}^{\text{eff}}).
+\end{equation}
+
+The M0 scheme of \cite{Radice:2016dwd}, while less complex then frequency-integrated M1 schemes used by 
+\cite{Sekiguchi:2015dma} and \cite{Foucart:2015vpa}, it is advantagous with respect to the computational efficiency.
+It also includes approximations of the Doppler and gravitaional effects. 
+Additionally, the unphysical radaition shocks above the merger remnant, that commonly present in M1 schemes \cite{Foucart:2018gis}, do not develop in M0 scheme.
+
+
+
+
 \subsection{Numerical Methods (FV, FD, time integrator, atmosphere)}
 
+
 There many approaches to solving a system of conservation laws numerically.
-Schemes that are commonly adopted for hydrodynamic simulations are the finite-volume schemes, while schemes that are generally used for solving the EFE numerically are the finite differencing schemes. There are many variaions of these shemes with various degrees of accuracy, simplicity and performance. We omit the discussions of them here but provide a short overview in the Appendix 
+Schemes that are commonly adopted for hydrodynamic simulations are the finite-volume schemes, while schemes that are generally used for solving the EFE numerically are the finite differencing schemes. There are many variaions of these shemes with various degrees of accuracy, simplicity and performance. We omit the discussions of them here but provide a short overview in the Appendix \ref{app:num}
 
 
-%% ======================================== EOS used
-\subsection{Microphysical EOS}
+\subsubsection{Coupling between hydrodynamics and neutrinos}
 
 
+%% numerics
+The eqution \eqref{eq:mehtod:whisky:neut:balanseq2} is solved on a series of independent radial rays using a first order, fully-implicit finite volume method.
+Coupling with the hydrodynamics is done via interpolation at every timestep.
+\gray{For our models 2048 radial rays uniformly spaced in latittude and longitude were used with radial resolution of $244$~m [CONFIRM!]}.
 
-This subsection is based introduction in the recent publications 
-\cite{Radice:2018pdn,Perego:2019adq,Bernuzzi:2020txg,Nedora:2020pak}
+Equations \eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens} are solved via operator split approach.
+The deposition of momentum by neutirnios is accounted for via the first-order explicit time update.
+\red{FIND OUT WHAT EXPLICIT AND IMPLICIT TIMESTEP MEANS!}
+The evolution of the $n_p$ and conserved energy is treaded with semi-implicit time-step \gray{update formula}.
 
-\begin{figure}[t]
-    \centering 
-    \includegraphics[width=0.49\textwidth]{./figs/tov_mr.pdf}
-    \caption{Mass-radius relations for the EOSs used in this work. 
-        Markers along the sequences indicate the NSs smulated in this work.}  
-    \label{fig:method:tov_mr}
-\end{figure}
+for a single timestep, in the operator split formulism, the $n_p$ and conserved energy evolution update is given by the equation 
 
-For our models we employ $5$ finite-temperature, composition-dependent equations of state, namely the 
-HS(DD2) (hereafter DD2) \cite{Typel:2009sy,Hempel:2009mc}, 
-BLh, \cite{Bombaci:2018ksa}, 
-LS220, \cite{Lattimer:1991nc}, 
-HS(SFHo), (hereafter SFHo) \cite{Steiner:2012rk} and 
-SLy4-SOR EOS (hereafter SLy4) \cite{daSilvaSchneider:2017jpg}.
+\begin{equation}
+\frac{\dd u}{\dd t} = f
+\end{equation}
 
-All EOS include neutrinos $(n)$, protons $(p)$, nuclei, electrons, positrons, and photons
-as important thermodynamic degrees of freedom.
+where $f$ can be large while, being the energy or a number density, $u$, should remain positive.
+The treatment of EOS here is such, that the specific internal energy per baryon and the evolved energy density are always $>0$. However, when there is a strong cooling, $f\ll0$ and $u<|f|\Delta t$, 
+the equation becomes stiff and aa update of $u$ required special treatment. 
+The semi-implicit scheme is implemented as 
 
-The radii and maximum masses of neutron stars composed of the cold, neutrino-less $\beta$-equilibrium matter,
-from these EOS, fall in line with the current astrophysical constraints, 
-\textit{e.g.,} LIGO/Virgo constrain on tidal deformability 
-\cite{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}
+\begin{equation}
+\frac{u^{k+1}-u^{k}}{\Delta t} = \theta^k u^{k+1}
+\end{equation}
 
-All EOS models have symmetry energy at saturation density that are in argeement with experimental limits.
-Notably, the LS220 has a especially steep dependency of its symmetry energy on density (\textit{e.g.,} \cite{Lattimer:2012xj,Danielewicz:2013upa}. Thus, this EOS might predict too low symmetry energy below the saturation density. 
+where $\theta = f/u$.
 
-%% LS220
-The LS220 EOS is based on a non-relativistic (liquid droplet) Skyrme model.
-The absolute value of the nuclear bulk incompressibility is set to $220$~MeV, hence, the name.
-The EOS includes surface effects and it models $\alpha$-particles as an ideal, classical
-non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued. 
-%Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
-%particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
-%Heavy nuclei are considered with single nucleus approximation. 
-The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
-LS220 does not satisfy the constraints from Chiral effective field theory \cite{Hempel:2017ikt}
+As $k$ stands for the function $t=k\Delta t$,
 
-%% DD2
-DD2 (and SFHo) employs the statistical equilibrium to treat the ensemble of several thousands nuclei.
-The high-density nuclear matter is treated via RMF approach for unbound nucleons \cite{Hempel:2009mc}.
-The excluded volume mechanism is utilized for the phase transition from nuclei to homogeneous
-nuclear matter (when densities approch the nuclear saturation density).
-DD2 employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions \cite{Typel:2009sy}.
-It was however noted that DD2 is not in very good agreement with the so-called flow-constraint \cite{Danielewicz:2002pu}.
+\begin{equation}
+u^{k+1} = \frac{u^{k}}{1-\theta^k \Delta t}
+\end{equation}
 
-%% SFHo [more rephrasing needed!]
-Similar to DD2, SFHo combines a statistical ensemble of numerous nuclei, under the assumption of nuclear
-statistical equilibrium (NSE) to treat the homogeneous matter, 
-with the relativistic mean field approach for the unbound nucleons to treat high-density homogeneous nuclear matter.
-It however employs a different parameterizations and values for modeling the mean-field nuclear interactions, 
-which is motivated by neutron star radius measurements from low-mass X-ray
-binaries (\cite{Steiner:2012rk} and references therein).
-
-The DD2 and SFHo are based on nuclear statistical equilibrium, but 
-different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
-In these EOSs a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these EOSs mean-field nuclear interactions have different parameterizations and values.
-
-%% SLy4
-The SLy4 EOS eomplyed in this work is the finite temperature extension \cite{daSilvaSchneider:2017jpg}
-of the basic SLY4 Skryme parametrisation for cold nuclear NS matter \cite{Douchin:2001sv}.
-The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
-treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
-Which is a more advanced version of LS220 treatment (model).
-When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
-free energy is chosen, (first order transition).
-
-%% BLh
-BLh is a new finite temperature EOS \cite{Logoteta:2020yxf}
-This EOS is a finite temperature extension of the cold, $\beta$-equilibrium EOS, \cite{Bombaci:2018ksa},
-which was applied to model the BNS merger in \cite{Endrizzi:2018uwl}.
-The equation of state is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach.
-where microphysical approach based on a specific nuclear interaction is employed for the homogeneous nuclear phase.
-The interactions between nucleos are described through a potential derived perturbatively 
-in Chiral-Effective-Field theory \cite{Machleidt:2011zz}
-The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
-Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
-The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
-The non-homogeneous phase of the EOS is treated by smoothly connecting the high density BLh EOS to the low-density oart of the SFHo EOS.
-
-
-\subsubsection{Finite temperature treatment}
-
-
-Thermal effects are included a different way in these EOS. 
-In particular particle correlations beyond the mean field approximation are included only in the BLh EOS.
-In other EOS thermal effects enter in the nucleon effective mass, that depend on temperature and density.
-These effects, however, are important for the thermal evolution of the NS matter.
-
-%% LS220 and SLy4
-In the EOSs that are based on the Skyrme effecrive nuclear interatcions, \textit{e.g.,} LS220 and SLy4
-the thermal effects are added in the following form. 
-Consider a zero temperature internal energy functional, which depends explicitly on the nuclear density.
-The part of this functional that is resposible for interactions is divided into the 
-subpart that represents the two-body nucleon-nucleon interactions, (it is quadratic in nuclear density) and a 
-subpart that mimics the effect of many body nuclear forces (proportional to the nuclear density in certain power).
-Then, both the single particle potentials as well as kinetic energy effective mass dependence play a role
-in the temperature dependence of the nuclear effective interaction.
-The single particle potential are computed via the variation of the internal energy with respect to the 
-neutron and proton densities.
-Thus, the smaller the effective masss the larger are kinetic energies and hence, hgiher matter temperature. 
-If the entropy remains unchainched.
-Thus, the finite temperature behavior of these EOSs is largely set by the nucleon effective mass.
-%Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
-For LS220, the nucleon mass is its bare nucleon mass (for any densities) \gray{so... $m_{N}^*=m_{N}$??}.
-For SFHo, $m_N ^* / m_N = 0.76$ at saturation density. 
-For DD2 $m_N^*/m_N = 0.56$ 
-For BLh $\red{None}$ 
-For SLy4 $m_N^*/m_N=0.70$ at saturation density. 
-where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
-
-%% SFHo (and DD2??)
-For the SFHo and DD2 EOS, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
-meson exchanges for descibing nuclear interactions, and the mean-field approximation is used
-to solve the resulted Euler-Largrange equations. 
-The thermal effects for various species are introduced via Fermi-Dirac distributions at finite temperatures.
-Then, self consitent solution of the mean filed eqution introduces the temperature dependence into other 
-thermodynamic quantities (through fiurst mesons and nucleon fields)
-
-%% BLh
-The BLh EOS employs a different approach to incorporate temperature effects.
-The method is based on evaluating the free energy in the Brueckner-Hartree-Fock, which in turn requires,
-the effective in-medium nuclear interactions to be defined (starting from the bare nuclear potential).
-\gray{This effective interaction is obtained by solving
-the Bethe-Goldstone integral equation which describe the nucleon 
-scattering in the nuclear medium and properly takes into
-account the Pauli principle}.
-Then, the nucleon single particle potentials are evaluated (via integration of the on-shell effective interaction matrix)
-, which represent the mean field that a nucleon with a certain momenum experience surrounded by other nucleons.
-The nucleon single particle potentials, then, allow to evaulate the free energy, and subsequently, 
-other thermodynamic quantities.
-Notable difference with other EOS discussed here is that the many-body correlations extend beyond the mean field approximation, and are not present in other EOS. 
-This EOS was first employed for the BNS merger simulations in \cite{Bernuzzi:2020txg}.
-
-\subsubsection{TOV}
-
-To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
-The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
-for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
-Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
-
-
+that assures the positvity of the solution.
 
 
 \subsection{Viscosity}
@@ -1003,7 +1314,153 @@ This method has been shown to reproduce main features of MHD dynamics with appli
 disks \cite{Fernandez:2018kax}.
 
 
+%% ======================================== EOS used
+\subsection{Microphysical EOS}
 
+
+
+This subsection is based introduction in the recent publications 
+\cite{Radice:2018pdn,Perego:2019adq,Bernuzzi:2020txg,Nedora:2020pak}
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/tov_mr.pdf}
+    \caption{Mass-radius relations for the EOSs used in this work. 
+        Markers along the sequences indicate the NSs smulated in this work.}  
+    \label{fig:method:tov_mr}
+\end{figure}
+
+For our models we employ $5$ finite-temperature, composition-dependent equations of state, namely the 
+HS(DD2) (hereafter DD2) \cite{Typel:2009sy,Hempel:2009mc}, 
+BLh, \cite{Bombaci:2018ksa}, 
+LS220, \cite{Lattimer:1991nc}, 
+HS(SFHo), (hereafter SFHo) \cite{Steiner:2012rk} and 
+SLy4-SOR EOS (hereafter SLy4) \cite{daSilvaSchneider:2017jpg}.
+
+All EOS include neutrinos $(n)$, protons $(p)$, nuclei, electrons, positrons, and photons
+as important thermodynamic degrees of freedom.
+
+The radii and maximum masses of neutron stars composed of the cold, neutrino-less $\beta$-equilibrium matter,
+from these EOS, fall in line with the current astrophysical constraints, 
+\textit{e.g.,} LIGO/Virgo constrain on tidal deformability 
+\cite{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}
+
+All EOS models have symmetry energy at saturation density that are in argeement with experimental limits.
+Notably, the LS220 has a especially steep dependency of its symmetry energy on density (\textit{e.g.,} \cite{Lattimer:2012xj,Danielewicz:2013upa}. Thus, this EOS might predict too low symmetry energy below the saturation density. 
+
+%% LS220
+The LS220 EOS is based on a non-relativistic (liquid droplet) Skyrme model.
+The absolute value of the nuclear bulk incompressibility is set to $220$~MeV, hence, the name.
+The EOS includes surface effects and it models $\alpha$-particles as an ideal, classical
+non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued. 
+%Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
+%particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
+%Heavy nuclei are considered with single nucleus approximation. 
+The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
+LS220 does not satisfy the constraints from Chiral effective field theory \cite{Hempel:2017ikt}
+
+%% DD2
+DD2 (and SFHo) employs the statistical equilibrium to treat the ensemble of several thousands nuclei.
+The high-density nuclear matter is treated via RMF approach for unbound nucleons \cite{Hempel:2009mc}.
+The excluded volume mechanism is utilized for the phase transition from nuclei to homogeneous
+nuclear matter (when densities approch the nuclear saturation density).
+DD2 employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions \cite{Typel:2009sy}.
+It was however noted that DD2 is not in very good agreement with the so-called flow-constraint \cite{Danielewicz:2002pu}.
+
+%% SFHo [more rephrasing needed!]
+Similar to DD2, SFHo combines a statistical ensemble of numerous nuclei, under the assumption of nuclear
+statistical equilibrium (NSE) to treat the homogeneous matter, 
+with the relativistic mean field approach for the unbound nucleons to treat high-density homogeneous nuclear matter.
+It however employs a different parameterizations and values for modeling the mean-field nuclear interactions, 
+which is motivated by neutron star radius measurements from low-mass X-ray
+binaries (\cite{Steiner:2012rk} and references therein).
+
+The DD2 and SFHo are based on nuclear statistical equilibrium, but 
+different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
+In these EOSs a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these EOSs mean-field nuclear interactions have different parameterizations and values.
+
+%% SLy4
+The SLy4 EOS eomplyed in this work is the finite temperature extension \cite{daSilvaSchneider:2017jpg}
+of the basic SLY4 Skryme parametrisation for cold nuclear NS matter \cite{Douchin:2001sv}.
+The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
+treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
+Which is a more advanced version of LS220 treatment (model).
+When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
+free energy is chosen, (first order transition).
+
+%% BLh
+BLh is a new finite temperature EOS \cite{Logoteta:2020yxf}
+This EOS is a finite temperature extension of the cold, $\beta$-equilibrium EOS, \cite{Bombaci:2018ksa},
+which was applied to model the BNS merger in \cite{Endrizzi:2018uwl}.
+The equation of state is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach.
+where microphysical approach based on a specific nuclear interaction is employed for the homogeneous nuclear phase.
+The interactions between nucleos are described through a potential derived perturbatively 
+in Chiral-Effective-Field theory \cite{Machleidt:2011zz}
+The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
+Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
+The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
+The non-homogeneous phase of the EOS is treated by smoothly connecting the high density BLh EOS to the low-density oart of the SFHo EOS.
+
+
+\subsubsection{Finite temperature treatment}
+
+
+Thermal effects are included a different way in these EOS. 
+In particular particle correlations beyond the mean field approximation are included only in the BLh EOS.
+In other EOS thermal effects enter in the nucleon effective mass, that depend on temperature and density.
+These effects, however, are important for the thermal evolution of the NS matter.
+
+%% LS220 and SLy4
+In the EOSs that are based on the Skyrme effecrive nuclear interatcions, \textit{e.g.,} LS220 and SLy4
+the thermal effects are added in the following form. 
+Consider a zero temperature internal energy functional, which depends explicitly on the nuclear density.
+The part of this functional that is resposible for interactions is divided into the 
+subpart that represents the two-body nucleon-nucleon interactions, (it is quadratic in nuclear density) and a 
+subpart that mimics the effect of many body nuclear forces (proportional to the nuclear density in certain power).
+Then, both the single particle potentials as well as kinetic energy effective mass dependence play a role
+in the temperature dependence of the nuclear effective interaction.
+The single particle potential are computed via the variation of the internal energy with respect to the 
+neutron and proton densities.
+Thus, the smaller the effective masss the larger are kinetic energies and hence, hgiher matter temperature. 
+If the entropy remains unchainched.
+Thus, the finite temperature behavior of these EOSs is largely set by the nucleon effective mass.
+%Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
+For LS220, the nucleon mass is its bare nucleon mass (for any densities) \gray{so... $m_{N}^*=m_{N}$??}.
+For SFHo, $m_N ^* / m_N = 0.76$ at saturation density. 
+For DD2 $m_N^*/m_N = 0.56$ 
+For BLh $\red{None}$ 
+For SLy4 $m_N^*/m_N=0.70$ at saturation density. 
+where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
+
+%% SFHo (and DD2??)
+For the SFHo and DD2 EOS, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
+meson exchanges for descibing nuclear interactions, and the mean-field approximation is used
+to solve the resulted Euler-Largrange equations. 
+The thermal effects for various species are introduced via Fermi-Dirac distributions at finite temperatures.
+Then, self consitent solution of the mean filed eqution introduces the temperature dependence into other 
+thermodynamic quantities (through fiurst mesons and nucleon fields)
+
+%% BLh
+The BLh EOS employs a different approach to incorporate temperature effects.
+The method is based on evaluating the free energy in the Brueckner-Hartree-Fock, which in turn requires,
+the effective in-medium nuclear interactions to be defined (starting from the bare nuclear potential).
+\gray{This effective interaction is obtained by solving
+    the Bethe-Goldstone integral equation which describe the nucleon 
+    scattering in the nuclear medium and properly takes into
+    account the Pauli principle}.
+Then, the nucleon single particle potentials are evaluated (via integration of the on-shell effective interaction matrix)
+, which represent the mean field that a nucleon with a certain momenum experience surrounded by other nucleons.
+The nucleon single particle potentials, then, allow to evaulate the free energy, and subsequently, 
+other thermodynamic quantities.
+Notable difference with other EOS discussed here is that the many-body correlations extend beyond the mean field approximation, and are not present in other EOS. 
+This EOS was first employed for the BNS merger simulations in \cite{Bernuzzi:2020txg}.
+
+\subsubsection{TOV}
+
+To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
+The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
+for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
+Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 
 
 
@@ -1033,7 +1490,7 @@ Assuming constant temperature, we also remove the photon energy contribution to 
 
 %In the evolution code, passing the initial data, the mapping is done from the zero temerature
 In the evolution code, the electron fraction is set by the beta equilibrium condition. 
-The specific internal energy is reset in accoradance with minimum temperature slice of the EOS table used for evolution.
+The specific internal energy is reset in accordance with minimum temperature slice of the EOS table used for evolution.
 
 Errors present in the initial data in introduced during the mapping result in a small oscillations of netron stars.
 In terms of relative changes in central density these amounts to $\sim2-3\%$ \cite{Radice:2018pdn}
@@ -1079,10 +1536,14 @@ Note, that adopting a positivity preserving limiter to treat the transition betw
 For the extensive tests of different reconstruction methods and atmosphere treatment we refer to the \cite{Radice:2013apa}.
 
 
-\cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}
+%% \cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}
 
 
 \subsection{Hydrodynamics}
+
+
+
+\red{THE IDEA IS THAT YOU PUT MAIN EQ AND THEORY INTO THEORY AND HERE JUST USE THE 'PAPER' STUFF}
 
 The code evolves the proton and neutron number densities, $n_n$ and $n_p$
 respectively, as 
@@ -1136,7 +1597,7 @@ There the $T^{\alpha\beta}$ accounts for the ordinary matter and for trappend ne
 
 where $Q$ is the net energy deposition rate doe to absorption
 and emission of neutrinos also treated with the M0 scheme.
- 
+\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
 
 \subsection{Numerical methods}
 
@@ -1186,42 +1647,6 @@ sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} 
 
 \subsection{Neutrino scheme}
 
-During the neutron star mergers, the thermodynamic conditions are such that the powerful 
-neutrino bursts can originate from the hot and shock heated NS matter \cite{Sekiguchi:2011zd}.
-At high densities and temperatures reaching several MeV, the weak interaction become increasingly important, moving the material away from the original chemical equilibrium with respect to the 
-$\beta$-processes, and emission of numerous neutrinos with neutrino luminosity reaching $\sim10^{53}$erg s$^{-1}$. 
-It was believed that such strong neutrino flux can power a GRB, however the baryon pollution of the polar region found in BNS simulations might make it difficult \red{[refs, i think it was Perego work]}.
-
-Neutrino transport is of prime importance for shaping the composition of the ejecta
-\cite{Wanajo:2014,Sekiguchi:2015dma,Foucart:2015vpa,Foucart:2015gaa},
-affecting the nucleosynthesis in the ejecta \cite{Wanajo:2014,Goriely:2015fqa} and the thermal
-electromagnetic counterpart, Kilonova (Macronova) \cite{Metzger:2014ila,Lippuner:2015gwa}
-
-Neutrino interactions depend on the matter composition, its density and temperature and on the neutrino energies. For instance, at rest-mass density $10^{12}$\gcm and temperature $\sim10$~MeV, the neutrino scattering on matter becomes so efficient, that they fall into the thermal equilibrium with it. 
-The mean free path of these neutrinos becomes of order of $\sim 50$~m. 
-These neutrinos are considered \textit{trapped}.
-
-At low densities, $<10^{11}$~\gcm, neutrinos with energy $<10$~MeV are no longer coupled to matter and their mean free path can reach tens of kilometers. Such neutrinos are considered \textit{free-streaming}.
-
-If there is a sharp density gradient present, \textit{e.g.,} a surface of a neutron star where density falls by several orders of magnitude, then the neutrinos can be effectively divided into trapped and free-streaming. 
-The transition region, however, is more difficult to treat and requires more accurate neutrino treatment, \textit{e.g.,} Monte Carly methods for solving Boltzmann equations \cite{Abdikamalov:2012zi}. Another alternative is the approximate, "ray-by-ray" \cite{Scheck:2007gw} multi-energy-group neutrino schemes [\textit{e.g.,} multi-group fluxlimited diffusion \cite{Mezzacappa:1993gn} and isotropic diffusion source approximation \cite{Liebendoerfer:2007dz}].
-
-This subsection is based in the work by \cite{Galeazzi:2013mia}, describing the so-called 
-gray (energy-averaged) neutrino leakage scheme, and on a \cite{Radice:2016dwd,Radice:2018pdn}, describing its implementation into the \texttt{WhiskyTHC} code. 
-
-Leakage scheme is used to treat neutrinos in the optically thick regime, the trapped neutrinos.
-This scheme is very popular in core-collapse supernovae models as well as binary neutron star models.
-\cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Perego:2015agy}
-
-In the optically thin regime, the neutrinos, the free-streaming neutrinos, and require a different more drict treatment. 
-We discuss here only the so-called M0 scheme, implemented in \texttt{WhickyTHC}, following the works of \cite{Radice:2016dwd,Radice:2018pdn}.
-
-For other neutrino treatment method see \cite{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
-
-
-\subsubsection{Neutrino leakage scheme}
-
-
 \begin{table}
     \caption{
         Weak reactions employed in our simulations and references for their implementation.
@@ -1249,424 +1674,6 @@ For other neutrino treatment method see \cite{vanRiper:1981mko,Ruffert:1995fs,Ro
         \end{tabular}
     \end{center}
 \end{table}
-
-Non-equilibrium weak-interaction processes lead to the production of numerous neutrions from the hot, dense and neutron-rich matter, \textit{e.g.,} BNS merger remnant. The cooling effect associated with the neutrino emission, that could cause dynamical instabilities, is important for the structure and evolution of the remnant. 
-To evaluate the influence of thermal effects on the onset of dynamical instabilities, the long-term evolution, (several dynamical timescales of the object with $M$ mass and $R$ size $\tau_{\text{dyn}}\sim(M/R^3)^{1/2}\approx 1$~ms) is required.
-
-The reasonable approximation to radiation transport is to consider the instantaneous energy loss via neutrino emission and evolution of the electron fraction of the nuclear matter.
-
-Neutrino leakage scheme was first proposed by \cite{vanRiper:1981mko} to study the neutrino cooling through weak interaction in the core-collapse supernoave.
-%Neutrino leakage scheme is popular to model neutrino effects in core-collapse superniva and compact object mergers.
-
-The scheme allows to estimate the effect of neutrino radiation transport, specifically tracking the evolution of the local lepton number and the association energy loss via neutrino radiation.
-It has an advantage of being computationally efficient.
-
-The goal of the scheme is to describe a series of effective emissivities, $R^{\text{eff}}$, and $Q^{\text{eff}}$ for electron neutrinos, $\nu_e$, anti-electron neutrinos $\bar{\nu}_e$ and the heavy-lepton neutrinos, which we collectively label as $\nu_x$.
-The optical depth is then used to reduce the intrinsic emissivites, mimicking the effect of the diffusion of radiation from the optically thick regions.
-\red{This scheme also includes the heating effects by the free-streaming neutrinos, \textit{i.e.,} neutrino absorption}. \gray{ which was shown to be important for altering the ejecta composition }.
-
-%% GR is evolved following BSSNOK using \texttt{McLachlan} code.
-
-%% GRHD is a solved using \texttt{Whisky} code that considerers perfiect compressible fluid with an additional source terms to account for the composition, energy and momentum changes due to neutrino radiation.
-
-The following neutrino species are considered: electron neutrino, $\nu_e$, (and its anti-neutrino $\bar{\nu}_e$) and heavy lepton neutrino $\nu_{\tau,\mu}=\nu_X$ (and its antineutrino) \gray{that are a single component with statistical weight of 4.}.
-
-Neutrinos are assumed to be massless and in thermal equilibrium with the surrounding matter.
-As a result, the energy spectrum of the neutrinos follows a Fermi-Dirac distribution for
-ultrarelativistic particles at the temperature of the matter. 
-The chemical potential $\nu_e$ and $\bar{\nu}_e$ is assumed to the at equilibrium, \cite{Rosswog:2003rv},
-
-\begin{equation}
-    \mu_{\nu_e}^{\text{eq}} = \mu_e - \mu_n - \mu_p = -\mu_{\bar{\nu}_e}^{\text{eq}}
-\end{equation}
-
-where $\mu_e$, $\mu_n$, $\mu_p$ are the relativistic chemical potentials including the rest-mass of the particle. 
-
-Next, we discuss how the neutrino emissivity, $Q_{\nu_{i}}$, can be evaluated from various weak-interaction processes present in the hot and dense matter of the NS. 
-The $Q_{\nu_{i}}$ is the energy emitted via neutrinos per second and baryon.
-The $R_{\nu_{i}}$ is the number of neutrinos emitted per second and baryon.
-The most important neutrino emission processes in the NS remnant are: 
-\begin{itemize}
-    \item electron and position capture on nucleons, the $\beta$-process,
-    \item electron-positron pair annihilation, 
-    \item transverse plasmon decay.
-\end{itemize}
-The scheme consideres three neutrino species: electron neutrino $\nu_e$, electron antineutrino $\bar{\nu}_e$ and an single species $\nu_x$ for heavy-lepton neutrinos.
-The reactions considered with in the sheme, implmeented in \texttt{WhiskyTHC} are  listed in the \ref{tab:leakage}.
-
-It is possible to evaluate the emission rates corresponding to these processes using only the quantities provided by the EOS tables.
-For instance, consider the strong neutrino emitting process, the direct Urca process, that consists of the $\beta$-decay, $e^+ + n \rightarrow p + \bar{\nu}_e$ and the electron capture on the free nucleons (n), $e^{-} + p \rightarrow n + \nu_e$ (the first two reactions in the table \ref{tab:leakage}). 
-This process moves the matter to the $\beta$-equilibrium, in which the rats of both reactions are the same, and the chemical potentials $\mu_{\nu_e,\bar{\nu}_e}=0$.
-For both, $\beta$-decay and electron capture, the $Q_{\text{pc}}(\bar{\nu}_e),Q_{\text{ec}}({\nu_e}) \propto T^{6}$ while $R_{\text{pc}}(\bar{\nu}_e),R_{\text{ec}}(\nu_e)\propto T^5$, where $T$ is the temperature \cite{Bruenn:1985}.
-\red{The steep dependency on temperature highlights the importance of the advance temperature effects treatment in the EOS}.
-At high temperatures but medium density, the plasmon decay is one of the major sources of neutrinos, where the plasmon is the quanta of electromagnetic field in plasma exhibiting two polarisation, among which only the tansverse polarisation is important in this context.
-\cite{P. J. Schinder, D. N. Schramm, P. J.Wiita, S. H. Margolis, and D. L. Tubbs, Astrophys. J. 313, 531 (1987).} 
-\red{But I am not sure that plasmon decay in included in the Leackage scheme on Whisky}
-
-In addition to the emission of neutrinos, the leakage scheme considers the neutrino absorption and scattering, (see "A" and "S" entries in the table \ref{tab:leakage}, $\nu+A\rightarrow\nu+A$ is the coherent neutrino scattering on heavy nuclei (with atomic mass number $A$), and $\nu+N\rightarrow\nu+N$ is the neutrino scattering on free nucleons).
-Of particular importance are the neutrino scattering on heavy nuclei, and on free nucleons, as well as electron-flavor neutrinos absorption on free nucleons. The mathematical forlulation of these opacities see \cite{Galeazzi:2013mia}, Appendix A.
-The neutrino scattering on nuclei becomes the dominant opacity source when the heavy neuclei are abundant, neuclei that form below nuclear saturation density ant low temperatures $<15$~MeV \cite{Rosswog:2003rv}.
-
-Taking the considered scattering and absorption processes, the local mean free-path is for each neutrino species is computed. From it, the energy-independent mean free path can be derived, that in turn depends only on the local thermodynamic condition. This allows to evaluate the energy-independent part of the optical depth and diffusion rates.
-The optical depth allows to asses the extend of the optically thick region (that is neutrino-species dependent) and it allows to asses the time needed for neutrino to diffuse out of the dense matter \red{diffusion timescale?}. 
-It should be noted that for the core of a neutron star this diffusion timescale is of order of seconds. This the neutrinos that are expected to contribute the most on the dynamical timescale are the nuetirnos abundantly emitted emitted at the \textit{neutrinosphere} and above \cite{Galeazzi:2013mia,Endrizzi:2018uwl}.
-\red{The diffusive number and energy emission rates per baryon are 'interpolated' between diffusive and free-streaming regimes.
-So it seems that both, diffusion rates and free neutrino emission rates per baryon are computed here, using the ioptical depth to separate them. Then, the effective rates are computed via interpolation.}
-
-A quatity that is op particlular usefullness for describing neutrino cooling  is the neutrinosphere,
-defined as \cite{Galeazzi:2013mia}
-\begin{equation}
-    \frac{Q_I}{Q_{I}^F} = \frac{2}{3}
-\end{equation}
-where $Q_I$ is the interpolated effective emission rate, $Q_I^F$ is the neutrino luminosity per baryon.
-The neutrino cooling is suppressed inside this region, and the neutrino escape timescale is the diffusion timescale. 
-The neutirnosphere is however can also be defined as $\tau=2/3$, \textit{e.g.,} \cite{Rosswog:2003rv,Endrizzi:2018uwl}.
-After the interpolation, the net net emission rate per baryon appearing $\mathcal{R}$ and and the luminosity per baryon $\mathcal{Q}$.
-
-Importantly, the assumption of the chemical equilibrium can lead to an overestimation of the neutrino emission rates in the transition region, etween the optically thin and thick.
-
-%% from Radice2018pdn
-
-Thus, the neutrino production rate $R_{\nu}$ for $\nu\in\{\nu_e,\bar{\nu}_e,\nu_x\}$ are computed alongside the respective energy release $Q_{\nu}$ and opacities: $\kappa_{\nu;a}$ and $\kappa_{\nu;s}$ for absorption and scattering respectively.
-
-%Neutrinos are assumed to obey the Fermi-Dirac distribution. Their chemical potential is governed by the $\beta$-equilibrium with thermal neutrinos \cite{Rosswog:2003rv}.
-Thus, for the calculation of the opacities, local thermodynamical equilibrium chemical potential
-is assumed for the neutrinos.
-
-Additionally, there are two types of opacities, the density weighted opacities $\kappa_{\nu;a}^0$ and $\kappa_{\nu;s}^0$ and energy density weighted opacities $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$. 
-The former are related to the rate at which neutrinos escape the material, while the latter set the rate at which energy escapes the material as neutrinos escape \cite{Ruffert:1995fs}.
-
-The optical depth, $\tau_{\nu}^{\alpha}$ is computed taking into account total neutrino opacities $\kappa_{\nu;a}^j + \kappa_{\nu;s}^j$ \cite{Neilsen:2014hha}.
-
-Optical depth is then used to estimate the effective emission rates \cite{Ruffert:1995fs}
-
-\begin{equation}
-R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{-1}}
-\label{eq:method:whisky:Rnueff}
-\end{equation}
-
-whete $t_{\text{diff}}$ is the diffusion time
-
-\begin{equation}
-t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0}
-\end{equation}
-
-and the neutrino emission timescale 
-
-\begin{equation}
-t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
-\end{equation}
-
-and $n_{\nu}$ is the neutrino number density estimated based on the beta equilibrium with \red{(thermal?)} neutrinos.
-The $\mathcal{D}$ is a tuning parameter set to $6$.
-
-Similarly, the effective energy emission rate $Q_{\nu}^{\text{eff}}$ are computed with $\tau_{\nu}^1$, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$.
-
-%Further, the neutrinos are divided into two categories. 
-%The neutrinos that cannot escape, trapped, 
-The effect of trapped neutrinos was shown to be weak in the NS conditions \cite{Galeazzi:2013mia} and thus neglected here.
-The neutrinos that escape according to the effective rate $R_{\nu}^{\text{eff}}$,
-with and average energy $U_{\nu}^{\text{eff}}/R_{\nu}^{\text{eff}}$ are the free streaming neutrinos $n_{\nu}^{\text{fs}}$. 
-These neutrinos are treated afterwards according to the M0 scheme \cite{Radice:2016dwd}.
-
-
-%% from Galezzi:2013 again
-Note that the total neutrino luminocity is an observer dependent quantity in relativity. 
-The reason is that the the neutrino energy emitted at a given point between coordinate times $t$ and $t+dt$, which hare measured by the coordinate observer with world line tangent to $t^{\mu}$. 
-Further assumption of stationarity is then required, \textit{e..g,} assuming $t^{\mu}$ is the killing vector. Then, the neutrino energy at infinity is $E_{\nu}^{\infty} = \sqrt{-g_{00}}E_{\nu}$, irrespective of the direction of emission.
-
-Summarizing, since (trapped) neutrinos are assumed to be in equilibrium with the baryonic matter, the number density and energy distribution of neutrinos is not evolved -- their contribution to the source terms $\Psi^{\beta}$ \gray{$Qu^{\mu}$} and $N$ \gray{$R_{p,n}$} is obtained from the matter properties.
-\gray{only the electron neutrinos are considered there, and only their degrees of freedom is accounted for by the electron fraction $Y_e=n_e/n_b$.
-The electron fraction is changed only by the neutrinos (antineutrinos) according to the source term $N$.}
-
-%\gray{Galezzi:13:
-%    pressure and specific internal energy contain contributions of baryons, electrons, photons and trapped neutrinos
-%    \begin{align}
-%    p &= p_e + p_b + p_{\gamma} + p_{\nu_e,\bar{\nu}_e}... \\
-%    \epsilon &= \epsilon_e + \epsilon_b + \epsilon_{\gamma} + \epsilon_{\nu_e,\bar{\nu}_e} + ...
-%    \end{align}
-%    where the contribution from trapped electron-neutrinos $\nu_e$ and
-%    antineutrinos $\bar{\nu}_e$ in the dense baryonic component can be evaluated from the thermodynamic state of the fluid and assuming that the neutrinos are following a Fermi-Dirac distribution 
-%    \begin{align}
-%    p_{\nu_e,\bar{\nu}_e} &= p_{\nu_e} + p_{\bar{\nu}_e} = \frac{4\pi}{3}T^4[F_3(\eta_{\nu_e}) + F_3(\eta_{\bar{\nu}_e})], \\
-%    \epsilon_{\nu_e,\bar{\nu}_e} &= \epsilon_{\nu_e} + \epsilon_{\bar{\nu}_e} = \frac{1}{3}\frac{p_{\nu_e,\bar{\nu}_e}}{\rho}
-%    \end{align}
-%    where $\eta_{\nu_e} = \mu_{\nu_e}/T$ and $\eta_{\bar{\nu}_e} = \mu_{\bar{\nu}_e}/T$ are the degeneracy parameters for the electron-neutrinos and antineutrinos, $\mu_{\nu_e}$, $\mu_{\bar{\nu}_e}$ the corresponding chemical potentials and $T$ is the temperature, $F_3(\eta_{\nu_e})$ is the Fermi integral.
-%    There, the contributions of trapped neutrinos to pressure and internal energy is neglected, 
-%    $p_{\nu_{e},\bar{\nu}_e}=\epsilon_{\nu_e,\bar{\nu}_e}=0$.
-%    For the computation of the neutrino source term $N$, the neutrinos emission rates per baryond are introduced $R_{\nu_e}$ and $R_{\bar{\nu}_e}$ for electron neutrinos and antineutrinos respectively. Then in the fluid rest-frame the change in electrom fraction is $u^{\alpha}\nabla_{\alpha}(Y_e)=\matcal{R} = R_{\bar{\nu}_e} - R_{\nu_e}$. 
-%    Similarly, for the source term $\Psi^{\beta}$ that describes the radiative losses of energy and momentum due to neutrinos, the neutrino emissivity $Q$ is intorcued. Assumptions: emission is isotropic in the fluid's rest frame. Then the covarient equation reads 
-%    \begin{equation}
-%    \Psi^{\beta} = -\rho m_b^{-1}Qu^{\beta} = \rho m_b^{-1}\sum_I Q_I u^{\beta} = -\rho m_b^{-1} (Q_{\nu_e} + Q_{\bar{\nu}_e} + Q_{\nu_{\tau,\mu}}+Q_{\bar{\nu}_{\tau,\mu}})u^{\beta}
-%    \end{equation}
-%    Here, the emissivity due to the $\tau$ and $\mu$ neutrinos into a single contribution $ Q_{\nu_{\tau,\mu}}$.
-%    These equations, for numerical evolution, the equations are cast into a flux conservative formulation, based on the Valencia formulation, representing Eurler equtions and lepton/baryon number conservations as balance laws.
-%    \begin{equation}
-%    \partial_t (\sqrt{\gamma}\boldsymbol{q}) + \partial_t\Big( \sqrt{\gamma} \boldsymbol{f}^{(i)}(\boldsymbol{q}) \Big) = s(\boldsymbol{q}).
-%    \end{equation}
-%    where $\gamma$ is the determinant of the three-metric, while $\boldsymbol{f}^{(i)}(\boldsymbol{q})$ and $s(\boldsymbol{q})$ are the flux vectors and source terms, respectively \cite{Font:2008fka}.
-%}
-
-%The foundation of the scheme described here is presented in \cite{Galeazzi:2013mia}.
-%The method is similar to that of the \cite{Ruffert:1995fs}.
-%And, as in the \cite{Rosswog:2003rv}, the opacities are computed on the basis local thermodynamical equilibrium chemical potential for the neutrinos.
-
-
-%The scheme consideres three neutrino species: electron neutrino $\nu_e$, electron antineutrino $\bar{\nu}_e$ and an single species $\nu_x$ for heavy-lepton neutrinos.
-%The reactions traced by the scheme are listed in the table \ref{tab:leakage}.
-
-
-
-\gray{
-    Notably, the $E == n_{\alpha}n_{\beta}T^{\alpha\beta}$, 
-    $S_i = -\gamma_{i\alpha}n_{\beta}T^{\alpha\beta}$ and $S_{ij} = \gamma_{i\alpha}\gamma_{j\beta}T^{\alpha\beta}$ are the matter source terms where $n_{\alpha}=(-\alpha, 0, 0, 0)$ is the future pointing four-vector orthonormal to the space-like hypersurface, $S=S_{i}^{i}$ is the trace.
-}
-
-\subsubsection{neutrino M0 scheme}
-
-This part is based in \cite{Radice:2016dwd} and \cite{Radice:2018pdn}.
-%% M0 Appendix A from Radice:2016dwd, Neutrin transport details
-%\subsubsection{The Boltzmann equations for Free-Streaming Neutrinos}
-
-First, the Boltzmann equation is derived for the neutrinos, that are again
-assumed to be massless particles
-Neutrinos propagate propagating in the fluid
-with four-velocity is $u^{\alpha}$ and four-momentum, $p^{\alpha}$.
-The latter can be decomposed as \cite{Thorne:1981}
-
-\begin{equation}
-    p^{\alpha} = (-p_{\beta}u^{\beta})(u^{\alpha} + r^{\alpha}),
-\end{equation}
-
-where $E_{\nu}=-p_{\alpha}u^{\alpha}$ is the neutrino energy measured by \red{Eulerian} observer,
-comoving with the fluid, $r^{\alpha}$ is the unit space-like vector, orthogonal to the 
-fluid's $u^{\alpha}$, or in other words $r_{\alpha}r^{\alpha}=1$ and $u_{\alpha}r^{\alpha}=0$.
-Additionally, $r^{\alpha}$ can be interpreted as the direction along which neutrinos move,
-as seen by the \red{Eulerian} observer comoving with the fluid.
-
-The four-vector of the neutrinos is
-
-\begin{equation}
-    \label{eq:method:whisky:neut:k}
-    k^{\alpha} = u^{\alpha} + r^{\alpha}
-\end{equation}
-
-with $k_{\alpha}k^{\alpha} = 0$.
-\red{2018pdn: The vector is normalized such that $k^{\alpha}u_{\alpha}=-1$}
-
-Next, the affine parameter, that parameterized the neutrino's worldline is introduced
-
-\begin{equation}
-    l = \int (-p_{\alpha u^{\alpha}})\dd s \text{ so that } \Big( \frac{\partial}{\partial l} \Big)^{\alpha} = k^{\alpha}.
-\end{equation}
-
-Now, with $l$, the Boltzmann equations for the neutrino radiation transport read \cite{Thorne:1981}
-
-\begin{equation}
-    \frac{D F}{D l} = \mathbb{C}[F]
-\end{equation}
-
-where $F$ is the distribution function for a give neutrino species, and $\mathbb{C}$ is the
-'collisional operator' \red{See Rdice Thesis} the contains information regarding the interactions between neutrinos and the background fluid (in the frame of the fluid). 
-The $D/Dl$ is the total derivative in phase space along $p^{\alpha}$ and it reads 
-
-\begin{equation}
-    \label{eq:method:whisky:neut:bolzeq}
-    \frac{DF}{Dl} = k^{\alpha} \Big[ \frac{\partial F}{\partial x^{\alpha}} - \Gamma^{\delta}_{\:\:\alpha\beta}p^{\beta}\frac{\partial F}{\partial p^{\delta}} \Big],
-\end{equation}
-
-where $\Gamma^{\delta}_{\:\:\alpha\beta}$ are the Christoffel symbols.
-
-
-%\subsubsection{Neutrino number density evolution}
-
-%Neutrinos are split into two categories. 
-%Trapped neutrinos are treated with leackage scheme.
-
-The obtained Boltzmann equation, \eqref{eq:method:whisky:neut:bolzeq}, allows to desribe the evolution of the free-straming neutrinons and track the evolution of their average energy.
-Assume, that the neutrinos propagate along the radial rays. 
-
-The source term is given by the neutrino leakage scheme, taking the effective emissivity from it.
-The collisional term is approximated in a way that it only includes neutrino absorption and emission. Scattering is neglected.
-
-For the evaluation of the absorption opacities, (of $\nu_{e}$ and $\bar{\nu}_{e}$) the local thermodynamic equilibrium is assumed.
-
-The neutrino number density (in the fluid rest frame) for neutrinos of a give flavor, $n_X$, can be expressed through the neutrino number current $J_{X}^{\alpha}$ that reads \cite{Lindquist:1966},
-
-\begin{equation}
-    J_{X}^{\alpha} = \int F p^{\alpha} \frac{\dd^3 p}{-p_0}
-\end{equation}
-
-as $n_X = - u_{\alpha} J_{X}^{\alpha}$.
-
-The balance equation (between absorption and emission of neutrinos) can be obtained from the 
-first moment of the Boltzmann equation \cite{Thorne:1981,Shibata:2011kx}
-
-\begin{equation}
-    \label{eq:method:whisky:neut:balanseq}
-    \nabla_{\alpha}J_{X}^{\alpha} = R_{X}^{\text{eff}} - \kappa_X n_X,
-\end{equation}
-
-where $\kappa_X$ is the absorption opacity and $R_X^{\text{eff}}$ is the effective neutrino emission rate.
-
-While the equation \eqref{eq:method:whisky:neut:balanseq} is exact, in order to be solved, it requires closure. 
-In this method the closure is given by considering neutrinos only propagating radially and at a speed of light, \textit{e.g.,}
-
-\begin{equation}
-    J_{X}^{\alpha} = n_X k^{\alpha},
-\end{equation}
-
-where $k^{\alpha}$ is the fiductial null vector, \eqref{eq:method:whisky:neut:k}, under the assumption that $r^{\alpha}$ is the radial null-vector, orthogonal to the fluid $u^{\alpha}$.
-This translates into the assumption that the free-streaming neutrinos are moving radially in a frame instantaneously comoving with the fluid.
-
-Then, the balance equation for $n_X$ reads
-
-\begin{equation}
-    \label{eq:mehtod:whisky:neut:balanseq2}
-    \partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) = \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X)
-\end{equation}
-
-where $g$ is the determent of the $4$-metric \gray{(in spherical coordinates)}.
-
-
-%\subsubsection{Neutrino average energy evolution}
-
-
-Nect, the computation of the neutrino average energy is required to evaluate the matter composition and temperature changes.
-
-Here the additional assumtion is made, that the space-time is stationary, \textit{e.g.,} $t^{\alpha}:=(\partial_t)^{\alpha}$ is a Killing vector, which leads to the $(-p_{\alpha}t^{\alpha})$ to be a conserved quantity.
-Assuming that there is no interaction with the fluid and the along the neutrino worldlines, \textit{e.g.,}
-
-\begin{equation}
-    \frac{\dd(-p_{\alpha}t^{\alpha})}{\dd l} = 0
-\end{equation}
-
-Then, the quantity $\mathcal{E}_X = -p_{\alpha}t^{\alpha}$ is the energy of the neutrinos of species $X$ \gray{as seen by the coordinate observer, -- an unphysical observer with four-velocity $t^{\alpha}$}.
-
-%% --- MIGHT be a repetition
-%Consider 
-%
-%\begin{equation}
-%    \mathcal{E}_X = -p_{\alpha}t^{\alpha} = -E_{X} k_{\alpha}t^{\alpha} =: E_X \chi
-%\end{equation}
-%
-%then, the equation for the average neutrino energy reads
-%
-%\begin{equation}
-%    \frac{\dd \mathcal{E}_X}{\dd l} = \frac{R^{\text{eff}_X}}{n_X}\Big( \chi \frac{Q_X^{\text{eff}}}{R_{X}^{\text{eff}}} - \mathcal{E}_X \Big) 
-%\end{equation}
-%
-%where $Q_{X}^{\text{eff}}$ is the effective neutrino energy source (taken from the leakage scheme).
-%
-%For neutrinos radially moving, the equation reads
-%
-%\begin{equation}
-%    n_X k^{t} \partial_t \mathcal{E}_X + n_{X} k^{r}\partial_{r}\mathcal{E}_X = (\chi Q_{X}^{\text{eff}} - \mathcal{E}_X R_X^{\text{eff}}).
-%\end{equation}
-%
-%This eqution is solved on the same spherical grid using hte first order finite differencing method.
-
-
-%% M0 scheme
-Computation of the 
-neutrino number density and energy is 
-%$n_{\nu_e}$, $n_{\bar{n}_e}$, $E_{\nu_e}$ and $E_{\bar{\nu}_e}$ is 
-accomplished via the zeroth momentum (M0) of the free-streaming neutrino distribution function on a set of individual radial rays, with the closure adopted to post-merger geometry.
-
-%In the M0 scheme the evolution of the number density of free steaming neutrinos is done under the assumption.
-%Neutrons are assumed to be moving along the radial null rays with four vector $k^{\alpha}$. The vector is normalized such that $k^{\alpha}u_{\alpha}=-1$. 
-The number density of the free neutrinos in the fluid rest frame $n_{\nu}^{\text{fs}}$ follows \cite{Radice:2016dwd}
-
-\begin{equation}
-    \label{eq:method:whisky:eq7}
-    \nabla_{\alpha}[n_{\nu}^{\text{fs}}k^{\alpha}] = R_{\nu}^{\text{eff}} - \kappa_{\nu;a}^{\text{eff}}n_{\nu}^{\text{fs}},
-\end{equation}
-
-where $R_{\nu}^{\text{eff}}$ is the effective luminosity (\red{emission }) \eqref{eq:method:whisky:Rnueff}. 
-
-The effective absorption rate then
-
-\begin{equation}
-    \kappa_{\nu,a}^{\text{eff}} = e^{-\tau_{\nu}^0}\Big( \frac{E_{\nu}^{\text{fs}}}{E_{\nu}^{\beta}} \Big)^2 \kappa_{\nu,a}^0.
-\end{equation}
-
-where $E_{\nu}^{\text{fs}}$ is the average energy of the free-streaming neutrinos, and 
-$E_{\nu}^{\beta}$ is the average energy on the neutrinos that are in $\beta$-equilibrium.
-$E_{\nu}^{\text{fs}}$ and $E_{\nu}^{\beta}$ are defined in the restframe of the fluid.
-
-The energy of the free-sctreaming neutrinos is computed assuming the \red{stationarity of the metric}.
-Having the $\partial_t$ killing vector thus allows to have $p_{\nu}^{\alpha}(\partial_t)_{\alpha}$ conserved, 
-where $p_{\nu}^{\alpha}$ is the neutrinos four-momentum.
-
-Then, the average energy density of free-streaming neutrinos obeys
-
-\begin{equation}
-   \label{eq:method:whisky:eq9}
-    k^t\partial_t(E_{\nu}^{\text{fs}}\chi) + k^{r}\partial_r(E_{\nu}^{\text{fs}}\chi) = \frac{\chi}{n_{\nu}^{\text{fs}}}(Q_{\nu}^{\text{eff}}-E_{\nu}^{\text{fs}}R_{\nu}^{\text{eff}}),
-\end{equation}
-
-where $\chi=-k^{\alpha}(\partial_t)_{\alpha}$.
-
-%% Coupling, neutrinos and hydro
-The coupling between the matter and neutirnos is done via operator split approach \cite{Radice:2016dwd}.
-For equation \eqref{eq:wthc:pndens} reads
-
-\begin{equation}
-    R_p = (\kappa_{\nu_e;a}^{\text{eff}}n_{\nu_e}^{\text{fs}} - \kappa_{\bar{\nu}_e;a}^{\text{eff}}n_{\bar{\nu}_e}^{\text{fs}}) - (R_{\nu_e}^{\text{eff}} - R_{\bar{\nu}_e}^{\text{eff}}).
-\end{equation}
-
-For the Euler equation \eqref{eq:wthc:euler} reads
-
-\begin{equation}
-    Q = (\kappa_{\nu_e;a}^{\text{eff}}n_{\nu_e}^{\text{fs}}E_{\nu_e} + 
-    \kappa_{\bar{\nu}_e;a}^{\text{eff}}n_{\bar{\nu}_e}^{\text{fs}}E_{\bar{\nu}_e}) - 
-    (Q_{\nu_e}^{\text{eff}} + Q_{\bar{\nu}_e}^{\text{eff}} + Q_{\nu_x}^{\text{eff}}).
-\end{equation}
-
-The M0 scheme of \cite{Radice:2016dwd}, while less complex then frequency-integrated M1 schemes used by 
-\cite{Sekiguchi:2015dma} and \cite{Foucart:2015vpa}, it is advantagous with respect to the computational efficiency.
-It also includes approximations of the Doppler and gravitaional effects. 
-Additionally, the unphysical radaition shocks above the merger remnant, that commonly present in M1 schemes \cite{Foucart:2018gis}, do not develop in M0 scheme.
-
-\subsubsection{Coupling between hydrodynamics and neutrinos}
-
-
-%% numerics
-The eqution \eqref{eq:mehtod:whisky:neut:balanseq2} is solved on a series of independent radial rays using a first order, fully-implicit finite volume method.
-Coupling with the hydrodynamics is done via interpolation at every timestep.
-\gray{For our models 2048 radial rays uniformly spaced in latittude and longitude were used with radial resolution of $244$~m [CONFIRM!]}.
-
-Equations \eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens} are solved via operator split approach.
-The deposition of momentum by neutirnios is accounted for via the first-order explicit time update.
-\red{FIND OUT WHAT EXPLICIT AND IMPLICIT TIMESTEP MEANS!}
-The evolution of the $n_p$ and conserved energy is treaded with semi-implicit time-step \gray{update formula}.
-
-for a single timestep, in the operator split formulism, the $n_p$ and conserved energy evolution update is given by the equation 
-
-\begin{equation}
-\frac{\dd u}{\dd t} = f
-\end{equation}
-
-where $f$ can be large while, being the energy or a number density, $u$, should remain positive.
-The treatment of EOS here is such, that the specific internal energy per baryon and the evolved energy density are always $>0$. However, when there is a strong cooling, $f\ll0$ and $u<|f|\Delta t$, 
-the equation becomes stiff and aa update of $u$ required special treatment. 
-The semi-implicit scheme is implemented as 
-
-\begin{equation}
-\frac{u^{k+1}-u^{k}}{\Delta t} = \theta^k u^{k+1}
-\end{equation}
-
-where $\theta = f/u$.
-
-As $k$ stands for the function $t=k\Delta t$,
-
-\begin{equation}
-u^{k+1} = \frac{u^{k}}{1-\theta^k \Delta t}
-\end{equation}
-
-that assures the positvity of the solution.
-
-
 
 
 
