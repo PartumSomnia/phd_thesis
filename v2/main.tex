@@ -1,36 +1,68 @@
 \documentclass[11pt,a4paper,headinclude=true,DIV=14,BCOR=8mm,chapterprefix,listof=totoc,twoside,openright,abstracton]{scrbook}
 
 
-%% packages
-\usepackage[headsepline]{scrpage2}
-\usepackage[utf8]{inputenc}
-\usepackage{geometry}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{enumerate}
+%%% packages
+%\usepackage[headsepline]{scrpage2}
+%% \usepackage[utf8]{inputenc}
+%\usepackage{geometry}
+%\usepackage{amssymb}
+%\usepackage{amsthm}
+%\usepackage{enumerate}
+%\usepackage{graphicx}
+%\usepackage{float}
+%%  \usepackage[intlimits]{amsmath}
+%\usepackage{xcolor}
+%\usepackage{verbatim}
+%\usepackage{appendix}
+%\usepackage{hyperref}
+%\usepackage{mathtools}
+%\usepackage{mathrsfs}
+%\usepackage{amsmath,amsfonts,amssymb}
+%\usepackage{natbib}
+%\usepackage{xr}
+%\usepackage{wrapfig}
+%\usepackage[framemethod=tikz]{mdframed} % for a block of text
+%\usepackage{etoolbox}
+%\usepackage[utf8]{inputenc}
+%\usepackage[normalem]{ulem}
+
+\usepackage{acronym}
+\usepackage{booktabs}
+\usepackage{dcolumn}
 \usepackage{graphicx}
-\usepackage{float}
-\usepackage[intlimits]{amsmath}
-\usepackage{xcolor}
-\usepackage{verbatim}
-\usepackage{appendix}
-\usepackage{hyperref}
-\usepackage{hyperref}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathrsfs}
 \usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+\usepackage[normalem]{ulem}
+
+\usepackage[breaklinks,colorlinks,citecolor=blue]{hyperref}
+
+\usepackage{graphicx,psfrag}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{ulem}
+\usepackage{hyperref}
+
 \usepackage{natbib}
-\usepackage{xr}
-\usepackage{wrapfig}
-\usepackage[framemethod=tikz]{mdframed} % for a block of text
-\usepackage{etoolbox}
+\citestyle{apjl}%{apj}
 
 %% properties
 \setlength{\parindent}{0pt}
 \setcitestyle{aysep={}} 
-\bibliographystyle{apalike}
+\bibliographystyle{apalike} % apalike
 \setcitestyle{citesep={,}}
-\newtoggle{Full}
-\togglefalse{Full}
-\geometry{a4paper, tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm, headheight=3em, headsep=2em, footskip=1cm}
+%\newtoggle{Full}
+%\togglefalse{Full}
+%\geometry{a4paper, tmargin=3cm, bmargin=3cm, lmargin=3cm, rmargin=3cm, headheight=3em, headsep=2em, footskip=1cm}
+
+\newcommand{\myhead}[1]{\multicolumn{1}{c}{#1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+\usepackage{color}
+\usepackage{xcolor}
 
 %% commands / macro
 \newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
@@ -41,7 +73,16 @@
 \newcommand{\nwind}{$\nu$-component}
 \newcommand{\gcm}{g cm$^{-3}$}
 \newcommand{\dd}{\text{d}}
-\newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
+%% \newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
+%% macros
+
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\cf}{\textit{cf.}}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\pz}{\phantom{0}}
+\newcommand{\SNR}{\mathrm{SNR}}
+
 
 %% head
 \title{PhD thesis}
@@ -1465,7 +1506,7 @@ Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 
 
 %% ======================================== Code used
-\chapter{Evolution setup \& postprocessing tools}
+\chapter{Evolution setup \& post-processing tools}
 
 
 %% \section{Used codes and setup}
@@ -1599,6 +1640,7 @@ where $Q$ is the net energy deposition rate doe to absorption
 and emission of neutrinos also treated with the M0 scheme.
 \red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
 
+
 \subsection{Numerical methods}
 
 
@@ -1639,13 +1681,14 @@ to be $<0.25$ for numerical stability. To assure taht the positivity-preserving 
 
 \subsection{AMR}
 
+
 The code uses the Berger-Oliger conservative adaptive mesh renement (AMR) \cite{Berger:1984} with 
 sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} \cite{Berger:1989,Reisswig:2012nc} as provided by the \texttt{Carpet module} of the \texttt{Einstein Toolkit} 
 \cite{Schnetter:2003rb}. 
 
 
-
 \subsection{Neutrino scheme}
+
 
 \begin{table}
     \caption{
@@ -1675,8 +1718,8 @@ sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} 
     \end{center}
 \end{table}
 
-
-
+\red{JUST Name the chemes and reference the equations}
+\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
 
 
 \section{General Setup}
@@ -1711,17 +1754,181 @@ Most our models also include the effect of subgrid turbulence, viscosity.
 \section{Postprocessing tools and methods}
 
 
-
 In order to investigate the neutron star merger dynamics and outflowing material we imploy the following methods and tools.
+
+In order to study and compara on a quantiative level properties of outflow, disk and remnant we employ the mass-averaged quantities and for a quantity $f$ they are computed as 
+\begin{equation}
+    \langle f \rangle = \frac{\sum_i f(m_i)m_i}{\sum_i m_i}
+\end{equation}
+where $m_i$ is the mass contained in the $i$-th bin.
+
+
+\subsection{Disk \& Remnant}
+
+It is common to discuss the post-merger state of the binary neutron star systems in terms of the remnant, a neutron star or a black hole, and a disk or torus. However there is not unified convention in how to define the latter and separate it from the former. 
+
+In the case where the remnant is a BH, the disk common disk definition is the matter outside the apparent horizon, (\eg, \cite{Dietrich:2015iva,Dietrich:2016hky}). 
+However, owing to the disk accretion onto a black hole, the extraction time is a crutual paramter, and unfortunately is not consistent in the literature, (\eg $\sim1$~ms in \cite{Dietrich:2015iva,Dietrich:2016hky} and $\sim30$~ms in \cite{Sekiguchi:2016bjd}).
+
+In the case where the remnant is a neutron star, the disk definition usually includes the density cut. For instance, in \cite{Radice:2018pdn,Kiuchi:2019lls,Vincent:2019kor} the disk is assumed to encompass the matter with $\rho < 10^{13}$~\gcm. 
+The threshold $\rho\sim 10^{13}$~\gcm corresponds to the point in the remnant where
+the angular velocity profiles becomes approximately Keplerian, \citep[\eg][]{Shibata:2005ss,Shibata:2006nm,Hanauske:2016gia,Kastaun:2016elu}.
+The extraction time here is also important, but less so, as we find that the accretion on the NS is considerably slower.
+
+Overall, we estimate that these differences can amount to a systematic factor of a few,
+which we employ for the statistical analysis in section \ref{sec:stat:anal}
+
+% In this thesis we define the disk as a matter that satisfies two criteria $\alpha > 0.15$ and $\tho < 10^{13}\gcm$, where $\alpha$ is the lapse function (see section \ref{sec:theory:gr3p1}).
+
+We compute the baryonic mass of the disks is computed as the volume integral of the conserved rest-mass density $D=\sqrt{\gamma}~W\rho$,
+
+\begin{equation}
+M_{\text{disk}} = \int D \dd^3 x
+\end{equation}
+
+from 3D snapshots of the simulations in postprocessing.
+
+
+
+%% In \cite{Sekiguchi:2016bjd}, the disk mass is extracted at
+%% ${\approx} 30$~ms outside the AH. In \cite{Radice:2018pdn}, the disk mass is computed
+%% as the baryonic mass outside the AH at BH formation, while for NS
+%% remnants the criterion $\rho < 10^{13}$ g cm$^{-3}$ is used. 
+%% In \cite{Kiuchi:2019lls} for both BH and NS outcome the $\rho < 10^{13}$ g cm$^{-3}$ 
+%% criterion is used and time of the extraction is not specified. 
+%% In \cite{Vincent:2019kor} the density criterion is the same, however the simulations 
+%% are significantly shorter (${~\sim 7.5}$~ms) than in other
+%% works. Overall, we estimate that these differences can amount to a
+%% systematic factor of a few.
+
 
 
 \subsection{Density modes}
 
+%% FROM THE LETTER 
+
+The hydrodynamic instability is monitored by a decomposition in Fourier modes
+$e^{-\i m\phi}$ of the Eulerian rest-mass density on the equatorial plane 
+[see Eq.~(1) of \citep{Radice:2016gym}] and characterized by the
+development of a $m=2$ followed by a $m=1$ mode 
+\citep{East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,Bernuzzi:2013rza,Kastaun:2014fna}.
+In the short-lived remnant (LS220) the $m=1$ mode
+is subdominant with respect to the $m=2$, and it reaches a maximum close to the collapse
+\citep{Bernuzzi:2013rza}. Instead, in the long-lived remnant (DD2) the $m=1$
+becomes the dominant mode at $\sim$20~ms and persists throughout the
+remnant's lifetime, while the $m=2$ efficiently dissipates via
+gravitational-wave emission \citep{Bernuzzi:2015opx,Radice:2016gym}.
+
+%% FROM THE PAPER 
+
+During the post-merger evolution the neutron star oscillates. The most prominant modes are quasiradial mode $F$ ($m=0$), the $m=2$ $f$-model and non-linear combinations of them \citep[\eg][]{Shibata:2000jt,Stergioulas:2011gd}.
+
+It has also been shown that the $m=1$, one-armed spiral instability, is present in the remnant of neutron star mergers \citep{Paschalidis:2015mla,Radice:2016gym,East:2016zvv}.
+
+In order to investigate the dynamical instabilities in our simulations we 
+project the rest-mass density onto spherical harmonics,
+or, in other words, we perform the complex azimuthal mode decomposition of,
+the conserved rest-mass density.
+For simplicity we consider only $\rho(x,y,z=0,t)$, 
+\ie restrict our analysis to the orbital plane $z=0$
+
+\red{DOUBLE check the presence of Gamma and W}
+%% \begin{equation}
+%% \label{eq:modes}
+%% C_m = \int \rho(x,y,z=0,t) W e^{-i m \phi} \sqrt{\gamma} %% \text{d}x \text{d} y \, ,
+%% \end{equation}
+\begin{equation}
+    \label{eq:modes}
+    C_m(t) = \int \rho(x,y,z=0,t) e^{-i m \phi(x,y)} \text{d}x \text{d} y \, ,
+\end{equation}
+(see \eg~\citet{Baiotti:2009gk}).
+
+% where %% $\rho$ is the rest mass density, 
+% $\gamma$ is the determinant of the three-metric and $W$ is the
+% Lorentz factor between the fluid and the Eulerian observers. 
+
+Note that the above quantities are gauge dependent.
+
+\red{Dietrich in his thesis thinks that the growing m=1 mode is "We can not
+    exclude the possibility that the growing m = 1 mode is triggered by numerical effects,
+    but we think that it is a physical hydrodynamical effect due to mode couplings."
+    Page 53 of the thesis
+}
+
+In addition, friequencies of the modes can be computed with the Fourier analysis of the $\rho_{\text{max}}$ and projections $C_{m}$. We resort it for the future work, as in this work we are interested inly in their magnitude. 
+
+
+
+
+
 \subsection{Angular momentum}
+
+\red{First, white that in GR the angular momentum is not clearly defined}
+
+%% FROM LETTER 
+
+From the fluid's stress energy tensor,
+we compute the angular momentum density flux $J_r = T_{ra}(\partial_\phi)^a$,
+where $\phi$ is the cylindrical angular coordinate;
+angular momentum is conserved if $(\partial_\phi)^a$ is a Killing vector.
+
+%% FROM PAPER 
+
+The fluid's angular momentum analysis in the remnant and disk is performed
+assuming axisymmetry (see Appendix~\ref{app:ang} for derivation).
+ That is, we assume $\phi^{\mu} = (\partial_{\phi})^{\mu}$ to be a Killing
+vector. Accordingly, the conservation law
+\begin{equation}
+\partial_t(T^{\mu\nu}\phi_{\nu}n_{\nu}\sqrt{\gamma}) -
+\partial_i(\alpha T^{i \nu}\phi_{\nu}\sqrt{\gamma}) = 0 \ ,
+\end{equation}
+where $n^\mu$ is the normal vector to the spacelike hypersurfaces of
+the spacetime's $3+1$ decomposition, 
+implies the conservation of the angular momentum
+\begin{equation}
+J = % \int j dV = 
+%- \int \, T_{\mu\nu}n^{\mu}\phi^{\nu}\,\dd ^3x = 
+-\int \,
+T_{\mu\nu}n^{\mu}\phi^{\nu}\,\sqrt{\gamma}\, \dd^3 x\ .
+\end{equation}
+In the cylindrical coordinates $x^i=(r,\phi,z)$ adapted to the symmetry
+the angular momentum density is  
+\begin{equation}
+j = %-
+\rho h W^2 v_{\phi} \ ,
+\label{eq:intro:ang_mom}
+\end{equation}
+and the angular momentum flux is 
+\begin{equation}
+\alpha\sqrt{\gamma}T^r _{\nu}\phi^{\nu} =
+\alpha\sqrt{\gamma}\rho h W^2 (v^{r}v_{\phi}) .
+\end{equation}
+
 
 \subsection{Ejecta}
 
 
+All considered mass ejecta are calculated on a coordinate sphere at $R \simeq
+294$km. The dynamical ejecta is computed assuming the fluid elements 
+to follow unbound geodesics,  
+%\be
+$-u_t > 1$ %% \ ,
+%\ee
+and to reach an asymptotic velocity 
+$\upsilon_{\infty} \simeq \sqrt{2E_{\infty}} = \sqrt{(1-u_t ^2)}$.
+Wind ejecta are instead computed according to the Bernoulli criterion 
+%\be
+$-hu_t > 1$ %% \ ,
+%\ee
+and the associated asymptotic velocity is calculated as 
+$\upsilon_{\infty} \simeq \sqrt{2 (h (E_{\infty}+1)-1)}$. 
+Note that the geodesic criterion above neglects the fluid's pressure and might
+underestimate the ejecta mass. The Bernoulli criterion assumes that the (test
+fluid) flow is stationary, so that there is a pressure gradient that can
+further push the ejecta.  We find that both criteria predict dynamical
+ejecta masses that are practically indistiguishable and well within the numerical uncertainties \citep{Bernuzzi:2020txg} if applied to extraction spheres at large coordinate radii; 
+differences between the two criteria are instead present if they are applied to
+matter volumes \citep[cf.][]{Kastaun:2014fna}.
 
 
 
@@ -1738,6 +1945,7 @@ In order to investigate the neutron star merger dynamics and outflowing material
 \include{app_adm}
 \include{app_eul}
 \include{app_num}
+\include{app_ang}
 %% \include{appendix_gr} %% GR
 
 %% ================================================================= REFERENCES

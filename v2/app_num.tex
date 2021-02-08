@@ -132,18 +132,20 @@ We then call a scheme to be of order $r$ if
 || r^{\Delta}(t) || = \mathcal{O}(\Delta^r).
 \end{equation}
 
-\begin{sidenote}
-    \textbf{Infimum and Supremum} \\
-    Im math, the \textit{infimum (inf)} of a subset $S$ of a partially ordered set $T$ is the greatest element of $T$ that is less than or equal to all elements of $S$. \\
-    The \textit{supremum (sup)} of a subset $S$ of a partially ordered set $T$ is the least element in $T$ that is greater than or equatl to all elements of $S$. The upper bound of a subset $S$ of a partially ordered set (P,$\leq$) is an element $b$ of $P$ such that $b\geq x$ for all $x$ in $S$. If a supremum of a subset $S$ exhists it is unique. The supremum of a subset $S$ of partially ordered set $P$ does not necessearly belongs to $S$. But if it does, it is the maximum, or the greatest element of $S$. \\
-    Examples of suprema.
-    The supremum of a set of real numbers of $\{1,2,3\}$ is $3$. The number $4$ is an upper bound but it is not the least upper bound and hence not the supremum. \\
-    \begin{align}
-    \sup\{x\in\text{I\!R}|0<x<1\} = 1. \\
-    \sup\{(-1)^n - 1/n | n = 1,2,3,... \} = 1. \\
-    \sup\{x\in\mathbb{Q} | x^2 < 2\} = \sqrt{2}
-    \end{align}
-\end{sidenote}
+
+\paragraph{Infimum and Supremum}
+
+Im math, the \textit{infimum (inf)} of a subset $S$ of a partially ordered set $T$ is the greatest element of $T$ that is less than or equal to all elements of $S$. \\
+The \textit{supremum (sup)} of a subset $S$ of a partially ordered set $T$ is the least element in $T$ that is greater than or equatl to all elements of $S$. The upper bound of a subset $S$ of a partially ordered set (P,$\leq$) is an element $b$ of $P$ such that $b\geq x$ for all $x$ in $S$. If a supremum of a subset $S$ exhists it is unique. The supremum of a subset $S$ of partially ordered set $P$ does not necessearly belongs to $S$. But if it does, it is the maximum, or the greatest element of $S$. \\
+Examples of suprema.
+The supremum of a set of real numbers of $\{1,2,3\}$ is $3$. The number $4$ is an upper bound but it is not the least upper bound and hence not the supremum. \\
+\begin{align}
+\sup\{x\in\text{I\!R}|0<x<1\} = 1. \\
+\sup\{(-1)^n - 1/n | n = 1,2,3,... \} = 1. \\
+\sup\{x\in\mathbb{Q} | x^2 < 2\} = \sqrt{2}
+\end{align}
+
+
 
 A scheme is considered to be \textit{stable} if the norm $L^{\Delta}$ is limited 
 
@@ -219,68 +221,72 @@ where $L^1$ is norm and the strong convergence implies that this $L^1$ is the no
 
 Thus, the important point is to obtain a conditions that is sufficient for a scheme to be convergent. Then, the ax-Wendroff theorem will ensure that this solution is a weak solution. It is however important to note that the theorem does not guarantee that the solution also entropic, and an additional criterion of satisfying the entropy inequality, then has to be imposed. \\
 
-\begin{sidenote}
-    \textbf{Meaasure in mathematics} \\
-    measure of a set is a systematic way to assign a number to each suitable subset of that set intuitively interpreted as its size. Thus, a measure is a generalisation of length, area, volume. Example: \textit{Lebesgue measure on a Euclidean space} that assignes the conventional length area and volume to Eucledian geometry to the suitable subsets of the $n-$dimensional Eucledian space $\mathbb{R}^n$. For instance the Lebesgue measure of the interval $[0,1]$ in the real numbers is this length. \\
-    Measure is a function, that assigns a non-negative real number to certain subsets of a set $X$. It mist be countably addictive. \\
-    The formal defitinion: let $X$ be a set and $\Sigma$ a $\sigma$-algebra over $X$. A function $\mu$ from $\Sigma$ to the extended real number line is called measure if it sutisfies the following property:
-    \begin{itemize}
-        \item Non negativity: For all $E$ in $\Sigma$ we have $\mu(E)\geq 0$
-        \item Null empty set: $\mu(\emptyset) = 0$.
-        \item Countable addictivity or $\sigma$ addictivity: for all countable collections $\{E_k\}_{k=1}^{\infty}$ of pairwise disjoint sets in $\Sigma$: $\mu\Big(U_{k=1}^{\infty}E_k\Big) = \sum_{k=1}^{\infty}\mu(E_k)$.
-    \end{itemize}
-    \textbf{Lebesgue measure} \\
-    This is a standart way of assigning a measure to subset of $n-$dimensional Eucledian space. For $n=1,2,3$ it coinsides with simply length, area and volume. In general it is also called a $n-$dimensional volume or $n-$volume. Usually a measure of the Lebesgue-measurable set $A$ is denoted with $\lambda(A)$. \\
-    Formal definition: \\
-    Given a subset $E\subseteq\mathbb{R}$ with the length of interval $I=[a,b]$ (or $I=(a,b)$) given by $l(I) = b-a$ Lebesgue outer measure $\lambda^*(E)$ is defined as 
-    \begin{equation}
-    \lambda^*(E) = \inf\Bigg\{\sum_{k=1}^{\infty}l(I_k):(I_k)_{k\in N} \text{ is a sequence of open intervals with } \subseteq U_{k=1}^{\infty}I_k\Bigg\}
-    \end{equation}
-    The first part of the definition states that the subset $E$ of the real numbers is reduced to its outer measure by coverage by sets of open intervals. Each of these sets of intervals $I$ covers $E$E in the sense that when the intervals are combined together by union, they contain $E$. The total length of any covering interval set can easily overestimate the measure of $E$, because $E$ is a subset of the union of the intervals, and so the intervals may include points which are not in $E$. The Lebesgue outer measure emerges as the greatest lower bound (infimum) of the lengths from among all possible such sets. Intuitively, it is the total length of those interval sets which fit $E$ most tightly and do not overlap.\\
-    That characterizes the Lebesgue outer measure. Whether this outer measure translates to the Lebesgue measure proper depends on an additional condition. This condition is tested by taking subsets $A$ of the real numbers using $E$ as an instrument to split $A$ into two partitions: the part of $A$ which intersects with $E$ and the remaining part of $A$ which is not in $E$: the set difference of $A$ and $E$. These partitions of $A$ are subject to the outer measure. If for all possible such subsets $A$ of the real numbers, the partitions of $A$ cut apart by $E$ have outer measures whose sum is the outer measure of $A$, then the outer Lebesgue measure of $E$ gives its Lebesgue measure. Intuitively, this condition means that the set $E$ must not have some curious properties which causes a discrepancy in the measure of another set when $E$ is used as a "mask" to "clip" that set, hinting at the existence of sets for which the Lebesgue outer measure does not give the Lebesgue measure. (Such sets are, in fact, not Lebesgue-measurable.)\\
-    \textbf{$L^p$ space} \\
-    The $L^p$ spaces are function spaces defined using a natural generalisation of the $p-$form for a fintie-dimensitiona vector space. They are also called \textit{Lebesgue spaces}. $L^p$ spaces form an important class of \textit{Banach spaces} in functional analysis, and of topological vector spaces. \\
-    \textit{$p-$form in finite dimensions} \\
-    Consider a length vector $x=(x-1, x_2...,x_n)$ in the $n-$ dimensional real vector space $R^n$ is usually bien by the Euclidean norm 
-    \begin{equation}
-    ||x||_2 = (x_1 ^2 + ... + x_n ^2)^{1/2}.
-    \end{equation}
-    For real numbers the $p-$norm or $L^p$-norm of $x$ is defined by
-    \begin{equation}
-    ||x||_p = (|x_1|^p + ... + |x_n|^p)^{1/p}.
-    \end{equation}
-    \textit{$l^p$ spaces}
-    an $L^p$ space may be defined as a space of measurable functions for which the $p-$th power of an absolute value is  Lebesgue integrable where functions which agree almost everywhere are identified.
-    \textbf{Total variation.} \\
-    The total variation of a real-valued function $f$ defined on an interval $[a,b]\subset R$ is the quantity 
-    \begin{equation}
-    V_b ^a (f) = \sup_{\mathcal{P}}\sum_{i=0}^{n_p -1}|f(x_{i+1} - f(x_i)|,
-    \end{equation}
-    where the supremum runs over the set of all partitions $\mathcal{P} = \{\mathcal{P}=\{x_0,...,x_{np}\}|P\text{ is the partition of }[a,b]\}$ of the given interval. \\
-    \textit{total variation for function of $n>1$ real variables} \\
-    Let $\Omega$ be an open subset of $\mathbb{R}^n$. Given a function $f$ belonging to $L^1(\Omega)$, the total variation of $f$ in $\Omega$ is defined as 
-    \begin{equation}
-    V(f,\Omega):=\sup\Bigg\{\int_{\Omega}f(x)\text{div}\phi(x)\text{d}x:\phi\in C_{c}^1(\Omega, \mathbb{R}), ||\phi||_{L^{\infty}(\Omega)}\leq 1\Bigg\}
-    \end{equation}
-    where $C_c ^1(\Omega, \mathbb{R}^n)$ is the set of continuously differentiable vector functions of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
-    \textbf{Bounded variation} \\
-    A function of bounded variation also known as $BV$ dunction is a real valued function whose total variation $TV$ is bounded or finite. \\
-    In case of a continous function of one variable, for that function to be of  bounded variation implies taht the distance along the direction of the $y-$axis, neglecting the $x-$axis motion contribution, traversed by a point, moving along the grap, has a finite value. \\
-    In case of several variables a function $f$ defined on an open subset $\Omega$ of $\mathbb{R}^n$ is staid to have bounded variation it its distributional derivative is a vector-valued finite Radon measure.\\
-    Importantly, functions of bounded variation form an algebra of dinsontinous functions whose first derivative exists almost everywhere. Thus, they can be used to define generalized solutions of nonlinear problems involving functionals. ODE, PDE.\\
-    Returning to the definition of the total variation $TV$ for a function of one variable, $V_a ^b (f)$. If $f$ is differentiable and its derivative is Reimann-integrable, its total variation is the verical component of the arc-length of its graph, \textit{i.e.,}
-    \begin{equation}
-    VC_a ^b(f) - \int_a ^b |f'(x)|\text{d}x.
-    \end{equation}
-    A condinous real-valued function $f$ on the real line is said to be of bounded variation \textit{BV function} on a chosen interval $[a, b]\subset \mathbb{R}$ if its total variation is finitie, \textit{i.e.,}
-    \begin{equation}
-    f\in\text{BV}([a,b]) \leftrightarrows V_a ^b (f) < +\infty
-    \end{equation}
-    The space of bounded varaition (BV functions) can be defined as 
-    \begin{equation}
-    \text{BV}(\Omega) = \{u\in L^1(\Omega): V(u, \Omega) < +\infty\}
-    \end{equation}
-\end{sidenote}
+
+
+\paragraph{Meaasure in mathematics} 
+measure of a set is a systematic way to assign a number to each suitable subset of that set intuitively interpreted as its size. Thus, a measure is a generalisation of length, area, volume. Example: \textit{Lebesgue measure on a Euclidean space} that assignes the conventional length area and volume to Eucledian geometry to the suitable subsets of the $n-$dimensional Eucledian space $\mathbb{R}^n$. For instance the Lebesgue measure of the interval $[0,1]$ in the real numbers is this length. \\
+Measure is a function, that assigns a non-negative real number to certain subsets of a set $X$. It mist be countably addictive. \\
+The formal defitinion: let $X$ be a set and $\Sigma$ a $\sigma$-algebra over $X$. A function $\mu$ from $\Sigma$ to the extended real number line is called measure if it sutisfies the following property:
+\begin{itemize}
+    \item Non negativity: For all $E$ in $\Sigma$ we have $\mu(E)\geq 0$
+    \item Null empty set: $\mu(\emptyset) = 0$.
+    \item Countable addictivity or $\sigma$ addictivity: for all countable collections $\{E_k\}_{k=1}^{\infty}$ of pairwise disjoint sets in $\Sigma$: $\mu\Big(U_{k=1}^{\infty}E_k\Big) = \sum_{k=1}^{\infty}\mu(E_k)$.
+\end{itemize}
+\textbf{Lebesgue measure} \\
+This is a standart way of assigning a measure to subset of $n-$dimensional Eucledian space. For $n=1,2,3$ it coinsides with simply length, area and volume. In general it is also called a $n-$dimensional volume or $n-$volume. Usually a measure of the Lebesgue-measurable set $A$ is denoted with $\lambda(A)$. \\
+Formal definition: \\
+Given a subset $E\subseteq\mathbb{R}$ with the length of interval $I=[a,b]$ (or $I=(a,b)$) given by $l(I) = b-a$ Lebesgue outer measure $\lambda^*(E)$ is defined as 
+\begin{equation}
+\lambda^*(E) = \inf\Bigg\{\sum_{k=1}^{\infty}l(I_k):(I_k)_{k\in N} \text{ is a sequence of open intervals with } \subseteq U_{k=1}^{\infty}I_k\Bigg\}
+\end{equation}
+The first part of the definition states that the subset $E$ of the real numbers is reduced to its outer measure by coverage by sets of open intervals. Each of these sets of intervals $I$ covers $E$E in the sense that when the intervals are combined together by union, they contain $E$. The total length of any covering interval set can easily overestimate the measure of $E$, because $E$ is a subset of the union of the intervals, and so the intervals may include points which are not in $E$. The Lebesgue outer measure emerges as the greatest lower bound (infimum) of the lengths from among all possible such sets. Intuitively, it is the total length of those interval sets which fit $E$ most tightly and do not overlap.\\
+That characterizes the Lebesgue outer measure. Whether this outer measure translates to the Lebesgue measure proper depends on an additional condition. This condition is tested by taking subsets $A$ of the real numbers using $E$ as an instrument to split $A$ into two partitions: the part of $A$ which intersects with $E$ and the remaining part of $A$ which is not in $E$: the set difference of $A$ and $E$. These partitions of $A$ are subject to the outer measure. If for all possible such subsets $A$ of the real numbers, the partitions of $A$ cut apart by $E$ have outer measures whose sum is the outer measure of $A$, then the outer Lebesgue measure of $E$ gives its Lebesgue measure. Intuitively, this condition means that the set $E$ must not have some curious properties which causes a discrepancy in the measure of another set when $E$ is used as a "mask" to "clip" that set, hinting at the existence of sets for which the Lebesgue outer measure does not give the Lebesgue measure. (Such sets are, in fact, not Lebesgue-measurable.)\\
+\textbf{$L^p$ space} \\
+The $L^p$ spaces are function spaces defined using a natural generalisation of the $p-$form for a fintie-dimensitiona vector space. They are also called \textit{Lebesgue spaces}. $L^p$ spaces form an important class of \textit{Banach spaces} in functional analysis, and of topological vector spaces. \\
+\textit{$p-$form in finite dimensions} \\
+Consider a length vector $x=(x-1, x_2...,x_n)$ in the $n-$ dimensional real vector space $R^n$ is usually bien by the Euclidean norm 
+\begin{equation}
+||x||_2 = (x_1 ^2 + ... + x_n ^2)^{1/2}.
+\end{equation}
+For real numbers the $p-$norm or $L^p$-norm of $x$ is defined by
+\begin{equation}
+||x||_p = (|x_1|^p + ... + |x_n|^p)^{1/p}.
+\end{equation}
+\textit{$l^p$ spaces}
+an $L^p$ space may be defined as a space of measurable functions for which the $p-$th power of an absolute value is  Lebesgue integrable where functions which agree almost everywhere are identified.
+\textbf{Total variation.} \\
+The total variation of a real-valued function $f$ defined on an interval $[a,b]\subset R$ is the quantity 
+\begin{equation}
+V_b ^a (f) = \sup_{\mathcal{P}}\sum_{i=0}^{n_p -1}|f(x_{i+1} - f(x_i)|,
+\end{equation}
+where the supremum runs over the set of all partitions $\mathcal{P} = \{\mathcal{P}=\{x_0,...,x_{np}\}|P\text{ is the partition of }[a,b]\}$ of the given interval. \\
+\textit{total variation for function of $n>1$ real variables} \\
+Let $\Omega$ be an open subset of $\mathbb{R}^n$. Given a function $f$ belonging to $L^1(\Omega)$, the total variation of $f$ in $\Omega$ is defined as 
+\begin{equation}
+V(f,\Omega):=\sup\Bigg\{\int_{\Omega}f(x)\text{div}\phi(x)\text{d}x:\phi\in C_{c}^1(\Omega, \mathbb{R}), ||\phi||_{L^{\infty}(\Omega)}\leq 1\Bigg\}
+\end{equation}
+where $C_c ^1(\Omega, \mathbb{R}^n)$ is the set of continuously differentiable vector functions of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
+\textbf{Bounded variation} \\
+A function of bounded variation also known as $BV$ dunction is a real valued function whose total variation $TV$ is bounded or finite. \\
+In case of a continous function of one variable, for that function to be of  bounded variation implies taht the distance along the direction of the $y-$axis, neglecting the $x-$axis motion contribution, traversed by a point, moving along the grap, has a finite value. \\
+In case of several variables a function $f$ defined on an open subset $\Omega$ of $\mathbb{R}^n$ is staid to have bounded variation it its distributional derivative is a vector-valued finite Radon measure.\\
+Importantly, functions of bounded variation form an algebra of dinsontinous functions whose first derivative exists almost everywhere. Thus, they can be used to define generalized solutions of nonlinear problems involving functionals. ODE, PDE.\\
+Returning to the definition of the total variation $TV$ for a function of one variable, $V_a ^b (f)$. If $f$ is differentiable and its derivative is Reimann-integrable, its total variation is the verical component of the arc-length of its graph, \textit{i.e.,}
+\begin{equation}
+VC_a ^b(f) - \int_a ^b |f'(x)|\text{d}x.
+\end{equation}
+A condinous real-valued function $f$ on the real line is said to be of bounded variation \textit{BV function} on a chosen interval $[a, b]\subset \mathbb{R}$ if its total variation is finitie, \textit{i.e.,}
+\begin{equation}
+f\in\text{BV}([a,b]) \leftrightarrows V_a ^b (f) < +\infty
+\end{equation}
+The space of bounded varaition (BV functions) can be defined as 
+\begin{equation}
+\text{BV}(\Omega) = \{u\in L^1(\Omega): V(u, \Omega) < +\infty\}
+\end{equation}
+
+
+
+
 
 Let us then proceed with derivation of the conditions that is sufficient for convergence. We start by introducing the total-variation of a function $u$, belonging to $L^1(\Omega)$ in a domain $\Omega$
 
@@ -343,19 +349,21 @@ It is believed that a more precise characterization of piecewise-regular entropi
 
 \subsection{Finite-Volume Methods}
 
-\begin{sidenote}
-    \textbf{Reimann problem} \\
-    Reimann problem is a specifit initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuituy in the domain of interest. In numerical analysis it appears naturally in finite volume method for the solution of conservation law equations due to the discreteness of the grid. 
-    \textbf{Reimann solver} \\
-    A Reimann solver is a numerical method used to solve a Reimann problem. Generally speaking, Reimann solvers ar especific methods for computing the numerical flux across a discontinuityin the Riemann problem. They are wifely used in high resolution schemes. Usually, left and right states for the reimann Problem are calculated using some form on non-linear reconstraction, such as flux limiteror WENO method, and then used as inut for the reimann solver. \\
-    An iterative solution to the RP is too costly, especially in MHD. Popular approximations are:
-    \begin{itemize}
-        \item Roe solver - using linearisation of the Jacobian, which then is solved exactly \\
-        \item HLLE solver - approximate solution to the RP which is only based on the integral form of the conservational las and the largest and smallest signal velocities at the interface.
-        \item HLLC solver - resotores the missing Rarefaction wave by some estiamtes, line linearesations. Efficient, But more diffusive. 
-        \item Rotated-hybrid Riemann solvers. 
-    \end{itemize}
-\end{sidenote}
+
+\paragraph{Reimann problem} 
+
+Reimann problem is a specifit initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuituy in the domain of interest. In numerical analysis it appears naturally in finite volume method for the solution of conservation law equations due to the discreteness of the grid. 
+\textbf{Reimann solver} \\
+A Reimann solver is a numerical method used to solve a Reimann problem. Generally speaking, Reimann solvers ar especific methods for computing the numerical flux across a discontinuityin the Riemann problem. They are wifely used in high resolution schemes. Usually, left and right states for the reimann Problem are calculated using some form on non-linear reconstraction, such as flux limiteror WENO method, and then used as inut for the reimann solver. \\
+An iterative solution to the RP is too costly, especially in MHD. Popular approximations are:
+\begin{itemize}
+    \item Roe solver - using linearisation of the Jacobian, which then is solved exactly \\
+    \item HLLE solver - approximate solution to the RP which is only based on the integral form of the conservational las and the largest and smallest signal velocities at the interface.
+    \item HLLC solver - resotores the missing Rarefaction wave by some estiamtes, line linearesations. Efficient, But more diffusive. 
+    \item Rotated-hybrid Riemann solvers. 
+\end{itemize}
+
+
 
 The finite-volume method, the Godunov scheme \cite{Godunov:1959}, was one of the fist \textit{monotonicity-preserving schemes}\footnote{Different from the monotonic schemes discussed above} that was able to yield solutions with discontinuities without spurious numerical extrema and with minimum numerical dissipation. There is a plethora of variations of Godunov-type, methods for conservation laws, built on top of the original method, see \textit{e.g.,} \cite{Toro:1999} for an up-to-date overview of the subject. \\
 In this section we consider the basic Godunov method for the first order schemes. Then, we iterate on the second-order Godunov-type schemes, that are the most widely used in the field of relativistic hydrodynamics. In the end of the subsetion, we elaborate on the extension of FV methods to even higher orders, and pint out the difficulties arising in application to the relativistic hydrodynamics 
