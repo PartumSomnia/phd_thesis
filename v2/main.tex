@@ -46,6 +46,10 @@
 \usepackage{ulem}
 \usepackage{hyperref}
 
+\usepackage{pifont} % \cmark \xmark % http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
 \usepackage{natbib}
 \citestyle{apjl}%{apj}
 
@@ -64,6 +68,8 @@
 \usepackage{color}
 \usepackage{xcolor}
 
+\def\Msun{{\text{M}_{\odot}}}
+
 %% commands / macro
 \newcommand{\todo}[1]{\textcolor{red}{$\blacksquare$ TODO: #1}} 
 \newcommand{\red}[1]{\textcolor{red}{#1}} 
@@ -76,12 +82,42 @@
 %% \newmdenv[linecolor=cyan,backgroundcolor=cyan!20]{sidenote}
 %% macros
 
+\newcommand{\GW}{GW170817}
+\newcommand{\AT}{AT2017gfo} %{{SSS17a}} %{{AT170817A}} % AT2017gfo
+\newcommand{\GRB}{GRB170817A}
+
 \newcommand{\eff}{\mathrm{eff}}
 \newcommand{\cf}{\textit{cf.}}
 \newcommand{\ie}{\textit{i.e.}}
 \newcommand{\eg}{\textit{e.g.}}
 \newcommand{\pz}{\phantom{0}}
 \newcommand{\SNR}{\mathrm{SNR}}
+
+\newcommand{\rproc}{$r$-process}
+\newcommand{\pmerg}{post-merger}
+
+%% MACRO FOR EJECTA
+% dyn ejecta
+\def\md{M^{\text{d}}_{\text{ej}}}
+\def\vd{v^{\text{d}}_\infty}
+\def\yd{Y^{\text{d}}_{e}}
+\def\amd{\md}
+\def\avd{\langle\vd\rangle}
+\def\ayd{\langle\yd\rangle}
+% spiral-wind
+\def\mw{M^{\text{w}}_{\text{ej}}}
+\def\vw{v^{\text{w}}_\infty}
+\def\yw{Y^{\text{w}}_{e}}
+\def\amw{\mw}
+\def\avw{\langle\vw\rangle}
+\def\ayw{\langle\yw\rangle}
+% nu-wind
+\def\mnu{M^{\nu\text{w}}_{\text{ej}}}
+\def\vnu{v^{\nu\text{w}}_\infty}
+\def\ynu{Y^{\nu\text{w}}_e}
+\def\amnu{\mnu}
+\def\avnu{\langle\vnu\rangle}
+\def\aynu{\langle\ynu\rangle}
 
 
 %% head
@@ -136,6 +172,68 @@
 
 %% ============================================================= Chapter :: Introduction 
 \chapter{Introduction}
+
+\red{biased for Shibata papers [from his 2019 paper with hotokezaka]}
+
+Mergers if neutron star binaries (binary neutron stars (BNS)) and neutron star-black hole 
+(NSBH) are one of the most promising sources of graviational waves (GWs) for ground-based
+detectors (\eg, Advanced LIGO and Virgo, and KAGRA \citep{Abadie:2010hv,Accadia:2010aa,Akutsu:2017kpk}).
+On August 17, 2017 advanced LIGO and Aadvanced Virgo made the first observation of GWs from a binary 
+neutron star merger, the event \GW{}. It is expected that advanced GW observatories will detect more
+events such as \GW{} in the near future.
+
+It is expected that a significant amount of matter is ejected during the neutron star merger. 
+This neutron-rich matter, the ejecta, is a promising site for the rapid neutron racture 
+nucleosynthesis, ($r$-process, see sec.\ref{sef:nucleo}), responsible for the creation of the 
+heaviest elements in the Universe \citep{Lattimer:1974slx,Eichler:1989ve,Thielemann:2017acv}.
+Related to the neutron-rich heavy element synthesis in the ejecta, an electromagnetic (EM) transient
+(Kilonova/mactronova) is expected to be powered by the radioactive decay of the \rproc{} 
+elements \citep{Li:1998bw,Metzger:2010,Roberts:2011,Goriely:2011vg,Korobkin:2012uy,Barnes:2013wka,Tanaka:2013ana}.
+This is the electromagnetic counterpart to the gravitational waves from BNS that, if detected, 
+could constrain aid with the source sky localization and allow further constrain models 
+of the chemical evolution and origin of the heavy \rproc{} elements 
+This is supported by the recent observation of ultra-violet, optical, and infrared signals of
+\GW{} \citep{TheLIGOScientific:2017qsa,Tanaka:2017qxj,Arcavi:2017xiz,Coulter:2017wya,Cowperthwaite:2017dyu,Drout:2017ijr,Evans:2017mmy,Kasliwal:2018fwk,Pian:2017gtc,Smartt:2017fuw,Tanvir:2017pws}. 
+In addition to the nuclear decay powered EM counterpart, a long-lasting synchrotron emission 
+is multi-wavelengths is expected from the merger ejecta propagating through the interstellar
+medium (ISM) \citep{Nakar:2011cw}. 
+Such signal, if detected, would provide an additional information on the merger ejecta velocity profile,
+unafeccted by the ill-constrained details of the \rproc{} nucleosynthesis. 
+
+In order to perform a quantitative studies of the aforementioned topics, first the main aspects 
+of the BNS merger have to clarified. These aspects include the merger process, the mass ejection, 
+the nucleosynthesis and subsequent decay of the heavy elements in the ejecta, and EM emission
+arising from the ejecta. Numerical relativity simulations that include accurate microphysical processes, 
+neutrino radiation transport and magnetohydrodynamics (MHD) are the best tool in this regard. 
+
+Owing to the recent rapid advancement in the field of modeling the BNS in numerical-relativity (NR) 
+the detailed simulations of the mergers are now achievable.
+This allowed to investigate the effects of the neutron star matter equation of state, (EOS) that 
+take into account the finite-temperature effects \citep{Duez:2009yz,Sekiguchi:2011zd},
+the effects of the neutrino cooling \citep{Sekiguchi:2011zd,Deaton:2013sla,Foucart:2014nda,Palenzuela:2015dqa} and neutrino heating \citep{Sekiguchi:2015dma,Foucart:2016rxm}, and
+MHD instability \citep{Kiuchi:2014hja,Kiuchi:2015sga,Kiuchi:2015sga}.
+Numerical relativity simulations are currently the best way to study the mergers and predict the features, 
+that can be tested with later observations.
+
+In BNS mergers the mass ejection processes have been studied with NR simulations have been first 
+investigated by \citet{Hotokezaka:2013b} while in the NSBH mergers by \citet{Foucart:2012vn}. A large number of numerical relativity 
+simulations have been performed to study the nature of the first material that is being ejected 
+on the dynamical timescale (the dynamical ejecta) \cite{(Sekiguchi:2015dma,Palenzuela:2015dqa,Lovelace:2013vma,Kyutoku:2013wxa,Foucart:2015vpa,Foucart:2015gaa,Foucart:2016rxm,Sekiguchi:2016bjd,Lehner:2016lxy,Radice:2016dwd,Foucart:2016vxd,Kyutoku:2017voj,Dietrich:2018uni,Dietrich:2016lyp,Bovard:2017mvn,Radice:2018pdn}. This works showed that ejecta mass depends on the binary parameters, such as mass ration, and on 
+the EOS. The ejecta was found to host material with broad range of compositions, where the latter 
+is usually quantified with electron fraction $Y_e$, which is the electron number density per baryon 
+number density. This wide range of $Y_e$, is however consistent with the observed abundance patterns 
+of \rproc{} elements (with mass number larger $A\sim90$) in the Solar System and metal poor-stars \citep{Wanajo:2014,Radice:2016dwd}.
+
+After a BNS merger, a remnant is born. It can be a black hole (BH) or a massive, stable or unstable, neutron star (MNS). Both could be surrounded by a gravitationally bound matter, a disk (torus). 
+The \pmerg{} evolution have been investigated by many groups \citep{Fernandez:2013tya,Metzger:2014ila,Perego:2014fma,Fernandez:2014cna,Just:2014,Fernandez:2016sbf,Siegel:2017nub,Fujibayashi:2017xsz,Fernandez:2018kax}. 
+Simulations showed that a certain fraction of the disk can become unbound, and be ejected from the system, 
+by viscous, nuclear recombination or MHD effects. 
+This long-term ejecta was found to be more massive then the dynamical ejecta in certain cases and thus,
+even more important for EM counterparts and nucleosynthetic yields.
+
+In this thesis we discuss the numerical relativity simulations performed with the code \texttt{WhiskyTHC}
+
+
 
 In this thesis we perform and analyze numerical relativity simulations of merging neutron stars. 
 These simulations are performed via solving the equations of general relativity, hydrodynamics and radiation, neutrino, transport via special numerical schemes. 
@@ -1908,20 +2006,135 @@ and the angular momentum flux is
 \subsection{Ejecta}
 
 
-All considered mass ejecta are calculated on a coordinate sphere at $R \simeq
-294$km. The dynamical ejecta is computed assuming the fluid elements 
-to follow unbound geodesics,  
-%\be
-$-u_t > 1$ %% \ ,
-%\ee
-and to reach an asymptotic velocity 
-$\upsilon_{\infty} \simeq \sqrt{2E_{\infty}} = \sqrt{(1-u_t ^2)}$.
-Wind ejecta are instead computed according to the Bernoulli criterion 
-%\be
-$-hu_t > 1$ %% \ ,
-%\ee
-and the associated asymptotic velocity is calculated as 
-$\upsilon_{\infty} \simeq \sqrt{2 (h (E_{\infty}+1)-1)}$. 
+To model and study the electromagnetic counterparts to mergers, the amount and properties of the material
+leaving the system are needed.
+The matter expelled at high velocity may ultimately become unbound from the central gravitational
+potential. There are two indicators commonly adopted to mark the unbound matter.
+
+\subsubsection{The Geodesic criterion}
+
+Assuming that the spacetime is stationary, the $\partial_t$ is the killing vectory \red{confirm}, 
+the four-velocity, $u_t$, (along the time-like killing vector), is a constant of motion for geodesics. 
+Additionally, if the space is asymptotically flat, at infinity the $u_t = -W$, where $W$ is the fluid element Lorentz factor. Then, if a fluid element has $u_t < -1$, it may be considered unbound \red{as it will retain the non-zero positive velocity at infinity}. 
+The fluid reaches an asymptotic velocity 
+\begin{equation}
+    \upsilon_{\infty} \simeq \sqrt{2E_{\infty}} = \sqrt{(1-u_t ^2)}.
+\end{equation}
+The criterion can be through of as considering the fluid to be made of isolated particles that follow the geodesics. Indeed, the effects of equation of state, fluids pressure gradient, internal energy and heating (\eg, due to an $r$-process (\red{see section XXX})) are neglected. The space time is also assumed to be static.
+Strictly speaking, none of these assumptions is fulfilled in the BNS post-merger environment. However, this criterion is widely used in the literature \citep[\eg][]{Radice:2018pdn,Vincent:2019kor}.
+Note that the geodesic criterion above neglects the fluid's pressure and might underestimate the ejecta mass.
+
+\subsubsection{The Bernoulli criterion}
+
+From the relativistic Bernoulli equation \citep{Rezzolla:2013}, it follows
+that for a stationary relativisitc flow, the $hu_t$ is constnat along the 
+fluid worldliens. Here $h$ is the (relativistic) enthalpy, which is
+defined up to a constant factor. 
+If at the spatial infinity the enthalpy is set so $h\rightarrow-1$, 
+\red{in Vincent it is $h\leftarrow 1$}
+the condition $hu_t < -1$ would mark the unbound matter 
+(as in the assymptotically flat space-time the $u_t = -W$ for the flow particles following geodesics).
+
+The associated asymptotic velocity is calculated as 
+\begin{equation}
+    \upsilon_{\infty} \simeq \sqrt{2 (h (E_{\infty}+1)-1)}. 
+\end{equation}
+
+The criterion can be regarded as assuming all the internal energy of the fluid 
+gets added to the fluid kinetic energy, as the fluid decompresses \red{(pressure drops?)}.
+
+The $r$-process nucleosynthesis that occurs in the outflow deposits the energy.
+\red{In Vincent it is assumed that the difference in binding energy between the 
+particles in NSE at a given $\rho$, $T$ and $Y_e$, and their binding energy at
+the same $Y_e$ but low $\rho$ and $T$ is added/substracted from the fluid's kinetic energy.
+Out-of-NSE evolution and effects this neglected \citep[][see]{Foucart:2016vxd}
+[BUT I AM NOT SURE IF THIS IS THE CASE FOR OUR SIMULATIONS! MAYBE NOT!]}
+
+This criterion has been found to estimate more accurately the amount of unbound material \citep{Foucart:2015gaa}
+However, as was also found that the Bernoulli criterion leads to up to twice the amount of ejecta detected in comparion with the geodensic criterion, if the estimation is done within a given volume \citep{Kastaun:2014fna}.
+
+We adopt the geodesic criterion to study the "burst-like", short outflows,
+such as dynamical ejecta, where the pressure gradient is not expected to make a significant contribution.
+For the steady-state outflows, like postmerger winds we adopt the Bernoulli criterion.
+
+The term ejecta would refer to the material gravitationaly unbound according to eather of the criteria.
+
+
+
+
+All considered mass ejecta are calculated on a coordinate sphere at $R \simeq 294$km. 
+
+
+
+%% ----------------------------------------------------------------------------
+\chapter{Results and discussions}
+%% ----------------------------------------------------------------------------
+
+\red{
+    To be defined: \\
+    Chirp pass \\
+    Gravitational and Baryonic masses
+}
+
+In this chapter we review the findings of \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}
+and investigate the long-term \pmerg{} evolution of the binary neutron star. 
+
+Such studies are of high astrophysical importance as the ejecta of matter that occur 
+on various timescales \pmerg{} undergoes \rproc{} and produces observable EM emission. 
+The discussion of the \rproc{} and EM transits themselves, we resort for the chapter \red{chap:coutnerparts}.
+
+
+\section{Simulations}
+
+
+
+%% --------------------------------
+%% TAB SIM SUMMARY
+\input{tabSim.tex}
+%% --------------------------------
+
+
+In total we consider a sample of $37$ simulations of unique binaries with the 
+chirp mass $\mathcal{M}_c = 1.188\,\Msun$ that corresponds to the source of \GW{}.
+%% ---
+The total gravitational mass covers the range $M\in[2.73, 2.88]\Msun$, while the 
+mas ration $q=M_A/M_B\in[1,1.8]$. 
+%% ---
+We show the masses and radii of computed models as markers on the 
+figure~\ref{fig:method:tov_mr} and summarize their main properties, 
+and the dynamical ejecta properties in the table~\ref{tab:sim}.
+%% --- 
+Most simulations are performed with at least two resolutions, 
+\texttt{LR} and \texttt{SR}. 
+Additionally, $16$ binaries are simulataed at high resolution \texttt{HR}.
+In total $76$ simulations are analyzed.
+% ---
+Several binaries that resulted in a formation of a MNS are evolved up to 
+$100$~ms \pmerg.
+%% ---
+Most simulations include the effects of subgrid turbulence. 
+Those that are not are marked with ``*'' next to the equation of state name.
+%% --- 
+The naming convention for simulations is the following: 
+the equation of state name, the mass ratio, and the resolution, \eg, 
+the ``BLh* $q=1.00$ (\texttt{SR})" would refer to the simulation of the equal mass
+binary performed with BLh EOS, without subgrid turbulence and at standard resolution. 
+%% ---
+%% mass ratio binaries has been already presented in \cite{Bernuzzi:2020txg}.
+%% Together with our previous data these simulations form the largest
+%% sample of merger simulations with microphysics available to date
+%% \citep{Bernuzzi:2015opx,Radice:2016dwd,Radice:2016rys,Radice:2017lry,Radice:2018xqa,Radice:2018pdn,Perego:2019adq,Endrizzi:2019trv,Bernuzzi:2020txg}.  
+
+
+
+\section{Overview of the remnant dynamics}
+
+
+
+
+
+\section{Ejecta}
+
 Note that the geodesic criterion above neglects the fluid's pressure and might
 underestimate the ejecta mass. The Bernoulli criterion assumes that the (test
 fluid) flow is stationary, so that there is a pressure gradient that can
@@ -1932,11 +2145,14 @@ matter volumes \citep[cf.][]{Kastaun:2014fna}.
 
 
 
-\chapter{Results and discussions}
 
 
+%% ---------------------
+Sources with time delay are preferred by studies of very metal poor stars that indluded the time delay for r-process elements
+to diffuse through ISM, \citep{Tarumi:2021xvw}. 
+A winds from proto-nuetron are also contributors to the $r$-process budget \cite{Vincenzo:2021rvw}
 
-
+\red{The remnant is losing anular momentum while disk gains on shortly after merger is due to gravitational torque \cite{Shibata:2019wef}}
 
  
 %% ================================================================= APPENDIXES 
