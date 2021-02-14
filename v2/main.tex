@@ -119,6 +119,30 @@
 \def\avnu{\langle\vnu\rangle}
 \def\aynu{\langle\ynu\rangle}
 
+%% acronyms
+\newacro{BH}{black hole}
+\newacro{BBH}{binary black-hole}
+\newacro{BHNS}{black-hole neutron-star}
+\newacro{BNS}{binary neutron star}
+\newacro{EM}{electromagnetic}
+\newacro{EOS}{equation of state}
+\newacroplural{EOS}[EOSs]{equations of state}
+\newacro{GR}{general relativity}
+\newacro{GRLES}{general-relativistic large-eddy simulation}
+\newacro{GRHD}{general-relativistic hydrodynamics}
+\newacro{GRMHD}{general-relativistic magnetohydrodynamics}
+\newacro{GW}{gravitational wave}
+\newacroplural{GW}[GWs]{gravitational waves}
+\newacro{LES}{large-eddy simulation}
+\newacroplural{LES}[LES]{large-eddy simulations}
+\newacro{MRI}{magnetorotational instability}
+\newacro{NR}{numerical relativity}
+\newacro{NS}{neutron star}
+\newacroplural{NS}[NSs]{neutron stars}
+\newacro{SGRB}{short $\gamma$-ray burst}
+\newacro{ISM}{interstellar medium}
+\newacro{MNS}{massive neutron star}
+
 
 %% head
 \title{PhD thesis}
@@ -2128,6 +2152,62 @@ binary performed with BLh EOS, without subgrid turbulence and at standard resolu
 
 
 \section{Overview of the remnant dynamics}
+
+This section is based on the \cite{Nedora:2020pak}
+
+\subsection{High mass ratio binaries}
+
+Newly born \ac{MNS} is not axisymmetric. In addition to driving the angular 
+momentum transport, it is a strong emittor of \acp{GW} at kiloHertz frequencies.
+In ${\sim}10-20$~ms \pmerg{} the \acp{GW} remove about two time the 
+amount of energy that was lost during the inspiral and merger \citep{Bernuzzi:2015opx}.
+After that, the contribution of \acp{GW} to the system evolution, specifically to the angular momentum loss, drops \citep{Radice:2018xqa}. 
+The long-term evolution, $\O(100)$~ms, of the remnant is driven primarely by the viscous processes and weak interactions.
+
+After the emission of \acp{GW} subsides, the \acp{MNS} still have an excess in angular momentum and gravitational mass, with respect to the cold, rigidly rotating equilibrium with the same baryoinc mass \citep{Radice:2018xqa}.
+
+The subsequent evolution of the \ac{MNS} is towards the axisymmetric configuration close to the mass-shedding limit. However, would a \ac{MNS} reach this state or collapse to a \ac{BH} depends on the details of \pmerg{} state and on the temperature and composition effects.
+
+
+A subset of \ac{BNS} models with high mass-ratio forms a \ac{BH} 
+during the merger \cite{Bernuzzi:2020txg}. The absence of the core bounce
+is indicated by the monotonic increase of the central density.
+Such a behavior is referred to as prompt collapse \citep{Radice:2020ddv,Bernuzzi:2020tgt,Bernuzzi:2020txg}.
+Specifically, these are models with $q\gtrsim1.67$. 
+\gray{During the merger, the companion star (less massive) undergoes a tidal disruption, as the tidal forces overcome the star's binding energy}. The star is then accreted onto the primary (most massive). 
+The accretion raises its mass beyond the maximum supported limit by the \ac{EOS}, which leads to collapse. 
+The newly formed \ac{BH} is surrounded by the accretion disk that was left from the tidally disrupted companion.
+
+At formation, the disk has a large baryon mass, ${\sim}0.15\,\Msun$, in comparison with the disks formed in prompt collapse of equal mass binaries, \citep[\eg][]{Radice:2018pdn}. 
+The disk is also neutron-rich $Y_e\sim 0.1$.
+
+We show the evolution of the disk mass of several representative models in Fig.~\ref{fig:disk_mass_evo}.
+
+\red{EJECTA to be moved to its own section}
+The models that undergo the prompt collapse also eject matter on a dynamical timescale. The ejecta originates from tidal disruption of the compantion. It is neutron rich, confined largely to the orbital plane and exhibits a crescent-like azimuthal structure \citep{Bernuzzi:2020txg}.
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/disk/total_disk_mass_evo.pdf}
+    \caption{Time evolution of the total disk mass for a few selected
+        short-lived and long-lived cases. The former show a rapid 
+        accretion right after disk formation. The plots show
+        distinct difference in dynamical evolution after disk formation: accretion onto
+        the newly formed BH (short-lived remnants) or accretion onto the NS
+        remnant (DD2 $q=1$) with possible continuous mass shedding from the remnant
+        into the disk (BLh* $q=1$). Adopted from \citet{Nedora:2020pak}
+    } 
+    \label{fig:disk_mass_evo}
+\end{figure}
+
+\subsection{Binaries with $$q\lesssim1.4$$}
+
+
+
+
+
+
+
 
 
 
