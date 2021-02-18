@@ -1905,6 +1905,7 @@ which we employ for the statistical analysis in section \ref{sec:stat:anal}
 We compute the baryonic mass of the disks is computed as the volume integral of the conserved rest-mass density $D=\sqrt{\gamma}~W\rho$,
 
 \begin{equation}
+\label{eq:method:mdisk}
 M_{\text{disk}} = \int D \dd^3 x
 \end{equation}
 
@@ -2018,7 +2019,7 @@ the angular momentum density is
 \begin{equation}
 j = %-
 \rho h W^2 v_{\phi} \ ,
-\label{eq:intro:ang_mom}
+\label{eq:method:ang_mom}
 \end{equation}
 and the angular momentum flux is 
 \begin{equation}
@@ -2353,20 +2354,136 @@ layers to become unbound, generating an outflow
 \citep{Beloborodov:2008nx,Lee:2009uc,Fernandez:2013tya}.
 This processes however are expected to take place on a longer timescales,
 that those that are simulated here.
-On the $\sim100$~ms timescale, the outflows are driven by the neutrino absorption,
-forming the \nwind{} \citealt{Dessart:2008zd,Perego:2014fma,Just:2014fka} 
-and 
+On the $\sim100$~ms timescale, the outflows are driven by the neutrino heating, 
+above the remnant, the so-called neutrino-driven wind 
+(\nwind; \citealt{Dessart:2008zd,Perego:2014fma,Just:2014fka}),
+and by the dynamical interactions between the \ac{MNS} 
+remnant and the disk, the \swind{} \citep{Nedora:2019jhl}.
+%% ---
+We discuss the properties of the \nwind{} found in our simulations
+in the section \red{sec.Ejecta.NuWind} and the properties of the 
+\swind{} in the \red{sec.Ejecta.SWIND}.
+%The \swind{} can have a mass up to
+%a few $10^{-2}\,\Mo$ and velocities ${\sim}0.2$~c. The ejecta
+%have electron fraction typically larger than ${\sim} 0.25$ since they are 
+%partially reprocessed by hydrodynamic shocks in the expanding arms. 
+%The \nwind{} is driven by neutrino heating above the remnant. It generates outflows
+%with smaller masses ${\sim} 10^{-4}M_{\odot}$ and larger $Y_e$
+%than the \swind{}. 
+%Differently from \swind{} the mass flux of the \nwind{} in our simulations subsides 
+%before the end of out simulations, due to rapid baryon loading of the 
+%polar region.
+%The \swind{} will be discussed in detail in Sec.~\ref{sec:spiralw}.
+The effects of these outflows on the dynamical evolution of the remnant 
+lies in the amount of mass and energy they can remove from the system.
+Specifically, the \nwind{} have a typical mass of ${\sim} 10^{-4}\Msun$, 
+while the \swind{} could remove $10^{-2}\,\Msun$ on a timescale of a $\sim100$~ms.
 
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/ejecta_sec/secular_j_mb_RNS_blh.pdf}
+    \caption{Baryon mass vs angular momentum diagram for the BLh $q=1$ remnant.
+        The colored diamond marks the baryonic mass and angular momentum at the end
+        of the dynamical gravitational-wave dominated phase.
+        After the GW phase, the evolution is driven by the massive outflows.
+        The solid black line is the $M_b$ and $J$ estimated from the 3D data
+        integrals under the assumption of axisymmetry.
+        The green dashed line is a conservative estimate
+        of the mass ejection and a possible trajectory for the viscous
+        evolution as estimated in \citet{Radice:2018xqa}. The crosses are
+        a linear extrapolation in time of the solid black line. The gray
+        shaded region is the region of stability of rigidly rotating NS equilibria.
+        Adopted from \cite{Nedora:2020pak}
+    }
+    \label{fig:total_j_mb_rns_blh}
+\end{figure}
 
+To understand the remnant evolution on the timescales longer then the ones 
+present here, requires ab-initio \ac{NR} simulations in $(3+1)D$ with compete physics.
 
+Here we consider a BLh $q=1.00$ simulation, one of the longest runs we have performed.
+After the merger, the \ac{MNS} remnant is born. With respect to the zero-temperature 
+beta-equilibrium \ac{NS} configurations, the BLh $q=1.00$ 
+remnant has an excess in baryon mass.
+In the figure~\ref{fig:total_j_mb_rns_blh} we show the evolution of the 
+total baryon mass, $M_b$, and total angular momentum, $J$, of the remnant.
+As the total baryon mass is conserved (if there is no outflow), the early evolution 
+of the remnant proceeds with $M_b=\text{const}$. The angular momentum is however 
+lost by the remnant to emission of \acp{GW}. 
+We evaluate the amount of angular momentum lost to \acp{GW} following the 
+\citet{Damour:2011fu,Bernuzzi:2012ci,Bernuzzi:2015rla}.
+\red{This has to be defined and noted that we use $\sim20$~ms postmerger mark
+    and how exactly we compute all of it, the David's script
+}
+Substruct it from the initial data \ac{ADM} angular momentum we obtain the value 
+that is left to the system after the \ac{GW} phase 
+(the yellow marker on the Fig.~\ref{fig:total_j_mb_rns_blh}).
+%% ---
+Notably, after the \ac{GW} phase, the remnant still has an excess in angular momentum
+in comparison with the rigidly rotating \ac{NS} configurations with the same baryon mass 
+(gray triangular region in Fig.~\ref{fig:total_j_mb_rns_blh}).
+We observe the same situation across all models \citep{Zappa:2017xba,Radice:2018xqa}.
+\gray{
+    On the angular momentum estimation:
+    The radiated angular momentum (as well as energy) are computed from the 
+    multipole loments $N_{lm}$ for the \ac{NR} complex "news function" at infinity. 
+    The $J_{z;\text{rad}}(t)$ is computed as \citep{Damour:2011fu} 
+    \begin{equation}
+        \Delta J_{z\text{rad}}(t) \frac{1}{16}\sum_{l,m}^{l_{max}}\int_{t_0}^{t} dt' m \mathcal{L}[h_{lm}(t')(N_{lm}(t'))^*],
+    \end{equation}
+    where $h_{lm}$ is the multipolar metric waveform, 
+    $N_{lm}(t) = dh_{lm}(t) / dt$, the news function, and $l_{max}=8$.
+    The $J$ loss is metric dependent ($h$).
+    The $h$ (strain???) is computed from $\Psi_4(t) = dN/dt = d^2h/dt^2$ by a 
+    frequency-domain integration procedure with a low-frequency cut 
+    $\omega_0 = 0.032/(m_1+m_2)$.
+}
+%% ---
+The baryon mass of the remnant also exceeds maximum mass that a rigidly rotating 
+equilibria could have.
+Such remnant is generally referred to as a hypermassive neutron star (HMNS) following the 
+nomenclature introduced for zero-temperature EOS equilibria \acp{NS} \citep{Baumgarte:1999cq}.
+Such a remnant is expected to collapse to a BH. 
+%% ---
+However, a remnant can avoid the collapse by efficiently removing angular momentum
+and mass and entering the rigidly rotating equilibria zone. 
+%% ---
+We compute the angular momentum and baryon mas evolution of the remnant, 
+through volume integrals, assuming axisymmetry and evaluating the former using Eq.~\eqref{eq:method:ang_mom}, and the latter using the Eq.~\eqref{eq:method:mdisk}. 
+The evolution of these two quantities is depicted with the black solid line if 
+Fig.~\eqref{fig:total_j_mb_rns_blh}~\footnote{Note that the angular momentum estimated
+    from the GW and from the integral of Eq.~\eqref{eq:method:ang_mom} assuming
+    axisymmetry are compatible within the errors made in the latter estimate.
+}.
+We observed that after the \ac{GW} phase, the remnant continues to evolve, loosing the 
+angular momentum together with the baryon mass. This is achieved through massive outflow,
+the \swind{}. 
+The extrapolation of the final trend of the mass and angular momentum loss shows, that 
+if $\approx0.05\,\Msun$ ($\approx40$\% of the final disk at the end of simulation) is 
+ejected, the \ac{MNS} remnant would approach the rigidly rotating equilibria region 
+at the mass-shedding limit. Extrapolation indicates, that if the ejecta mass flux does 
+not change, this would occur on a timescale of $\sim 300$~ms \pmerg{}.
+Similar results are obtained with the conservative upper bound estimate on the 
+evolution of the long-lived remnant (Eq.~$2$ in \citet{Radice:2018xqa}) (green dashed line in figure).
+\red{WHAT the fuck is Keplerian limit, mass-shedding limit and rigidly rotating equilibria}
+Additionally, while this simulation included the effects of turbulent viscosity on the
+angular momentum transport, the ejecta could be further enhanced by the magnetic stresses 
+\citep{Metzger:2006mw,Bucciantini:2011kx,Siegel:2017nub,Fernandez:2018kax,Ciolfi:2020hgg}.
 
-
-
-
+Other simulations also produce a \ac{MNS} remnant with similar evolutionary path. 
+Models with DD2 \ac{EOS} however, are born with an excess in angular momentum, but not in 
+baryon mass. They also evolve toward the rigidly rotating equilibria but slower.
+Models with $q>1.00$ produce remnants that generally have larger excess in angular momentum 
+and mass have how to shed a larger amount of mas to reach equilibrium configuration.
+(\red{However we also show that these models tend to have stronger \swind{}, see sec.SPIRAL.WIND})
+Overall, we estimate that for models with $q=1.00$ need to shed ${\sim}0.05\Msun$ while 
+models with $q\eqsim 1.4$ need to remove $0.2\Msun$ to reach equilibrium configuration.
 
 
 
 \section{Ejecta}
+
+
 
 Note that the geodesic criterion above neglects the fluid's pressure and might
 underestimate the ejecta mass. The Bernoulli criterion assumes that the (test
