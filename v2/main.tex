@@ -95,6 +95,7 @@
 
 \newcommand{\rproc}{$r$-process}
 \newcommand{\pmerg}{post-merger}
+\newcommand{\mr}{mass ratio}
 
 %% MACRO FOR EJECTA
 % dyn ejecta
@@ -143,6 +144,8 @@
 \newacro{ISM}{interstellar medium}
 \newacro{MNS}{massive neutron star}
 
+\newacro{DE}{dynamical ejecta}
+\newacro{SWW}{\swind{}}
 
 %% head
 \title{PhD thesis}
@@ -1165,6 +1168,10 @@ It also includes approximations of the Doppler and gravitaional effects.
 Additionally, the unphysical radaition shocks above the merger remnant, that commonly present in M1 schemes \cite{Foucart:2018gis}, do not develop in M0 scheme.
 
 
+
+\red{INRODUCE neutroni M1 scheme with which you compare results 
+in ejecta section, models of \citet{Sekiguchi:2016bjd} 
+and \citet{Vincent:2019kor}}
 
 
 \subsection{Numerical Methods (FV, FD, time integrator, atmosphere)}
@@ -2202,7 +2209,7 @@ The models that undergo the prompt collapse also eject matter on a dynamical tim
 \end{figure}
 
 
-\subsection{Binaries with $$q\lesssim1.4$$}
+\subsection{Binaries with $q\lesssim1.4$}
 
 
 Binaries with small mass ratio, ($q\lesssim1.4$) produce a \ac{MNS} remnant
@@ -2481,19 +2488,172 @@ models with $q\eqsim 1.4$ need to remove $0.2\Msun$ to reach equilibrium configu
 
 
 
-\section{Ejecta}
+\section{Mass Ejection}
+
+
+Tidal interactions and shocks exerted on the \acp{NS} at merger trigger the ejection of material
+on the dynamical timescale. This is the \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn}. 
 
 
 
-Note that the geodesic criterion above neglects the fluid's pressure and might
-underestimate the ejecta mass. The Bernoulli criterion assumes that the (test
-fluid) flow is stationary, so that there is a pressure gradient that can
-further push the ejecta.  We find that both criteria predict dynamical
-ejecta masses that are practically indistiguishable and well within the numerical uncertainties \citep{Bernuzzi:2020txg} if applied to extraction spheres at large coordinate radii; 
-differences between the two criteria are instead present if they are applied to
-matter volumes \citep[cf.][]{Kastaun:2014fna}.
+\subsection{Dynamical Ejecta}
 
 
+%% The mechanism behind the dynamical ejecta [radice:2018pnd]
+Tidal interactions and shocks exerted on the \acp{NS} at merger trigger the ejection of material
+on the dynamical timescale. This is the \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn}. 
+
+\red{More on the genral mechanism tidal vs shocked}
+The \ac{DE} is evaluated with the geodesic criterion introduced in Sec.~\ref{sec:method:analysis:ejecta}.
+
+Describe shock vs tidal components 
+
+\subsubsection{Overall properties of the \ac{DE}}
+
+
+The novelty of the set of models discussed in this thesis with respect to the 
+previous study by \citet{Radice:2018pdn} is that all models include the neutrino heating via M0 scheme 
+(see Sec.\ref{sec:theory:neutrino}) in addition to the neutrino cooling and for most models the effects 
+of subgrid turbulence (see Set.\ref{sec:theory:grles}) are included.
+Meanwhile, models cover a significantly more narrow range in 
+dimensionless tidal deformability, $\tilde{\Lambda}$, and mass ratio, motivated by the \GW{}.
+
+We can qulitativly asses the effects of neutrino heating by comparing the overall properties 
+of our model set and that of the \citet{Radice:2018pdn}.
+Specifically, the neutrino absorption leads to not only an increase in average electron 
+fraction but also to larger total ejected mass and velocity. The latter two would be 
+crucial for the non-thermal, kilonova afterglow (see Sec.\red{sec:KilonovaAfterglow}).
+
+The mass averaged over the simulations from Tab.~\ref{tab:sim} is 
+$\overline{\amd} = (3.442 \pm 2.495)\times 10^{-3}\,M_{\odot}$ (where
+hereafter we report also the standard deviation), while the same
+quantity calculated for data of \cite{Radice:2018pdn} 
+is $\overline{\md} = (1.352\pm 1.250)\times 10^{-3}\,\Msun$.
+The mass-averaged terminal velocity of the dynamical ejecta 
+ranges between $0.1$c and $0.3$c, and in a good agreement with 
+\cite{Radice:2018pdn}.
+The mass-averaged velocity, averaged over all the simulations, is 
+$\overline{\avd} = (0.172\pm0.038)\,{\text{c}}$.
+
+We find that in our set of models, there is a correlation of $\avd$ with the tidal parameter 
+$\tilde{\Lambda}$: the higher the $\tilde{\Lambda}$ the lower the $\avd$.
+This can be understood from the general mechanism of the \ac{DE},
+that tells in mergers of binaries with $q=1.00$, the shocked component of the ejecta 
+is the dominant. The strength of shocks increases as the \acp{NS} become more compact 
+(with decreasing $\tilde{\Lambda}$) and hence collide at higher velocities~\footnote{Note that in the definition of prompt collapse we adopted, there is no shocked ejecta.}.
+%% ---
+For binaries with high mass ration, however, the tidal component of the \ac{DE} is dominant. 
+The velocity of the latter also is smaller for larger $\tilde{\Lambda}$, as stars collide 
+at slower velocities due to their larger radii. 
+%% ---
+The mass-averaged electron fraction, $\ayd$, of our models lies the range $(0.1, 0.3)$
+with an averaged value among all models $\overline{\ayd} = 0.175 \pm 0.063$.
+Notably, the \citet{Radice:2018pdn} reported a more narrow range, $(0.1, 0.2)$.
+This is a clear effect of the neutrino absorption included in our models, that elevates 
+the everal electron fraction of the \ac{DE} as it is being irradiated by neutrinos 
+during the merger.
+Notably, the $\ayd$ of our models is close to those obtained with M1 
+scheme of \citet{Sekiguchi:2016bjd} and \citet{Vincent:2019kor}.
+%% ---
+The effect of subgrid turbulence on the dynamical ejecta properties however,
+found rather week and comparible to the effects of finite grid distritization 
+\citep{Bernuzzi:2020txg,Radice:2020ids}.
+
+We find that the properties of the \ac{DE} depends on the \mr{} and on the 
+\ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$. 
+We investigate in detail the statistical properties of our set of models as well as 
+other \ac{NR} \ac{BNS} data sets available in the literature in 
+section \ref{sec:ejecta_disk_statisitcs}.
+
+
+
+%% ------------------ 
+%% Note that the geodesic criterion above neglects the fluid's pressure and might
+%% underestimate the ejecta mass. The Bernoulli criterion assumes that the (test
+%% fluid) flow is stationary, so that there is a pressure gradient that can
+%% further push the ejecta.  We find that both criteria predict dynamical
+%% ejecta masses that are practically indistiguishable and well within the numerical uncertainties \citep{Bernuzzi:2020txg} if applied to extraction spheres at large coordinate radii; 
+%% differences between the two criteria are instead present if they are applied to
+%% matter volumes \citep[cf.][]{Kastaun:2014fna}.
+
+
+\section{Statistics of the \ac{DE} parameters and disk mass}
+
+\red{CONTENT OF THE FIT PAPER}
+
+
+\section{Application to \GW{}}
+
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.48\textwidth]{./figs/ejecta_dyn/summary/ej_mej_vej_our2.pdf}
+    \includegraphics[width=0.48\textwidth]{./figs/ejecta_dyn/summary/ej_mej_yeej_our2.pdf}
+    \caption{
+        Summary of the ejecta properties of our models.
+        %
+        Diamonds mark the dynamical ejecta, crosses include the
+        contribution of the \swind{} for the long-lived models, 
+        triangles are an estimate of the total ejecta mass on a secular
+        timescale, assuming $40\%$ of the disk mass is unbounded on
+        secular timescales.         
+        The ejecta mass is shown is terms of the mass-averaged velocity
+        (left) and of the averaged electron fraction (right).
+        %
+        The filled blue and red patches are the expected values of
+        ejecta mass and velocity for blue and red components of
+        AT2017gfo compiled by \cite{Siegel:2019mlp}, based on
+        \cite{Villar:2017wcc}. 
+        Adopted from \citet{Nedora:2020pak}.
+    }
+    %
+    \label{fig:ejecta:dyn:ds_sww}
+\end{figure*}
+
+%% from main paper, referencing the fitpaper Poly22 fits and SWW + DE
+\red{THis can be augmented with Radio afterglow}
+
+
+Here we discuss the application of our results to \GW{}.
+%% ---
+First, we asses the ejecta parameters that our fitting models, 
+obtained in section \ref{sec:ejecta_disk_statisitcs} would provide for the \GW{}.
+%% --- 
+Considering the $90\%$ credible intervals estimated for $q$ and $\tilde{\Lambda}$ 
+from LIGO-Virgo GW analysis
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr},
+i.e.~$\tilde{\Lambda}=300_{-190}^{+500}$ and $q\in[1., 1.37]$. 
+and using the errorbars formulas developed in \cite{Radice:2018pdn}, we find that
+$\amd \in [0.72, 7.52] \times 10^{-3}\: M_{\odot}$
+and
+$\avd \in [0.16, 0.39]$c 
+and 
+$\ayd \in [0.11, 0.23]$.
+Notably, these values do not agree with those inferred for \AT{} by the spherical, 
+two-component kilonova models \citep{Villar:2017wcc}.
+Analysis of a compiled set of kilonova fitting models provides a broad range of ejecta 
+parameters \citep{Siegel:2019mlp}:
+$M_{\text{ej}}^{\text{red}}\in(4, 6)\times10^{-2}M_{\odot}$ and
+$\upsilon_{\text{ej}}^{\text{red}}\in(0.07, 0.14)$ for the red component, while
+$M_{\text{ej}}^{\text{blue}}\in[1, 2]\times10^{-2}M_{\odot}$ and 
+$\upsilon_{\text{ej}}^{\text{blue}}\in[0.2, 0.3]$ for the blue component.
+%% ---
+With respect to our results for \ac{DE}, however, 
+none of the kilonova components can be well explained.
+%% ---
+In Fig.~\ref{fig:ejecta:dyn:ds_sww} we show the ejecta properties from
+all our models (diamonds) and the parameters inferred from the
+observations as red and blue boxes. 
+%% --- 
+With respect to the red component, we observe that \ac{DE} from our models 
+have too high average velocities and not nearly enough mass.
+This result suggests that an additional, low $Y_e$ ejecta component is required
+in order to explain the \AT{} red component 
+\citep{Perego:2017wtu,Kawaguchi:2018ptg,Nedora:2019jhl}.
+%% --- 
+A more thorough analysis of the \AT{} with better ejecta models and advanced
+radiation transport kilonova simulations are not part of the present work 
+and will be addressed in the future.
 
 
 
