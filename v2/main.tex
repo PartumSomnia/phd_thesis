@@ -2479,7 +2479,7 @@ Additionally, while this simulation included the effects of turbulent viscosity 
 angular momentum transport, the ejecta could be further enhanced by the magnetic stresses 
 \citep{Metzger:2006mw,Bucciantini:2011kx,Siegel:2017nub,Fernandez:2018kax,Ciolfi:2020hgg}.
 
-Other simulations also produce a \ac{MNS} remnant with similar evolutionary path. 
+Other simulations also produce a \ac{MNS} remnant with a similar evolutionary path. 
 Models with DD2 \ac{EOS} however, are born with an excess in angular momentum, but not in 
 baryon mass. They also evolve toward the rigidly rotating equilibria but slower.
 Models with $q>1.00$ produce remnants that generally have larger excess in angular momentum 
@@ -2569,6 +2569,9 @@ other \ac{NR} \ac{BNS} data sets available in the literature in
 section \ref{sec:ejecta_disk_statisitcs}.
 
 
+
+
+
 \subsection{Fast tail of the dynamical ejecta}
 
 %\begin{figure}[t]
@@ -2649,6 +2652,11 @@ section \ref{sec:ejecta_disk_statisitcs}.
 \end{figure*}
 
 Here we discuss the dynamics of spiral waves and the associated outflow, the \ac{SWW}.
+
+
+\subsubsection{Remnant \& disk dynamics}
+
+
 The hydrodynamical modes of the \ac{MNS} remnant are computed following the 
 method described in Sec.\ref{sec:method:HDmodes}. 
 The mode analysis is shown in the Fig.\ref{fig:dens_modes} for two representative 
@@ -2776,6 +2784,101 @@ subgrid turbulence and \mr{} systematically.
 %% --------------------------------
 
 
+\subsubsection{\swind{}}
+
+
+Density waves, propagating outwards through the disk induce the outflow, the \ac{SWW} 
+\citep{Nedora:2019jhl}.
+
+\red{HERE THE LETTER STUFF COULD GO}
+
+The \ac{SWW} is estimated following the Bernoulli criterion as described in 
+the Sec.~\ref{ec:method:analysis}. 
+We start to follow the \ac{SWW} after the \ac{DE} has saturated. 
+
+We report the overall properties of the \ac{SWW} for all the models with the 
+long-lived \ac{MNS} remnant that were also evolved for a sufficiently long time 
+in the Tab.~\ref{tab:spiralwavewind}. 
+The time evolution of the total mass of the \ac{SWW} is shown in the Fig.~\ref{fig:mej:bern}.
+We observe that in all simulations \acp{SWW} persists till end without saturation.
+This is because the outflow is driven by the angular momentum and mass transport 
+induced by the dynamical instabilities in the remnant, the $m=1,2$ modes, discussed 
+above. And as the $m=1$ modes are not efficiently damped \citep{Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,East:2016zvv},
+the \ac{SWW} could theoretically continue until the system collapses to a \ac{BH} 
+or reaches the equilibrium (Sec.~\ref{sec:bns_dynsmics_overview}).
+
+The strongest \ac{SWW} is found in binaries with $q>1$, such as 
+$q=1.67$ and LS220 $q=\newtxt{1.4}$. 
+With the mass-loss rate ${\sim}0.5\, \Msun/{\text{s}}$, these models can eject 
+${\sim}0.02\,\Msun$ within ${\sim}50$~ms of \pmerg{} evolution.
+We find that as the \ac{EOS} becomes softer, lower \mr{} is needed to achieve high 
+mass flux. For instance, the \ac{SWW} mass flux for BLh* $q=1.66$ is achieved by the 
+model LS220* with $q=1.22$. 
+A possible explanation for this is that the models with softer \ac{EOS} have stronger 
+$m=1$ modes in the remnant (see Sec. \ref{sec:remdisk}).
+When \ac{MNS} remnant collapses to a \ac{BH} and the mechanism that injects angular 
+momentum into the disk shuts down, the \ac{SWW} mass flux subsides. 
+Thus, the total ejected mass via \ac{SWW} is directly related  o the lifetime of the 
+\ac{MNS} remnant, an addition to the binary parameters, \ac{EOS} and \mr{}.
+
+The \ac{SWW} mass flux depends on the disk configuration, as more extended disks 
+have outer layers that are less gravitationally bound. In turn, the disk 
+configuration is dependent on the thermal effects. Higher temperature leads to 
+stronger thermal pressure that increases the disk size. 
+However, the dependency of the \ac{SWW} mass flux on the stiffness of the \ac{EOS} 
+appears to be stronger, as the stiffer \ac{EOS} leads to a more massive disk 
+(Sec.~\ref{sec:overview}). More simulations with longer postmerger evolution are needed 
+to make a quantitative assessment. 
+Overall the \swind{} from the long-lived remnant has a mass flux $\geq 0.4\, \Msun/{\text{s}}$.
+
+We find that the properties of the \ac{SWW} depend only weakly on the binary parameters,
+\mr{} and \ac{EOS}.The mass-histograms of the wind angular distribution, velocity and 
+electron fraction are displayed in Fig.~\ref{fig:ejecta:bern:hist}. 
+The angular distribution of the \ac{SWW} is similar to that of the \ac{DE}. The ejecta 
+has a broad distribution around the binary plane.
+The \ac{SWW} has a high average electron fraction, with the overall 
+broad distribution of $0.1\lesssim \ayw\lesssim0.4$ that peaks at ${\sim}0.35$.
+The low electron fraction material originates primarily at early times, when the 
+material did not have enough time to be processed by neutrinos and before the 
+outflow reaches quasi-steady state.
+The \ac{SWW} average velocity is higher for stiffer \ac{EOS}, with the peak 
+of the distribution laying between ${\sim}0.1\,$c and ${\sim}0.2\,$c.
+However, more simulations of the \ac{MNS} remnants long-term evolution are 
+required to confirm and quantitatively investigate this trend.
+However, if it is indeed a generic feature, then it might imply 
+an EOS dependent distinct feature in the electromagnetic counterpart. 
+In particular, the observation of a fast blue kN given by the \swind{}
+should be associated to a stiff EOS.
+
+%% It is however expected, that as the system becomes more stationary and larger part 
+%% of the disk accrets on the \ac{MNS} the outflow should subside. 
+
+
+\subsection{\nwind{}}
+
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/slices/slice_xz_ye_hu_1.pdf}
+    \includegraphics[width=0.49\textwidth]{./figs/slices/slice_xz_abs_energy_hu_3.pdf}
+    \includegraphics[width=0.49\textwidth]{./figs/slices/slice_xy_ye_hu_1.pdf}
+    \includegraphics[width=0.49\textwidth]{./figs/slices/slice_xy_abs_energy_hu_3.pdf}
+    \caption{Snapshot of the $(x,z)$ and $(x,y)$ slices of the BLh $q=1$ model at 
+        ${\sim}89\,$ms after merger. Left panels: electron fraction and
+        $-hu_0$. High $Y_e$ values indicate neutrino
+        postprocessing and irradiation. The $-hu_0>1$ indicates the
+        material that gains enough energy to become unbound at
+        infinity. 
+        %
+        Right: $-hu_0$ and the absorption energy rate $Q_{\text{abs};\:\bar{\nu}_e}$ 
+        of electron antineutrinos normalized to the fluid density $D$.
+    }
+    %
+    \label{fig:slice:heating_hu}
+\end{figure*}
+
+
+
 %% ========================================================================================
 
 \section{Statistics of the \ac{DE} parameters and disk mass}
@@ -2811,11 +2914,17 @@ subgrid turbulence and \mr{} systematically.
     \label{fig:ejecta:dyn:ds_sww}
 \end{figure*}
 
+
 %% from main paper, referencing the fitpaper Poly22 fits and SWW + DE
 \red{THis can be augmented with Radio afterglow}
 
 %% === FROM DYNAMICAL EJECTA SECTION of MAIN PAPER
 Here we discuss the application of our results to \GW{}.
+
+
+\subsection{Dynamical Ejecta}
+
+
 %% ---
 First, we asses the ejecta parameters that our fitting models, 
 obtained in section \ref{sec:ejecta_disk_statisitcs} would provide for the \GW{}.
@@ -2855,6 +2964,40 @@ in order to explain the \AT{} red component
 A more thorough analysis of the \AT{} with better ejecta models and advanced
 radiation transport kilonova simulations are not part of the present work 
 and will be addressed in the future.
+
+
+\subsection{\swind{}}
+
+
+The \ac{SWW} could be a significant contributor to the \AT{}, assuming the remnant of 
+\GW{} \ac{MNS} merger survived for $\mathcal{O}(100)$~ms.
+%% ---- 
+In Fig.~\ref{fig:ejecta:dyn:ds_sww} we report the total
+(dynamical+\swind{}) ejecta mass and mass-averaged velocity for the
+simulated long-lived BNS (crosses).
+%% ---
+Notably, the total ejecta mass of three of our models, 
+BLh $q=1.18$, BLh $q=1.42$ and  DD2 is $q=1$ are in agreemnt with the epected values 
+for the blue compoent of the \AT{} 
+(obtained using the two-component fit \citep{Villar:2017wcc})
+
+\red{
+    [ LETTER STUFF COULD GO HERE ]
+    a multi-component fitting model that explicitly accounts
+    for the \swind{} can fit the early blue
+    emission from AT2017gfo \citep{Nedora:2019jhl}
+}
+
+The high electron fraction of the \ac{SWW} however would result in a lanthanides-poor
+composition of the outflow. Thus, the \ac{SWW} cannot explain the observed emission 
+for the high opacity, lanthanides-rich material.
+%% ---
+Simulations with advanced physics of a \ac{MNS} mergers on a timescales $>100$~ms are 
+required to asses the contribution from other outflow mechanisms, \red{that we will discuss below} 
+\citep{Lee:2009uc,Fernandez:2015use,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa}.
+
+
+
 
 
 
