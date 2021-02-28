@@ -2784,7 +2784,7 @@ subgrid turbulence and \mr{} systematically.
 %% --------------------------------
 
 
-\subsubsection{\swind{}}
+\subsubsection{Properties of the \swind{}}
 
 
 Density waves, propagating outwards through the disk induce the outflow, the \ac{SWW} 
@@ -2856,7 +2856,6 @@ should be associated to a stiff EOS.
 
 \subsection{\nwind{}}
 
-
 \begin{figure*}[t]
     \centering 
     \includegraphics[width=0.49\textwidth]{./figs/slices/slice_xz_ye_hu_1.pdf}
@@ -2876,6 +2875,83 @@ should be associated to a stiff EOS.
     %
     \label{fig:slice:heating_hu}
 \end{figure*}
+
+In this section we investigate in detail the 
+high electron fraction, polar component of the \acp{SWW}.
+We propose that this outflow is mostly driven by the neutrino 
+reabsorption, rather than by the dynamical mechanism responsible for the bulk of the 
+\ac{SWW}.
+
+The presence of the baryonic winds developing on the timescale of $\mathcal{O}(10)$~ms
+and driven by the neutrino absorption above the remnant, where the neutrino flux is strong 
+was reported before \citep[\eg][]{Perego:2014fma}. 
+
+In this section we focus of the feducial model BLh $q=1.00$ (SR). 
+
+In the left column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
+the the Bernoulli parameter, 
+$-hu_t$ (see Sec.\ref{sec:method:Bernoulli}), and the fluid electron 
+fraction. 
+
+In the right column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
+the the Bernoulli parameter with the heating energy rate due to electron anti-neutrino absorption 
+$Q_{\rm abs;\:\bar{\nu}_e}$ (see Sec.~\ref{method:M0:eq_for_Q}) divided by with 
+$D=W\rho\sqrt{\gamma}$ (fluid's conserved rest-mass density)
+We observe that the electron fraction in the polar region with angle 
+from binary plane $\theta>60^{\circ}$ reaches $Y_e\sim0.35$ due to the absorption of 
+electron-type neutrinos.
+The strongest neutrino heating occurs in the vicinity of the remnant at densities 
+$\rho\sim10^{11}$~\gcm, that roughly correspond to the region where neutrinos decouple,
+the so-called neutrinosphere \citep{Endrizzi:2019trv}.
+
+In Fig.~\ref{fig:slice:heating_hu} we compare the Bernoulli parameter, 
+$-hu_t$ (see Sec.\ref{sec:method:Bernoulli}), that is always plotted 
+on the right half of a panel, with the electron fraction (left 
+column of plots and heating energy rate due to electron anti-neutrino absorption 
+$Q_{\rm abs;\:\bar{\nu}_e}$ divided by with $D=W\rho\sqrt{\gamma}$ 
+(fluid's conserved rest-mass density).
+The observed correlation between the $E_\nu/D$ \red{???} and $-h u_t$ further suggests, 
+that the outflow around the polar axis is driven by the neutrino absorption. 
+Additionally, we found that if the neutrino absorption is not included into the 
+simulation, \eg, using leakage only, the \nwind{} is absent. 
+%% --- 
+The collimated polar outflow can be further boosted and stabilized by the presence of the 
+strong magnetic fields \citep{Bucciantini:2011kx,Ciolfi:2020hgg,Mosta:2020hlh}.
+%% ---
+Notably, there is not clear distinction between the \nwind{} and \ac{SWW}, especially 
+at the intermediate latitudes ($\theta \sim 45^{\circ}$), where both mechanisms types of 
+ejecta are present, and both, neutrino absorption and dyanmical effects driving the \ac{SWW} 
+are contributing. 
+%% --- 
+In order to compute the mass flux of the \nwind{} an additional criterion is required. 
+We consider two physically motivated criteria, the geometrical, flaggin the part of the \ac{SWW} 
+and \nwind{} if it is polar, \ie, $\theta>60^{\circ}$, and the composition criterion, $Y_e > 0.35$.
+%% --- 
+We find that the \nwind{} is not a steady state outflow, contrary to the bulk of the \ac{SWW}.
+After the initial strong rise, the mass flux rapidly decays in time, and for most models stops 
+by the end of the simulations. This behaviour is independent of the criterion we use. 
+We attribute it to the rise of the baryon loading above the remnant as the material gets lifted 
+by thermal pressure from the disk.
+The total mass of the \nwind{} is ${\sim}10^{-3}-10^{-4}M_{\odot}$. Its properties resemble those 
+reported in e.g. \citet{Dessart:2008zd,Perego:2014fma,Fujibayashi:2020dvr}
+Notably, in some of the works, the \nwind{} was found to require longer timescales to develop, 
+achieving the quasi-steady state. 
+This can be attributed to the strict criteria to isolate the \nwind{} and by the absence of the 
+\ac{SWW} in other works. 
+Additionally, our simulations might not be sufficiently long to achieve the donditions 
+sufficient for the development of the quasi-steady state \nwind{}.
+%% Additionally, as our models are at most $\sim100$~ms long, the conditions required for the steady 
+%% state \nwind{} might not been achieved.
+
+
+%% =======================================================
+%%
+%%                   Disc structure
+%%
+%% =======================================================
+
+
+\section{Remnant disk structure}
 
 
 
