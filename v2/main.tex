@@ -2895,7 +2895,7 @@ fraction.
 
 In the right column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
 the the Bernoulli parameter with the heating energy rate due to electron anti-neutrino absorption 
-$Q_{\rm abs;\:\bar{\nu}_e}$ (see Sec.~\ref{method:M0:eq_for_Q}) divided by with 
+$Q_{\text{abs};\:\bar{\nu}_e}$ (see Sec.~\ref{method:M0:eq_for_Q}) divided by with 
 $D=W\rho\sqrt{\gamma}$ (fluid's conserved rest-mass density)
 We observe that the electron fraction in the polar region with angle 
 from binary plane $\theta>60^{\circ}$ reaches $Y_e\sim0.35$ due to the absorption of 
@@ -2908,7 +2908,7 @@ In Fig.~\ref{fig:slice:heating_hu} we compare the Bernoulli parameter,
 $-hu_t$ (see Sec.\ref{sec:method:Bernoulli}), that is always plotted 
 on the right half of a panel, with the electron fraction (left 
 column of plots and heating energy rate due to electron anti-neutrino absorption 
-$Q_{\rm abs;\:\bar{\nu}_e}$ divided by with $D=W\rho\sqrt{\gamma}$ 
+$Q_{\text{abs};\:\bar{\nu}_e}$ divided by with $D=W\rho\sqrt{\gamma}$ 
 (fluid's conserved rest-mass density).
 The observed correlation between the $E_\nu/D$ \red{???} and $-h u_t$ further suggests, 
 that the outflow around the polar axis is driven by the neutrino absorption. 
@@ -2953,6 +2953,100 @@ sufficient for the development of the quasi-steady state \nwind{}.
 
 \section{Remnant disk structure}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.49\textwidth]{./figs/disk/final_structure/slice_xz_entr_ye_blh_q1_rl3.pdf}
+    \includegraphics[width=0.49\textwidth]{./figs/disk/final_structure/slice_xy_entr_ye_blh_q1_rl3.pdf}
+    \caption{Entropy and electron fraction on the $(x,z)$ (top) and
+        $(x,y)$ planes (bottom) for the remnant of BL $q=1$ at the end
+        of the simulation. Each plot is divided vertically, with entropy
+        being color-coded on the left and electron fraction on the
+        right. Solid contours stand for rest muss density. Counting from
+        the center, the values are $[10^{13}, 10^{12}, 10^{11}, 10^{10},
+        10^{9}]$ g cm$^{-3}$, with the inner most contour encompassing
+        the remnant.
+        (Adapted from \citet{Nedora:2020pak})
+    }  
+    \label{fig:snapshots_xy_ye_entr}
+\end{figure}
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.95\textwidth]{./figs/disk/final_structure/disk_hist_shared.pdf}
+    \caption{Composition of the disks at the end of the long-lived
+        remnants simulations. The histograms refer to the temperature $T$
+        (left),
+        electron fraction $Y_e$
+        (middle) and entropy $s$ (right).
+        (Adapted from \citet{Nedora:2020pak})
+    }
+    \label{fig:final_disk_struct_hist_long}
+\end{figure*}
+
+In this section we discuss the final structure and properties of the disk, 
+focusing on the models with long-lived \ac{MNS} remnants.
+The properties are extracted at typical time $\sim60{-}100$~ms after merger.
+
+We find that the generally the disk is optically thick.
+The disk' RMS openning appears to be independent of the \ac{EOS} and \mr{} and
+is $\langle\theta\rangle_{\text{rms}}\sim60^{\circ}$. 
+The radial extend of the disk, however increases with the \ac{EOS} softness and 
+binary \mr{}.
+Similarly, the final disk mass is larger for the unequal mass binaries, 
+ranging overall between ${\sim}0.1M_{\odot}$ and ${\sim}0.4M_{\odot}$
+(see Tab.~\ref{tab:sim})..
+Notably, for models with long-lived remnants the disk mass is larger,
+that for the those with long-lived remnants. This can be attributed to the 
+rapid accretion onto a \ac{BH} that removes $\sim50\%$ of the disk mass.
+%% ---
+We investigate the overall statistical properties of the disk mass for all our models
+and those available in the literature in Sec.\ref{sec:results:Statistics:Mdisk}
+\gray{
+    The mean value of the disk mass in out models is 
+    $\overline{M}_{\text{disk}}=(0.161 \pm 0.083)M_{\odot}$,
+    where the standard deviation is also reported.
+    %% ---
+    Similarly to the dynamical ejecta we fit the disk masses with the 
+    second order polynomial in $(q,\tilde{\Lambda})$.
+    The coefficients of Eq.~\eqref{eq:fit:poly22}
+    for this fit are given in Tab.~\ref{tab:fitpoly22coefs}.
+    A more detailed study with various fitting formulas and extended
+    datasets from the literature is reported in a companion paper.
+}
+
+Next, we consider the composition of the disk at the end of the simulation.
+%% --- 
+The mass-averaged temperature, electron fraction and entropy per baryon
+are for several models are shown in Fig.~\ref{fig:final_disk_struct_hist_long}.
+%% ---
+We observe that the mass-weighted distribution of the entropy and electron 
+fraction show a bimodal structure, which is more pronounced for the 
+equal mass binaries. 
+Regarding entropy, two peaks are present in the distribution:
+a peak low entropy $s\sim5-10k_B/$baryon, that depends weakly of the 
+\ac{EOS} and \mr{} and corresponds to the bulk, mildly shocked, material. 
+The second peak is found at higher entropy, $s\sim15-22k_B/$baryon.
+It corresponds fo the strongly shocked material and is more prominent 
+in models with softer \ac{EOS}.
+Notably, in the models with higher \mr{}, the second peak is located 
+at lower $s$.
+The mass-weighted distribution of the electron fraction 
+displays a similar double-peak structure.
+The low $Y_e$ peak that corresponds to the neutrino-shielded part of the 
+disk is located around the $Y_e\sim0.1$.
+The high $Y_e$ peak is located at $Y_e\sim0.3-0.4$ and corresponds to the outer parts of the disk, subjected to a strong neutrino irradiation.
+
+In Fig.~\ref{fig:snapshots_xy_ye_entr} we show the electron fraction 
+and entropy per baryon on the $xy$ and $xz$ slices of the equal 
+mass model with BLh \ac{EOS}.
+The plot shows, that the two peaks in the mass-weighted distribution 
+of electron fraction and entropy correspond to different regions within the disk.
+
+Overall, the most of the disk matter has temperature of $T\sim 1-10\,$MeV, with the innermost parts being hotter then the outer outermost. 
+However, the disk temperature distribution appears to be largely independent of the \ac{EOS} and \mr{}
+
+\red{Paragraph on the secular ejecta has been moved to 
+GW170817 application}
 
 
 %% ========================================================================================
@@ -3071,6 +3165,25 @@ for the high opacity, lanthanides-rich material.
 Simulations with advanced physics of a \ac{MNS} mergers on a timescales $>100$~ms are 
 required to asses the contribution from other outflow mechanisms, \red{that we will discuss below} 
 \citep{Lee:2009uc,Fernandez:2015use,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa}.
+
+
+\subsection{Secular Ejecta}
+
+
+On the timescale of seconds, much longer than the evolution of 
+presented here simulations, the nuclear recombination can unbind 
+a fraction of the disk mass. 
+Analytical estimates and simulations with various approximations show that up tp ${\sim}40\%$ of the disk can be ejected via viscous processes with an typical velocity ${\lesssim}0.1\,$c
+\citep{Lee:2009uc,Fernandez:2015use,Wu:2016pnw,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa,Fujibayashi:2020dvr}.
+
+Adapting the fix fraction of the $40\%$ of the disk mass, we estimate 
+that about  ${\sim}0.05\, M_{\odot}$ would be ejected in a form of 
+secular winds. We include this estimate for every simulation
+with the long-lived \ac{MNS} remnant in Fig.~\ref{fig:ejecta:dyn:ds_sww} (lower triangles).
+The estimated mass is sufficient to explain
+the red component of AT2017gfo, as inferred from the two-components kN
+models of \cite{Villar:2017wcc}. 
+
 
 
 
