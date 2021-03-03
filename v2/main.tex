@@ -3049,6 +3049,266 @@ However, the disk temperature distribution appears to be largely independent of 
 GW170817 application}
 
 
+%% =======================================================
+%%
+%%                   Nucleosynthesis
+%%
+%% =======================================================
+
+\todo{MAYBE another chapter with intro, method and results?}
+
+\section{Nucleosynthesis}
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.45\textwidth]{figs/nucleo/cc_nucleo_BLh_total.pdf}
+    \includegraphics[width=0.45\textwidth]{figs/nucleo/cc_nucleo_DD2_total.pdf}
+    \includegraphics[width=0.45\textwidth]{figs/nucleo/cc_nucleo_LS220_total.pdf}
+    \includegraphics[width=0.45\textwidth]{figs/nucleo/cc_nucleo_SFHo_total.pdf}
+    \includegraphics[width=0.45\textwidth]{figs/nucleo/cc_nucleo_SLy4_total.pdf}
+    \includegraphics[width=0.42\textwidth]{figs/nucleo/nucleo_dd2_blh.pdf}
+    \caption{Nucleosynthesis yields for all simulations. Each %% panel
+        of the first five panels 
+        shows a different EOS and the scale color the dependency on the
+        mass ratio. The nucleosynthesis is computed on the total ejecta
+        computed during the simulations and 
+        composed of the \ac{DE} (all models) plus the \ac{SWW} 
+        (for the long-lived remnants listed in
+        Tab.~\ref{tab:spiralwavewind}.).
+        %
+        The last (bottom-right) panel compares the nucleosynthesis in
+        the \ac{DE} and \ac{SWW} for the long-lived
+        remnants. The inclusion of the \ac{SWW} contributes to 
+        improve the agreement with solar data for elements around the first peak.
+        (Adapted from \citet{Nedora:2020pak})
+    }
+    \label{fig:nucle:totalyields}
+\end{figure*}
+
+The nucleosynthesis calculations are performed in postprocessing
+following the same approach as in \cite{Radice:2016dwd,Radice:2018pdn}.
+
+Here we briefly outline the procedure. 
+Expanding ejecta undergoes the rapid neutrino capture nucleosynthesis, (\rproc{}).
+In \citet{Lippuner:2015gwa} a new nuclear reaction network was presented 
+(see Appendix~\ref{app:nuc} for more details). 
+Using the parametrized \rproc{} calculations it is possible to map the ejecta 
+parameters (discussed below) onto the final nucleosynthetic yields of our simulations.
+The procedure is the following. 
+For a given ejecta type (\eg, \ac{DE} or \ac{SWW}) we obtain the electron fraction,
+entropy, velocity and rest mass density at a given extraction sphere 
+(see Sec.\ref{sec:method:ejecta}).
+The $r$-process in a given fluid element depends on how fast it decompresses from the 
+merger environment (see Appendx~\ref{app:nuc}). 
+This can be parametrized with the expansion timescale, $\tau$, assuming a specific 
+velocity profile for the ejecta. We assume the homologous expansion \red{explain!}.
+This assumption holds, as ejecta reaching the extraction sphere has already 
+significantly decompressed and its density decreased ${\sim}3$~orders of magnitude. 
+For the homologous expanding fluid, the density as a function of time reads 
+
+\begin{equation}
+    \rho(t) = \rho_E\Big(\frac{\upsilon_E t}{r_E}\Big)^{-3} = 
+    \rho_E\Big(\frac{\upsilon_E t}{r_E}t\Big)^{-3},
+    \label{eq:nuc:rho_homolog}
+\end{equation}
+
+where $\rho_E$ and $\upsilon_E$ are the density and velocity of the fluid element 
+when it crosses the radius $r_E$. 
+%% ---
+The density in the nucleosynthesis calculations has the profile \citep{Lippuner:2015gwa} 
+
+\begin{equation}
+    \rho(t) = \rho(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{e t}\Big)^3
+    \label{eq:nuc:rho_nuccalc}
+\end{equation}
+
+where $e$ is the Euler's number, and $s$ and $Y_e$ are the fluid entropy and 
+electron fraction.
+
+Solving together Eq.~\eqref{eq:nuc:rho_homolog} and Eq.~\eqref{eq:nuc:rho_nuccalc},
+the expansion timescale $\tau$ can be extracted.
+
+In order to compute the nucleosynthetic yields we bin the ejecta in the 
+parameter space of $(s, Y_e, \tau)$. 
+%% --- 
+Under the assumption of homologous expansion the \rproc{} outcome depends on 
+the these quantities and can be precomputed.
+%% ---
+We compute the total nucleosynthetic yields by summing the contributions from 
+each bin.
+
+%% -------------------------------------
+
+%However, part of the uncertainty lies in the yet insufficient understanding of the nucleosynthetic yields from the neutron star mergers. Here we study the $r-$process
+%abundances from the mergers, focusing on the effect of mass-ratio and equation of state. Complimentary to the previous study \cite{Radice:2018pdn}, we include the post-dynamical ejecta, \textit{e.g.,} \swind, where the lifetime of the remnant is sufficiently long. \\
+%
+%For the nucleosynthesis calculations we employ the same approach as in \cite{Radice:2016dwd} and \cite{Radice:2018pdn} which we outline briefly. Consider the outflowing material, crossing the coordiante sphere surface with $R\approx294$km that satisfies the criteria to be unbound, (geodesic for the dynamical ejecta and Bernoulli for the \swind) the following properties. WE extract its electron fraction n $Y_{e,R}$, specific entropy $s_R$, velocity $\upsilon_R$ and the rest-mass density $\rho_{0,R}$. In addition, we assume that the following expansion of the material is homologous, \textit{i.e.,}
+%
+%\begin{equation}
+%\rho_{0}(t) = \rho_{0,R}\Big(\frac{\upsilon_R}{cR}t\Big)^{-3}.
+%\label{eq:nucleo:rho_t}
+%\end{equation}
+%
+%Then we match the density decrease with radius, with the $\rho$ behavior available in the parameterized $r$-process calculations of \cite{Lippuner:2015gwa}
+%
+%\begin{equation}
+%\rho_{0}(t) = \rho_{0}(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{et}\Big)^3,
+%\label{eq:nucleo:rho_t_lipp}
+%\end{equation}
+%
+%where $\tau$ is the expansion timescale, and $e$ is the constant $e\approxeq 2.718$. Matching the equations \ref{eq:nucleo:rho_t} and \ref{eq:nucleo:rho_t_lipp} yields $\tau$ as
+%
+%\begin{equation}
+%\tau_d = \frac{eR}{3\upsilon_R}\Bigg(\frac{\rho_R}{\rho_0}\Bigg)^{1/3}.
+%\end{equation}
+%
+%Nucleosynthesis network calculations allow for a homologous expansion  to precompute the yields as a function of $\{\rho_{0,R},s_R,Y_{e,R},\tau_R\}$. Binning the corresponding ejecta parameter space, we can then use this precomputed data to gauge the nucleosynthetic yields in every bin of ejecta. Summing them, we obtain the total yield. For the discussion of the uncertainty of this method, see \cite{Radice:2018pdn}. \\
+%
+%It is also worth noting other approaches to nucleosynthesis computations in ejecta. In principle, the method should involve tracking numerous isotopic abundances of the material, that is moving along the fluid flow, undergoing fission, mixing and spallation, accounting for the EOS dependent feedback to the underlying flow. This however would require modifications to the composition equation and would make models computationally very expensive. A simplification to this approach would be to ignore the backreaction of nucleosynthesis to the flow dynamics, following the composition changes of Lagrangian traces advocated by it. It is believed that fission, while producing entropy that alters the burning in non-trivial way, amounts to only marginally changing the flow dynamics of lightly bound material \vn{it is however interesting to see how this would change the \swind mass}. Thus, the tracer approach is reasonable approximation, that is widely used. The technical difference with respect to the arropach employed in this work, is that the density history $\rho(t)$ is tracked in the ejecta instead of the assumption of homologous expansion. The entropy $s_0$ and electron fraction $Y_{e,0}$ are extracted at the time $t_0$ and then evolved using a self-heating nuclear reaction network \cite{Freiburghaus:1999}. \\
+%
+%The comparison between tracer method and homologous expansion one is performed in \cite{Radice:2018pdn}. It was concluded that within a factor of two, methods yield similar results. However, several caveats were pointed out with respect to the errors arising in ignoring the actual density history ($25\%$). On the other had it was stated that due to the approximation of Eualian flow with Lagrangian the error of $\sim 40\%$ can be expected. \\
+%
+%Here, employing the homologous expansions method. We report the relative abundances of different isotopes synthesized by the $r$-process \red{32} years \vn{not sure where this number is set up} after the merger in the material ejected from the system. In the \textit{short-lived} cases this encompasses only the dynamical ejecta, while in the \textit{long-lived} ones (see table \ref{tab:wind}) it includes the \swind. As the electron fraction is the most important quantity determining the outcome of the $r$-process \cite{Lippuner:2015gwa,Radice:2016dwd}, we report it for selected \textit{long-lived} models in figure \ref{fig:ejecta:bern:hist}. In the figure \ref{fig:nucleo:dynvswind} we compare how the inclusion of the \swind changes the abundances of two representative models and in the figures \ref{fig:nucleo:dynonly} and \ref{fig:nucleo:dynvswind} we show the total abundances of a large  subset of models, investigating the effect of mass ration and EOS (without and with the inclusion of \swind respectively). In all cases, we compare our abundances with the up-to-date solar ones from \cite{Prantzos2020} (for a review of the solar system abundances see \textit{e.g.,} \cite{Pritychenko:2019xvf}). The latter are normalized to the sum of all elements, while the model abundances are normalized to the solar at $A=195$. This is justified as long as ejecta contains very neutron rich material, as the nuclear fission cycling leads to a robust profile that follows the third $r$-process peak \cite{Lippuner:2015gwa}.\\
+%
+%The \cite{Radice:2018pdn} presents the systematics of the nucleosynthetic yields of a large subset of models, for which neutrino re-absorption has been neglected. Here we extent this by performing a similar analysis albeit with the subset of models that include the neutrino re-absorption. In addition, the subgrid turbulence is included in most of our models. However, its effect is much weaker then the one of the mass-ratio. Indeed, the figure \ref{fig:nucleo:dynonly} shows a model's ability to reproduce the solar $1$st and $2$nd r-process peaks, at $A\sim 100$ and $A\sim 125$ respectively strongly depended on the mass-ratio. Higher $q$ models, whose dynamical ejecta is mostly of tidal tail origin with very low electron fraction show severe underproduction of light $r$-process material, while $q=1$ DD2 and BLh models are able to reproduce both peaks reasonably well. This is the result of inclusion of neutrino reabsortion as it increases the $Y_e$ of the shocked component of the ejecta \cite{Radice:2018pdn}. Note, however, that in \cite{Papenfort:2018bjk} the effect of $q$ was not found. But similar to both studies, with respect to the equation of state, we do not observe consistent changes between still anf soft ones. This has also been the case in the aforementioned study.\\
+%
+%Important to note the actinides production, elements with atomic number $A\sim 230$. It was previously reported that in binary neutron star merger ejecta these materiel is overproduced (see \textit{e.g.,} \cite{Giuliani:2019oot}). However, we hint that this conclusion might partially be motivated by a choice of normalization. If we employ the physically motivated normalization to $A = 195$ of solar abundances, we observe that the actinides abundances are consistent with solar. We also note that there is dependency on the mass-ratio, motivated once again, by the ejecta composition. The very low $Y_e$ of highly assymetric models leads to significant boost in actinides production. This is the case for $q=1.8$ of BLh and $q=1.67$ of LS220. \\
+%
+%Indeed, to explain the $^{232}$Th solar abundances the average electron fraction in the ejecta should lower and any of our models except promptly collapsing ones can achieve. This underlines the importance of such mergers for $r$-process nucleosynthesis. We however emphases, that with adopted in this work normalisation, we do not observe overproduction of actinides, that was reported in \cite{Holmbeck:2019xnd}. \\
+%
+%+
+%In the \textit{long-lived} case, the dynamical ejecta amounts to a small fraction of the total mass of material leaving the system. The second, more massive component, is the \swind. Its overall high electron fraction (see Fig. \ref{fig:ejecta:bern:hist}) implies that the weak $r$-process is dominant one here and light elements $A<195$ are primarily produced. In figure \ref{fig:nucleo:dynvswind} we compare the relative abundances from nucleosynthesis in dynamical ejecta only, with the total ones. Owing to the normalization to the $3$rd peak, it is reproduced in both cases, and the important difference lies in the $1$st and $2$nd peaks. In case of BLh we see that solar abundances of even very light elements $A\sim75$ are robustly reproduced. However there is an overproduction of $A\sim 110$ and $A\sim 130$ elements. The DD2 model, on the other hand, shows an overall lower total abundances. This is attributed to the slightly lower average electron fraction in DD2 (Fig. \ref{fig:ejecta:bern:hist}) while the ejecta masses are very similar (Fig.\ref{fig:mej:bern}). \\
+%
+%In the figure \ref{fig:nucle:totalyields} we investigate the total mass-ratio dependence of the total abundances. It is important to emphasis that in \textit{short-lived} cases this is the abundances of the dynamical ejecta only. Thus we limit this discussion to the DD2 and BLh models, most of which are sufficiently long with only extreme high $q$ BLh ones being an exception. Notably, the abundances strong $q$ dependence observed in dynamical ejecta, is not present for total ejecta, and all the $r$-process peaks are reasonably well reproduced by all the \textit{long-lived} models. This is not too surprising owing to the robust properties of the \swind, that change only marginally between different models. \\
+%
+%Overall, we find that dynamical ejecta of asymmetric models in general underproduces the $1$st and $2$nd r-process peaks due to its low average electron fraction. Equal mass DD2 and BLh models however are able to reproduce these peaks. Meanwhile, the total ejecta of DD2 and $q<1.7$ BLh models reproduces both, $1$st and $2$nd r-process peaks reasonably well irrespective of the mass-ratio, showing that the complete solar $r$-process abundances can be recovered if the remnant is \textit{long-lived}. This further supports the hypothesis, that binary netuton stars are the prime source of $r$-process material in the Universe.\\
+%
+%It is however, important to note that nucleosynthetic yields are subjected to the choice of nuclear input data. In particular, the choice of fission fragment distributions and neutron induced fission rates may have a large impact on abundances in the region of the $1$st and $2$nd peaks \cite{Eichler:2014kma}. The symmetric fission fragment distributions used in our calculations does most likely underproduce material in this region. In addition, as the neutrino-matter interaction rates roughly scale with the square of the incoming neutrino energy. Thus, the nucleosynthetic yields depend on the details of the neutrino radiation spectra \cite{Foucart:2016rxm}. The energy integrated scheme, employed in this work, does not allow us to take this effect into account (see, however, \cite{Radice:2018pdn} where different neutrino energy distributions were studied). It was recently pointed out that the neutrino resonant oscillations and fast flavor conversion might occur in NS merger remnants \cite{Zhu:2016mwa,Frensel:2016fge,Deaton:2018ser}. This might modify the nucleosynthesis of light $r$-process elements \cite{Wu:2016pnw}. Thus there is a need for more sophisticated simulations with spectral neutrino transport taking into account the neutrino oscillations. \\
+%
+%In addition to the dynamical ejecta and \swind, the $r$-process nucleosynthesis occurs in the secular ejecta. In particular in neutrino-driven winds, where neutrino irradiation of the expanding ejecta considerably increases the electron fraction. If the velocity of the ejecta sufficiently low, the material achieves $Y_e$ given by the weak equilibrium in optically thin conditions with neutrinos \cite{Qian:1996xt}. During the early post merger phase this $(Y_e)_{eq}\leq 0.45$ which allows for a weak $r$-process nucleosynthesis of light elements $A<130$ to occur \cite{Dessart:2008zd,Perego:2014fma,Foucart:2016rxm,Martin:2015hxa}. In addition, is expected that the dominant source of ejecta from the merger is the viscously-driven outflow from massive disk, if it forms after the merger. Properties on such outflow has been recently investigated in a framework of axisymmetric BH-torus systems \cite{Fernandez:2013tya,Just:2015fda}. The $Y_e$ distribution was found to be broad allowing all $r$-process elements from the $1$st to the $3$rd peak, as well actinides, to be synthesized in proportions close to solar (\textit{e.g.,} \cite{Wu:2016pnw}). If the \textit{long-lived} remnant is present however, the properties of the viscous ejecta are expected to be significantly altered by the large amount of neutrinos emitted over the diffusion time scale (seconds, \textit{e.g.,} \cite{Dessart:2008zd,Perego:2017fho}). 
+
+
+
+%% -------------------------------------
+
+
+
+\red{Radice:2018pdn disussion on the accuracy/}.
+
+\red{Something to check}
+\gray{
+    We do not nd material with expansion timescale of
+    less than 0:5 ms. This seems to exclude the neutron freezeout
+    scenario proposed by Metzger et al. (2015). However,
+    the lack of a very fast component of the ejecta might also
+    be due to numerical effects. Our resolution is probably not
+    high enough to track the very small fraction of the ejecta
+    expected to experience neutron freeze-out in the scenario
+    proposed by Metzger et al. (2015).
+}
+
+
+%% ----------- results ----------------- 
+
+With the procedure outlined above we compute the isotopic abundances of 
+the \rproc{} elements $32$~years after merger. 
+%% ---
+The novelty of the results presented in this section is in the more 
+advanced neutrino treatment, as all out models include the effects of neutrino 
+self absorption (in comparison with \citet{Radice:2018pdn}), the inclusion 
+of the \ac{SWW}, and models with high \mr{}, $q\geq1.8$. 
+%% ---
+
+In the Fig.~\ref{fig:nucle:totalyields} (except the bottom right panel), 
+we show the nucleosynthesis yields from overall ejecta with each panel 
+containing all models fro a given \ac{EOS}, with the \mr{} being color-coded.
+For models with short-lived \ac{MNS} remnants the total ejecta is compised 
+of the \ac{DE} only, while for models with long-lived ones, the total ejeta 
+consists of \ac{DE} and \ac{SWW}. 
+%% --- 
+We compare the model abundances with the recently updated solar residual 
+\rproc{} abundances from \citet{Prantzos2020} 
+(for a review of the solar system abundances see \eg~\citealt{Pritychenko:2019xvf}).
+For the qualitative comparison between models and observations we employ 
+the following normalization. 
+The model abundances are multiples by a constant factor that makes the abundances at 
+$A=195$ equal solar.
+%% --- 
+From the plot we observe that final \rproc{} abundances in the ejecta from models that 
+form long-lived \ac{MNS} remnants with DD2 and BLh \acp{EOS}, are in a greement with 
+solar across all three \rproc{} peaks. 
+\red{add some info on peaks themselves.}
+Due its robust properties, the \ac{SWW} allows for the complete reproduction 
+of the solar \rproc{} abundances. 
+\red{A note on the high Ye and light element productioN?}
+%% --- 
+With respect to the models with short-lived remnants, the final \rproc{} eject abundances 
+at solar $1$st and $2$nd \rproc{} peaks, (at $A\sim 75$ and $A\sim 125$ respectively) 
+depend strongly on \mr{}. 
+For instance, models with high \mr{} have \ac{DE} of tidal origin mostly with low 
+electron fraction. The final \rproc{} abundances in this ejecta show the underproduction 
+of light elements. 
+The final abundances in ejecta from equal mass binaries, 
+however, shows that even light \rproc{} elements are 
+synthesized. This is because the neutrino reabsorption raises the electron fraction 
+in the shocked component of the \ac{DE} \citep{Wanajo:2014wha,Radice:2018pdn}. 
+
+%% --- 
+We observed that final abundances in the ejecta in all our models show the 
+presence of actinides, elements with $A\sim230$. 
+The amount of actinides produced, however, depends strongly on the ejecta 
+electron fraction, and thus, on the binary \mr{}.
+The agreement with solar abundances is found only for very asymmetric binaries. 
+Notably, that only for the binaries with the highest \mr{}, $q\sim1.8$, the 
+\rproc{} in the \ac{DE} results in both $3$rd peak and actinides(at $^{232}$Th) abundances 
+close to solar values. 
+This suggests that the high \mr{} mergers or \ac{NSBH} mergers might be an 
+important contributor to the cosmic chemical evolution.
+
+%%--- Bottom right panel
+The total ejecta from the models with long-lived \ac{MNS} remnants is dominated by
+the \ac{SWW}, as its mass is generally limited by the \ac{MNS} lifetime 
+or by the evolved time (Sec.~\ref{sec:results:ejecta:sww})
+In the bottom-right panel of Fig.~\ref{fig:nucle:totalyields} we show separately the 
+final abundances from the \rproc{} in the \ac{DE} and in the \ac{DE} plus \ac{SWW}. 
+The electron fraction of the \ac{SWW} is higher than that of the \ac{DE} 
+(see Fig. \ref{fig:ejecta:bern:hist}), and this the \rproc{} nucleosynthesis in the 
+\ac{SWW} produces primarily light elements around the first \rproc{} peak, $A<95$.
+We recall here, that due to the choice of the normalization, all abundances are up-scaled 
+to reproduce the $A=195$ peak. We asses here the relative abundances at $1$st and $2$nd
+\rproc{} peaks.
+%% ---
+The plot shows that for the BLh models the amount of lighter elements, $A\sim75$, is higher with 
+respect to the DD2 model. This can be attributed to the higher electron fraction in the 
+\ac{SWW} of the former (see Fig. \ref{fig:ejecta:bern:hist}).
+In both cases, however, the abundances of light elements are very close to slolar 
+\red{can be extended by adding plot from the Letter}
+
+%% --- other ejecta types
+The \rproc{} is expected to take place in other types of ejecta from \ac{BNS} mergers.
+In \nwind{} the neutrino irradiation raises the electron fraction, that, depending 
+on the ejecta velocity, can reach the $Y_e\leq 0.45$ \citep{Qian:1996xt}. 
+At this pint the weak equilibrium sets in between the ejecta and neutrinos.
+High electron fraction implies that only the light elements will be produced.
+The numerical studies indeed support this picture 
+\citep{Dessart:2008zd,Perego:2014fma,Just:2014fka,Martin:2015hxa,Foucart:2016rxm}. 
+%% ---
+The bulk of the ejecta from \ac{BMS} mergers is expected to come in the form of 
+viscous- and recombination-driven winds, This ejecta, however, is expected to take 
+place over the longer timescales than those of our simulations.
+Studies have shown that this ejecta has a broad distribution of the electron fraction 
+and the \rproc{} nucleosynthesis within it would produce light as well as heavy elements
+\citep{Fernandez:2013tya,Just:2014fka,Wu:2016pnw,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax}.
+The production of the heavy \rproc{} elements, however, might be supressed in this winds
+if the long-lived \ac{MNS} is present \citep{Metzger:2014ila,Lippuner:2017bfm}.
+
+
+%% =======================================================
+%%
+%%                   Conclusion
+%%
+%% =======================================================
+
 %% ========================================================================================
 
 \section{Statistics of the \ac{DE} parameters and disk mass}
