@@ -1,0 +1,1364 @@
+% Chapter Template
+
+\chapter{Results and discussions} % Main chapter title
+
+\label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\red{
+    To be defined: \\
+    Chirp pass \\
+    Gravitational and Baryonic masses
+}
+
+In this chapter we review the findings of \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}
+and investigate the long-term \pmerg{} evolution of the binary neutron star. 
+
+Such studies are of high astrophysical importance as the ejecta of matter that occur 
+on various timescales \pmerg{} undergoes \rproc{} and produces observable EM emission. 
+The discussion of the \rproc{} and EM transits themselves, we resort for the chapter \red{chap:coutnerparts}.
+
+
+\section{Simulations}
+
+
+
+%% --------------------------------
+%% TAB SIM SUMMARY
+\input{Tables/tabSim.tex}
+%% --------------------------------
+
+
+In total we consider a sample of $37$ simulations of unique binaries with the 
+chirp mass $\mathcal{M}_c = 1.188\,\Msun$ that corresponds to the source of \GW{}.
+%% ---
+The total gravitational mass covers the range $M\in[2.73, 2.88]\Msun$, while the 
+mas ration $q=M_A/M_B\in[1,1.8]$. 
+%% ---
+We show the masses and radii of computed models as markers on the 
+figure~\ref{fig:method:tov_mr} and summarize their main properties, 
+and the dynamical ejecta properties in the table~\ref{tab:sim}.
+%% --- 
+Most simulations are performed with at least two resolutions, 
+\texttt{LR} and \texttt{SR}. 
+Additionally, $16$ binaries are simulataed at high resolution \texttt{HR}.
+In total $76$ simulations are analyzed.
+% ---
+Several binaries that resulted in a formation of a MNS are evolved up to 
+$100$~ms \pmerg.
+%% ---
+Most simulations include the effects of subgrid turbulence. 
+Those that are not are marked with ``*'' next to the equation of state name.
+%% --- 
+The naming convention for simulations is the following: 
+the equation of state name, the mass ratio, and the resolution, \eg, 
+the ``BLh* $q=1.00$ (\texttt{SR})" would refer to the simulation of the equal mass
+binary performed with BLh EOS, without subgrid turbulence and at standard resolution. 
+%% ---
+%% mass ratio binaries has been already presented in \cite{Bernuzzi:2020txg}.
+%% Together with our previous data these simulations form the largest
+%% sample of merger simulations with microphysics available to date
+%% \citep{Bernuzzi:2015opx,Radice:2016dwd,Radice:2016rys,Radice:2017lry,Radice:2018xqa,Radice:2018pdn,Perego:2019adq,Endrizzi:2019trv,Bernuzzi:2020txg}.  
+
+
+
+\section{Overview of the remnant dynamics}
+\label{sec:bns_dynsmics_overview}
+
+
+This section is based on the \cite{Nedora:2020pak}
+
+\subsection{High mass ratio binaries}
+
+Newly born \ac{MNS} is not axisymmetric. In addition to driving the angular 
+momentum transport, it is a strong emittor of \acp{GW} at kiloHertz frequencies.
+In ${\sim}10-20$~ms \pmerg{} the \acp{GW} remove about two time the 
+amount of energy that was lost during the inspiral and merger \citep{Bernuzzi:2015opx}.
+After that, the contribution of \acp{GW} to the system evolution, specifically to the angular momentum loss, drops \citep{Radice:2018xqa}. 
+The long-term evolution, $\O(100)$~ms, of the remnant is driven primarely by the viscous processes and weak interactions.
+
+After the emission of \acp{GW} subsides, the \acp{MNS} still have an excess in angular momentum and gravitational mass, with respect to the cold, rigidly rotating equilibrium with the same baryoinc mass \citep{Radice:2018xqa}.
+
+The subsequent evolution of the \ac{MNS} is towards the axisymmetric configuration close to the mass-shedding limit. However, would a \ac{MNS} reach this state or collapse to a \ac{BH} depends on the details of \pmerg{} state and on the temperature and composition effects.
+
+
+A subset of \ac{BNS} models with high mass-ratio forms a \ac{BH} 
+during the merger \cite{Bernuzzi:2020txg}. The absence of the core bounce
+is indicated by the monotonic increase of the central density.
+Such a behavior is referred to as prompt collapse \citep{Radice:2020ddv,Bernuzzi:2020tgt,Bernuzzi:2020txg}.
+Specifically, these are models with $q\gtrsim1.67$. 
+\gray{During the merger, the companion star (less massive) undergoes a tidal disruption, as the tidal forces overcome the star's binding energy}. The star is then accreted onto the primary (most massive). 
+The accretion raises its mass beyond the maximum supported limit by the \ac{EOS}, which leads to collapse. 
+The newly formed \ac{BH} is surrounded by the accretion disk that was left from the tidally disrupted companion.
+
+At formation, the disk has a large baryon mass, ${\sim}0.15\,\Msun$, in comparison with the disks formed in prompt collapse of equal mass binaries, \citep[\eg][]{Radice:2018pdn}. 
+The disk is also neutron-rich $Y_e\sim 0.1$.
+
+We show the evolution of the disk mass of several representative models in Fig.~\ref{fig:disk_mass_evo}.
+
+\red{EJECTA to be moved to its own section}
+The models that undergo the prompt collapse also eject matter on a dynamical timescale. The ejecta originates from tidal disruption of the compantion. It is neutron rich, confined largely to the orbital plane and exhibits a crescent-like azimuthal structure \citep{Bernuzzi:2020txg}.
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{disk/total_disk_mass_evo.pdf}
+    \caption{Time evolution of the total disk mass for a few selected
+        short-lived and long-lived cases. The former show a rapid 
+        accretion right after disk formation. The plots show
+        distinct difference in dynamical evolution after disk formation: accretion onto
+        the newly formed BH (short-lived remnants) or accretion onto the NS
+        remnant (DD2 $q=1$) with possible continuous mass shedding from the remnant
+        into the disk (BLh* $q=1$). Adopted from \citet{Nedora:2020pak}
+    } 
+    \label{fig:disk_mass_evo}
+\end{figure}
+
+
+\subsection{Binaries with $q\lesssim1.4$}
+
+
+Binaries with small mass ratio, ($q\lesssim1.4$) produce a \ac{MNS} remnant
+that either survives on a dynamical timescale, set by the \ac{NS} rotation, before
+collapsing to a \ac{BH}, or a \ac{MNS} that survives till the end of the simulations.
+We refer to the former ones as \textit{short-lived} and the latter ones as 
+\textit{long-lived} remnants.
+Under the first category, fall the \ac{MNS} with relatively soft \ac{EOS}:
+LS220 $q=1,1.1,1.2$, SFHo $q=1,1.1,1.4$ and SLy $q=1,1.1,1.4$. 
+They collapse within $\sim20$~ms \pmerg. 
+The exact time of the collapse however depends on the simulation resolution 
+and on the inclusion of subgrid turbulence as was previosly noted by \citet{Radice:2017zta}.
+
+\paragraph{Disk of short-lived remnants}
+
+During the merger, shocks generated at the collisional interface of the \acp{NS} cores,
+as well as, tidal torques exerted by the non axisymmetric remnant result in a formation
+of the disk. 
+Matter, energy and angular momentum are injected into the disk as the spiral density waves 
+propagate outwards from the mass-shedding \ac{MNS} remnant 
+\citep{Bernuzzi:2015opx,Radice:2018xqa}.
+\red{HERE the letter stuff could be added, actually}
+
+Within these waves the fluid reaches highest temperatures, which decrease rapidly, as 
+disk expansion and neutrino emission cools the matter. 
+In such a high-temperature environment, the electron-positron pair creation is enhanced.
+%% [added from Shibata Review paper]
+As a result, neutrons can capture positrons $n+e^+p\rightarrow\bar{\nu}_e$.
+The average particle energies are large, close to the mass difference between neutron 
+and proton. 
+In combination with the high $\nu_e$ and $\bar{\nu}_e$ luminosities,
+the large number of available positrons leads to an increase 
+in the fluid electron fraction, $Y_e$ from that of the initially neutron-rich material
+\citep{Qian:1996xt}.
+Additionally, a \ac{MNS} is a strong neutrino emitter. The neutrino irradiation of the 
+surrounding area alters its composition, and neutrino absorption takes place
+$n+\nu_e\rightarrow p + e^{-}$ and $p + \bar{\nu}_e\rightarrow n + e^+$.
+This drives the neutron and proton fraction towards equilibrium, and raises the $Y_e$.
+\red{paper says: 
+    The electron fraction is reset by an initial excess of electron antineutrino emission
+    and electron neutrino absorption,}
+The entropy per baryon varies between $3$ and $\lesssim 10\,$$k_{B}$/baryon \citep{Perego:2019adq}.
+%% ---
+If \ac{MNS} remnant collapses to a BH, the main source of neutrinos shuts down and 
+the inner part of the disk is rapidly accreted. 
+The disk then approaches quasi-steady state, Fig.~\ref{fig:disk_mass_evo}, with 
+axisymmetric, approximately Keplerian profile.
+The inner part of the resulted disk, at densities $\rho\sim10^{13}$~\gcm, 
+is relatively hot, $T\sim10\,$ MeV, but neutron-rich $Y_e\sim0.1$, as it was shielded 
+from the neutrino irradiation. The disk gets progressively colder and proton-rich 
+outwards with $Y_e$ reaching $0.4$ at the edges.
+%% ---
+The disk mass at formation appears to depend on the \ac{NS} \ac{EOS}. Binaries with 
+stiffer EOS (larger \ac{NS} radii) produce more massive disk.
+\red{[Fitting function]
+    The disk mass can be described within the numerical uncertainties by a
+    quadratic function of the mass ratio and the reduced tidal
+    parameters (see Sec.~\ref{sec:remdisk}).}
+Additionally, the disk mass show a dependency on mass ratio. For instance, the most massive disks are formed in LS220 $q=1.43$ and  BLh $q=1.82$ models, where the latter experiences prompt collapse.
+%% -- 
+The disk accretionon a \ac{BH} removes up to $50\%$ of the disk mass on a timescale tens of milliseconds.
+
+
+\paragraph{Disk of long-lived remnants}
+
+
+If the \ac{MNS} is long-lived, the disk has time to complete its formation,
+and thus it is more massive and extended \citep{Perego:2019adq}. 
+As before, the disk is defined as matter, with $\rho\lesssim10^{13}$~\gcm. 
+The disk mass increases with the mass ration and with stiffness of \ac{EOS}.
+For instance, for BLh $q=1.00$ model, the disk mass reaches ${\lesssim}0.15\,\Msun$, 
+while for DD2 $q=1.00$ model is exceeds ${\sim}0.2\,\Msun$.
+For a models with BLh \ac{EOS}, the disk mass increases between $q=1.00$ and 
+$q\sim1.4-1.5$ by a $100\%$.
+%% ---
+The long-term evolution of the disk is driven by its interaction with the \ac{MNS} 
+remnant and cooling. 
+And while in the case of a \ac{BH} remnant, the only possible interaction is the 
+disk accretion onto a \ac{BH}, in case of a \ac{MNS} remnant the picture is more 
+complex.
+The disk neutrino cooling and gravitational pull from the remnant facilitates the 
+accretion. However, generated at shocks, spiral density waves inject 
+energy and angular momentum into the disk as well as centrifugally supported 
+material (as \ac{MNS} undergoes mass-shedding). This heats up the disk and 
+facilitates its expansion. 
+In the figure  Fig.~\ref{fig:disk_mass_evo} the quasi-steady state disk accretion
+is seen for the DD2 $q=1.00$ model. Meanwhile, in the BLh $q=1.00$ model, the 
+mass-shedding by the remnant adds more material into the disk that it is being 
+accretted. 
+The analysis suggests, that this behaviour is due to two main factors: the 
+very high average temperatures of the remnant and the disk achieved by this model, that 
+are a consequence of the thermal effects included into the BLh EOS (\red{see sec.EOS}),
+and the softness of the EOS, which lead to the strong oscillations of the 
+remnant after merger (\red{see sec.DensyModes.}).
+
+The inclusion of the subgrid turbulence smears the mass distribution of disk 
+properties. The distributions of electron fraction, entropy per baryon and 
+temperature appears broader. A more detailed quantitative analysis would require more 
+simulations performed at several resolutions to disentangle the effects 
+caused by the subgrid turbulence and by the finite grid \citep{Bernuzzi:2020txg,Radice:2020ids}.
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{disk/final_disk_timecorr_blh_q1_Lk.pdf}
+    \includegraphics[width=0.49\textwidth]{disk/final_disk_timecorr_ls220_q14_LK.pdf}
+    \caption{Evolution of the disk mass-averaged electron fraction with
+        time for a long-lived (top) and a short-lived (bottom)
+        remnant. The plot shows that with time the bulk of the disk lowers
+        its $Y_e$ via cooling, while a small fraction in terms of mass
+        gains a high $Y_e$, which relates to the highly 
+        irradiated surface of the disk. Adopted from \citet{Nedora:2020pak}.
+    }
+    \label{fig:total_disk_time_corr_Ye_Blh_q1}
+\end{figure}
+
+\paragraph{Evolution of disk properties}
+
+%% Ye evolution
+The evolution of the mass-weighted electron fraction for the model
+BLh $q=1.00$, the model that is evolved till $\sim 90$~ms after merger, 
+is shown on the top panel of Fig.~\ref{fig:total_disk_time_corr_Ye_Blh_q1}.
+%% --- 
+During the formation, shock and spiral waves raises the disk electron fraction to
+$Y_e\sim0.25$. As the disk evolves, the bulk of its mass, shielded from neutrinos, 
+(Fig. \ref{fig:slice:heating_hu}, density contours) 
+returns to neutron-rich condition with $Y_e\lesssim0.1$. 
+The outer part of the disk, however, is subjected to the 
+strong neutrino irradiation and reaches $Y_e\sim0.4$ of a timescale of ${\sim}40$~ms.
+%% Note that neutrinos in merger remnants decouple at $\rho\sim10^{11}$~$\gccm$ \citep{Endrizzi:2019trv}. 
+Notably, the apparent gap in the $Y_e$ distribution if Fig.~\ref{fig:total_disk_time_corr_Ye_Blh_q1} at $\langle Y_e \rangle \simeq 0.15$ 
+might not be of physical origin, but an artifact from the neutrino M0 scheme, 
+that assumes neutrinos propagate along the radial directions
+(see sec.NEUt.M0.SCHEME), that is not well suited for capturing the 
+neutrino emission and reabsorption from the disk midplane.
+%% ---
+In case of a short-lived model LS220 $q=1.43$ model 
+(lower panel of the Fig.~\ref{fig:total_disk_time_corr_Ye_Blh_q1})
+the average electron fraction is lower, as there is no strong neutrino 
+emitter. Additionally, the outskirts of the more compact disk remain 
+at low electron fraction as the neutrino emitted by the disk itself 
+are the only source of neutrinos. 
+
+\paragraph{Mass ejection on a long timescale}
+
+As the disk expands and cools, the recombination of nucleons into 
+alpha particles starts to take place.
+The energy, released in recombination, might be sufficient for the outermost 
+layers to become unbound, generating an outflow 
+\citep{Beloborodov:2008nx,Lee:2009uc,Fernandez:2013tya}.
+This processes however are expected to take place on a longer timescales,
+that those that are simulated here.
+On the $\sim100$~ms timescale, the outflows are driven by the neutrino heating, 
+above the remnant, the so-called neutrino-driven wind 
+(\nwind; \citealt{Dessart:2008zd,Perego:2014fma,Just:2014fka}),
+and by the dynamical interactions between the \ac{MNS} 
+remnant and the disk, the \swind{} \citep{Nedora:2019jhl}.
+%% ---
+We discuss the properties of the \nwind{} found in our simulations
+in the section \red{sec.Ejecta.NuWind} and the properties of the 
+\swind{} in the \red{sec.Ejecta.SWIND}.
+%The \swind{} can have a mass up to
+%a few $10^{-2}\,\Mo$ and velocities ${\sim}0.2$~c. The ejecta
+%have electron fraction typically larger than ${\sim} 0.25$ since they are 
+%partially reprocessed by hydrodynamic shocks in the expanding arms. 
+%The \nwind{} is driven by neutrino heating above the remnant. It generates outflows
+%with smaller masses ${\sim} 10^{-4}M_{\odot}$ and larger $Y_e$
+%than the \swind{}. 
+%Differently from \swind{} the mass flux of the \nwind{} in our simulations subsides 
+%before the end of out simulations, due to rapid baryon loading of the 
+%polar region.
+%The \swind{} will be discussed in detail in Sec.~\ref{sec:spiralw}.
+The effects of these outflows on the dynamical evolution of the remnant 
+lies in the amount of mass and energy they can remove from the system.
+Specifically, the \nwind{} have a typical mass of ${\sim} 10^{-4}\Msun$, 
+while the \swind{} could remove $10^{-2}\,\Msun$ on a timescale of a $\sim100$~ms.
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{ejecta_sec/secular_j_mb_RNS_blh.pdf}
+    \caption{Baryon mass vs angular momentum diagram for the BLh $q=1$ remnant.
+        The colored diamond marks the baryonic mass and angular momentum at the end
+        of the dynamical gravitational-wave dominated phase.
+        After the GW phase, the evolution is driven by the massive outflows.
+        The solid black line is the $M_b$ and $J$ estimated from the 3D data
+        integrals under the assumption of axisymmetry.
+        The green dashed line is a conservative estimate
+        of the mass ejection and a possible trajectory for the viscous
+        evolution as estimated in \citet{Radice:2018xqa}. The crosses are
+        a linear extrapolation in time of the solid black line. The gray
+        shaded region is the region of stability of rigidly rotating NS equilibria.
+        Adopted from \cite{Nedora:2020pak}
+    }
+    \label{fig:total_j_mb_rns_blh}
+\end{figure}
+
+To understand the remnant evolution on the timescales longer then the ones 
+present here, requires ab-initio \ac{NR} simulations in $(3+1)D$ with compete physics.
+
+Here we consider a BLh $q=1.00$ simulation, one of the longest runs we have performed.
+After the merger, the \ac{MNS} remnant is born. With respect to the zero-temperature 
+beta-equilibrium \ac{NS} configurations, the BLh $q=1.00$ 
+remnant has an excess in baryon mass.
+In the figure~\ref{fig:total_j_mb_rns_blh} we show the evolution of the 
+total baryon mass, $M_b$, and total angular momentum, $J$, of the remnant.
+As the total baryon mass is conserved (if there is no outflow), the early evolution 
+of the remnant proceeds with $M_b=\text{const}$. The angular momentum is however 
+lost by the remnant to emission of \acp{GW}. 
+We evaluate the amount of angular momentum lost to \acp{GW} following the 
+\citet{Damour:2011fu,Bernuzzi:2012ci,Bernuzzi:2015rla}.
+\red{This has to be defined and noted that we use $\sim20$~ms postmerger mark
+    and how exactly we compute all of it, the David's script
+}
+Substruct it from the initial data \ac{ADM} angular momentum we obtain the value 
+that is left to the system after the \ac{GW} phase 
+(the yellow marker on the Fig.~\ref{fig:total_j_mb_rns_blh}).
+%% ---
+Notably, after the \ac{GW} phase, the remnant still has an excess in angular momentum
+in comparison with the rigidly rotating \ac{NS} configurations with the same baryon mass 
+(gray triangular region in Fig.~\ref{fig:total_j_mb_rns_blh}).
+We observe the same situation across all models \citep{Zappa:2017xba,Radice:2018xqa}.
+\gray{
+    On the angular momentum estimation:
+    The radiated angular momentum (as well as energy) are computed from the 
+    multipole loments $N_{lm}$ for the \ac{NR} complex "news function" at infinity. 
+    The $J_{z;\text{rad}}(t)$ is computed as \citep{Damour:2011fu} 
+    \begin{equation}
+    \Delta J_{z\text{rad}}(t) \frac{1}{16}\sum_{l,m}^{l_{max}}\int_{t_0}^{t} dt' m \mathcal{L}[h_{lm}(t')(N_{lm}(t'))^*],
+    \end{equation}
+    where $h_{lm}$ is the multipolar metric waveform, 
+    $N_{lm}(t) = dh_{lm}(t) / dt$, the news function, and $l_{max}=8$.
+    The $J$ loss is metric dependent ($h$).
+    The $h$ (strain???) is computed from $\Psi_4(t) = dN/dt = d^2h/dt^2$ by a 
+    frequency-domain integration procedure with a low-frequency cut 
+    $\omega_0 = 0.032/(m_1+m_2)$.
+}
+%% ---
+The baryon mass of the remnant also exceeds maximum mass that a rigidly rotating 
+equilibria could have.
+Such remnant is generally referred to as a hypermassive neutron star (HMNS) following the 
+nomenclature introduced for zero-temperature EOS equilibria \acp{NS} \citep{Baumgarte:1999cq}.
+Such a remnant is expected to collapse to a BH. 
+%% ---
+However, a remnant can avoid the collapse by efficiently removing angular momentum
+and mass and entering the rigidly rotating equilibria zone. 
+%% ---
+We compute the angular momentum and baryon mas evolution of the remnant, 
+through volume integrals, assuming axisymmetry and evaluating the former using Eq.~\eqref{eq:method:ang_mom}, and the latter using the Eq.~\eqref{eq:method:mdisk}. 
+The evolution of these two quantities is depicted with the black solid line if 
+Fig.~\eqref{fig:total_j_mb_rns_blh}~\footnote{Note that the angular momentum estimated
+    from the GW and from the integral of Eq.~\eqref{eq:method:ang_mom} assuming
+    axisymmetry are compatible within the errors made in the latter estimate.
+}.
+We observed that after the \ac{GW} phase, the remnant continues to evolve, loosing the 
+angular momentum together with the baryon mass. This is achieved through massive outflow,
+the \swind{}. 
+The extrapolation of the final trend of the mass and angular momentum loss shows, that 
+if $\approx0.05\,\Msun$ ($\approx40$\% of the final disk at the end of simulation) is 
+ejected, the \ac{MNS} remnant would approach the rigidly rotating equilibria region 
+at the mass-shedding limit. Extrapolation indicates, that if the ejecta mass flux does 
+not change, this would occur on a timescale of $\sim 300$~ms \pmerg{}.
+Similar results are obtained with the conservative upper bound estimate on the 
+evolution of the long-lived remnant (Eq.~$2$ in \citet{Radice:2018xqa}) (green dashed line in figure).
+\red{WHAT the fuck is Keplerian limit, mass-shedding limit and rigidly rotating equilibria}
+Additionally, while this simulation included the effects of turbulent viscosity on the
+angular momentum transport, the ejecta could be further enhanced by the magnetic stresses 
+\citep{Metzger:2006mw,Bucciantini:2011kx,Siegel:2017nub,Fernandez:2018kax,Ciolfi:2020hgg}.
+
+Other simulations also produce a \ac{MNS} remnant with a similar evolutionary path. 
+Models with DD2 \ac{EOS} however, are born with an excess in angular momentum, but not in 
+baryon mass. They also evolve toward the rigidly rotating equilibria but slower.
+Models with $q>1.00$ produce remnants that generally have larger excess in angular momentum 
+and mass have how to shed a larger amount of mas to reach equilibrium configuration.
+(\red{However we also show that these models tend to have stronger \swind{}, see sec.SPIRAL.WIND})
+Overall, we estimate that for models with $q=1.00$ need to shed ${\sim}0.05\Msun$ while 
+models with $q\eqsim 1.4$ need to remove $0.2\Msun$ to reach equilibrium configuration.
+
+
+
+\section{Mass Ejection}
+
+
+
+Tidal interactions and shocks exerted on the \acp{NS} at merger trigger the ejection of material
+on the dynamical timescale. This is the \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn}. 
+
+
+
+\subsection{Dynamical Ejecta}
+
+
+%% The mechanism behind the dynamical ejecta [radice:2018pnd]
+Tidal interactions and shocks exerted on the \acp{NS} at merger trigger the ejection of material
+on the dynamical timescale. This is the \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn}. 
+
+\red{More on the genral mechanism tidal vs shocked}
+The \ac{DE} is evaluated with the geodesic criterion introduced in Sec.~\ref{sec:method:analysis:ejecta}.
+
+Describe shock vs tidal components 
+
+\subsubsection{Overall properties of the \ac{DE}}
+
+
+The novelty of the set of models discussed in this thesis with respect to the 
+previous study by \citet{Radice:2018pdn} is that all models include the neutrino heating via M0 scheme 
+(see Sec.\ref{sec:theory:neutrino}) in addition to the neutrino cooling and for most models the effects 
+of subgrid turbulence (see Set.\ref{sec:theory:grles}) are included.
+Meanwhile, models cover a significantly more narrow range in 
+dimensionless tidal deformability, $\tilde{\Lambda}$, and mass ratio, motivated by the \GW{}.
+
+We can qulitativly asses the effects of neutrino heating by comparing the overall properties 
+of our model set and that of the \citet{Radice:2018pdn}.
+Specifically, the neutrino absorption leads to not only an increase in average electron 
+fraction but also to larger total ejected mass and velocity. The latter two would be 
+crucial for the non-thermal, kilonova afterglow (see Sec.\red{sec:KilonovaAfterglow}).
+
+The mass averaged over the simulations from Tab.~\ref{tab:sim} is 
+$\overline{\amd} = (3.442 \pm 2.495)\times 10^{-3}\,M_{\odot}$ (where
+hereafter we report also the standard deviation), while the same
+quantity calculated for data of \cite{Radice:2018pdn} 
+is $\overline{\md} = (1.352\pm 1.250)\times 10^{-3}\,\Msun$.
+The mass-averaged terminal velocity of the dynamical ejecta 
+ranges between $0.1$c and $0.3$c, and in a good agreement with 
+\cite{Radice:2018pdn}.
+The mass-averaged velocity, averaged over all the simulations, is 
+$\overline{\avd} = (0.172\pm0.038)\,{\text{c}}$.
+
+We find that in our set of models, there is a correlation of $\avd$ with the tidal parameter 
+$\tilde{\Lambda}$: the higher the $\tilde{\Lambda}$ the lower the $\avd$.
+This can be understood from the general mechanism of the \ac{DE},
+that tells in mergers of binaries with $q=1.00$, the shocked component of the ejecta 
+is the dominant. The strength of shocks increases as the \acp{NS} become more compact 
+(with decreasing $\tilde{\Lambda}$) and hence collide at higher velocities~\footnote{Note that in the definition of prompt collapse we adopted, there is no shocked ejecta.}.
+%% ---
+For binaries with high mass ration, however, the tidal component of the \ac{DE} is dominant. 
+The velocity of the latter also is smaller for larger $\tilde{\Lambda}$, as stars collide 
+at slower velocities due to their larger radii. 
+%% ---
+The mass-averaged electron fraction, $\ayd$, of our models lies the range $(0.1, 0.3)$
+with an averaged value among all models $\overline{\ayd} = 0.175 \pm 0.063$.
+Notably, the \citet{Radice:2018pdn} reported a more narrow range, $(0.1, 0.2)$.
+This is a clear effect of the neutrino absorption included in our models, that elevates 
+the everal electron fraction of the \ac{DE} as it is being irradiated by neutrinos 
+during the merger.
+Notably, the $\ayd$ of our models is close to those obtained with M1 
+scheme of \citet{Sekiguchi:2016bjd} and \citet{Vincent:2019kor}.
+%% ---
+The effect of subgrid turbulence on the dynamical ejecta properties however,
+found rather week and comparible to the effects of finite grid distritization 
+\citep{Bernuzzi:2020txg,Radice:2020ids}.
+
+We find that the properties of the \ac{DE} depends on the \mr{} and on the 
+\ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$. 
+We investigate in detail the statistical properties of our set of models as well as 
+other \ac{NR} \ac{BNS} data sets available in the literature in 
+section \ref{sec:ejecta_disk_statisitcs}.
+
+
+
+
+
+\subsection{Fast tail of the dynamical ejecta}
+
+%\begin{figure}[t]
+%    \centering 
+%    \includegraphics[width=0.49\textwidth]{./figs/kinetic_energy_struct_models.pdf}
+%    \caption{
+%        Total kinetic energy distribution for a selected set of models (\textit{top panel}) 
+%        and angular distribution of kinetic energy for a BLh $q=1.00$ model (\textit{bottom panel}).
+%        %% Also shown as a solid black line is the slow quasi-spherical model of \cite{Mooley:2017enz}.
+%        The vertical light green line marks the $\upsilon_{\text{ej}}=0.6$.
+%        The top panel shows that equal mass models have a more extend high energy tail,
+%        while the bottom panel shows that the angular distribution of the ejecta is not 
+%        uniform.
+%        \red{Adopted from Nedora et al. (2021)}
+%    } 
+%    \label{fig:ejecta_vel_hist}
+%\end{figure}
+%
+%The velocity distribution of \ac{DE} was found to include a very fast, 
+%$\upsilon_{\text{ej}}\geq0.6$~c tail
+%\cite{Piran:2012wd,Hotokezaka:2013b,Kyutoku:2012fv,Ishii:2018yjg,Hotokezaka:2018gmo,Radice:2018pdn}.
+%%% ---
+%The total mass of this tail was found to be dependent on the
+%binary parameters and solution resolution,
+%with an average $\sim 10^{-6}-10^{-5} M_{\odot}$.
+%%% ---
+%With respect to the fast tail origin, it can be divided into two main components 
+%\citep{Radice:2018pdn}.
+%The early component, that comprises the ejecta that is generated at the collisional interface 
+%of two \acp{NS} of similar mass and directed primarily along the binary axes.
+%And the late component that consist of matter that driven by the shock breakout from the ejecta 
+%after the core bounce and confined mostly to the binary plane. 
+%
+%Among the simulations listed in \ref{tab:sim}, we select \red{XX} simulations 
+%performed at standard resolution, and for which fast ejecta is found.
+%%% ---
+%Here we extract ejecta properties at the detector located at 
+%$R=300G/c^2M_{\odot}\approxeq443$~km, from the merger, in agreement with \citet{Radice:2018pdn}.
+%
+%The mean value of the fast tail mass is
+%
+%\be\label{eq:ejecta:dyn:avg:M}
+%\red{ \overline{\amd}(\upsilon>0.6) = (2.50 \pm 4.23)\times 10^{-5}M_{\odot}\ , }
+%\ee
+%
+%where the standard deviation is also reported as an error.
+
+
+%% ------------------ 
+%% Note that the geodesic criterion above neglects the fluid's pressure and might
+%% underestimate the ejecta mass. The Bernoulli criterion assumes that the (test
+%% fluid) flow is stationary, so that there is a pressure gradient that can
+%% further push the ejecta.  We find that both criteria predict dynamical
+%% ejecta masses that are practically indistiguishable and well within the numerical uncertainties \citep{Bernuzzi:2020txg} if applied to extraction spheres at large coordinate radii; 
+%% differences between the two criteria are instead present if they are applied to
+%% matter volumes \citep[cf.][]{Kastaun:2014fna}.
+
+
+\subsection{\swind{}}
+\label{sec:spiralw}
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{remnant/dens_modes/modes_rho_dd2.pdf}
+    \includegraphics[width=0.49\textwidth]{remnant/dens_modes/modes_rho_ls220.pdf}
+    \caption{Modes analysis for exemplary equal-mass long-live and short-lived
+        remnants. The evolution of the $m=2$ and the $m=1$ monitored by
+        Eq.~\eqref{eq:modes} is shown for the DD2 and LS220 remnant with and
+        without turbulent viscosity. The $m=2$ mode in the long-lived
+        remnant is strongly damped by the emission of gravitational
+        radiation and becomes comparable to the $m=1$ mode on a timescale of
+        ${\gtrsim}20\,$ms. Turbulent viscosity sustain the $m=2$ mode for
+        a longer period. The $m=2$ mode is instead dominant to collapse in
+        the short-lived remnant.
+        (Adopted from \cite{Nedora:2020pak})
+    }
+    \label{fig:dens_modes}
+\end{figure*}
+
+Here we discuss the dynamics of spiral waves and the associated outflow, the \ac{SWW}.
+
+
+\subsubsection{Remnant \& disk dynamics}
+
+
+The hydrodynamical modes of the \ac{MNS} remnant are computed following the 
+method described in Sec.\ref{sec:method:HDmodes}. 
+The mode analysis is shown in the Fig.\ref{fig:dens_modes} for two representative 
+simulations, the short-lived LS220 $q=1.00$ and the long-lived DD2 $q=1.00$.
+The newly born \ac{MNS} remnant is not axisymmetric, displaying characteristic 
+spiral arms, extending outwards from the shock interface of the collided cores 
+\citep{Shibata:1999wm,Shibata:2006nm,Bernuzzi:2013rza,Kastaun:2014fna,East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg}.
+The bar-shaped, $m=2$ modes is the dominant one early in \pmerg{}, while the 
+one-armed spiral $m=1$ modes stars to dominate in the late evolution 
+\citep{East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,Bernuzzi:2013rza,Kastaun:2014fna}.
+Indeed, the $m=2$ mode remains the dominant one until $\sim15-20$~ms \pmerg{}. 
+After that, the LS220 $q=1.00$ model forms a \ac{BH}. 
+In the DD2 $q=1.00$ model, however, the $m=1$ mode becomes comparable with $m=1$ 
+throughout the remainder of the evolution, while the $m=2$ mode efficiently dissipates 
+through \ac{GW} emission \citep{Bernuzzi:2015opx,Radice:2016gym}.
+%% ---
+We find that the magnitude of the $m=1$ mode increases with the binary \mr{}.
+For instance the largest $C_{m=1}$ are found in BLh $q=1.43$ and LS220 $q=1.22$.
+Stronger $m=1$ leads to more large \ac{SWW} mass flux.
+The dependency of the $C_{m=2}$ on \mr{} however is not clear. 
+This is in agreement with what reported by \citet{Lehner:2016wjg}.
+
+Formation of the spiral arms is a generic hydrodynamic effect, that was identified 
+in the \ac{NR} simulations with polytropic \ac{EOS} 
+\citep{Bernuzzi:2013rza,Radice:2016gym}.
+However, the evolution of these arms and quantitative behaviour of hydrodynamic
+modes depends on the physics input. 
+In the Fig.~\ref{fig:dens_modes} we show that the turbulent viscosity in the 
+DD2 $q=1.00$ remnant stabilizes the $m=2$ mode, enhancing the angular momentum 
+transport into the disk.
+The $m=2$ mode, however, remains largely unaffected by the turbulent viscosity.
+Similarly, the models' evolution in the LS220 $q=1.00$ is too short, for the 
+subgrid turbulence to become important.
+
+We compute the angular momentum of the \ac{MNS} remnant following the method,
+discussed in Sec.\ref{sec:method:angmom}, where the remnant is distinguished 
+from the disk on the basis of the rest mass density $\rho=10^{13}$~\gcm{} 
+(see Sec.\ref{sec:method:diskdef}).
+We find that for a long-lived rmnant 
+on a timescale of $\sim20$~ms, about half of the total angular momentum 
+of the \ac{MNS} remnant is transferred into the disk. 
+%% [ from shibata review ]
+This is a consequence of the fact that the remnant \ac{MNS} is strongly deformed 
+after merger and gravitational torque on the surrounding matter, 
+that allows for a rapid angular momentum transport.
+%% ---
+After, the remnant settles on quasi-stationary evolution path 
+(see Sec.~\ref{sec:bns_dynsmics_overview}).
+
+Following the disk and remnant mass evolution we observe, that the spiral 
+density modes inject ${\sim}0.1-0.4\,\Msun$ of baryon mass into the disk during the 
+first ${\sim}20$ms. 
+The mass injection appears to be stronger for stiffer \acp{EOS}. 
+With respect to the \mr{}, the higher $q$ binaries form a larger disc 
+(see BLh* $q=1.82$ and LS220* $q=1.43$ on the Fig.~\ref{fig:disk_mass_evo}).
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{remnant/evol_jflux_2d_BLh_M13651365_M0_SR_R1.pdf}
+    \includegraphics[width=0.49\textwidth]{remnant/evol_jflux_2d_DD2_M13641364_M0_SR_R1.pdf}
+    \caption{Angular momentum flux through consecutive cylindrical
+        surfaces identified by cylindrical radii from $R_{\text{cyl}}=100$ to $R_{\text{cyl}}=500$. The
+        plot shows the angular momentum transport into the disk.
+        Adapted from \citet{Nedora:2020pak}
+    }
+    \label{fig:disk_ang_mom_flux_map_blh_q1}
+\end{figure}
+
+In the Fig.~\ref{fig:disk_ang_mom_flux_map_blh_q1} we show how the 
+angular momentum is being transported from the \ac{MNS} remnant into the disk
+in two long-lived models with turbulent viscosity, DD2* $q=1.00$ and BLh $q=1.00$.
+The angular momentum is transported via spiral waves that correspond do the 
+hydrodynamic models, $m=1$ and $m=2$ discussed above.
+We observer, that in the model with more stiff DD2 \ac{EOS},
+the fist wave is stronger. Notably, the DD2* $q=1.00$ model 
+also has a more massive disk.
+%% --- 
+Further, the evolution of the disk-remnant interactions 
+after $\sim20$~ms \pmerg{} is different for two models. 
+While the model with DD2 \ac{EOS} stops shedding mass into 
+its disk and starts slowly accreting, the model with BLh \ac{EOS} continues to shed mass into the disk
+(see Fig.~\ref{fig:disk_mass_evo} and discussion in
+Sec.~\ref{sec:bns_dynsmics_overview})
+The latter is caused by the strong angular momentum flux \red{actually the plot shows, that it is not}, emanating 
+from the \ac{MNS} remnant and by the larger temperatures, 
+that reached in the model with the BLh \ac{EOS}.
+Larger temperatures leads to lower rotational frequency 
+at which the mass shedding occurs \citep{Kaplan:2013wra}. 
+
+The subgrid turbulence enhances the angular momentum transport. However more simulations of long-lived 
+\ac{MNS} remnants are needed to asses the effects of the 
+subgrid turbulence and \mr{} systematically. 
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.50\textwidth]{ejecta_postdyn/wind_mass_flux.pdf}
+    \caption{Cumulative mass of the \swind{} from long-lived
+        remnants. The wind persists on timescales of $\O(100)\,$~ms with
+        mass fluxes ${\sim}0.33-1.23\,\Msun/s$.
+        Adapted from \citet{Nedora:2020pak}.
+    }
+    \label{fig:mej:bern}
+\end{figure}
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.99\textwidth]{ejecta_postdyn/wind_hists_shared.pdf}
+    \caption{Mass-averaged histograms of the \swind{} for a selected
+        subset of long-lived remnant. From left to right: ejecta angular
+        distribution, ejecta terminal velocity and electron
+        fraction. Remnants from more asymmetric binaries produce winds
+        with broader angular distribution.
+        The \swind{} from the DD2 EOS remnants has larger velocities
+        then the winds from the softer BLh EOS. The electron fraction
+        peaks at ${\sim}0.3$ and it is distributed from $0.1$ to $0.4$.
+        Adapted from \citet{Nedora:2020pak}.
+    }
+    %
+    \label{fig:ejecta:bern:hist}
+\end{figure*}
+
+%% --------------------------------
+%% TAB WIND SUMMARY
+\input{Tables/tabWind.tex}
+%% --------------------------------
+
+
+\subsubsection{Properties of the \swind{}}
+
+
+Density waves, propagating outwards through the disk induce the outflow, the \ac{SWW} 
+\citep{Nedora:2019jhl}.
+
+\red{HERE THE LETTER STUFF COULD GO}
+
+The \ac{SWW} is estimated following the Bernoulli criterion as described in 
+the Sec.~\ref{ec:method:analysis}. 
+We start to follow the \ac{SWW} after the \ac{DE} has saturated. 
+
+We report the overall properties of the \ac{SWW} for all the models with the 
+long-lived \ac{MNS} remnant that were also evolved for a sufficiently long time 
+in the Tab.~\ref{tab:spiralwavewind}. 
+The time evolution of the total mass of the \ac{SWW} is shown in the Fig.~\ref{fig:mej:bern}.
+We observe that in all simulations \acp{SWW} persists till end without saturation.
+This is because the outflow is driven by the angular momentum and mass transport 
+induced by the dynamical instabilities in the remnant, the $m=1,2$ modes, discussed 
+above. And as the $m=1$ modes are not efficiently damped \citep{Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,East:2016zvv},
+the \ac{SWW} could theoretically continue until the system collapses to a \ac{BH} 
+or reaches the equilibrium (Sec.~\ref{sec:bns_dynsmics_overview}).
+
+The strongest \ac{SWW} is found in binaries with $q>1$, such as 
+$q=1.67$ and LS220 $q=\red{1.4}$. 
+With the mass-loss rate ${\sim}0.5\, \Msun/{\text{s}}$, these models can eject 
+${\sim}0.02\,\Msun$ within ${\sim}50$~ms of \pmerg{} evolution.
+We find that as the \ac{EOS} becomes softer, lower \mr{} is needed to achieve high 
+mass flux. For instance, the \ac{SWW} mass flux for BLh* $q=1.66$ is achieved by the 
+model LS220* with $q=1.22$. 
+A possible explanation for this is that the models with softer \ac{EOS} have stronger 
+$m=1$ modes in the remnant (see Sec. \ref{sec:remdisk}).
+When \ac{MNS} remnant collapses to a \ac{BH} and the mechanism that injects angular 
+momentum into the disk shuts down, the \ac{SWW} mass flux subsides. 
+Thus, the total ejected mass via \ac{SWW} is directly related  o the lifetime of the 
+\ac{MNS} remnant, an addition to the binary parameters, \ac{EOS} and \mr{}.
+
+The \ac{SWW} mass flux depends on the disk configuration, as more extended disks 
+have outer layers that are less gravitationally bound. In turn, the disk 
+configuration is dependent on the thermal effects. Higher temperature leads to 
+stronger thermal pressure that increases the disk size. 
+However, the dependency of the \ac{SWW} mass flux on the stiffness of the \ac{EOS} 
+appears to be stronger, as the stiffer \ac{EOS} leads to a more massive disk 
+(Sec.~\ref{sec:overview}). More simulations with longer postmerger evolution are needed 
+to make a quantitative assessment. 
+Overall the \swind{} from the long-lived remnant has a mass flux $\geq 0.4\, \Msun/{\text{s}}$.
+
+We find that the properties of the \ac{SWW} depend only weakly on the binary parameters,
+\mr{} and \ac{EOS}.The mass-histograms of the wind angular distribution, velocity and 
+electron fraction are displayed in Fig.~\ref{fig:ejecta:bern:hist}. 
+The angular distribution of the \ac{SWW} is similar to that of the \ac{DE}. The ejecta 
+has a broad distribution around the binary plane.
+The \ac{SWW} has a high average electron fraction, with the overall 
+broad distribution of $0.1\lesssim \ayw\lesssim0.4$ that peaks at ${\sim}0.35$.
+The low electron fraction material originates primarily at early times, when the 
+material did not have enough time to be processed by neutrinos and before the 
+outflow reaches quasi-steady state.
+The \ac{SWW} average velocity is higher for stiffer \ac{EOS}, with the peak 
+of the distribution laying between ${\sim}0.1\,$c and ${\sim}0.2\,$c.
+However, more simulations of the \ac{MNS} remnants long-term evolution are 
+required to confirm and quantitatively investigate this trend.
+However, if it is indeed a generic feature, then it might imply 
+an EOS dependent distinct feature in the electromagnetic counterpart. 
+In particular, the observation of a fast blue kN given by the \swind{}
+should be associated to a stiff EOS.
+
+%% It is however expected, that as the system becomes more stationary and larger part 
+%% of the disk accrets on the \ac{MNS} the outflow should subside. 
+
+
+\subsection{\nwind{}}
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{slices/slice_xz_ye_hu_1.pdf}
+    \includegraphics[width=0.49\textwidth]{slices/slice_xz_abs_energy_hu_3.pdf}
+    \includegraphics[width=0.49\textwidth]{slices/slice_xy_ye_hu_1.pdf}
+    \includegraphics[width=0.49\textwidth]{slices/slice_xy_abs_energy_hu_3.pdf}
+    \caption{Snapshot of the $(x,z)$ and $(x,y)$ slices of the BLh $q=1$ model at 
+        ${\sim}89\,$ms after merger. Left panels: electron fraction and
+        $-hu_0$. High $Y_e$ values indicate neutrino
+        postprocessing and irradiation. The $-hu_0>1$ indicates the
+        material that gains enough energy to become unbound at
+        infinity. 
+        %
+        Right: $-hu_0$ and the absorption energy rate $Q_{\text{abs};\:\bar{\nu}_e}$ 
+        of electron antineutrinos normalized to the fluid density $D$.
+    }
+    %
+    \label{fig:slice:heating_hu}
+\end{figure*}
+
+In this section we investigate in detail the 
+high electron fraction, polar component of the \acp{SWW}.
+We propose that this outflow is mostly driven by the neutrino 
+reabsorption, rather than by the dynamical mechanism responsible for the bulk of the 
+\ac{SWW}.
+
+The presence of the baryonic winds developing on the timescale of $\mathcal{O}(10)$~ms
+and driven by the neutrino absorption above the remnant, where the neutrino flux is strong 
+was reported before \citep[\eg][]{Perego:2014fma}. 
+
+In this section we focus of the feducial model BLh $q=1.00$ (SR). 
+
+In the left column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
+the the Bernoulli parameter, 
+$-hu_t$ (see Sec.\ref{sec:method:Bernoulli}), and the fluid electron 
+fraction. 
+
+In the right column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
+the the Bernoulli parameter with the heating energy rate due to electron anti-neutrino absorption 
+$Q_{\text{abs};\:\bar{\nu}_e}$ (see Sec.~\ref{method:M0:eq_for_Q}) divided by with 
+$D=W\rho\sqrt{\gamma}$ (fluid's conserved rest-mass density)
+We observe that the electron fraction in the polar region with angle 
+from binary plane $\theta>60^{\circ}$ reaches $Y_e\sim0.35$ due to the absorption of 
+electron-type neutrinos.
+The strongest neutrino heating occurs in the vicinity of the remnant at densities 
+$\rho\sim10^{11}$~\gcm, that roughly correspond to the region where neutrinos decouple,
+the so-called neutrinosphere \citep{Endrizzi:2019trv}.
+
+In Fig.~\ref{fig:slice:heating_hu} we compare the Bernoulli parameter, 
+$-hu_t$ (see Sec.\ref{sec:method:Bernoulli}), that is always plotted 
+on the right half of a panel, with the electron fraction (left 
+column of plots and heating energy rate due to electron anti-neutrino absorption 
+$Q_{\text{abs};\:\bar{\nu}_e}$ divided by with $D=W\rho\sqrt{\gamma}$ 
+(fluid's conserved rest-mass density).
+The observed correlation between the $E_\nu/D$ \red{???} and $-h u_t$ further suggests, 
+that the outflow around the polar axis is driven by the neutrino absorption. 
+Additionally, we found that if the neutrino absorption is not included into the 
+simulation, \eg, using leakage only, the \nwind{} is absent. 
+%% --- 
+The collimated polar outflow can be further boosted and stabilized by the presence of the 
+strong magnetic fields \citep{Bucciantini:2011kx,Ciolfi:2020hgg,Mosta:2020hlh}.
+%% ---
+Notably, there is not clear distinction between the \nwind{} and \ac{SWW}, especially 
+at the intermediate latitudes ($\theta \sim 45^{\circ}$), where both mechanisms types of 
+ejecta are present, and both, neutrino absorption and dyanmical effects driving the \ac{SWW} 
+are contributing. 
+%% --- 
+In order to compute the mass flux of the \nwind{} an additional criterion is required. 
+We consider two physically motivated criteria, the geometrical, flaggin the part of the \ac{SWW} 
+and \nwind{} if it is polar, \ie, $\theta>60^{\circ}$, and the composition criterion, $Y_e > 0.35$.
+%% --- 
+We find that the \nwind{} is not a steady state outflow, contrary to the bulk of the \ac{SWW}.
+After the initial strong rise, the mass flux rapidly decays in time, and for most models stops 
+by the end of the simulations. This behaviour is independent of the criterion we use. 
+We attribute it to the rise of the baryon loading above the remnant as the material gets lifted 
+by thermal pressure from the disk.
+The total mass of the \nwind{} is ${\sim}10^{-3}-10^{-4}M_{\odot}$. Its properties resemble those 
+reported in e.g. \citet{Dessart:2008zd,Perego:2014fma,Fujibayashi:2020dvr}
+Notably, in some of the works, the \nwind{} was found to require longer timescales to develop, 
+achieving the quasi-steady state. 
+This can be attributed to the strict criteria to isolate the \nwind{} and by the absence of the 
+\ac{SWW} in other works. 
+Additionally, our simulations might not be sufficiently long to achieve the donditions 
+sufficient for the development of the quasi-steady state \nwind{}.
+%% Additionally, as our models are at most $\sim100$~ms long, the conditions required for the steady 
+%% state \nwind{} might not been achieved.
+
+
+%% =======================================================
+%%
+%%                   Disc structure
+%%
+%% =======================================================
+
+
+\section{Remnant disk structure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.49\textwidth]{disk/final_structure/slice_xz_entr_ye_blh_q1_rl3.pdf}
+    \includegraphics[width=0.49\textwidth]{disk/final_structure/slice_xy_entr_ye_blh_q1_rl3.pdf}
+    \caption{Entropy and electron fraction on the $(x,z)$ (top) and
+        $(x,y)$ planes (bottom) for the remnant of BL $q=1$ at the end
+        of the simulation. Each plot is divided vertically, with entropy
+        being color-coded on the left and electron fraction on the
+        right. Solid contours stand for rest muss density. Counting from
+        the center, the values are $[10^{13}, 10^{12}, 10^{11}, 10^{10},
+        10^{9}]$ g cm$^{-3}$, with the inner most contour encompassing
+        the remnant.
+        (Adapted from \citet{Nedora:2020pak})
+    }  
+    \label{fig:snapshots_xy_ye_entr}
+\end{figure}
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.95\textwidth]{disk/final_structure/disk_hist_shared.pdf}
+    \caption{Composition of the disks at the end of the long-lived
+        remnants simulations. The histograms refer to the temperature $T$
+        (left),
+        electron fraction $Y_e$
+        (middle) and entropy $s$ (right).
+        (Adapted from \citet{Nedora:2020pak})
+    }
+    \label{fig:final_disk_struct_hist_long}
+\end{figure*}
+
+In this section we discuss the final structure and properties of the disk, 
+focusing on the models with long-lived \ac{MNS} remnants.
+The properties are extracted at typical time $\sim60{-}100$~ms after merger.
+
+We find that the generally the disk is optically thick.
+The disk' RMS openning appears to be independent of the \ac{EOS} and \mr{} and
+is $\langle\theta\rangle_{\text{rms}}\sim60^{\circ}$. 
+The radial extend of the disk, however increases with the \ac{EOS} softness and 
+binary \mr{}.
+Similarly, the final disk mass is larger for the unequal mass binaries, 
+ranging overall between ${\sim}0.1M_{\odot}$ and ${\sim}0.4M_{\odot}$
+(see Tab.~\ref{tab:sim})..
+Notably, for models with long-lived remnants the disk mass is larger,
+that for the those with long-lived remnants. This can be attributed to the 
+rapid accretion onto a \ac{BH} that removes $\sim50\%$ of the disk mass.
+%% ---
+We investigate the overall statistical properties of the disk mass for all our models
+and those available in the literature in Sec.\ref{sec:results:Statistics:Mdisk}
+\gray{
+    The mean value of the disk mass in out models is 
+    $\overline{M}_{\text{disk}}=(0.161 \pm 0.083)M_{\odot}$,
+    where the standard deviation is also reported.
+    %% ---
+    Similarly to the dynamical ejecta we fit the disk masses with the 
+    second order polynomial in $(q,\tilde{\Lambda})$.
+    The coefficients of Eq.~\eqref{eq:fit:poly22}
+    for this fit are given in Tab.~\ref{tab:fitpoly22coefs}.
+    A more detailed study with various fitting formulas and extended
+    datasets from the literature is reported in a companion paper.
+}
+
+Next, we consider the composition of the disk at the end of the simulation.
+%% --- 
+The mass-averaged temperature, electron fraction and entropy per baryon
+are for several models are shown in Fig.~\ref{fig:final_disk_struct_hist_long}.
+%% ---
+We observe that the mass-weighted distribution of the entropy and electron 
+fraction show a bimodal structure, which is more pronounced for the 
+equal mass binaries. 
+Regarding entropy, two peaks are present in the distribution:
+a peak low entropy $s\sim5-10k_B/$baryon, that depends weakly of the 
+\ac{EOS} and \mr{} and corresponds to the bulk, mildly shocked, material. 
+The second peak is found at higher entropy, $s\sim15-22k_B/$baryon.
+It corresponds fo the strongly shocked material and is more prominent 
+in models with softer \ac{EOS}.
+Notably, in the models with higher \mr{}, the second peak is located 
+at lower $s$.
+The mass-weighted distribution of the electron fraction 
+displays a similar double-peak structure.
+The low $Y_e$ peak that corresponds to the neutrino-shielded part of the 
+disk is located around the $Y_e\sim0.1$.
+The high $Y_e$ peak is located at $Y_e\sim0.3-0.4$ and corresponds to the outer parts of the disk, subjected to a strong neutrino irradiation.
+
+In Fig.~\ref{fig:snapshots_xy_ye_entr} we show the electron fraction 
+and entropy per baryon on the $xy$ and $xz$ slices of the equal 
+mass model with BLh \ac{EOS}.
+The plot shows, that the two peaks in the mass-weighted distribution 
+of electron fraction and entropy correspond to different regions within the disk.
+
+Overall, the most of the disk matter has temperature of $T\sim 1-10\,$MeV, with the innermost parts being hotter then the outer outermost. 
+However, the disk temperature distribution appears to be largely independent of the \ac{EOS} and \mr{}
+
+\red{Paragraph on the secular ejecta has been moved to 
+    GW170817 application}
+
+
+%% =======================================================
+%%
+%%                   Nucleosynthesis
+%%
+%% =======================================================
+
+\todo{MAYBE another chapter with intro, method and results?}
+
+\section{Nucleosynthesis}
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.45\textwidth]{nucleo/cc_nucleo_BLh_total.pdf}
+    \includegraphics[width=0.45\textwidth]{nucleo/cc_nucleo_DD2_total.pdf}
+    \includegraphics[width=0.45\textwidth]{nucleo/cc_nucleo_LS220_total.pdf}
+    \includegraphics[width=0.45\textwidth]{nucleo/cc_nucleo_SFHo_total.pdf}
+    \includegraphics[width=0.45\textwidth]{nucleo/cc_nucleo_SLy4_total.pdf}
+    \includegraphics[width=0.42\textwidth]{nucleo/nucleo_dd2_blh.pdf}
+    \caption{Nucleosynthesis yields for all simulations. Each %% panel
+        of the first five panels 
+        shows a different EOS and the scale color the dependency on the
+        mass ratio. The nucleosynthesis is computed on the total ejecta
+        computed during the simulations and 
+        composed of the \ac{DE} (all models) plus the \ac{SWW} 
+        (for the long-lived remnants listed in
+        Tab.~\ref{tab:spiralwavewind}.).
+        %
+        The last (bottom-right) panel compares the nucleosynthesis in
+        the \ac{DE} and \ac{SWW} for the long-lived
+        remnants. The inclusion of the \ac{SWW} contributes to 
+        improve the agreement with solar data for elements around the first peak.
+        (Adapted from \citet{Nedora:2020pak})
+    }
+    \label{fig:nucle:totalyields}
+\end{figure*}
+
+The nucleosynthesis calculations are performed in postprocessing
+following the same approach as in \cite{Radice:2016dwd,Radice:2018pdn}.
+
+Here we briefly outline the procedure. 
+Expanding ejecta undergoes the rapid neutrino capture nucleosynthesis, (\rproc{}).
+In \citet{Lippuner:2015gwa} a new nuclear reaction network was presented 
+(see Appendix~\ref{app:nuc} for more details). 
+Using the parametrized \rproc{} calculations it is possible to map the ejecta 
+parameters (discussed below) onto the final nucleosynthetic yields of our simulations.
+The procedure is the following. 
+For a given ejecta type (\eg, \ac{DE} or \ac{SWW}) we obtain the electron fraction,
+entropy, velocity and rest mass density at a given extraction sphere 
+(see Sec.\ref{sec:method:ejecta}).
+The $r$-process in a given fluid element depends on how fast it decompresses from the 
+merger environment (see Appendx~\ref{app:nuc}). 
+This can be parametrized with the expansion timescale, $\tau$, assuming a specific 
+velocity profile for the ejecta. We assume the homologous expansion \red{explain!}.
+This assumption holds, as ejecta reaching the extraction sphere has already 
+significantly decompressed and its density decreased ${\sim}3$~orders of magnitude. 
+For the homologous expanding fluid, the density as a function of time reads 
+
+\begin{equation}
+\rho(t) = \rho_E\Big(\frac{\upsilon_E t}{r_E}\Big)^{-3} = 
+\rho_E\Big(\frac{\upsilon_E t}{r_E}t\Big)^{-3},
+\label{eq:nuc:rho_homolog}
+\end{equation}
+
+where $\rho_E$ and $\upsilon_E$ are the density and velocity of the fluid element 
+when it crosses the radius $r_E$. 
+%% ---
+The density in the nucleosynthesis calculations has the profile \citep{Lippuner:2015gwa} 
+
+\begin{equation}
+\rho(t) = \rho(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{e t}\Big)^3
+\label{eq:nuc:rho_nuccalc}
+\end{equation}
+
+where $e$ is the Euler's number, and $s$ and $Y_e$ are the fluid entropy and 
+electron fraction.
+
+Solving together Eq.~\eqref{eq:nuc:rho_homolog} and Eq.~\eqref{eq:nuc:rho_nuccalc},
+the expansion timescale $\tau$ can be extracted.
+
+In order to compute the nucleosynthetic yields we bin the ejecta in the 
+parameter space of $(s, Y_e, \tau)$. 
+%% --- 
+Under the assumption of homologous expansion the \rproc{} outcome depends on 
+the these quantities and can be precomputed.
+%% ---
+We compute the total nucleosynthetic yields by summing the contributions from 
+each bin.
+
+%% -------------------------------------
+
+%However, part of the uncertainty lies in the yet insufficient understanding of the nucleosynthetic yields from the neutron star mergers. Here we study the $r-$process
+%abundances from the mergers, focusing on the effect of mass-ratio and equation of state. Complimentary to the previous study \cite{Radice:2018pdn}, we include the post-dynamical ejecta, \textit{e.g.,} \swind, where the lifetime of the remnant is sufficiently long. \\
+%
+%For the nucleosynthesis calculations we employ the same approach as in \cite{Radice:2016dwd} and \cite{Radice:2018pdn} which we outline briefly. Consider the outflowing material, crossing the coordiante sphere surface with $R\approx294$km that satisfies the criteria to be unbound, (geodesic for the dynamical ejecta and Bernoulli for the \swind) the following properties. WE extract its electron fraction n $Y_{e,R}$, specific entropy $s_R$, velocity $\upsilon_R$ and the rest-mass density $\rho_{0,R}$. In addition, we assume that the following expansion of the material is homologous, \textit{i.e.,}
+%
+%\begin{equation}
+%\rho_{0}(t) = \rho_{0,R}\Big(\frac{\upsilon_R}{cR}t\Big)^{-3}.
+%\label{eq:nucleo:rho_t}
+%\end{equation}
+%
+%Then we match the density decrease with radius, with the $\rho$ behavior available in the parameterized $r$-process calculations of \cite{Lippuner:2015gwa}
+%
+%\begin{equation}
+%\rho_{0}(t) = \rho_{0}(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{et}\Big)^3,
+%\label{eq:nucleo:rho_t_lipp}
+%\end{equation}
+%
+%where $\tau$ is the expansion timescale, and $e$ is the constant $e\approxeq 2.718$. Matching the equations \ref{eq:nucleo:rho_t} and \ref{eq:nucleo:rho_t_lipp} yields $\tau$ as
+%
+%\begin{equation}
+%\tau_d = \frac{eR}{3\upsilon_R}\Bigg(\frac{\rho_R}{\rho_0}\Bigg)^{1/3}.
+%\end{equation}
+%
+%Nucleosynthesis network calculations allow for a homologous expansion  to precompute the yields as a function of $\{\rho_{0,R},s_R,Y_{e,R},\tau_R\}$. Binning the corresponding ejecta parameter space, we can then use this precomputed data to gauge the nucleosynthetic yields in every bin of ejecta. Summing them, we obtain the total yield. For the discussion of the uncertainty of this method, see \cite{Radice:2018pdn}. \\
+%
+%It is also worth noting other approaches to nucleosynthesis computations in ejecta. In principle, the method should involve tracking numerous isotopic abundances of the material, that is moving along the fluid flow, undergoing fission, mixing and spallation, accounting for the EOS dependent feedback to the underlying flow. This however would require modifications to the composition equation and would make models computationally very expensive. A simplification to this approach would be to ignore the backreaction of nucleosynthesis to the flow dynamics, following the composition changes of Lagrangian traces advocated by it. It is believed that fission, while producing entropy that alters the burning in non-trivial way, amounts to only marginally changing the flow dynamics of lightly bound material \vn{it is however interesting to see how this would change the \swind mass}. Thus, the tracer approach is reasonable approximation, that is widely used. The technical difference with respect to the arropach employed in this work, is that the density history $\rho(t)$ is tracked in the ejecta instead of the assumption of homologous expansion. The entropy $s_0$ and electron fraction $Y_{e,0}$ are extracted at the time $t_0$ and then evolved using a self-heating nuclear reaction network \cite{Freiburghaus:1999}. \\
+%
+%The comparison between tracer method and homologous expansion one is performed in \cite{Radice:2018pdn}. It was concluded that within a factor of two, methods yield similar results. However, several caveats were pointed out with respect to the errors arising in ignoring the actual density history ($25\%$). On the other had it was stated that due to the approximation of Eualian flow with Lagrangian the error of $\sim 40\%$ can be expected. \\
+%
+%Here, employing the homologous expansions method. We report the relative abundances of different isotopes synthesized by the $r$-process \red{32} years \vn{not sure where this number is set up} after the merger in the material ejected from the system. In the \textit{short-lived} cases this encompasses only the dynamical ejecta, while in the \textit{long-lived} ones (see table \ref{tab:wind}) it includes the \swind. As the electron fraction is the most important quantity determining the outcome of the $r$-process \cite{Lippuner:2015gwa,Radice:2016dwd}, we report it for selected \textit{long-lived} models in figure \ref{fig:ejecta:bern:hist}. In the figure \ref{fig:nucleo:dynvswind} we compare how the inclusion of the \swind changes the abundances of two representative models and in the figures \ref{fig:nucleo:dynonly} and \ref{fig:nucleo:dynvswind} we show the total abundances of a large  subset of models, investigating the effect of mass ration and EOS (without and with the inclusion of \swind respectively). In all cases, we compare our abundances with the up-to-date solar ones from \cite{Prantzos2020} (for a review of the solar system abundances see \textit{e.g.,} \cite{Pritychenko:2019xvf}). The latter are normalized to the sum of all elements, while the model abundances are normalized to the solar at $A=195$. This is justified as long as ejecta contains very neutron rich material, as the nuclear fission cycling leads to a robust profile that follows the third $r$-process peak \cite{Lippuner:2015gwa}.\\
+%
+%The \cite{Radice:2018pdn} presents the systematics of the nucleosynthetic yields of a large subset of models, for which neutrino re-absorption has been neglected. Here we extent this by performing a similar analysis albeit with the subset of models that include the neutrino re-absorption. In addition, the subgrid turbulence is included in most of our models. However, its effect is much weaker then the one of the mass-ratio. Indeed, the figure \ref{fig:nucleo:dynonly} shows a model's ability to reproduce the solar $1$st and $2$nd r-process peaks, at $A\sim 100$ and $A\sim 125$ respectively strongly depended on the mass-ratio. Higher $q$ models, whose dynamical ejecta is mostly of tidal tail origin with very low electron fraction show severe underproduction of light $r$-process material, while $q=1$ DD2 and BLh models are able to reproduce both peaks reasonably well. This is the result of inclusion of neutrino reabsortion as it increases the $Y_e$ of the shocked component of the ejecta \cite{Radice:2018pdn}. Note, however, that in \cite{Papenfort:2018bjk} the effect of $q$ was not found. But similar to both studies, with respect to the equation of state, we do not observe consistent changes between still anf soft ones. This has also been the case in the aforementioned study.\\
+%
+%Important to note the actinides production, elements with atomic number $A\sim 230$. It was previously reported that in binary neutron star merger ejecta these materiel is overproduced (see \textit{e.g.,} \cite{Giuliani:2019oot}). However, we hint that this conclusion might partially be motivated by a choice of normalization. If we employ the physically motivated normalization to $A = 195$ of solar abundances, we observe that the actinides abundances are consistent with solar. We also note that there is dependency on the mass-ratio, motivated once again, by the ejecta composition. The very low $Y_e$ of highly assymetric models leads to significant boost in actinides production. This is the case for $q=1.8$ of BLh and $q=1.67$ of LS220. \\
+%
+%Indeed, to explain the $^{232}$Th solar abundances the average electron fraction in the ejecta should lower and any of our models except promptly collapsing ones can achieve. This underlines the importance of such mergers for $r$-process nucleosynthesis. We however emphases, that with adopted in this work normalisation, we do not observe overproduction of actinides, that was reported in \cite{Holmbeck:2019xnd}. \\
+%
+%+
+%In the \textit{long-lived} case, the dynamical ejecta amounts to a small fraction of the total mass of material leaving the system. The second, more massive component, is the \swind. Its overall high electron fraction (see Fig. \ref{fig:ejecta:bern:hist}) implies that the weak $r$-process is dominant one here and light elements $A<195$ are primarily produced. In figure \ref{fig:nucleo:dynvswind} we compare the relative abundances from nucleosynthesis in dynamical ejecta only, with the total ones. Owing to the normalization to the $3$rd peak, it is reproduced in both cases, and the important difference lies in the $1$st and $2$nd peaks. In case of BLh we see that solar abundances of even very light elements $A\sim75$ are robustly reproduced. However there is an overproduction of $A\sim 110$ and $A\sim 130$ elements. The DD2 model, on the other hand, shows an overall lower total abundances. This is attributed to the slightly lower average electron fraction in DD2 (Fig. \ref{fig:ejecta:bern:hist}) while the ejecta masses are very similar (Fig.\ref{fig:mej:bern}). \\
+%
+%In the figure \ref{fig:nucle:totalyields} we investigate the total mass-ratio dependence of the total abundances. It is important to emphasis that in \textit{short-lived} cases this is the abundances of the dynamical ejecta only. Thus we limit this discussion to the DD2 and BLh models, most of which are sufficiently long with only extreme high $q$ BLh ones being an exception. Notably, the abundances strong $q$ dependence observed in dynamical ejecta, is not present for total ejecta, and all the $r$-process peaks are reasonably well reproduced by all the \textit{long-lived} models. This is not too surprising owing to the robust properties of the \swind, that change only marginally between different models. \\
+%
+%Overall, we find that dynamical ejecta of asymmetric models in general underproduces the $1$st and $2$nd r-process peaks due to its low average electron fraction. Equal mass DD2 and BLh models however are able to reproduce these peaks. Meanwhile, the total ejecta of DD2 and $q<1.7$ BLh models reproduces both, $1$st and $2$nd r-process peaks reasonably well irrespective of the mass-ratio, showing that the complete solar $r$-process abundances can be recovered if the remnant is \textit{long-lived}. This further supports the hypothesis, that binary netuton stars are the prime source of $r$-process material in the Universe.\\
+%
+%It is however, important to note that nucleosynthetic yields are subjected to the choice of nuclear input data. In particular, the choice of fission fragment distributions and neutron induced fission rates may have a large impact on abundances in the region of the $1$st and $2$nd peaks \cite{Eichler:2014kma}. The symmetric fission fragment distributions used in our calculations does most likely underproduce material in this region. In addition, as the neutrino-matter interaction rates roughly scale with the square of the incoming neutrino energy. Thus, the nucleosynthetic yields depend on the details of the neutrino radiation spectra \cite{Foucart:2016rxm}. The energy integrated scheme, employed in this work, does not allow us to take this effect into account (see, however, \cite{Radice:2018pdn} where different neutrino energy distributions were studied). It was recently pointed out that the neutrino resonant oscillations and fast flavor conversion might occur in NS merger remnants \cite{Zhu:2016mwa,Frensel:2016fge,Deaton:2018ser}. This might modify the nucleosynthesis of light $r$-process elements \cite{Wu:2016pnw}. Thus there is a need for more sophisticated simulations with spectral neutrino transport taking into account the neutrino oscillations. \\
+%
+%In addition to the dynamical ejecta and \swind, the $r$-process nucleosynthesis occurs in the secular ejecta. In particular in neutrino-driven winds, where neutrino irradiation of the expanding ejecta considerably increases the electron fraction. If the velocity of the ejecta sufficiently low, the material achieves $Y_e$ given by the weak equilibrium in optically thin conditions with neutrinos \cite{Qian:1996xt}. During the early post merger phase this $(Y_e)_{eq}\leq 0.45$ which allows for a weak $r$-process nucleosynthesis of light elements $A<130$ to occur \cite{Dessart:2008zd,Perego:2014fma,Foucart:2016rxm,Martin:2015hxa}. In addition, is expected that the dominant source of ejecta from the merger is the viscously-driven outflow from massive disk, if it forms after the merger. Properties on such outflow has been recently investigated in a framework of axisymmetric BH-torus systems \cite{Fernandez:2013tya,Just:2015fda}. The $Y_e$ distribution was found to be broad allowing all $r$-process elements from the $1$st to the $3$rd peak, as well actinides, to be synthesized in proportions close to solar (\textit{e.g.,} \cite{Wu:2016pnw}). If the \textit{long-lived} remnant is present however, the properties of the viscous ejecta are expected to be significantly altered by the large amount of neutrinos emitted over the diffusion time scale (seconds, \textit{e.g.,} \cite{Dessart:2008zd,Perego:2017fho}). 
+
+
+
+%% -------------------------------------
+
+
+
+\red{Radice:2018pdn disussion on the accuracy/}.
+
+\red{Something to check}
+\gray{
+    We do not nd material with expansion timescale of
+    less than 0:5 ms. This seems to exclude the neutron freezeout
+    scenario proposed by Metzger et al. (2015). However,
+    the lack of a very fast component of the ejecta might also
+    be due to numerical effects. Our resolution is probably not
+    high enough to track the very small fraction of the ejecta
+    expected to experience neutron freeze-out in the scenario
+    proposed by Metzger et al. (2015).
+}
+
+
+%% ----------- results ----------------- 
+
+With the procedure outlined above we compute the isotopic abundances of 
+the \rproc{} elements $32$~years after merger. 
+%% ---
+The novelty of the results presented in this section is in the more 
+advanced neutrino treatment, as all out models include the effects of neutrino 
+self absorption (in comparison with \citet{Radice:2018pdn}), the inclusion 
+of the \ac{SWW}, and models with high \mr{}, $q\geq1.8$. 
+%% ---
+
+In the Fig.~\ref{fig:nucle:totalyields} (except the bottom right panel), 
+we show the nucleosynthesis yields from overall ejecta with each panel 
+containing all models fro a given \ac{EOS}, with the \mr{} being color-coded.
+For models with short-lived \ac{MNS} remnants the total ejecta is compised 
+of the \ac{DE} only, while for models with long-lived ones, the total ejeta 
+consists of \ac{DE} and \ac{SWW}. 
+%% --- 
+We compare the model abundances with the recently updated solar residual 
+\rproc{} abundances from \citet{Prantzos2020} 
+(for a review of the solar system abundances see \eg~\citealt{Pritychenko:2019xvf}).
+For the qualitative comparison between models and observations we employ 
+the following normalization. 
+The model abundances are multiples by a constant factor that makes the abundances at 
+$A=195$ equal solar.
+%% --- 
+From the plot we observe that final \rproc{} abundances in the ejecta from models that 
+form long-lived \ac{MNS} remnants with DD2 and BLh \acp{EOS}, are in a greement with 
+solar across all three \rproc{} peaks. 
+\red{add some info on peaks themselves.}
+Due its robust properties, the \ac{SWW} allows for the complete reproduction 
+of the solar \rproc{} abundances. 
+\red{A note on the high Ye and light element productioN?}
+%% --- 
+With respect to the models with short-lived remnants, the final \rproc{} eject abundances 
+at solar $1$st and $2$nd \rproc{} peaks, (at $A\sim 75$ and $A\sim 125$ respectively) 
+depend strongly on \mr{}. 
+For instance, models with high \mr{} have \ac{DE} of tidal origin mostly with low 
+electron fraction. The final \rproc{} abundances in this ejecta show the underproduction 
+of light elements. 
+The final abundances in ejecta from equal mass binaries, 
+however, shows that even light \rproc{} elements are 
+synthesized. This is because the neutrino reabsorption raises the electron fraction 
+in the shocked component of the \ac{DE} \citep{Wanajo:2014wha,Radice:2018pdn}. 
+
+%% --- 
+We observed that final abundances in the ejecta in all our models show the 
+presence of actinides, elements with $A\sim230$. 
+The amount of actinides produced, however, depends strongly on the ejecta 
+electron fraction, and thus, on the binary \mr{}.
+The agreement with solar abundances is found only for very asymmetric binaries. 
+Notably, that only for the binaries with the highest \mr{}, $q\sim1.8$, the 
+\rproc{} in the \ac{DE} results in both $3$rd peak and actinides(at $^{232}$Th) abundances 
+close to solar values. 
+This suggests that the high \mr{} mergers or \ac{NSBH} mergers might be an 
+important contributor to the cosmic chemical evolution.
+
+%%--- Bottom right panel
+The total ejecta from the models with long-lived \ac{MNS} remnants is dominated by
+the \ac{SWW}, as its mass is generally limited by the \ac{MNS} lifetime 
+or by the evolved time (Sec.~\ref{sec:results:ejecta:sww})
+In the bottom-right panel of Fig.~\ref{fig:nucle:totalyields} we show separately the 
+final abundances from the \rproc{} in the \ac{DE} and in the \ac{DE} plus \ac{SWW}. 
+The electron fraction of the \ac{SWW} is higher than that of the \ac{DE} 
+(see Fig. \ref{fig:ejecta:bern:hist}), and this the \rproc{} nucleosynthesis in the 
+\ac{SWW} produces primarily light elements around the first \rproc{} peak, $A<95$.
+We recall here, that due to the choice of the normalization, all abundances are up-scaled 
+to reproduce the $A=195$ peak. We asses here the relative abundances at $1$st and $2$nd
+\rproc{} peaks.
+%% ---
+The plot shows that for the BLh models the amount of lighter elements, $A\sim75$, is higher with 
+respect to the DD2 model. This can be attributed to the higher electron fraction in the 
+\ac{SWW} of the former (see Fig. \ref{fig:ejecta:bern:hist}).
+In both cases, however, the abundances of light elements are very close to slolar 
+\red{can be extended by adding plot from the Letter}
+
+%% --- other ejecta types
+The \rproc{} is expected to take place in other types of ejecta from \ac{BNS} mergers.
+In \nwind{} the neutrino irradiation raises the electron fraction, that, depending 
+on the ejecta velocity, can reach the $Y_e\leq 0.45$ \citep{Qian:1996xt}. 
+At this pint the weak equilibrium sets in between the ejecta and neutrinos.
+High electron fraction implies that only the light elements will be produced.
+The numerical studies indeed support this picture 
+\citep{Dessart:2008zd,Perego:2014fma,Just:2014fka,Martin:2015hxa,Foucart:2016rxm}. 
+%% ---
+The bulk of the ejecta from \ac{BNS} mergers is expected to come in the form of 
+viscous- and recombination-driven winds, This ejecta, however, is expected to take 
+place over the longer timescales than those of our simulations.
+Studies have shown that this ejecta has a broad distribution of the electron fraction 
+and the \rproc{} nucleosynthesis within it would produce light as well as heavy elements
+\citep{Fernandez:2013tya,Just:2014fka,Wu:2016pnw,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax}.
+The production of the heavy \rproc{} elements, however, might be supressed in this winds
+if the long-lived \ac{MNS} is present \citep{Metzger:2014ila,Lippuner:2017bfm}.
+
+
+%% =======================================================
+%%
+%%                   Conclusion
+%%
+%% =======================================================
+
+%% ========================================================================================
+
+\section{Statistics of the \ac{DE} parameters and disk mass}
+
+\red{CONTENT OF THE FIT PAPER}
+
+
+\section{Application to \GW{}}
+
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.48\textwidth]{ejecta_dyn/summary/ej_mej_vej_our2.pdf}
+    \includegraphics[width=0.48\textwidth]{ejecta_dyn/summary/ej_mej_yeej_our2.pdf}
+    \caption{
+        Summary of the ejecta properties of our models.
+        %
+        Diamonds mark the dynamical ejecta, crosses include the
+        contribution of the \swind{} for the long-lived models, 
+        triangles are an estimate of the total ejecta mass on a secular
+        timescale, assuming $40\%$ of the disk mass is unbounded on
+        secular timescales.         
+        The ejecta mass is shown is terms of the mass-averaged velocity
+        (left) and of the averaged electron fraction (right).
+        %
+        The filled blue and red patches are the expected values of
+        ejecta mass and velocity for blue and red components of
+        AT2017gfo compiled by \cite{Siegel:2019mlp}, based on
+        \cite{Villar:2017wcc}. 
+        Adopted from \citet{Nedora:2020pak}.
+    }
+    %
+    \label{fig:ejecta:dyn:ds_sww}
+\end{figure*}
+
+
+%% from main paper, referencing the fitpaper Poly22 fits and SWW + DE
+\red{THis can be augmented with Radio afterglow}
+
+%% === FROM DYNAMICAL EJECTA SECTION of MAIN PAPER
+Here we discuss the application of our results to \GW{}.
+
+
+\subsection{Dynamical Ejecta}
+
+
+%% ---
+First, we asses the ejecta parameters that our fitting models, 
+obtained in section \ref{sec:ejecta_disk_statisitcs} would provide for the \GW{}.
+%% --- 
+Considering the $90\%$ credible intervals estimated for $q$ and $\tilde{\Lambda}$ 
+from LIGO-Virgo GW analysis
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr},
+i.e.~$\tilde{\Lambda}=300_{-190}^{+500}$ and $q\in[1., 1.37]$. 
+and using the errorbars formulas developed in \cite{Radice:2018pdn}, we find that
+$\amd \in [0.72, 7.52] \times 10^{-3}\: M_{\odot}$
+and
+$\avd \in [0.16, 0.39]$c 
+and 
+$\ayd \in [0.11, 0.23]$.
+Notably, these values do not agree with those inferred for \AT{} by the spherical, 
+two-component kilonova models \citep{Villar:2017wcc}.
+Analysis of a compiled set of kilonova fitting models provides a broad range of ejecta 
+parameters \citep{Siegel:2019mlp}:
+$M_{\text{ej}}^{\text{red}}\in(4, 6)\times10^{-2}M_{\odot}$ and
+$\upsilon_{\text{ej}}^{\text{red}}\in(0.07, 0.14)$ for the red component, while
+$M_{\text{ej}}^{\text{blue}}\in[1, 2]\times10^{-2}M_{\odot}$ and 
+$\upsilon_{\text{ej}}^{\text{blue}}\in[0.2, 0.3]$ for the blue component.
+%% ---
+With respect to our results for \ac{DE}, however, 
+none of the kilonova components can be well explained.
+%% ---
+In Fig.~\ref{fig:ejecta:dyn:ds_sww} we show the ejecta properties from
+all our models (diamonds) and the parameters inferred from the
+observations as red and blue boxes. 
+%% --- 
+With respect to the red component, we observe that \ac{DE} from our models 
+have too high average velocities and not nearly enough mass.
+This result suggests that an additional, low $Y_e$ ejecta component is required
+in order to explain the \AT{} red component 
+\citep{Perego:2017wtu,Kawaguchi:2018ptg,Nedora:2019jhl}.
+%% --- 
+A more thorough analysis of the \AT{} with better ejecta models and advanced
+radiation transport kilonova simulations are not part of the present work 
+and will be addressed in the future.
+
+
+\subsection{\swind{}}
+
+
+The \ac{SWW} could be a significant contributor to the \AT{}, assuming the remnant of 
+\GW{} \ac{MNS} merger survived for $\mathcal{O}(100)$~ms.
+%% ---- 
+In Fig.~\ref{fig:ejecta:dyn:ds_sww} we report the total
+(dynamical+\swind{}) ejecta mass and mass-averaged velocity for the
+simulated long-lived BNS (crosses).
+%% ---
+Notably, the total ejecta mass of three of our models, 
+BLh $q=1.18$, BLh $q=1.42$ and  DD2 is $q=1$ are in agreemnt with the epected values 
+for the blue compoent of the \AT{} 
+(obtained using the two-component fit \citep{Villar:2017wcc})
+
+\red{
+    [ LETTER STUFF COULD GO HERE ]
+    a multi-component fitting model that explicitly accounts
+    for the \swind{} can fit the early blue
+    emission from AT2017gfo \citep{Nedora:2019jhl}
+}
+
+The high electron fraction of the \ac{SWW} however would result in a lanthanides-poor
+composition of the outflow. Thus, the \ac{SWW} cannot explain the observed emission 
+for the high opacity, lanthanides-rich material.
+%% ---
+Simulations with advanced physics of a \ac{MNS} mergers on a timescales $>100$~ms are 
+required to asses the contribution from other outflow mechanisms, \red{that we will discuss below} 
+\citep{Lee:2009uc,Fernandez:2015use,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa}.
+
+
+\subsection{Secular Ejecta}
+
+
+On the timescale of seconds, much longer than the evolution of 
+presented here simulations, the nuclear recombination can unbind 
+a fraction of the disk mass. 
+Analytical estimates and simulations with various approximations show that up tp ${\sim}40\%$ of the disk can be ejected via viscous processes with an typical velocity ${\lesssim}0.1\,$c
+\citep{Lee:2009uc,Fernandez:2015use,Wu:2016pnw,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa,Fujibayashi:2020dvr}.
+
+Adapting the fix fraction of the $40\%$ of the disk mass, we estimate 
+that about  ${\sim}0.05\, M_{\odot}$ would be ejected in a form of 
+secular winds. We include this estimate for every simulation
+with the long-lived \ac{MNS} remnant in Fig.~\ref{fig:ejecta:dyn:ds_sww} (lower triangles).
+The estimated mass is sufficient to explain
+the red component of AT2017gfo, as inferred from the two-components kN
+models of \cite{Villar:2017wcc}. 
+
+
+
+
+
+
+
+%% ---------------------
+Sources with time delay are preferred by studies of very metal poor stars that indluded the time delay for r-process elements
+to diffuse through ISM, \citep{Tarumi:2021xvw}. 
+A winds from proto-nuetron are also contributors to the $r$-process budget \cite{Vincenzo:2021rvw}
+
+\red{The remnant is losing anular momentum while disk gains on shortly after merger is due to gravitational torque \cite{Shibata:2019wef}}

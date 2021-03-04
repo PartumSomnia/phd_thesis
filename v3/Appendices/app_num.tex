@@ -1,0 +1,985 @@
+%% ============================
+%%
+%% Appendix A
+%%
+%% ============================
+
+\chapter{Numerical Approximation of Conservation Laws}
+\label{app:num}
+%% \externaldocument{intro}
+%% --------------------------------------
+
+In this chapter we aim to briefly remark on the theory of the numerical approximation of conservational laws. Owing to its key importance in physics, there is quite an extensive amount of literature concerning the topic. We therefore select the aspects that are of relevance to this work, namely high-order, state-of-the-art numerical methods for the solution of conservation laws. For the sake of compactness we would refrain from stating complete descritions of these schemes, focusing on key ideas behind them, their advantages and drawbacks in the context of general-relativistic hydrodynamics. \\
+
+This chapter is structured as following. In Section \ref{sec:theory:conserv_laws:theorback} we state the basics behind the theory of conservation laws and their numerical approximation. In Section \textcolor{red}{[??]} we give a brief overview of the Godunov-like finite-volume schemes. Next, in Section \textcolor{red}{[??]} we focus on the high-resolution shock-capturing (HRSC) finite-difference schemes. \textcolor{gray}{Finally, in Section [??????] we present discontinuous Galerkin methods.}
+
+\textcolor{red}{note that here section is capital 'S'}
+
+\section{Theoretical Background}
+\label{sec:theory:conserv_laws:theorback}
+
+In this section we briefly recall the basics behind the mathematical theory of conservational laws and subsequently, their numerical application. We start by defining the weak and entropic solutions, and present certain results regarding existence and uniqueness of these solutions for conservation laws. We then proceed with reviewing numerical approximation to conservation laws, as well as concepts of consistency, stability and convergence, \textcolor{gray}{briefly stating the Lax-Richtmeyer theorem}. Then we conclude with reviewing the extension to the case of non-linear equations. This section is based on the descriptions provided in \cite{LeVeque:1992,Tadmor1998}, and we refer the reader to these sources for more in-depth discussion. \\
+
+\subsection{Conservation Laws}
+
+Let us consider the consercation laws in the following form
+
+\begin{align}
+\partial_t\boldsymbol{u} + \nabla\cdot\boldsymbol{f}(\boldsymbol{u}) = 0, \hspace{10mm} &(t,x)\in \text{I\!R}_{+}\times\text{I\!R}^d , \\
+\boldsymbol{u}(0, x) = \boldsymbol{u}(x), \hspace{18mm} &x\in \text{ I\!R},
+\label{eq:theory:conservlaws}
+\end{align}
+
+where $\boldsymbol{u}$ is the vector of $m$ unknowns, $\boldsymbol{f}=(\boldsymbol{\boldsymbol{f}^1,...,\boldsymbol{f}^m})$ is a $d$-dimensional flux and $\boldsymbol{u_0}\in\big[L^{\infty}(\text{I\!R}^d)\big]^m$ is the initial data. \\
+
+Investigations of the system \ref{eq:theory:conservlaws} showed irrespective of the initial data, the solution can develop discontinuities (shocks) in a finite time. Thus, the system should be viewed in distribution formalism. There, if for all test functions $\upsilon\in C_0 ^1 (\text{I\!R}^{d+1})$ and $i=1,2,...,m$  we obtain
+
+\begin{equation}
+\int_{0}^{\infty}\text{d}t\int_{\text{I\!R}^d}\big[u^i \partial_t\upsilon + \boldsymbol{f}^i(\boldsymbol{u})\cdot\nabla\upsilon\big]\text{d}x = \int_{\text{I\!R}^d} u_0 ^i \upsilon \text{d}x,
+\end{equation}
+
+then, the vector $\boldsymbol{u}\in\big[\text{I\!R}_{+}\times\text{I\!R}^d\big]^m$ is a \textit{weak solution} of \ref{eq:theory:conservlaws}.\\
+
+It can be shown that that multiple weak solutions are allowed even for a scalar conservation law. Let us then consider the concept of the entropic solution. A convex function \textcolor{red}{what is it?}, $\eta(\boldsymbol{u})$, is said to be an entropy function if its Hesian \textcolor{red}{what is it???}, $\nabla_{\boldsymbol{u}}^2\eta$, symmetrizes the spatial Jacobian, $\nabla_{\boldsymbol{u}}f^i$ \textcolor{red}{WHAT IS IT?!},
+
+\begin{equation}
+\nabla_{\boldsymbol{u}}^2\eta\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{f}^i]^{T}\cdot\nabla_{\boldsymbol{u}}^2\eta, \hspace{10mm} i = 1, ... , m.
+\end{equation}
+
+Here we infer the compatibility relation, introducing the entropy flux $\boldsymbol{\psi} = (\boldsymbol{\psi}^1,...,\boldsymbol{\psi}^m)$, as 
+
+\begin{equation}
+[\nabla_{\boldsymbol{u}}\eta]^T\cdot\nabla_{\boldsymbol{u}}\boldsymbol{f}^i = [\nabla_{\boldsymbol{u}}\boldsymbol{\psi}^i]^T, \hspace{15mm} i = 1,...,m.
+\end{equation}
+
+The pair $\eta\boldsymbol{\psi}$ is referred to as \textit{entropy pair}. \\
+
+Then, the \textit{entropic solution} is a weak solution that for any $(\eta\boldsymbol{\psi})$, in the sense of   admits
+
+\begin{equation}
+\partial_t\eta(\boldsymbol{u}) + \nabla\cdot\boldsymbol{\psi}(\boldsymbol{u})\leq 0.
+\end{equation}
+
+Concerning distributions, the \textit{entropic solution} requires that for any positive test function $\upsilon\in C_0 ^1 (\text{I\!R}_+\times\text{I\!R}^d)$ that 
+
+\begin{equation}
+\int_{\text{I\!R}_+\times\text{I\!R}^d} \big[\eta(\boldsymbol{u})\partial_t\upsilon + \boldsymbol{\psi}(\boldsymbol{u}) \cdot \nabla\upsilon \big]\text{d}t\text{d}x = 0
+\end{equation}
+
+It is possible to show \cite{LeVeque:1992}, that this condition in a scalar cast is equivalent to making characteristic line impinged into shock waves. This constitutes the the process that resulted in a shock forming is irreversible and that the time-symmetry is not longer applies. \\
+
+Considering the scalar case, where $m=1$, it is possible to prove the existence and uniqueness of the entropic solution under very general conditions \cite{Kruzkov:1970}. It s is also can be extended to measure-valued solutions \cite{DiPerna:1985} and to the case of conservation laws on manifolds \cite{Benartzi:2007}. \\
+
+On the other hand, uniqueness and stability of entropic solutions is not well understood in case of systems of conservation laws, as not even the existence of $(\eta\boldsymbol{\psi})$ for the general system of equation has been proven. In \cite{Chen:2009} a novel approach has been employed, based on divergence-measure vector fields. For one dimensional
+Riemann problem, where the initial data in a form 
+
+
+\begin{equation}
+\boldsymbol{u}_0(x) = 
+\begin{dcases}
+\boldsymbol{u}^L, \hspace{5mm} \text{if } x<0; \\
+\boldsymbol{u}^R, \hspace{5mm} \text{if } x>0.
+\end{dcases}
+\end{equation}
+
+it allowed to prove the existence, uniqueness and stability of the entropic solution of the Euler equations for a classical ideal-gas \cite{Chen:2003}. \\
+
+However the mere exestiance of the weak solution to the Riemann problem for general equation of state is not guaranteed \cite{Curtis:1972}. (for more recent results regarding classical Euler equations, see the review \cite{Chen:2006}). \\
+
+On the other hand, using Glimm’s method \cite{Glimm:1965} in the existence of solutions to the Riemann problem was shown in the relativistic case but for the ultrarelativistic equation of state \cite{Smoller:1993}. \\
+
+For \textit{strictly hyperbolic systems} \textit{i.e.,} when $\nabla_{\boldsymbol{u}}\boldsymbol{f}$ has a complete set of real eigenvalues and eigenvectors, the existence of weak solutions was proven in case when the initial data having small enough initial jump \cite{Lax:1957}.
+
+\subsection{Consistency, Stability and Convergence}
+
+Now we consider how the conservation laws can be treated numerically. We limit the discussion to the $m=1$ case, as the non-linear theory is well established only for the scalar fields. Thus we define a problem as 
+
+\begin{align}
+\partial_t u + \nabla\cdot\boldmath(u) = 0&, \hspace{10mm} (t,x) \in I\!R_{+}\times I\! R^d \\ 
+u(0, x) = u_o(x)&, \hspace{15mm} x\in I\!R^{d},
+\end{align}
+
+where $u$ is now just a scalar function. \\
+
+Let us introduce the following notation. The form of equations \ref{eq:theory:conservlaws} allows us to view the solution to this system in a form of a "curve" in an infinite dimensional vector sapce $L^{\infty}I\!(R^d)$, or as a sequence of bounded functions $u(t,\cdot)\in L^{\infty}(I\! R^d)$, that we can consider only being functions of time $u(t)$ with values in the vector space. Owing to the curve being bounded in $L^{\infty}(I\!R^d)$, the sequence of bounded functions read $u(t)\in L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$. Then the system  \ref{eq:theory:conservlaws} can be seen as a system of ordinary differential equations (ODEs), which can be represented as 
+
+\begin{equation}
+\frac{\text{d}u(t)}{\text{d}t} = \mathcal{L}[u(t)], \hspace{10mm} u(0) = u_0,
+\label{eq:theory:conservlawsode}
+\end{equation}
+
+where we associate the operator $\mathcal{L}(\cdot)$ with the $-\nabla\cdot\boldsymbol{f}(\cdot)$. It is important to remember, that as the $u(t)$ is not a smooth function of time, the equation \ref{eq:theory:conservlawsode} should be considered from a point of view of distributions. In addition, we note that stating $u(0) = u_0$ is in all mathematical rigor is a restriction of general functions $L^{\infty}[I\!R_{+};L^{\infty}(I\!R^d)]$ to the set of zero Lebesgue measure, which is not define. For the purpose of keeping the discssion brief we refer to the \cite{Kruzkov:1970} for the related discussion. For the numerical applications we further restrict $u(t)$ to be a smooth function of time, and leave the mathematical subtleties out of discussion.  \\
+
+Transitioning from general formulation \ref{eq:theory:conservlaws} to one adopted for a scalar function $u(t)$ \ref{eq:theory:conservlawsode}, we can introduce the numerical approximation, that is depended in a discrimination parameter $\Delta$. This approximation reads
+
+\begin{equation}
+\frac{\text{d}u^{\Delta}(t)}{\text{d}t} = L^{\Delta}[u^{\Delta}(t)], \hspace{10mm} u^{\Delta}(0) = P^{\Delta}[u_0],
+\label{eq:theory:conservlawsodepde}
+\end{equation}
+
+where $u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \textit{i.e.,} $u^{\delta}\approxeq u u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator. However, as the error associated with it is negable in comparison with other errors arizing in discritisation of conservation laws, we will ignore it, effectively assinging that $u^{\Delta}(0) = u_0$. One of such errors is the trucaction error. \\
+The \textit{ local truncation error} can be defined as 
+
+\begin{equation}
+r^{\Delta} = L^{\Delta}[u(t)] - \mathcal{L}[u(t)],
+\end{equation}
+
+where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. We call a numerical scheme \textit{consistent} if the $r^{\Delta}\rightarrow 0$ when $\Delta\rightarrow 0$ in a given norm for all possible initial data $u_0$. Note, however, that the choice of norm is problem- and method- dependent and may limit the allowable initial data. \\
+
+We then call a scheme to be of order $r$ if 
+
+\begin{equation}
+|| r^{\Delta}(t) || = \mathcal{O}(\Delta^r).
+\end{equation}
+
+
+\paragraph{Infimum and Supremum}
+
+Im math, the \textit{infimum (inf)} of a subset $S$ of a partially ordered set $T$ is the greatest element of $T$ that is less than or equal to all elements of $S$. \\
+The \textit{supremum (sup)} of a subset $S$ of a partially ordered set $T$ is the least element in $T$ that is greater than or equatl to all elements of $S$. The upper bound of a subset $S$ of a partially ordered set (P,$\leq$) is an element $b$ of $P$ such that $b\geq x$ for all $x$ in $S$. If a supremum of a subset $S$ exhists it is unique. The supremum of a subset $S$ of partially ordered set $P$ does not necessearly belongs to $S$. But if it does, it is the maximum, or the greatest element of $S$. \\
+Examples of suprema.
+The supremum of a set of real numbers of $\{1,2,3\}$ is $3$. The number $4$ is an upper bound but it is not the least upper bound and hence not the supremum. \\
+\begin{align}
+\sup\{x\in\text{I\!R}|0<x<1\} = 1. \\
+\sup\{(-1)^n - 1/n | n = 1,2,3,... \} = 1. \\
+\sup\{x\in\mathbb{Q} | x^2 < 2\} = \sqrt{2}
+\end{align}
+
+
+
+A scheme is considered to be \textit{stable} if the norm $L^{\Delta}$ is limited 
+
+\begin{equation}
+|||L^{\Delta}||| := \sup \frac{||L^{\Delta}||}{||\upsilon||}\leq C,
+\end{equation}
+
+where $C\geq 0$ is a constant independent of $\upsilon$. \\
+A scheme is considered to be \textit{convergent} if 
+
+\begin{equation}
+\lim_{\Delta\rightarrow 0} ||u^{\Delta}(t)-u(t)|| = 0, \hspace{10mm} \text{a.e. } t\in \text{I\!R}_{+}.
+\end{equation}
+
+The relation between the consistency, stability and convergence is given by the Lax-Richtmeyer equivalence theorem \cite{Lax:1956}. It states that the numerical approximation of well-posed problems is convergent if and only if the scheme is stable and consistent. In addition, consider a scheme of the order $r$, then
+
+\begin{equation}
+|| u^{\Delta}(t) - u(t) || = \mathcal{O}(\Delta^r).
+\end{equation}
+
+However, in the non-linear case, the \textit{non-linear stability} is required in addition to the stability and consistency are to assure convergence. 
+
+\subsection{Non-Linear Equations and Non-Linear Stability}
+
+The system \ref{eq:theory:conservlawsodepde} is a system of ordinary differential equations, where the discritisation of time has to made as well as space. However, up to now we were discussing only the latter, introducing the operator $\mathcal{L}$ and its approximation $L^{\Delta}$. The reason for that is the following. The spatial discritisation introduces much more prominent truncation error than the time descritisation, which allowed us to limit the discussion of non-linear conseravation laws to different choices in constructing $L^{\Delta}$. However, the properties of the time discritisation start to play an important role in the context of non-linear stability and convergence of numerical schemes in the non-linear case. Thus, we shall discuss a \textit{fulli descrete} schemes. \\
+
+Let us start by introducing a one-parameter family of evolution operators $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$. Following \cite{Kruzkov:1970}, the $\{\mathcal{T}_{s\in\text{I\!R}_+}\}$ allows an operation of composition that forms a semi-group and the $\mathcal{T}_t(u_0)$ yields a solution \ref{eq:theory:conservlaws} at a time $t$, given the initial data $u_0$, \textit{i.e.,}
+
+\begin{equation}
+u(t) = \mathcal{T}_t(u_0), \hspace{10mm} \mathcal{T}\circ\mathcal{T}_t = \mathcal{T}_{t+s}.
+\end{equation}
+
+Its descrete version then
+
+\begin{equation}
+u^{\Delta}(k\Delta t) = T^{\Delta}_{\Delta t}(u_0), \hspace{10mm} T^{\Delta}_s\circ T^{\Delta}_t = T^{\Delta} _{t+s}
+\end{equation}
+
+\textit{i.e.,}
+
+\begin{equation}
+u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)]
+\end{equation}
+
+in a fully desrete form. \\
+
+Importantly, there is only one discretization parameter $\Delta$ for time and space. This is allows due to the  Courant–Friedrichs–Lewy (CFL) condition, which is in essence a linear stability condition of a time-integrator, that links two discretizations. \\
+
+For a fully-discrete from, the truncation error reads 
+
+\begin{equation}
+r^{\Delta}(t) = T^{\Delta}_{\Delta t}[u(t)] - u(t + \Delta t) = T^{\Delta}_{\Delta t}[u(t)] - \mathcal{T}_{\Delta t}[u(t)],
+\end{equation}
+
+where $u(t)$ is the exact solution to \ref{eq:theory:conservlaws}. \\
+For the consistency, it is required that the norm $||\cdot||$, $||r^{\Delta}(t)||\rightarrow 0$ when $\Delta\rightarrow 0$. \\
+A scheme is said to be of an order $r$ if $||r^{\Delta}(t) = \mathcal{O}(\Delta^r)||$. \\
+A scheme is regarded to be linearly stable if 
+
+\begin{equation}
+|||T^{\Delta}_{\Delta t}||| \leq C,
+\end{equation}
+
+where $C$ is a constant. \\
+
+Let us consider how a numerical scheme in a non0-linear case then can be constructed. The Lax-Wendroff theorem \cite{Lax:1960} reads, that for a function $u$ to be a weak solution of \ref{eq:theory:conservlaws}, the numerically approximated solution $u^{\Delta}$ to the \ref{eq:theory:conservlawsode} obtained via conservative and consistent scheme should converge strongly. By conservative we understand a scheme such that 
+
+\begin{equation}
+\int_{\text{I\!R}^d} T^{\Delta}_s(\upsilon)\text{d}x = \int_{\text{I\!R}^d}\upsilon\text{d}x, \hspace{10mm} \text{for any } \upsilon\in L^1(\text{I\!R}^d),
+\end{equation}
+
+where $L^1$ is norm and the strong convergence implies that this $L^1$ is the norm to the function $u$. \\
+
+Thus, the important point is to obtain a conditions that is sufficient for a scheme to be convergent. Then, the ax-Wendroff theorem will ensure that this solution is a weak solution. It is however important to note that the theorem does not guarantee that the solution also entropic, and an additional criterion of satisfying the entropy inequality, then has to be imposed. \\
+
+
+
+\paragraph{Meaasure in mathematics} 
+measure of a set is a systematic way to assign a number to each suitable subset of that set intuitively interpreted as its size. Thus, a measure is a generalisation of length, area, volume. Example: \textit{Lebesgue measure on a Euclidean space} that assignes the conventional length area and volume to Eucledian geometry to the suitable subsets of the $n-$dimensional Eucledian space $\mathbb{R}^n$. For instance the Lebesgue measure of the interval $[0,1]$ in the real numbers is this length. \\
+Measure is a function, that assigns a non-negative real number to certain subsets of a set $X$. It mist be countably addictive. \\
+The formal defitinion: let $X$ be a set and $\Sigma$ a $\sigma$-algebra over $X$. A function $\mu$ from $\Sigma$ to the extended real number line is called measure if it sutisfies the following property:
+\begin{itemize}
+    \item Non negativity: For all $E$ in $\Sigma$ we have $\mu(E)\geq 0$
+    \item Null empty set: $\mu(\emptyset) = 0$.
+    \item Countable addictivity or $\sigma$ addictivity: for all countable collections $\{E_k\}_{k=1}^{\infty}$ of pairwise disjoint sets in $\Sigma$: $\mu\Big(U_{k=1}^{\infty}E_k\Big) = \sum_{k=1}^{\infty}\mu(E_k)$.
+\end{itemize}
+\textbf{Lebesgue measure} \\
+This is a standart way of assigning a measure to subset of $n-$dimensional Eucledian space. For $n=1,2,3$ it coinsides with simply length, area and volume. In general it is also called a $n-$dimensional volume or $n-$volume. Usually a measure of the Lebesgue-measurable set $A$ is denoted with $\lambda(A)$. \\
+Formal definition: \\
+Given a subset $E\subseteq\mathbb{R}$ with the length of interval $I=[a,b]$ (or $I=(a,b)$) given by $l(I) = b-a$ Lebesgue outer measure $\lambda^*(E)$ is defined as 
+\begin{equation}
+\lambda^*(E) = \inf\Bigg\{\sum_{k=1}^{\infty}l(I_k):(I_k)_{k\in N} \text{ is a sequence of open intervals with } \subseteq U_{k=1}^{\infty}I_k\Bigg\}
+\end{equation}
+The first part of the definition states that the subset $E$ of the real numbers is reduced to its outer measure by coverage by sets of open intervals. Each of these sets of intervals $I$ covers $E$E in the sense that when the intervals are combined together by union, they contain $E$. The total length of any covering interval set can easily overestimate the measure of $E$, because $E$ is a subset of the union of the intervals, and so the intervals may include points which are not in $E$. The Lebesgue outer measure emerges as the greatest lower bound (infimum) of the lengths from among all possible such sets. Intuitively, it is the total length of those interval sets which fit $E$ most tightly and do not overlap.\\
+That characterizes the Lebesgue outer measure. Whether this outer measure translates to the Lebesgue measure proper depends on an additional condition. This condition is tested by taking subsets $A$ of the real numbers using $E$ as an instrument to split $A$ into two partitions: the part of $A$ which intersects with $E$ and the remaining part of $A$ which is not in $E$: the set difference of $A$ and $E$. These partitions of $A$ are subject to the outer measure. If for all possible such subsets $A$ of the real numbers, the partitions of $A$ cut apart by $E$ have outer measures whose sum is the outer measure of $A$, then the outer Lebesgue measure of $E$ gives its Lebesgue measure. Intuitively, this condition means that the set $E$ must not have some curious properties which causes a discrepancy in the measure of another set when $E$ is used as a "mask" to "clip" that set, hinting at the existence of sets for which the Lebesgue outer measure does not give the Lebesgue measure. (Such sets are, in fact, not Lebesgue-measurable.)\\
+\textbf{$L^p$ space} \\
+The $L^p$ spaces are function spaces defined using a natural generalisation of the $p-$form for a fintie-dimensitiona vector space. They are also called \textit{Lebesgue spaces}. $L^p$ spaces form an important class of \textit{Banach spaces} in functional analysis, and of topological vector spaces. \\
+\textit{$p-$form in finite dimensions} \\
+Consider a length vector $x=(x-1, x_2...,x_n)$ in the $n-$ dimensional real vector space $R^n$ is usually bien by the Euclidean norm 
+\begin{equation}
+||x||_2 = (x_1 ^2 + ... + x_n ^2)^{1/2}.
+\end{equation}
+For real numbers the $p-$norm or $L^p$-norm of $x$ is defined by
+\begin{equation}
+||x||_p = (|x_1|^p + ... + |x_n|^p)^{1/p}.
+\end{equation}
+\textit{$l^p$ spaces}
+an $L^p$ space may be defined as a space of measurable functions for which the $p-$th power of an absolute value is  Lebesgue integrable where functions which agree almost everywhere are identified.
+\textbf{Total variation.} \\
+The total variation of a real-valued function $f$ defined on an interval $[a,b]\subset R$ is the quantity 
+\begin{equation}
+V_b ^a (f) = \sup_{\mathcal{P}}\sum_{i=0}^{n_p -1}|f(x_{i+1} - f(x_i)|,
+\end{equation}
+where the supremum runs over the set of all partitions $\mathcal{P} = \{\mathcal{P}=\{x_0,...,x_{np}\}|P\text{ is the partition of }[a,b]\}$ of the given interval. \\
+\textit{total variation for function of $n>1$ real variables} \\
+Let $\Omega$ be an open subset of $\mathbb{R}^n$. Given a function $f$ belonging to $L^1(\Omega)$, the total variation of $f$ in $\Omega$ is defined as 
+\begin{equation}
+V(f,\Omega):=\sup\Bigg\{\int_{\Omega}f(x)\text{div}\phi(x)\text{d}x:\phi\in C_{c}^1(\Omega, \mathbb{R}), ||\phi||_{L^{\infty}(\Omega)}\leq 1\Bigg\}
+\end{equation}
+where $C_c ^1(\Omega, \mathbb{R}^n)$ is the set of continuously differentiable vector functions of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. 
+\textbf{Bounded variation} \\
+A function of bounded variation also known as $BV$ dunction is a real valued function whose total variation $TV$ is bounded or finite. \\
+In case of a continous function of one variable, for that function to be of  bounded variation implies taht the distance along the direction of the $y-$axis, neglecting the $x-$axis motion contribution, traversed by a point, moving along the grap, has a finite value. \\
+In case of several variables a function $f$ defined on an open subset $\Omega$ of $\mathbb{R}^n$ is staid to have bounded variation it its distributional derivative is a vector-valued finite Radon measure.\\
+Importantly, functions of bounded variation form an algebra of dinsontinous functions whose first derivative exists almost everywhere. Thus, they can be used to define generalized solutions of nonlinear problems involving functionals. ODE, PDE.\\
+Returning to the definition of the total variation $TV$ for a function of one variable, $V_a ^b (f)$. If $f$ is differentiable and its derivative is Reimann-integrable, its total variation is the verical component of the arc-length of its graph, \textit{i.e.,}
+\begin{equation}
+VC_a ^b(f) - \int_a ^b |f'(x)|\text{d}x.
+\end{equation}
+A condinous real-valued function $f$ on the real line is said to be of bounded variation \textit{BV function} on a chosen interval $[a, b]\subset \mathbb{R}$ if its total variation is finitie, \textit{i.e.,}
+\begin{equation}
+f\in\text{BV}([a,b]) \leftrightarrows V_a ^b (f) < +\infty
+\end{equation}
+The space of bounded varaition (BV functions) can be defined as 
+\begin{equation}
+\text{BV}(\Omega) = \{u\in L^1(\Omega): V(u, \Omega) < +\infty\}
+\end{equation}
+
+
+
+
+
+Let us then proceed with derivation of the conditions that is sufficient for convergence. We start by introducing the total-variation of a function $u$, belonging to $L^1(\Omega)$ in a domain $\Omega$
+
+\begin{equation}
+\text{TV}(\upsilon;\Omega):=\sup\Bigg\{ \int_{\Omega} \upsilon\nabla\cdot\boldsymbol{\phi}\text{d}x: \boldsymbol{\phi}\in [C_0 ^1 (\Omega)]^d, ||\boldsymbol{\phi}||_{L^{\infty}(\Omega)}\leq 1 \Bigg\}, \hspace{5mm} \text{ for any }\boldsymbol{\phi} \in C_0 ^1 (\Omega)
+\end{equation}
+
+where $C_0 ^1(\Omega)$ is the space of continuously differentiable vector functions $\boldsymbol{\phi}$ of compact support contained in $\Omega$ and $||\cdot||_{L^{\infty}(\Omega)}$ is the essential supremum norm. \\
+
+It is possible to show that (\textit{e.g.,} \cite{Luigi:2002}) if $\text{TV}(\upsilon ; \Omega) < \infty$, then $\text{TV}(\upsilon ; \Omega) = |D\upsilon|(\Omega)$ where $|\cdot|$ stands for the vector-valued measure $D\upsilon$ or 
+
+\begin{equation}
+\text{TV}(\upsilon; \Omega) = \int_{\Omega}|D\upsilon|\text{d}x
+\end{equation}
+
+where $D\upsilon$ is a gradient of $\upsilon$ is a sense of distributions. \\
+Further we introduce the vector space BV, $\text{BV}(\Omega)$, that is the spce of all functions in $L^1(\Omega)$ with finite total variation. This is a Banach space with respect to the norm 
+
+\begin{equation}
+|| \upsilon ||_{\text{BV}(\Omega)} = \int_{\Omega}\big(|\upsilon| + |D\upsilon|\big)\text{d}x.
+\end{equation}
+
+The importance of BV spaces lies in the following. It was shown \cite{Conway:1966} that for any $t\geq 0$ $u(t)\in \text{BV}(\text{I\!R}^d)$, and if the initial data $u_o\in \text{BV}(\text{I\!R}^d)$, then the function $u \ in \text{BV}(\text{I\!R}\times\text{I\!R}^d)$. This constitutes the invariance property of the BV spaces. It is important to note, however, that the validity is confirmed only for scalar conservation laws. A system of conversational laws on the other can have a solution that is not BV even if the initial data was in BV space. Consider for example and Euler equation in Lagrangian coordinates. It was shown the the solution can develop vacuum regions, \textit{i.e.,} not BV, if the initial data exhibit sufficiently large variations, while still being in BV space.  Such a solution becomes an $L^1$ function or a Radon measure \cite{Chen:2006}. Another reason why BV are important is that boudned sets in BV$(\Omega)$ are sequentially compact in $L^1 _{\text{loc}}(\Omega)$ \textit{e.g.,} \cite{Luigi:2002}. This implies that for any sequence of functions $[\upsilon_n]\in\text{BV}(\Omega)$ there is a subsequence converging in the $L^1$-norm to a function $L^1 _{\text{loc}}(\omega)$. \\
+
+Then, the goal is to construct a numerical scheme that is able to mimic the BV-invariance of the exact conservation laws. Then the Lax-Wendroff Theorem would assure that the numerical scheme that is $L^1$ stable if consistent produces a sequence of solutions, for different discritisation parameter $\Delta$, that will converge in $L^1$-norm to a weak solution as we decrease $\Delta$. It is however important to note, that not a sequence of solutions, but a union of subsequences $[u^{\Delta}]$ is produced, each of which is converging to a possible different weak solution. If this is not the case, then there exist a sequence $\{u^{\Delta_i}\}$ and $\epsilon > 0$ such that $\Delta_i\rightarrow 0 $ when $i\rightarrow \infty$ and $\text{dist}(W,u^{\Delta_i})>\epsilon$ for any $i$. Such schemes are called \textit{TV-stable}. The important propery of such scheme is, that for all initial data $u_0\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d)$ there exist $\Delta_0 > 0$ and $C\geq 0$ such that 
+
+\begin{equation}
+\text{TV}(T_s ^{\Delta}(u_0); \text{I\!R}^d)\leq C \text{ for any } \Delta < \Delta_0.
+\end{equation}
+
+For example, if a scheme shows the property 
+
+\begin{equation}
+\text{TV}(T_{\Delta t} ^{\Delta}(\upsilon_0); \text{I\!R}^d) \leq \text{TV}(\upsilon,  \text{I\!R}^d), \text{ for any } \upsilon\in L^{\infty}(\text{I\!R}^d)\cap \text{BV}(\text{I\!R}^d),
+\end{equation}
+
+it is one of the \textit{total-variation diminishing} (TVD) schemes. 
+
+In the context of non-linear scalar conservation laws, an example of a convergent scheme is a \textit{monotone} scheme \textit{i.e.,}
+
+\begin{equation}
+u \geq \upsilon \text{ a.e. } \rightarrow \hspace{5mm} T_{s}^{\Delta}(u) \geq T_{s}^{\Delta}(\upsilon).,
+\end{equation}
+
+and if $T_{s}^{\Delta}$ is conservative and monotone, it does satisfy the strong stability condition 
+
+\begin{equation}
+|| T^{\Delta} _{\Delta t} - T^{\Delta} _{\Delta t}(\upsilon)||_{L^1(\text{I\!R}^d)}, \text{  for any  } u.\upsilon\in L^1(\text{I\!R}^d),
+\end{equation}
+
+\textit{i.e.,} it is an $L^1$-contraction \cite{Crandall:1980proc}, which in implies that the method is TVD \cite{LeVeque:1992}. Crandall and Majda \cite{Crandall:1980} has shown that numerical solution thus, obtained with a consistent stable and momotone scheme converges to a weak solution of \ref{eq:theory:conservlaws}. In addition authors showed that the entropy inequality is satisfied by these schemes and hence the numerical solution converges to an entropic (unique) solution of the \ref{eq:theory:conservlaws}. The accuracy of the scheme has however been shown to be limited to the first order by Harten et al. \cite{Harten:1976}. Thus, while requireing a scheme to be monotonic allows for a non-linear stability, it prohibits the higher order accuracy.\\
+
+The solution to the problem was first to use the non-linear dissipation methods that reduces convergence only locally to the tirst order in the vicinity of the dinsintiniuties. These schemes are high-order accuracy, high resolution shock-capturing (HRSC) schemes. They are not monotone, while being TVD in one dimentional case. And Goodman and LeVeque \cite{Goodman:1985} has shown that this is a limitation of TVD schemes. Than can be desigend to be any ordder of accuracy in 1D but can only but in multidminsinal caes they are at most first-order accuracy. \\
+
+Multuple other high order accuracy schemes have been proposed whith however weaker conditions of non-linear stability and not yet fully explored convergence. For example, schemes that satisfy the maximum-principle \textit{i.e.,} such that if $m < u_0 < M$ then $u^{\Delta}(t,\cdot)\in[m, M]$. Such is the second-order central-scheme by Kurganov and Tadmor \cite{Kurganov:2000}. \\
+
+It is however remains that the commonly used modern multidimensional HRSC schemes are not TVD or even has been shown to be TV-stable. Numerical evidence to support a hypothesis that these schemes converge to the entropic solution of conservation laws, how the mathematical proof is yet to be provided. Additionally, even the stabolity and convergence in one-dimensional case has not been forven for a general system of non-linear conservation laws, \cite{LeVeque:2002}, while there also numerical evidence for the convergence of these schemes. \\
+
+It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}. Similarly, to prove the convergence of their numerical approximation likely requiresa  better understanding of the mathematical properties of systems of conservation laws. In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
+
+\subsection{Finite-Volume Methods}
+
+
+\paragraph{Reimann problem} 
+
+Reimann problem is a specifit initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuituy in the domain of interest. In numerical analysis it appears naturally in finite volume method for the solution of conservation law equations due to the discreteness of the grid. 
+\textbf{Reimann solver} \\
+A Reimann solver is a numerical method used to solve a Reimann problem. Generally speaking, Reimann solvers ar especific methods for computing the numerical flux across a discontinuityin the Riemann problem. They are wifely used in high resolution schemes. Usually, left and right states for the reimann Problem are calculated using some form on non-linear reconstraction, such as flux limiteror WENO method, and then used as inut for the reimann solver. \\
+An iterative solution to the RP is too costly, especially in MHD. Popular approximations are:
+\begin{itemize}
+    \item Roe solver - using linearisation of the Jacobian, which then is solved exactly \\
+    \item HLLE solver - approximate solution to the RP which is only based on the integral form of the conservational las and the largest and smallest signal velocities at the interface.
+    \item HLLC solver - resotores the missing Rarefaction wave by some estiamtes, line linearesations. Efficient, But more diffusive. 
+    \item Rotated-hybrid Riemann solvers. 
+\end{itemize}
+
+
+
+The finite-volume method, the Godunov scheme \cite{Godunov:1959}, was one of the fist \textit{monotonicity-preserving schemes}\footnote{Different from the monotonic schemes discussed above} that was able to yield solutions with discontinuities without spurious numerical extrema and with minimum numerical dissipation. There is a plethora of variations of Godunov-type, methods for conservation laws, built on top of the original method, see \textit{e.g.,} \cite{Toro:1999} for an up-to-date overview of the subject. \\
+In this section we consider the basic Godunov method for the first order schemes. Then, we iterate on the second-order Godunov-type schemes, that are the most widely used in the field of relativistic hydrodynamics. In the end of the subsetion, we elaborate on the extension of FV methods to even higher orders, and pint out the difficulties arising in application to the relativistic hydrodynamics 
+
+
+
+\subsubsection{The Godunov Method}
+\textcolor{red}{my overall understanding of this method is rather poor and thus I copied David. It needs to be revised more.}
+
+The pioneer work by Godunov \cite{Godunov:1959}, established principles that most modern hock-capturing methods are based upon. Studying the numerical approaches to linear-advection equation, the author showed that all monotonicity-preserving schemes for this equation are at most first-order accurate. The linearity the discrimination scheme was a basic assumption in this proof. As it was shown later, this assumtion has to be lifted to create a higher-order, monotonicity preserving schemes can be constructed. Boris \cite{Boris:1971} and van Leer \cite{vanLeer:1973} showed that a higer order scheme necessarily have to be nonlinear, even for linear equations. \\
+
+In his work, Godunov has elaborated on the advantages of using the first-order upwind algorithm for the advection equation. In addition, author suggested a way to extend the method to non-linear case, establishing the Godunov scheme. \\
+
+Let us consider a simple case of the one dimensional scalar hyperbolic equation, the advection equation
+
+\begin{equation}
+\partial_t u + \partial_x f(u) = 0.
+\label{eq:theory:fv:adveq}
+\end{equation}
+
+that we cast on a uniformly-spaced grids in space and time 
+
+\begin{equation}
+x_i = i\Delta^1, \hspace{5mm} i\in\mathbb{Z}, \hspace{10mm} t_n = n\Delta^0, \hspace{5mm} n\in\mathbb{N}
+\end{equation}
+
+Let us now consider control volumes, which in one dimension reduce to $[x_{i-1/2},x_{i+1/2}]$, over which the averages of $u$ read
+
+\begin{equation}
+\bar{u}_i ^n = \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i + 1/2}} u(x, t^n) \text{d}x.
+\end{equation}
+
+Averaging the avdection equation \ref{eq:theory:fv:adveq} over one control volume and one time-step we obtain
+
+\begin{equation}
+\frac{\bar{u}_{i}^{n+1}-\bar{u}_{i}^{n}}{\Delta^0} = \frac{1}{\Delta^0}\int_{t_n}^{t_{n+1}}\big\{f[u(t,x_{i-1/2})] - f[u(t,x_{i+1/2})]\big\}\text{d}t
+\label{eq:theory:fv:intadveq}
+\end{equation}
+
+without making any approximation. We note that the computation of integrals on the r.h.s. of \ref{eq:theory:fv:intadveq} only requires to solve a sequence of Riemann problems centered at the intefaces between control-volumes.\\
+To construct a FV scheme, we now approximate the integral from of the conservation law \ref{eq:theory:fv:intadveq}. At each times-step we heve an approximate solution $\{U_{i}^{n}\}_{i\in\mathbb{Z}} \approx \{\bar{u}_{i}^{n}\}_{i\in\mathbb{Z}}$ and evaluate the solution at the next time-step, $\{U_{i}^{n+1}\}_{i\in\mathbb{Z}}$. The assumption, introduced by Godunov, that allows to obtain the solution is the following. Assume that a solution can be represented as a piece-wise constant, \textit{i.e.,}
+
+\begin{equation}
+U^n(x) = \sum_{i\in\mathbb{Z}}U_i ^n \chi_i (x)
+\end{equation}
+
+where $\chi_i(x)$ is the cahracteristic function of the control volume, \textit{i.e.,}
+
+\begin{equation}
+\chi_i(x) = 
+\begin{cases}
+1, \text{ if } x\in[x_{i-1/2},x_{i+1/2}] \\
+0, \text{ otherwise, }
+\end{cases}
+\end{equation}
+
+then, for a sufficiently small time-step $\Delta^0$ the integral form of advection equation \ref{eq:theory:fv:intadveq} can be solved exactly. This is allowed as the Riemann problems, needed to compute the integrals in the r.h.s. of \ref{eq:theory:fv:intadveq}, are centered about the interfaces between adjacent control-volumes. Solution of these Riemann problems yields $u_{t, x_{i-1/2}}$ for all $i$ and all $t\in[t_n, t_{n+1}]$. The condition, that has to be satisfied for a time-step is the CFL condition, 
+
+\begin{equation}
+\text{CFL}:=\frac{\Delta^0}{\Delta^1}\leq\frac{1}{c},
+\end{equation}
+
+where $c$ is the maximum propagation speed. \\
+It allows for the interface value of the solution of the various Riemann problems to be computed exactly for most conservation laws, and be independent from each other. \\
+
+The time integraion in this scheme is drasitcally simplifed as the $u(t, x_{i-1/2})$ does not depend on time \cite{LeVeque:1992}. \\
+
+Let us summarize the the Godunov scheme
+
+\begin{itemize}
+    \item Given the solution at time $t= t_n$ as $\{U_i ^n\}_{i\in\mathbb{Z}}$, a piece-wise constant function $U^n(x)$ is constructed, such that it is only non-zero within a given control volume, \textit{i.e.,} $U^n(x) = U_i ^n$ if $x\in[x_{i-1/2}, x_{i+1/2}]$
+    \item Then, the integral from of the advection equation \ref{eq:theory:fv:intadveq} is evolved exaclty for one time-step with initial data given by $U^n(x)$ to obtain $\{U^{n+1}_i\}_{i\in\mathbb{Z}}$ 
+\end{itemize}
+
+It is important to underline, that the assumption that the solution can be represented as a piece-wise constant in each control-volume, is the sole approximation of the Godunov scheme. \textcolor{red}{grphical representation... do I need it?} \\
+
+Let us now focus on the r.h.s. of the equation \ref{eq:theory:fv:intadveq}. The solution $u(t, x_{i-1/2})$ depends on $U_{i-1} ^n$ and $U_{i} ^n$ as $u(t, x_{1/2}) =: u^* (U_{i-1}^{n}, U_{i}^n)$. It is convenient to express this dependence via \textit{numerical flux} $F(U_{i-1}^{n}):=f[u^*(U_{i-1}^{n}, U_{i}^{n})]$. The Godunov scheme is them reads
+
+\begin{equation}
+\frac{U_{j}^{n+1} - U_{j}^{n}}{\Delta^0} = \frac{1}{\Delta^1}[F(U_{i-1}^{n}) - F(U_{i}^{n}, U_{i+1}^{n})].
+\label{eq:theory:fv:discrete}
+\end{equation}
+
+or, in the semi-descrete form:
+
+\begin{equation}
+\frac{\text{d}U_i}{\text{d} t} = \frac{1}{\Delta^1}[F(U_{i-1}, U_{i}) - F(U_i, U_{i+1})].
+\label{eq:theory:fv:semi-discrete}
+\end{equation}
+
+To compute \ref{eq:theory:fv:semi-discrete}, a time integrator has to be chosen. The simplest option is the Euler method, which incidentally, transforms \ref{eq:theory:fv:semi-discrete} into its origignal form \ref{eq:theory:fv:discrete}. Time integrators of higher orders are not needed in this case, as the Godunov method is already exact with respect to time-update. \\
+
+The semi-discrete form is overall useful in contracting higher order FV schemes as well as in discussing a coupling between hydrodynamic equations with some other system of equations \textit{e.g.,} the spacetime evolution equations, that is not solved using a FV scheme. We thus shall restrain ourselved to the discussion in semi-discrete form, leaving a complete discussion of FV methods for the sake of brevity. We refer the reader to \textit{e.g.,} \cite{Toro:1999} for a comprehensive description of FV methods and to \cite{Gassner:2011} for a more recent discussion regarding the higher order time discretization methods for FV. \\ 
+
+Now, let us consider three dimensional Cartesian grid 
+
+\begin{equation}
+\boldsymbol{x}_{i,j,k} = (i\Delta^1,j\Delta^2,k\Delta^3), \hspace{5mm} i, j, k \in \mathbb{Z},
+\end{equation}
+
+there the integral from of the FV scheme of the advection equation reads
+
+\begin{align}
+\frac{\text{d}U_{i,j,k}}{\text{d}t} &= \frac{1}{\Delta^1}[F^1(U_{i-1,j,k}, U_{i,j,k}) - F^1(U_{i,j,k}, U_{i+1,j,k})] \\
+&+ \frac{1}{\Delta^2}[F^2(U_{i,j-1,k}, U_{i,j,k}) - F^2(U_{i,j,k}, U_{i,j+1,k})] \\
+&+ \frac{1}{\Delta^3}[F^3(U_{i,j,k-1}, U_{i,j,k}) - F^3(U_{i,j,k}, U_{i,j,k+1})]
+\label{eq:theory:fv:1storder3dscheme}
+\end{align}
+
+where $F^1$, $F^2$ and $F^3$ are the numerical fluxes associated with $f^1$, $f^2$ and $f^3$ respectively. \\
+
+
+Extending the FV scheme to the multi-dimensional case and to a general unstructured grid, in a semi-discrete from we gain
+
+\begin{equation}
+\frac{\text{d}U_a}{\text{d}t} = \frac{1}{|\Omega|}\int_{\partial\Omega}\boldsymbol{g}\cdot\boldsymbol{\nu}\text{d}\Sigma,
+\end{equation}
+
+where$\Omega_a$ is a control volume, $\boldsymbol{\nu}$ is the inwards pointing normal to $\Omega$.
+
+As long as the solution of the Riemann problem can be constructed, the FV scheme can be applied to a system of equations. \\
+
+%It is important to mention, that as at every time step we average the solution, $U^n(x) = \Sigma_i U_i ^n \chi_i(x)$, we destroy most of the information regarding full solution of the Riemann problem at every interface. Thus, a construction of a monotone FV scheme would required increasing the diffusivity of the method, even with the approximate Reimann solvers \cite{Harten:1983}. In case of a relativistic Euler equations, where the solution of the Reimann problem is complex, requiring iterative procedure, this property as shown be very usefull \cite{Marti:1994,Pons:2000,Giacomazzo:2005jy}. 
+A popular examples or such solvers are HLLE solver \cite{Roe:1981}, the Marquina flux-formula \cite{Donat:1996} and HLLE solver \cite{Einfeldt:1988}. However, not all the flux-formulas constructed starting from an approximate solution of the original Reimann problem, \textit{i.e.},
+
+\begin{equation}
+F(U_L, U_R) = f(u^*(U_L, U_R)), 
+\end{equation}
+
+even through being often called "approximate Riemann solvers". The $U_L$ and $U_R$ here are the left and right states across the interface. In certain cases there is a they approximate the flux-function directly. It has been further show by Harten et al. \cite{Harten:1983}, that a scheme is consistent and conservative\footnote{In particular the Lax-Wendroff theorem holds.} even if it is constructed via approximating numerical flux instead of the Godunov one, if the collowing criterion is satisfied by the flux formula
+
+\begin{equation}
+F(u, u) = f(u) \text{ for any } u\in \mathbb{R}.
+\end{equation}
+
+Thus, a scheme converges to the correct entropic solution of the conservation law if it is non-linearly stable and the flux-formula is compatible with the entropy inequality. \\
+
+Notably, higher order schemes have lower numerical dissipation. Thus, in high order FV schemes use of approximate flux is more justified.
+
+
+\subsubsection{TVD Finite-Volume Methods}
+
+The loss of information regarding the solution of the Reimann problem in the averaging procedure prevents us from constracting higher order FV scheme. However, it was shown, that the information on the solution can be \textit{reconstructed} from the averages $\{U_i ^n\}_{i\in\mathbb{Z}}$ using non-linear reconstruction procedure. This prevents spurious oscillations from arising. The procedure can be outlined as a following. Consider a solution withing a given control volume $U(x)$. Instead of setting $U(x) = U_i$ when $x\in[x_{i-1/2},x_{i+1/2}]$, the second order approximation of $u$ is used as 
+
+\begin{equation}
+U_i(x) = U_i + \sigma_i(x-x_i), \hspace{10mm}x\in[x_{i-1/2},x_{i+1/2}]
+\end{equation}
+
+where $\sigma_i$ is the reconstructed slope in $[x_{i-1/2},x_{i+1/2}]$. \\
+
+The $U_i(x)$ is essentially a profile of the solution $U$. We however set it with index $i$ as the profiles of two different control volumes might not agree at the interface between them. It is thus conveneitn to introduce the $\pm$ to indicate the from what side the slope is considered, talking about the inteface \textit{i.e.,} $U^{\pm} _{i-1/2}$ stands for $U_{i-1}(x_{i-1/2})$ and $U_i(x_{i-1/2})$. Applying this to the semi-discrete FV scheme we obtain 
+
+\begin{equation}
+\frac{\text{d} U_i}{\text{d}t} = \frac{1}{\Delta^1}\big[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})\big]
+\label{eq:theory:fv:semi-disc-2ord}
+\end{equation}
+
+This is allowed as long as we are considering a semi-discrete formulation, as in this case the the instantaneous flux is given by $F(U_L, U_R)$, \textit{i.e.,} the solution at the interface between two cells at time $t_n ^+$ depends only on the jump between the two state $U_L$ and $U_R$. Thus, the second order scheme in time and space can be constructed, if a second order time-integrator is used in \ref{eq:theory:fv:semi-disc-2ord}. This is no longer the case in a fully descrete scheme, as $u(t, x_{i-1/2})$ is no longer time-independent. There, a solution of a generalized Riemann problem\footnote{A problem, with initial data having a piecewise linear profile} a use of predictor-corrector approach to compute the fluxes with second-order accuracy in time. \\
+
+Now let us consider the choice of $\sigma_i$. It can be shown that if 
+
+\begin{equation}
+\text{TV}\Bigg[\sum_{i}U_{i}(x)\chi_{i};\mathbb{R}\Bigg] \leq \text{TV}\Bigg[\sum_{i}U_{i}\chi_{i}(x);\mathbb{R}\Bigg]
+\end{equation}
+
+then the scheme \ref{eq:theory:fv:semi-disc-2ord} is TVD \cite{LeVeque:1992}. To satisfy this condition a special limiter, \textit{slope-limiter} has to be employed. The reason for that is that the scheme has to be limited to the first order near shocks to prevent oscillations. Consider an example a of a particular limiter, the \textit{minmod} limiter
+
+\begin{equation}
+\sigma_i = \frac{1}{\Delta^1}\text{minmod}(U_{i+1} - U_{i}, U_{i}-U_{i-1}),
+\end{equation}
+
+where
+
+\begin{equation}
+\text{minmod}(z_1,...,z_n) = 
+\begin{cases}
+\text{min}_i z_i \text{ if } z_i > 0 \text{ for any } i, \\
+\text{max}_i z_i \text{ if } z_i < 0 \text{ for any } i, \\
+0,  \text{               otherwise }.
+\end{cases}
+\end{equation}
+
+The minmod$2$ reconstruction is an another example 
+
+\begin{equation}
+\sigma_i = \frac{1}{\Delta^1}\text{minmod}\Big[2(U_{i+1} - U_i), \frac{U_{i+1} - U_{i-1}}{2}, 2(U_i - U_{i-1})\Big].
+\end{equation}
+
+Notably, most of the slop-limiting techniques are only first order accurate at extrema. \\
+
+The extension of a TVD FV scheme to a multi-dimensions is a Cartesian grids is done via a direction-by-direction approach. For an unstructured grid, however, the reconstruction in barycentric coordinates has to be performed. 
+
+To extend the sheme to a system of equations the reconstraction can be performed component-vise. In case of the the relativistic Euler equation, the fact that $\bar{u}_i = u(x_i)$ is of second order accuracy is often unitized. It is usually conventient and less computationally expensive to perform the reconsturction in primitive variables, as the vallues at the interface are less likely to be unphysical. 
+
+\textcolor{red}{what is actually reconstraction?..}
+
+\subsubsection{Higher-Order Finite-Volume Methods}
+
+In the previous subsection we showed that the extension of the Godunov scheme to second order can be achieved via introducing the profile $\sigma_i$, or a slope. This we effectively performed a linear regression of the solution $u$. This can be extended to a polynomial regression, to express the solution $u$ as a piecewise polynomial. The reconstruction however, becomes more involved.
+
+\paragraph{Reconstruction Operators}
+
+Let us beging with a simple one-dimensional case and expand on it later. Let $\upsilon(x)$ be a generic function whose volume average is 
+
+\begin{equation}
+\widetilde{\upsilon}_i := \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i+1/2}}\upsilon(x)\text{d}x.
+\end{equation}
+
+and consider how it can be reconstructed at higher orders. A non-linear operator  $\mathcal{R}$ that allows that returns a high-order approximation of $\upsilon$ at a given point $x$ from $\widetilde{\upsilon}$ volume averages, is a reconstruction operator. As, in general, function $\upsilon(x)$ can contain discontinuities, lift-biased ($\mathcal{R}^-$) and right-biased ($\mathcal{R}^+$) reconstruction operators. Consider an $\mathcal{R}$ reconstraction operator of order $r$, that acts on a set of averages $\{\widetilde{\upsilon}_i\}$, then
+
+\begin{align}
+[\mathcal{R}^{-}(\{\widetilde{\upsilon}_{i}\})](x) &= \lim_{y\rightarrow x^{-}} \upsilon(y) + \mathcal{O}(\Delta^r), \\
+[\mathcal{R}^{+}(\{\widetilde{\upsilon}_{i}\})](x) &= \lim_{y\rightarrow x^{+}} \upsilon(y) + \mathcal{O}(\Delta^r).
+\end{align}
+
+The result of acting with $\mathcal{R}^-$ ($\mathcal{R}^+$) on the $\upsilon$ is then at $x_{i+1/2}$ is $\upsilon^{-}_{i+1/2}$ ($\upsilon^{+}_{i+1/2}$). Examples of reconstruction operators are: the piecewise parabolic method (PPM) \cite{Colella:1984,Colella:2008}, the piecewise hyperbolic method (PHM) \cite{Marquina:1994}, the essentially nonoscillatory (ENO) \cite{Harten:1987,Shu:1988,Shu:1989}, weighted essentially non-oscillatory (WENO) \cite{Liu:1994,Jiang:1996} and monotonicity-preserving (MP5) \cite{Suresh:1997} algorithms. \\
+The PPM reconstruction is based on the piece-wise parabolic interpolation, that extends the slope-limiter approach. Series of limiters used in PPM have been extensively investigated for the presence of spurious oscillations, and even though this method has not been shown to be TVD, it is widely used in many FV schemes and in numerical relativistic hydrodynamics \cite{Baiotti:2004wn,Mignone:2005ns}\\
+The ENO reconstruction scheme employs standard Lagrange interpolation. It can, in principle  be extended to any order of as it utilizes the recursive procedure. By selecting a stencil that yields the smoothest solution it allows to avoid Gibbs oscillations due to interpolation across discontinuities. And while the ENO scheme is not TVD, it was shown that 
+
+\begin{equation}
+\text{TV}[\mathcal{R}(\{\widetilde{\upsilon}_i\}); \text{I\!R}] \leq \text{TV}[\{\widetilde{\upsilon}; \text{I\!R}\}] + \mathcal{O}\big((\Delta^1)^r\big)
+\end{equation}
+
+where $r$ is thge order of reconstruction \cite{Harten:1987}. \\
+
+In the WENO scheme a weighted average of the reconstructed polynomial on each stencil is taken instead of selecting the one with which yields smoothest solution. The order of accuracy is maximized in smooth regions, while non-smooth stencils are suppressed through small weights. Thus, by combining results from multiple reconstructions, it achieves the $2r-1$ order of accuracy (where $r$ is an order of accuracy of ENO scheme). This is a modified ENO approach that considerably reduces the computational resources needed, as the conditional statements are removed. Generally, WENO schemes of order below 7 ($r\leq 4$) are used. Higher order schemes have shown to be unstable without special order-reducing techniques \cite{Gerolymos:2009,Tchekhovskoy:2007zn} or additional limiters \cite{Balsara:2000}.\\
+Examples of the WENO schemes,with respect to how the weights are constructed are the following. In mapped-WENO scheme reduced dissipation is achieved via mapping procedure \cite{Henrick:2005}. In WENOZ scheme, improved non-linear weights are prescribed, that yields a results comparable with the fifth order mapped-WENO scheme, while being less computationally expensive. 
+
+In a extensive study, Gerolymos et al. \cite{Gerolymos:2009} have compared various WENO schemes, providing tabulated coefficients and implementation details.\\
+
+The basic WENO reconstruction yilelds the smoothosts soluton, utililizing the smoothness indicator, that, in case of the smooth solution maximizes the order of accuracy, while minimizing it when the discontinuities are detected. The final solution is then an weighted average of a set of lower order reconstructions of $\widetilde{\upsilon}_i '$ on numerous overlapping stencils. A different approach in employed in a bandwidth-optimized WENO schemes, where wieghts are adjusted to minimize the attenuation of high-frequency modes, instead of maximising the smopoothness of the solution. \\
+In the basic WENO scheme, the smooth function is constructed in a ways as to much as many terms as possible in a Teylor decomposition of a target function. In a bandwidth-optimized WENO scheme, the function is constracted in a way as to provide the best approximation to the Fourier coefficients of the targeted function. In addition, "over-adaptation" is prevented by using the modified non-linear smoothness indicators. This allows to reduce the numerical dissipation. We refer the reader to \cite{Martin:2006} and \cite{Taylor:2007} for more detailed discussion. \\
+
+The MP5 scheme utilizes the fifth order reconstraction alongside with flattening prcedure, that prevents the artificial extrema in the targeted function from arising. Esseincially, it is a monotonicity-preserving PPM scheme, extended to fifth order. By design, the reconstraction sheme, does not introduce spurious oscillations. This is hiwever, not certain in case of WENO schemes. Meanwhile, the MP5 scheme contains multiple conditional stataemtens in limiting procedure, that are absent in WENO.
+
+\paragraph{Very-High-Order Finite-Volume Schemes}
+
+A high order version of FV method in 1D can be constracted following the procedure we outlined in desiging the second-order FV scheme. Making use of high order, non-oscillatory reconstruction operators $\mathcal{R}$, that we split into $\mathcal{R}^+$ and $\mathcal{R}^-$, that when acting on a suluition $U$ yield $U^+$ and $U^-$, we write 
+
+\begin{equation}
+\frac{\text{d}U_i}{\text{d}_t} = \frac{1}{\Delta^1}[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})],
+\end{equation}
+
+in semi-discrete form. \\
+An such a scheme would have the order of accuracy equal to the one of the reconstruction algorithm. However, as the algorithms always fall to the first order near in the vicinity of discontinuities, the actual accuracy order would depend on the solution. \\
+
+A seemingly simple approach of extending high order FV to multi-dimensional case, however, faces a serious challenge. In the formula \ref{eq:theory:fv:1storder3dscheme} we have use simple fluxes, which for a high order schemes have to be computed via suitable quadrature formulas. This makes the sheme complex. \\
+
+In addition, with respect to the system of equations, to avoid spurious oscillations in higher order schemes, the reconstruction needs to be performed on local characteristic variables, instead of previously mentioned, component-vise approach. \\
+
+Moreover, as it is generally not possible to preserve higher order accuracy in conversion from volume-averaged conserved variables to volume-averaged primitive ones. Thus, the reconstruction have to be done in terms of the former. \\
+
+The high-order FV schemes coupled with general relativity become numerically very expensive. The reason for that is that they require high-order quadrature of the metric source terms as well as high-order
+schemes to interpolate the metric at the quadrature points for the calculation of the fluxes. \\
+
+Overall, even though considerable complexities involved, high order FV schemes, due to their unmached accuracy in compariosn with other second-order schemes, make them partular usefull in multiple applications in Newtonian and relativistic hydrodynamics, (see \textit{e.g.} \cite{Tchekhovskoy:2007zn}) and in unstractured grid applications, using generalized WENO scheme (see \textit{e.g.,} \cite{Dumbser:2007})
+
+\subsection{Central Methods}
+
+A central scheme is a scheme the monotone scheme that does not requrie aa Reimann solver. First such scmee was developed by Lax and Friedrichs (LxF) \cite{Lax:1954,Friedrichs:1954}. It has however a larger numerical dissipation in comparison to Godunov scheme, but it is simpler to implement and less expensive. Its lack of accuracy due to numerical dissipation prevents this scheme from being a popular choice. \\
+A second order central scheme was developed by Nessyahu and Tadmor (NT) \cite{Nessyahu:1990}. Kurganov and Tadmor (KT) \cite{Kurganov:2000} have further advanced the scheme, which populirized high-order central schemes. \\
+The Lax-Friedrichs scheme can be understood when a \textit{dual grid} is introduced into the Godunov scheme as follows. Consider a time $t_n$, and the numerical solution $U^n$, its local averages are then given by $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$. To obtain a solution at the time $t_{n+1}$, we compute the local averages of the solution on a dual grid $\{x_{i+1/2}\}_{i\in\mathbb{Z}}$, \textit{i.e.,} $\{U_{i+1/2}^{n+1}\}_{i\in\mathbb{Z}}$ in the center. Hence, the name of the scheme. The following steps go through alternating between the \textit{primal} and \textit{dual} grids. \\
+In more detains, consider a solution $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$ as a starting point. To obtain $\{U_{i+1/2}^{n+1}\}_{i\in \mathbb{Z}}$, we employ the Godunov scheme for the advection equation \ref{eq:theory:fv:adveq} 
+
+\begin{equation}
+\frac{U_{i+1/2}^{n+1} - U_{i+1/2}^{n}}{\Delta^0} = \frac{1}{\Delta^1}\int_{t_n}^{t_{n+1}}\big\{ f[u(t,x_i)] -f[u(t,x_{i+1})]  \big\}\text{d}t.
+\label{eq:theory:fv:central:intadveq}
+\end{equation}
+
+Note,  solution at cell centers remain free of discontinuities for duration of a timestep if the CFL $\leq 1/2 a$, $a$ is the maximum local-characteristic speed. Thus the r.h.s of \ref{eq:theory:fv:central:intadveq} can be computed via a simple quadrature in time, without Reimann solvers. \\
+
+Let us consider a solution, $U^n(x)$, that line in Godunovscheme, is a piecewise constant 
+
+\begin{equation}
+U^{n}(x) = \sum_i U_{i}^{n}\chi_i(x),
+\end{equation}
+
+then $u(t,x_i) = U_{i}^{n}$ for $t\in[t_n. t_{n+1}]$ and 
+
+\begin{equation}
+U_{i+1/2}^{n} = \frac{U_i ^n + U_{i+1}^n}{2}
+\end{equation}
+
+and the \ref{eq:theory:fv:central:intadveq} reads as
+
+\begin{equation}
+U_{i+1/2}^{n+1} = \frac{U_i ^n + U_{i+1}^n}{2} + \frac{\Delta^0}{\Delta^1}[f(U_i ^n) - f(U_{i+1} ^n)]
+\end{equation}
+
+\textcolor{red}{graphical representation -- fig 3.2 -- is it needed?}
+
+Nessyahu and Tadmor \cite{Nessyahu:1990} have introduced the second order central scheme. Instead of piecewise constant reconstruction, they employed a minmod to obtain a piecewise linear approximation of $u^n$, and for time flux quadrature, they used a predictor-corrector approach. \\
+
+The dissipation of of the LxF and NT schemes is time-step depended. For a small $\Delta^0$ it makes schemes very dissipative. To improve the accuracy of the scheme Kurganov and Tadmor \cite{Kurganov:2000} proposed to limit the averaging on the dual grid to the region of spacetime spanned by the largest characteristics of the Riemann problem. Thus, while in the LxF and NT schemes the averging of the solution was supported in the whole grid, in the KT scheme, $U^{n+1}_{i+1/2}$ is only allowed in the region where affected by the results of the local Riemann problem. This reduces the dissipation and also allows the semi-descrete formulation 
+
+\begin{equation}
+\frac{\text{d} U_i}{\text{d} t} = \frac{1}{\Delta^{1}}\big[F(U_{i-1/2}^{-},U_{i-1/2}^{+}) - F(U_{i+1/2}^{-},U_{i+1/2}^{+})\big],
+\end{equation}
+
+where $F$ are numerical fluxes \textit{i.e.,}
+
+\begin{equation}
+F(U_L, U_R) = \frac{f(U_L) + f(U_R)}{2} - \frac{a}{2}[U_R - U_L].
+\label{eq:theory:fv:central:fluxes}
+\end{equation}
+
+Essentially, the KT scheme is very similar to the Godunov scheme with fluxes evaluated through equation \ref{eq:theory:fv:central:fluxes}, Rusanov fluxes \cite{Kurganov:2000}. This also assures the stability of the system when $1/2 < a \cdot \text{CFL} \leq 1$. However, in that case the interpenetration of the scheme is no longer applicable. \\
+
+Lastly, we revisit the difference between the finite-volume (upwind) and central shemes. The main one lies in the constraction of these schemes, as in their form the latter can alwasy be regarded as a FV scheme with added Rusanov "Reimann solver". In particular, only for KT scheme, the maximum principle without additioanl "maximum-principle enforcing limiters" was proven in multi-dimensional case. \\
+
+
+\subsection{Finite-Difference Methods}
+
+In the high order upwind finite difference (FD) schemes the approximation is done point-wise instead of averaging over volumes as it is done in FV schemes. Interestingly, these schemes were proposed as better performing alternatives to ENO and WENO schemes of very high order. \cite{Shu:1988,Shu:1989,Jiang:1996}. Especially in the multi-dimensional case, FD schemes are much more superior to the high order FV schemes in turms of efficiency. \cite{Shu:1999,Shu:2003}. \\
+
+Here we aim to discuss finite difference high resolution shock capturing schemes in very brief manner. We refer the reader to specialized literature for a in-depth discussion. In particular, for the discussion of FD ENO/WENO HRSC schemes see \cite{Shu:1999}, and for FD MP5 scheme -- see \cite{Mignone:2010}. \\
+
+Let us start by introducing a system of hyperbolic balance-laws as
+
+\begin{equation}
+\partial_t\boldsymbol{F}^0(\boldsymbol{u}) + \partial_i\boldsymbol{F}^i(\boldsymbol{u}) = \boldsymbol{S}(\boldsymbol{u}).
+\label{eq:theory:fd:hypsys}
+\end{equation}
+
+For the grid, we employ a uniform Cartesian for the ease of discussion 
+
+\begin{equation}
+\boldsymbol{x}_{i,j,k} = (i\Delta^1, j\Delta^2, k\Delta^3), \hspace{5mm} i,j,k\in \mathbb{Z}.
+\end{equation}
+
+In the following discussion, we will not elaborate on the comparison between different representations of a solution \textit{i.e.,} exact, volume averaged, their approximations, reconstractions. We thus only need, for a quantity $u$, to define the numerical approxiamtion at a given point $x_{i,j,k}$, as $u_{i,j,k}$. 
+
+For the \ref{eq:theory:fd:hypsys} the FD scheme reads
+
+\begin{align}
+\frac{d\boldsymbol{F}^{0}_{i,j,k}}{dt} = \boldsymbol{S}_{i,j,k} &+ \frac{\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}}{\Delta^1} \\
+& + \frac{\boldsymbol{F}^{2}_{i,j-1/2,k} - \boldsymbol{F}^{2}_{i,j+1/2,k}}{\Delta^2} + \frac{\boldsymbol{F}^{3}_{i,j,k-1/2} + \boldsymbol{F}^{3}_{i,j,k+1/2}}{\Delta^3},
+\end{align}
+
+which is identical to the semi-descrete form of the finite volume scheme introduced before \ref{eq:theory:fv:1storder3dscheme}. However, there terms $\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}$ represented integrals of the control volumes along the boundary. If FD scheme, these are direct (high-order, non-oscillatory) approximations of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. \\
+
+Note, that as at the second order the volume averages and point-wise values are the same, the FD and FV schemes read identically. The difference becomes important at higher orders and in many dimensions, especially for the performance of a scheme. Consider the FD high order multi-dimensional scheme, At region boundaries, it does not require any quadrature, Reimann solvers or extra primitive recovery calls \textcolor{gray}{while still requiring reconstruction operators}. This makes a schemem much less computationally expensive. In addition, In general relativistic hydrodynamics, the source term treatment is simpler and more direct, as onlu the point-wise values are requried. This helped popularize the FD for GRHD applications. \\
+
+For the following discussion on the computation of the descrete derivatives on the r.h.s onf the \ref{eq:theory:fd:hypsys}, let us first approach this task in case of a simple equation, the one-deminesiona advection eqiation \ref{eq:theory:fv:adveq}, which is also hyperbolic scalar equation. 
+
+In FV scheme, the reconstraction operators are used to evaluate the left $U_L$ and right $U_R$ from which, via approximate Reimann solvers, the fluxes are computed after. In FD schemes the reconstruction operators are also used, but to evaulate the (non-oscillatory approximation) of $\partial_x f$, referenced above. It is convenient to express $f$ as follows
+
+\begin{equation}
+f\big[u(x_i)\big] = \frac{1}{\Delta}\int_{x-1/2}^{x+1/2}h(\xi)d\xi,
+\label{eq:theory:fd:introd_h}
+\end{equation}
+
+where we, following \cite{Shu:1988}, employed function $h(x)$ in a manner that its average between $x_{i+1/2}$ and $x_{i-1/2}$ stands for the value of $f$ at $x_i$. Then, 
+
+\begin{equation}
+\frac{\partial f}{\partial x}\Big|_{x_i} = \frac{h(x_{i+1/2}) - h(x_{i-1/2})}{\Delta}.
+\label{eq:theory:fd:diff_via_h}
+\end{equation}
+
+That that there were no approximations done in writing \ref{eq:theory:fd:introd_h} and \ref{eq:theory:fd:diff_via_h}. This allows to obtain an approximation to the derivative $\partial f/\partial x$ at $x_i$ of accuracy $r$, -- the same order as the reconstraction operator $\mathcal{R}$, that was used to recover $h_{i+1/2}$. In addition, as only the values at $x_i$ of $f$ are needed for computation, $h$ is never computed at any time. \\
+
+The stability of the scheme is assured by correctly upwinding the reconstraction. Consider the case of $f'(u)>0$. Then, if we allow
+
+\begin{equation}
+\widetilde{\upsilon}_i = f\big[u(x_i)\big] = \frac{1}{\Delta}\int_{x_{i-1/2}}^{x^{i+1/2}}h(\xi)d \xi
+\end{equation}
+
+and 
+
+\begin{equation}
+f_{i+1/2} := \upsilon_{i+1/2} ^{-}, \hspace{10mm} f_{i-1/2} := \upsilon_{i-1/2} ^{-},
+\end{equation}
+
+then
+
+\begin{equation}
+\frac{\partial f(u)}{\partial x} = \frac{f_{i+1/2} - f_{i-1/2}}{\Delta} + \mathcal{O}(\Delta^r)
+\end{equation}
+
+yields the required high order approximation to $\partial_x$ at $x_i$. \\
+
+In a more general case, where the beahviour $f'(x)>0$ is not assured, the flux $f$ is split in a left-goping $f^{-}$ and right-going $f^{+}$ as $f = f^{+} + f^{-}$, for which separate upwind reconstructions are used to assure the stability. Note that this procedure is rather similar application of a Reimann solver in finite volume schemes. In some cases the direct correspondance between the flux-splitting methods and particualr Reimann solvers can be established. \\
+
+We consider here tow ways, how the flux splitting can be done. The ones that are of relevents to this theiss are: \textit{Roe flux-split}, \textit{i.e.,}
+
+\begin{equation}
+f = f^{\pm}, \text{  if  } [f'(\bar{u})]_{x_{i+1/2}} \lessgtr 0
+\label{eq:theory:fd:roefluxsplit}
+\end{equation}
+
+where $\bar{u}_{x+1/2} := (1/2) (u_i + u_{i+1})$, 
+
+and the Rusanov flux-split \cite{Shu:1997} \textit{i.e.,}
+
+\begin{equation}
+f^{\pm} = f(u) \pm \alpha u, \hspace{5mm} a \max[f'(u)],
+\label{eq:theory:fd:laxfluxsplit}
+\end{equation}
+
+where the maximum is taken over the reconstruction operator stencil. \\ 
+
+With respect to the efficiency, the Roe flux splittes appears superiour, as it requires only one reconstraction. However, it was shown \cite{LeVeque:1992} that, if the transonic refraction waves are pesnet, this flux splitter can lead to the formation of entropy-violating shocks. In addition, the flux splitter is a odd-even decoupling phenomenon \cite{Quirk:1994}. One of the solutions was suggested in \cite{Radice:2012cu} to replace Roe flux split with Lax-Friedrichs one when $u$ or $f$ are not monotonic within the reconstruction stencil. 
+
+It is important to note that in our discussion an implicit assumption is made that the function $f$ is convex. In case of relativistic hydrodynamics this is indeed so, however, -- not in the case of relativistic-magneto-hydrodynamics. \\
+
+In addition, in \cite{LeVeque:1992}, a more strict condition imposed on the where Roe flux splitter has to be used instead of Lax-Friedrichs. \textcolor{red}{Our implementation is based on the experience, that a more frequent usage of Roe splitter, decreases comutational costs, as $u$ and $f$ are already computed on the grid, while $f'(u)$ is not. This appears to be sufficient to avoid odd-even decoupling in the tests performed. All the results shown in this thesis, obtain using this Roe-split with this "entropy fix" [This is David's work. Not theory. Not sure how to incorporate it.]} \\
+
+Now, let us consider the general system of hyperbolic balance-laws \ref{eq:theory:fd:hypsys}. The spatial derivatives of the fluxes $\partial_{\alpha} F_{i,j,k} ^{\alpha}$ can be evaluated via a component-by-component approach using the algorithm described above. And while, this is sufficient for lower (up to the second) order schemes, in higher order ones it excites spurious numerical oscillations.
+This problem can be alleviated if reconstraction is done on local characteristic variables of the ssystem. For simplicity, let us consider a one-dimensional case $\alpha={0,1}$. Then, the we employ Jacobian matrices
+
+\begin{equation}
+\boldsymbol{A}^{\alpha} = \frac{\partial \boldsymbol{F}^{\alpha}}{\partial u}\Big|_{\bar{\boldsymbol{u}}}, \hspace{5mm} \alpha = 0,1,
+\label{eq:theory:fd:jacobreconstr}
+\end{equation}
+
+where 
+
+\begin{equation}
+\bar{u} := \frac{1}{2}(u_{i,j,k} + u_{i+1,j,k}),
+\label{eq:theory:fd:aver_ubar}
+\end{equation}
+
+to reconstract the fluxes $F^1 _{i+1/2, j, k}$. The $\bar{u}$ is the average state at the point of reconstruction. \\
+
+Notably, the average \ref{eq:theory:fd:aver_ubar} and present in \ref{eq:theory:fd:roefluxsplit} and \ref{eq:theory:fd:jacobreconstr} is considerably less complicated then the ones proposed in \cite{Roe:1981}. It was shown that the use of $\bar{u}$ \ref{eq:theory:fd:aver_ubar} instead of averaging proposed in \cite{Roe:1981} has no significant impact on the quality of the solution in FD schemes, even when relativistic case is concerned. \\
+
+As the \ref{eq:theory:fd:hypsys} is strongly hyprebolic, the matrix $\boldsymbol{A}^0$ can be inverted. Then the generalized eigenvalue problem 
+
+\begin{equation}
+[\boldsymbol{A}^1 - \lambda_{(1)}\boldsymbol{A}^0]r_{(I)} = 0,
+\end{equation}
+
+has only real eigenvalues $\lambda_{(I)}$ and $N$ real, independent, right-eigenvectors, $r_{(I)}$ [see, \textit{e.g.,} \cite{Anile:1990}]
+
+Let the matrix of eigenvectors be $R$ as 
+
+\begin{equation}
+R_{J}^{I} = r^{I}_{(J)},
+\end{equation}
+
+and $L$ its inverse. Then, the local characteristic variables are 
+
+\begin{equation}
+\omega = Lu, \hspace{10mm} Q = LF^1
+\end{equation}
+
+and we perform component-wse reconstraction to obtain $Q_{1+1/2,j,k}$, where $\omega$ is used in palce of $u$ and $Q$ in place of $f$ in the \ref{eq:theory:fd:laxfluxsplit}. 
+
+Then, we set
+
+\begin{equation}
+F^1_{i+1/2, j, k} = RQ_{i+1/2, j, k}.
+\end{equation}
+
+The approximate of $\partial_a F^a$ in terms of $x_{i,j,k}$ then is obtained, repeating the procedure for other dimensions. \textcolor{red}{Results shown in this thesis are obtained, via reconstraction of local charactersitic variables.} \\
+
+The major disadvantage of finite differencing schemes, however, is they they are primarely adopted for Cartesian grids (uiform or with Berger-Oliger-style AMR \cite{Berger:1984}). In case of cell-centered AMR with refluxing, \cite{Berger:1989}, the FD scheme reduce to second order at the boundary of refinment levels. \textcolor{red}{These limitations however are of second importance for the results presented in this thesis [Are they really?..]}
+
+\subsection{Discontinuous Galerkin Methods}
+
+For hyperbolic equations, with particular emphasis on neutron-transport, Discontinuous Galerkin (DG) Methods have been prposed by Reed and Hill \cite{Reed:1973}. Cockburn and Shu in a series of works extensively expanded on the topic \cite{Cockburn:1991,Cockburn:1989ii,Cockburn:1989iii,Cockburn:1990iv,Cockburn:1998v}. For the elliptic and parabolic equations, the method was also adopted, (see \textit{e.g.,} \cite{Arnold:2002} and references therein). The popularicy of methods have increases in recent years, as well as number of applications of GC methods to classical hyperbolic, parabolic and elliptic problems \cite{Cockburn:2000,Canuto:2008,Hesthaven:2007}. In addition, Zumbush \cite{Zumbusch:2009fe} and Field et al. \cite{Field:2010} have successfully applied the DG methods to the Einstein system of equations in vacuum. Finally, Radice et al. \cite{Radice:2011qr} proposed the first DG general-relativistic hydrodynamics code. \\
+
+The rapid growth of DG methods popularity is largely attributed to their numerical properties which we are going to briefly outline here. \\
+
+In addition, while DG methods are realtively young with respect to FV and FD, they have majority of mathematically proven properies. In particular, the intrinsic non-linear stability have been shown for DG methods for any order of accuracy. However, this required imposing limiters and/ro filtering, to treat the under-reslved parts inf the solution \textit{i.e.,} shocks. If the solution, however, is not well represented by the truncated expansion, the aliasing instability occures. For example, modes that are not present in the actual solution can be "aliased" into the evolved ones. Thus the high order modes can have thir content transfered to lower-order mdoes imporperly. This leads to a non-linear instabilities (see \textit{e.g.,} \cite{Boyd:2001}). In addiiton, it was shown that the solution obtained via DG methods is always entropic, as DG methods satisfy the cell-entropy inequality (see \textit{e.g.,} \cite{Cockburn:2003}). Recently, a maximum-principle-satisfying DG schemes were obtained by Zhang and Shu \cite{Zhang:2011}, via a special limiting technique. \\
+
+Another important property of DG methods in the regions, where the solution is smooth, a high, spectral accuracy can be achieved. With respect to the accuracy of DG methods, it was shown that the numerical dissipation depends only on the truncation error \cite{Cockburn:2003}. This in turn implies that in regions where the solution is smooth and resolved, the dissipation is effectively turned off. This is of prime importance for problems where numerical diffusivity routinely orders of magnitude higher then the physical diffusivity, \textit{e.g.,} in transport problems, where it can render results completely wrong. \\
+
+With respect to their practical use, the DG methods can be easily adopted to general unstructured grids. They are also belived to be very efficient in massively parallel computing owing to their compact stencils that grand them high stability \cite{Biswas:1994}. \\
+
+A particular property that makes DG methods very compelling for GR applications, that they are covariant. DG (and their derivative finite-element method, FEM) do not depend on the a choice of the cooridnate system. Instead they can be described in terms of push-forward and pull-backs from a given reference element \cite{Meier:1999}. \\
+
+\textcolor{gray}{In figure 3.3, the superiour accurady of DG methods is shown. There, for advection equation, the comparsion is made between 5th order DG scheme, 5th Order WENO5 scheme and 7th order WENO7 scheme. The former reins supreme even though the latter has a higher formal order of accuracy. For the comparison equal number of DF-points/DG-elements was taken, to assure the similar computational cost between schemes. However, it is important to note that formaly, DG method have more degrees of freedom (d.o.f) by 5 times with respect to FD methods. A commonly adopted method of comparions between these methods relies of setting equal number of d.o.f. However, this is David's opinion that it is misleading as FD method is much more expensive numerically then. The approach adopted by David allows to set the computational cost equal between the scheme. By setting equal number of FD points to the number of DG elements motivated by the fact that the computational costs of DG scales with number of elements similarly, as the cost of FV/FD methods scales woth the number of ceslls/points. Thus David's comparisons is govern by the scenario in which the computational time is similar. However, an equal number of d.o.f. for the comparison is useful to set, when the memory requirements are a limiting factor.}
+
+Despite the large number of advantages, DG methods also have certain limitaitons. In particular, in comparison with FV/FD methods, they have larger memory requirements. In addition, with respect to shocks, all the standard flattening techniques ano not sufficintly reliable in redicing oscillations, or/and decrease the accuracy of the scheme in the smooth regions. However, arguably the most important limitation of DG methods, is that the linear stability requires a more strict CFL condition. For example if the strongly-stability preserving (SSP) time-discretization is adopted \textit{e.g.,} Runge-Kutta (RK) schemes \cite{Gottlieb:2009}, and the spatial discritisation of the same order, the stability condition reads
+
+\begin{equation}
+\text{CFL} \leq \frac{1}{c}\frac{1}{2k + 1},
+\end{equation}
+
+where the $k+1$ is the order of accuracy of the scheme \cite{Cockburn:2001}. In recent works [259]\cite{Qiu:2005,Qiu:2004} a novel hybrid DG-FV scheme, DG-WENO was developed to combat this limitation. Similarly, a hybrid scheme $P_N P_M$ was introduced in \cite{Dumbser:2009,Dumbser:2008}. Also, advancments in local-spacetime schemes have been made \cite{Gassner:2011} (see also \cite{Hesthaven:2007} for alternative approaches)
+
+\subsubsection{Runge-Kutta Discontinuous-Galerkin Methods}
+
+In this subsection we are going to briefly touch on the fundamentals behind the so-called spectral discontinuous Galerkin methid with numerical integration (SDGM-NI) of the nodal-DG scheme, which is the widely used DR variant. For a more extensive discussion we direct the reader to \cite{Hesthaven:2007}. \\
+
+Once again for simplicity, we shall focus on a one-dimensional hyperbolic equations, the advection equation with no sources \textit{i.e.,}
+
+\begin{equation}
+\partial_t = \nabla\cdot\boldsymbol{f}(u) =0, \hspace{10mm} (t,x)\in \text{I\!R}_{+} \times\Omega,
+\label{eq:theory:dg:adveq}
+\end{equation}
+
+where $\Omega\subset \text{I\!R}^{d}$ is a bounded, regular domain. \\
+
+Now, let us introduce a family of diffeomorphisms $\phi_{j}: T\rightarrow\Omega,\:\Omega_{j}=\phi(T)$ which performs the triangulation of $\Omega$. In other words, we introduce a number $N$ of \textit{elements}, that represent a union of images of a base element $T$. In 2D the base element is usually a triangle (or a square), while in 3D it is then a tetrahedron (cube). Then, the union of images satisfies
+
+\begin{equation}
+\cup_{j=1}^{N}\Omega_{j} = \Omega, \hspace{10mm} \Omega_{i}\cap\Omega_{j} = \emptyset, \hspace{5mm} \text{if} i\neq k.
+\end{equation}
+
+\textcolor{red}{see example in figure 3.4}. 
+
+The main idea behind the mapping is the following. This mapping allows to "pull-back" the equations from a given element, to a reference one, where all the descrete differential operators have been pre-computed. Thus, even through the spape of elements in the physical space can be arbitrary involved, the operators \textit{e.g.,} derivative,s interpolation and integration, need to be prescribed just one time for a simple geometry. This, for isntance, allows an iimplementation of elements with smooth boundaries. \\
+
+In relativistic case, however, the scheme can be made effectively coordinate-free. This is achieved by utilizing covariance of equations, effectively casting them in coordinate system generated by diffeomorphisms (taking the one, in which the base element is defined and pushing if forward). \\
+
+
+Next, we proceed with obtaining a condition that resembles a weak formualtion of \ref{eq:theory:dg:adveq}. The classical way of deriving a semi-descrete scheme is to first obtain a form of weak formualtion in which $u$ is supposedly a bounded function in space, to unsure the existance of a normal trace of $\boldsymbol{f}$ and a smooth function in time. \textcolor{gray}{Note, however, that in chapter 6, a somewhat different direction is chosen, when considering a case of general relativistic problems via a space-time approach, which is more native (adequate) for the relativistic equation. In addition, the condition on the solution to be BV is relaxed, as for a system of eqatuins it might appear too restrictive.} Here we limit ourselves to a classical approach, focusing on a simplifed case of a scalar equations. \\
+
+Consider $\upsilon \in C_0 ^1(\Omega)$. Next, we multiply \ref{eq:theory:dg:adveq} by $\upsilon$ and integrate over $\Omega$, 
+
+\begin{equation}
+\sum_{j=1}^{N}\Bigg[\int_{\Omega_j}\partial_{t}u\upsilon\text{d}x - \int_{\Omega_j}\boldsymbol{f}(u)\cdot\nabla\upsilon\text{d}x\Bigg] = -\sum_{j=1}^{N}\langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j}
+\label{eq:theory:dg:intformadveq}
+\end{equation}
+
+where $\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu}$ is the normal trace of $\boldsymbol{f}(u)$ on the boundary, \textit{i.e.,} it represents the distribution, that value on any test function $\upsilon$, of which is 
+
+\begin{equation}
+\langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j} := \langle\text{div}\boldsymbol{f},\upsilon\rangle_{\Omega_j} + \int_{\Omega_j}\boldsymbol{f}(u)\cdot\nabla\upsilon\text{d}x,
+\end{equation} 
+
+where $\div\boldsymbol{f}$ is the distributional divergence of $f$. Assuming that $\boldsymbol{f}$ is smooth 
+
+\begin{equation}
+\langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j} = \int_{\partial\Omega_j}\boldsymbol{f}\cdot\boldsymbol{\nu}\upsilon\text{d}x,
+\end{equation}
+
+where $\boldsymbol{\nu}$ is an out-going norm to $\Omega_j$. \\
+To obtain a weak formulation of \ref{eq:theory:dg:adveq}, then reduces to obtaning the 
+
+\begin{equation}
+u\in\text{BV}(\Omega), \hspace{5mm} s.t., \ref{eq:theory:dg:intformadveq} \text{holds for any} \upsilon \in C_0 ^1(\Omega).
+\label{eq:theory:dg:weakformrquire}
+\end{equation}
+
+The mechanism of DG method, essencially, is to project the \ref{eq:theory:dg:weakformrquire} on a finite-dimensional subspace of BV$(\Omega)$. For isntance, consider a piecewise polynomial function of $\mathcal{T}_{N}$:
+
+\begin{equation}
+V_N = \big\{ \upsilon\in\text{BV}(\Omega):\upsilon\circ\phi\in\text{I\!P}_{D}(T), \: j=1,...,N \big\}
+\end{equation}
+
+where $\text{I\!P}_{D}$ is the space of polynomials of degree $D$. Note, we do not actually require the continuity of functions in $V_N$ between elements. Hence the themse of this family of schemes \textit{discontinuous} Galerkin. Then, in order to constract a DG scheme we need to obtain
+
+\begin{equation}
+u(t) = C^1(\text{I\!R}_{+};v_N), \hspace{10mm} s.t., \ref{eq:theory:dg:intformadveq} \text{ holds for any } \upsilon\in V_N.
+\label{eq:theory:dg:weakform}
+\end{equation}
+
+Up to now we were considering test functions that belong to the same functional space as the numerical solution, \textit{i.e.,} to the $V_N$. Such schemes, where the test function and numerical the numerical solution $u$ belong to the same functional space are called \textit{Galerkin methods}. Next, computation of the degrees of freedom of $u$ is now simplified since both $u$ and $\upsilon$ are from finite-dimensional space. This is done by assessing the condition \ref{eq:theory:dg:intformadveq} for a large but finite number of test functions $\upsilon$, linearly independent, of course. This finite number of conditions of the form \ref{eq:theory:dg:intformadveq} allows to determined the degrees of freeodom, as it generates a set of ODEs for d.o.f. of $u$. \\
+
+Next, it is important to mention certain aspects of the weak formulation \ref{eq:theory:dg:weakform}. \\
+
+The first point is related to the smoothness of the test function. The formulation \ref{eq:theory:dg:intformadveq} is not well defined for a non-smooth $\upsilon$. Thus, the DG formulations requires a following addition. The test function $\upsilon$ has to appear as smooth $C_0 ^1(\Omega)$ extension $\upsilon$ in $V_N$ for \ref{eq:theory:dg:intformadveq} to be well defined. Doing this, it has to be ensured that the one-sided limit of $\upsilon$ at $\partial\Omega_j$ from the interior of $\Omega_j$. \textcolor{red}{no clue what this means} This can we achieved by setting
+
+\begin{equation}
+\langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j} := \langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon_j\rangle_{\partial\Omega_j},
+\end{equation}
+
+where $\upsilon_j \in C_0 ^1 (\Omega)$ and $\upsilon|_{\Omega_j}=\upsilon$. \\
+
+Secondly, let us discuss the normal trace. We simplify \ref{eq:theory:dg:intformadveq} by setting the test function $\upsilon = \chi_i$ and obtain
+
+\begin{equation}
+\partial_t\int_{\Omega_j}u\text{d}x = - \langle\boldsymbol{\mathcal{F}}\cdot\boldsymbol{\nu},\upsilon\rangle_{\partial\Omega_j}
+\end{equation}
+
+which strikingly resembles the finite volume method. Thus, the normal trace cab be viewed as a flux computed using an approxmiated Riemann solver. \\
+
+Now, let us consider the contraction of the DG scheme. For simplicity and brievity we limit ourselves to the one-dimensional case, reducing \ref{eq:theory:dg:intformadveq} to the 
+
+\begin{equation}
+\sum_{j=1}^{N}\Bigg[\int_{x_j - 1/2}^{x_j +1/2}\partial_t u \upsilon \text{d}x - \int_{x_j - 1/2}^{x_j +1/2}f(u)\partial_x\upsilon\text{d}x\Bigg] = \sum_{j=1}^{N}\big[F^{j-1/2}\upsilon(x_{j-1/2}) - F^{j+1/2}\upsilon(x_{j+1/2})\big],
+\end{equation}
+
+where $F$ is now the numerical flux. Next, we peform an expansion on a polynomial basis on $u(t,\cdot)$ and $f[u(t,\cdot)]$ as
+
+\begin{equation}
+u(t,x) = \sum_{i=1}^{D}u_{i}^{j}(t)l_{i}^{j}(x), \hspace{5mm} f(t,x) = \sum_{i=1}^{D}f_{i}^{j}(t)l_{i}^{j}(x), \hspace{5mm} x\in[x_{j-1/2}, x_{j+1/2}],
+\end{equation}
+
+where $l_{i}^{j}$ is some polynomial basis over $[x_{j-1/2}, x_{j+1/2}]$. Usually this basis is constracted from orthonormal polynomials, but this is not required. \\
+Now, let us chose $\upsilon = l_{k}^{j}\chi_j$, $k=0,...,D$. This would yield a set of evolution equations for the expansion coefficients $u_{i}^{j}(x)$ \textit{i.e.,}
+
+\begin{equation}
+\sum_{i=1}^{D}\Bigg[\int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)l_{k}^{j}(x)\text{d}x\Bigg]\frac{\text{d}u_{i}^{j}(t)}{\text{d}t} - \sum_{i=0}^{D}\Bigg[ \int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)\partial_{x}l_{k}^{j}(x)\text{d}x \Bigg]f_{i}^{j} = F^{j-1/2}l_{k}^{j}(x_{j-1/2}) - F^{j+1/2}l_{k}^{j}(x_{j-1/2}),
+\end{equation}
+
+which in more compact form read
+
+\begin{equation}
+\boldsymbol{M}^{j} - \boldsymbol{D}^{j}\boldsymbol{f} = \boldsymbol{F}^{j-1/2} - \boldsymbol{F}^{j+1/2}, \hspace{5mm} \text{for any } j=1,...,N
+\end{equation}
+
+where vectors $u^{j}$ contain all the expansion coefficients of $u$ and introduced the following matrixes
+
+\begin{equation}
+\big(\boldsymbol{M}^j\big)_{ki} := \int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)l_{k}^{j}(x)\text{d}x
+\end{equation}
+
+which is the mass matrix, 
+
+\begin{equation}
+\big(\boldsymbol{D}^{j}\big)_{ki} := \int_{x_{j-1/2}}^{x+1/2}l_{i}^{j}(x)\partial_{x}l_{k}^{j}(x)\text{d}x
+\end{equation}
+
+which is the co-differential matrix, and finally 
+
+\begin{equation}
+\big(F^{j-1/2}\big)_i := \sum_{k} \delta_{ik} F^{j-1/2}l_{k}^{j}(x_{j-1/2})
+\end{equation}
+
+which are the flux vectors.\\
+
+It is important to note several things. The mass-matrix $\boldsymbol{M}$ is defined on a single element, \textit{i.e.,} it is local. It can be made diagonal, if the accuracy of integration is sufficient and the orthonormal basis is chosen. This simplifies the time evolution as otherwise, the $\boldsymbol{M}$ has to be inverted. This however, is not expensive doe to locality of $\boldsymbol{M}$. There are also alternative methods on diagonalizing the $\boldsymbol{M}$, \textit{e.g.,} mass-lumping \cite{Canuto:2008}.  \\
+
+next, Owing to the fact that $f(u)$ is a general, non-linear function, expanding the flux requires sufficiently large number of coefficients and an adequate quadrature formula to evaluate $\boldsymbol{D}^j$. Otherwise an aliasing error is being introduced. In most practical application it indeed arises and somwhat metigates the non-linear stability of the scheme. If the solution is smooth however, it can be suppressed via filtering techniques \cite{Hesthaven:2007}. 
+Other source of the aliasing error is a shock, \textit{i.e.,} if $u$ has a jump discontinuity. Then, even in a overal linear case, the aliasing error arises, requiring a special techniques to reduce it. One of the commonly adopted methods to do so is to employ a minmod limiter as a non-linear filter to flatten the profile of the solution within the element that contains discontinuities \cite{Cockburn:2001}.
