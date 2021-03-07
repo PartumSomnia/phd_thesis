@@ -32,7 +32,7 @@ onehalfspacing, % Single line spacing, alternatives: singlespacing onehalfspacin
 %liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
 %toctotoc, % Uncomment to add the main table of contents to the table of contents
 %parskip, % Uncomment to add space between paragraphs
-%nohyperref, % Uncomment to not load the hyperref package
+nohyperref, % Uncomment to not load the hyperref package
 headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
@@ -48,7 +48,8 @@ headsepline, % Uncomment to get a line under the header
 \addbibresource{../references.bib} % The filename of the bibliography
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
-
+\usepackage{color}
+\usepackage{xcolor}
 \usepackage{acronym}
 \usepackage{booktabs}
 \usepackage{dcolumn}
@@ -58,14 +59,13 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{mathtools}
 \usepackage[utf8]{inputenc}
 \usepackage[normalem]{ulem}
-\usepackage[breaklinks,colorlinks,citecolor=blue]{hyperref}
 \usepackage{graphicx,psfrag}
 \usepackage{mathrsfs}
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{multirow}
 \usepackage{comment}
 \usepackage{ulem}
-\usepackage{hyperref}
+\usepackage[breaklinks,colorlinks,citecolor=blue]{hyperref}%% \usepackage{hyperref}
 \usepackage{pifont} % \cmark \xmark % http://ctan.org/pkg/pifont
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
@@ -78,9 +78,6 @@ headsepline, % Uncomment to get a line under the header
 
 \newcommand{\myhead}[1]{\multicolumn{1}{c}{#1}}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
-
-\usepackage{color}
-\usepackage{xcolor}
 
 \def\Msun{{\text{M}_{\odot}}}
 
@@ -141,6 +138,7 @@ headsepline, % Uncomment to get a line under the header
 \newacro{EOS}{equation of state}
 \newacroplural{EOS}[EOSs]{equations of state}
 \newacro{GR}{general relativity}
+\newacro{MHD}{magnetohydrodynamics}
 \newacro{GRLES}{general-relativistic large-eddy simulation}
 \newacro{GRHD}{general-relativistic hydrodynamics}
 \newacro{GRMHD}{general-relativistic magnetohydrodynamics}
@@ -406,10 +404,10 @@ $\omega$ & angular frequency & \si{\radian} \\
 % Uncomment the lines as you write the chapters
 
 \part{Numerical relativity simulations of neutron star mergers}
-\include{Chapters/Ch1_NumRel_Intro}
+%\include{Chapters/Ch1_NumRel_Intro}
 %\include{Chapters/Ch2_NumRel} 
 %\include{Chapters/Ch3_Code_ppr_tools} 
-%\include{Chapters/Ch4_BNSmerg_Results} 
+\include{Chapters/Ch4_BNSmerg_Results} 
 %\include{Chapters/Chapter5} 
 
 
