@@ -1,0 +1,166 @@
+% Chapter Template
+
+\chapter{Conclusions} % Main chapter title
+
+%% =======================================================
+%%
+%%                   Conclusion
+%%
+%% =======================================================
+
+%% \section{Conclusion}
+
+In this part we discussed the long-term dynamics of the $37$ \ac{BNS} merger simulations
+focusing on the long-term evolution and hydrodynamics. 
+The binaries span the range total mass $M\in[2.73, 2.88]\,\Msun$, 
+mass ratio $q\in[1,1.8]$, and had fixed chirp mass $\mathcal{M}_c=1.188\,\Msun$.
+We considered five microphysical \ac{EOS} compatible with the current nuclear and
+astrophysical constraints. 
+%% ---
+Each \ac{BNS} model was computed at several resolutions. 
+In total $76$ simulations were considered, some of which were ${\sim}100$~ms 
+long. Together with our previous data
+\citep{Bernuzzi:2015opx,Radice:2016dwd,Radice:2016rys,Radice:2017lry,Radice:2018xqa,Radice:2018pdn,Perego:2019adq,Endrizzi:2019trv,Bernuzzi:2020txg}
+these simulations form the largest sample of merger simulations with microphysics
+available to date. 
+\red{Our ejecta data are publicly available \citep{vsevolod_nedora_2020_4159619}.
+}
+
+\subsection{Disk \& Remnant}
+
+We find that the merger outcome varies depending on the \ac{EOS} and \mr{}.
+%% \citep[\eg][]{Radice:2020ddv,Bernuzzi:2020tgt,Bernuzzi:2020txg} %% THESE ARE REVIEW ARTICLES
+Models with soft \acp{EOS} or/and large \mr{}s produce a short-lived remnant that 
+collapses to a \ac{BH} within few tens of milliseconds after merger. 
+More symmetric models with stiffer \acp{EOS} produce long-lived, possible 
+stable remnants. The lime time of the \ac{MNS} remnant appears to be correlated with the 
+disk mass for the $q{\sim}1$ models, in agreement with previous findings 
+\citep{Radice:2017lry,Radice:2018pdn}.
+Binaries with larger \mr{} tend to have more massive disks and more massive tidal 
+compoent of the \ac{DE}.
+
+The disk temperature and composition show dependency on the \mr{}. For instance, 
+models with $q{\sim}1$ form a disk primarily from the material squeezed out at the 
+\acp{NS} collisional interface. Such disk is characterized by relatively high 
+temperatures $O(10\, {\rm MeV})$. Its composition evolves from being 
+relatively proton reach, with electron fraction set by the 
+neutrino irradiation and shocks to $Y_e \simeq 0.25$, to being neutron rich with 
+$Y_e\simeq0.1$ as disks settles on a quasi-steady state. 
+This is in agreement with the theory of neutrino dominated accretion 
+flows \citep{Beloborodov:2008nx,Siegel:2017jug}. 
+
+The long-term evolution of the \ac{MNS} remnants is governed by both acrretion, 
+induced by the neutrino cooling and viscous stresses and mass shedding that result 
+from the gravitational and hydrodynamical torques and neutrino reabsorption (heating).
+\citep[spiral waves;][]{Radice:2018xqa}
+Our simulations show that the newly formed \ac{MNS} remnant with mass exceeding the 
+maximum of the uniformly rotating configuration (so-called hypermassive \ac{NS}) does 
+not necessarly collapse to a \ac{BH}. Instead, massive winds, (\eg, \ac{SWW}) can 
+efficiently remove the excess in mass (alongside the angular momentum), bringing 
+the \ac{MNS} remnant to the rigidly rotating configuration.
+In order to asses the ultimate face of the \ac{BNS} mergers with masses that fall 
+in-between the maximum for a nonrotating \ac{NS} and those taht lead to a prompt collapse,
+the long-term $3$D neutrino-radiation \ac{GRMHD} simulations are required.
+
+\subsection{Ejecta}
+
+%% --- dynamical
+We analyze and report the overall properties of the \ac{DE} from our simulations.
+The novelty of our results, with respect to the privies study by \citet{Radice:2018pdn} 
+is that (i) all out simulations include the effects of neutrino reabsorption via 
+the M0 scheme; (ii) the effects of the \ac{MHD} turbulence are included in 
+most simulations via the GRLES subgrid model; (iii) simulations are targeted to \GW{} 
+with the corresponding chirp mass, focusing on a narrow range in total masses; 
+(iii) simulations pan a more broad range of \mr{}s. 
+We find that the neutrino reabsorption have a systematic effect on the \ac{DE} properties.
+Its inclusion raises the ejecta mass and velocity.
+This result is in agreement with previous studies \citep{Sekiguchi:2015dma,Radice:2018pdn}.
+The ejecta electron fraction, elevated by the neutrino reabsorption, is similar to that 
+found in simulations with different approximation schemes for neutrinos
+\citep{Sekiguchi:2016bjd,Vincent:2019kor}. 
+This suggests that the current neutrino schemes in \ac{NR} simulations are able to 
+reproduce the main neutrino effects consistently.
+Our set of simulations shows that the properties of the \ac{DE} depend on the \mr{}.
+Specifically, the ejecta velocity and electron fraction decreases with \mr{}, while 
+the total mass increases. However the statistical significance of the latter is weak.
+\red{The dependency of the ejecta properties on the binary parameters can be used 
+    in the \ac{kN} parameter estimation. We asses this possibility and provide the 
+    updated statistical investigations of the ejecta properties in the section \ref{sec:ejecta:statistics}}.
+
+%% --- SWW
+If a merger results in a formation of a \ac{MNS} remnant, the dominant outflow is the 
+\ac{SWW} \red{\citep{Nedora:2019jhl}}. 
+The wind is driven by the energy and angular momentum injected into the disk 
+by the remnant, subjected to the bar-mode and one-armed dynamical instabilities,
+that are present in \ac{MNS} remnants formed in mergers
+\citep{Shibata:1999wm,Paschalidis:2015mla,Radice:2016gym}
+We find that within the simulation time, (up to ${\sim}100$~ms)the \ac{SWW} does not 
+saturates, unless the \ac{MNS} remnant collapses to a \ac{BH}.
+The mass-loss rate via the \ac{SWW} is ${\sim}0.1{-}0.5\, \Msun\, {\text{s}}^{-1}$.
+The wind have a broad distribution in electron fraction, being on average higher,
+then that of the \ac{DE}, and narrow distribution in velocity.
+
+%% --- Nu-Wind
+A part of the \ac{SWW}, channeled along the polar axis and exhibiting the highest
+electron fraction is the \nwind{}. In the early \pmerg{}, the properties 
+of the wind are similar to $\nu$-wind found in 
+\eg~\citet{Dessart:2008zd,Perego:2014fma,Fujibayashi:2020dvr}.
+However, in our simulations the \nwind{} mass flux saturates within few tens 
+of milliseconds after merger, as polar region above \ac{MNS} remnant 
+becomes polluted by the material lifted from the disk by thermal pressure. 
+Notably, the emergence of the steady state $\nu$-wind is generally associated 
+with longer timescales that those, simulated here. It is thus possible, that the 
+conditions for the onset of \nwind{} have not been achieved in our simulations.
+Additionally, it is possible that the approximate neutrino treatment 
+employed in our simulations is not sufficient. 
+The emergence of the \nwind{} should be further investigated with long-term 
+simulations employing more advanced neutrino transport schemens.
+Additionally, the effects of magnetization are important for the polar outflow 
+\citep{Siegel:2017nub,Metzger:2018uni,Fernandez:2018kax,Miller:2019dpt,Mosta:2020hlh}.
+Our simulations do not include magnetic fields and thus we cannot asses their 
+effect on the outflow. However, the simulations include turbulent viscosity 
+that have been show to produce a similar effect on the bulk of the secular 
+outflow to the full-\ac{MHD} \cite{Fernandez:2018kax}.
+
+%% --- Nucleo
+We employ the nuclear reaction network \texttt{SkyNet} calculations to evaluate the 
+\rproc{} yields in the ejecta from our simulations.
+We find that as the \ac{DE} electron fraction depends on the binary \mr{}, do the 
+\rproc{} yields. For instance, the ejecta from binaries with large $q$ is very neutron-rich 
+and the nucleosynthesis in it produces large amount of lanthanides and actinides.
+Binaries with the highest \mr{} conisered, that undergo prompt collapse, show the 
+actinides abundances similar to solar.
+Ejecta from binaries with small $q{\sim}1$, on the other hand, is less neutron-rich 
+and the final abundances show more lighter elements.
+If the merger remnant is \ac{MNS}, the final \rproc{} abundances in the ejecta include the 
+\ac{DE} and the \ac{SWW} contributions. The properties of the latter result is large amount 
+of light elements produced. Together heavy elements from \ac{DE} this results in the abundance 
+pattern similar to solar down to the $A \simeq 100$. 
+
+%% --- Targeted to GW 170817
+Comparing the ejecta properties from our simulations to those, iferred from the 
+fitting of \AT{} bolometric light curves \citep{Villar:2017wcc}, 
+we observe that none of our models is sufficient. 
+However, when an anisotranisotropic multi-components kilonova models, iformed by the 
+ejecta properties and geometry are employed, certain key features of \AT{} are recovered.
+Specifically, we find that the early blue emission can be explained 
+when both \ac{DE} and \ac{SWW} are considered for a binary with long-lived \ac{MNS} remnant.
+However, high electron fraction material was also shown to be present in the outflows 
+fron \ac{BH}-torus systems and thus does not requires a long-lived \ac{MNS} 
+\citep{Fujibayashi:2020qda}.
+The late time red kilonova component requires massive, ${\sim}20\%$ of the disk mas, 
+low-$Y_e$ outflows. Such outflows can be driven by viscous processes and nuclear recombination 
+on a timescale of seconds \citep[\eg][]{Metzger:2008av}.
+
+%% --- overall conclusion :: loocing forward
+Further work is required to overcome the limitations of this study.
+In order to asses weather the \AT{} \red{and its afterglow} can be explained from the 
+first principles, the long-term (several seconds), \ac{NR} \ac{BNS} merger simulations
+are required. Special attention should be given to the neutrino treatment, and more 
+accurate transport schemes, such as gray or spectral M1 \citep{Foucart:2016rxm,Roberts:2016lzn},
+or Monte-Carlo methods are required. Current methods leakage-based schemes, such as 
+the M0 scheme used in this work and M1-leakages scheme of \citet{Sekiguchi:2015dma,Fujibayashi:2017puw}
+cannot adequately treat the diffusion of neutrinos from the interior of the \ac{MNS} remnant.
+Additionally, the \ac{MHD} effects needs to be re-examined. While it is 
+apparent that \ac{MHD} is crucial for launching the relativistic jet, its effects on the 
+ejecta and nucleosynthesis is not yet clear \citep{Siegel:2017jug, Fernandez:2018kax}.
