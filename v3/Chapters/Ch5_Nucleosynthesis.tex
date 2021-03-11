@@ -430,24 +430,122 @@ Thus, accurate modeling of the composition of the outflow is of prime importance
 
 
 %% --- CAN BE USED AS METHOD!!! 
-\subsection{Parameterized ejecta nucleosynthesis}
-\red{This is how the nucleo is computed for our BNS models}
+%% \subsection{Parameterized ejecta nucleosynthesis}
+%% \red{This is how the nucleo is computed for our BNS models}
+%% \section{SkyNet: A modular nuclear reaction network library}
 
 
+%% =======================================================
+%%
+%%                   Nucleosynthesis METHOD Parametrized
+%%
+%% =======================================================
 
 
-\section{SkyNet: A modular nuclear reaction network library}
+\section{Method -- Parameterized ejecta nucleosynthesis}
 
+%% --- From Lippuner paper 
+
+Here a parameterized approach is adopted that allows for a systematic study of the effects of ejecta on the nucleosynthetic abundances and possible implication for \ac{EM} signals. 
+
+The expaniding outflow is described with three parameters:
+
+\begin{itemize}
+    \item Ejecta electron fraction $Y_e=N_p/N_B$, where $N_p$ and $N_B$ are the numbers of protons and baryons. The $Y_e$ is sampled uniformly between \red{$0.01$} and \red{$0.5$}. $Y_e$ above that is not favorable for \rproc{}.
+    \item Ejecta specific entropy, $s$. It is sampled lorarithmically between $1$ and $100$ $k_B/\text{baryon}$.
+    \item Ejecta expansion timescale $\tau$. This quantity describes the ejecta expansion while it undergoes the nucleosynthesis. $\tau$ is sampled between \red{$0.1$ms and $500$ms} 
+    \item The density profile is chosen as following 
+    \begin{equation}
+        \rho(t) = 
+        \begin{cases}
+            \rho_0 \exp(-t / \tau) & \text{ if } t \leq 3\tau, \\
+            \rho_0 \Big(\frac{3\tau}{e t})^3 & \text{ if } t \geq 3\tau, 
+        \end{cases}
+    \end{equation}
+    where $\rho_0$ is the initial density and $e = 2.72$.
+    The fixed choice of the density profile gives the control over the dynamical timescale at the time of \rproc{} 
+    while also matching the expected density profile of a homologously expanding ejecta.
+    This profile was shown to be in agreement with \ac{NR} simulations \citep{Lippuner:2015gwa,Foucart:2014nda}.
+    The value of the $\rho_0$ is computed from \ac{NSE} at the temperature to $6\times10^9$~K and given 
+    entropy $s$. The $\rho_0$ spans range $\sim10^5$ to $10^{12}$ \gcm.
+\end{itemize}
+
+%% --- From our paper
+
+The details on how the parameterized \nuc{} tables were computed are described in \cite{Lippuner:2015gwa}
+
+The nucleosynthesis calculations are performed in postprocessing
+following the same approach as in \cite{Radice:2016dwd,Radice:2018pdn}.
+
+%% Here we briefly outline the procedure. 
+%% Expanding ejecta undergoes the rapid neutrino capture nucleosynthesis, (\rproc{}).
+%% In \citet{Lippuner:2015gwa} a new nuclear reaction network was presented 
+%% (see Appendix~\ref{app:nuc} for more details). 
+Using the parametrized \rproc{} calculations it is possible to map the ejecta 
+parameters (discussed below) onto the final nucleosynthetic yields of our simulations.
+The procedure is the following. 
+For a given ejecta type (\eg, \ac{DE} or \ac{SWW}) we obtain the electron fraction,
+entropy, velocity and rest mass density at a given extraction sphere 
+(see Sec.\ref{sec:method:ejecta}).
+The \rproc{} in a given fluid element depends on how fast it decompresses from the 
+merger environment (see Appendx~\ref{app:nuc}). 
+This can be parameterized with the expansion timescale, $\tau$, assuming a specific 
+velocity profile for the ejecta. We assume the homologous expansion \red{explain!}.
+This assumption holds, as ejecta reaching the extraction sphere has already 
+significantly decompressed and its density decreased ${\sim}3$~orders of magnitude. 
+For the homologous expanding fluid, the density as a function of time reads 
+
+\begin{equation}
+\rho(t) = \rho_E\Big(\frac{\upsilon_E t}{r_E}\Big)^{-3} = 
+\rho_E\Big(\frac{\upsilon_E t}{r_E}t\Big)^{-3},
+\label{eq:nuc:rho_homolog}
+\end{equation}
+
+where $\rho_E$ and $\upsilon_E$ are the density and velocity of the fluid element 
+when it crosses the radius $r_E$. 
+%% ---
+The density in the nucleosynthesis calculations has the profile (see above) 
+
+\begin{equation}
+\rho(t) = \rho(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{e t}\Big)^3
+\label{eq:nuc:rho_nuccalc}
+\end{equation}
+
+where $e$ is the Euler's number, and $s$ and $Y_e$ are the fluid entropy and 
+electron fraction.
+
+Solving together Eq.~\eqref{eq:nuc:rho_homolog} and Eq.~\eqref{eq:nuc:rho_nuccalc},
+the expansion timescale $\tau$ can be extracted.
+
+In order to compute the nucleosynthetic yields we bin the ejecta in the 
+parameter space of $(s, Y_e, \tau)$. 
+%% --- 
+Under the assumption of homologous expansion the \rproc{} outcome depends on 
+the these quantities and can be precomputed.
+%% ---
+We compute the total nucleosynthetic yields by summing the contributions from 
+each bin.
+
+
+%% --- Another approach --- full post-processing
+Notably, that \rproc{} abundances can also be computed by direct 
+post-processing the ejecta hydrodynamic trjectories with the \ac{NRN}. 
+This was done in \eg, 
+\citet{Goriely:2011vg,Korobkin:2012uy,Grossman:2013lqa,Wanajo:2014wha,Just:2014fka,Martin:2015hxa}.
+
+%% --- Uncertanties
+Note: the exact \rproc{} abundance pattern(at a $3$rd peak in particular) depends on the nuclear mass model, reaction rate and fission fragment distribution (\citep[\eg][]{Goriely:2004qb,Arcones:2010dz,Mumpower:2011ar,Mendoza-Temis:2014mja,Eichler:2014kma})
+
+
+%% =======================================================
+%%
+%%                   Nucleosynthesis Results
+%%
+%% =======================================================
 
 
 
 \section{Results}
-
-
-
-
-
-
 
 
 \begin{figure*}[t]
@@ -476,57 +574,7 @@ Thus, accurate modeling of the composition of the outflow is of prime importance
     \label{fig:nucle:totalyields}
 \end{figure*}
 
-The nucleosynthesis calculations are performed in postprocessing
-following the same approach as in \cite{Radice:2016dwd,Radice:2018pdn}.
 
-Here we briefly outline the procedure. 
-Expanding ejecta undergoes the rapid neutrino capture nucleosynthesis, (\rproc{}).
-In \citet{Lippuner:2015gwa} a new nuclear reaction network was presented 
-(see Appendix~\ref{app:nuc} for more details). 
-Using the parametrized \rproc{} calculations it is possible to map the ejecta 
-parameters (discussed below) onto the final nucleosynthetic yields of our simulations.
-The procedure is the following. 
-For a given ejecta type (\eg, \ac{DE} or \ac{SWW}) we obtain the electron fraction,
-entropy, velocity and rest mass density at a given extraction sphere 
-(see Sec.\ref{sec:method:ejecta}).
-The $r$-process in a given fluid element depends on how fast it decompresses from the 
-merger environment (see Appendx~\ref{app:nuc}). 
-This can be parametrized with the expansion timescale, $\tau$, assuming a specific 
-velocity profile for the ejecta. We assume the homologous expansion \red{explain!}.
-This assumption holds, as ejecta reaching the extraction sphere has already 
-significantly decompressed and its density decreased ${\sim}3$~orders of magnitude. 
-For the homologous expanding fluid, the density as a function of time reads 
-
-\begin{equation}
-    \rho(t) = \rho_E\Big(\frac{\upsilon_E t}{r_E}\Big)^{-3} = 
-    \rho_E\Big(\frac{\upsilon_E t}{r_E}t\Big)^{-3},
-    \label{eq:nuc:rho_homolog}
-\end{equation}
-
-where $\rho_E$ and $\upsilon_E$ are the density and velocity of the fluid element 
-when it crosses the radius $r_E$. 
-%% ---
-The density in the nucleosynthesis calculations has the profile \citep{Lippuner:2015gwa} 
-
-\begin{equation}
-    \rho(t) = \rho(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{e t}\Big)^3
-    \label{eq:nuc:rho_nuccalc}
-\end{equation}
-
-where $e$ is the Euler's number, and $s$ and $Y_e$ are the fluid entropy and 
-electron fraction.
-
-Solving together Eq.~\eqref{eq:nuc:rho_homolog} and Eq.~\eqref{eq:nuc:rho_nuccalc},
-the expansion timescale $\tau$ can be extracted.
-
-In order to compute the nucleosynthetic yields we bin the ejecta in the 
-parameter space of $(s, Y_e, \tau)$. 
-%% --- 
-Under the assumption of homologous expansion the \rproc{} outcome depends on 
-the these quantities and can be precomputed.
-%% ---
-We compute the total nucleosynthetic yields by summing the contributions from 
-each bin.
 
 %% -------------------------------------
 
