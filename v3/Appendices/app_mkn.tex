@@ -1,0 +1,75 @@
+%% ============================
+%%
+%% Appendix A
+%%
+%% ============================
+
+\chapter{Kilonova}
+\label{app:mkn}
+%% \externaldocument{intro}
+%% --------------------------------------
+
+
+\section{Lightcurves}
+\red{To be moved to Kilonova chapter}
+\red{For AB magnitudes look the Lippuner Paper 
+    Computing AB magnitude from light curve
+    Page 143
+}
+
+\red{From lippuner paper}
+
+
+Consider a rather simplified way of modeling a kilonova. 
+The expansion is assumed to be homologous, \ie, $r = \upsilon t$ with the density structure being
+
+\begin{equation}
+\rho(t, r) = \rho_0(r/t)\Big(\frac{t}{t_0}\Big),
+\end{equation}
+
+instead of uniform density of the expanding ball, as the latter might show superluminal expansion velocities.
+
+The \ac{NEN} gives the heating as a fucntion of time, $\varepsilon(t)$, but only a fraction of released energy (in form of neutrinos and gamma-rays) will be passed into the material, thermolized in the material. This fraction is difficult to calculate. It requries gamma ray transport schemes. One can assume it to be constant, \textit{i.e.,} $f=0.3$ \cite{Barnes:2013wka}. Thus, only $f\varepsilon$ of the released in nucleosynthesis energy is deposited into the material.
+
+Assuming the homologous outflow, the velocity can be considered as a Lagrangian coordinate and the Lagrangian radiative transport equations can be written to the first order in $\upsilon/c$ \citep{Mihalas:1984}
+The equation of state can be assumed to be the one of an ideal gas, $u=3T/(2\mu)$ and the Eddington factor entering the Lagrange equations can be obtained from the static Boltzmann transport equation. 
+This method is similar to \citep{Ensman:1994}. 
+
+Calculating the exact opacities of a mixture of atoms with complex line structure, such as iron-group elements, and even more so, lanthanides and actinides is a difficult task. \red{it was adressed though by Tanaka et al}.
+However, if the detailed opacity calculations are beyond the scope, one can assume an approximate opacities given by 
+
+\begin{equation}
+\kappa = \kappa_{\text{Fe}}(T) + \sum_i \max[\kappa_{\text{Nd}}(T,\: X_i) - \kappa_{\text{Fe}}(T),\: 0],
+\end{equation}
+
+where $\kappa_{\text{Fe}}(T)$ and $\kappa_{\text{Nd}}(T,\: X_i)$ are the iron and neodymium opacities given in \cite{Kasen:2013xka}, $X_i$ is the mass fraction lanthanides or actinides species. 
+For the gray opacity calculations, the Plank mean opacity can be assumed (it is a good approximation when wavelength dependent opacity is calculated in the Sobolev approximation)
+
+
+\subsection{Dependence of kilonova light curves on the outflow properties}
+
+
+In case of a lanthanides-rich ejecta, $Y_e=0.01$ $(Y_e=0.19)$ the different in heating rates is small. However, the difference in opacity results in the peak time difference of about a weak and magnitude difference of about $1$ magnitude. In addition, the effective temperature at peak is also much lower for the $Y_e=0.01$. 
+In case of a lanthanides-poor ejecta, $Y_e=0.25$ $(Y_e=0.5)$, the difference in heating rates is more prominent as in the latter, mostly stable nuclei are produced.The difference in peak time of the latter 1-2 days later and its peak magnitude about $1$ order dimmer. This is the effect of the reduced heating.
+Thus difference in opacity dominates the light curve properties at low $Y_e$ while effect of different heating rates on the lightcurve is prominent at high $Y_e$. 
+The interplay between opacity in heating can be seen from the fact that more heating leads to the brighter late part, because hotter ejecta maintins its high opacity (more populated excited levels) for longer \citep{Kasen:2013xka}. 
+
+The effect of different entropy of the ejecta is the most prominent at $Y_e=0.25$, where the $s=1k_B/$baryon and $s=10k_B$/baryon give lanthanides-righ and -poor light curves.
+Thus, if lanthanides are produced the transient is expected to be longer, dimmer and redder, while of the lanthanides are not produced, it is brighter, bluer and shorter.
+The peak times and magnitudes also assessed by \citet{Roberts:2011,Barnes:2013wka,Tanaka:2013ana}. 
+
+
+\subsection{Mass estimates of potential kilonova observations}
+
+
+A particular example for the investigation of the depenedency of a lightcurve on ejecta mass can be done for the GRB130603B, for which observations is infrared and optical \citep{Berger:2013wna,Tanvir:2013pia}
+
+The lower limit on the ejected mass can be computed. The method is the following. Consider a set of parameters for ejects, velocity and mass, compute the AB magnitude for the transients produced bu this ejecta. Account for the cosmology and instrument filter responds for the observed data. Compare the observed magnitudes with model ones and interpolated the minimum that reproduces observations.
+
+
+\subsection{Conclusion}
+
+
+The final amount of lanthanides and actinides depends mostly on $Y_e$. Ejecta is free of these elements for $Y_e > 0.25$. Notably, lanthanides-free ejecta can be achieved also for low $Y_e$ under special conditions in terms of entropy and expansion timescale. High $s$ low $\tau$ ang low $Y_e$, for instance, give a neutron rich freeze-our. Contrary, at low $s$, high $\tau$, there is a late time heating that resets the composition to the \ac{NSE} corresponding to a higher $Y_e$. 
+
+High opacity of lanthinides (a factor of a 100) results in the peak of a Kilonova occurring a weak later and at $1$ magnitude magnitude lower. Similar results were found in \citet{Roberts:2011;Kasen:2013xka,Tanaka:2013ana,Grossman:2013lqa}. Heating rates however, at $1$ day depend weakly on the lanthinides abundances, and thus on $Y_e$. When ejecta is initially low $Y_e$ the dependency is small, as the same ensemble of nuclides dominating the heating is produced. If the $Y_e$ is high, however, the specific nuclides dominate the heating and its rate changes strongly depending on composition. 
