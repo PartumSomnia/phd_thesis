@@ -4,6 +4,7 @@
 
 \label{ch:kilonova} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+In this chapter we discuss the thermal \ac{EM} counterpart to \ac{BNS} mergers.
 
 \section{Introduction}
 
@@ -469,6 +470,35 @@ This emission is assumed to be of polar origin and contribute to the total \ac{E
 %
 %\red{This might serve as a gread introduction to the thesis!}
 
+\subsection{\AT{}}
+
+The observation of the kilonova (kN) AT2017gfo \citep{Coulter:2017wya,Chornock:2017sdf,Nicholl:2017ahq,Cowperthwaite:2017dyu,Tanvir:2017pws,Tanaka:2017qxj}
+associated to the binary neutron star (BNS) merger GW170817 \citep{TheLIGOScientific:2017qsa} provided
+evidence 
+that the ejection of neutron-rich matter from compact binary mergers is a primary site for
+$r$-process
+nucleosynthesis~\citep{Lattimer:1974a,Li:1998bw,Kulkarni:2005jw,Rosswog:2005su,Metzger:2010sy,Roberts:2011xz,Kasen:2013xka}.
+%% ---
+The \ac{kN} is the \ac{EM} \ac{UV}/optical/\ac{NIR} transient, powered by the 
+radioactive decay of the elements synthesized via \rproc{} in expanding ejecta.
+%% --- 
+The peak in \ac{NIR} band of \AT{} occurred several days after the
+merger \citep{Chornock:2017sdf}.
+It is generally consistent with emission from the high opacity material, with with a sizable fraction of lanthanides \citep{Kasen:2013xka}
+%% ---
+The peak in \ac{UV}/optical band, however, occurred in less than one day after the
+merger \citep{Nicholl:2017ahq}. 
+This requires the opacity of the material to be sufficiently low, suggesting  that only partial \rproc{} \nuc{} took place in the corresponding ejecta  \citep{Martin:2015hxa}.
+%% ---
+Smianalytic two-components (red and blue) spherical model \ac{kN} models to the \AT{} observations provided estimates for the ejecta properties for these two components. 
+Specifically, for the langhinide poor (rich) \ie, blue (red) components, the required mass is $2.5\times10^{-2}M_{\odot}$ ($5.0\times10^{-2}M_{\odot}$) and velocity $0.27$c ($0.15$c)
+\citep{Cowperthwaite:2017dyu,Villar:2017wcc}
+(See however \citep{Waxman:2017sqv} for an alternative interpretation.)
+%% ---
+Similar estimates are obtained with 1D radiation transport \ac{kN} models
+\citep{Tanvir:2017pws,Tanaka:2017qxj}.
+
+
 \section{Method}
 
 We compute the \ac{kN} \acp{LC} using the multicomponent, anisotropic semi-analytical \texttt{MKN} model first introduced in \citet{Perego:2017wtu} and largely based on the \ac{kN} models presented in \citet{Grossman:2013lqa} and \citet{Martin:2015hxa}.
@@ -504,11 +534,12 @@ rate $\epsilon_{\text{nuc}}$ \red{assert notations} entering these calculations 
 
 \begin{equation}
 \label{eq:epsnuc}
-\upsilon_{\text{nuc}}(t)= \upsilon_0 \, \frac{\epsilon_{\text{th}}(t)}{0.5} \, \upsilon_{\text{nr}}(t) \,\left[ \frac{1}{2} - \frac{1}{\pi} \arctan\left(\frac{t-t_0}{\sigma}\right)\right]^{\alpha}\,,
+\epsilon_{\text{nuc}}(t)= \epsilon_0 \, \frac{\epsilon_{\text{th}}(t)}{0.5} \, \epsilon_{\text{nr}}(t) \,\left[ \frac{1}{2} - \frac{1}{\pi} \arctan\left(\frac{t-t_0}{\sigma}\right)\right]^{\alpha}\,,
 \end{equation}
 
-where $\sigma = 0.11$~s, $t_0 = 1.3$~s, $\alpha=1.3$ and $\upsilon_{\text{th}}(t)$ is the thermalization
+where $\sigma = 0.11$~s, $t_0 = 1.3$~s, $\alpha=1.3$ and $\epsilon_{\text{th}}(t)$ is the thermalization 
 efficiency tabulated according to \citet{Barnes:2016umi}.
+\red{$\epsilon_0$ is not introduced. Is it a constant?}
 %% --- 
 The heating factor $\epsilon_{\text{nr}}(t) $ is introduced as in \citet{Perego:2017wtu} to roughly adjust the Eq.~\eqref{eq:epsnuc} in the regime of mildly neutron-rich matter (characterized by an initial electron fraction $Y_e \gtrsim 0.25$), \citep[see, \eg][]{Martin:2015hxa}:
 
@@ -518,12 +549,12 @@ The heating factor $\epsilon_{\text{nr}}(t) $ is introduced as in \citet{Perego:
 \end{equation}
 
 where $w(\kappa)$ is a logarithmic smooth clump function such that $w(\kappa < 1~\igscm) = 1$ and 
-$w(\kappa > 10~\igscm)=0$ and the factor $\upsilon_{Y_e}(t)$ accounts for the dependency on $Y_e$:
-if $Y_e < 0.25$, then $\upsilon_{Y_e}(t)=1$, otherwise, when $Y_e \ge 0.25$,
+$w(\kappa > 10~\igscm)=0$ and the factor $\epsilon_{Y_e}(t)$ accounts for the dependency on $Y_e$:
+if $Y_e < 0.25$, then $\epsilon_{Y_e}(t)=1$, otherwise, when $Y_e \ge 0.25$,
 
 \begin{equation}
 \label{eq:epsye}
-\upsilon_{Y_e}(t) =\upsilon_{\text{min}}+{\upsilon_{\text{max}}}{\left[1+ e ^{4(t/t_\upsilon-1)}\right]}^{-1}\,,
+\epsilon_{Y_e}(t) =\epsilon_{\text{min}}+{\epsilon_{\text{max}}}{\left[1+ e ^{4(t/t_\epsilon-1)}\right]}^{-1}\,,
 \end{equation}
 
 where $t_\epsilon = 1~{\text{day}}$, $\epsilon_{\text{min}}=0.5$ an $\epsilon_{\text{max}} = 2.5$.
@@ -554,6 +585,129 @@ We also make use of the apparent AB magnitude mag$_b$ in a given photometric ban
 where $\nu_b$ is the effective central frequency of band $b$.
 
 
-\subsection{Multi-Component Model}
+%% \section{Results} %% \subsection{Multi-Component Model}
+
+\begin{figure}
+    \centering 
+    \includegraphics[width=0.48\textwidth]{profiles_op.pdf}
+    \caption{Graphic representation of the analyzed
+        ejecta profiles for isotropic and anisotropic cases
+        from an azimuthal perspective and for a fixed moment of time.
+        The black dot represents the remnant and the dashed line is the projected orbital
+        plane of the binary. The shadowed areas describe the ejecta profiles: the shape
+        characterizes the mass distribution, while the colors refer to 
+        the prior assumptions on the opacity parameter.
+        In particular, blue regions denote opacities lower than $5~\igscm$,
+        red regions refer to opacities greater than $5~\igscm$,
+        and oranges areas indicate a broadly distributed opacity.
+        All shells are isotropically expanding with a constant velocity.
+        (Adapted from \citet{Breschi:2021wzr})
+    }
+    \label{fig:cartoon}
+\end{figure}
+
+
+
+\section{\ac{SWW} for the blue component of \AT{}}
+
+The \ac{BNS} merger ejecta consists of several anisotropic components.
+Hence, the \ac{kN} model ought to account for the anisotropy of the ejecta composition. Additionally, the interaction between components needs to be included, but we leave this to future works.
+%% ---
+Indeed, outflow properties inferred for \AT{} using multi-components and 2D \ac{kN} models including the ejecta anisotropy and cross-component irradiation are broadly compatible with the results from simulations, \eg, \citep{Perego:2017wtu,Kawaguchi:2018ptg}.
+%% ---
+The particular challenge however, is to reproduce the early blue emission. 
+Both semi-analytical and radiation transport
+models require ejecta properties different from those found in
+simulations. In particular, 
+this component requires fast low opacity, massive ejecta \citep{Fahlman:2018llv} that is generally 
+not found in \ac{BNS} simulations.
+%% ---
+Notably, the early blue component can be explained by the emission arising 
+in the interaction between a relativistic jet and the ejecta
+\citep{Lazzati:2016yxl,Bromberg:2017crh,Piro:2017ayh}.
+However, simulations show that that successful jets do not deposit a sufficient amount of thermal energy in the ejecta for this mechanism to work \citep{Duffell:2018iig}. 
+Other possibilities include the presence of highly magnetized winds \citep{Metzger:2018uni,Fernandez:2018kax},
+or the presence of the so-called viscous-\ac{DE} \citep{Radice:2018ghv}.
+These two explanations require the development of large-scale strong magnetic fields.
+%% ---
+In this section we show that the presence of the massive \ac{SWW} can help explain the early blue emission, relaxing the need for strong ordered magnetic fields. 
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.49\textwidth]{kilonova/mkn_dd2_band.pdf}
+    \caption{Bolometric kN light curves in three representative bands from blue to
+        infrared for the two simulations with turbulence viscosity compared to
+        \AT{} data from~\citep{Villar:2017wcc}.
+        The color gradient is the effect related to different
+        \ac{SWW} masses, that suggests possible variations of the light
+        curves for different \ac{BNS}. The band is computed by extracting the
+        \ac{SWW} mass from DD2 every $10$~ms until the end of the simulation, and
+        then by linearly extrapolating the data to $250$~ms.
+        (Adapted from \citet{Nedora:2019jhl})
+    }
+    \label{fig:knlc}
+\end{figure}
+
+To this end we consider two equal mass \ac{NR} \ac{BNS} models with LS220 and DD2 \acp{EOS}, that produce short and long-lived \ac{MNS} remnant respectively. 
+%% ---
+For both models we produce \ac{NR}-informed \acp{LC}, using both the \ac{DE} and \ac{SWW} for the model with the long-lived \ac{MNS} remnant, and \ac{DE} only for the model with the short-lived one.
+%% ---
+The result is shown in Fig.~\ref{fig:knlc}.
+We observe, that the \ac{DE} only is insufficient to explain the \AT{} both high and low frequency bands irrespective of the model. However, the informed by both \ac{DE} and \ac{SWW} \ac{LC} of the model with DD2 \ac{EOS} is sufficiently bright to explain the emission in 'z' band. 
+%% However, it appears dimmer than the early blue \AT{} emission in 'g' band. 
+%% ---
+The emission in low frequency bands requires a more massive 
+\ac{SWW} with mass ${\gtrsim} 2\times10^{-2}M_{\odot}$, implying a remnant lifetime of ${\gtrsim}200$~ms, as the \ac{SWW} mass flux is present as long 
+as \ac{MNS} remnant is present (see Sec.\ref{sec:bns:dynamics:sww}).
+However, a more massive \ac{SWW} is incompatible with
+the early emission for the low-frequency bands of \AT{}.
+%% --- 
+In order to explain the late emission in the low frequncy bands and 
+early emission in high frequency bands, a combination of the \ac{SWW} and 
+viscous ejecta from the disintegration of the disk are required.
+%% --- 
+Our results, however have uncertainties related to our simplified calculation of
+the \ac{kN} \acp{LC} which is expected to be less accurate at
+late times when absorption features and deviations from \ac{LTE} become more relevant \citep[see \eg][]{Smartt:2017fuw}.
+To model the \ac{kN} emission more robustly, the time- and energy-dependent 
+photon radiation transport models are required 
+\citep{Kasen:2017sxr,Tanaka:2017qxj,Miller:2019dpt,Bulla:2019muo}.
+Additionally, the systematic uncertainties in
+nuclear (\eg, mass models, fission fragments and $\beta$-decay
+rates) and atomic (\eg, detailed wavelength dependent opacities for
+\rproc{} element) physics enter all the current \ac{kN} models 
+\citep{Eichler:2014kma,Rosswog:2016dhy,Gaigalas:2019ptx}.
+
+\subsection{Conclusion}
+
+\red{Copied}
+Standard kN models applied to the early AT2017gfo light curve are in
+tension with ab-initio simulations conducted so far.
+While alternative interpretations have been proposed, they are either
+disfavored by current simulations and observations (e.g. jets) \citep{Bromberg:2017crh,Duffell:2018iig},
+or require the presence of large-scale strong magnetic 
+fields which might not be formed in the postmerger
+\citep{Metzger:2018uni,Fernandez:2018kax,Radice:2018ghv,Ciolfi:2019fie}. 
+We identified a robust dynamical mechanism for mass ejection that
+explains early-time observations without requiring any fine-tuning.
+The resulting nucleosynthesis is complete and produces all
+$r$-process elements in proportions similar to solar system abundances.
+Methodologically, our work underlines the importance of employing
+NR-informed ejecta for the fitting of light-curves.
+Further work in this direction should 
+include better neutrino-radiation transport and magnetohydrodynamic effects
+\citep{Siegel:2017nub,Fujibayashi:2017puw,Radice:2018xqa,Radice:2018pdn,Miller:2019dpt}. 
+
+
 
 \section{Results}
+
+In the following we perform two types of the analysis (i) the fully \ac{NR}-informed \ac{kN} models, where the the only ejecta components considered, are those found in simulations and (ii) the parametric \ac{kN} models, where we use the analytic ejecta profiles, with the parameters obtained from fitting formulae (see Ch.~\ref{ch:stat_anal}).
+
+
+\subsection{Fully \ac{NR}-informed \acp{kN} models}
+
+\red{From the letter}
+
+
+
