@@ -61,7 +61,7 @@ headsepline, % Uncomment to get a line under the header
 \usepackage[normalem]{ulem}
 \usepackage{graphicx,psfrag}
 \usepackage{mathrsfs}
-\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{amsmath,amsfonts,amssymb}%%\usepackage{amsmath}
 \usepackage{multirow}
 \usepackage{comment}
 \usepackage{ulem}
@@ -75,6 +75,19 @@ headsepline, % Uncomment to get a line under the header
 %% \setcitestyle{aysep={}} 
 %% \bibliographystyle{apalike} % apalike
 %% \setcitestyle{citesep={,}}
+
+
+%% declarations 
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+\DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
+\DeclareOldFontCommand{\sc}{\normalfont\scshape}{\@nomath\sc}
+\DeclareRobustCommand*\cal{\@fontswitch\relax\mathcal}
+\DeclareRobustCommand*\mit{\@fontswitch\relax\mathnormal}
+
 
 \newcommand{\myhead}[1]{\multicolumn{1}{c}{#1}}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
@@ -117,6 +130,8 @@ headsepline, % Uncomment to get a line under the header
 \def\amd{\md}
 \def\avd{\langle\vd\rangle}
 \def\ayd{\langle\yd\rangle}
+\def\thetarms{\theta_{\rm RMS}}
+\def\athetarms{\langle\thetarms\rangle}
 % spiral-wind
 \def\mw{M^{\text{w}}_{\text{ej}}}
 \def\vw{v^{\text{w}}_\infty}
@@ -185,6 +200,7 @@ headsepline, % Uncomment to get a line under the header
 \newacroplural{LC}[LCs]{light curves}
 \newacro{UV}{ultraviolet}
 \newacro{LTE}{local thermodynamic equilibrium}
+\newacro{TOV}{Tolman-Oppenheimer-Volkoff}
 
 \newacro{DE}{dynamical ejecta}
 \newacro{SWW}{\swind{}}
