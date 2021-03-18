@@ -456,6 +456,138 @@ and on its initial guesses. This makes the fitting ill-constrained.
 Moreover, in the Eq.~\eqref{eq:fit_Mej_Kruger} the compactness enters twice with opposite trends. 
 The physical motivation of this formula is not clear.
 
+We report all the fit calibrations in Appendix~\ref{app:fit}
+with the calibration for the polynomials reported in Tab.~\ref{tab:dynfit:poly};
+and for the Eqs.\eqref{eq:fit_Mej}-\eqref{eq:fit_Mej_Kruger} -- in Tab.~\ref{tab:dynfit:fit_form}.
+
+%% TAB Chi2dof for all ejecta models ---------------------------
+\input{Tables/tabRedChi2.tex} 
+%% -------------------------------------------------------------
+
+The performance of different fitting formulae is reported in  
+Tab.~\ref{tbl:fit:ejecta:chi2dofsall}.
+in terms of the $\chid$.
+%% ---
+Starting with the \DSrefset{} we observe that the best fitting formula, that gives the 
+lowest $\chid=1.55$, is the second order two-parameter polynomial $P_2^2(q,\tilde{\Lambda})$.
+Notably, the Eq.~\eqref{eq:fit_Mej_Kruger} gives a very similar $\chid=1.58$.
+%% ---
+The performance of the $P_2^2(q,\tilde{\Lambda})$ for individual models of the \DSrefset{} 
+is shown on the first panel of Fig.~\ref{fig:ejecta:dyn:dsfits}
+%% --- 
+\red{From Main paper}
+We recall that the \DSrefset{} contains simulations Ch.~\ref{ch:bns_sism}, and presented 
+in Tab~\ref{tab:sim}. 
+The plot shows the \ac{DE} mass as a function of the \mr{} and (color coded) $\tilde\Lambda$.
+and highlights the strong dependency of the $\md$ of these parameters in the set of targeted 
+simulations. 
+%% --- 
+Adding the \DSheatcool{} we find a rise in $\chid$ evaluated for all fitting formulae. 
+This can be attributed to the models of \DSheatcool{} spanning a significantly broader range 
+in terms of $\tilde{\Lambda}$. Additionally, with an addition of models from \DSheatcool{} the 
+systematic and methodological uncertainties enter the picture and as we shall see from the 
+analysis, they will dominate the overall statistics.
+%% ---
+When all datasets are included the $P_2^2(q,\tilde{\Lambda})$ and Eq.~\eqref{eq:fit_Mej_Kruger},
+remain the best fitting models albeit with $\chid$ of $44$ and $40$ respectively.
+%% ---
+The similar performance of these fitting formulae can be attributed to the fact that in 
+both the \mr{} enters explicitly, allowing to capture the leading trends in data.
+The Eq.~\eqref{eq:fit_Mej} also includes the \mr{} but has more degrees of freedom and 
+thus less favorable by the $\chid$ analysis. Additionally, it was pointed out in \citet{Radice:2018pdn},
+that this formula dies not reproduce well the systematic trends in the set of models with 
+leakage neutrino scheme.
+%% ---
+Notably, the second order polynomial just in one quantity, $\tilde{\Lambda}$, is failing to 
+capture the main trends in data, giving $\chid=123$ when all models from all datasets are considered.
+Similarly, a fit with no free parameters, the mean value, does not perform well, giving $\chid=196$.
+%% --- 
+Thus, we conclude, that the dependency of \mr{} ought to be included into the fitting formula
+to capture the leading trends in statistical behaviour of $\amd$.
+
+\red{This paragraph is not approved at the time of writing}
+We show how the $P_2^2(q,\tilde{\Lambda})$ performs when only the 
+ \DSrefset{} \& \DSheatcool{} and all models 
+are considered on Fig.~\ref{fig:mej_parspace} on the left and right panels respectively. 
+We observe that the smooth polynomial fit cannot capture the oscillations id data, where 
+the $\amd$ changes by up to an order of magnitude for a very similar values of \mr{} and 
+$\tilde{\Lambda}$. Overall, while for the  \DSrefset{} \& \DSheatcool{}
+ the leading trends are appears to be 
+captured by the fit, for all the datasets the fits' predictive power reduces significantly.
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{statistics/residuals_sets_mej.pdf}
+    \caption{
+        Relative differences between data and fits for the dynamical ejecta
+        mass, $\Delta M_{\rm ej} = M_{\rm ej} - M^{\rm fit}_{\rm ej}$.
+        We show polynomial fits and fitting formulae
+        Eq.~\eqref{eq:fit_Mej} and Eq.~\eqref{eq:fit_Mej_Kruger}.
+        From top to bottom the models arrange based on their $\chi_{\nu}^2$: from lowest to highest.
+        The gray region represents the fit's $68\%$ confidence level.
+        Note that while $P_2^2(q.\tilde{\Lambda})$ gives the second lowest $\chi_{\nu}^2$
+        the plot shows that is has tighter residuals then the best fit Eq.\eqref{eq:fit_Mej_Kruger}.
+        This is because Eq.\eqref{eq:fit_Mej_Kruger} fits better models with small $\amd$,
+        with tighter error bars, Eq.~\eqref{eq:ejecta:mej_err}. Hence,
+        the $\chi_{\nu}^2$ is smaller.
+        Note that fitting was performed minimizing $\log_{10}(\md)$. See text for details.
+        (Adapted from \citet{Nedora:2020qtd})
+    }
+    \label{fig:ejecta:dyn:m}
+\end{figure}
+
+%% --- residual plots
+We display the relative differences between the model data and fit provided data in 
+Fig.~\ref{fig:ejecta:dyn:m}. The plot shows that none of the fitting models can 
+reproduce the $\amd$ of the \DScool{} models with the leakage scheme employed.
+%% --
+While the Eq.~\eqref{eq:fit_Mej_Kruger} and $P_2^2(q,\tilde{\Lambda})$ showed similar 
+$\chid$, the plot shows that the latter reproduces the high ejecta masses better, 
+truncating the distribution at $\sim10^{-2}M_{\odot}$. 
+The poor performance of the single parameter polynomial, $P_2^1(\tilde{\Lambda})$,
+is clear, as the fit gives an almost flat distribution around the mean value of $\amd$.
+Similarly, the Eq.~\eqref{eq:fit_Mej} cannot reproduce the large masses of some 
+models.
+
+\red{This paragraph is not approved at the time of writing}
+Overall we conclude that the intrinsic scatter in the data hinders performance 
+of any smooth fitting formula. The inclusion \mr{} is required to capture the leading 
+trends in data and the simple polynomial $P_2^2(q,\tilde{\Lambda})$ show a reasonably 
+good statistical performance.
+\gray{We recomment the calibration based on the models with }
+%% --- 
+The statistical analysis for considered datasets suggests that the $\amd$ depends 
+sensibly on the physics input of the simulations: neutrino scheme and \ac{EOS} treatment.
+The magnitude of systematic uncertainties reduces the ability of any fitting formulae 
+to identify and capture leading trends.
 
 
 
+\subsection{Mass-averaged velocity}
+
+%% VELOCITY 
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/residuals/residuals_sets_vej.pdf}
+    \caption{
+        Relative differences between ata and fits for the mass-averaged velocity of the dynamical ejecta, $\Delta \upsilon_{\rm ej} = \upsilon_{\rm ej} - \upsilon^{\rm fit}_{\rm ej}$.
+        We show the fitting formula Eq.~\eqref{eq:fit_vej} and the polynomial fits.
+        From top to bottom the models are arranged based on their $\chi_{\nu}^2$: from lowest to highest.
+    }
+    \label{fig:ejecta:dyn:v}
+\end{figure}
+
+%% ELECTRON FRACTION
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{./figs/residuals/residuals_sets_yeej.pdf}
+    \caption{
+        Relative differences between data and fits for the 
+        mass-averaged electron fraction of the dynamical ejecta.
+        We show the polynomial fits, and Eq.~\eqref{eq:polyfit2} and Eq.~\eqref{eq:polyfit22}.
+        %% \alp{there is no fitting formula here, correct?}.
+        %% \vn{Yes, we decided to use only polynomials}
+        Here $\Delta Y_{e\: \rm ej} = Y_{e\: \rm ej} - Y^{\rm fit}_{e\: \rm ej}$.
+        From top to bottom the models are arranged based on their $\chi_{\nu}^2$: from lowest to highest.
+    }
+    \label{fig:ejecta:dyn:y}
+\end{figure}
