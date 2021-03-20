@@ -827,36 +827,171 @@ sample of models, computed with relevant physics input.
 \section{Remnant disk}
 \label{sec:remdisk}
 
-%\begin{figure}[t]
-%    \centering 
-%    \includegraphics[width=0.49\textwidth]{statistics/parspace_mdisk_m0m1.pdf}
-%    \includegraphics[width=0.49\textwidth]{statistics/parspace_mdisk_all.pdf}
-%    \caption{
-%        Same as Fig.~\ref{fig:mej_parspace} but for the disk mass.
-%        The plot shows that at low values of $q$ and $\tilde{\Lambda}$ the fit 
-%        is able to capture the leading trends in data. However, in the region where 
-%        there are fewer data preset, at high $q$ and $\tilde{\Lambda}$, the fit 
-%        becomes increasingly less accurate (see text).
-%        (Adapted from \citet{Nedora:2020qtd})
-%    }
-%    \label{fig:mdisk_parspace}
-%\end{figure}
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{statistics/parspace_mdisk_m0m1.pdf}
+    \includegraphics[width=0.49\textwidth]{statistics/parspace_mdisk_all.pdf}
+    \caption{
+        Same as Fig.~\ref{fig:mej_parspace} but for the disk mass.
+        The plot shows that at low values of $q$ and $\tilde{\Lambda}$ the fit 
+        is able to capture the leading trends in data. However, in the region where 
+        there are fewer data preset, at high $q$ and $\tilde{\Lambda}$, the fit 
+        becomes increasingly less accurate (see text).
+        (Adapted from \citet{Nedora:2020qtd})
+    }
+    \label{fig:mdisk_parspace}
+\end{figure}
 %
-%\begin{figure}[t]
-%    \centering 
-%    \includegraphics[width=0.48\textwidth]{statistics/residuals_sets_disk_mass.pdf}
-%    \caption{
-%        Relative differences between data and the fits of the disk mass. 
-%        Different panels show polynomial fits in $\tilde{\Lambda}$ and $(q,\tilde{\Lambda})$, fitting formulae Eq.~\eqref{eq:fit_Mej} and Eq. \eqref{eq:fit_Mej_Kruger}. 
-%        The best fitting model is characterized by the lowest value of $\chi_{\nu}^2$.
-%        Best fitting coefficients are given in the tables in Appendix~\ref{app:coefs}.
-%        Here $\Delta M_{\rm disk} = M_{\rm disk} - M^{\rm fit}_{\rm disk}$.
-%        The fitting procedure here was based in minimizing residuals instead of $\chi_{\nu}^2$ as otherwise, the error measure adapted, Eq.~\eqref{eq:disk:mdisk_err}, would lead to the 
-%        fit underestimating most of datasets used.
-%        (Adapted from \citet{Nedora:2020qtd})
-%    }
-%    \label{fig:stat_mdisk}
-%\end{figure}
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.48\textwidth]{statistics/residuals_sets_disk_mass.pdf}
+    \caption{
+        Relative differences between data and the fits of the disk mass. 
+        Different panels show polynomial fits in $\tilde{\Lambda}$ and $(q,\tilde{\Lambda})$, fitting formulae Eq.~\eqref{eq:fit_Mej} and Eq.~\eqref{eq:fit_Mej_Kruger}. 
+        The best fitting model is characterized by the lowest value of $\chi_{\nu}^2$.
+        Best fitting coefficients are given in the tables in Appendix~\ref{app:fit}.
+        Here $\Delta M_{\rm disk} = M_{\rm disk} - M^{\rm fit}_{\rm disk}$.
+        The fitting procedure here was based in minimizing residuals instead of $\chid$ as otherwise, the error measure adapted, Eq.~\eqref{eq:disk:mdisk_err}, would lead to the 
+        fit underestimating most of datasets used.
+        (Adapted from \citet{Nedora:2020qtd})
+    }
+    \label{fig:stat_mdisk}
+\end{figure}
+
+%% TAB Chi2dof for all disk models ---------------------------
+\input{Tables/tabRedChi2Disk.tex} 
+%% -------------------------------------------------------------
+
+Considering the disk masses of the models of \DSrefset{} extracted at the end of the 
+simulations (see Ch.~\ref{ch:bns_sims}) we observe that the minimum value, $0.01\Msun$, in 
+models that produce a \ac{BH}, and the maximum value, $0.3\Msun$, in $q\sim1$ models that produce 
+a long-lived \ac{MNS} remnant (see Sec.~\ref{sec:remdisk}).
+The mean value reads 
+\begin{equation}
+\overline{M_{\rm disk}} = (0.156 \pm 0.084) M_{\odot}.
+\end{equation}
+The value decreases slightly to $(0.147 \pm 0.075)M_{\odot}$ 
+if all models with advanced physics are added (models of \DSheatcool{}),
+\gray{This can be attributed to the fact that most models in \DSheatcool{} are less massive than
+those of the targeted \DSrefset{}}
+The addition of the models of \DScool{} decreases the mean value further to $0.125\Msun$ with the 
+standard deviation of $0.081\Msun$. This is because the largest set of model of \DScool{}, 
+the models of \citet{Radice:2018pdn} includes binaries of very high mass that at merger form
+a \ac{BH} with no disk left.
+Addition of \DSnone{} does not change the mean value as disk masses of models of this dataset 
+are in general agreemnt with previous datasets.
+%% ---
+It is important to note the large uncertainties that enter the statistical analysis of the disk mass,
+and a fundamental difference between disks around \ac{BH} and \ac{MNS} remnants.
+Specifically we emphasize that in sources the disk mass is computed with different method.
+In \citet{Dietrich:2015iva,Dietrich:2016hky} only disks around a \ac{BH} remnant are considered, 
+and their masses are evaluated ${\approx}1$~ms after the \ac{BH} formation as a baryonic mass 
+outside the \ac{AH}, while in \citet{Sekiguchi:2016bjd} the disk masses are evaluated 
+${\approx}30$~ms after the collapse.
+In \citet{Radice:2018pdn}, both disks around \ac{BH} and \ac{MNS} remnants are considered. 
+For the former case, the $M_{\text{disk}}$ is evaluated as a mass outside the \ac{AH}, while for
+the latter, same density criterion for the disk adopted as in Ch.~\ref{ch:bns_sims}, \ie, the 
+baryonic mass with rest mass density $\rho\leq10^{13}$~\gcm.
+In \citet{Kiuchi:2019lls} the density criterion is used regardless of the remnant: 
+\ac{BH} or \ac{MNS}, with the $M_{\text{disk}}$ evaluated at an uspecified time.
+In \citet{Vincent:2019kor} also the density criterion is used and only the disks around 
+\ac{MNS} remnants are considered, evaluated at ${\sim}7.5$~ms after merger. This is however,
+significantly shorter, than the simulation end time of our simulation, when we evaluated the 
+mass of the disk. 
+The method differences can introduce the systematic factor of a few.
+
+We consider the fitting formulae to the $M_{\text{disk}}$ as a function of binary parameters 
+available in literature: \citep{Radice:2018pdn}
+
+\begin{equation}
+\left(\frac{M_{\rm{disk}}}{M_{\odot}}\right)_{\rm fit} = \text{max}\Big\{10^{-3}, \alpha + \beta \tanh\Big(\frac{\tilde{\Lambda}-\gamma}{\delta}\Big)\Big\}\,,
+\label{eq:fit_Mdisk}
+\end{equation}
+
+and \citep{Kruger:2020gig}
+
+\begin{equation}
+\left(\frac{M_{\rm{disk}}}{M_{\odot}}\right)_{\rm fit} =
+M_A\text{max}\Big\{5\times 10^{-4}, (\alpha C_A + \beta)^\gamma
+\Big)\Big\}
++ (A\leftrightarrow B)\,.
+\label{eq:fit_Mdisk_Kruger}
+\end{equation}
+
+as well as the simple polynomials in $q$ and $\tilde{\Lambda}$, 
+Eqs.~\eqref{eq:polyfit2}-\eqref{eq:polyfit22}.
+
+We find that the value of $M_{\text{disk}}$ can change by up to an order of magnitude 
+for similar values of $q$ and $\tilde{\Lambda}$. Meanwhile, the error measure adapted for the 
+$M_{\text{disk}}$, Eq.~\eqref{eq:disk:mdisk_err}, is biased towards the lower values. 
+The approach that we adapted for the $\md$, \ie, to invoke the $\log_{10}$ of the quantity, 
+is not applicable here due to special form of the fitting formulae,  
+Eqs.~\eqref{eq:fit_Mdisk}-\eqref{eq:fit_Mdisk_Kruger}, that lead to singularities in fitting.
+This is because the Eq.~\eqref{eq:fit_Mdisk} and Eq.~\eqref{eq:fit_Mdisk_Kruger} give
+ill-conditioned fits. In addition, the fitting function Eq.~\eqref{eq:fit_Mdisk_Kruger} 
+is not smooth, and can return singular values.
+We thus resort to minimizing the residuals instead of $\chid$. However, we still employ 
+$\chid$ for the comparison of different fitting formulae performance. 
+
+The fit calibration of the polynomial fitting formulae is reported in 
+Tab.~\ref{tab:diskfit:poly}, and for the fitting formuale 
+Eqs.~\eqref{eq:polyfit2}-\eqref{eq:polyfit22}. -- in Tab.~\ref{tab:diskfit:form}.
+The fit performance in terms of $\chid$ is presented in Tab.~\ref{tab:DiskFitchi2} for all
+fitting formulae. 
+
+Upon visual inspection we find that the $M_{\rm disk}$ depends on the \mr{} 
+and on the $\tilde{\Lambda}$. Indeed, considering the models of \DSrefset{} we find that the 
+polynomial in $q$ and $\tilde{\Lambda}$ displays the best performance with $\chid=425$, with
+the second best being Eq.~\eqref{eq:fit_Mdisk_Kruger} with $\chid=443$.
+We recall that the large values of $\chid$ are expected as fitting procedure minimizes 
+residuals and not $\chid$.
+The addition of models with advanced physics of \DSheatcool{} reduces the $\chid$ to 
+$175$ for the $P_2^2(q,\tilde{\Lambda})$. When the rest of the models are added 
+the $\chid$ rises only slightly to $197.6$.
+\red{Qualitatively the same behaviour we observe when perform the fitting producer for each 
+dataset independently within adding them together (see Appendix~\ref{app:fit}.
+}
+
+\red{Not approved paragraph}
+The values of the $M_{\text{disk}}$ from datasets against the contours of predicted 
+values by $P_2^2(q,\tilde{\Lambda})$ are shown in Fig.~\ref{fig:mdisk_parspace}.
+Similarly to the ejecta mass, the smooth fitting formula, such as $P_2^2(q,\tilde{\Lambda})$
+cannot well reproduce the data on the level of individual models. However, the 
+polynomial appears to be able to capture the leading trend in data when 
+\DSrefset{} \& \DSheatcool{} is considered.
+When all datasets are employed, the predictive ability of the fit reduces considerably.
+
+%% on the residuals
+The relative differences between the data and values given by various fitting formulae are 
+shown in Fig.~\ref{fig:stat_mdisk}.
+%% ---
+The plot shows that the Eq.~\eqref{eq:fit_Mdisk} and $P_2^1(\tilde{\Lambda})$ fitting 
+formulae fail to predict high disk masses found in simulations with high \mr{} 
+(see \ref{ch:bns_sims}).
+Eq.~\eqref{eq:fit_Mdisk_Kruger} reproduces better the high values of $M_{\text{disk}}$, 
+but it fails to capture the low $M_{\text{disk}}$ of the \DSnone{}.
+%% ---
+The overall better performance is seen for $P_2^2(q,\tilde{\Lambda})$, as it is able 
+to reproduce the large $M_{\text{disk}}$ values and gives lower residuals.
+This indicates that both, $q$ and $\tilde{\Lambda}$ are important to reproduce the 
+$M_{\text{disk}}$.
+However, we note that both residuals and $\chid$ for all fitting models are large.
+With the currently available data considered here fitting formulae are able to reproduce 
+the data values within an order of magnitude only.
+
+Overall, we conclude that among considered the $P_2^2(q,\tilde{\Lambda})$ is the best 
+fitting formula to $M_{\text{disk}}$. For its calibration we suggest the sets of 
+models computed with michrophysical \acp{EOS} and advanced neutrino treatment, 
+\DSrefset{} \& \DSheatcool{}.
+%% ---
+The statistical analysis of the $M_{\text{disk}}$ highlights the large systematc 
+and method-of-computation uncertainties. The leading trends in data appears to be given 
+by the $q$ and $\tilde{\Lambda}$. However, larger sample of models and 
+separate analysis of disks around \ac{BH} and \ac{MNS} are required to improve the 
+fitting formulae and investigate the statistics more thoroughly. 
+
+
+
 
 
 

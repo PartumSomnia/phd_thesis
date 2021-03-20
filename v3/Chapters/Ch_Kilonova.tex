@@ -727,7 +727,34 @@ include better neutrino-radiation transport and magnetohydrodynamic effects
 %% \section{Results}
 
 
+\section{Fit-informed kilonova}
 
+%% KILONVA PLOTS
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{kilonova/mkn_multiband_dyn_NR.pdf}
+    \includegraphics[width=0.49\textwidth]{kilonova/mkn_multiband_dynsec_NR.pdf}
+    \caption{
+        Comparison between one component light curves (\textit{left panel}) and
+        two components light curves (\textit{right panel}) in $g$, $z$ and $K_s$
+        bands using direct NR input or the fitting formulae for the
+        dynamical ejecta and disk mass. 
+        The $y-$axis displays the difference between the peak time (\textit{top panel}), $\Delta t_{\rm peak} = t_{\rm peak; NR} - t_{\rm peak; fit}$, and peak magnitude, $\Delta m_{\rm peak} = m_{\rm peak; NR} - m_{\rm peak; fit}$, (\textit{bottom panel});
+        the $x-$axis shows selected BNS models of \DSrefset{}.
+        The fits employed here are the polynomials in $(q,\tilde{\Lambda})$ used with the 
+        best fitting coefficients, calibrated to \DSheatcool{} (that includes \DSrefset{}).
+        The plot shows that 
+        the light curves generated with the dynamical ejecta fits (one
+        component) tend to underestimate the peak times and magnitudes
+        of NR-informed light curves, especially in the $K_s$ band. In case of dynamical ejecta and disk wind (two
+        components) light curves, the peak
+        time is less constrained ($\pm 2$~days) in the $K_s$ band, but the
+        peak magnitudes is predicted more accurately $\pm0.5$~mag. }
+    %% \vn{Note! That for NR-informed lightcurves \textbf{full} NR ejecta profile (for dyn. ej.)
+    %% is fed into MKN. Thus here the geometric effects and poor fit performance contribute to the
+    %% qdeviation.}
+    \label{fig:mkn_example}
+\end{figure*}
 
 
 
