@@ -352,7 +352,7 @@ and a subset of \citet{Radice:2018pdn} with leakage scheme only.
 %%
 %% --------------------------------------------------------------------------------
 
-\subsection{\ac{DE} mass}
+\subsection{Dynamical ejecta mass}
 
 The mass of the \ac{DE} averaged over all the models of \DSrefset{} is 
 
@@ -991,10 +991,147 @@ separate analysis of disks around \ac{BH} and \ac{MNS} are required to improve t
 fitting formulae and investigate the statistics more thoroughly. 
 
 
+%% =======================================================
+%%
+%%                   Discussion
+%%
+%% =======================================================
+
+\section{Discussion}
 
 
+%% KILONVA PLOTS
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{kilonova/mkn_multiband_dyn_NR.pdf}
+    \includegraphics[width=0.49\textwidth]{kilonova/mkn_multiband_dynsec_NR.pdf}
+    \caption{
+        Comparison between one component light curves (\textit{left panel}) and
+        two components light curves (\textit{right panel}) in $g$, $z$ and $K_s$
+        bands using direct NR input or the fitting formulae for the
+        dynamical ejecta and disk mass. 
+        The $y-$axis displays the difference between the peak time (\textit{top panel}), $\Delta t_{\rm peak} = t_{\rm peak; NR} - t_{\rm peak; fit}$, and peak magnitude, $\Delta m_{\rm peak} = m_{\rm peak; NR} - m_{\rm peak; fit}$, (\textit{bottom panel});
+        the $x-$axis shows selected BNS models of \DSrefset{}.
+        The fits employed here are the polynomials in $(q,\tilde{\Lambda})$ used with the 
+        best fitting coefficients, calibrated to \DSheatcool{} (that includes \DSrefset{}).
+        The plot shows that 
+        the light curves generated with the dynamical ejecta fits (one
+        component) tend to underestimate the peak times and magnitudes
+        of NR-informed light curves, especially in the $K_s$ band. In case of dynamical ejecta and disk wind (two
+        components) light curves, the peak
+        time is less constrained ($\pm 2$~days) in the $K_s$ band, but the
+        peak magnitudes is predicted more accurately $\pm0.5$~mag. }
+    %% \vn{Note! That for NR-informed lightcurves \textbf{full} NR ejecta profile (for dyn. ej.)
+    %% is fed into MKN. Thus here the geometric effects and poor fit performance contribute to the
+    %% qdeviation.}
+    \label{fig:mkn_example}
+\end{figure*}
 
+In this section we investigated statistical properties of the \ac{DE} and remnant from 
+several sets of \ac{NR} \ac{BNS} models. 
+%% --- 
+The analysis showed that the properties of the ejecta and remnant disk mass are subjected 
+to large systematic uncertainties that stem from difference in input physics: neutrino 
+treatment and \ac{EOS}.
+%% --- 
+Additionally, we assessed the performance of different fitting formulae to the ejecta 
+parameters, such as mass, velocity, electron fraction and \ac{RMS} half-opening angle, and the 
+disk mass. We noted that the formulae that include explicitly $\tilde{\Lambda}$ and \mr{} 
+are able to capture the leading trends. Specifically, the simple second order polynomial, 
+$P_2^2(q,\tilde{\Lambda})$ performs on par or better than more complex fitting formulae 
+in terms of $\chid$.
+%% ---
+However, all fits are characterized by large $\chid$. That suggests that either the error measures 
+we adopt are too strict, or more complex fitting formulae are required. We leave this 
+investigation to future works, when larger sample of \ac{NR} \ac{BNS} models with advanced 
+physics is available.
+%% ---
 
+We stress that while these fits, provide an important links between the binary parameters 
+and the properties of \ac{EM} counterparts, useful for \ac{MM} studies 
+%% \citep{Dietrich:2020efo,Breschi:2021tbm,Nicholl:2021abc}, 
+they have to be used with caution, specifically, as some fitting formulae suggested in the 
+literature give ill-constrain fits.
+%% --- 
+Because of its simplicity and overall best (in comparison) performance, we recommend the 
+second opder polynomial in $q$ and $\tilde{\Lambda}$, (the Eq.~\eqref{eq:polyfit22}).
+For its calibration we suggests datasets with the most advanced physics, \ie, 
+\DSrefset{} and \DSheatcool{}.
+The calibration for polynomial fits are given in Tab.~\ref{tab:dynfit:poly} for ejecta 
+and in Tab.~\ref{tab:diskfit:poly} for the disk. The recommended calibration is highlighted 
+with gray in the tables.
+We refer to this fits as ``best fitting formulae'' hereafter.
 
+The best fitting formulae are able to reproduce the ejecta velocity to to ${\sim}50\%$ with 
+$68\%$ significance range being $(-0.4,0.2)$. The electron fraction is recovered with the 
+${\sim}0.1$ error margin and the \ac{RMS} half-opening angle is -- with ${\sim}10$~deg
+error margin.
+The masses of the \ac{DE} and of the remnant disk are more uncertain and can be faithfully 
+reproduced only within the order of magnitude and a factor of a few respectively. 
+While this is a very large error margins, we note, that this is an improvement with 
+respect to the previous studies \citep[\eg][]{Dietrich:2016fpt}.
+%% ---
+
+The main conclusion from our analysis is that rather simple fitting formulae are able 
+to fit the data on par or better then more complex fitting formulae available in the 
+literature that also can provide an ill-constrain fits.
+The ejecta and remnant properties are subjected to large uncertainties, that in part 
+are due to different physics input: neutrino treatment and \acp{EOS}.
+Specifically, as the neutrino reabsorption is a crucial component for the reliable 
+estimates of the \ac{DE} mass 
+\citep[\eg][]{Wanajo:2014wha,Sekiguchi:2015dma,Perego:2017wtu,Foucart:2018gis},
+it is highly important to enlarge the \DSheatcool{} and reasses the ejecta properties 
+statistics. 
+%% --- 
+Additionally, sets of \ac{NR} models with different chirp masses would allow to asses 
+new trends in data.
+
+%% --- Kilonova
+Fitting formulae to the ejecta and remnant parameters are often used to predict the 
+properties of the \ac{EM} counterparts to mergers and to infer the properties of the 
+binary from the observations of \ac{EM} counterparts, often as a part of \ac{MM} studies 
+\citep{Dietrich:2020efo,Breschi:2021tbm,Nicholl:2021abc}.
+%% ---
+However, it is important to acknowledge the limitations that these simple 
+fitting formulae have 
+
+Here we compare the properties of the \ac{kN} \acp{LC} informed by the best fitting 
+formulae and by the ejecta profiles from \ac{NR} simulations discussed in Ch.~\ref{ch:bns_sims}.
+The same method was used in Sec.~\ref{sec:kn:results}
+We employ the semi-analytic \ac{kN} model of \citet{Perego:2017wtu} discussed in 
+Sec.~\ref{sec:kn:method} and consider either one or two ejecta components.
+When one component \ac{kN} is considered, only the \ac{DE} ejecta properties are used, 
+such as mass, velocity, and \ac{RMS} half-opening angle separating the low opacity 
+power outflow and high opacity equatorial one. The angular distributions of mass and velocity 
+are assumed to be the same as in \citet{Perego:2017wtu}.
+When two component \ac{kN} is considered, in addition to the \ac{DE} we model the 
+secular outflow from the disk, assuming that a fixed fraction, $40\%$ of it would 
+become unbound. The angular distribution of mass, velocity and opacity
+is assumed to be uniform. 
+Comparing the properties of \ac{NR}-informed and fit-informed \ac{kN} \acp{LC} we 
+maintain all the other parameters fixed.
+%% ---
+
+The resulted comparison between the peak times, $t_p$, and magnitudes, $m_{\rm AB}$ 
+evaluated for three different bands: $g$, $z$ and $K_s$ 
+is shown in Fig.~\ref{fig:mkn_example}.
+Considering the one-component \ac{kN} \ac{LC}, (left panel), we note that the $t_p$ is 
+recovered with the ${\sim}0.2$~days error margin i nthe $g$ and $z$ bands and with a 
+$0.5$~days margins in $k_s$ band. Notably, the fit-informed \ac{LK} have a systematically
+underestimated $t_p$ in the $K_s$ band. 
+The largest deviation is found for the model with \mr{} of $1.8$ and BLh \ac{EOS}.
+Comparing the peak magnitudes, $m_{\rm AB}$ we observe that the difference 
+between the \ac{NR}- and fit-informed \acp{LC} is on average ${\sim}0.5$~mag. 
+In $b$ band, however, the deviation is ${\sim}1$~mag.
+Considering the two-component \ac{kN} models (right panel), we observe that the 
+$t_p$ in the $K_s$ band differ between the fit- and \ac{NR}-informed \acp{LC} by 
+${\sim}2$~days. The $m_{\rm AB}$ is reproduced within the ${\sim}\pm 0.5$~mag in $z$ 
+and $K_s$ bands.
+The larger difference between the $m_{\rm AB}$ for one compoent \ac{kN} \acp{LC} lie 
+in the influence of the ejecta geometry that is not fully accounted for by a single 
+$\athetarms$ parameter that we use to separate low and high opacity material. 
+Overall, we note that while exact reasons of the deviations can be attributed to 
+the exact \ac{LC} model employed, this example suggests that the minimum systematic 
+variations are to be expected in synthetic \acp{LC} informed by our best fitting formulae.
 
 
