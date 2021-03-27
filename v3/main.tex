@@ -133,6 +133,7 @@ headsepline, % Uncomment to get a line under the header
 \def\ayd{\langle\yd\rangle}
 \def\thetarms{\theta_{\rm RMS}}
 \def\athetarms{\langle\thetarms\rangle}
+\def\nism{n_{\text{ISM}}}
 % spiral-wind
 \def\mw{M^{\text{w}}_{\text{ej}}}
 \def\vw{v^{\text{w}}_\infty}
@@ -147,6 +148,8 @@ headsepline, % Uncomment to get a line under the header
 \def\amnu{\mnu}
 \def\avnu{\langle\vnu\rangle}
 \def\aynu{\langle\ynu\rangle}
+
+\def\ccm{\,\text{cm}^{-3}}
 
 %% ------------------------------------------- acronyms
 \newacro{BH}{black hole}
@@ -213,6 +216,12 @@ headsepline, % Uncomment to get a line under the header
 \newacro{DF}{Doppler factor}
 \newacro{SSC}{synchrotron self-Compton}
 \newacro{SSA}{synchrotron self-absorption}
+\newacro{CoE}{center of explostion}
+\newacro{FS}{forward shock}
+\newacro{RS}{reverse shock}
+\newacro{EFE}{Einstein field equations}
+\newacro{ADM}{Arnowitt, Deser and Misner}
+\newacro{IVP}{initial value problem}
 
 \newacro{DE}{dynamical ejecta}
 \newacro{SWW}{\swind{}}
@@ -465,10 +474,10 @@ $\omega$ & angular frequency & \si{\radian} \\
 
 % \part{Numerical relativity simulations of neutron star mergers}
 %\include{Chapters/Ch_Introduction}
-%\include{Chapters/Ch_BNS_MergSims}
+\include{Chapters/Ch_BNS_MergSims}
 %\include{Chapters/Ch_Nucleosynthesis}
 %\include{Chapters/Ch_Kilonova}
-\include{Chapters/Ch_Afterglow}
+%\include{Chapters/Ch_Afterglow}
 %\include{Chapters/Ch_Statistics}
 %\include{Chapters/Ch_Conclusion}
 
@@ -498,6 +507,7 @@ $\omega$ & angular frequency & \si{\radian} \\
 %\include{Appendices/app_nuc}
 %\include{Appendices/app_mkn}
 %\include{Appendices/app_fit}
+%\include{Appendices/app_afg}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY

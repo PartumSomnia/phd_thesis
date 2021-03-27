@@ -105,8 +105,8 @@ However, theory is essential to turn observations into answers.
 \subsection{General relativity \& $3+1$ decomposition}
 
 %% --- The Cauchy Problem in General Relativity
-In this section we briefly recall the initial-value formulation of the Einstein equations of general relativity through the following steps. We start by introducing notations and the basics of GR. We summarize the Einstein field equations. Then we continue with how EFE can be split in a set of evolutionary equations and constraints. For that we focus on the Arnowitt, Deser and Misner, or ADM, formalism. In the end we comment on the stability of the ADM equations, on the need for strongly-hyperbolic formulations of the EFE, and on the choice of gauge conditions commonly used to
-evolve spacetimes with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+In this section we briefly recall the initial-value formulation of the Einstein equations of \ac{GR} through the following steps. We start by introducing notations and the basics of \ac{GR}. We summarize the \ac{EFE}. Then we continue with how \ac{EFE} can be split in a set of evolutionary equations and constraints. For that we focus on the \ac{ADM}, formalism. In the end we comment on the stability of the \ac{ADM} equations, on the need for strongly-hyperbolic formulations of the \ac{EFE}, and on the choice of gauge conditions commonly used to
+evolve spacetime with singularities. This overview is based in \cite{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
 
 %% --- Euler-Lagrange equations --- USED Notations 
 We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. 
@@ -135,10 +135,10 @@ where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the 
 \end{equation*}
 where $g$ denotes the determinant of the spacetime metric. 
 
-In GR, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$, the Loretzian metric. 
+In \ac{GR}, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$, the Loretzian metric. 
 
 %% ---The Hilbert Action -> EFE ----
-The Einstein field equations read 
+The \ac{EFE}s read 
 
 \begin{equation}
 R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
@@ -146,18 +146,20 @@ R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
 \end{equation}
 
 where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace $R^{\mu}_{\nu}=R$, $g_{\mu\nu}$ is the metric tensor and $T_{\mu\nu}$ is the stress-energy tensor (see its derivation for general relativistic hydrodynamics in section \ref{sec:theory:grhd}).
-In the geometrized unit system, \textit{i.e} $c=G=1$, the $\kappa=8\pi$.
-(As an exercise we provide a short derivation of the EFE from the variation of Hilbert action in Appendix \ref{app:efe})
+In the geometrized unit system, \ei, $c=G=1$, the $\kappa=8\pi$.
+(As an exercise we provide a short derivation of the \ac{EFE} from the variation of Hilbert action in Appendix \ref{app:efe})
 
 %% --- 3+1 Decomposition of Einstein field equations
 
-The Einstein field equations (\ref{eq:theory:EFE}) represent a set of 10 non-linear partial differential equations. These equations can be defined on a while metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter, the boundary conditions on $\partial\Omega$ are required. 
+The \ac{EFE} (\ref{eq:theory:EFE}) represent a set of $10$ non-linear partial differential equations. These equations can be defined on a while metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter, the boundary conditions on $\partial\Omega$ are required. 
 
 It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. This, however, requires the spacetime to be strongly hyperbolic, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
 
 %% Spacelike Foliations
 
-Let the $t$ be the global smooth functions such that, $\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\}$ and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the Lie derivative of the $\boldsymbol{q}$ along the vector $\vec{t}$.
+Let the $t$ be the global smooth functions such that, $\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\}$ and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the Lie derivative\footnote{
+    Lie derivative evaluates the change of a tensor field, along the flow defined by another vector field. This change is coordinate invariant and therefore the Lie derivative is defined on any differentiable manifold.
+} of the $\boldsymbol{q}$ along the vector $\vec{t}$.
 
 Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a part normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ can be written as 
 
@@ -167,36 +169,42 @@ Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. A transition from one
 
 $\vec{\beta}$ is called shift vector and $\alpha$ is called lapse-function.
 
-The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, Riemannian metric $\boldsymbol{\gamma}$  as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$. 
+The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, Riemannian metric $\boldsymbol{\gamma}$  as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$.
+%% --- 
 The Levi-Civita connection can be computed by projecting the $\nabla$ on the space tangent to the hypersurface $\Sigma_t$.
 
 %% SKIPPING Ex-curse: Hamiltonian Field Theory
 %%          Extrinsic Curvature and Constraint equations
 %%          The Hamiltonian Formulation of the Einstein Equations
 
-It is possible to cast the Einstein field equation as a set of constraint equations that should be satisfied on each hypersurface of the foliation and a set of evolution equations that govern the evolution of the space time.
-Specifically, we focus on the ADM system (derivation for which see in the exercise Appendix \ref{app:adm})
-
-\begin{align}
-(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} =& -2\alpha K_{ik}; \\
-(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} =& -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) \\
-& - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
-{^{(3)}R} + K^2 - K_{ik}K^{ik} =& 16\pi E; \\
-D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
-\label{eq:theory:adm}
-\end{align}
-where $S = \gamma^{ij}S_{ij}$.
-These equations constitute the IVP for Einstein field equations and are known as ADM equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
+It is possible to cast the \ac{EFE} as a set of constraint equations that should be satisfied on each hypersurface of the foliation and a set of evolution equations that govern the evolution of the space time.
+%% --- 
+Specifically, we focus on the \ac{ADM} system (key pieces of derivation for which are given shown in Appendix \ref{app:adm}).
+%% ---
+%% \begin{align}
+%% (\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} =& -2\alpha K_{ik}; \\
+%% (\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} =& -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) \\
+%% & - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
+%% {^{(3)}R} + K^2 - K_{ik}K^{ik} =& 16\pi E; \\
+%% D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
+%% \label{eq:theory:adm}
+%% \end{align}
+%% where $S = \gamma^{ij}S_{ij}$.
+These equations constitute the \ac{IVP} for \ac{EFE} and are known as \ac{ADM} equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
 
 %% Strongly Hyperbolic Formulations of the Einstein Equations
 
-It has been shown, that the ADM system of equations in its original form (\ref{eq:theory:adm}) is only weekly hyperbolic \cite{Baumgarte:2002jm}. It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}.  
+It has been shown, that the \ac{ADM} system of equations in its original form (\ref{eq:theory:adm}) 
+is only \red{weekly hyperbolic [One more sencnece on what it means]} \cite{Baumgarte:2002jm}. 
+It was shown that in such system the errors tend to couple with zero-velocity modes \cite{Alcubierre:1999rt}.  
 
-In an attempt to mitigate this problem, different formulations of the Einstein equations as initial-value problem were created. In particular, the the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} and and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}. We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of Einstein equations for numerical applications is ongoing. We limit ourselves to sketching only the conformal-covariant variant of the Z4 formulation, also known as Z4c. The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
+In an attempt to mitigate this problem, different formulations of the \ac{EFE} as \ac{IVP} were created. In particular, the the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+%% ---
+We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of \ac{EFE} for numerical applications is ongoing. We limit ourselves to sketching only the conformal-covariant variant of the Z4 formulation, also known as Z4c. The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
 
 %% The CCZ4 Formulation and Z4c formulalations
 
-The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original ADM and thus -- strongly-hyperbolic. This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
+The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the zero-speed modes of the original \ac{ADM} and thus -- strongly-hyperbolic. This is achieved by not explicitly enforcing the constraints and treating the deviation from them as an dependent variable $Z_{\mu}$. The $Z_{\mu}$ is also called the Z4 four-vector.
 
 The evolution equations then read
 
@@ -212,17 +220,18 @@ and two sets of constraint equations
 \label{eq:theory:z4connect}
 \end{equation}
 
-where the latter is called an algebraic constraint. If its derivative vanishes, it is equivalent to imposing the ADM momentum and Hamiltonian constraints \cite{Bona:2009}. 
-
-The Einstein field equations themselves are recovered from (\ref{eq:theory:z4connect}) and (\ref{eq:theory:z4fieldeq}) when the algebraic constraint is satisfied. 
-
-The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. This allows to obtain the solution of the Einstein equations. 
-
+where the latter is called an algebraic constraint. If its derivative vanishes, it is equivalent to imposing the \ac{ADM} momentum and Hamiltonian constraints \cite{Bona:2009}. 
+%% ---
+The \ac{EFE} themselves are recovered from (\ref{eq:theory:z4connect}) and (\ref{eq:theory:z4fieldeq}) when the algebraic constraint is satisfied. 
+%% ---
+The Z4 system preserves the constraint, $\partial_t (Z_{\mu})= 0$. 
+This allows to obtain the solution of the \ac{EFE}. 
+%% ---
 However, the numerical solution of the system of equations introduces error, that leads to a constraint violation during the evolution. To mitigate this problem the Z4 system is further modified to enforce the dampening of the constraint violation propagation \cite{Gundlach:2005eh}.
+%% ---
+A new version of Z4 was introduced by \cite{Alic:2011gg}. It incorporates the constraint-damping properties of the original Z4 and also allows for a better \ac{BH} treatment via \textit{moving-puncture}, that will be \red{discussed later}. 
 
-A new version of Z4 was recently introduced by \cite{Alic:2011gg}. It incorporates the constraint-damping properties of the original Z4 and also allows for a better black hole treatment via \textit{moving-puncture}, that will be discussed later. 
-The CCZ4 system reads 
-
+%The CCZ4 system reads 
 %\begin{align}
 %\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
 %\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
@@ -248,6 +257,32 @@ The CCZ4 system reads
 %\end{align}
 
 \red{Additionally, there exist a Z4c formulation; that one is used in WhiskyTHC}
+
+The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
+summarized in \citet{Hilditch:2012fp}. 
+%% ---
+The BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}, while
+having zero-speed charateristic variable that could lead to the large Hamiltonian constraint violation in \ac{NR}, have the advantage of the choice of conformal variables and is not bound 
+to a given gauge condition (thus a gauge beneficial for \ac{BH}, \ie, moving puncture gauge can be used).
+The generalized harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}, 
+allows for dampening of the constraint violation \citep{Gundlach:2005eh} and constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}
+%% ---
+To address the limitations of aforementioned formulations, but preserve their advantages,
+a conformal composition of Z4 (that is closly related to generalized harmonic formulation) was proposed in \citet{Bernuzzi:2009ex}.
+Z4c formulation that constraints are preserved (contrary to BSSNOK) if vacuum and matter.
+In \citet{Ruiz:2010qj}, the (high derivative order) constraint preserving boundary conditions for Z4c were presented. They allowed for better behaviour of the propagating constraint violations
+at the outer boundary. Also, the the well-posedness of the Z4c constraint subsystem \ac{IVP} 
+was demonstrated.
+In \citet{Cao:2011fu}, the Z4c plus puncture gauge was considered in full-3D evolution of and 
+new discretization method was proposed/
+
+
+
+The development of the Z4c is in part motivated by the need to remove the zero-speed charateristic variable in the 
+constraint subsystem of BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}
+that could lead to the large Hamiltonian constraint violation in \ac{NR}.
+The Z4c (conformal decomposition of the Z4) was designed to combine the advantages of the 
+BSSNOK system, (\ie, and the choice of conformal variables,an ability to chose a gauge, \eg, a moving puncture gauge, advantageous for \ac{BH} evolution) and 
 
 %% --- Gauge conditions
 
