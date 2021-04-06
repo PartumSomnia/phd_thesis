@@ -1,97 +1,8 @@
 % Chapter Template
 
-\chapter{Chapter Title Here} % Main chapter title
+\chapter{Numerical relativity} % Main chapter title
 
-\label{ch:bns_sims} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-
-
-%% =====================================================================================
-%%
-%%               I N T R O D U C T I O N
-%%
-%% =====================================================================================
-
-\section{Introduction}
-
-\red{biased for Shibata papers [from his 2019 paper with hotokezaka]}
-
-Mergers if neutron star binaries (binary neutron stars (BNS)) and neutron star-black hole 
-(NSBH) are one of the most promising sources of graviational waves (GWs) for ground-based
-detectors (\eg, Advanced LIGO and Virgo, and KAGRA \citep{Abadie:2010hv,Accadia:2010aa,Akutsu:2017kpk}).
-On August 17, 2017 advanced LIGO and Aadvanced Virgo made the first observation of GWs from a binary 
-neutron star merger, the event \GW{}. It is expected that advanced GW observatories will detect more
-events such as \GW{} in the near future.
-
-It is expected that a significant amount of matter is ejected during the neutron star merger. 
-This neutron-rich matter, the ejecta, is a promising site for the rapid neutron racture 
-nucleosynthesis, ($r$-process, see sec.\ref{sef:nucleo}), responsible for the creation of the 
-heaviest elements in the Universe \citep{Lattimer:1974slx,Eichler:1989ve,Thielemann:2017acv}.
-Related to the neutron-rich heavy element synthesis in the ejecta, an electromagnetic (EM) transient
-(Kilonova/mactronova) is expected to be powered by the radioactive decay of the \rproc{} 
-elements \citep{Li:1998bw,Metzger:2010,Roberts:2011,Goriely:2011vg,Korobkin:2012uy,Barnes:2013wka,Tanaka:2013ana}.
-This is the electromagnetic counterpart to the gravitational waves from BNS that, if detected, 
-could constrain aid with the source sky localization and allow further constrain models 
-of the chemical evolution and origin of the heavy \rproc{} elements 
-This is supported by the recent observation of ultra-violet, optical, and infrared signals of
-\GW{} \citep{TheLIGOScientific:2017qsa,Tanaka:2017qxj,Arcavi:2017xiz,Coulter:2017wya,Cowperthwaite:2017dyu,Drout:2017ijr,Evans:2017mmy,Kasliwal:2018fwk,Pian:2017gtc,Smartt:2017fuw,Tanvir:2017pws}. 
-In addition to the nuclear decay powered EM counterpart, a long-lasting synchrotron emission 
-is multi-wavelengths is expected from the merger ejecta propagating through the interstellar
-medium (ISM) \citep{Nakar:2011cw}. 
-Such signal, if detected, would provide an additional information on the merger ejecta velocity profile,
-unafeccted by the ill-constrained details of the \rproc{} nucleosynthesis. 
-
-In order to perform a quantitative studies of the aforementioned topics, first the main aspects 
-of the BNS merger have to clarified. These aspects include the merger process, the mass ejection, 
-the nucleosynthesis and subsequent decay of the heavy elements in the ejecta, and EM emission
-arising from the ejecta. Numerical relativity simulations that include accurate microphysical processes, 
-neutrino radiation transport and magnetohydrodynamics (MHD) are the best tool in this regard. 
-
-Owing to the recent rapid advancement in the field of modeling the BNS in numerical-relativity (NR) 
-the detailed simulations of the mergers are now achievable.
-This allowed to investigate the effects of the neutron star matter equation of state, (EOS) that 
-take into account the finite-temperature effects \citep{Duez:2009yz,Sekiguchi:2011zd},
-the effects of the neutrino cooling \citep{Sekiguchi:2011zd,Deaton:2013sla,Foucart:2014nda,Palenzuela:2015dqa} and neutrino heating \citep{Sekiguchi:2015dma,Foucart:2016rxm}, and
-MHD instability \citep{Kiuchi:2014hja,Kiuchi:2015sga,Kiuchi:2015sga}.
-Numerical relativity simulations are currently the best way to study the mergers and predict the features, 
-that can be tested with later observations.
-
-In BNS mergers the mass ejection processes have been studied with NR simulations have been first 
-investigated by \citet{Hotokezaka:2013b} while in the NSBH mergers by \citet{Foucart:2012vn}. A large number of numerical relativity 
-simulations have been performed to study the nature of the first material that is being ejected 
-on the dynamical timescale (the dynamical ejecta) \citep{Sekiguchi:2015dma,Palenzuela:2015dqa,Lovelace:2013vma,Kyutoku:2013wxa,Foucart:2015vpa,Foucart:2015gaa,Foucart:2016rxm,Sekiguchi:2016bjd,Lehner:2016lxy,Radice:2016dwd,Foucart:2016vxd,Kyutoku:2017voj,Dietrich:2018uni,Dietrich:2016lyp,Bovard:2017mvn,Radice:2018pdn}. This works showed that ejecta mass depends on the binary parameters, such as mass ration, and on 
-the EOS. The ejecta was found to host material with broad range of compositions, where the latter 
-is usually quantified with electron fraction $Y_e$, which is the electron number density per baryon 
-number density. This wide range of $Y_e$, is however consistent with the observed abundance patterns 
-of \rproc{} elements (with mass number larger $A\sim90$) in the Solar System and metal poor-stars \citep{Wanajo:2014wha,Radice:2016dwd}.
-
-After a BNS merger, a remnant is born. It can be a black hole (BH) or a massive, stable or unstable, neutron star (MNS). Both could be surrounded by a gravitationally bound matter, a disk (torus). 
-The \pmerg{} evolution have been investigated by many groups \citep{Fernandez:2013tya,Metzger:2014ila,Perego:2014fma,Fernandez:2014cna,Just:2014fka,Fernandez:2016sbf,Siegel:2017nub,Fujibayashi:2017xsz,Fernandez:2018kax}. 
-Simulations showed that a certain fraction of the disk can become unbound, and be ejected from the system, 
-by viscous, nuclear recombination or MHD effects. 
-This long-term ejecta was found to be more massive then the dynamical ejecta in certain cases and thus,
-even more important for EM counterparts and nucleosynthetic yields.
-
-In this thesis we discuss the numerical relativity simulations performed with the code \texttt{WhiskyTHC}
-
-
-
-In this thesis we perform and analyze numerical relativity simulations of merging neutron stars. 
-These simulations are performed via solving the equations of general relativity, hydrodynamics and radiation, neutrino, transport via special numerical schemes. 
-
-In this chapter we provide a brief description of the main equations and methods used to produce simulations analyzed in this thesis. 
-For the sace of bravity we limit the discussion to the main results and implication important for our work.
-For the underlying principles of the Eintein's theory of General Relativity, for which we here the reado to \red{[GR refs]}.
-For the discussion and derivation of general relativistic hydrodynamics and refer the interested reader to \red{[GRHD refs]}.
-For the Discussion on the radiation transport we refer to \red{GR-Rad refs}
-
-%% from GRLES Raduce paper
-Multimessenger observations of BNS mergers are starting to constrain the poorly known properties of
-matter at extreme densities [11,12,20–36] and the physical processes powering short g-ray bursts (SGRBs)
-[37–42]. They are also beginning to reveal the role played by compact binary mergers in the chemical
-enrichment of the galaxy with r-process elements [8,13,43–62]. The key to the solution of some of the most
-pressing open problems in nuclear and high-energy astrophysics – such as the origin of heavy elements,
-the nature of neutron stars (NSs), and the origin of SGRBs – is encoded in these and future observations.
-However, theory is essential to turn observations into answers.
+\label{ch:nr_methods} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 %% =====================================================================================
 %%
@@ -99,113 +10,412 @@ However, theory is essential to turn observations into answers.
 %%
 %% =====================================================================================
 
-\section{Theoretical Background}
-\label{sec:grhd_theory}
+In this chapter we outline the theoretical bases and methods that are used to study 
+mergers of compact objects numerically in radpidly evolving field of \ac{NR}.
+%
+Modern \ac{NR} studies includes the effects of strong gravity, solving the \ac{EFE},
+employ sophisticated schemes to treat shocks and matter-vacuum boundaries in fluid dynamics with, 
+use microphysical \ac{EOS} with finite temperature effects, constructed from quantum mechanics 
+calculations, treat the neutrinos emitted and absorbed by hot matter via radiation transport 
+schemes and include effects of magnetic fields on the fluid dynamics. 
+%
+Each of this entries is an entire field of research in itself. Due to time and space constraints
+we shall restrict the discussion to only the key concepts and implementations that are directly 
+relevant to the work presented in the thesis, but we will provide the interested reader with 
+lists of additional literature on aforementioned subjects. 
+For instance, for the overview on the topic of the \ac{GR} and especially, its numerical 
+implementations approaches, 
+we suggest \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}.
 
-\subsection{General relativity \& $3+1$ decomposition}
-\label{subsec:gr_nr}
+%% ==========================================================
+%%
+%%                 G R
+%%
+%% ==========================================================
 
-%% --- The Cauchy Problem in General Relativity
-In this section we briefly recall the initial-value formulation of the Einstein equations of \ac{GR} through the following steps. We start by introducing notations and the basics of \ac{GR}. We summarize the \ac{EFE}. Then we continue with how \ac{EFE} can be split in a set of evolutionary equations and constraints. For that we focus on the \ac{ADM}, formalism. In the end we comment on the stability of the \ac{ADM} equations, on the need for strongly-hyperbolic formulations of the \ac{EFE}, and on the choice of gauge conditions commonly used to
-evolve spacetime with singularities. This overview is based on \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+\section{General Relativity}
 
-%% --- Euler-Lagrange equations --- USED Notations 
-We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. 
-
-We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$. 
-
-The $\nabla\boldsymbol{T}$ denotes the covariant derivative of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.
-
-The scalar product of two vectors then 
-\begin{equation*}
-\boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}
-\end{equation*}
-
-The action of a linear form on a vector however is represented as 
-
-\begin{equation*}
-\langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}
-\end{equation*}
-
-Let the $\boldsymbol{\alpha}$ be the totally antisymmetric symbol that expresses through coordinates $x^{\mu}$ as
-\begin{equation*}
-\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
-\end{equation*}
-where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the spacetime is
-
-\begin{equation*}
-\boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha},
-\end{equation*}
-where $g$ denotes the determinant of the spacetime metric. 
-
-In \ac{GR}, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$, the Loretzian metric. 
-
-%% ---The Hilbert Action -> EFE ----
-The \ac{EFE}s read 
-
+The foundation of the \ac{NR} is \ac{GR}, described by the \ac{EFE}. 
+In a covariant (\ie, coordinate-independent) form the \ac{EFE} read
+%
 \begin{equation}
-R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
+R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8 \pi T_{\mu\nu},
 \label{eq:theory:EFE}
 \end{equation}
-
-where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace $R^{\mu}_{\nu}=R$, $g_{\mu\nu}$ is the metric tensor and $T_{\mu\nu}$ is the stress-energy tensor which is discussed in more details 
- in section \ref{sec:theory:grhd}).
+%
+where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace 
+$R^{\mu}_{\nu} = R$, $g_{\mu\nu}$ is the metric tensor and 
+$T_{\mu\nu}$ is the stress-energy tensor.
+%
 In the geometrized unit system, \ie, $c=G=1$, the $\kappa=8\pi$.
-(As an exercise we provide a short derivation of the \ac{EFE} from the variation of Hilbert action in Appendix \ref{app:efe})
+(As an exercise we provide a short derivation of the 
+\ac{EFE} from the variation of Hilbert action in Appendix \ref{app:efe})
 
-%% --- 3+1 Decomposition of Einstein field equations
+The \ac{EFE} is the foundation of modern cosmology, the physics of \acp{NS} and \acp{BH},
+the emission of gravitational radiation, and numerous other cosmic phenomena, 
+where strong gravity effects are present. The Einstein theory of \ac{GR} has 
+passed numerous tests in the weak-field regime \citep{Asmodelle:2017sxn} and in a 
+strong field regime when the gravitaional radiation from the merger of two \acp{BH} was 
+detected for the first time \citep{Abbott:2016blz}.
 
-The \ac{EFE}, Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear partial differential equations. These equations can be defined on a whole metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter case, the boundary conditions on $\partial\Omega$ are required. 
-
-It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. This requires the spacetime to be strongly hyperbolic, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
-
-%% Spacelike Foliations
-
-Let the $t$ be the global smooth functions such that, $\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\}$ and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the Lie derivative\footnote{
-    Lie derivative evaluates the change of a tensor field, along the flow defined by another vector field. This change is coordinate invariant and therefore the Lie derivative is defined on any differentiable manifold.
+Before the \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, can be solved numerically, they have to 
+be cast in a form suitable for that. Specifically, it is advantageous to represent 
+the \ac{EFE} as \ac{IVP}. Next, we consider the $3+1$ Decomposition of \ac{EFE}. 
+%
+Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear partial differential equations. 
+These equations can be defined on a whole metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$,
+where in the latter case, the boundary conditions on $\partial\Omega$ are required. 
+%
+It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, 
+from which the evolution of space-time begins. This requires the spacetime to be strongly hyperbolic, 
+meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. 
+This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
+%
+Let the $t$ be the global smooth functions such that, 
+$\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\}$ 
+and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. 
+This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. 
+Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes 
+between hypersurfaces $\Sigma_t$ is given by the Lie derivative\footnote{
+    Lie derivative evaluates the change of a tensor field, along the flow 
+    defined by another vector field. This change is coordinate invariant 
+    and therefore the Lie derivative is defined on any differentiable manifold.
 } of the $\boldsymbol{q}$ along the vector $\vec{t}$.
-
-Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a part normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ can be written as 
-
+%
+Consider now two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. 
+A transition from one to another can be decomposed into the part tangent to the hypersurface 
+$\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$, and a part normal to the hypersurface 
+$\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, 
+normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ can be written as 
+%
 \begin{equation*}
 \vec{t} = \alpha\vec{n}+\vec{\beta}.
 \end{equation*}
-
+%
 $\vec{\beta}$ is called shift vector and $\alpha$ is called lapse-function.
-
-The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, Riemannian metric $\boldsymbol{\gamma}$  as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$.
-%% --- 
-The Levi-Civita connection can be computed by projecting the $\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
-
-%% SKIPPING Ex-curse: Hamiltonian Field Theory
-%%          Extrinsic Curvature and Constraint equations
-%%          The Hamiltonian Formulation of the Einstein Equations
-
-It is possible to cast the \ac{EFE} as a set of constraint equations that should be satisfied on each hypersurface of the foliation and a set of evolution equations that govern the evolution of the space time.
 %
-There are several such formulations, that show different mathematical properties and 
-is more suited for specific applications. 
+The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, 
+Riemannian metric $\boldsymbol{\gamma}$, as 
+$\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, 
+where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$, 
+and $\otimes$ denotes the product measure.
 %
-Most formulations, relevant for modeling the mergers of \acp{NS} and \acp{BH}
-are based on the so-called \ac{ADM} system of equations. 
-(We recall key stages of its derivation in Appendix~\ref{app:adm})
+The Levi-Civita connection can be computed by projecting the 
+$\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
+
+Next, we need to discuss two important entities, 
+the three-metric, and the extrinsic curvature.
 %
-The \ac{ADM} system reads, 
+There are exist coordinates that are adapted to the $3+1$ foliation, namely $\{t, x^i\}$ 
+with $\vec{\partial}_i \cdot \vec{n} = 0$. 
+In these coordinates the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$, 
+where hereafter $\nabla$ denotes a covariant derivative.
+%
+The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ 
+and can be expressed in terms of $\alpha$ and $\vec{\beta}$.
+%% \begin{align}
+%% \text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
+%% \text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
+%% \text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i,
+%% \end{align}
+%% we we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
+%% 
+%% The line-element can be thus written as
+%% \begin{equation}
+%% ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
+%% \end{equation}
+%
+Next we introduce the extrinsic curvature of a $D-1$-surface $\Sigma_t\subset\mathcal{M}$
+at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$. 
+Note, that the $\boldsymbol{K}$ thus does not depend on 
+$\alpha$ and $\vec{\beta}$, it is a purely spatial tensor. 
+The components of the extrinsic curvature are
+%
+\begin{equation}
+K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
+\label{eq:theory:extrcurvdef}
+\end{equation}
+%
+where $\mathcal{L}_{\vec{n}}$ is the Lie derivative along the vector field $\vec{n}$. \\
+From the (\ref{eq:theory:extrcurvdef}) 
+%
+The extrinsic curvature can be 
+interpreted as a "speed of the $\vec{n}$ during the parallel 
+transport along the hypersurface $\Sigma_t$".
+%
+Codazzi equations relate the $4D$ Ricci tensor to the extrinsic curvature,
+as
+\begin{equation}
+D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta}=R_{\gamma\delta}n^{\delta}{\gamma^{\gamma}}_{\beta},
+\label{eq:theory:formomentum}
+\end{equation}
+ where $K$ is a trace of the tensor $\boldsymbol{K}$.
+%
+Gauss equation relate the $3$D Riemann tensor 
+$^3{R_{\alpha\beta\gamma}}^{\delta}$ to the $4D$ one and the $\boldsymbol{K}$ 
+as
+%
+\begin{equation}
+^3{R_{\alpha\beta\gamma}}^{\delta} = {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}{\gamma^{\lambda}}_{\gamma}{\gamma^{\delta}}_{\sigma}{R_{\mu\nu\lambda}}^{\delta}-K_{\alpha\gamma}{K_{\beta}}^{\delta}+K_{\beta\gamma}{K^{\delta}}_{\alpha}.
+\label{eq:theory:forhamiltconst}
+\end{equation}
+%
+Notably, if the \ac{EFE}, Eq.~\ref{eq:theory:EFE}, is substituted into the Codazzi equations 
+Eq.~\eqref{eq:theory:formomentum},
+the first constraint equation, the momentum constraint can be obtained.
+%
+\begin{equation}
+D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} = -8\pi{\gamma^{\alpha}}_{\beta} n^{\gamma}T_{\alpha\gamma}=:8\pi j_{\beta},
+\label{eq:theory:momconstraint}
+\end{equation}
+%
+where $j^{\alpha}$ is the \ac{ADM} momentum density.
+%
+The second constraint, the Hamiltonian constraint, can be obtained by substituting the 
+\ac{EFE} Eq.~\eqref{eq:theory:EFE} into the Gauss equation, 
+Eq.~\eqref{eq:theory:forhamiltconst} as 
+%
+\begin{equation}
+^3 R+ K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2G^{\alpha\beta}n_{\alpha}n_{\beta} = 16\pi n_{\alpha}n_{\beta} T^{\alpha\beta} =: 16\pi E,
+\label{eq:theory:hamilconstraint}
+\end{equation}
+%
+where $E$ is the \ac{ADM} energy density. 
+%
+The obtained constraint equations represent a set of elliptic equations 
+that must be satisfied on every hypersurface $\Sigma_i$ of the foliation. 
+It is however, possible to show that \ac{EFE} preserve the constraints, 
+meaning that if they are satisfied at the initial slice $\Sigma_0$ 
+they will be satisfied at any time in the future. 
+
+
+Next we proceed with discussing the Hamiltonian formulation of \ac{EFE}.
+For the sake of brevity we omit the derivation and related discussion here, 
+focusing only on the end result. 
+For the sake of completeness, however, we recall the Hamiltonian Field Theory
+and the key steps in deriving the Hamiltonian formulation of \ac{EFE}, 
+in the Appendix~\ref{app:adm}.
+
+
+
+
+
+Next we proceed with obtaining the Hamiltonian formulation of \ac{EFE}.
+For the sake of brevity, we omit the derivation itself. 
+The main stages of the derivation are presented in Appendix~\ref{app:adm}.
+%
+The Hamiltonian formulation of \ac{EFE} reads 
+%
 \begin{align}
-(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} =& -2\alpha K_{ik}; \\
-(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} =& -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) \\
-& - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
-{^{(3)}R} + K^2 - K_{ik}K^{ik} =& 16\pi E; \\
-D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
-\label{eq:theory:adm}
+(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} &= -2\alpha K_{ik}; \\
+(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} &= -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
+{^{(3)}R} + K^2 - K_{ik}K^{ik} &= 16\pi E; \\
+D_{i}K-D_{k}{K^k}_i &= 8\pi j_i,
+%% \label{eq:theory:adm}
 \end{align}
-where $S = \gamma^{ij}S_{ij}$,
-$\mathcal{L}$ is the lie derivative,
-$K_{ik}$ are the components of the We extrinsic curvature, which is a purely spatial tensor, that is defined 
-on a $D-1$-suface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$,
-$K$ is a trace of the tensor $\boldsymbol{K}$,
-$E$ is the ADM energy density,
-$j^{\alpha}$ is the ADM momentum density
+%
+where $S = \gamma^{ij}S_{ij}$ is the matter field, and 
+$D_{\mu}$ are the derivatives.
+%
+These equations constitute the \ac{IVP} for \ac{EFE} and are known as \ac{ADM} equations. 
+The last two equations are the constraint equations. They determine how to set the initial 
+data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. 
+The first two equations then govern the evolution.
+
+In order to complete the \ac{ADM} system, the lapse function and shift vector ought to be 
+specified. Their choice is called slicing condition and spatial gauge condition respectively.
+The correct choice, is essential for the stable evolution and in itself presents a 
+broad and rapidly evolving subject.
+%
+Here we are going to discuss only the gauge that is relevant for our work. 
+Consider \textit{Slicing condition}. 
+One of the widely used conditions is so called 'maximal slicing' that sets $K=0$, 
+which in turn results in the equation
+%
+\begin{equation}
+    D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e + S)\big].
+\end{equation}
+%
+\red{what is 'e'}
+%
+This conditions has an advantage of being singularity-avoiding. For example, it was 
+shown that in the case of Schwarzschild \ac{BH}, the $\alpha$ goes to zero at a finite 
+distance from singularity \citep{Geyer:1995}. 
+However implementation of this condition in from of a elliptic equations is 
+computationally expensive.
+%
+A class of slicing conditions in form of hyperbolic equations that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \citet{Bona:1994dr}. 
+%
+It reads 
+%
+\begin{equation}
+(\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
+\label{eq:theory:gauge_onepluslog}
+\end{equation}
+%
+%% which in CCZ4 reads 
+%% \begin{equation}
+%% (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+%% \end{equation}
+%
+%% \begin{equation}
+%% (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+%% \end{equation}
+%
+where $f(\alpha)$ is a positive function.
+%
+For many numerical applications, including those that are discussed in this work, 
+the ``1 + log'' slicing is adopted, where the $\beta_i=0$. 
+Then, integrating equation Eq.~\eqref{eq:theory:gauge_onepluslog}) yields 
+%
+\begin{equation}
+    \alpha = 1 + \log\gamma
+\end{equation}
+%
+This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \citep{Baumgarte:2002jm}.
+
+%% Strongly hyperbolic formulations of EFE
+
+
+
+
+
+
+
+Next, consider Spatial gauge conditions.
+The requirements for the gauge are similar as in the case of the $\alpha$, 
+namely hyperbolicity and minimization of numerical distortions for more stable evolution.  
+One of the widely used shift conditions is so called 
+Gamma driver condition \citep{Alcubierre:2002kk}, 
+%
+%% \begin{align}
+%% \partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
+%% \partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
+%% \end{align}
+%% where $\eta$ is a dumping coefficient.
+%
+This gauge condition tries to decrease the coordinate stretching that occur in the 
+vicinity of a singularity. It was shown to be effective in numerical applications, 
+in particular for a single moving black hole. However it has a zero-speed mode, 
+that can amplify the numerical errors and destabilize the system \citep{vanMeter:2006vi}.
+%
+A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes,
+%
+%% \begin{align}
+%% (\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
+%% (\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
+%% \end{align}
+%
+was proposed by \citet{vanMeter:2006vi} and was applied to study binary black holes by \citet{Campanelli:2005dd}.
+
+
+
+
+
+%\section{Theoretical Background}
+%\label{sec:grhd_theory}
+%
+%\subsection{General relativity \& $3+1$ decomposition}
+%\label{subsec:gr_nr}
+
+%%% --- The Cauchy Problem in General Relativity
+%In this section we briefly recall the initial-value formulation of the Einstein equations of \ac{GR} through the following steps. We start by introducing notations and the basics of \ac{GR}. We summarize the \ac{EFE}. Then we continue with how \ac{EFE} can be split in a set of evolutionary equations and constraints. For that we focus on the \ac{ADM}, formalism. In the end we comment on the stability of the \ac{ADM} equations, on the need for strongly-hyperbolic formulations of the \ac{EFE}, and on the choice of gauge conditions commonly used to
+%evolve spacetime with singularities. This overview is based on \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+%
+%%% --- Euler-Lagrange equations --- USED Notations 
+%We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. 
+%
+%We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$. 
+%
+%The $\nabla\boldsymbol{T}$ denotes the covariant derivative of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.
+%
+%The scalar product of two vectors then 
+%\begin{equation*}
+%\boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}
+%\end{equation*}
+%The action of a linear form on a vector however is represented as 
+%\begin{equation*}
+%\langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}
+%\end{equation*}
+%
+%Let the $\boldsymbol{\alpha}$ be the totally antisymmetric symbol that expresses through coordinates $x^{\mu}$ as
+%\begin{equation*}
+%\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
+%\end{equation*}
+%where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the spacetime is
+%
+%\begin{equation*}
+%\boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha},
+%\end{equation*}
+%where $g$ denotes the determinant of the spacetime metric. 
+%
+%In \ac{GR}, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$, the Loretzian metric. 
+%
+%%% ---The Hilbert Action -> EFE ----
+%The \ac{EFE}s read 
+%
+%\begin{equation}
+%R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
+%\label{eq:theory:EFE}
+%\end{equation}
+%
+%where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace $R^{\mu}_{\nu}=R$, $g_{\mu\nu}$ is the metric tensor and $T_{\mu\nu}$ is the stress-energy tensor which is discussed in more details 
+% in section \ref{sec:theory:grhd}).
+%In the geometrized unit system, \ie, $c=G=1$, the $\kappa=8\pi$.
+%(As an exercise we provide a short derivation of the \ac{EFE} from the variation of Hilbert action in Appendix \ref{app:efe})
+
+%% --- 3+1 Decomposition of Einstein field equations
+
+%The \ac{EFE}, Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear partial differential equations. These equations can be defined on a whole metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter case, the boundary conditions on $\partial\Omega$ are required. 
+%
+%It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. This requires the spacetime to be strongly hyperbolic, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
+%
+%%% Spacelike Foliations
+%
+%Let the $t$ be the global smooth functions such that, $\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\}$ and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the Lie derivative\footnote{
+%    Lie derivative evaluates the change of a tensor field, along the flow defined by another vector field. This change is coordinate invariant and therefore the Lie derivative is defined on any differentiable manifold.
+%} of the $\boldsymbol{q}$ along the vector $\vec{t}$.
+%
+%Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a part normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ can be written as 
+%
+%\begin{equation*}
+%\vec{t} = \alpha\vec{n}+\vec{\beta}.
+%\end{equation*}
+%
+%$\vec{\beta}$ is called shift vector and $\alpha$ is called lapse-function.
+%
+%The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, Riemannian metric $\boldsymbol{\gamma}$  as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$.
+%%% --- 
+%The Levi-Civita connection can be computed by projecting the $\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
+%
+%%% SKIPPING Ex-curse: Hamiltonian Field Theory
+%%%          Extrinsic Curvature and Constraint equations
+%%%          The Hamiltonian Formulation of the Einstein Equations
+%
+%It is possible to cast the \ac{EFE} as a set of constraint equations that should be satisfied on each hypersurface of the foliation and a set of evolution equations that govern the evolution of the space time.
+%%
+%There are several such formulations, that show different mathematical properties and 
+%is more suited for specific applications. 
+%%
+%Most formulations, relevant for modeling the mergers of \acp{NS} and \acp{BH}
+%are based on the so-called \ac{ADM} system of equations. 
+%(We recall key stages of its derivation in Appendix~\ref{app:adm})
+%%
+%The \ac{ADM} system reads, 
+%\begin{align}
+%(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} =& -2\alpha K_{ik}; \\
+%(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} =& -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) \\
+%& - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
+%{^{(3)}R} + K^2 - K_{ik}K^{ik} =& 16\pi E; \\
+%D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
+%\label{eq:theory:adm}
+%\end{align}
+%where $S = \gamma^{ij}S_{ij}$,
+%$\mathcal{L}$ is the lie derivative,
+%$K_{ik}$ are the components of the We extrinsic curvature, which is a purely spatial tensor, that is defined 
+%on a $D-1$-suface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$,
+%$K$ is a trace of the tensor $\boldsymbol{K}$,
+
 
 %% These equations constitute the \ac{IVP} for \ac{EFE} and are known as \ac{ADM} equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
 
@@ -213,64 +423,64 @@ $j^{\alpha}$ is the ADM momentum density
 
 %% --- Gauge conditions
 
-In order to complete the \ac{ADM} system, the choice of the lapse function, \ie, slicing condition, and shift vector \ie, spatial gauge condition has to be made. The correct choice, is essential for the stable evolution and in itself presents a broad and rapidly evolving subject.
+%In order to complete the \ac{ADM} system, the choice of the lapse function, \ie, slicing condition, and shift vector \ie, spatial gauge condition has to be made. The correct choice, is essential for the stable evolution and in itself presents a broad and rapidly evolving subject.
+%%
+%Here we are going to discuss only the gauge that is relevant for our work. 
+
+%Consider \textit{Slicing condition}. 
+%One of the widely used conditions is so called 'maximal slicing' that sets $K=0$, 
+%%which in turn results in the equation
+%%\begin{equation}
+%%D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
+%%\end{equation}
+%This conditions has an advantage of being \textit{singularity-avoiding}. For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. However implementation of this condition in from of a elliptic equations is computationally expensive.
 %
-Here we are going to discuss only the gauge that is relevant for our work. 
-
-Consider \textit{Slicing condition}. 
-One of the widely used conditions is so called 'maximal slicing' that sets $K=0$, 
-%which in turn results in the equation
-%\begin{equation}
-%D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
-%\end{equation}
-This conditions has an advantage of being \textit{singularity-avoiding}. For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. However implementation of this condition in from of a elliptic equations is computationally expensive.
-
-A class of slicing conditions in form of hyperbolic equations that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
-
-\begin{equation}
-(\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
-\label{eq:theory:gauge_onepluslog}
-\end{equation}
-
-%which in CCZ4 reads 
-%\begin{equation}
-%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
-%\end{equation}
+%A class of slicing conditions in form of hyperbolic equations that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
 %
 %\begin{equation}
-%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+%(\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
+%\label{eq:theory:gauge_onepluslog}
 %\end{equation}
-
-%where $f(\alpha)$ is a positive function.
-For many numerical applications, including those that are discussed in this work, the "1 + log" slicing is adopted, the $\beta_i=0$. 
-Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
-
-\begin{equation}
-\alpha = 1 + \log\gamma
-\end{equation}
-
-This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
-
-Next, consider \textit{Spatial gauge conditions}.
-The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution.  
-One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
-
-%\begin{align}
-%\partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
-%\partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
-%\end{align}
-%where $\eta$ is a dumping coefficient.
-
-This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
-
-A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes,
-
-%\begin{align}
-%(\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
-%(\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
-%\end{align}
-
-was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
+%
+%%which in CCZ4 reads 
+%%\begin{equation}
+%%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+%%\end{equation}
+%%
+%%\begin{equation}
+%%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
+%%\end{equation}
+%
+%%where $f(\alpha)$ is a positive function.
+%For many numerical applications, including those that are discussed in this work, the "1 + log" slicing is adopted, the $\beta_i=0$. 
+%Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
+%
+%\begin{equation}
+%\alpha = 1 + \log\gamma
+%\end{equation}
+%
+%This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
+%
+%Next, consider \textit{Spatial gauge conditions}.
+%The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution.  
+%One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
+%
+%%\begin{align}
+%%\partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
+%%\partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
+%%\end{align}
+%%where $\eta$ is a dumping coefficient.
+%
+%This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
+%
+%A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes,
+%
+%%\begin{align}
+%%(\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
+%%(\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
+%%\end{align}
+%
+%was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
 
 
 
