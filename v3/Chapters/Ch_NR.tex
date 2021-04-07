@@ -193,16 +193,7 @@ Next we proceed with discussing the Hamiltonian formulation of \ac{EFE}.
 For the sake of brevity we omit the derivation and related discussion here, 
 focusing only on the end result. 
 For the sake of completeness, however, we recall the Hamiltonian Field Theory
-and the key steps in deriving the Hamiltonian formulation of \ac{EFE}, 
-in the Appendix~\ref{app:adm}.
-
-
-
-
-
-Next we proceed with obtaining the Hamiltonian formulation of \ac{EFE}.
-For the sake of brevity, we omit the derivation itself. 
-The main stages of the derivation are presented in Appendix~\ref{app:adm}.
+and the key steps the derivation in the Appendix~\ref{app:adm}.
 %
 The Hamiltonian formulation of \ac{EFE} reads 
 %
@@ -214,23 +205,157 @@ D_{i}K-D_{k}{K^k}_i &= 8\pi j_i,
 %% \label{eq:theory:adm}
 \end{align}
 %
-where $S = \gamma^{ij}S_{ij}$ is the matter field, and 
+where $S = \gamma^{ij} S_{ij}$ is the matter field, and 
 $D_{\mu}$ are the derivatives.
 %
 These equations constitute the \ac{IVP} for \ac{EFE} and are known as \ac{ADM} equations. 
-The last two equations are the constraint equations. They determine how to set the initial 
+The last two equations are the constraints. They determine how to set the initial 
 data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. 
-The first two equations then govern the evolution.
+The first two equations govern the evolution.
+The choice of lapse function and shift vector is related to the choice of the spacetime 
+foliation. We discuss it in more details later.
+
+%% Strongly hyperbolic formulations of EFE
+It has been shown, that the \ac{ADM} system of equations in its original form Eq.~\eqref{eq:theory:adm} 
+is only weekly hyperbolic \citep{Baumgarte:2002jm}. 
+Specifically, it was shown that the \red{numerical?} errors tend to couple with 
+zero-velocity modes \citep{Alcubierre:1999rt}. 
+%
+In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{IVP} were proposed. 
+In particular, the generalized-harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}. 
+It has an advantage of allowing for dampening of the constraint violation \citep{Gundlach:2005eh} and
+constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}.
+%
+The BSSNOK formulation, was derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \citep{Nakamura1987,Shibata:1995we,Baumgarte:1998te}. It had an advantage of allowing to choose 
+conformal variables and was not bound to a given gauge condition 
+(thus a gauge beneficial for \acp{BH} evolution, \ie, moving puncture gauge can be used). 
+However, it had zero-speed characteristic variables that could lead to the large 
+Hamiltonian constraint violation in \ac{NR} applications.
+%
+And the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+%% 
+%The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
+%summarized in \citet{Hilditch:2012fp}. 
+
+The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the 
+zero-speed modes of the original \ac{ADM} and thus -- strongly-hyperbolic. 
+This is achieved by not explicitly enforcing the constraints and treating the deviation 
+from them as an dependent variable $Z_{\mu}$. 
+The $Z_{\mu}$ is also called the Z4 four-vector.
+%
+\begin{equation}
+    R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
+    \label{eq:theory:z4fieldeq}
+\end{equation}
+%
+and two sets of constraint equations
+%
+\begin{equation}
+    \nabla_{\rho} g^{\mu\nu} = 0, \text{ and } Z_{\mu} = 0,
+    \label{eq:theory:z4connect}
+\end{equation}
+%
+where the latter is called an algebraic constraint. If its derivative vanishes,
+it is equivalent to imposing the \ac{ADM} momentum and Hamiltonian constraints \citep{Bona:2009}. 
+%
+The Z4 system preserves the constraint and \ac{EFE} themselves are recovered 
+from Eq.~\eqref{eq:theory:z4connect} and Eq.~\eqref{eq:theory:z4fieldeq} when the algebraic 
+constraint is satisfied, $\partial_t (Z_{\mu})= 0$. 
+%
+However, the numerical solution of the system of equations introduces error, 
+that lead to a constraint violation during the evolution. 
+To mitigate this problem the Z4 system is further modified to enforce the 
+dampening of the constraint violation propagation \citep{Gundlach:2005eh}.
+%
+A new version of Z4 was introduced by \citet{Alic:2011gg}, the 
+Conformal and covariant formulation, CCZ4. 
+It incorporates the constraint-damping properties of the original Z4 
+and also allows for a better \ac{BH} treatment via moving-puncture.
+%The CCZ4 system reads 
+%\begin{align}
+%\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
+%\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
+%& + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
+%& -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
+%\partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
+%\partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
+%& - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
+%\partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
+%& + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
+%\partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
+%& - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
+%& - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
+%& -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
+%\label{eq:theory:ccz4equations} % used for Whisky Code description
+%\end{align}
+%where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
+
+%\begin{align}
+%\widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
+%\widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
+%\end{align}
+%
+However, CCZ4 included parameterized constraint addition, similar to BSSNOK, 
+that could lead to the issues in numerical applications \citep{Babiuc:2006wk}.
+%
+Another version of Z4 was developed in a series of works 
+the Z4c formulation of \ac{EFE}
+\citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} 
+and summarized in \citet{Hilditch:2012fp}. 
+%
+The Z4c (conformal decomposition of the Z4) was designed to combine the advantages of the 
+BSSNOK system, (\ie, the free choice of conformal variables and an ability to chose a gauge, 
+\eg, a moving puncture gauge, advantageous for \ac{BH} evolution) and 
+the constraint violation dampening of the Z4 formulation.
+
+The equations of motion for the Z4c formulation read
+\begin{align}
+    \partial_t\chi &= \frac{2}{3}\chi \Big[ \alpha (\hat{K} + 2\Theta) - D_i\beta^i \Big], \\
+    \partial_t\bar{\gamma}_{ij} &= 2\alpha\bar{A}_{ij} + \beta^k\partial_k\widetilde{\gamma}_{ij} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k\beta^k,
+\end{align}
+%
+for the metric components,
+%
+\begin{align}
+    \partial_t\hat{K} &= D^{i}D_{i}\alpha + \alpha \Big[ \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{1}{3}(\hat{K} + 2\Theta)^2 \Big] + 4\pi \alpha [S + \rho] + \alpha \kappa_1 (1 - \kappa_2)\Theta + \beta^i\partial_i\hat{K}, \\
+    \partial_t\widetilde{A}_{ij} &= \chi [ -D_i D_j \alpha + \alpha(R_{ij} - 8\pi S_{ij}) ]^{\text{tf}} + \alpha \Big[ (\hat{K} + 2\Theta)\widetilde{A}_{ij} - 2 {\widetilde{A}^k}_i\widetilde{A}_{kj} \Big] + \beta^k\partial_k\widetilde{A}_{ij} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k},
+\end{align}
+%
+for extrinsic curvature
+%
+\begin{align}
+    \partial_t\widetilde{\Gamma}^i &= -2\widetilde{A}^{ij}\partial_j\alpha + 2\alpha\Big[ {\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{jk} - \frac{3}{2}\widetilde{A}^{ij}\partial_j\ln(\chi) - \frac{1}{3}\widetilde{\gamma}^{ij}\partial_j(2\hat{K}+\Theta) - 8\pi\widetilde{\gamma}^{ij}S_j \Big] + \widetilde{\gamma}^{jk}\partial_j\partial_k\beta^i + \frac{1}{3}\widetilde{\gamma}^{ij}\partial_j\partial_k\beta^k + \beta^j\partial_j\widetilde{\Gamma}^i - (\widetilde{\Gamma}_{\text{d}})^j\partial_j\beta^i + \frac{2}{3}(\widetilde{\Gamma}_{\text{d}})^i\partial_j\beta^j - 2\alpha\kappa_1 [ \widetilde{\Gamma}^i - (\widetilde{\Gamma}_{\text{d}})^i ], \\
+    \partial_t\Theta &= \frac{1}{2}\alpha [R - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}(\hat{K} + 2\Theta)^2] - \alpha [ 8\pi\rho + \kappa_1(2+\kappa_2)\Theta ] + \beta^i\partial_i\Theta,
+\end{align}
+%
+for other variables.
+Here the intrinsic curvature associated with the \ac{ADM} metric $\gamma_{ij} = \chi^{-1}\widetilde{\gamma}_{ij}$ is 
+%
+\begin{align}
+    R_{ij} &= {R^{\chi}}_{ij} + \widetilde{R}_{ij}, \\
+    {\widetilde{R}^{\chi}}_{ij} &= \frac{1}{2\chi}\widetilde{D}_i\widetilde{D}_j\chi + \frac{1}{2\chi}\widetilde{D}^l\widetilde{D}_l\chi - \frac{1}{4\chi^2}\widetilde{D}_{i\chi}\widetilde{D}_{j\chi} - \frac{3}{4\chi^2}\widetilde{\gamma}_{ij}{\widetilde{D}^l}_{\chi}\widetilde{D}_{l\chi}, \\
+    \widetilde{R}_{ij} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_l\partial_m\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}^k + (\widetilde{\Gamma}_{\text{d}})^k \widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm} \Big( 2{\widetilde{\Gamma}^k}_{l(i}\widetilde{\Gamma}_{j)km} + {\widetilde{\Gamma}^k}_{im} \widetilde{\Gamma}_{klj} \Big), 
+\end{align}
+%
+where $(\widetilde{\Gamma}_{\text{d}})^i = \widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk}$, 
+the $D_i$ is thederivative operator compatible with the \ac{ADM} metric.
+%
+\red{check equtions}
+%
+For the discussion on the constraints, and numerical methods we refer to \citet{Hilditch:2012fp}.
+
+
+
+%% === GAUGE CONDITIONS === 
 
 In order to complete the \ac{ADM} system, the lapse function and shift vector ought to be 
 specified. Their choice is called slicing condition and spatial gauge condition respectively.
 The correct choice, is essential for the stable evolution and in itself presents a 
 broad and rapidly evolving subject.
 %
-Here we are going to discuss only the gauge that is relevant for our work. 
-Consider \textit{Slicing condition}. 
-One of the widely used conditions is so called 'maximal slicing' that sets $K=0$, 
-which in turn results in the equation
+% Consider \textit{Slicing conditions}. 
+One of the widely used slicing conditions is so called 
+'maximal slicing' that sets $K=0$, which in turn results in the equation
 %
 \begin{equation}
     D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e + S)\big].
@@ -244,7 +369,9 @@ distance from singularity \citep{Geyer:1995}.
 However implementation of this condition in from of a elliptic equations is 
 computationally expensive.
 %
-A class of slicing conditions in form of hyperbolic equations that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \citet{Bona:1994dr}. 
+A class of slicing conditions in form of hyperbolic equations that are more 
+favorable from numerical standpoint and that reproduces the desired behavior of the maximal 
+slicing was proposed in \citet{Bona:1994dr}. 
 %
 It reads 
 %
@@ -274,13 +401,6 @@ Then, integrating equation Eq.~\eqref{eq:theory:gauge_onepluslog}) yields
 %
 This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \citep{Baumgarte:2002jm}.
 
-%% Strongly hyperbolic formulations of EFE
-
-
-
-
-
-
 
 Next, consider Spatial gauge conditions.
 The requirements for the gauge are similar as in the case of the $\alpha$, 
@@ -307,6 +427,134 @@ A modified \textit{Gamma driver}, gauge that does not have zero or small speed m
 %% \end{align}
 %
 was proposed by \citet{vanMeter:2006vi} and was applied to study binary black holes by \citet{Campanelli:2005dd}.
+
+
+
+
+
+
+
+
+
+
+
+
+%It has been shown, that the \ac{ADM} system of equations in its original form (\ref{eq:theory:adm}) 
+%is only \red{weekly hyperbolic [One more sencnece on what it means]} \citep{Baumgarte:2002jm}. 
+%Specifically, it was shown that the \red{numerical?} errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
+%
+%In an attempt to mitigate this problem, different formulations of the \ac{EFE} as \ac{IVP} were created. In particular, the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
+%the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
+%and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+%%
+%We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of \ac{EFE} for numerical applications is ongoing. 
+%%
+%Of special reliance to this thesis is the conformal-covariant variant of 
+%the Z4 formulation, also known as Z4c, which we will discuss slightly further. 
+%The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
+
+%% The CCZ4 Formulation and Z4c formulalations
+
+%The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the 
+%zero-speed modes of the original \ac{ADM} and thus -- strongly-hyperbolic. 
+%This is achieved by not explicitly enforcing the constraints and treating the deviation 
+%from them as an dependent variable $Z_{\mu}$. 
+%The $Z_{\mu}$ is also called the Z4 four-vector.
+%
+%The evolution equations then read
+%
+%\begin{equation}
+%R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
+%\label{eq:theory:z4fieldeq}
+%\end{equation}
+%
+%and two sets of constraint equations
+%
+%\begin{equation}
+%\nabla_{\rho} g^{\mu\nu} = 0, \text{ and } Z_{\mu} = 0,
+%\label{eq:theory:z4connect}
+%\end{equation}
+
+%where the latter is called an algebraic constraint. If its derivative vanishes,
+% it is equivalent to imposing the \ac{ADM} momentum and Hamiltonian constraints \citep{Bona:2009}. 
+%%
+%The Z4 system preserves the constraint.
+%The \ac{EFE} themselves are recovered from Eq.~\eqref{eq:theory:z4connect} and 
+%Eq.~\eqref{eq:theory:z4fieldeq} when the algebraic constraint is satisfied, 
+%$\partial_t (Z_{\mu})= 0$. 
+%%
+%However, while Z4 system preserves the constraint, the numerical solution of 
+%the system of equations introduces error, that leads to a constraint violation during the evolution. 
+%To mitigate this problem the Z4 system is further modified to enforce the 
+%dampening of the constraint violation propagation \citep{Gundlach:2005eh}.
+%%% ---
+%A new version of Z4 was introduced by \citet{Alic:2011gg}. 
+%It incorporates the constraint-damping properties of the original Z4 
+%and also allows for a better \ac{BH} treatment via \textit{moving-puncture}, 
+%that will be \red{discussed later}. 
+
+%The CCZ4 system reads 
+%\begin{align}
+%\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
+%\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
+%& + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
+%& -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
+%\partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
+%\partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
+%& - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
+%\partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
+%& + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
+%\partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
+%& - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
+%& - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
+%& -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
+%\label{eq:theory:ccz4equations} % used for Whisky Code description
+%\end{align}
+
+%where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
+
+%\begin{align}
+%\widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
+%\widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
+%\end{align}
+
+%\red{Additionally, there exist a Z4c formulation; that one is used in WhiskyTHC}
+%\red{reshuffle these paragraphs}
+%
+%The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
+%summarized in \citet{Hilditch:2012fp}. 
+%%% ---
+%The BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}, while
+%having zero-speed characteristic variable that could lead to the large 
+%Hamiltonian constraint violation in \ac{NR}, have the advantage of the choice of 
+%conformal variables and is not bound to a given gauge condition 
+%(thus a gauge beneficial for \ac{BH}, \ie, moving puncture gauge can be used).
+%%
+%The generalized harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}, 
+%allows for dampening of the constraint violation \citep{Gundlach:2005eh} and constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}
+%%
+%To address the limitations of aforementioned formulations, but preserve their advantages,
+%a conformal composition of Z4 (that is closely related to generalized harmonic formulation) 
+%was proposed in \citet{Bernuzzi:2009ex}.
+%%
+%
+%
+%In Z4c formulation the constraints are preserved (contrary to BSSNOK) in vacuum and matter.
+%In \citet{Ruiz:2010qj}, the (high derivative order) constraint preserving boundary conditions 
+%for Z4c were presented. They allowed for better behaviour of the propagating constraint violations
+%at the outer boundary. Also, the the well-posedness of the Z4c constraint subsystem \ac{IVP} 
+%was demonstrated.
+%In \citet{Cao:2011fu}, the Z4c plus puncture gauge was considered in full-3D evolution of and 
+%new discretization method was proposed/
+%
+%
+%
+%The development of the Z4c is in part motivated by the need to remove the zero-speed charateristic variable in the 
+%constraint subsystem of BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}
+%that could lead to the large Hamiltonian constraint violation in \ac{NR}.
+%The Z4c (conformal decomposition of the Z4) was designed to combine the advantages of the 
+%BSSNOK system, (\ie, and the choice of conformal variables,an ability to chose a gauge, \eg, a moving puncture gauge, advantageous for \ac{BH} evolution) and 
+
 
 
 
@@ -494,333 +742,242 @@ was proposed by \citet{vanMeter:2006vi} and was applied to study binary black ho
 
 %% Strongly Hyperbolic Formulations of the Einstein Equations
 
-It has been shown, that the \ac{ADM} system of equations in its original form (\ref{eq:theory:adm}) 
-is only weekly hyperbolic \citep{Baumgarte:2002jm}. 
-Specifically, it was shown that the \red{numerical?} errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
-%
-In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{IVP} were proposed. In particular, the generalized-harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}. It has an advantage of allowing for dampening of the constraint violation \citep{Gundlach:2005eh} and constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}.
-%
-The BSSNOK formulation, was derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \citep{Nakamura1987,Shibata:1995we,Baumgarte:1998te}. It had an advantage of allowing to choose conformal variables and was not bound to a given gauge condition (thus a gauge beneficial for \acp{BH} evolution, \ie, moving puncture gauge can be used). However, it had zero-speed characteristic variables that could lead to the large Hamiltonian constraint violation in \ac{NR} applications.
-%
-In addition, a series of formulations was proposed, where the constraint violation
-was treated as an independent variable.
-The Z4 formulation \citep{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
-%
-Conformal and covariant formulation of the Z4 system with constraint-violation damping, the CCZ4, was proposed in \citet{Alic:2011gg}. However, it included parametrized constraint addition, similar to BSSNOK, that could lead to the issues in numerical applications \citep{Babiuc:2006wk}.
-% 
-The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
-summarized in \citet{Hilditch:2012fp}. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-It has been shown, that the \ac{ADM} system of equations in its original form (\ref{eq:theory:adm}) 
-is only \red{weekly hyperbolic [One more sencnece on what it means]} \citep{Baumgarte:2002jm}. 
-Specifically, it was shown that the \red{numerical?} errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
-
-In an attempt to mitigate this problem, different formulations of the \ac{EFE} as \ac{IVP} were created. In particular, the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
-the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
-and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
-%
-We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of \ac{EFE} for numerical applications is ongoing. 
-%
-Of special reliance to this thesis is the conformal-covariant variant of 
-the Z4 formulation, also known as Z4c, which we will discuss slightly further. 
-The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
-
-%% The CCZ4 Formulation and Z4c formulalations
-
-The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the 
-zero-speed modes of the original \ac{ADM} and thus -- strongly-hyperbolic. 
-This is achieved by not explicitly enforcing the constraints and treating the deviation 
-from them as an dependent variable $Z_{\mu}$. 
-The $Z_{\mu}$ is also called the Z4 four-vector.
-
-The evolution equations then read
-
-\begin{equation}
-R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
-\label{eq:theory:z4fieldeq}
-\end{equation}
-
-and two sets of constraint equations
-
-\begin{equation}
-\nabla_{\rho} g^{\mu\nu} = 0, \text{ and } Z_{\mu} = 0,
-\label{eq:theory:z4connect}
-\end{equation}
-
-where the latter is called an algebraic constraint. If its derivative vanishes,
- it is equivalent to imposing the \ac{ADM} momentum and Hamiltonian constraints \citep{Bona:2009}. 
-%
-The Z4 system preserves the constraint.
-The \ac{EFE} themselves are recovered from Eq.~\eqref{eq:theory:z4connect} and 
-Eq.~\eqref{eq:theory:z4fieldeq} when the algebraic constraint is satisfied, 
-$\partial_t (Z_{\mu})= 0$. 
-%
-However, while Z4 system preserves the constraint, the numerical solution of 
-the system of equations introduces error, that leads to a constraint violation during the evolution. 
-To mitigate this problem the Z4 system is further modified to enforce the 
-dampening of the constraint violation propagation \citep{Gundlach:2005eh}.
-%% ---
-A new version of Z4 was introduced by \citet{Alic:2011gg}. 
-It incorporates the constraint-damping properties of the original Z4 
-and also allows for a better \ac{BH} treatment via \textit{moving-puncture}, 
-that will be \red{discussed later}. 
-
-%The CCZ4 system reads 
-%\begin{align}
-%\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
-%\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
-%& + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
-%& -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
-%\partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
-%\partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
-%& - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
-%\partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
-%& + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
-%\partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
-%& - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
-%& - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
-%& -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
-%\label{eq:theory:ccz4equations} % used for Whisky Code description
-%\end{align}
-
-%where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
-
-%\begin{align}
-%\widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
-%\widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
-%\end{align}
-
-\red{Additionally, there exist a Z4c formulation; that one is used in WhiskyTHC}
-\red{reshuffle these paragraphs}
-
-The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
-summarized in \citet{Hilditch:2012fp}. 
-%% ---
-The BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}, while
-having zero-speed characteristic variable that could lead to the large 
-Hamiltonian constraint violation in \ac{NR}, have the advantage of the choice of 
-conformal variables and is not bound to a given gauge condition 
-(thus a gauge beneficial for \ac{BH}, \ie, moving puncture gauge can be used).
-%
-The generalized harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}, 
-allows for dampening of the constraint violation \citep{Gundlach:2005eh} and constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}
-%
-To address the limitations of aforementioned formulations, but preserve their advantages,
-a conformal composition of Z4 (that is closely related to generalized harmonic formulation) 
-was proposed in \citet{Bernuzzi:2009ex}.
-%
-
-
-In Z4c formulation the constraints are preserved (contrary to BSSNOK) in vacuum and matter.
-In \citet{Ruiz:2010qj}, the (high derivative order) constraint preserving boundary conditions 
-for Z4c were presented. They allowed for better behaviour of the propagating constraint violations
-at the outer boundary. Also, the the well-posedness of the Z4c constraint subsystem \ac{IVP} 
-was demonstrated.
-In \citet{Cao:2011fu}, the Z4c plus puncture gauge was considered in full-3D evolution of and 
-new discretization method was proposed/
-
-
-
-The development of the Z4c is in part motivated by the need to remove the zero-speed charateristic variable in the 
-constraint subsystem of BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}
-that could lead to the large Hamiltonian constraint violation in \ac{NR}.
-The Z4c (conformal decomposition of the Z4) was designed to combine the advantages of the 
-BSSNOK system, (\ie, and the choice of conformal variables,an ability to chose a gauge, \eg, a moving puncture gauge, advantageous for \ac{BH} evolution) and 
-
-
-
-
-
-
-
-
-
-
-
-
-
+%It has been shown, that the \ac{ADM} system of equations in its original form (\ref{eq:theory:adm}) 
+%is only weekly hyperbolic \citep{Baumgarte:2002jm}. 
+%Specifically, it was shown that the \red{numerical?} errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
+%%
+%In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{IVP} were proposed. In particular, the generalized-harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}. It has an advantage of allowing for dampening of the constraint violation \citep{Gundlach:2005eh} and constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}.
+%%
+%The BSSNOK formulation, was derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \citep{Nakamura1987,Shibata:1995we,Baumgarte:1998te}. It had an advantage of allowing to choose conformal variables and was not bound to a given gauge condition (thus a gauge beneficial for \acp{BH} evolution, \ie, moving puncture gauge can be used). However, it had zero-speed characteristic variables that could lead to the large Hamiltonian constraint violation in \ac{NR} applications.
+%%
+%In addition, a series of formulations was proposed, where the constraint violation
+%was treated as an independent variable.
+%The Z4 formulation \citep{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+%%
+%Conformal and covariant formulation of the Z4 system with constraint-violation damping, the CCZ4, was proposed in \citet{Alic:2011gg}. However, it included parametrized constraint addition, similar to BSSNOK, that could lead to the issues in numerical applications \citep{Babiuc:2006wk}.
+%% 
+%The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
+%summarized in \citet{Hilditch:2012fp}. 
+
+
+%% ==========================================================
+%%
+%%                 G R H D 
+%%
+%% ==========================================================
 
 %% ---------------------------------------------------------------------------
 \subsection{General Relativistic Hydrodynamics \& Valencia formulation}
 %% ---------------------------------------------------------------------------
 
 
-Eulerian observer, an observer orthogonal to the hypersurface of constant coordinate time.
+\gray{Eulerian observer, an observer orthogonal to the hypersurface of constant coordinate time}.
 
-In this part we briefly overview key definitions and concepts behind general realtivistic hydrodynamics. For a detailed discussion see \textit{e.g.,} \cite{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013}
+In this part we briefly overview key definitions and concepts behind \ac{GRHD}. 
+For a detailed discussion see \textit{e.g.,} \citet{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013}
 
 %% --- Kinematics
 
-In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities such as energy density, mass, momentum density. However, in general and special relativity, the these quantities are not well defined and depend on the observer. In other words, different observers perceive the the same fluid being in different thermodynamic state. Hence, a description of the fluid dynamics in relativity requires a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, that are observer-dependent, but implicitly by a "flow" in spacetime. These are \textit{flux-conservative formulations} of hydrodynamics.
+In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities 
+such as energy density, mass, momentum density. However, in general and special relativity, these quantities 
+are not well defined and depend on the observer. In other words, different observers perceive the same fluid 
+being in different thermodynamic states. Hence, a description of the fluid dynamics in relativity requires 
+a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, 
+that are observer-dependent, but implicitly by a "flow" in spacetime. 
+These are flux-conservative formulations of \ac{HD}.
+%
+For instance, in the classical definition of density, a scalar $\rho$, usually defined as 
+total umber of particles $N$ of rest-mass $m$ in the volume $V$. 
+Then, the total mass is given by the 
+spatial integral of $\rho \text{d}^3x = m\int_V n \text{d}^3 x = mN$. 
+%
+However, while the number of particles $N$ would be the same regardless of the observer, 
+the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. 
+Hence, the $n$ would differ. 
+One of the solutions is to chose a frame of reference, that is comoving with the fluid and 
+define $\rho$ there. However, this would hinder the ability to generalize the formulation 
+to other reference frames.
+A better solution is to construct a covariant description in terms of invariant quantities.
 
-For instance, in the classical definition of density a scalar $\rho$, usually defined as total umber of particles $N$ of rest-mass $m$ in the volume $V$. Then, the total mass is given by the spatial integral of $\rho \text{d}^3x = m\int_V n \text{d}^3 x = mN$. 
 
-However, while the number of particles $N$ would be the same regardless of the observer, the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. Hence, the $n$ would differ. One of the solutions is to chose a frame of reference, that is comoving with the fluid and define the $\rho$ there. However, this would hinder the ability to generalize to other reference frames.
-A better solution is to construct a \textit{covariant description in terms of invariant quantities}.
-
-Two important quantities are needed to be introduced. The $\boldsymbol{\rho}$ -- fluid density in space-time. Then, conservation of the number of particles of the fluid is expressed by the vanishing exterior product of the density: 
-
-\begin{equation}
+First, we discuss two important quantities of the fluid kinematics.
+Consider $\boldsymbol{\rho}$, the fluid density in space-time. 
+The conservation of the number of particles is expressed by the vanishing exterior product of the density: 
+%
+\begin{equation*}
 \int_{\partial\Omega} \boldsymbol{\rho} = \int_{\Omega}\text{d}\boldsymbol{\rho} = 0,
-\end{equation}
+\end{equation*}
+%
+that reads as the following: the net flow across any sufficiently regular 
+surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
 
-that reads as the following: the net flow across any sufficiently regular surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
-
-Second important quantity is flux. Generally, flux of a vector field can be described by a three-form, for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
-A vector field associated with density is called \textit{rest-mass density four-vector} and is denoted by $\vec{j}$.
+Second important quantity is flux. 
+Generally, a flux of a vector field can be described by a three-form, 
+for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
+A vector field associated with density is called rest-mass density four-vector 
+and is denoted by $\vec{j}$, and relates to the $\boldsymbol{\rho}$ as 
+%
 \begin{equation}
 \int_{\Sigma} \boldsymbol{\rho} = - \int_{\Sigma}\vec{j}\cdot\vec{n}\text{Vol}_x ^3,
 \end{equation}
+%
 where $\text{Vol}_x ^3,$ is the volume pseudo-form on the hypersurface, $\vec{n}$ is the norm.
-The $\vec{j}$ is time like (or null). It is given by the the flux of particles across any future-oriented spacelike hypersurface is positive (or zero). 
-If $\vec{j}$ is timelike, there exists a unique decomposition 
+%
+The $\vec{j}$ is time like (or null). In other words, the flux of particles across any 
+future-oriented spacelike hypersurface is positive (or zero). 
+%
+If $\vec{j}$ is time like, there exists a unique decomposition 
+%
 \begin{equation}
 \vec{j} = \rho \vec{u},
 \label{eq:theory:defofjandu}
 \end{equation}
+%
 where the scalar $\rho$ can be seen as density in the co-moving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
-The divergence of vecotor $j$ then gives a familiar mass conservation expression
+The divergence of vector $j$ then gives a familiar mass conservation expression
+%
 \begin{equation}
 0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
 \label{eq:theory:nablamu_jmu}
 \end{equation}
 
-Having the built the foundation, the stress-energy tensor can now be introduced.
-Consider the mixed tensor $\boldsymbol{T}$. Since the three-forms are equivalent to vectors, the flow of the $\nu$ momentum across the volume element orthogonal to $dx^{\mu}$ can be defined as
 
+Next, we proceed with introducing the mixed tensor $\boldsymbol{T}$, 
+the stress energy tensor of the fluid.
+%
+Since the three-forms are equivalent to vectors, the flow of the $\nu$ momentum across 
+the volume element orthogonal to $dx^{\mu}$ can be defined as
+%
 \begin{equation}
 {T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu}).
 \end{equation}
-
-${T^{\mu}}_{\nu}$ is the stress energy tensor that was already introduced earlier \eqref{eq:theory:action1}. There, if the Einstein equation are satisfied the Bianchi identities dictate that the $\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
-
+%
+Note the stress energy tensor has already appeared in our derivation of the 
+\ac{EFE}, in Appendix~\ref{app:efe}, in Eq.~\eqref{eq:theory:action1}
+There, if the \ac{EFE} are satisfied the Bianchi identities dictate that the 
+$\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
+%
 \begin{equation}
 \nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
 \label{eq:theory:nablamu_tmunu}
 \end{equation}
-
-However, this statement does not imply the conservation of the energy and momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires $\vec{\partial}_{\nu}$ to be a Killing vector.
+%
+However, this statement does not imply the conservation of the energy and 
+momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires 
+$\vec{\partial}_{\nu}$ to be a Killing vector.
 
 
 
 %% --- Dynamics
 
-Now we have introduced the fluid kinematic, and defined the important quantities such as mass, energy and momentum and their "conservation" in \eqref{eq:theory:nablamu_jmu} and \eqref{eq:theory:nablamu_tmunu}.
+%% Now we have introduced the fluid kinematic, and defined the important quantities such as mass, energy and momentum and their "conservation" in \eqref{eq:theory:nablamu_jmu} and \eqref{eq:theory:nablamu_tmunu}.
 
 Next we proceed with discussing the fluid dynamics. 
+%
+In the following we limit the discussion to the perfect fluid, meaning that in the co-moving frame, 
+there is not heat conduction and there is no viscosity. The former criterion implies that the fluid is in 
+\ac{LTE}. The latter is more complex, as there is still no consensus on the correct mathematical formulation, 
+especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in 
+\ac{GR} (see e.g., \citet{Andersson:2006nr} and references therein). 
 
-In the following we limit the discussion to the \textit{perfect fluid}, meaning that in the co-moving frame, there is not heat conduction and there is no viscosity (see however section \ref{sec:whisky:grless} for the discussion of effective viscosity). The former criterion implies that the fluid is in local thermodynamic equilibrium (LTE). The latter however requires more explanation. There is still no consensus on the correct mathematical formulation, especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in general-relativity (see e.g., \cite{Andersson:2006nr} and references therein). 
 
-Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. To construct it, we return to the fluid's four velocity $\vec{u}$ from Eq.~\eqref{eq:theory:defofjandu}. If $e_{i}$ is the basis vector, the scalar product $\vec{u}\cdot\vec{e}_i=0$ and $\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$, then the orthonormal tetrad $\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. 
-
+Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. 
+To construct it, we return to the fluid's four velocity $\vec{u}$ from Eq.~\eqref{eq:theory:defofjandu}. 
+If $e_{i}$ is the basis vector, the scalar products $\vec{u}\cdot\vec{e}_i=0$ and 
+$\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$, then the orthonormal tetrad 
+$\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. 
+%
 Tensor $\boldsymbol{T}$ is the stress-energy tensor with the following components: 
-
+%
 \begin{itemize}
-    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$
-    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction.
-    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
+    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$,
+    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy 
+    flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction,
+    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component 
+    of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
 \end{itemize}
-
-Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively described by a scalar $p$, that we call pressure as
-
+%
+Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations 
+of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively described 
+by a scalar $p$, that we call pressure as
+%
 \begin{equation}
 \boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k,
 \end{equation}
-
+%
 Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
-
+%
 \begin{equation}
 \boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
 \end{equation}
-
-Defining the enthalpy of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, we rewrite $\boldsymbol{T}$ as 
-
+%
+Defining the enthalpy of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, 
+we rewrite $\boldsymbol{T}$ as 
+%
 \begin{equation}
 \boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
 \label{eq:theory:stressenergytensor}
 \end{equation}
 
-In addition to the fluid kinematics (Eq.~\eqref{eq:theory:nablamu_jmu} and Eq.~\eqref{eq:theory:nablamu_tmunu}) and the description of motion (Eq.~\eqref{eq:theory:stressenergytensor}), the relation between the pressure, internal energy and density is needed to fully describe the dynamics of the fluid. This relation is provided by the equation of state (EOS).
 
-The commonly adopted EOS are the the ideal-gas, or gamma-law EoS $\rho = (\Gamma-1)\rho\epsilon$, where $\Gamma$ is the polytropic index of the gas, the polytropic EOS $p = K\rho^{\Gamma}$ and the microphysical equation of state, which we discuss separately in section \ref{sec:whisky:eos}.
-
-Combined with an EOS, equations \eqref{eq:theory:adm}, \eqref{eq:theory:nablamu_jmu}, \eqref{eq:theory:nablamu_tmunu} and \eqref{eq:theory:stressenergytensor} form a hyperbolic system of equations that can be evolved, once initial data is prescribed. The complete evolution of spacetime and the dynamics of the matter requires initial data to be set on the Cauchy surface.
+In addition to the fluid kinematics Eq.~\eqref{eq:theory:nablamu_jmu} and Eq.~\eqref{eq:theory:nablamu_tmunu}
+and the description of motion Eq.~\eqref{eq:theory:stressenergytensor}, the relation between the pressure, 
+internal energy and density is needed to fully describe the fluid. 
+This relation is provided by the \ac{EOS}.
+%
+The commonly adopted \acp{EOS} are the the ideal-gas, or gamma-law \ac{EOS} $\rho = (\Gamma-1)\rho\epsilon$, 
+where $\Gamma$ is the polytropic index of the gas, the polytropic \ac{EOS} $p = K\rho^{\Gamma}$ 
+and the microphysical \ac{EOS}, which we discuss separately in Sec.~\ref{sec:whisky:eos}.
+%
+Combined with an \ac{EOS}, Eqs~\eqref{eq:theory:adm}, \eqref{eq:theory:nablamu_jmu}, \eqref{eq:theory:nablamu_tmunu} 
+and \eqref{eq:theory:stressenergytensor} form a hyperbolic system of equations that can be evolved, 
+once initial data is prescribed. 
+The complete evolution of spacetime and the dynamics of the matter 
+requires initial data to be set on the Cauchy surface.
 
 %% ---------- Conservative Formulations
 
 %% In the pioneering works of May and White \cite{May:1966} and Wilson \cite{Wilson:1972} the equations of general relativistic hydrodynamics were solved using the finite-difference (FD) schemes after casting them a from of non-linear advection-like equations. To avoid excessive oscillations at shocks a combination of upwinding and artificial-viscosity methods was employed. This however led to severl limitations, such as difficulty with tunning the artificial viscosity to still allow shocks to develop, and the limit on a flows being only mildly relativistic \cite{Font:2008fka}. A next big advancement in the numerical relativistic hydrodynamics was made after the non-conservative nature of the Wilson’s approach was pointed out \cite{Marti:1991wi} and the conservation formulation was developed. 
 
 For numerical reasons it is essential to cast the equations discussed above into the conservative formulation.
-
-An important example of the conservation formulation that is adopted to $3 + 1$ formalism is the "Valencia formulation" \cite{Banyuls:1997} that can be represented as following
-
+%
+An important example of the conservation formulation that is adopted to $3 + 1$ formalism 
+is the "Valencia formulation" \citep{Banyuls:1997} that can be represented as following
+%
 \begin{equation}
 \frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
 \label{eq:theory:valencia_formalism}
 \end{equation}
+%
+where $u$ is a “vector” of primitive quantities, such as the rest-mass density or the specific internal energy,
+$\boldsymbol{F}^0$ is a “vector” of conserved quantities, and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ 
+are their fluxes and sources respectively. 
+%
+This formulation allowed to study ultra-relativistic flows and resolve shocks without spurious 
+oscillations and without the need for artificial viscosity, a numerical technique used 
+tackle the problem of excessive oscillations arising at shocks \citep[\eg][]{Font:2008fka}.
+%
+It was shown to be especially well suited for use with numerical methods that take into account the conservation laws. These are the \ac{FV} and \ac{FD} \ac{HRSC} methods, that we briefly discuss in Sec.~\ref{sec:nr_methods}.
+%
+Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods \citep[\eg][]{Shibata:2005gp,Giacomazzo:2010bx,Rezzolla:2011da,Radice:2013xpa}. See also \citet{Shibata:2016}
+and references therein.
+%
+Notably, there are other conservative formulations and methods (see \eg, \citet{Papadopoulos:1999kt}). 
 
-where $u$ is a “vector” of \textit{primitive quantities}, such as the rest-mass density or the specific internal energy, $\boldsymbol{F}^0$ is a “vector” of \textit{conserved quantities} and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ are their fluxes and sources respectively. 
 
-This formulation allowed to study ultra-relativistic flows and resolve shocks without spurious oscillations and without need for artificial viscosity.
 
-It was shown to be especially well suited for use with numerical methods that take into account the conservation laws. These are the finite-volume (FV) FD high-resolution shock capturing (HRSC) methods, that will be discussed in Chapter \ref{chapter:num_methods} 
 
-Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods (\textit{e.g.,} \cite{Giacomazzo:2010bx} [274]\cite{Rezzolla:2011da} and references therein \todo{add recolla/bernuzzi/radice/shibata}).
 
-There are other conservative formulations and methods (see \textit{e.g.,} \cite{Papadopoulos:1999kt}). However, we will limit our focus to the "Valencia formulation". 
 
-To begin we split the four-velocity $\vec{u}$ into the component parallel to the normal vector $\vec{n}$ and a purely spatial component as
+
+
+
+
+
+
+Next, we briefly outline the Valencia formulation.
+To begin we split the four-velocity $\vec{u}$ into the component parallel to the 
+normal vector $\vec{n}$ and a purely spatial component as
 
 \begin{equation}
 \vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon}),
