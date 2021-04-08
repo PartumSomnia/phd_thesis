@@ -9,58 +9,96 @@
 %% \externaldocument{intro}
 %% --------------------------------------
 
+In this Appendix we recall the main steps in deriving the Euler equation 
+in \ac{GR}. 
+We will follow closely the derivation provided in the PhD thesis of David Radice \citep{Radice:2013apa}. 
+where the derivation of is provided using modern differential geometry notation.
+
+%% ============================
+%%
+%% Boltzmann Equation
+%%
+%% ============================
+
 
 \section{The General-Relativistic Boltzmann Equation}
 
-In special relativity the Boltzmann equation was expressed by Synge \cite{Synge:1957}. Later Chernikov \cite{Chernikov:1962} and Tauber and Weinberg \cite{Tauber:1961} proposed its extension to the general relativity. \\
-The list of applications of the Boltzmann equation was limited to the relativistic gas at first \cite{Israel:1963}. Later the list was supplemented by transient relativistic thermodynamics \cite{Israel:1979wp}, radiative transfer \cite{Lindquist:1966}, core-collapse supernovae \cite{Bruenn:1985} and others (see \textit{e.g.}, \cite{Cercignani:2002} and references therein). \\
+In special relativity the Boltzmann equation was expressed by Synge \citep{Synge:1957}. 
+Later Chernikov~\citep{Chernikov:1962} and Tauber and Weinberg~\citep{Tauber:1961} 
+proposed its extension to the general relativity. 
+The list of applications of the Boltzmann equation was limited to the relativistic gas at first \citep{Israel:1963}. 
+Later the list was supplemented by 
+transient relativistic thermodynamics \citep{Israel:1979wp}, 
+radiative transfer \citep{Lindquist:1966}, 
+core-collapse supernovae \citep{Bruenn:1985} and others (see \textit{e.g.}, \cite{Cercignani:2002} and references therein). 
 
-Different formulations of the general relativistic Boltzmann equation exists in the literature. Lindquist \cite{Lindquist:1966} and Ehlers \cite{Ehlers:1971} proposed a geometrical interpretation. Later, a formulation based on Riemannian structure of tangent bundles was proposed by Sasaki \cite{Sasaki:1958,Sasaki:1962}. In addition, Debbasch and van Leuuwen \cite{Debbasch:2009a,Debbasch:2009b} recently provided a detailed derivation, albeit strongly focused on the algebraic aspects while eluding simple geometrical interpretation. \\
-Here we recall the detailed derivation of the general relativistic Boltzmann equation, using modern differential geometry notation by Radice. 
+Different formulations of the general relativistic Boltzmann equation exists in the literature. 
+Lindquist \citep{Lindquist:1966} and Ehlers \citep{Ehlers:1971} proposed a geometrical interpretation. 
+Later, a formulation based on Riemannian structure of tangent bundles was proposed by Sasaki \citep{Sasaki:1958,Sasaki:1962}. 
+In addition, Debbasch and van Leuuwen \citep{Debbasch:2009a,Debbasch:2009b} provided a detailed derivation, 
+albeit strongly focused on the algebraic aspects while eluding simple geometrical interpretation.
 
-\textcolor{red}{This.Is.Tough. Pure math. Copied from David + his sources.}
+
 
 \subsection{The geometry of the tangent bundle}
+%
+Let the $\mathcal{M}$ be $4$ dimensional differential manifold such that 
+$(\mathcal{M},\: g_{\alpha\beta})$ form the $C^2$ spacetime. 
+The set of tangent vectors of $\mathcal{M}$ constitutes \ndef{tangent bundle} of $\mathcal{M}$, 
+the we denote as $T\mathcal{M}$. 
+The set of all unit vectors of $\mathcal{M}$ constitute the \ndef{subbundle} of $T\mathcal{M}$. 
+%
+Every Killing vector field of $\mathcal{M}$ is in incompressible vector field
 
-Let the $\mathcal{M}$ be $4$ dimensional differential manifold such that $(\mathcal{M},\: g_{\alpha\beta})$ form the $C^2$ spacetime. The set of tangent vectors of $\mathcal{M}$ constitutes \textit{tangent bundle} of $\mathcal{M}$, the we denote as $T\mathcal{M}$. The set of all unit vectors of $\mathcal{M}$ constitute the \textit{subbundle} of $T\mathcal{M}$. \\
-\textcolor{gray}{incompressible vector field}\\
-\textit{Every Killing vector field of $\mathcal{M}$ is in incompressible vector field}
+%% \textcolor{gray}{incompressible vector field}\\
+%% \textit{Every Killing vector field of $\mathcal{M}$ is in incompressible vector field}
+
 
 \subsubsection{Extended transformation and extended tensors}
 
-Let the $T\mathcal{M}$ be the set of all the tangent vectors of $\mathcal{M}$. The $T\mathcal{M}$ has a natural topology, bundle structure with $\mathcal{M}$ and the base - linear vector space $E^i$. We call $T\mathcal{M}$ the \textit{tangent bundle} of $\mathcal{M}$. Natural projection, or a projection map $\pi:\: T\mathcal{M}\rightarrow\mathcal{M}$.  \\
+Let the $T\mathcal{M}$ be the set of all the tangent vectors of $\mathcal{M}$. 
+The $T\mathcal{M}$ has a natural topology, bundle structure with $\mathcal{M}$ and the base - linear vector space $E^i$. 
+We call $T\mathcal{M}$ the \ndef{tangent bundle} of $\mathcal{M}$. 
+Natural projection, or a \ndef{projection map} $\pi:\: T\mathcal{M}\rightarrow\mathcal{M}$.  
 
-Let $U$ be a coordinate neighborhood, or a coordinate patch of $\mathcal{M}$ with $n$ variables $x^{\alpha}$ as coordinates. Then, every tangent vector of $\mathcal{M}$ at a point $p\in U$ with $2n$ variables $(x^i,\upsilon^{\alpha})$. Here $x^{\alpha}$ are coordinates of $p$ with respect to the coordinate patch ${x^{\alpha}}$ and $\upsilon^{\alpha}$ are components of a tangent vector in the natural frame that constitutes by the vectors $\partial/\partial x^4$ at $q$. Thus, the vector $\vec{p}$ at $q$ can be written as:
-
+Let $U$ be a coordinate neighborhood, or a coordinate patch of $\mathcal{M}$ with $n$ variables $x^{\alpha}$ as coordinates. 
+Then, every tangent vector of $\mathcal{M}$ at a point $p\in U$ with $2n$ variables $(x^i,\upsilon^{\alpha})$. 
+Here $x^{\alpha}$ are coordinates of $p$ with respect to the coordinate patch ${x^{\alpha}}$ and $\upsilon^{\alpha}$ 
+are components of a tangent vector in the natural frame that constitutes by the vectors $\partial/\partial x^4$ at $q$. 
+Thus, the vector $\vec{p}$ at $q$ can be written as:
+%
 \begin{equation}
 \vec{p} = p^{\alpha}\frac{\partial}{\partial^{\alpha}}
 \end{equation}
-
+%
 and its dual as 
-
+%
 \begin{equation}
 \underline{p} = p_{\alpha}dx^{\alpha}:=g_{\alpha\beta}p^{\beta}dx^{\alpha}
 \end{equation}
-
-In addition we introduce a coordiante patch $TU$, $\{z^A\}$, where $A$ runs from $0$ to $7$ of $T\mathcal{M}$ as 
-
+%
+In addition we introduce a coordinate patch $TU$, $\{z^A\}$, where $A$ runs from $0$ to $7$ of $T\mathcal{M}$ as 
+%
 \begin{equation}
 z^{\alpha} = z^{\alpha}, \hspace{10mm} z^{\alpha+4} = p^{\alpha}.
 \end{equation}
-
-Now, let the $U(x^{\alpha})$ and $\hat{U}(\hat{x}^{\alpha})$ be the two coordinate patches of $\mathcal{M}$ such that $U\cap\hat{U}$ is not empty. Then the intersection of the coordinate patches is also not empty. 
-for every coordinate transformation of $\mathcal{M}$, there is a corresponding matrix $\frac{\partial \hat{x}^{\alpha}}{\partial x^{\beta}}$.
+%
+Now, let the $U(x^{\alpha})$ and $\hat{U}(\hat{x}^{\alpha})$ be the two coordinate patches of 
+$\mathcal{M}$ such that $U\cap\hat{U}$ is not empty. Then the intersection of the coordinate patches is also not empty. 
+%
+For every coordinate transformation of $\mathcal{M}$, there is a corresponding matrix 
+$\frac{\partial \hat{x}^{\alpha}}{\partial x^{\beta}}$.
+%
 The coordinate transformation is then
-
+%
 \begin{equation}
 \hat{x}^{\mu} = \hat{x}^{\mu}(x), \hspace{5mm} \hat{p}^{\mu} = \frac{\partial\hat{x}^{\mu}}{\partial x^{\nu}}p^{\nu}
 \end{equation}
-
-which denotes the extended transforation of the $\hat{x}^{\mu} = \hat{x}^{\mu}(x)$. \\
-
-
+%
+which denotes the extended transformation of the $\hat{x}^{\mu} = \hat{x}^{\mu}(x)$. 
+%
 The corresponding Jacobian matrix is 
-\renewcommand\arraystretch{1.6} %% it stretches the matrix
+%\renewcommand\arraystretch{1.0} %% it stretches the matrix
 \begin{equation}
 \frac{\partial\hat{z}^A}{\partial z^B} = 
 \begin{pmatrix}
@@ -68,193 +106,266 @@ The corresponding Jacobian matrix is
 \frac{\partial^2\hat{x}^{\alpha}}{\partial x^{\beta} \partial x^{\gamma}}p^{\gamma} & \frac{\partial\hat{x}^{\alpha}}{\partial x^{\beta}} 
 \end{pmatrix}
 \end{equation}
-\renewcommand\arraystretch{1.0}
+%\renewcommand\arraystretch{1.0}
 
 
 
 
 \subsubsection{Vectors on $T\mathcal{M}$}
 
-As we will need to introduce connections on a tangent bundle, here we discuss the double tangent bundle, ot a second tangent bundle. Since $T\mathcal{M}$ is a vector bundle on its own right, its tangent bundle has the secondary vector bundle structure $TT\mathcal{M}$. Let point $b\in TU$ and $T_b T\mathcal{M}$ be the tangent space to $T\mathcal{M}$ at $b$. \\
-Given a vector $\partial/\partial x^{\alpha}$ at a point $b$, it can be "pushed forward" to the point on the $TT\mathcal{M}$ by means of so called \textit{differential of} $\pi$, whitten as $\pi_*$ \cite{Frankel:2002}.
-On a natural basis the push-forward acts as 
-
+As we will need to introduce connections on a tangent bundle, here we discuss the 
+double tangent bundle, or a second tangent bundle. Since $T\mathcal{M}$ is a vector bundle on its own right, 
+its tangent bundle has the secondary vector bundle structure $TT\mathcal{M}$. 
+Let the point $b\in TU$ and the $T_b T\mathcal{M}$ be the tangent space to $T\mathcal{M}$ at $b$. 
+%
+Given a vector $\partial/\partial x^{\alpha}$ at a point $b$, it can be "pushed forward" to the point on 
+the $TT\mathcal{M}$ by means of so called \ndef{differential of} $\pi$, written as $\pi_*$ \citep{Frankel:2002}.
+%
+On a natural basis the \ndef{push-forward} acts as 
+%
 \begin{equation}
 \pi_*\Big[\frac{\partial}{\partial x^{\alpha}}\Big] = \frac{\partial}{\partial x^{\alpha}}, \hspace{5mm} \pi_* \Big[\frac{\partial}{\partial p^{\alpha}}\Big] = 0,
 \end{equation}
-
-and the pull back 
-
+%
+and the \ndef{pull back}  
+%
 \begin{equation}
 \pi^* {\text d} x^{\alpha} = {\text d} x^{\alpha}.
 \end{equation}
-
-Consider a vector field $\vec{X} \ in TT\mathcal{M}$  in a vicinity of the point $b$, which is associated with the point $q$ of $\mathcal{M}$ and vector $\vec{x}\in T_{q}\mathcal{M}$. Let $b{\lambda}$ be the flow of $b$ generated by $\vec{X}$. The $b(\lambda)$ is associate with $q(\lambda)$, the one parameter family of points of $\mathcal{M}$. The $b(\lambda)$ is also associated with $\vec{x}(\lambda)$ the one parameter family of vectors on $T\mathcal{M}$.  \\
-
-The vector field $\vec{X}$ is called \textit{vertical} if the $q(\lambda)\in\mathcal{M}$ are constant along the flow. Similarly, the vector field $\vec{X}$ is called \textit{horizontal} if $\vec{x}(\lambda)\in T_p \mathcal{M}$ is "constant" along the flow, meaning that $\vec{x}(\lambda)$ is just $\vec{x}$ that is \textit{parallel transported} to $q(\lambda)$. \\
-As there is no unique way to perform a parallel transport, the linear connection $\nabla$ on $\mathcal{M}$ has to be chosen. This choice is akin choosing two vector spaces $\mathcal{O}_b$ and $\mathcal{V}_b$ of the horizontal and vectical vectors respectively at each point $b$ that the direct sum of these spaces yields
-
+%
+Consider a vector field $\vec{X} \ in TT\mathcal{M}$ in a vicinity of the point $b$, which is 
+associated with the point $q$ of $\mathcal{M}$ and vector $\vec{x}\in T_{q}\mathcal{M}$. 
+Let $b{\lambda}$ be the flow of $b$ generated by $\vec{X}$. 
+The $b(\lambda)$ is associate with $q(\lambda)$, the one parameter family of points of $\mathcal{M}$. 
+The $b(\lambda)$ is also associated with $\vec{x}(\lambda)$ the one parameter family of vectors on $T\mathcal{M}$. 
+%
+The vector field $\vec{X}$ is called \ndef{vertical} if the $q(\lambda)\in\mathcal{M}$ are constant along the flow. 
+Similarly, the vector field $\vec{X}$ is called \ndef{horizontal} if $\vec{x}(\lambda)\in T_p \mathcal{M}$ 
+is "constant" along the flow, meaning that $\vec{x}(\lambda)$ is just $\vec{x}$ that is 
+\ndef{parallel transported} to $q(\lambda)$. 
+%
+As there is no unique way to perform a parallel transport, the linear connection $\nabla$ on $\mathcal{M}$ 
+has to be chosen. This choice is akin choosing two vector spaces $\mathcal{O}_b$ and $\mathcal{V}_b$ 
+of the horizontal and vertical vectors respectively at each point $b$ that the direct sum of these spaces yields
+%
 \begin{equation}
 \mathcal{O}_b\oplus \mathcal{V}_p = T_b T\mathcal{M}.
 \end{equation}
-
-Having the connection allows to prescribe a manner of lifting curves from the base manifold $T\mathcal{M}$ into the $T_b T\mathcal{M}$ \textcolor{red}{I need to fix this and understand}. A lift is the unique horizontal vector $\vec{X}\in T_bT\mathcal{M}$ whose projection is a vector $\vec{x}\in T_q\mathcal{M}$.\\ 
+%
+Having the connection allows to prescribe a manner of lifting curves from the base manifold $T\mathcal{M}$ 
+into the $T_b T\mathcal{M}$.
+\todo{I need to fix this and understand}. 
+A lift is the unique horizontal vector $\vec{X}\in T_bT\mathcal{M}$ 
+whose projection is a vector $\vec{x}\in T_q\mathcal{M}$.
 \textcolor{red}{fill it}
-Let us now define a \textit{connection vector basis} adopted to the aforementioned split of $T_b T\mathcal{M}$ $\{\text{D}/\partial x^A \}:=\{\text{D}/\partial x^{\alpha}, \partial/\partial p^{\alpha} \}$ where 
-
-\textcolor{red}{I did not find where this is derived from... difficult}
-
+%
+Let us now define a \ndef{connection vector basis} adopted to the aforementioned 
+split of $T_b T\mathcal{M}$ $\{\text{D}/\partial x^A \}:=\{\text{D}/\partial x^{\alpha}, \partial/\partial p^{\alpha} \}$ where 
+%
+\todo{I did not find where this is derived from... difficult}
+%
 \begin{equation}
 \frac{\text{D}}{\partial x^{\alpha}}{\partial x^{\alpha}} := \frac{\partial}{\partial x^{\alpha}} - {\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}}.
 \end{equation}
-
-Similarly a connection can be build for differential forms. Using the pull-back $\pi^*$ the dual basis $\{ \text{D}z^{A} \}:=\{\text{d}x^{\alpha}, \text{D}p^{\alpha}\}$ that satisfies 
-
+%
+Similarly a connection can be build for differential forms. 
+Using the pull-back $\pi^*$ the dual basis 
+$\{ \text{D}z^{A} \}:=\{\text{d}x^{\alpha}, \text{D}p^{\alpha}\}$ that satisfies 
+%
 \begin{equation}
 \text{D} = \text{d} p ^{\alpha} + {Gamma^{\alpha}}_{\beta\gamma}p^{\gamma}\text{d}x^{\beta}.
 \end{equation}
 
+
+
 \subsubsection{Metric on $T\mathcal{M}$}
-
-Note that 
-
+%
+We begin by noting that 
+%
 \begin{equation}
 \frac{\partial^2 \hat{x}^{\mu}}{\partial x^{\nu}\partial x^{\lambda}}p^{\lambda} = {\hat{\Gamma}^{\mu}}_{\delta\gamma}p^{\lambda}\frac{\partial\hat{x}^{\delta}}{\partial x^{\nu}}.
 \end{equation}
-
-Let us assume that for any point $b\in T\mathcal{M}$ there exist an open set $TU$, such that $b\in TU$ with a coordinate system on $TU$ that satisfies
-
+%
+Let us assume that for any point $b\in T\mathcal{M}$ there exist an open set $TU$, 
+such that $b\in TU$ with a coordinate system on $TU$ that satisfies
+%
 \begin{equation}
 G_{AB} = (\boldsymbol{\eta}\otimes\boldsymbol{\eta})_{AB},
 \end{equation}
+%
+where $\boldsymbol{\eta} = \text{diag}(-1, 1, 1, 1)$. 
 
-where $\boldsymbol{\eta} = \text{diag}(-1, 1, 1, 1)$. \\
-Let the $\hat{x}^A$ denote the generic coordinate system on $TU$. Then the metric in this coordinate system can be expressed as
 
-\begin{align}
+Let the $\hat{x}^A$ denote the generic coordinate system on $TU$. 
+Then the metric in this coordinate system can be expressed as
+%
+\begin{equation}
+\begin{aligned}
 \hat{G}_{\mu\nu} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}\eta_{\alpha\beta} + \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}{\hat{\Gamma}^{\gamma}}_{\:\:\:\alpha\lambda}p^{\lambda}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}}{\hat{\Gamma}^{\delta}}_{\:\:\:\beta\xi}p^{\xi}\eta_{\gamma\delta}; \\
 \hat{G}_{\mu\: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\gamma}}{\partial x^{\nu}}{\hat{\Gamma}^{\beta}}_{\:\:\:\gamma\lambda}p^{\lambda}\eta_{\alpha\beta}; \\
 \hat{G}_{\mu+4 \: \nu+4} &= \frac{\partial \hat{x}^{\alpha}}{\partial x^{\mu}}\frac{\partial \hat{x}^{\beta}}{\partial x^{\nu}} \eta_{\alpha\beta}
-\end{align}
-
+\end{aligned}
+\end{equation}
+%
 and the line element 
-
-\begin{align}
+%
+\begin{equation}
+\begin{aligned}
 dS^2 &= \hat{G}_{AB}d\hat{z}^A d\hat{z}^B = \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}[\text{d}p^{\mu} + {\hat{\Gamma}^{\mu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] [\text{d}p^{\nu} + {\hat{\Gamma}^{\nu}}_{\:\:\:\alpha\beta}p^{\beta}\text{d}x^{\alpha}] \\
 &= \hat{g}_{\mu\nu}\text{d}\hat{x}^{\mu}\text{d}\hat{x}^{\nu} + \hat{g}_{\mu\nu}\text{D}\hat{x}^{\mu}\text{D}\hat{x}^{\nu}
-\end{align}
-
-It is possible to show that the determinant $|\text{det}\boldsymbol{G}| = g^{2}$ as the transformation from the natural frame to the connection frame is unimodular \cite{Lindquist:1966}. Thus the volume pseudo-form on $T\mathcal{M}$ is in the coordiante patch $TU$
-
+\end{aligned}
+\end{equation}
+%
+It is possible to show that the determinant $|\text{det}\boldsymbol{G}| = g^{2}$ 
+as the transformation from the natural frame to the connection frame is unimodular \citeo{Lindquist:1966}. 
+Thus the volume pseudo-form on $T\mathcal{M}$ is in the coordinate patch $TU$
+%
+\begin{equation}
 \begin{align}
 \text{Vol}^8 &:= -g \text{d}x^{0} \wedge \text{d}x^{1} \wedge ... \wedge \text{d}p^{3} := - g\text{d}^{4}x \text{d}^{4}p, \\
 &:= -g \text{d}x^{0} \wedge \text{d}x^{0} \wedge ... \wedge \text{D}p^{3} :=-g \text{d}^{4}x\text{D}^4 p
 \end{align}
+\end{equation}
 
-\textcolor{red}{I kinda gave up here and just copied.}
+\todo{I kinda gave up here and just copied.}
+
 
 
 \section{The Liuville theorem}
 
-Let us start by introducing a \textit{cotangent bundle}. Let $\mathcal{M}$ be a differentiable manifold. Similarly to the construction of the tangent bundle, we can make a set of covectors on a given manifold into a vector bundle over $\mathcal{M}$, denoted $T^*\mathcal{M}$ and called \textit{cotangent bundle} of $\mathcal{M}$.  Similarly we can define a contangent bundle of a tangent one $T^*T\mathcal{M}$. The contangent bundle $T^*\mathcal{M}$ is the vector bundle dual to the tangent bundle $T\mathcal{M}$. 
+Let us start by introducing a cotangent bundle. 
+Let $\mathcal{M}$ be a differentiable manifold. 
+Similarly to the construction of the tangent bundle, we can make a set of covectors on a given manifold 
+into a vector bundle over $\mathcal{M}$, denoted $T^*\mathcal{M}$ and called \ndef{cotangent bundle} of $\mathcal{M}$.  
+Similarly we can define a contangent bundle of a tangent one $T^*T\mathcal{M}$. 
+The contangent bundle $T^*\mathcal{M}$ is the vector bundle dual to the tangent bundle $T\mathcal{M}$. 
 
-Let us start by defining \textit{Poincar\'e} 1-form on $T\mathcal{M}$, $\underline{\lambda}\in T^* T\mathcal{M}$. Consider point $q$ on a manifold $\mathcal{M}$ and a point $A$ associated with $q$ on a tangent bundle $T\mathcal{M}$. Let there be a 1-form $\underline{\alpha}\in T^* _q\mathcal{M}$. The $\underline{\lambda}$ and $\underline{\alpha}$ are uniquely connected $\underline{\lambda} = \pi^* \alpha$, and the former is called the \textit{Poincar\'e} 1-form. In local coordinate patch, $TU$ it is expressed as
-
+next, we introduce the Poincar{\'e} $1$-form on $T\mathcal{M}$, $\underline{\lambda}\in T^* T\mathcal{M}$. 
+Consider point $q$ on a manifold $\mathcal{M}$ and a point $A$ associated with $q$ on a tangent bundle $T\mathcal{M}$. 
+Let there be a 1-form $\underline{\alpha}\in T^* _q\mathcal{M}$. 
+The $\underline{\lambda}$ and $\underline{\alpha}$ are uniquely connected $\underline{\lambda} = \pi^* \alpha$, 
+and the former is called the \ndef{Poincar{\'e}} $1$-form. In local coordinate patch, $TU$ it is expressed as
+%
 \begin{equation}
 \underline{\lambda} = p_{\alpha} \text{d}x^{\alpha}.
 \end{equation}
-
+%
 the associated vector is 
-
+%
 \begin{equation}
 \vec{\lambda} = p^{\alpha} \frac{\text{D}}{\partial x^{\alpha}} = p^{\alpha}\frac{\partial}{\partial x^{\alpha}} - p^{\alpha}{\Gamma^{\beta}}_{\alpha\gamma}p^{\gamma}\frac{\partial}{\partial p^{\beta}},
 \end{equation}
-
-is called the $\textit{geodesic flow field}$. \\
-This flow represents a phase-space flow of particles moving along geodesics. \\
-
-Consider a mass shell, that at a point $q\in U$can be defined as a set:\\
-\textcolor{red}{remider: I have no idea how is this possible...}
-
+%
+is called the $\ndef{geodesic flow field}$. 
+This flow represents a phase-space flow of particles moving along geodesics. 
+%
+Consider next a \ndef{mass shell}, that at a point $q\in U$ can be defined as a set:
+%
+\todo{remider: I have no idea how is this possible...}
+%
 \begin{equation}
 \mathcal{S}_m = \big\{ p^{\alpha}\in T_q\mathcal{M}: p_{\mu}p^{\mu}+m^2 =:f(p) = 0 \big\}.
 \end{equation}
-
+%
 The normal to the mass-shell is 
-
+%
 \begin{align}
 \text{if } m &\neq 0 \hspace{5mm} \underline{\pi}:=\frac{q}{2m}\text{d}f, \hspace{5mm} \text{d}f = \frac{\partial f}{\partial x^{\mu}} + \frac{\partial f}{\partial p^{\mu}}\text{d}p^{\mu} = 2p_{\mu}\text{d}p^{\mu}, \\
 \text{if } m &= 0 \hspace{5mm} \underline{\pi}:=\frac{1}{2}\text{d}f
 \end{align}
-
+%
 Next, we introduce a unique form $\underline{\nu}$ whose restriction on $T_q\mathcal{M}$ is equal to $\underline{\pi}$. 
-
-\begin{align}
-\text{if } m &\neq 0 \hspace{5mm} \underline{\nu} = \frac{1}{m}p_{\alpha}\text{D}p^{\alpha} \\
-\text{if } m &= 0 \hspace{5mm} \underline{\nu} = p_{\alpha}\text{D}p^{\alpha}
-\end{align} 
-
-Note that $\underline{\nu} = 0$, meaning that the $\underline{\nu}$ is irrotational. It becomes clear if we re-express it as 
-
+%
+\begin{equation*}
+    \begin{aligned}
+    \text{if } m &\neq 0 \hspace{5mm} \underline{\nu} = \frac{1}{m}p_{\alpha}\text{D}p^{\alpha} \\
+    \text{if } m &= 0 \hspace{5mm} \underline{\nu} = p_{\alpha}\text{D}p^{\alpha}
+    \end{aligned} 
+\end{equation*}
+%
+Note that $\underline{\nu} = 0$, meaning that the $\underline{\nu}$ is irrotational. 
+It becomes clear if we re-express it as 
+%
 \begin{equation}
 \underline{\nu} = \frac{1}{2m}\frac{\text{D}f}{\partial p^{\alpha}}\text{D}p^{\alpha}
 \end{equation} 
-
-for massive particle case. For the mass-less the procedure is analogous. \\
-
-It can be shown that $\underline{\lambda}$ is ncompressible \textit{i.e.,} $\text{d}^{\star}\underline{\lambda} =\star \text{d}\star\underline{\lambda} =0$. \\
-
-In addition, both $\underline{\lambda}$ and $\underline{\nu}$ are harmonic forms as 
-
+%
+for massive particle case. For the mass-less the procedure is analogous. 
+%
+It can be shown that $\underline{\lambda}$ is incompressible \ie, 
+$\text{d}^{\star}\underline{\lambda} =\star \text{d}\star\underline{\lambda} =0$. 
+%
+In addition, both $\underline{\lambda}$ and $\underline{\nu}$ are \ndef{harmonic forms} as 
+%
 \begin{equation}
 \nabla\underline{\nu} = 0 , \hspace{5mm}
 \nabla\underline{\lambda} = [\text{dd}^{\star} + \text{d}^{\star}\text{d}]\underline{\lambda} = 0.
 \end{equation}
-
-Let us now consider the density of states in the phase space, of particles moving along tgeodeiscs with velocities on the mass shell. \\ 
-In the previous section we introduced a flux of the vector field $\vec{X}$ across $\Sigma$ in \ref{eq:theory:flux_of_flow}, we define the following six-form
-
-\begin{align}
+%
+Let us now consider the density of states in the phase space, of particles moving along the 
+geodeiscs with velocities on the mass shell. 
+In the previous section we introduced a flux of the vector field $\vec{X}$ across $\Sigma$ in 
+Eq.~\eqref{eq:theory:flux_of_flow}, we define the following six-form
+%
+\begin{equation}
+\begin{aligned}
 \boldsymbol{\omega} &= \star\big(\underline{\nu}\wedge\underline{\lambda}\big) = i_{\vec{\lambda}} i_{\vec{\nu}}\text{Vol}^8 \\
 &= i_{\vec{\lambda}}\Big[i_{\vec{\nu}}\big(\text{Vol}^{4}_{x}\wedge\text{Vol}^{4}_{p}\big)\Big] = i_{\vec{\lambda}} \big[\text{Vol}^{4}_{x}\wedge\text{Vol}^{3}_{p}\big],
-\end{align}
-
-where we used the definition of $\text{Vol}^8$. \\
+\end{aligned}
+\end{equation}
+%
+where we used the definition of $\text{Vol}^8$. 
 The introduced four forms read,
-
-\begin{align}
+%
+\begin{equation}
+\begin{aligned}
 \text{Vol}_x ^4 &:= \sqrt{-g} \text{d}x^{0} \wedge \text{d}x^{1} \wedge \text{d}x^{2} \wedge \text{d}x^{3}, \\
 \text{Vol}_p ^4 &:= \sqrt{-g} \text{D}p^{0} \wedge \text{D}p^{1} \wedge \text{D}p^{2} \wedge \text{D}p^{3}, \\
 \text{Vol}_p ^3 &:= i_{\vec{\nu}}\text{Vol}_p ^4,
-\end{align}
-
-where the four-forms are on the $TU$ and the latter three-form is on the mass shell $S_m$. \\
-
-Consider coordinates adopted to the mass-shell, where $\underline{\nu} = (p_0/m)\text{D}p^0$ and $\underline{\nu} = p_0\text{D}p^0$ in the massive nad massless cases respectively, the three-form becomes
-
+\end{aligned}
+\end{equation}
+%
+where the four-forms are on the $TU$ and the latter three-form is on the mass shell $S_m$. 
+%
+Consider coordinates adopted to the mass-shell, where $\underline{\nu} = (p_0/m)\text{D}p^0$ 
+and $\underline{\nu} = p_0\text{D}p^0$ in the massive and massless cases respectively, 
+the three-form becomes
+%
 \begin{equation}
 \text{Vol}^3 _p =\frac{\sqrt{-g}}{-p_0}\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3
 \end{equation}
-
-Now we have a three-form $\text{Vol}^3 _p$ and a four-form $\text{Vol}_x ^4$. In the context of the ADM foliation, we split spacetime manifold as $\mathcal{M}=\mathcal{R}\times\Sigma$, with $x^0 = \text{const}$ being constant hypersurfaces with normal $\underline{n} = - \alpha\text{d}x^0$ and $\alpha$ -- the lapse function. We can now simplify the $\boldsymbol{\omega}$, splitting $\text{Vol}_x ^3$ as 
-
-\begin{align}
+%
+Now we have a three-form $\text{Vol}^3 _p$ and a four-form $\text{Vol}_x ^4$. 
+In the context of the \ac{ADM} foliation, we split spacetime manifold as $\mathcal{M}=\mathcal{R}\times\Sigma$, 
+with $x^0 = \text{const}$ being constant hypersurfaces with normal $\underline{n} = - \alpha\text{d}x^0$ 
+and $\alpha$ -- the lapse function. 
+We can now simplify the $\boldsymbol{\omega}$, splitting $\text{Vol}_x ^3$ as 
+%
+\begin{equation}
+\begin{aligned}
 \text{Vol}_x ^4 &= -\underline{n}\wedge\text{Vol}_x ^3 \hspace{5mm} \text{where,} \\
 \text{Vol}_x ^3 &= i_{\vec{n}}\text{Vol}_x ^4 = \sqrt{\gamma}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3
-\end{align}
-
-and the $\boldsymbol{\gamma}$ is the three-metric induced on the slices.  \\
+\end{aligned}
+\end{equation}
+%
+and the $\boldsymbol{\gamma}$ is the three-metric induced on the slices. 
+%
 The resulted coordinates, adapted to the mass shell and the spacetime foliation read
-
-\begin{align}
+%
+\begin{equation}
+\begin{aligned}
 \boldsymbol{\omega} &=-(\vec{p}\cdot\vec{n})\frac{1}{-p_0}\sqrt{\gamma}\sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3 \\
 &= \frac{p^0}{-p_0}|g|\text{d}x^1 \wedge\text{d}x^2\wedge\text{d}x^3 \wedge\text{D}p^2\wedge\text{D}p^2\wedge\text{D}p^3
-\end{align}
-
-Now, consider a six-vector, $\delta_i x \delta_i p$ with $i\in\{1,2,3\}$. The $\delta_i x$ are tangent vectors to the slice $\Sigma$ and the $\delta_i p$ are tangent to mass shell $S_m$. \\
-The action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$ yields
-
-\begin{align}
+\end{aligned}
+\end{equation}
+%
+Now, consider a six-vector, $\delta_i x \delta_i p$ with $i\in\{1,2,3\}$. 
+The $\delta_i x$ are tangent vectors to the slice $\Sigma$ and the $\delta_i p$ are tangent to mass shell $S_m$. 
+The action of $\boldsymbol{\omega}$ on the six-vectors 
+$\delta_1 x$, $\delta_2 x$, $\delta_3 x$, $\delta_1 p$, $\delta_2 p$, $\delta_3 p$ yields
+%
+\begin{equation}
+\begin{aligned}
 \boldsymbol{\omega}(\delta_1 x,...,\delta_3 p) =& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
 & \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) \\
 & \hspace{2mm} -\frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}p,\delta_{2}p,\delta_{3}p)\times \\
@@ -263,30 +374,33 @@ The action of $\boldsymbol{\omega}$ on the six-vectors $\delta_1 x$, $\delta_2 x
 & \hspace{10mm} \Big[\text{D}p^1\wedge\text{D}p^2\wedge\text{D}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p) = \\
 =& \frac{p^0}{-p_0}|g|\big[\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\big](\delta_{1}x,\delta_{2}x,\delta_{3}x)\times \\
 & \hspace{10mm} \Big[\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3\Big](\delta_1 p, \delta_2 p, \delta_3 p), \\
-\end{align}
-
+\end{aligned}
+\end{equation}
+%
 where we used that $\text{d}x^i(\delta_j p)=0$ and the relation
-
+%
 \begin{equation}
 \text{D}p^{i}(\delta_j p) = \text{d}p^{i}(\delta_j p) - {\Gamma^i}_{\alpha\beta}p^{\alpha}\text{d}x^{\beta}(\delta_j p) = \text{d}p^i(\delta_j p)
 \end{equation}
-
+%
 Thus, on the space-like hypersurface $\Sigma$ and on the mass shell we have
-
+%
 \begin{equation}
 \boldsymbol{\omega} = \frac{p^0}{-p_0}|g|\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3\wedge\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3 =: \boldsymbol{\Omega}
 \end{equation}
-
+%
 The $\boldsymbol{Omega}$ can be split as 
-
-\begin{align}
+%
+\begin{equation}
+\begin{aligned}
 \boldsymbol{\Omega} &= \boldsymbol{\Lambda} \wedge \boldsymbol{\Pi}, \hspace{5mm} \text{where} \\
 \boldsymbol{\Lambda} &= p^0 \sqrt{-g}\text{d}x^1\wedge\text{d}x^2\wedge\text{d}x^3 \\
 \boldsymbol{\Pi} &=  \frac{1}{-p_0}\text{d}p^1\wedge\text{d}p^2\wedge\text{d}p^3
-\end{align}
-
+\end{aligned}
+\end{equation}
+%
 The defined forms $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ can be written in a coordinate-independent way at any point $q\in\mathcal{M}$ as 
-
+%
 \begin{equation}
 \boldsymbol{\Lambda} = \star_{\mathcal{M}}\underline{\lambda}, \hspace{5mm} \boldsymbol{\Pi} = \star_{T_q\mathcal{M}}\underline{\pi}
 \end{equation}
