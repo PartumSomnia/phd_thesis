@@ -399,175 +399,200 @@ The $\boldsymbol{Omega}$ can be split as
 \end{aligned}
 \end{equation}
 %
-The defined forms $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ can be written in a coordinate-independent way at any point $q\in\mathcal{M}$ as 
+The defined forms $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ can be written in a 
+coordinate-independent way at any point $q\in\mathcal{M}$ as 
 %
 \begin{equation}
 \boldsymbol{\Lambda} = \star_{\mathcal{M}}\underline{\lambda}, \hspace{5mm} \boldsymbol{\Pi} = \star_{T_q\mathcal{M}}\underline{\pi}
 \end{equation}
+%
+and this are intrinsic forms in $T\mathcal{M}$. 
+In addition, the $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the proper geodesics flux
+volume form on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively. 
 
-and this are intrinsic forms in $T\mathcal{M}$. In addition, the $\boldsymbol{\Lambda}$ and $\boldsymbol{\Pi}$ are the proper geodesics flux
-volume form on $\Sigma\in\mathcal{M}$ and mass shell $S_m\in T_q\mathcal{M}$ at a point $q\in U$ respectively. \\
 
-Let us now consider the geodesic flow $\vec{\lambda}$. It generates a "tube" in a phase space, that we limit with $S_1$ and $S_2$ sections. Then the flux of points in phase space associated with geodesic flow is $\int_{S}\boldsymbol{\omega}$. It is possible to show that the flux satisfies
-
+Let us now consider the geodesic flow $\vec{\lambda}$. It generates a "tube" in a phase space, 
+that we limit with $S_1$ and $S_2$ sections. Then the flux of points in phase space associated with 
+geodesic flow is $\int_{S}\boldsymbol{\omega}$. 
+It is possible to show that the flux satisfies
+%
 \begin{equation}
 \int_{S_1}\boldsymbol{\omega} = \int_{S_2}\boldsymbol{\omega}
 \label{eq:theory:liuville}
 \end{equation}
-
-which is the \textit{Liouville’s Theorem} in the relativistic case. \\
-
-To see taht this is indeed the case, consider the exterior differential of $\boldsymbol{\omega}$
-
+%
+which is the \ndef{Liouville’s Theorem} in the relativistic case. 
+%
+To see that this is indeed the case, consider the exterior differential of $\boldsymbol{\omega}$
+%
 \begin{equation}
 \star\text{d}\omega = \text{d}^{\star}(\underline{\nu}\wedge\underline{\lambda}) = d^{\star}\underline{\nu}\wedge\underline{\lambda} + \underline{\nu}\wedge\text{d}^{\star}\underline{\lambda}.
 \end{equation}
-
-The $\text{d}^{\star}=\text{const}=k$ as $\text{dd}^{\star}\underline{\nu}=0$. In addition, the $\text{d}^{\star}\underline{\lambda}=0$. This allow us to write 
-
+%
+The $\text{d}^{\star}=\text{const}=k$ as $\text{dd}^{\star}\underline{\nu}=0$. 
+In addition, the $\text{d}^{\star}\underline{\lambda}=0$. 
+This allow us to write 
+%
 \begin{equation}
 \text{d}\omega = -k(\star\lambda).
 \end{equation}
-
-We note the $\star\underline{\lambda}$ is the volume form of the hypersurfaces orthogonal to $\vec{\lambda}$. Hence, the $\star\underline{\lambda}[\vec{\lambda},...]=0$ along the "tube" in phase space. 
-
+%
+We note the $\star\underline{\lambda}$ is the volume form of the hypersurfaces orthogonal to $\vec{\lambda}$.
+Hence, the $\star\underline{\lambda}[\vec{\lambda},...]=0$ along the "tube" in phase space. 
+%
 \begin{equation}
 \int_S\text{d}\boldsymbol{\omega} = 0.
 \end{equation}
+%
+the Eq.~\eqref{eq:theory:liuville} is recovered, if we use the Stoke’s Theorem, 
+and using the fact that the $\boldsymbol{\omega}$ vanishes along the part of the boundary tangent to $\vec{\lambda}$.
+%
+\todo{
+    Note that I still have no Idea what I have written. 
+    I need to go through the original materal, which I could not find... 
+    at least I could not find what I could read and understand. 
+}
 
-the \ref{eq:theory:liuville} is recovered, if we use the Stoke’s Theorem, and using the fact that the $\boldsymbol{\omega}$ vanishes along the part of the boundary tangent to $\vec{\lambda}$.
-
-\textcolor{red}{Note that I still have no Idea what I have written. I need to go through the original materal, which I could not find... at least I could not find what I could read and understand. }
 
 
 \section{The Boltzmann equation}
 
-
-Let us introduce the phase space version of the mass flux, the 6-form representing the number of phase-space trajectories crossing $S$ of the phase tube between $S_1$ and $S_2$ cross sections. \\
+Let us introduce the phase space version of the mass flux, the $6$-form representing 
+the number of phase-space trajectories crossing $S$ of the phase tube between $S_1$ and $S_2$ cross sections. 
 In the absence of collisions we obtain 
-
+%
 \begin{equation}
 \int_{S_1}\boldsymbol{\mu} = \int_{S_2}\boldsymbol{\mu}.
 \end{equation}
-
-Remembering that $\boldsymbol{\omega}$ represents the density of states in phase space of particles moving along geodesics, we obtain 
-
+%
+Remembering that $\boldsymbol{\omega}$ represents the density of states in phase 
+space of particles moving along geodesics, we obtain 
+%
 \begin{equation}
 \boldsymbol{\mu} = F\boldsymbol{\omega},
 \end{equation}
-
-where $F$ is \textit{invariant distribution function}, \textcolor{gray}{i.e. F is the Radon-Nikodym derivative of $\boldsymbol{\mu}$ with re $\boldsymbol{\omega}$}. \\
-
+%
+where $F$ is \ndef{invariant distribution function}, 
+\textcolor{gray}{i.e. F is the Radon-Nikodym derivative of $\boldsymbol{\mu}$ with re $\boldsymbol{\omega}$}. 
+%
 Consider now that collisions change the number of phase trajectories as 
-
+%
 \begin{equation}
 \delta N = \int_{S_2} \boldsymbol{\mu} - \int_{S_1}\boldsymbol{\mu} = \int_S \text{d}\boldsymbol{\mu} = \int_S \text{d}F\wedge\boldsymbol{\omega}.
 \end{equation}
-
+%
 where 
-
+%
 \begin{equation}
 \text{d}F\wedge\boldsymbol{\omega} = \text{d}F\wedge\star (\underline{\nu}\wedge\underline{\lambda}) = \langle\text{d}F,\underline{\lambda}\rangle\star\underline{\nu} - \langle\text{d}F,\underline{\nu}\rangle\star\underline{\lambda},
 \end{equation}
-
+%
 where $\langle\cdot,\cdot\rangle$ is a scalar product between forms and can be written as
-
+%
 \begin{equation}
 \langle\boldsymbol{\alpha},\boldsymbol{\beta}\rangle\text{Vol}^8 := \boldsymbol{\alpha}\wedge\star\boldsymbol{\beta},
 \end{equation}
-
+%
 and with the $\star\underline{\lambda}=0$ on $S$ we obtain 
-
+%
 \begin{equation}
 \delta N = \int_S\langle\text{d}F\underline{\lambda}\rangle\star\underline{\nu} = \int_S\mathcal{C}[F]\star\underline{\nu},
 \end{equation}
-
+%
 where we denoted the effect of collisions as
-
+%
 \begin{equation}
 \langle\text{d}F\underline{\lambda}\rangle = \mathcal{C}[F].
 \end{equation}
-
-This is the Boltzmann equation. In component from it reads as 
-
+%
+This is the \ndef{Boltzmann equation}. 
+In component from it reads as 
+%
 \begin{equation}
 p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{\gamma}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{\gamma}} =\mathcal{C}[F].
 \end{equation}
-
-In the coordinate system adapted to the equation, when $P^0 = p^0(p^i)$, the equation reads \cite{Cercignani:2002}:
-
+%
+In the coordinate system adapted to the equation, when $P^0 = p^0(p^i)$, the equation reads \citep{Cercignani:2002}:
+%
 \begin{equation}
 p^{\alpha}\frac{\partial F}{\partial x^{\alpha}} - {\Game^{i}}_{\alpha\beta}p^{\alpha}p^{\alpha}\frac{\partial F}{\partial p^{i}} =\mathcal{C}[F].
 \end{equation}
-
-Remembering that that the $\underline{\lambda}$ is incompressible, we can write
-
+%
+Remembering that the $\underline{\lambda}$ is incompressible, we can write
+%
 \begin{equation}
 \langle\text{d}F,\underline{\lambda}\rangle = \text{d}^{\star}[F,\underline{\lambda}],
 \end{equation}
-
-This allows to obtain a conservative formulation of the Boltzmann equation, that indicates the conservation of the number of particles \cite{Cardall:2002bp}
-
+%
+This allows to obtain a conservative formulation of the Boltzmann equation, 
+that indicates the conservation of the number of particles \citep{Cardall:2002bp}
+%
 \begin{equation}
 \text{d}^{\star}[F\underline{\lambda}] = \mathcal{C}[F].
 \end{equation}
-
-Next, we re-introduce the Levi Civita connection $\nabla$ in phase space. For incompressible $\underline{\lambda}$ it gives
-
+%
+Next, we re-introduce the Levi-Civita connection $\nabla$ in phase space.
+ For incompressible $\underline{\lambda}$ it gives
+%
 \begin{equation}
 \nabla_A\lambda^A=0,
 \end{equation}
-
+%
 while the Boltzmann equation becomes 
-
+%
 \begin{equation}
 \lambda^A\partial_A F=\mathcal{C}[F]
 \end{equation}
-
+%
 and its conservative form 
-
+%
 \begin{equation}
 \nabla_A[Fp^{A}] = \mathcal{C}[F],
 \label{eq:theory:liouvilletheorem}
 \end{equation}
-
+%
 or in component form
-
+%
 \begin{equation}
 \frac{1}{|g|}\frac{\partial}{\partial x^{\mu}}\Bigg[|g|Fp^{\mu}\Bigg] + \frac{p_0}{|g|}\frac{\partial}{\partial p^{k}}\Bigg[\frac{|g|}{-p_0}{\Gamma^k}_{\alpha\beta}p^{\alpha}p^{\beta}F\Bigg] = \mathcal{C}[F].
 \end{equation}
 
 
+
+
 \section{From the Boltzmann Equation to the Euler Equation}
 
-
-In order to derive from the Boltzmann equation the equations of hydrodynamics, we need to first define the needed varaibles of the kinetic description, such as mass and energy fluxes. We not that the density flux can easly be obtained from $\boldsymbol{\mu}$. We write the mass flow then as 
-
+In order to derive from the Boltzmann equation the equations of hydrodynamics, 
+we need to first define the needed variables of the kinetic description, such as mass and energy fluxes. 
+We not that the density flux can easily be obtained from $\boldsymbol{\mu}$. 
+We write the mass flow then as 
+%
 \begin{equation}
 \boldsymbol{\rho} = \int_{S_m} \boldsymbol{\mu}.
 \end{equation}
-
-Recalling the definition of the rest-mass denisty four-vector $J$, we note that
-
+%
+Recalling the definition of the rest-mass density four-vector $J$, we note that
+%
 \begin{equation}
 \int_{\Sigma}(-J^{\mu}n_{\mu})\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} Fp^0\boldsymbol{\Pi}\text{Vol}_x ^3 = \int_{\Sigma\times S_{m}} F\boldsymbol{\Omega} = \int_{\Sigma}\boldsymbol{\rho}
 \end{equation}
-
+%
 Thus, the $J$ can be written as 
-\textcolor{red}{this is not clear how it was obtain. Must go through again.}
-
-\begin{equation}
+\todo{this is not clear how it was obtain. Must go through again.}
+%
+\begin{equation}that
 J^{\mu} = \int_{S_m}Fp^{\mu}\boldsymbol{\Pi}
 \end{equation}
-
-The second moment of the distribution function $F$ in a similar way gives the stress energy tensor 
-
+%
+The second moment of the distribution function $F$ in a 
+similar way gives the stress energy tensor 
+%
 \begin{equation}
 T^{\mu\nu} = \int_{S_m} F p^{\mu}p^{\nu}\boldsymbol{\Pi}
 \end{equation}
-
+%
 the components of which in the frame comoving with the fluid are
-
+%
 \begin{equation}
 T^{\mu\nu} = 
 \begin{pmatrix}
@@ -575,39 +600,49 @@ E & \vec{F} \\
 \vec{F} & \boldsymbol{P} \\
 \end{pmatrix}
 \end{equation}
+%
+where $E$ and $\vec{F}$ are the energy density and flux respectively, 
+and $\boldsymbol{P}$ is the stress tensor. 
+%
+The nature of the collisional operation ultimately defines the equilibrium configuration 
+distribution function $F$ \citeз{Cercignani:2002}, and thus the form of the stress-energy tenor. 
 
-where $E$ and $\vec{F}$ are the energy density and flux respectively, and $\boldsymbol{P}$ is the stress tensor. 
-
-The nature of the collisional operation ultimately defines the equilibrium configuration distribution function $F$ \cite{Cercignani:2002}, and thus the form of the stress-energy tenor. 
 
 Now we use the Liouville Theorem to obtain the equations of hydrodynamics. 
-To accomplish that we insert the $\boldsymbol{\Psi}$, a tensorial funcition of $p^i$, into the theorem, eqiation \ref{eq:theory:liouvilletheorem} on both sides and integrate with respect to $\boldsymbol{\Pi}$ as
-
+To accomplish that we insert the $\boldsymbol{\Psi}$, a tensorial funcition of 
+$p^i$, into the theorem, eqiation Eq.~\eqref{eq:theory:liouvilletheorem} on both sides and 
+integrate with respect to $\boldsymbol{\Pi}$ as
+%
 \begin{equation}
 \int_{\text{I\!R}}\nabla_{A}[F\lambda^A\boldsymbol{\Psi}]\boldsymbol{\Pi}=\int_{\text{I\!R}}\mathbb{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi}
 \end{equation}
-
+%
 where we used that $\lambda^A\nabla_{A}\boldsymbol{\Psi}=0$ as $\vec{\lambda}$ is the geodesic flow. \\
-
-Letting the $F$ decay for large momenta we obtain the transfer equation \cite{Israel:1963,Cercignani:2002}:
-
+%
+Letting the $F$ decay for large momenta we obtain the transfer equation \citep{Israel:1963,Cercignani:2002}:
+%
 \begin{equation}
 \nabla_{\mu}\int_{\text{I\!R}} F\boldsymbol{\Psi}p^{\mu}\boldsymbol{\Pi} =\int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi},
 \label{eq:theory:transferequation}
 \end{equation}
-
-\textcolor{red}{check the sources. White intermediate steps}
-
-In a particular case of a simple gas $\Psi$ can be shown to be one of the $\{1,p^0,p^1,p^2,p^3\}$ \cite{Cercignani:2002}. Then the right hand side of the transfer equation becomes 
-
+%
+\todo{check the sources. Write intermediate steps}
+%
+In a particular case of a simple gas $\Psi$ can be shown to be one of the 
+$\{1,p^0,p^1,p^2,p^3\}$ \citep{Cercignani:2002}. 
+Then the right hand side of the transfer equation Eq.~\eqref{eq:theory:transferequation} becomes 
+%
 \begin{equation}
 \int_{\text{I\!R}} \mathcal{C}[F]\boldsymbol{\Psi}\boldsymbol{\Pi} = 0.
 \end{equation}
-
-These $\boldsymbol{\Psi}$ are related to the quantities conserved by the collisional operator and are called \textit{collisional invariants}. Choice of $1$ would yield the mass conservation, while $p^{\mu}$ -- the energy and momentum conservation. \\
-
-Now, having cancelled the R.H.S of the eq. \ref{eq:theory:transferequation}, we obtain the conservation laws in a following form
-
+%
+These $\boldsymbol{\Psi}$ are related to the quantities conserved by the 
+collisional operator and are called \ndef{collisional invariants}. 
+Choice of $1$ would yield the mass conservation, while $p^{\mu}$ -- the energy and momentum conservation. 
+%
+Now, having canceled the R.H.S of the Eq.~\eqref{eq:theory:transferequation}, 
+we obtain the conservation laws in a following form
+%
 \begin{equation}
 \nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
 \end{equation}
