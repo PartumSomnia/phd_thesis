@@ -1,752 +1,457 @@
-% Chapter Template
+\chapter{Numerical Relativity}
+\label{ch:nr_methods}
 
-\chapter{Numerical relativity} % Main chapter title
+In this thesis we perform numerical simulations of \ac{BNS} mergers. 
+In the simulations the \ac{EFE} descibing the spacetime dynamics, are formulated in a 
+way more suitable for numerical applications. We discuss this formulations in 
+Sec.~\ref{sec:method:nr:gr}, where we summarize the equations for \ac{NR}.
+The basis of \ac{EFE} and \ac{GR} is not covered here for the sake of brevity. For that we 
+refer to 
+\citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}.
 
-\label{ch:nr_methods} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-%% =====================================================================================
-%%
-%%               T H E O R Y -- G R -- G R H D -- N E U T R I N O -- V I S C O S I T Y
-%%
-%% =====================================================================================
+\section{Numerical relativity in short}
 
-In this chapter we outline the theoretical bases and methods that are used to study 
-mergers of compact objects numerically in radpidly evolving field of \ac{NR}.
-%
-Modern \ac{NR} studies includes the effects of strong gravity, solving the \ac{EFE},
-employ sophisticated schemes to treat shocks and matter-vacuum boundaries in fluid dynamics with, 
-use microphysical \ac{EOS} with finite temperature effects, constructed from quantum mechanics 
-calculations, treat the neutrinos emitted and absorbed by hot matter via radiation transport 
-schemes and include effects of magnetic fields on the fluid dynamics. 
-%
-Each of this entries is an entire field of research in itself. Due to time and space constraints
-we shall restrict the discussion to only the key concepts and implementations that are directly 
-relevant to the work presented in the thesis, but we will provide the interested reader with 
-lists of additional literature on aforementioned subjects. 
-For instance, for the overview on the topic of the \ac{GR} and especially, its numerical 
-implementations approaches, 
-we suggest \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}.
+%%%% === Additional Intro
+%The \ac{EFE} is the foundation of modern cosmology, the physics of \acp{NS} and \acp{BH},
+%the emission of gravitational radiation, and numerous other cosmic phenomena, 
+%where strong gravity effects are present. The Einstein theory of \ac{GR} has 
+%passed numerous tests in the weak-field regime \citep{Asmodelle:2017sxn} and in a 
+%strong field regime when the gravitaional radiation from the merger of two \acp{BH} was 
+%detected for the first time \citep{Abbott:2016blz}.
 
-%% ==========================================================
-%%
-%%                 G R
-%%
-%% ==========================================================
-
-\section{General Relativity}
-
-The foundation of the \ac{NR} is \ac{GR}, described by the \ac{EFE}. 
-In a covariant (\ie, coordinate-independent) form the \ac{EFE} read
+\ac{EFE} in a covariant form, neglecting the cosmological constant, read
 %
 \begin{equation}
-R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8 \pi T_{\mu\nu},
-\label{eq:theory:EFE}
+    G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu}
 \end{equation}
+%
+(As an exercise we provide a short derivation of the 
+\ac{EFE} from the variation of Hilbert action in Appendix~\ref{app:efe})
 %
 where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace 
 $R^{\mu}_{\nu} = R$, $g_{\mu\nu}$ is the metric tensor and 
 $T_{\mu\nu}$ is the stress-energy tensor.
 %
-In the geometrized unit system, \ie, $c=G=1$, the $\kappa=8\pi$.
-(As an exercise we provide a short derivation of the 
-\ac{EFE} from the variation of Hilbert action in Appendix \ref{app:efe})
+However, for numerical applications it is desirable to represent the as an \ac{IVP},
+where the once the initial data is specified at time zero, the evolution is computed.
+An approach that is widely used, is the \textit{$3+1$ decomposition}, where the $4$D 
+manifold is represented as foliation of $3$D spacelike hypersurfaces 
+\cite{Alcubierre:2008,Baumgarte:2010,Gourgoulhon:2007ue,Rezzolla:2013}.
 
-The \ac{EFE} is the foundation of modern cosmology, the physics of \acp{NS} and \acp{BH},
-the emission of gravitational radiation, and numerous other cosmic phenomena, 
-where strong gravity effects are present. The Einstein theory of \ac{GR} has 
-passed numerous tests in the weak-field regime \citep{Asmodelle:2017sxn} and in a 
-strong field regime when the gravitaional radiation from the merger of two \acp{BH} was 
-detected for the first time \citep{Abbott:2016blz}.
 
-Before the \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, can be solved numerically, they have to 
-be cast in a form suitable for that. Specifically, it is advantageous to represent 
-the \ac{EFE} as \ac{IVP}. Next, we consider the $3+1$ Decomposition of \ac{EFE}. 
-%
-Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear partial differential equations. 
+\subsubsection{3+1-Decomposition}
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{ejecta_sec/secular_j_mb_RNS_blh.pdf}
+    \caption{
+        Visual representation of the $4$D manifold \mathcal{M} by $3$D hypersurfaces 
+        $\Sigma_t$. The lapse function $\alpha$ and shift vector $\beta^{\mu}$ describe the 
+        coordinate change between hypersurfaces.
+        Adopted from \cite{Dietrich:2016phd}
+    }
+    \label{fig:theory:3p1}
+\end{figure}
+
+Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear \acp{PDE}. 
 These equations can be defined on a whole metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$,
 where in the latter case, the boundary conditions on $\partial\Omega$ are required. 
 %
-It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, 
-from which the evolution of space-time begins. This requires the spacetime to be strongly hyperbolic, 
+The initial data is defined on a null hyersurface $\Sigma\subset\mathcal{M}$, 
+from which the evolution of space-time begins. 
+This requires the spacetime to be strongly hyperbolic, 
 meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. 
-This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
-%
+This foliation can be understood as splitting the spacetime into a set of 
+spacelike hypersurfaces $\Sigma_t$ as depicted in Fig.~\ref{fig:theory:3p1}. 
+
+
+%%%% ==== Basicas of Foliations, Lapse, Shift, Norm
 Let the $t$ be the global smooth functions such that, 
 $\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\}$ 
-and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. 
+and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$,
+where $\nabla$ denotes the covariant derivative.
+%
 This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. 
-Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes 
-between hypersurfaces $\Sigma_t$ is given by the Lie derivative\footnote{
+Continuing the analogy, the rate at which a given tensor quantity changes 
+between hypersurfaces $\Sigma_t$ is given by the Lie derivative
+\footnote{
     Lie derivative evaluates the change of a tensor field, along the flow 
     defined by another vector field. This change is coordinate invariant 
     and therefore the Lie derivative is defined on any differentiable manifold.
 } of the $\boldsymbol{q}$ along the vector $\vec{t}$.
 %
-Consider now two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. 
+Consider now two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$ (Fig.~\ref{fig:method:3p1}). 
 A transition from one to another can be decomposed into the part tangent to the hypersurface 
 $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$, and a part normal to the hypersurface 
 $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, 
-normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ can be written as 
+normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$, \ie, $n_{\mu} = -\alpha \nubla_{\mu}t$.
+%
+Then, the vector $\vec{t}$ can be written as 
 %
 \begin{equation*}
 \vec{t} = \alpha\vec{n}+\vec{\beta}.
 \end{equation*}
 %
-$\vec{\beta}$ is called shift vector and $\alpha$ is called lapse-function.
+%%%% ==== More on the metric and decompositions
+%The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, 
+%Riemannian metric $\boldsymbol{\gamma}$, as 
+%$\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, 
+%where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$, 
+%and $\otimes$ denotes the product measure.
+%%
+%The Levi-Civita connection can be computed by projecting the 
+%$\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
 %
-The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, 
-Riemannian metric $\boldsymbol{\gamma}$, as 
-$\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, 
-where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$, 
-and $\otimes$ denotes the product measure.
+%Next, we need to discuss two important entities, 
+%the three-metric, and the extrinsic curvature.
+%%
+%There are exist coordinates that are adapted to the $3+1$ foliation, namely $\{t, x^i\}$ 
+%with $\vec{\partial}_i \cdot \vec{n} = 0$. 
+%In these coordinates the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$, 
+%where hereafter $\nabla$ denotes a covariant derivative.
 %
-The Levi-Civita connection can be computed by projecting the 
-$\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
+%The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ 
+%and can be expressed in terms of $\alpha$ and $\vec{\beta}$.
+%\begin{align}
+%\text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
+%\text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
+%\text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i,
+%\end{align}
+%we we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
+% 
+%The line-element can be thus written as
+%\begin{equation}
+%ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
+%\end{equation}
 
-Next, we need to discuss two important entities, 
-the three-metric, and the extrinsic curvature.
-%
-There are exist coordinates that are adapted to the $3+1$ foliation, namely $\{t, x^i\}$ 
-with $\vec{\partial}_i \cdot \vec{n} = 0$. 
-In these coordinates the $\nabla t = dt$ and $\vec{t} = \vec{\partial}_t$, 
-where hereafter $\nabla$ denotes a covariant derivative.
-%
-The connection between $\boldsymbol{g}$ and $\boldsymbol{\gamma}$ is $g_{\mu\nu}=\vec{\partial}_{\mu}\cdot\vec{\partial}_{\nu} $ 
-and can be expressed in terms of $\alpha$ and $\vec{\beta}$.
-%% \begin{align}
-%% \text{spatial components: } g_{ik}&=\vec{\partial}_{i}\cdot\vec{\partial}_{j} =\gamma_{ik}, \\
-%% \text{time component: } g_{tt} &= \vec{\partial}_{t}\cdot\vec{\partial}_{t} = \vec{t}\cdot\vec{t} = - (\alpha^2-\vec{\beta}\cdot\vec{\beta}), \\
-%% \text{mixed components: } g_{ti} &= \vec{\partial}_{t}\cdot\vec{\partial}_{i} = \vec{t}\cdot\vec{\partial}_i = (\alpha\vec{n}+\vec{\beta})\cdot\vec{\partial}_i=\beta_i,
-%% \end{align}
-%% we we made use of $\vec{\beta}$ being the spatial vector, \textit{i.e} $\vec{\beta}\cdot\vec{\beta}=\gamma_{ik}\beta^i\beta^k$.
-%% 
-%% The line-element can be thus written as
-%% \begin{equation}
-%% ds^2 = -(\alpha^2-\beta_i\beta^i)dt^2 +2\beta_i dx^i dt + \gamma_{ik} dx^i dx^k.
-%% \end{equation}
-%
-Next we introduce the extrinsic curvature of a $D-1$-surface $\Sigma_t\subset\mathcal{M}$
+%%%% === Extrinsic curvature
+Next, consider the extrinsic curvature of a $D-1$-surface $\Sigma_t\subset\mathcal{M}$
 at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$. 
-Note, that the $\boldsymbol{K}$ thus does not depend on 
-$\alpha$ and $\vec{\beta}$, it is a purely spatial tensor. 
-The components of the extrinsic curvature are
+Note, that the $\boldsymbol{K}$ thus does not depend on $\alpha$ and $\vec{\beta}$, 
+it is a purely spatial tensor. The components of the extrinsic curvature are
 %
 \begin{equation}
-K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
-\label{eq:theory:extrcurvdef}
+    K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
+    \label{eq:theory:extrcurvdef}
 \end{equation}
 %
 where $\mathcal{L}_{\vec{n}}$ is the Lie derivative along the vector field $\vec{n}$. \\
 From the (\ref{eq:theory:extrcurvdef}) 
 %
-The extrinsic curvature can be 
-interpreted as a "speed of the $\vec{n}$ during the parallel 
+The extrinsic curvature can be interpreted as a "speed of the $\vec{n}$ during the parallel 
 transport along the hypersurface $\Sigma_t$".
-%
-Codazzi equations relate the $4D$ Ricci tensor to the extrinsic curvature,
-as
-\begin{equation}
-D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta}=R_{\gamma\delta}n^{\delta}{\gamma^{\gamma}}_{\beta},
-\label{eq:theory:formomentum}
-\end{equation}
- where $K$ is a trace of the tensor $\boldsymbol{K}$.
-%
-Gauss equation relate the $3$D Riemann tensor 
-$^3{R_{\alpha\beta\gamma}}^{\delta}$ to the $4D$ one and the $\boldsymbol{K}$ 
-as
-%
-\begin{equation}
-^3{R_{\alpha\beta\gamma}}^{\delta} = {\gamma^{\mu}}_{\alpha}{\gamma^{\nu}}_{\beta}{\gamma^{\lambda}}_{\gamma}{\gamma^{\delta}}_{\sigma}{R_{\mu\nu\lambda}}^{\delta}-K_{\alpha\gamma}{K_{\beta}}^{\delta}+K_{\beta\gamma}{K^{\delta}}_{\alpha}.
-\label{eq:theory:forhamiltconst}
-\end{equation}
-%
-Notably, if the \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, is substituted into the Codazzi equations 
-Eq.~\eqref{eq:theory:formomentum},
-the first constraint equation, the momentum constraint can be obtained.
-%
-\begin{equation}
-D_{\beta}K-D_{\alpha}{K^{\alpha}}_{\beta} = -8\pi{\gamma^{\alpha}}_{\beta} n^{\gamma}T_{\alpha\gamma}=:8\pi j_{\beta},
-\label{eq:theory:momconstraint}
-\end{equation}
-%
-where $j^{\alpha}$ is the \ac{ADM} momentum density.
-%
-The second constraint, the Hamiltonian constraint, can be obtained by substituting the 
-\ac{EFE} Eq.~\eqref{eq:theory:EFE} into the Gauss equation, 
-Eq.~\eqref{eq:theory:forhamiltconst} as 
-%
-\begin{equation}
-^3 R+ K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2G^{\alpha\beta}n_{\alpha}n_{\beta} = 16\pi n_{\alpha}n_{\beta} T^{\alpha\beta} =: 16\pi E,
-\label{eq:theory:hamilconstraint}
-\end{equation}
-%
-where $E$ is the \ac{ADM} energy density. 
-%
-The obtained constraint equations represent a set of elliptic equations 
-that must be satisfied on every hypersurface $\Sigma_i$ of the foliation. 
-It is however, possible to show that \ac{EFE} preserve the constraints, 
-meaning that if they are satisfied at the initial slice $\Sigma_0$ 
-they will be satisfied at any time in the future. 
 
 
-Next we proceed with discussing the Hamiltonian formulation of \ac{EFE}.
-For the sake of brevity we omit the derivation and related discussion here, 
-focusing only on the end result. 
-For the sake of completeness, however, we recall the Hamiltonian Field Theory
-and the key steps the derivation in the Appendix~\ref{app:adm}.
+\subsubsection{Gauge conditions}
+
+%% === For the lapse function
+The gauge condition describes the specific foliation of the spacetime, the choice of the 
+lapse function and shift vector. 
 %
-The Hamiltonian formulation of \ac{EFE} reads 
-%
+Numerical simulations depend strongly on the its choice. An incorrect choice might result in development of 
+gauge\footnote{Gauge shocks are coordinate singularities for which the lapse becomes discontinuous
+    caused by the crossing of characteristic lines \citep{Alcubierre:2002kk}
+} and slice stretching \citep{Reimann, 2004; Reimann, 2005}. Additionally, a well-posedness of the 
+\ac{PDE} must be ensured for stable numerical evolution.
+
+One of the widely used slicing conditions is the Bona-Mass{\'o} slicing \citep{Bona:1994dr}, 
+
 \begin{equation}
-\begin{aligned}
-(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} =& -2\alpha K_{ik}; \\
-(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} =& -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) - \\
-& 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
-{^{(3)}R} + K^2 - K_{ik}K^{ik} =& 16\pi E; \\
-D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
-%% \label{eq:theory:adm}
-\end{aligned}
+    \partial_t - \beta^i\partial_i)\alpha = -\alpha^2 f(\alpha)K,
+    \label{eq:theory:slicing_a}
 \end{equation}
-%
-where $S = \gamma^{ij} S_{ij}$ is the matter field, and 
-$D_{\mu}$ are the derivatives.
-%
-These equations constitute the \ac{IVP} for \ac{EFE} and are known as \ac{ADM} equations. 
-The last two equations are the constraints. They determine how to set the initial 
-data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. 
-The first two equations govern the evolution.
-The choice of lapse function and shift vector is related to the choice of the spacetime 
-foliation. We discuss it in more details later.
 
-%% Strongly hyperbolic formulations of EFE
-It has been shown, that the \ac{ADM} system of equations in its original form Eq.~\eqref{eq:theory:adm} 
-is only weekly hyperbolic \citep{Baumgarte:2002jm}. 
-Specifically, it was shown that the \red{numerical?} errors tend to couple with 
-zero-velocity modes \citep{Alcubierre:1999rt}. 
-%
-In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{IVP} were proposed. 
-In particular, the generalized-harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}. 
-It has an advantage of allowing for dampening of the constraint violation \citep{Gundlach:2005eh} and
-constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}.
-%
-The BSSNOK formulation, was derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \citep{Nakamura1987,Shibata:1995we,Baumgarte:1998te}. It had an advantage of allowing to choose 
-conformal variables and was not bound to a given gauge condition 
-(thus a gauge beneficial for \acp{BH} evolution, \ie, moving puncture gauge can be used). 
-However, it had zero-speed characteristic variables that could lead to the large 
-Hamiltonian constraint violation in \ac{NR} applications.
-%
-And the Z4 formulation \citep{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
-%% 
-%The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
-%summarized in \citet{Hilditch:2012fp}. 
+where $f(\alpha)$ is a positive function, and $K$ is the trace of extrinsic curvature.
+When if $f=1$ one gets the geodesic slicing, and if $f\rightarrow\infty$, it resembles the 
+maximal slicing \citep{Baumgarte:2002jm}.
+In this thesis we employ the so-called ``1+log'' slicing, when $f(\alpha) = = 2/\alpha$.
+The name stems from the fact that if $\beta^i = 0$, the integration of Eq.~\eqref{eq:theory:slicing_a} 
+yields $\alpha = 1 + \log \gamma$.
+The condition allows for good singularity avoidance at zeroth order \cite{Alcubierre:2002kk} and 
+does not lead to gauge shocks, and numerically not very expensive, as it is formulated in form 
+of hyperbolic equations.
 
-The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the 
-zero-speed modes of the original \ac{ADM} and thus -- strongly-hyperbolic. 
-This is achieved by not explicitly enforcing the constraints and treating the deviation 
-from them as an dependent variable $Z_{\mu}$. 
-The $Z_{\mu}$ is also called the Z4 four-vector.
-%
+%% === for the shift vecotor
+For the spatial gauge condition, the choice of $\beta^i,$ we consider the Gamma-driver 
+\cite{Alcubierre:2002kk,vanMeter:2006vi}, that in integrated from reads 
+
 \begin{equation}
-    R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
-    \label{eq:theory:z4fieldeq}
+    (\partial_t - \beta^j\partial_j)\beta^i = \mu_S\overline{\Gamma}^i - \eta\beta^i
+    \label{eq:theory:slicing_b}
 \end{equation}
-%
-and two sets of constraint equations
-%
-\begin{equation}
-    \nabla_{\rho} g^{\mu\nu} = 0, \text{ and } Z_{\mu} = 0,
-    \label{eq:theory:z4connect}
-\end{equation}
-%
-where the latter is called an algebraic constraint. If its derivative vanishes,
-it is equivalent to imposing the \ac{ADM} momentum and Hamiltonian constraints \citep{Bona:2009}. 
-%
-The Z4 system preserves the constraint and \ac{EFE} themselves are recovered 
-from Eq.~\eqref{eq:theory:z4connect} and Eq.~\eqref{eq:theory:z4fieldeq} when the algebraic 
-constraint is satisfied, $\partial_t (Z_{\mu})= 0$. 
-%
-However, the numerical solution of the system of equations introduces error, 
-that lead to a constraint violation during the evolution. 
-To mitigate this problem the Z4 system is further modified to enforce the 
-dampening of the constraint violation propagation \citep{Gundlach:2005eh}.
-%
-A new version of Z4 was introduced by \citet{Alic:2011gg}, the 
-Conformal and covariant formulation, CCZ4. 
-It incorporates the constraint-damping properties of the original Z4 
-and also allows for a better \ac{BH} treatment via moving-puncture.
-The CCZ4 system reads 
-%
-\begin{equation}
-\begin{aligned}
-    \partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij},  \\
-    \partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}}  \\
-    & + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k}  \\
-    & -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij}  \\
-    \partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
-    \partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K  \\
-    & - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E)  \\
-    \partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha  \\
-    & + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E  \\
-    \partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big)  \\
-    & - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k}  \\
-    & - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
-    & -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j, 
-\end{aligned}
-\label{eq:theory:ccz4equations} % used for Whisky Code description
-\end{equation}
-%
-where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
-%
-\begin{equation*}
-\begin{aligned}
-    \widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big]  \\
-    \widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big] 
-\end{aligned}
-\end{equation*}
-%
-However, CCZ4 included parameterized constraint addition similar to BSSNOK, 
-that could lead to the issues in numerical applications \citep{Babiuc:2006wk}.
-%
-Another version of Z4 was developed in a series of works 
-\citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} 
-the Z4c formulation of \ac{EFE} that is summarized in \citet{Hilditch:2012fp}. 
-%
-The Z4c (conformal decomposition of the Z4) was designed to combine the advantages of the 
-BSSNOK system, (\ie, the free choice of conformal variables and an ability to chose a gauge, 
-\eg, a moving puncture gauge, advantageous for \ac{BH} evolution) and 
-the constraint violation dampening of the Z4 formulation.
 
-The equations of motion for the Z4c formulation read
-%
-\begin{equation}
-\begin{aligned}
-    \partial_t\chi =& \frac{2}{3}\chi \Big[ \alpha (\hat{K} + 2\Theta) - D_i\beta^i \Big], \\
-    \partial_t\bar{\gamma}_{ij} =& 2\alpha\bar{A}_{ij} + \beta^k\partial_k\widetilde{\gamma}_{ij} + 
-    2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k\beta^k, \\
-    %% for the metric components,
-    \partial_t\hat{K} =& D^{i}D_{i}\alpha + \alpha \Big[ \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{1}{3}(\hat{K} + 2\Theta)^2 \Big] +  \\
-    & 4\pi \alpha [S + \rho] + \alpha \kappa_1 (1 - \kappa_2)\Theta + \beta^i\partial_i\hat{K},  \\
-    \partial_t\widetilde{A}_{ij} =& \chi [ -D_i D_j \alpha + \alpha(R_{ij} - 8\pi S_{ij}) ]^{\text{tf}} + 
-    \alpha \Big[ (\hat{K} + 2\Theta)\widetilde{A}_{ij} - 2 {\widetilde{A}^k}_i\widetilde{A}_{kj} \Big] + \\
-    & \beta^k\partial_k\widetilde{A}_{ij} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k},  \\
-    %% for extrinsic curvature
-    \partial_t\widetilde{\Gamma}^i =& -2\widetilde{A}^{ij}\partial_j\alpha + 2\alpha\Big[ {\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{jk} - 
-    \frac{3}{2}\widetilde{A}^{ij}\partial_j\ln(\chi) - \frac{1}{3}\widetilde{\gamma}^{ij}\partial_j(2\hat{K}+\Theta) - 8\pi\widetilde{\gamma}^{ij}S_j \Big] + \\
-    & \widetilde{\gamma}^{jk}\partial_j\partial_k\beta^i + \frac{1}{3}\widetilde{\gamma}^{ij}\partial_j\partial_k\beta^k + \beta^j\partial_j\widetilde{\Gamma}^i - \\
-    & (\widetilde{\Gamma}_{\text{d}})^j\partial_j\beta^i + \frac{2}{3}(\widetilde{\Gamma}_{\text{d}})^i\partial_j\beta^j - 
-    2\alpha\kappa_1 [ \widetilde{\Gamma}^i - (\widetilde{\Gamma}_{\text{d}})^i ], \\
-    \partial_t\Theta =& \frac{1}{2}\alpha [R - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}(\hat{K} + 2\Theta)^2] - 
-    \alpha [ 8\pi\rho + \kappa_1(2+\kappa_2)\Theta ] + \beta^i\partial_i\Theta, 
-\end{aligned}
-\label{eq:theory:z4c_equations} % used for Whisky Code description
-\end{equation}
-%
-Here the intrinsic curvature associated with the \ac{ADM} metric $\gamma_{ij} = \chi^{-1}\widetilde{\gamma}_{ij}$ is 
-%
-\begin{equation*}
-\begin{aligned}
-    R_{ij} &= {R^{\chi}}_{ij} + \widetilde{R}_{ij}, \\
-    {\widetilde{R}^{\chi}}_{ij} &= \frac{1}{2\chi}\widetilde{D}_i\widetilde{D}_j\chi + \frac{1}{2\chi}\widetilde{D}^l\widetilde{D}_l\chi - 
-    \frac{1}{4\chi^2}\widetilde{D}_{i\chi}\widetilde{D}_{j\chi} - \frac{3}{4\chi^2}\widetilde{\gamma}_{ij}{\widetilde{D}^l}_{\chi}\widetilde{D}_{l\chi}, \\
-    \widetilde{R}_{ij} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_l\partial_m\widetilde{\gamma}_{ij} + 
-    \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}^k + (\widetilde{\Gamma}_{\text{d}})^k \widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}
-    \Big(2{\widetilde{\Gamma}^k}_{l(i}\widetilde{\Gamma}_{j)km} + {\widetilde{\Gamma}^k}_{im} \widetilde{\Gamma}_{klj} \Big), 
-\end{aligned}
-\end{equation*}
-%
-where $(\widetilde{\Gamma}_{\text{d}})^i = \widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk}$, 
-the $D_i$ is thederivative operator compatible with the \ac{ADM} metric.
-%
-\red{check equtions}
-%
-For the discussion on the constraints, and numerical methods we refer to \citet{Hilditch:2012fp}.
-
-
-
-%% === GAUGE CONDITIONS === 
-
-In order to complete the \ac{ADM} system, the lapse function and shift vector ought to be 
-specified. Their choice is called slicing condition and spatial gauge condition respectively.
-The correct choice, is essential for the stable evolution and in itself presents a 
-broad and rapidly evolving subject.
-%
-% Consider \textit{Slicing conditions}. 
-One of the widely used slicing conditions is so called 
-'maximal slicing' that sets $K=0$, which in turn results in the equation
-%
-\begin{equation}
-    D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e + S)\big].
-\end{equation}
-%
-\red{what is 'e'}
-%
-This conditions has an advantage of being singularity-avoiding. For example, it was 
-shown that in the case of Schwarzschild \ac{BH}, the $\alpha$ goes to zero at a finite 
-distance from singularity \citep{Geyer:1995}. 
-However implementation of this condition in from of a elliptic equations is 
-computationally expensive.
-%
-A class of slicing conditions in form of hyperbolic equations that are more 
-favorable from numerical standpoint and that reproduces the desired behavior of the maximal 
-slicing was proposed in \citet{Bona:1994dr}. 
-%
-It reads 
-%
-\begin{equation}
-(\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
-\label{eq:theory:gauge_onepluslog}
-\end{equation}
-%
-%% which in CCZ4 reads 
-%% \begin{equation}
-%% (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
-%% \end{equation}
-%
-%% \begin{equation}
-%% (\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
-%% \end{equation}
-%
-where $f(\alpha)$ is a positive function.
-%
-For many numerical applications, including those that are discussed in this work, 
-the ``1 + log'' slicing is adopted, where the $\beta_i=0$. 
-Then, integrating equation Eq.~\eqref{eq:theory:gauge_onepluslog}) yields 
-%
-\begin{equation}
-    \alpha = 1 + \log\gamma
-\end{equation}
-%
-This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, 
-allows to treat black holes well like maximal slicing \citep{Baumgarte:2002jm}.
-
-
-Next, consider Spatial gauge conditions.
-The requirements for the gauge are similar as in the case of the $\alpha$, 
-namely hyperbolicity and minimization of numerical distortions for more stable evolution.  
-One of the widely used shift conditions is so called 
-Gamma driver condition \citep{Alcubierre:2002kk}, 
-%
-%% \begin{align}
-%% \partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
-%% \partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
-%% \end{align}
-%% where $\eta$ is a dumping coefficient.
-%
+where $\overline{\Gamma}^i$ is the conformal connector (discussed later), $\eta$ is the 
+dampening parameter, and $\mu_s$ is the gauge parameter.
+The requirements for spatial gauge are similar as in the case of the one for $\alpha$, 
+namely, hyperbolicity and minimization of numerical distortions for more stable evolution. 
 This gauge condition tries to decrease the coordinate stretching that occur in the 
 vicinity of a singularity. It was shown to be effective in numerical applications, 
 in particular for a single moving black hole. However it has a zero-speed mode, 
 that can amplify the numerical errors and destabilize the system \citep{vanMeter:2006vi}.
 %
-A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes,
+The combination of Eq.~\eqref{eq:theory:slicing_a} and Eq.~\eqref{eq:theory:slicing_b}
+is usually referred to as \textit{moving puncture} gauge. \gray{Together with the Z4c 
+    formualtion of \ac{EFE} (discussed below) it forms a strongly hyperbolic system of equations}
+
+
+\subsubsection{$3+1$-from of Einstein's Field Equations}
+
+Here we consider the dynamics of the gravitational field in the $3+1$ formalism.
+
+\paragraph{ADM-Equations}
+
+The goal is to split \ac{EFE} Eq.~\eqref{eq:theory:EFE} into a set of constraint and evolutionary 
+equations. Consider the \ac{RHS} of Eq.~\eqref{eq:theory:EFE}, the energy-momentum tensor, 
+$T_{\mu\nu}$ in $3+1$ form. For that we employ the spatial projection operator 
+$P^{\mu}_{\nu} = \delta_{\nu}^{\mu} + n^{\mu}n_{\nu}$, and obtain that 
+
+\begin{subequations}
+    \begin{align}
+    S_{\mu\nu} &= P^{\sigma}_{\mu} P^{\rho}_{\nu} T_{\sigma\rho} \label{eq:theory:s_munu}\\
+    S_{\mu} &= -P^{\sigma}_{\mu} n^{\rho} T_{\sigma\rho} \label{eq:theory:smu}
+    \end{align}
+\end{subequations}
+
+where $S_{\mu\nu}$ is the spatial part of $T_{\mu\nu}$, $S_{\mu}$ is the momentum density, 
+$S=S^{\mu}S_{\mu}$ is the trace, $E=n^{\mu}n^{\nu}T_{\mu\nu}$ is the energy density measured by 
+the Eulerian observer with the four-velocity $n^{\nu}$.
+
+%% === Constraint Equations
+Next we use the fact that the Gauss (Gauss-Codazzi) equation relates the $3$D Riemann tensor
+$^3{R_{\alpha\beta\gamma}}^{\delta}$ to the $4D$ one and the $\boldsymbol{K}$, and that the 
+Codazzi (Codazzi-Mainardi) equations relate the $4D$ Ricci tensor to the extrinsic curvature,
+to perform a split for the Reimann tensor as follows:
+
+\begin{subequations}
+    \begin{align}
+        P_{\alpha}^{\delta}P_{\beta}^{\kappa}P_{\mu}^{\lambda}P_{\nu}^{\sigma} ^{(4)}R_{\delta\kappa\lambda\sigma} &= 
+        ^{(3)}R_{\alpha\beta\mu\nu} + K_{\alpha\mu}K_{\beta\nu} - K_{\alpha\nu}K_{\beta\mu} \label{eq:theory:gc}\\
+        P_{\alpha}^{\delta}P_{\beta}^{\kappa}P_{\mu}^{\lambda}n^{\sigma} ^{(4)}R_{\delta\kappa\lambda\sigma} &= D_{\beta}K_{\alpha\mu} - D_{\alpha}K_{\beta\mu}, \label{eq:theory:gm}
+    \end{align}
+\end{subequations}
+
+where $P^{\alpha\beta} = \gamma^{\beta\omega}p_{\omega}^{\alpha} = \gamma^{\alpha\beta}$, 
+$^{(3)}R_{\alpha\beta\mu\nu}$ is the 3D Riemann tensor and $D_{\mu}$ is the 3D covariant derivative after 
+the projection of $\nabla_{\mu}$ onto the space orthogonal to $n^{\alpha}$.
 %
-%% \begin{align}
-%% (\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
-%% (\partial_t - \beta^j\partial_j)\beta^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
-%% \end{align}
+From the Eq.~\eqref{eq:theory:gc}, combining the contracted Gauss relation and \ac{EFE} Eq.~\eqref{eq:theory:EFE}, one obtains 
+
+\begin{equation}
+    \gamma^{\alpha\gamma}\gamma^{\beta\delta}^{(4)}R_{\alpha\beta\gamma\delta} = {^{(3)}R} + K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2n^{\alpha}n^{\beta}G_{\alpha\beta} = 16\pi E.
+\end{equation}
+
+From the contraction of Eq.~\eqref{eq:theory:gm}, results in
+
+\begin{equation}
+    \gamma^{\alpha\mu}n^{\nu}{^{(4)}R_{\mu\nu}} = D^{\alpha}K - D_{\mu}K^{\alpha\mu} = \gamma^{\alpha\mu}n^{\nu}G_{\mu\nu} = 8\pi S^{\alpha}.
+\end{equation}
+
+The obtained two sets of equations 
+
+\begin{align}
+    {^{(3)}R} + K^2 - K_{\alpha\beta} K^{\alpha\beta} &= 16\pi E, \label{eq:theory:ham_const}\\
+    D_j K^{ij} - D^i K &= 8\pi S^i, \label{eq:theory:mom_const}
+\end{align}
+
+are called \textit{Hamiltonian} and \textit{Momentum Constraints}, respectively.
 %
-was proposed by \citet{vanMeter:2006vi} and was applied to study binary black holes by \citet{Campanelli:2005dd}.
-
-
-
-
-
-
-
-
-
-
-
-
-%It has been shown, that the \ac{ADM} system of equations in its original form (\ref{eq:theory:adm}) 
-%is only \red{weekly hyperbolic [One more sencnece on what it means]} \citep{Baumgarte:2002jm}. 
-%Specifically, it was shown that the \red{numerical?} errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
+The obtained constraint equations represent a set of elliptic equations 
+that must be satisfied on every hypersurface $\Sigma_i$ of the foliation. 
 %
-%In an attempt to mitigate this problem, different formulations of the \ac{EFE} as \ac{IVP} were created. In particular, the generalized-harmonic formulation \cite{Friedrich:1985,Lindblom:2005qh,Lindblom:2009}, 
-%the BSSNOK formulation, derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \cite{Nakamura1987,Shibata:1995we,Baumgarte:1998te} 
-%and the Z4 formulation \cite{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+It is however, possible to show that \ac{EFE} preserve the constraints, 
+meaning that if they are satisfied at the initial slice $\Sigma_0$ 
+they will be satisfied at any time in the future.
+
+%% === Evolution Eqs
+Next we consider the evolution equations
+
+Consider the induced metric 
+
+\begin{equation}
+    \partial_t\gamma_{ij} = -2\alpha K_{ij} + D_{i}\beta_j + D_j \beta_i,
+    \label{eq:theory:evol_metric}
+\end{equation}
+
+and expand the definition of the extrinsic curvature as 
+
+\begin{equation}
+    \begin{aligned}
+    K_{\alpha\beta} = \frac{1}{2}(K_{\alpha\beta} + K_{\beta\alpha}) = -\frac{1}{2}(n^{\mu}n_{\beta}\nabla_{\mu}n_{\alpha} + \nabla_{\beta}n_{\alpha}+n^{\mu}n_{\alpha}\nabla_{\mu}n_{\beta}+\nabla_{\alpha}n_{\beta}) = \\
+    -\frac{1}{2}(n^{\mu}\nabla_{\mu}(n_{\alpha}n_{\beta}) +g_{\alpha\mu}\nabla_{\beta}n^{\mu} + g_{\beta\mu}\nabla_{\alpha}n^{\mu}) = -\frac{1}{2}(n^{\mu}\nabla_{\mu}\gamma_{\alpha\beta} + \gamma_{\alpha\mu} \nabla_{\beta} n^{\mu} + \gamma_{\beta\mu}\nabla_{\alpha}n^{\mu}) = \\
+    -\frac{1}{2}\mathcal{L}_{n}\gamma_{\alpha\beta} = -\frac{1}{2\alpha}(\mathcal{L}_t - \mathcal{L}_{\beta})\gamma_{\alpha\beta} = -\frac{1}{2\alpha}(\partial_t\gamma_{\alpha\beta} - D_{\alpha}\beta_{\beta} - D_{\beta}\beta_{\alpha})
+    \end{aligned}
+\end{equation}
+
+Then, the evolution equation for the extrinsic curvature reads 
+
+\begin{equation}
+    \begin{aligned}
+    \partial_t K_{ij} = -D_i D_j \alpha + \beta^k \partial_k K_{ij} + K_{ik}\partial_j \beta^k + K_{kj}\partial_i \beta^k + \\
+    \alpha({^{(3)}R_{ij}} + KK_{ij} - 2K_{ik}{K^k}_j) + 4\pi \alpha (\gamma_{ij}(S-E) - 2S_{ij})
+    \end{aligned}
+    \label{eq:theory:evol_eq}
+\end{equation}
+
+This equation is obtained from the following considerations. 
+First the Riemann tensor was contracted twice with the normal vector, applying the 
+Eq.~\eqref{eq:theory:gc}, as 
+
+\begin{equation}
+    \begin{aligned}
+    P_{\alpha}^{\mu}P_{\beta}^{\nu}n^{\rho}n^{\sigma}{^{(4)}R_{\mu\rho\nu\sigma}} = \mathcal{L}_{n} K_{\alpha\beta} + \frac{1}{\alpha} D_{\alpha}D_{\beta}\alpha + {K^{\lambda}}_{\beta}K_{\alpha\lambda} \label{eq:theory:for_ev1}\\
+    P_{\alpha}^{\mu}P_{\beta}^{\nu}(n^{\rho}n^{\lambda} {^{(4)}R_{\mu\rho\nu\lambda}} + {^{(4)}R_{\mu\nu}}) = 
+    {^{(3)}R_{\alpha\beta}} + KK_{\alpha\beta} - {K^{\lambda}}_{\beta}K_{\alpha\lambda}. \label{eq:theory:for_ev2}
+    \end{aligned}
+\end{equation}
+
+Next, inserting Eq.~\eqref{eq:theory:for_ev1} in Eq.~\eqref{eq:theory:for_ev2} yields
+
+\begin{equation}
+    \mathcal{L}_n K_{\alpha\beta} = -\frac{1}{\alpha} D_{\alpha} D_{\beta} \alpha - P^{\mu}_{\alpha}P_{\beta}^{\nu} {^{(4)}R_{\mu\nu}} + {^{(3)}R_{\alpha\beta}} + KK_{\alpha\beta} - 2{K^{\lambda}}_{\beta}K_{\alpha\lambda}
+\end{equation}
+
+The latter can be reformulated to match the colution equation Eq.~\eqref{eq:theory:evol_eq}.
+%
+Equations \eqref{eq:theory:ham_const},\eqref{eq:theory:mom_const}, \eqref{eq:theory:evol_metric} and 
+\eqref{eq:theory:evol_eq} comprise the  \ac{IVP} for \ac{EFE} and are known as \ac{ADM} 
+system of equations \cite{Arnowitt:1962hi}.
+(We present a derivation with mores steps in Appendix~\ref{app:adm}).
+%
+They determine how to set the initial 
+data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. 
+
+
+%% Strongly hyperbolic formulations of EFE
+It has been shown, that the \ac{ADM} system of equations in its original form 
+%% Eq.~\eqref{eq:theory:adm} 
+is only weekly hyperbolic \citep{Baumgarte:2002jm}. Specifically, it was shown that the numerical 
+errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
+In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{IVP} were proposed. 
+%
+%%%% === OTHER FOMULATIONS OF EFE 
+%In particular, the generalized-harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}. 
+%It has an advantage of allowing for dampening of the constraint violation \citep{Gundlach:2005eh} and
+%constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}.
 %%
-%We do not attempt to elaborate on any of these formations and only aim to emphasize that a search for a new and better formulations of \ac{EFE} for numerical applications is ongoing. 
+%The BSSNOK formulation, was derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \citep{Nakamura1987,Shibata:1995we,Baumgarte:1998te}. It had an advantage of allowing to choose 
+%conformal variables and was not bound to a given gauge condition 
+%(thus a gauge beneficial for \acp{BH} evolution, \ie, moving puncture gauge can be used). 
+%However, it had zero-speed characteristic variables that could lead to the large 
+%Hamiltonian constraint violation in \ac{NR} applications.
 %%
-%Of special reliance to this thesis is the conformal-covariant variant of 
-%the Z4 formulation, also known as Z4c, which we will discuss slightly further. 
-%The numerical implementation of this formulation was used to obtain the results discussed in this thesis. 
-
-%% The CCZ4 Formulation and Z4c formulalations
-
+%And the Z4 formulation \citep{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
+%%% 
+%%The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
+%%summarized in \citet{Hilditch:2012fp}. 
 %The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the 
 %zero-speed modes of the original \ac{ADM} and thus -- strongly-hyperbolic. 
 %This is achieved by not explicitly enforcing the constraints and treating the deviation 
 %from them as an dependent variable $Z_{\mu}$. 
 %The $Z_{\mu}$ is also called the Z4 four-vector.
-%
-%The evolution equations then read
-%
-%\begin{equation}
-%R_{\mu\nu} + \nabla_{\mu}Z_{\nu} + \nabla_{\nu}Z_{\mu}=8\pi\Big(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\Big),
-%\label{eq:theory:z4fieldeq}
-%\end{equation}
-%
-%and two sets of constraint equations
-%
-%\begin{equation}
-%\nabla_{\rho} g^{\mu\nu} = 0, \text{ and } Z_{\mu} = 0,
-%\label{eq:theory:z4connect}
-%\end{equation}
-
-%where the latter is called an algebraic constraint. If its derivative vanishes,
-% it is equivalent to imposing the \ac{ADM} momentum and Hamiltonian constraints \citep{Bona:2009}. 
-%%
-%The Z4 system preserves the constraint.
-%The \ac{EFE} themselves are recovered from Eq.~\eqref{eq:theory:z4connect} and 
-%Eq.~\eqref{eq:theory:z4fieldeq} when the algebraic constraint is satisfied, 
-%$\partial_t (Z_{\mu})= 0$. 
-%%
-%However, while Z4 system preserves the constraint, the numerical solution of 
-%the system of equations introduces error, that leads to a constraint violation during the evolution. 
-%To mitigate this problem the Z4 system is further modified to enforce the 
-%dampening of the constraint violation propagation \citep{Gundlach:2005eh}.
-%%% ---
-%A new version of Z4 was introduced by \citet{Alic:2011gg}. 
-%It incorporates the constraint-damping properties of the original Z4 
-%and also allows for a better \ac{BH} treatment via \textit{moving-puncture}, 
-%that will be \red{discussed later}. 
-
-%The CCZ4 system reads 
-%\begin{align}
-%\partial_{t}\widetilde{\gamma}_{ij} = & -2\alpha\widetilde{A}_{ij}^{\text{TF}} + 2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k \beta^k + \beta^k\partial_k\widetilde{\gamma}_{ij}, \\
-%\partial_{t}\widetilde{A}_{ij}^{\text{TF}} = & \phi^2\big[-\nabla_i\nabla_j\alpha + \alpha\big({^{(3)}R}_{ij}+\nabla_{i}Z_{j} + \nabla_{j}Z_{i}- 8\pi S_{ij}\big)\big]^{\text{TF}} \\
-%& + \alpha\widetilde{A}_{ij}(K-2\Theta)-2\alpha\widetilde{A}_{il}{\widetilde{A}^l}_{j} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^{k} \\
-%& -\frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\widetilde{A}_{ij} \\
-%\partial_{t} \phi = & \frac{1}{3}\alpha\phi K - \frac{1}{3}\phi\partial_{k}\beta^{k} + \beta^{k}\partial_{k}\phi \\
-%\partial_{t}K = &-\nabla^{i}\nabla_{i}\alpha + \alpha\big({^{(3)}R} + 2\nabla_{i}Z^{i} + K^2 - 2\Theta K\big) + \beta^{j}\partial_{j}K \\
-%& - 3\alpha\kappa_1(1+\kappa_2)\Theta + 4\pi\alpha (S-3E) \\
-%\partial_{t}\Theta = &\frac{1}{2}\alpha\Big(R + 2\nabla_{i}Z^{i} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}K^2 - 2\Theta K\Big) - Z^{i}\partial_{i}\alpha \\
-%& + \beta^{k}\partial_{k}\Theta - \alpha\kappa_1(2 + \kappa_2)\Theta - 8\pi\alpha E \\
-%\partial_{t}\hat{\Gamma}^j = & 2\alpha\Bigg({\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{ij} - 3\widetilde{A}^{ij}\frac{\partial_{j}\phi}{\phi} -\frac{2}{3}\widetilde{\gamma}^{ij}\partial_{j}K\Bigg) + 2\widetilde{\gamma}^{ki}\Big(\alpha\partial_{k}\Theta - \Theta\partial_{k}\alpha - \frac{2}{3}\alpha K Z_{k}\Big) \\
-%& - 2\widetilde{A}^{ij}\partial_{j}\alpha + \widetilde{\gamma}^{kl}\partial_{k}\partial_{l}\beta^{i} + \frac{1}{3} \widetilde{\gamma}^{ik}\partial_{k}\partial_{l}\beta^{l} + \frac{2}{3}\widetilde{\Gamma}^i\partial_{k}\beta^{k} \\
-%& - \widetilde{\Gamma}^k\partial_{k}\beta^{i} + 2\kappa_3\Big(\frac{2}{3}\widetilde{\gamma}^{ij}Z_{j}\partial_{k}\beta^{k} - \widetilde{\gamma}^{jk}Z_{j}\partial_{k}\beta^{i}\Big) + \beta^{k}\partial_{k}\hat{\Gamma}^i \\
-%& -2\alpha\kappa_1\widetilde{\gamma}^{ij}Z_{j}- 16\pi\alpha\widetilde{\gamma}^{ij}S_j,
-%\label{eq:theory:ccz4equations} % used for Whisky Code description
-%\end{align}
-
-%where $\Theta:=n_{\mu}Z^{\mu}=\alpha Z^0$, the $\widetilde{\Gamma}^i:=\widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk} = \widetilde{\gamma}^{ij}\widetilde{\gamma}^{kl}\partial_{l}\widetilde{\gamma}_{jk}$ and $\hat{\Gamma}:=\widetilde{\Gamma}^i + 2\widetilde{\gamma}^{ij}Z_j$, constants $\kappa_1$ and $\kappa_2$ are related to the constraint damping terms, the $\kappa_3$ is the additional constant for further adjustments, the The three-dimensional Ricci tensor ${^{(3)})R}_{ij}$ is split into conformal part $\widetilde{R_{ij}^{\phi}}$ and the $\widetilde{R_{ij}}$ that contains the derivatives of the conformal metric
-
-%\begin{align}
-%\widetilde{R_{ij}} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_{l}\partial_{m}\widetilde{\gamma}_{ij} + \widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}\big[2\widetilde{\Gamma}^{k}_{l(i}\widetilde{\Gamma}_{j)km} + \widetilde{\Gamma}^{k}_{im}\widetilde{\Gamma}_{kjl}\big] \\
-%\widetilde{R_{ij}}^{\phi} &= \frac{1}{\phi^2}\big[\phi\big(\widetilde{\nabla}_{i}\widetilde{\nabla}_{j}\phi + \widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big) - 2\widetilde{\gamma}_{ij}\widetilde{\nabla}^{l}\phi\widetilde{\nabla}_{l}\phi\big]
-%\end{align}
-
-%\red{Additionally, there exist a Z4c formulation; that one is used in WhiskyTHC}
-%\red{reshuffle these paragraphs}
-%
-%The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
-%summarized in \citet{Hilditch:2012fp}. 
-%%% ---
-%The BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}, while
-%having zero-speed characteristic variable that could lead to the large 
-%Hamiltonian constraint violation in \ac{NR}, have the advantage of the choice of 
-%conformal variables and is not bound to a given gauge condition 
-%(thus a gauge beneficial for \ac{BH}, \ie, moving puncture gauge can be used).
-%%
-%The generalized harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}, 
-%allows for dampening of the constraint violation \citep{Gundlach:2005eh} and constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}
-%%
-%To address the limitations of aforementioned formulations, but preserve their advantages,
-%a conformal composition of Z4 (that is closely related to generalized harmonic formulation) 
-%was proposed in \citet{Bernuzzi:2009ex}.
-%%
-%
-%
-%In Z4c formulation the constraints are preserved (contrary to BSSNOK) in vacuum and matter.
-%In \citet{Ruiz:2010qj}, the (high derivative order) constraint preserving boundary conditions 
-%for Z4c were presented. They allowed for better behaviour of the propagating constraint violations
-%at the outer boundary. Also, the the well-posedness of the Z4c constraint subsystem \ac{IVP} 
-%was demonstrated.
-%In \citet{Cao:2011fu}, the Z4c plus puncture gauge was considered in full-3D evolution of and 
-%new discretization method was proposed/
-%
-%
-%
-%The development of the Z4c is in part motivated by the need to remove the zero-speed charateristic variable in the 
-%constraint subsystem of BSSNOK formulation \citep{Baumgarte:1998te,Shibata:1995we,Nakamura:1987zz}
-%that could lead to the large Hamiltonian constraint violation in \ac{NR}.
-%The Z4c (conformal decomposition of the Z4) was designed to combine the advantages of the 
-%BSSNOK system, (\ie, and the choice of conformal variables,an ability to chose a gauge, \eg, a moving puncture gauge, advantageous for \ac{BH} evolution) and 
 
 
+\paragraph{Z4c-evolution system}
 
+The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
+summarized in \citet{Hilditch:2012fp}. 
+%
+The idea behind the Z4 formulation is to derive a set of evolution equations that is free from the 
+zero-speed modes of the original \ac{ADM} and thus -- strongly-hyperbolic,
+and also inherit the constraint violation dampening properties of the original Z4 formulation.
 
+The \ac{EFE} equations read 
 
+\begin{equation}
+    R_{\alpha\beta} + \nabla_{\alpha}Z_{\beta} + \nabla_{\beta}Z_{\alpha} = 8\pi \Big( T_{\alpha\beta} - \frac{1}{2}g_{\alpha\beta}T \Big) + \kappa_1 (t_{\alpha} Z_{\beta} + t_{\beta}Z_{\alpha} - (1+\kappa_2)g_{\alpha\beta})t_{\gamma}Z^{\gamma},
+    \label{eq:theory:z4c_efe}
+\end{equation}
 
-%\section{Theoretical Background}
-%\label{sec:grhd_theory}
+where $Z_{\alpha}$ is a four-vector consisting of constraints, $t_{\alpha}$ is a timelike vector and 
+$\kappa_1$ and $\kappa_2$ are the dampening parameters.
+Eq.~\eqref{eq:theory:z4c_efe} is equivalent to Eq.~\eqref{eq:theory:EFE} when constraints are satisfied.
 %
-%\subsection{General relativity \& $3+1$ decomposition}
-%\label{subsec:gr_nr}
+In $3+1$ from the equations read 
 
-%%% --- The Cauchy Problem in General Relativity
-%In this section we briefly recall the initial-value formulation of the Einstein equations of \ac{GR} through the following steps. We start by introducing notations and the basics of \ac{GR}. We summarize the \ac{EFE}. Then we continue with how \ac{EFE} can be split in a set of evolutionary equations and constraints. For that we focus on the \ac{ADM}, formalism. In the end we comment on the stability of the \ac{ADM} equations, on the need for strongly-hyperbolic formulations of the \ac{EFE}, and on the choice of gauge conditions commonly used to
-%evolve spacetime with singularities. This overview is based on \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}, which we refer to for more detained discussion.
+\begin{align}
+    \widetilde{\gamma}_{ij} = \chi\gamma_{ij} \label{eq:theory:z4c_1}\\
+    \widetilde{A}_{ij} = \chi(K_{ij}-\frac{1}{3}\gamma_{ij}K)\label{eq:theory:z4c_2} \\
+    \hat{K} = \gamma^{ij}K_{ij} - 2\Theta,\label{eq:theory:z4c_3}
+\end{align}
+
+where $\Theta=-n_{\alpha}Z^{\alpha}$.
+
+Inserting Eq.~\eqref{eq:theory:z4c_1},\eqref{eq:theory:z4c_2} and \eqref{eq:theory:z4c_3} into
+Eq.\eqref{eq:theory:z4c_efe} yields the 
+The equations of motion for the Z4c formulation:
 %
-%%% --- Euler-Lagrange equations --- USED Notations 
-%We consider a spacetime defined by the real smooth manifold $\mathcal{M}$ and Lorentzian metric $\boldsymbol{g}$ on $\mathcal{M}$ of signature $(-,+,+,+)$. The $\nabla$ denotes the affine connection associated with $\boldsymbol{g}$, the Levi-Civita connection. 
+\begin{equation}
+    \begin{aligned}
+    \partial_t\chi =& \frac{2}{3}\chi \Big[ \alpha (\hat{K} + 2\Theta) - D_i\beta^i \Big], \\
+    \partial_t\bar{\gamma}_{ij} =& -2\alpha\widetilde{A}_{ij} + \beta^k\partial_k\widetilde{\gamma}_{ij} + 
+    2\widetilde{\gamma}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{\gamma}_{ij}\partial_k\beta^k, \\
+    %% for the metric components,
+    \partial_t\hat{K} =& -D^{i}D_{i}\alpha + \alpha \Big[ \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{1}{3}(\hat{K} + 2\Theta)^2 \Big]  \\
+    & + 4\pi \alpha [S + \rho] + \alpha \kappa_1 (1 - \kappa_2)\Theta + \beta^i\partial_i\hat{K},  \\
+    \partial_t\widetilde{A}_{ij} =& \chi [ -D_i D_j \alpha + \alpha(R_{ij} - 8\pi S_{ij}) ]^{\text{tf}} + 
+    \alpha \Big[ (\hat{K} + 2\Theta)\widetilde{A}_{ij} - 2 {\widetilde{A}^k}_i\widetilde{A}_{kj} \Big] \\
+    & + \beta^k\partial_k\widetilde{A}_{ij} + 2\widetilde{A}_{k(i}\partial_{j)}\beta^k - \frac{2}{3}\widetilde{A}_{ij}\partial_{k}\beta^{k},  \\
+    %% for extrinsic curvature
+    \partial_t\widetilde{\Gamma}^i =& -2\widetilde{A}^{ij}\partial_j\alpha + 2\alpha\Big[ {\widetilde{\Gamma}^i}_{jk}\widetilde{A}^{jk} - 
+    \frac{3}{2}\widetilde{A}^{ij}\partial_j\ln(\chi) - \frac{1}{3}\widetilde{\gamma}^{ij}\partial_j(2\hat{K}+\Theta) - 8\pi\widetilde{\gamma}^{ij}S_j \Big] \\
+    & + \widetilde{\gamma}^{jk}\partial_j\partial_k\beta^i + \frac{1}{3}\widetilde{\gamma}^{ij}\partial_j\partial_k\beta^k + \beta^j\partial_j\widetilde{\Gamma}^i \\
+    & - (\widetilde{\Gamma}_{\text{d}})^j\partial_j\beta^i + \frac{2}{3}(\widetilde{\Gamma}_{\text{d}})^i\partial_j\beta^j - 
+    2\alpha\kappa_1 [ \widetilde{\Gamma}^i - (\widetilde{\Gamma}_{\text{d}})^i ], \\
+    \partial_t\Theta =& \frac{1}{2}\alpha [{^{(3)}R} - \widetilde{A}_{ij}\widetilde{A}^{ij} + \frac{2}{3}(\hat{K} + 2\Theta)^2] - 
+    \alpha [ 8\pi\rho + \kappa_1(2+\kappa_2)\Theta ] + \beta^i\partial_i\Theta, 
+    \end{aligned}
+    \label{eq:theory:z4c_equations} % used for Whisky Code description
+\end{equation}
 %
-%We use the convention that all Greek indices lie in $\{0, 1, 2, 3\}$ and Lower case Latin indices $\{1, 2, 3\}$. 
-%
-%The $\nabla\boldsymbol{T}$ denotes the covariant derivative of a tensor $\boldsymbol{T}$ and $\nabla_{\boldsymbol{u}}\boldsymbol{T}$ -- covariant derivative along a given vector field $\boldsymbol{u}$.
-%
-%The scalar product of two vectors then 
+%%%% ==== Metric equations
+%% Here the intrinsic curvature associated with the \ac{ADM} metric $\gamma_{ij} = \chi^{-1}\widetilde{\gamma}_{ij}$ is 
+%%% 
 %\begin{equation*}
-%\boldsymbol{a}\cdot\boldsymbol{b}:=g_{\mu\nu}a^{\mu}b^{\nu}
-%\end{equation*}
-%The action of a linear form on a vector however is represented as 
-%\begin{equation*}
-%\langle\boldsymbol{\omega},\boldsymbol{\upsilon}\rangle=\omega_{\mu}\upsilon^{\mu}
+%\begin{aligned}
+%R_{ij} &= {R^{\chi}}_{ij} + \widetilde{R}_{ij}, \\
+%{\widetilde{R}^{\chi}}_{ij} &= \frac{1}{2\chi}\widetilde{D}_i\widetilde{D}_j\chi + \frac{1}{2\chi}\widetilde{D}^l\widetilde{D}_l\chi - 
+%\frac{1}{4\chi^2}\widetilde{D}_{i\chi}\widetilde{D}_{j\chi} - \frac{3}{4\chi^2}\widetilde{\gamma}_{ij}{\widetilde{D}^l}_{\chi}\widetilde{D}_{l\chi}, \\
+%\widetilde{R}_{ij} &= -\frac{1}{2}\widetilde{\gamma}^{lm}\partial_l\partial_m\widetilde{\gamma}_{ij} + 
+%\widetilde{\gamma}_{k(i}\partial_{j)}\widetilde{\Gamma}^k + (\widetilde{\Gamma}_{\text{d}})^k \widetilde{\Gamma}_{(ij)k} + \widetilde{\gamma}^{lm}
+%\Big(2{\widetilde{\Gamma}^k}_{l(i}\widetilde{\Gamma}_{j)km} + {\widetilde{\Gamma}^k}_{im} \widetilde{\Gamma}_{klj} \Big), 
+%\end{aligned}
 %\end{equation*}
 %
-%Let the $\boldsymbol{\alpha}$ be the totally antisymmetric symbol that expresses through coordinates $x^{\mu}$ as
-%\begin{equation*}
-%\boldsymbol{\alpha} = dx^0 \wedge dx^1 \wedge dx^2 \wedge dx^3,
-%\end{equation*}
-%where $\wedge$ denotes exterior product. Then, proper volume pseudo-form of the spacetime is
+where $(\widetilde{\Gamma}_{\text{d}})^i = \widetilde{\gamma}^{jk}{\widetilde{\Gamma}^i}_{jk}$, 
+the $D_i$ is the derivative operator compatible with the \ac{ADM} metric.
 %
-%\begin{equation*}
-%\boldsymbol{\varepsilon} = \sqrt{-g}\boldsymbol{\alpha},
-%\end{equation*}
-%where $g$ denotes the determinant of the spacetime metric. 
+
+%% === INITIAL DATA
+%\paragraph{The conformal thin-sandwich approach}
 %
-%In \ac{GR}, the spacetime is represented by Lorentzian manifold $\mathcal{M}$ and $g$, the Loretzian metric. 
+%The Z4c formulation allows to perform long term and stable simulations of \ac{BNS} mergers. 
+%To assure, the initial data has to be also accurate and constraint satisfying.
+%We consider the \ac{CTS} approach in this work. \red{DO WE????}.
 %
-%%% ---The Hilbert Action -> EFE ----
-%The \ac{EFE}s read 
+%Consider 
 %
 %\begin{equation}
-%R_{\mu\nu} -\frac{1}{2}g_{\mu\nu}R=8\pi T_{\mu\nu},
-%\label{eq:theory:EFE}
+%    \bar{A}^{ij} = \frac{\psi^6}{2\alpha} ((\bar{L}\beta)^{ij} - \bar{u}^{ij}),
 %\end{equation}
 %
-%where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace $R^{\mu}_{\nu}=R$, $g_{\mu\nu}$ is the metric tensor and $T_{\mu\nu}$ is the stress-energy tensor which is discussed in more details 
-% in section \ref{sec:theory:grhd}).
-%In the geometrized unit system, \ie, $c=G=1$, the $\kappa=8\pi$.
-%(As an exercise we provide a short derivation of the \ac{EFE} from the variation of Hilbert action in Appendix \ref{app:efe})
-
-%% --- 3+1 Decomposition of Einstein field equations
-
-%The \ac{EFE}, Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear partial differential equations. These equations can be defined on a whole metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$, where in the latter case, the boundary conditions on $\partial\Omega$ are required. 
+%where $\bar{u}_{ij} = \partial_{t}\bar{\gamma}_{ij}$, $\bar{u}^{ij}\bar{\gamma}_{ij}=0$ and 
+%$(\bar{L}\beta)^{ij} = \bar{D}^i\beta^j + \bar{D}^j \beta^i - \frac{2}{3}\delta^{ij}\bar{D}_k\beta^k$.
 %
-%It is convenient to chose a null hyersurface $\Sigma\subset\mathcal{M}$ on which to define the initial data, from which the evolution of space-time begins. This requires the spacetime to be strongly hyperbolic, meaning that the foliation $\mathcal{M}=\Sigma\times\mathbb{R}$ is allowed. This foliation can be understood as splitting the spacetime into a set of spacelike hypersurfaces $\Sigma_t$. 
-%
-%%% Spacelike Foliations
-%
-%Let the $t$ be the global smooth functions such that, $\Sigma_{\tau} = \{x^{\alpha}\in\mathcal{M}: t(x^{\alpha})=\tau\}$ and let $\vec{t}$ be a vector such that $\langle\nabla t, \vec{t}\rangle = 1$. This $t$ can be seen as a "function that advances time" and $\vec{t}$ as a "flow of time" vector field. Continuing the analogy, the rate at which a given tensor quantity $\boldsymbol{q}$ changes between hypersurfaces $\Sigma_t$ is given by the Lie derivative\footnote{
-%    Lie derivative evaluates the change of a tensor field, along the flow defined by another vector field. This change is coordinate invariant and therefore the Lie derivative is defined on any differentiable manifold.
-%} of the $\boldsymbol{q}$ along the vector $\vec{t}$.
-%
-%Consider two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$. A transition from one to another can be decomposed into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed in a form of a vector $\vec{\beta}$ and a part normal to the hypersurface $\Sigma_t$ and expressed as a $\alpha \vec{n}$, where $\vec{n}$ is a unit vector, normal to the $\Sigma_t$ in the direction to $\Sigma_{t+dt}$. Then, the vector $\vec{t}$ can be written as 
-%
-%\begin{equation*}
-%\vec{t} = \alpha\vec{n}+\vec{\beta}.
-%\end{equation*}
-%
-%$\vec{\beta}$ is called shift vector and $\alpha$ is called lapse-function.
-%
-%The spacetime metric $\boldsymbol{g}$ can be decomposed into a spatial, Riemannian metric $\boldsymbol{\gamma}$  as $\boldsymbol{\gamma} = \boldsymbol{g} + \underline{n} \otimes \underline{n} $, where $\underline{n}$ is the $1$-form associated to the vector $\vec{n}$.
-%%% --- 
-%The Levi-Civita connection can be computed by projecting the $\nabla$ on the space, tangent to the hypersurface $\Sigma_t$.
-%
-%%% SKIPPING Ex-curse: Hamiltonian Field Theory
-%%%          Extrinsic Curvature and Constraint equations
-%%%          The Hamiltonian Formulation of the Einstein Equations
-%
-%It is possible to cast the \ac{EFE} as a set of constraint equations that should be satisfied on each hypersurface of the foliation and a set of evolution equations that govern the evolution of the space time.
-%%
-%There are several such formulations, that show different mathematical properties and 
-%is more suited for specific applications. 
-%%
-%Most formulations, relevant for modeling the mergers of \acp{NS} and \acp{BH}
-%are based on the so-called \ac{ADM} system of equations. 
-%(We recall key stages of its derivation in Appendix~\ref{app:adm})
-%%
-%The \ac{ADM} system reads, 
-%\begin{align}
-%(\partial_t - \mathcal{L}_{\vec{\beta}})\gamma_{ik} =& -2\alpha K_{ik}; \\
-%(\partial_t - \mathcal{L}_{\vec{\beta}})K_{ik} =& -D_{i}D_{k}\alpha + \alpha\big(R_{ik} - 2K_{ij}{K^j}_k+KK_{ik}\big) \\
-%& - 8\pi\alpha\big(S_{ik} - \frac{1}{2}\gamma_{ik}(S-E)\big); \\
-%{^{(3)}R} + K^2 - K_{ik}K^{ik} =& 16\pi E; \\
-%D_{i}K-D_{k}{K^k}_i =& 8\pi j_i,
-%\label{eq:theory:adm}
-%\end{align}
-%where $S = \gamma^{ij}S_{ij}$,
-%$\mathcal{L}$ is the lie derivative,
-%$K_{ik}$ are the components of the We extrinsic curvature, which is a purely spatial tensor, that is defined 
-%on a $D-1$-suface $\Sigma_t\subset\mathcal{M}$ at a point $\mathcal{P}\in\Sigma_t$ as mapping $\boldsymbol{K}$ such that $\boldsymbol{K}(\boldsymbol{\upsilon})=-\nabla_{\boldsymbol{\upsilon}}\boldsymbol{n}$,
-%$K$ is a trace of the tensor $\boldsymbol{K}$,
-
-
-%% These equations constitute the \ac{IVP} for \ac{EFE} and are known as \ac{ADM} equations. The last two equations are the constraint equations. They determine how to set the initial data on the hypersurface $\Sigma_0$, via prescribing the three-metric and extrinsic curvature. The first two equations then govern the evolution.
-
-%% Gauge conditions
-
-%% --- Gauge conditions
-
-%In order to complete the \ac{ADM} system, the choice of the lapse function, \ie, slicing condition, and shift vector \ie, spatial gauge condition has to be made. The correct choice, is essential for the stable evolution and in itself presents a broad and rapidly evolving subject.
-%%
-%Here we are going to discuss only the gauge that is relevant for our work. 
-
-%Consider \textit{Slicing condition}. 
-%One of the widely used conditions is so called 'maximal slicing' that sets $K=0$, 
-%%which in turn results in the equation
-%%\begin{equation}
-%%D^{i}D_{i}\alpha = \alpha\big[K_{ij}K^{ij} + 4\pi(e+S)\big].
-%%\end{equation}
-%This conditions has an advantage of being \textit{singularity-avoiding}. For example, it was shown that in the case of Schwarzschild black hole, the $\alpha$ goes to zero at a finite distance from singularity \cite{Geyer:1995}. However implementation of this condition in from of a elliptic equations is computationally expensive.
-%
-%A class of slicing conditions in form of hyperbolic equations that are more favorable from numerical standpoint and that reproduces the desired behavior of the maximal slicing was proposed in \cite{Bona:1994dr}. It is read 
+%Together with the conformal decomposed of the constraint equations, it yields,
 %
 %\begin{equation}
-%(\partial_t - \beta^i\partial_i)\alpha = \alpha^2 f(\alpha)K
-%\label{eq:theory:gauge_onepluslog}
+%   (\bar{\Delta}_L\beta)^i - (\bar{L}\beta)^{ij}\bar{D}_j\ln(\alpha\psi^{-6}) = \alpha\psi^{-6}\bar{D}_j\Big( \frac{\bar{u}^{ij}\psi^6}{\alpha} \Big) + \frac{4}{3} \alpha \bar{D}^i K + 16 \pi \alpha \psi^4 S^i,
 %\end{equation}
 %
-%%which in CCZ4 reads 
-%%\begin{equation}
-%%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
-%%\end{equation}
-%%
-%%\begin{equation}
-%%(\partial_t - \beta^i \partial_i )\alpha = \alpha^2 f(\alpha)(K-2\Theta)
-%%\end{equation}
-%
-%%where $f(\alpha)$ is a positive function.
-%For many numerical applications, including those that are discussed in this work, the "1 + log" slicing is adopted, the $\beta_i=0$. 
-%Then, integrating equation (\ref{eq:theory:gauge_onepluslog}) yields 
-%
-%\begin{equation}
-%\alpha = 1 + \log\gamma
-%\end{equation}
-%
-%This condition is numerically more favorable and as $f\rightarrow\infty$ in the vicinity of a singularity, allows to treat black holes well like maximal slicing \cite{Baumgarte:2002jm}.
-%
-%Next, consider \textit{Spatial gauge conditions}.
-%The requirements for the gauge are similar as in the case of the $\alpha$, namely hyperbolicity and minimization of numerical distortions for more stable evolution.  
-%One of the widely used shift conditions is so called \textit{Gamma driver} condition \cite{Alcubierre:2002kk}, 
-%
-%%\begin{align}
-%%\partial_t\beta^i &= \frac{3}{4}\alpha B^i, \\
-%%\partial_t B^i &= \partial_t\widetilde{\Gamma}^i - \eta B^i,
-%%\end{align}
-%%where $\eta$ is a dumping coefficient.
-%
-%This gauge condition tries to decrease the coordinate stretching that occur in the vicinity of a singularity. It was shown to be effective in numerical applications, in particular for a single moving black hole. However it has a zero-speed mode, that can amplify the numerical errors and destabilize the system \cite{vanMeter:2006vi}.
-%
-%A modified \textit{Gamma driver}, gauge that does not have zero or small speed modes,
-%
-%%\begin{align}
-%%(\partial_t - \beta^j\partial_j)\beta^i &= \frac{3}{4}B^i \\
-%%(\partial_t - \beta^j\partial_j)B^i &= (\partial_t - \beta^j\partial_j)\widetilde{\Gamma}^i-\eta\beta^i,
-%%\end{align}
-%
-%was proposed by \cite{vanMeter:2006vi} and was applied to study binary black holes by \cite{Campanelli:2005dd}.
+%where $(\bar{\Delta}_L\beta)^i$ is the vector Laplacian.
+
+
+\subsubsection{Hydrodynamical equations}
 
 
 
@@ -758,24 +463,14 @@ was proposed by \citet{vanMeter:2006vi} and was applied to study binary black ho
 
 
 
-%% Strongly Hyperbolic Formulations of the Einstein Equations
 
-%It has been shown, that the \ac{ADM} system of equations in its original form (\ref{eq:theory:adm}) 
-%is only weekly hyperbolic \citep{Baumgarte:2002jm}. 
-%Specifically, it was shown that the \red{numerical?} errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
-%%
-%In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{IVP} were proposed. In particular, the generalized-harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}. It has an advantage of allowing for dampening of the constraint violation \citep{Gundlach:2005eh} and constraint-preserving boundary conditions \citep{Kreiss:2006mi,Rinne:2005df,Ruiz:2007hg}.
-%%
-%The BSSNOK formulation, was derived by Baumgarte, Shapiro, Shibata, Nakamura, Oohara and Kojima \citep{Nakamura1987,Shibata:1995we,Baumgarte:1998te}. It had an advantage of allowing to choose conformal variables and was not bound to a given gauge condition (thus a gauge beneficial for \acp{BH} evolution, \ie, moving puncture gauge can be used). However, it had zero-speed characteristic variables that could lead to the large Hamiltonian constraint violation in \ac{NR} applications.
-%%
-%In addition, a series of formulations was proposed, where the constraint violation
-%was treated as an independent variable.
-%The Z4 formulation \citep{Bona:2003fj,Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Alic:2011gg}.
-%%
-%Conformal and covariant formulation of the Z4 system with constraint-violation damping, the CCZ4, was proposed in \citet{Alic:2011gg}. However, it included parametrized constraint addition, similar to BSSNOK, that could lead to the issues in numerical applications \citep{Babiuc:2006wk}.
-%% 
-%The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
-%summarized in \citet{Hilditch:2012fp}. 
+
+
+
+
+
+
+
 
 
 %% ==========================================================
