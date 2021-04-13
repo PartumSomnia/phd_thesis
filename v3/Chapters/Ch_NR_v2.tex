@@ -453,6 +453,411 @@ the $D_i$ is the derivative operator compatible with the \ac{ADM} metric.
 
 \subsubsection{Hydrodynamical equations}
 
+Until now the discussion was centered around the description of the space time and how it 
+evolves. Here we consider the $3+1$ conservative Eulerian formulation of \ac{GRHD} and recall the 
+evolution equations for matter variables. 
+For a detailed discussion see \textit{e.g.,} \citet{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013}.
+%%%%
+%%%% ---------------------------------------------------------
+%%%% === FROM RADICE THESIS -- DETAILED Kinematics + Dynamics 
+%%%% ---------------------------------------------------------
+%%%%
+%%%% --- Kinematics
+%In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities 
+%such as energy density, mass, momentum density. However, in general and special relativity, these quantities 
+%are not well defined and depend on the observer. In other words, different observers perceive the same fluid 
+%being in different thermodynamic states. Hence, a description of the fluid dynamics in relativity requires 
+%a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, 
+%that are observer-dependent, but implicitly by a "flow" in spacetime. 
+%These are flux-conservative formulations of \ac{HD}.
+%%
+%For instance, in the classical definition of density, a scalar $\rho$, usually defined as 
+%total umber of particles $N$ of rest-mass $m$ in the volume $V$. 
+%Then, the total mass is given by the 
+%spatial integral of $\rho \text{d}^3x = m\int_V n \text{d}^3 x = mN$. 
+%%
+%However, while the number of particles $N$ would be the same regardless of the observer, 
+%the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. 
+%Hence, the $n$ would differ. 
+%One of the solutions is to chose a frame of reference, that is comoving with the fluid and 
+%define $\rho$ there. However, this would hinder the ability to generalize the formulation 
+%to other reference frames.
+%A better solution is to construct a covariant description in terms of invariant quantities.
+%
+%
+%First, we discuss two important quantities of the fluid kinematics.
+%Consider $\boldsymbol{\rho}$, the fluid density in space-time. 
+%The conservation of the number of particles is expressed by the vanishing exterior product of the density: 
+%%
+%\begin{equation*}
+%    \int_{\partial\Omega} \boldsymbol{\rho} = \int_{\Omega}\text{d}\boldsymbol{\rho} = 0,
+%\end{equation*}
+%%
+%that reads as the following: the net flow across any sufficiently regular 
+%surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
+%
+%Second important quantity is flux. 
+%Generally, a flux of a vector field can be described by a three-form, 
+%for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
+%A vector field associated with density is called rest-mass density four-vector 
+%and is denoted by $\vec{j}$, and relates to the $\boldsymbol{\rho}$ as 
+%%
+%\begin{equation}
+%    \int_{\Sigma} \boldsymbol{\rho} = - \int_{\Sigma}\vec{j}\cdot\vec{n}\text{Vol}_x ^3,
+%\end{equation}
+%%
+%where $\text{Vol}_x ^3,$ is the volume pseudo-form on the hypersurface, $\vec{n}$ is the norm.
+%%
+%The $\vec{j}$ is time like (or null). In other words, the flux of particles across any 
+%future-oriented spacelike hypersurface is positive (or zero). 
+%%
+%If $\vec{j}$ is time like, there exists a unique decomposition 
+%%
+%\begin{equation}
+%    \vec{j} = \rho \vec{u},
+%    \label{eq:theory:defofjandu}
+%\end{equation}
+%%
+%where the scalar $\rho$ can be seen as density in the co-moving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
+%The divergence of vector $j$ then gives a familiar mass conservation expression
+%%
+%\begin{equation}
+%    0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
+%    \label{eq:theory:nablamu_jmu}
+%\end{equation}
+%
+%
+%Next, we proceed with introducing the mixed tensor $\boldsymbol{T}$, 
+%the stress energy tensor of the fluid.
+%%
+%Since the three-forms are equivalent to vectors, the flow of the $\nu$ momentum across 
+%the volume element orthogonal to $dx^{\mu}$ can be defined as
+%%
+%\begin{equation}
+%    {T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu}).
+%\end{equation}
+%%
+%Note the stress energy tensor has already appeared in our derivation of the 
+%\ac{EFE}, in Appendix~\ref{app:efe}, in Eq.~\eqref{eq:theory:action1}
+%There, if the \ac{EFE} are satisfied the Bianchi identities dictate that the 
+%$\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
+%%
+%\begin{equation}
+%    \nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
+%    \label{eq:theory:nablamu_tmunu}
+%\end{equation}
+%%
+%However, this statement does not imply the conservation of the energy and 
+%momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires 
+%$\vec{\partial}_{\nu}$ to be a Killing vector.
+%%%% -----------------------------------------------------
+Consider the energy-momentum conservation law\footnote{Note, that this is not true for the 
+momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires 
+$\vec{\partial}_{\nu}$ to be a Killing vector} 
+%
+\begin{equation}
+    \nabla_{\mu}{T^{\mu\nu}} = 0,
+    \label{eq:theory:tmunu_eq_0}
+\end{equation}
+%
+and the conservation of the rest mass. 
+
+Next we proceed with discussing the fluid dynamics. 
+%
+In the following we limit the discussion to the perfect fluid, meaning that in the co-moving frame, 
+there is not heat conduction and there is no viscosity. The former criterion implies that the fluid is in 
+\ac{LTE}. The latter is more complex, as there is still no consensus on the correct mathematical formulation, 
+especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in 
+\ac{GR} (see e.g., \citet{Andersson:2006nr} and references therein). 
+
+%%%% ---------------------------------------------------------
+%%%% === FROM RADICE THESIS -- DETAILED Perfect Fluid Intro & Constraction of Tmunu
+%%%% ---------------------------------------------------------
+%Next we proceed with discussing the fluid dynamics. 
+%%
+%In the following we limit the discussion to the perfect fluid, meaning that in the co-moving frame, 
+%there is not heat conduction and there is no viscosity. The former criterion implies that the fluid is in 
+%\ac{LTE}. The latter is more complex, as there is still no consensus on the correct mathematical formulation, 
+%especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in 
+%\ac{GR} (see e.g., \citet{Andersson:2006nr} and references therein). 
+%
+%
+%Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. 
+%To construct it, we return to the fluid's four velocity $\vec{u}$ from Eq.~\eqref{eq:theory:defofjandu}. 
+%If $e_{i}$ is the basis vector, the scalar products $\vec{u}\cdot\vec{e}_i=0$ and 
+%$\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$, then the orthonormal tetrad 
+%$\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. 
+%%
+%Tensor $\boldsymbol{T}$ is the stress-energy tensor with the following components: 
+%%
+%\begin{itemize}
+%    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$,
+%    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy 
+%    flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction,
+%    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component 
+%    of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
+%\end{itemize}
+%%
+%Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations 
+%of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively described 
+%by a scalar $p$, that we call pressure as
+%%
+%\begin{equation}
+%\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k,
+%\end{equation}
+%%
+%Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
+%%
+%\begin{equation}
+%\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
+%\end{equation}
+%%
+%Defining the enthalpy of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, 
+%we rewrite $\boldsymbol{T}$ as 
+%%
+%\begin{equation}
+%\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
+%\label{eq:theory:stressenergytensor}
+%\end{equation}
+%%% ------------------------------------------------------------------------
+Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid
+%
+\begin{equation}
+    T^{\mu\nu} = \rho h u^{\mu}n^{\nu} + p g^{\mu\nu}
+\end{equation}
+%
+where $u^{\mu}$ is the four-velocity
+$\rho$ is the rest mas density, the scalar $p$ is pressure, 
+$h = 1 + \epsilon = p/\rho$ is the specific enthalpy, and $\epsilon$ is the specific internal energy.
+%
+The relativistic Euler equation can be obtained from Eq.~\eqref{eq:theory:tmunu_eq_0}, 
+%
+\begin{equation}
+    \rho h n^{\nu} \nabla_{\nu}u^{\mu} = - (g^{\mu\nu} + u^{\mu}u^{\mu})\nabla_{\nu}p
+\end{equation}
+%
+by considering the general relativistic Boltzmann equation and Liubille theorem 
+see Appendix~\ref{app:eul}.
+%
+The continuity equation reads 
+%
+\begin{equation}
+    \nabla_{\nu}(\rho u^{\nu}) = 0,
+\end{equation}
+%
+assuming the rest mass is conserved.
+
+
+%%%% ---------------------------------------------------------
+%%%% === FROM RADICE THESIS -- DETAILED Going to Valencia formulation
+%%%% ---------------------------------------------------------
+%For numerical reasons it is essential to cast the equations discussed above into the conservative formulation.
+%%
+%An important example of the conservation formulation that is adopted to $3 + 1$ formalism 
+%is the "Valencia formulation" \citep{Banyuls:1997} that can be represented as following
+%%
+%\begin{equation}
+%\frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
+%\label{eq:theory:valencia_formalism}
+%\end{equation}
+%%
+%where $u$ is a “vector” of primitive quantities, such as the rest-mass density or the specific internal energy,
+%$\boldsymbol{F}^0$ is a “vector” of conserved quantities, and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ 
+%are their fluxes and sources respectively. 
+%%
+%This formulation allowed to study ultra-relativistic flows and resolve shocks without spurious 
+%oscillations and without the need for artificial viscosity, a numerical technique used 
+%tackle the problem of excessive oscillations arising at shocks \citep[\eg][]{Font:2008fka}.
+%%
+%It was shown to be especially well suited for use with numerical methods that take 
+%into account the conservation laws. These are the \ac{FV} and \ac{FD} \ac{HRSC} methods, 
+%that we briefly discuss in Sec.~\ref{sec:nr_methods}.
+%%
+%Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods \citep[\eg][]{Shibata:2005gp,Giacomazzo:2010bx,Rezzolla:2011da,Radice:2013xpa}. See also \citet{Shibata:2016}
+%and references therein.
+%%
+%Notably, there are other conservative formulations and methods (see \eg, \citet{Papadopoulos:1999kt}). 
+%
+%
+%Next, we briefly outline the Valencia formulation.
+%To begin we split the four-velocity $\vec{u}$ into the component parallel to the 
+%normal vector $\vec{n}$ and a purely spatial component as 
+%%
+%$\vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon}),$
+%%
+%where naturally the Lorentz factor, measured by the Eulerian observer\footnote{
+%    Eulerian observer, an observer orthogonal to the hypersurface of constant coordinate time} 
+%$W = (-\vec{u}\cdot\vec{n})$ emerges, 
+%and the $\upsilon$ is the fluid three-velocity measured by the Eulerian observer, 
+%%
+%\begin{equation}
+%\vec{\upsilon} = \frac{\vec{u}}{W} -\vec{n}, \text{ with components } \upsilon^i = \frac{u^i}{W}+ \frac{\beta^i}{\alpha}, \hspace{3mm} \upsilon_i= \frac{u_{i}}{W}.
+%\end{equation}
+%%
+%Divergence of the rest-mass density four-vector $j$, (\ref{eq:theory:nablamu_jmu}) can easily be cast as 
+%%
+%\begin{eqnarray}
+%0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{t}[\sqrt{\gamma}\rho W] + \frac{1}{\sqrt{-g}}\partial_{i}[\sqrt{\gamma}\rho(\alpha \upsilon^{i} - \beta^{i})]
+%\end{eqnarray}
+%%
+%where $D=\rho W = -\vec{j}\cdot \vec{n}$ is the conserved density.
+%%
+%To write the energy and momentum equations we note that for any vector field $\vec{p}$ \citep{Rezzolla:2013}, 
+%%
+%\begin{equation}
+%\nabla_{\mu}[{T^{\mu}}_{\nu}p^{\nu}] = {T^{\mu}}_{\nu}\nabla_{\mu}p^{\nu},
+%\end{equation}
+%%
+%To obtain the Valencia formulation we set $\vec{p}$ to have zeroth component $-\vec{n}$ 
+%and spatial components $\vec{\partial}_i$. Then the
+%%
+%\begin{itemize}
+%    \item ${T^0}_{\nu}p^{\nu}$ represent the conserved quantities, \ie, 
+%    $S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i)$ and 
+%    $E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})$
+%    \item ${T^i}_{\nu}p^{\nu}$ are associated fluxes,
+%    \item ${T^{\mu}}_{\nu}p^{\nu}$ are sources
+%\end{itemize}
+%%
+%with the $S_i$ and $E$ being 
+%%
+%\begin{equation}
+%S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i), \hspace{10mm} E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})
+%\end{equation}
+%%
+%for numerical reasons we will replace the total internal energy density $E$ with $\tau = E-D$, 
+%where $D$ is the rest mass density. This is done to avid errors emerging due to $E$ being much smaller then $D$. 
+%%
+%Now we can combine the obtained expressions for the conserved quantities, associated fluxes and sources with  Eq.~\eqref{eq:theory:valencia_formalism} and obtain
+%%
+%\begin{equation}
+%\frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}),
+%\label{eq:theory:grhdeq_thc} % used for THC section Code
+%\end{equation}
+%%
+%where $\boldsymbol{u}$ are the primitive quantities, being
+%%
+%\begin{equation*}
+%\boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon],
+%\end{equation*}
+%%
+%$\boldsymbol{F}^0(\boldsymbol{u})$ are the conserved quantities: 
+%%
+%\begin{equation*}
+%\boldsymbol{F}^0(\boldsymbol{u}) = [D,\: S_j,\: \tau] = [\rho W,\: \rho h W^2 \upsilon_j,\: \rho h W^2 - p - \rho W],
+%\end{equation*}
+%%
+%$\boldsymbol{F}^i(\boldsymbol{u})$ are the associated fluxes
+%%
+%\begin{equation*}
+%\boldsymbol{F}^i(\boldsymbol{u})=\Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg]
+%\end{equation*}
+%%
+%and $\boldsymbol{S}(\boldsymbol{u})$ are the sources.
+%%
+%\begin{equation*}
+%\boldsymbol{S}(\boldsymbol{u}) = \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
+%\end{equation*}
+%%
+%The from of the obtained general relativistic hydrodynamics equations resemble 
+%the one of the Newtonian gas dynamics. If the latter is adopted for numerical solutions. 
+%%
+%There are however several complications. In particular, there is no explicit inverse relation between 
+%the primitive quantities and the conserved ones. Thus one has to resort to the root-finding algorithms to 
+%\textit{reconstruct} them \red{(More on this in later chapters)}. In addition, it was pointed out that the 
+%$W$ couples the equation for the momenta in different direction \citep{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. 
+%This results in the dynamics of the shock wave being affected by the non-zero tangential velocity,
+%increasing the complexity of the \ac{GRHD} methods \citep{Mignone:2005ns,Zhang:2005qy}.
+%%%% ---------------------------------------
+For numerical reasons it is essential to cast the equations discussed above into 
+the conservative formulation. We focus on the specific, ``Valencia formulation'' of 
+\ac{GRHD} \citep{Banyuls:1997}. 
+%
+First we introduce the \textit{primitive variables}, and the \textit{conserved variables},
+where the former includes the proper rest-mass density of the fluid, $\rho$, 
+velocity $\upsilon_i$, and  energy density $\epsilon$, as seen by the 
+Lagrangian observer (\red{moving with the fluid?}), while the latter includes 
+the conserved rest mass, $D$, momentum, $S_i$, and internal energy $E$, as 
+seen by the Eulerian observer.
+Combining them into the state vectors we obtain $\boldsymbol{w}=(\rho,\upsilon_i,\epsilon)$
+and $\boldsymbol{q}=(D,S_i,E)$, where the components of the latter read
+%
+\begin{subequations}
+    \begin{align}
+    D = \rho W \\
+    S_i = \rho h W^2 \upsilon_i \\
+    E = \rho h W^2 - p \\
+    \tau = E - D
+    \end{align}
+\end{subequations}
+%
+where $W = (1 - \gamma_{kl}\upsilon^k\upsilon^l)$ is the Lorentz factor, and $\tau$ is the
+quantity introduced to avid errors emerging due to $E$ being much smaller then $D$. 
+%
+The expressions for the conserved quantities, associated fluxes and sources reads 
+%
+\begin{equation}
+\frac{1}{\sqrt{-g}}\Big[\frac{\partial(\sqrt{\gamma}\boldsymbol{q})}{\partial x^0} + \frac{\partial(\sqrt{-g}\boldsymbol{F}^{i})}{\partial x^i}\Big] = \boldsymbol{S},
+\label{eq:theory:valencia} % used for THC section Code
+\end{equation}
+%
+where 
+%
+\begin{subequations}
+    \begin{align}
+    q &= \boldsymbol{q}(\boldsymbol{w}) = (D, S_j, \tau) \\
+    \boldsymbol{F}^i &= \boldsymbol{F}^i(w) = \Big( D(\upsilon^i-\frac{\beta^i}{\alpha}), S_j(\upsilon^i-\frac{\beta^i}{\alpha}) + p\delta^i_j, \tau(\upsilon^i-\frac{\beta^i}{\alpha})+p\upsilon^i \Big) \\
+    \boldsymbol{S} &= \boldsymbol{S}(\boldsymbol{w})=(0, T^{\mu\nu}(\partial_{\mu}g_{\nu j} - \Gamma^{\sigma}_{\nu\mu}g_{\sigma j}), \alpha(T^{\mu 0}\partial_{\mu}(\log(\alpha)) - T^{\mu\nu}\Gamma^0_{\nu\mu})) \\
+    \end{align}
+\end{subequations}
+%
+The ``Valencia formulation'' allows to study ultra-relativistic flows and resolve shocks without
+ spurious oscillations and without the need for artificial viscosity, a numerical technique used 
+tackle the problem of excessive oscillations arising at shocks \citep[\eg][]{Font:2008fka}.
+%
+It is employed in many moderns state-of-the-art \ac{GRHD} codes, including the one that was 
+used in this thesis to model \ac{BNS} mergers. 
+
+
+
+\subsubsection{Equations of State}
+
+
+%%%% ---------------------------------------------------------
+%%%% === FROM RADICE THESIS -- EOS
+%%%% ---------------------------------------------------------
+%In addition to the fluid kinematics Eq.~\eqref{eq:theory:nablamu_jmu} and Eq.~\eqref{eq:theory:nablamu_tmunu}
+%and the description of motion Eq.~\eqref{eq:theory:stressenergytensor}, the relation between the pressure, 
+%internal energy and density is needed to fully describe the fluid. 
+%This relation is provided by the \ac{EOS}.
+%%
+%The commonly adopted \acp{EOS} are the the ideal-gas, or gamma-law \ac{EOS} $\rho = (\Gamma-1)\rho\epsilon$, 
+%where $\Gamma$ is the polytropic index of the gas, the polytropic \ac{EOS} $p = K\rho^{\Gamma}$ 
+%and the microphysical \ac{EOS}, which we discuss separately in Sec.~\ref{sec:whisky:eos}.
+%%
+%Combined with an \ac{EOS}, Eqs~\eqref{eq:theory:adm}, \eqref{eq:theory:nablamu_jmu}, \eqref{eq:theory:nablamu_tmunu} 
+%and \eqref{eq:theory:stressenergytensor} form a hyperbolic system of equations that can be evolved, 
+%once initial data is prescribed. 
+%The complete evolution of spacetime and the dynamics of the matter 
+%requires initial data to be set on the Cauchy surface.
+%%%% ------------------------------------------------------------
+
+In order to close the system of hydroponic equations, the relation between the pressure 
+internal energy and density is required, \ie, the \ac{EOS}. 
+There several possible options when it comes to modelling the \ac{NS} matter. 
+Specifically, 
+the (i) polytropic \ac{EOS}, $P(\rho)=\kappa\rho^{\Gamma}$, 
+the (ii) ideal gas \ac{EOS}, $P(\rho,\epsilon)=(\Gamma-1)\rho\epsilon$, 
+the (iii) piecewise polytropic \ac{EOS} $P(\rho,\epsilon) = \kappa_i\rho^{\Gamma}$, with 
+$\rho\in(\rho_i,\rho_{i+1})$, 
+the (iv) piecewise-polytropic \ac{EOS} with thermal contribution $P(\rho,\epsilon)=\kappa_i\rho^{\Gamma_i} + (\Gamma_{th}-1)\rho\epsilon_{th}$ with $\rho\in(\rho_i,\rho_{i+1})$, and $\epsilon_{th}=\epsilon-\epsilon_{cold}$, where the latter 
+is computed from polytropic \ac{EOS}.
+and the (v) microphysical \ac{EOS}.
+
+In this thesis we exclusively focus on microphysical \acp{EOS} with finite-temperature effects.
+These \acp{EOS} are constructed from the quantum field theory based on the stat-of-the-art
+models, theory and experiments. 
+%
 
 
 
@@ -486,98 +891,98 @@ the $D_i$ is the derivative operator compatible with the \ac{ADM} metric.
 
 %% \gray{Eulerian observer, an observer orthogonal to the hypersurface of constant coordinate time}.
 
-In this part we briefly overview key definitions and concepts behind \ac{GRHD}. 
-For a detailed discussion see \textit{e.g.,} \citet{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013}
-
-%% --- Kinematics
-
-In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities 
-such as energy density, mass, momentum density. However, in general and special relativity, these quantities 
-are not well defined and depend on the observer. In other words, different observers perceive the same fluid 
-being in different thermodynamic states. Hence, a description of the fluid dynamics in relativity requires 
-a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, 
-that are observer-dependent, but implicitly by a "flow" in spacetime. 
-These are flux-conservative formulations of \ac{HD}.
+%In this part we briefly overview key definitions and concepts behind \ac{GRHD}. 
+%For a detailed discussion see \textit{e.g.,} \citet{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013}
 %
-For instance, in the classical definition of density, a scalar $\rho$, usually defined as 
-total umber of particles $N$ of rest-mass $m$ in the volume $V$. 
-Then, the total mass is given by the 
-spatial integral of $\rho \text{d}^3x = m\int_V n \text{d}^3 x = mN$. 
+%%% --- Kinematics
 %
-However, while the number of particles $N$ would be the same regardless of the observer, 
-the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. 
-Hence, the $n$ would differ. 
-One of the solutions is to chose a frame of reference, that is comoving with the fluid and 
-define $\rho$ there. However, this would hinder the ability to generalize the formulation 
-to other reference frames.
-A better solution is to construct a covariant description in terms of invariant quantities.
-
-
-First, we discuss two important quantities of the fluid kinematics.
-Consider $\boldsymbol{\rho}$, the fluid density in space-time. 
-The conservation of the number of particles is expressed by the vanishing exterior product of the density: 
+%In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of quantities 
+%such as energy density, mass, momentum density. However, in general and special relativity, these quantities 
+%are not well defined and depend on the observer. In other words, different observers perceive the same fluid 
+%being in different thermodynamic states. Hence, a description of the fluid dynamics in relativity requires 
+%a new formulation, a formulation in which a fluid is not represented by a scalar and vector fields, 
+%that are observer-dependent, but implicitly by a "flow" in spacetime. 
+%These are flux-conservative formulations of \ac{HD}.
+%%
+%For instance, in the classical definition of density, a scalar $\rho$, usually defined as 
+%total umber of particles $N$ of rest-mass $m$ in the volume $V$. 
+%Then, the total mass is given by the 
+%spatial integral of $\rho \text{d}^3x = m\int_V n \text{d}^3 x = mN$. 
+%%
+%However, while the number of particles $N$ would be the same regardless of the observer, 
+%the $\text{d}^3x$ would be measured differently by observers moving in relation to each other. 
+%Hence, the $n$ would differ. 
+%One of the solutions is to chose a frame of reference, that is comoving with the fluid and 
+%define $\rho$ there. However, this would hinder the ability to generalize the formulation 
+%to other reference frames.
+%A better solution is to construct a covariant description in terms of invariant quantities.
 %
-\begin{equation*}
-\int_{\partial\Omega} \boldsymbol{\rho} = \int_{\Omega}\text{d}\boldsymbol{\rho} = 0,
-\end{equation*}
 %
-that reads as the following: the net flow across any sufficiently regular 
-surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
-
-Second important quantity is flux. 
-Generally, a flux of a vector field can be described by a three-form, 
-for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
-A vector field associated with density is called rest-mass density four-vector 
-and is denoted by $\vec{j}$, and relates to the $\boldsymbol{\rho}$ as 
+%First, we discuss two important quantities of the fluid kinematics.
+%Consider $\boldsymbol{\rho}$, the fluid density in space-time. 
+%The conservation of the number of particles is expressed by the vanishing exterior product of the density: 
+%%
+%\begin{equation*}
+%\int_{\partial\Omega} \boldsymbol{\rho} = \int_{\Omega}\text{d}\boldsymbol{\rho} = 0,
+%\end{equation*}
+%%
+%that reads as the following: the net flow across any sufficiently regular 
+%surface $\partial\Omega$ enclosing a four-dimensional open set $\Omega\subset\mathcal{M}$ is zero.
 %
-\begin{equation}
-\int_{\Sigma} \boldsymbol{\rho} = - \int_{\Sigma}\vec{j}\cdot\vec{n}\text{Vol}_x ^3,
-\end{equation}
+%Second important quantity is flux. 
+%Generally, a flux of a vector field can be described by a three-form, 
+%for which on a pseudo-Riemannian manifold there exist a vector field associated with it.
+%A vector field associated with density is called rest-mass density four-vector 
+%and is denoted by $\vec{j}$, and relates to the $\boldsymbol{\rho}$ as 
+%%
+%\begin{equation}
+%\int_{\Sigma} \boldsymbol{\rho} = - \int_{\Sigma}\vec{j}\cdot\vec{n}\text{Vol}_x ^3,
+%\end{equation}
+%%
+%where $\text{Vol}_x ^3,$ is the volume pseudo-form on the hypersurface, $\vec{n}$ is the norm.
+%%
+%The $\vec{j}$ is time like (or null). In other words, the flux of particles across any 
+%future-oriented spacelike hypersurface is positive (or zero). 
+%%
+%If $\vec{j}$ is time like, there exists a unique decomposition 
+%%
+%\begin{equation}
+%\vec{j} = \rho \vec{u},
+%\label{eq:theory:defofjandu}
+%\end{equation}
+%%
+%where the scalar $\rho$ can be seen as density in the co-moving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
+%The divergence of vector $j$ then gives a familiar mass conservation expression
+%%
+%\begin{equation}
+%0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
+%\label{eq:theory:nablamu_jmu}
+%\end{equation}
 %
-where $\text{Vol}_x ^3,$ is the volume pseudo-form on the hypersurface, $\vec{n}$ is the norm.
 %
-The $\vec{j}$ is time like (or null). In other words, the flux of particles across any 
-future-oriented spacelike hypersurface is positive (or zero). 
-%
-If $\vec{j}$ is time like, there exists a unique decomposition 
-%
-\begin{equation}
-\vec{j} = \rho \vec{u},
-\label{eq:theory:defofjandu}
-\end{equation}
-%
-where the scalar $\rho$ can be seen as density in the co-moving frame and unit-timelike vector $\vec{u}$ as a fluid four-velocity.
-The divergence of vector $j$ then gives a familiar mass conservation expression
-%
-\begin{equation}
-0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{\mu}[\sqrt{-g}\rho u^{\mu}].
-\label{eq:theory:nablamu_jmu}
-\end{equation}
-
-
-Next, we proceed with introducing the mixed tensor $\boldsymbol{T}$, 
-the stress energy tensor of the fluid.
-%
-Since the three-forms are equivalent to vectors, the flow of the $\nu$ momentum across 
-the volume element orthogonal to $dx^{\mu}$ can be defined as
-%
-\begin{equation}
-{T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu}).
-\end{equation}
-%
-Note the stress energy tensor has already appeared in our derivation of the 
-\ac{EFE}, in Appendix~\ref{app:efe}, in Eq.~\eqref{eq:theory:action1}
-There, if the \ac{EFE} are satisfied the Bianchi identities dictate that the 
-$\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
-%
-\begin{equation}
-\nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
-\label{eq:theory:nablamu_tmunu}
-\end{equation}
-%
-However, this statement does not imply the conservation of the energy and 
-momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires 
-$\vec{\partial}_{\nu}$ to be a Killing vector.
+%Next, we proceed with introducing the mixed tensor $\boldsymbol{T}$, 
+%the stress energy tensor of the fluid.
+%%
+%Since the three-forms are equivalent to vectors, the flow of the $\nu$ momentum across 
+%the volume element orthogonal to $dx^{\mu}$ can be defined as
+%%
+%\begin{equation}
+%{T^{\mu}}_{\nu}=\boldsymbol{T}(dx^{\mu},\partial_{\nu}).
+%\end{equation}
+%%
+%Note the stress energy tensor has already appeared in our derivation of the 
+%\ac{EFE}, in Appendix~\ref{app:efe}, in Eq.~\eqref{eq:theory:action1}
+%There, if the \ac{EFE} are satisfied the Bianchi identities dictate that the 
+%$\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish as
+%%
+%\begin{equation}
+%\nabla_{\mu}{T^{\mu}}_{\nu} = 0= \frac{1}{\sqrt{-g}}\partial_{\mu}(\sqrt{-g}{T^{\mu}}_{\nu}) - {\Gamma^{\alpha}}_{\mu\nu}{T^{\mu}}_{\alpha}.
+%\label{eq:theory:nablamu_tmunu}
+%\end{equation}
+%%
+%However, this statement does not imply the conservation of the energy and 
+%momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires 
+%$\vec{\partial}_{\nu}$ to be a Killing vector.
 
 
 
@@ -585,203 +990,203 @@ $\vec{\partial}_{\nu}$ to be a Killing vector.
 
 %% Now we have introduced the fluid kinematic, and defined the important quantities such as mass, energy and momentum and their "conservation" in \eqref{eq:theory:nablamu_jmu} and \eqref{eq:theory:nablamu_tmunu}.
 
-Next we proceed with discussing the fluid dynamics. 
+%Next we proceed with discussing the fluid dynamics. 
+%%
+%In the following we limit the discussion to the perfect fluid, meaning that in the co-moving frame, 
+%there is not heat conduction and there is no viscosity. The former criterion implies that the fluid is in 
+%\ac{LTE}. The latter is more complex, as there is still no consensus on the correct mathematical formulation, 
+%especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in 
+%\ac{GR} (see e.g., \citet{Andersson:2006nr} and references therein). 
 %
-In the following we limit the discussion to the perfect fluid, meaning that in the co-moving frame, 
-there is not heat conduction and there is no viscosity. The former criterion implies that the fluid is in 
-\ac{LTE}. The latter is more complex, as there is still no consensus on the correct mathematical formulation, 
-especially with respect to the numerical applications, of the viscous and/or thermally conducting fluids in 
-\ac{GR} (see e.g., \citet{Andersson:2006nr} and references therein). 
+%
+%Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. 
+%To construct it, we return to the fluid's four velocity $\vec{u}$ from Eq.~\eqref{eq:theory:defofjandu}. 
+%If $e_{i}$ is the basis vector, the scalar products $\vec{u}\cdot\vec{e}_i=0$ and 
+%$\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$, then the orthonormal tetrad 
+%$\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. 
+%%
+%Tensor $\boldsymbol{T}$ is the stress-energy tensor with the following components: 
+%%
+%\begin{itemize}
+%    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$,
+%    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy 
+%    flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction,
+%    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component 
+%    of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
+%\end{itemize}
+%%
+%Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations 
+%of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively described 
+%by a scalar $p$, that we call pressure as
+%%
+%\begin{equation}
+%\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k,
+%\end{equation}
+%%
+%Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
+%%
+%\begin{equation}
+%\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
+%\end{equation}
+%%
+%Defining the enthalpy of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, 
+%we rewrite $\boldsymbol{T}$ as 
+%%
+%\begin{equation}
+%\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
+%\label{eq:theory:stressenergytensor}
+%\end{equation}
 
 
-Consider a stress-energy tensor of a perfect fluid in the comoving frame with the fluid. 
-To construct it, we return to the fluid's four velocity $\vec{u}$ from Eq.~\eqref{eq:theory:defofjandu}. 
-If $e_{i}$ is the basis vector, the scalar products $\vec{u}\cdot\vec{e}_i=0$ and 
-$\vec{e_i}\cdot\vec{e}_k = \delta_{ik}$, then the orthonormal tetrad 
-$\{\vec{u},\vec{e}\}$ is comoving with the fluid, and the $\{\underline{u},\underline{e}^i\}$ is the dual basis. 
-%
-Tensor $\boldsymbol{T}$ is the stress-energy tensor with the following components: 
-%
-\begin{itemize}
-    \item $\boldsymbol{T}(\underline{u}, \vec{u})$ energy-density in the rest-frame of the fluid, the scalar $e$,
-    \item $\boldsymbol{T}(\underline{u}, \vec{e}_i) = 0$ represent the energy 
-    flowing transverse to the four-velocity, which we set to $0$ in the absence of the heat-conduction,
-    \item $\boldsymbol{T}(\underline{e}^i, \vec{e}_k) = 0$ represent the $k$ component 
-    of the force exchanged across the surface element orthogonal to $\underline{e}_i$.
-\end{itemize}
-%
-Taking into account that the $\boldsymbol{T}$ must be invariant with respect to the rotations 
-of the $\{\vec{e}_i\}$ and that the viscosity is not included, force exchange can be effectively described 
-by a scalar $p$, that we call pressure as
-%
-\begin{equation}
-\boldsymbol{T}(\underline{e}^i,\vec{e}_k) = p {\delta^i}_k,
-\end{equation}
-%
-Combining the aforementioned description of the components of $\boldsymbol{T}$ we get
-%
-\begin{equation}
-\boldsymbol{T} = (e + p)\vec{u}\otimes \underline{u} + p\boldsymbol{\delta}.
-\end{equation}
-%
-Defining the enthalpy of the fluid as $h = 1 + \epsilon = p/\rho$, where $\epsilon$ is the specific internal energy, 
-we rewrite $\boldsymbol{T}$ as 
-%
-\begin{equation}
-\boldsymbol{T} = \rho h \vec{u}\otimes\underline{u} + p\boldsymbol{\delta}
-\label{eq:theory:stressenergytensor}
-\end{equation}
-
-
-In addition to the fluid kinematics Eq.~\eqref{eq:theory:nablamu_jmu} and Eq.~\eqref{eq:theory:nablamu_tmunu}
-and the description of motion Eq.~\eqref{eq:theory:stressenergytensor}, the relation between the pressure, 
-internal energy and density is needed to fully describe the fluid. 
-This relation is provided by the \ac{EOS}.
-%
-The commonly adopted \acp{EOS} are the the ideal-gas, or gamma-law \ac{EOS} $\rho = (\Gamma-1)\rho\epsilon$, 
-where $\Gamma$ is the polytropic index of the gas, the polytropic \ac{EOS} $p = K\rho^{\Gamma}$ 
-and the microphysical \ac{EOS}, which we discuss separately in Sec.~\ref{sec:whisky:eos}.
-%
-Combined with an \ac{EOS}, Eqs~\eqref{eq:theory:adm}, \eqref{eq:theory:nablamu_jmu}, \eqref{eq:theory:nablamu_tmunu} 
-and \eqref{eq:theory:stressenergytensor} form a hyperbolic system of equations that can be evolved, 
-once initial data is prescribed. 
-The complete evolution of spacetime and the dynamics of the matter 
-requires initial data to be set on the Cauchy surface.
+%In addition to the fluid kinematics Eq.~\eqref{eq:theory:nablamu_jmu} and Eq.~\eqref{eq:theory:nablamu_tmunu}
+%and the description of motion Eq.~\eqref{eq:theory:stressenergytensor}, the relation between the pressure, 
+%internal energy and density is needed to fully describe the fluid. 
+%This relation is provided by the \ac{EOS}.
+%%
+%The commonly adopted \acp{EOS} are the the ideal-gas, or gamma-law \ac{EOS} $\rho = (\Gamma-1)\rho\epsilon$, 
+%where $\Gamma$ is the polytropic index of the gas, the polytropic \ac{EOS} $p = K\rho^{\Gamma}$ 
+%and the microphysical \ac{EOS}, which we discuss separately in Sec.~\ref{sec:whisky:eos}.
+%%
+%Combined with an \ac{EOS}, Eqs~\eqref{eq:theory:adm}, \eqref{eq:theory:nablamu_jmu}, \eqref{eq:theory:nablamu_tmunu} 
+%and \eqref{eq:theory:stressenergytensor} form a hyperbolic system of equations that can be evolved, 
+%once initial data is prescribed. 
+%The complete evolution of spacetime and the dynamics of the matter 
+%requires initial data to be set on the Cauchy surface.
 
 %% ---------- Conservative Formulations
 
 %% In the pioneering works of May and White \cite{May:1966} and Wilson \cite{Wilson:1972} the equations of general relativistic hydrodynamics were solved using the finite-difference (FD) schemes after casting them a from of non-linear advection-like equations. To avoid excessive oscillations at shocks a combination of upwinding and artificial-viscosity methods was employed. This however led to severl limitations, such as difficulty with tunning the artificial viscosity to still allow shocks to develop, and the limit on a flows being only mildly relativistic \cite{Font:2008fka}. A next big advancement in the numerical relativistic hydrodynamics was made after the non-conservative nature of the Wilson’s approach was pointed out \cite{Marti:1991wi} and the conservation formulation was developed. 
 
-For numerical reasons it is essential to cast the equations discussed above into the conservative formulation.
-%
-An important example of the conservation formulation that is adopted to $3 + 1$ formalism 
-is the "Valencia formulation" \citep{Banyuls:1997} that can be represented as following
-%
-\begin{equation}
-\frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
-\label{eq:theory:valencia_formalism}
-\end{equation}
-%
-where $u$ is a “vector” of primitive quantities, such as the rest-mass density or the specific internal energy,
-$\boldsymbol{F}^0$ is a “vector” of conserved quantities, and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ 
-are their fluxes and sources respectively. 
-%
-This formulation allowed to study ultra-relativistic flows and resolve shocks without spurious 
-oscillations and without the need for artificial viscosity, a numerical technique used 
-tackle the problem of excessive oscillations arising at shocks \citep[\eg][]{Font:2008fka}.
-%
-It was shown to be especially well suited for use with numerical methods that take 
-into account the conservation laws. These are the \ac{FV} and \ac{FD} \ac{HRSC} methods, 
-that we briefly discuss in Sec.~\ref{sec:nr_methods}.
-%
-Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods \citep[\eg][]{Shibata:2005gp,Giacomazzo:2010bx,Rezzolla:2011da,Radice:2013xpa}. See also \citet{Shibata:2016}
-and references therein.
-%
-Notably, there are other conservative formulations and methods (see \eg, \citet{Papadopoulos:1999kt}). 
-
-
-Next, we briefly outline the Valencia formulation.
-To begin we split the four-velocity $\vec{u}$ into the component parallel to the 
-normal vector $\vec{n}$ and a purely spatial component as 
-%
-$\vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon}),$
-%
-where naturally the Lorentz factor, measured by the Eulerian observer\footnote{
-    Eulerian observer, an observer orthogonal to the hypersurface of constant coordinate time} 
-$W = (-\vec{u}\cdot\vec{n})$ emerges, 
-and the $\upsilon$ is the fluid three-velocity measured by the Eulerian observer, 
-%
-\begin{equation}
-\vec{\upsilon} = \frac{\vec{u}}{W} -\vec{n}, \text{ with components } \upsilon^i = \frac{u^i}{W}+ \frac{\beta^i}{\alpha}, \hspace{3mm} \upsilon_i= \frac{u_{i}}{W}.
-\end{equation}
-%
-Divergence of the rest-mass density four-vector $j$, (\ref{eq:theory:nablamu_jmu}) can easily be cast as 
-%
-\begin{eqnarray}
-0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{t}[\sqrt{\gamma}\rho W] + \frac{1}{\sqrt{-g}}\partial_{i}[\sqrt{\gamma}\rho(\alpha \upsilon^{i} - \beta^{i})]
-\end{eqnarray}
-%
-where $D=\rho W = -\vec{j}\cdot \vec{n}$ is the conserved density.
-%
-To write the energy and momentum equations we note that for any vector field $\vec{p}$ \citep{Rezzolla:2013}, 
-%
+%For numerical reasons it is essential to cast the equations discussed above into the conservative formulation.
+%%
+%An important example of the conservation formulation that is adopted to $3 + 1$ formalism 
+%is the "Valencia formulation" \citep{Banyuls:1997} that can be represented as following
+%%
 %\begin{equation}
-$\nabla_{\mu}[{T^{\mu}}_{\nu}p^{\nu}] = {T^{\mu}}_{\nu}\nabla_{\mu}p^{\nu}$,
+%\frac{\partial\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^{i}} = \boldsymbol{S}(\boldsymbol{u})
+%\label{eq:theory:valencia_formalism}
 %\end{equation}
+%%
+%where $u$ is a “vector” of primitive quantities, such as the rest-mass density or the specific internal energy,
+%$\boldsymbol{F}^0$ is a “vector” of conserved quantities, and $\boldsymbol{F}^i$ and $\boldsymbol{S}$ 
+%are their fluxes and sources respectively. 
+%%
+%This formulation allowed to study ultra-relativistic flows and resolve shocks without spurious 
+%oscillations and without the need for artificial viscosity, a numerical technique used 
+%tackle the problem of excessive oscillations arising at shocks \citep[\eg][]{Font:2008fka}.
+%%
+%It was shown to be especially well suited for use with numerical methods that take 
+%into account the conservation laws. These are the \ac{FV} and \ac{FD} \ac{HRSC} methods, 
+%that we briefly discuss in Sec.~\ref{sec:nr_methods}.
+%%
+%Many recent advancements in numerical relativistic hydrodynamics and magnetohydrodynamics (MHD) have relied on these methods \citep[\eg][]{Shibata:2005gp,Giacomazzo:2010bx,Rezzolla:2011da,Radice:2013xpa}. See also \citet{Shibata:2016}
+%and references therein.
+%%
+%Notably, there are other conservative formulations and methods (see \eg, \citet{Papadopoulos:1999kt}). 
 %
-To obtain the Valencia formulation we set $\vec{p}$ to have zeroth component $-\vec{n}$ 
-and spatial components $\vec{\partial}_i$. Then the
 %
-\begin{itemize}
-    \item ${T^0}_{\nu}p^{\nu}$ represent the conserved quantities, \ie, 
-    $S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i)$ and 
-    $E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})$
-    \item ${T^i}_{\nu}p^{\nu}$ are associated fluxes,
-    \item ${T^{\mu}}_{\nu}p^{\nu}$ are sources
-\end{itemize}
-%
-with the former being 
-%
-%% \begin{equation}
-%% S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i), \hspace{10mm} E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})
-%% \end{equation}
-%
-for numerical reasons we will replace the total internal energy density $E$ with $\tau = E-D$, 
-where $D$ is the rest mass density. This is done to avid errors emerging due to $E$ being much smaller then $D$. 
-%
-Now we can combine the obtained expressions for the conserved quantities, associated fluxes and sources with  Eq.~\eqref{eq:theory:valencia_formalism} and obtain
-%
-\begin{equation}
-\frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}),
-\label{eq:theory:grhdeq_thc} % used for THC section Code
-\end{equation}
-%
-where $\boldsymbol{u}$ are the primitive quantities, being
-%
-\begin{equation*}
-\boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon],
-\end{equation*}
-%
-$\boldsymbol{F}^0(\boldsymbol{u})$ are the conserved quantities: 
-%
-\begin{equation*}
-\boldsymbol{F}^0(\boldsymbol{u}) = [D,\: S_j,\: \tau] = [\rho W,\: \rho h W^2 \upsilon_j,\: \rho h W^2 - p - \rho W],
-\end{equation*}
-%
-$\boldsymbol{F}^i(\boldsymbol{u})$ are the associated fluxes
-%
-\begin{equation*}
-\boldsymbol{F}^i(\boldsymbol{u})=\Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg]
-\end{equation*}
-%
-and $\boldsymbol{S}(\boldsymbol{u})$ are the sources.
-%
-\begin{equation*}
-\boldsymbol{S}(\boldsymbol{u}) = \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
-\end{equation*}
-%
-The from of the obtained general relativistic hydrodynamics equations resemble 
-the one of the Newtonian gas dynamics. If the latter is adopted for numerical solutions. 
-%
-There are however several complications. In particular, there is no explicit inverse relation between 
-the primitive quantities and the conserved ones. Thus one has to resort to the root-finding algorithms to 
-\textit{reconstruct} them \red{(More on this in later chapters)}. In addition, it was pointed out that the 
-$W$ couples the equation for the momenta in different direction \citep{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. 
-This results in the dynamics of the shock wave being affected by the non-zero tangential velocity,
-increasing the complexity of the \ac{GRHD} methods \citep{Mignone:2005ns,Zhang:2005qy}.
+%Next, we briefly outline the Valencia formulation.
+%To begin we split the four-velocity $\vec{u}$ into the component parallel to the 
+%normal vector $\vec{n}$ and a purely spatial component as 
+%%
+%$\vec{u} = (-\vec{u} \cdot \vec{n})(\vec{n} + \vec{\upsilon}),$
+%%
+%where naturally the Lorentz factor, measured by the Eulerian observer\footnote{
+%    Eulerian observer, an observer orthogonal to the hypersurface of constant coordinate time} 
+%$W = (-\vec{u}\cdot\vec{n})$ emerges, 
+%and the $\upsilon$ is the fluid three-velocity measured by the Eulerian observer, 
+%%
+%\begin{equation}
+%\vec{\upsilon} = \frac{\vec{u}}{W} -\vec{n}, \text{ with components } \upsilon^i = \frac{u^i}{W}+ \frac{\beta^i}{\alpha}, \hspace{3mm} \upsilon_i= \frac{u_{i}}{W}.
+%\end{equation}
+%%
+%Divergence of the rest-mass density four-vector $j$, (\ref{eq:theory:nablamu_jmu}) can easily be cast as 
+%%
+%\begin{eqnarray}
+%0 = \nabla_{\mu}j^{\mu} = \frac{1}{\sqrt{-g}}\partial_{t}[\sqrt{\gamma}\rho W] + \frac{1}{\sqrt{-g}}\partial_{i}[\sqrt{\gamma}\rho(\alpha \upsilon^{i} - \beta^{i})]
+%\end{eqnarray}
+%%
+%where $D=\rho W = -\vec{j}\cdot \vec{n}$ is the conserved density.
+%%
+%To write the energy and momentum equations we note that for any vector field $\vec{p}$ \citep{Rezzolla:2013}, 
+%%
+%%\begin{equation}
+%$\nabla_{\mu}[{T^{\mu}}_{\nu}p^{\nu}] = {T^{\mu}}_{\nu}\nabla_{\mu}p^{\nu}$,
+%%\end{equation}
+%%
+%To obtain the Valencia formulation we set $\vec{p}$ to have zeroth component $-\vec{n}$ 
+%and spatial components $\vec{\partial}_i$. Then the
+%%
+%\begin{itemize}
+%    \item ${T^0}_{\nu}p^{\nu}$ represent the conserved quantities, \ie, 
+%    $S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i)$ and 
+%    $E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})$
+%    \item ${T^i}_{\nu}p^{\nu}$ are associated fluxes,
+%    \item ${T^{\mu}}_{\nu}p^{\nu}$ are sources
+%\end{itemize}
+%%
+%with the former being 
+%%
+%%% \begin{equation}
+%%% S_{i} = \alpha {T^0}_{\nu}(\partial_i)^{\nu}=-\boldsymbol{T}(\vec{n},\vec{\partial}_i), \hspace{10mm} E = -\alpha{T^0}_{\nu}n^{\nu} = \boldsymbol{T}(\vec{n},\vec{n})
+%%% \end{equation}
+%%
+%for numerical reasons we will replace the total internal energy density $E$ with $\tau = E-D$, 
+%where $D$ is the rest mass density. This is done to avid errors emerging due to $E$ being much smaller then $D$. 
+%%
+%Now we can combine the obtained expressions for the conserved quantities, associated fluxes and sources with  Eq.~\eqref{eq:theory:valencia_formalism} and obtain
+%%
+%\begin{equation}
+%\frac{1}{\sqrt{-g}}\Big[\frac{\partial\sqrt{\gamma}\boldsymbol{F}^{0}(\boldsymbol{u})}{\partial t} + \frac{\partial\sqrt{-g}\boldsymbol{F}^{i}(\boldsymbol{u})}{\partial x^i}\Big] = \boldsymbol{S}(\boldsymbol{u}),
+%\label{eq:theory:grhdeq_thc} % used for THC section Code
+%\end{equation}
+%%
+%where $\boldsymbol{u}$ are the primitive quantities, being
+%%
+%\begin{equation*}
+%\boldsymbol{u} = [\rho,\: \upsilon_i,\: \epsilon],
+%\end{equation*}
+%%
+%$\boldsymbol{F}^0(\boldsymbol{u})$ are the conserved quantities: 
+%%
+%\begin{equation*}
+%\boldsymbol{F}^0(\boldsymbol{u}) = [D,\: S_j,\: \tau] = [\rho W,\: \rho h W^2 \upsilon_j,\: \rho h W^2 - p - \rho W],
+%\end{equation*}
+%%
+%$\boldsymbol{F}^i(\boldsymbol{u})$ are the associated fluxes
+%%
+%\begin{equation*}
+%\boldsymbol{F}^i(\boldsymbol{u})=\Bigg[D\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big),\: S_{j}\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}\Big)+p{\delta^i}_j ,\: \tau\Big(\upsilon^{i}-\frac{\beta^i}{\alpha}+p\upsilon^i\Big)\Bigg]
+%\end{equation*}
+%%
+%and $\boldsymbol{S}(\boldsymbol{u})$ are the sources.
+%%
+%\begin{equation*}
+%\boldsymbol{S}(\boldsymbol{u}) = \Bigg[0,\: T^{\mu\nu}\Big(\frac{\partial g_{\nu j}}{\partial x^{\mu}} - \Gamma^{\delta}_{\nu\mu}g_{\delta j}\Big),\: \alpha\Big(T^{\mu 0}\frac{\partial\log\alpha}{\partial x^{\mu}}-T^{\mu\nu}\Gamma^{0}_{\nu\mu}\Big)\Bigg]^T
+%\end{equation*}
+%%
+%The from of the obtained general relativistic hydrodynamics equations resemble 
+%the one of the Newtonian gas dynamics. If the latter is adopted for numerical solutions. 
+%%
+%There are however several complications. In particular, there is no explicit inverse relation between 
+%the primitive quantities and the conserved ones. Thus one has to resort to the root-finding algorithms to 
+%\textit{reconstruct} them \red{(More on this in later chapters)}. In addition, it was pointed out that the 
+%$W$ couples the equation for the momenta in different direction \citep{Pons:2000,Rezzolla:2002ra,Rezzolla:2002cc,Aloy:2006rd}. 
+%This results in the dynamics of the shock wave being affected by the non-zero tangential velocity,
+%increasing the complexity of the \ac{GRHD} methods \citep{Mignone:2005ns,Zhang:2005qy}.
 
 
-Next, it is logical to proceed with the derivation of the fluid dynamics in \ac{GR}, \ie, the 
-Euler equations.
-One of the way how the General-Relativistic Euler equation can be derived is by considering the 
-General-Relativistic Boltzmann equation and Liuville theorem. 
-However, for the sake of brevity we omit the derivations here, providing only the result,
-%
-\begin{equation}
-\nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
-\end{equation}
-%
-For the sake of completeness, however, we provide the key steps of this derivation, in Appendix~\ref{app:eul}.
+%Next, it is logical to proceed with the derivation of the fluid dynamics in \ac{GR}, \ie, the 
+%Euler equations.
+%One of the way how the General-Relativistic Euler equation can be derived is by considering the 
+%General-Relativistic Boltzmann equation and Liuville theorem. 
+%However, for the sake of brevity we omit the derivations here, providing only the result,
+%%
+%\begin{equation}
+%\nabla_{\mu}J^{\mu} =0 \hspace{10mm}\nabla_{\nu}T^{\mu\nu} =0
+%\end{equation}
+%%
+%For the sake of completeness, however, we provide the key steps of this derivation, in Appendix~\ref{app:eul}.
 
 
 %% --- SKIPPED The General-Relativistic Boltzmann Equation
