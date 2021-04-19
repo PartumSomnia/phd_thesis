@@ -2178,8 +2178,8 @@ where $\Omega$ is the angular velocity of the fluid \citep{Shakura:1972te}.
 %
 The value of $\alpha$ can be constrained by very high resolution \ac{GRMHD} simulations with seed magnetic
 field $(10^{15}~G)$ strong enough that the \ac{MRI} within the remnant is resolved. 
-This was done in \citet{Radice:2020ids} (see Fig.1 there) using \ac{GRMHD} of \citet{Kiuchi:2017zzg}.
-%
+This was done in \citet{Radice:2020ids} (see their Fig.~1) using \ac{GRMHD} of \citet{Kiuchi:2017zzg}.
+
 In the following, simulations computed with this formalism are referred to as those with 
 viscosity or subgrid turbulence. 
 %
@@ -2244,10 +2244,170 @@ viscosity or subgrid turbulence.
 
 \subsection{Numerical Approximation of Conservation Laws}
 
+In order to accurately model fluid dynamics, properties of which can exhibit 
+discontinuities, \ac{HRSC} schemes are required.
+The theoretical background on the mathematical theory of conservational laws,
+the existence and uniqueness of a solution, properties of weak and entropic solutions 
+is discussed in Appendix~\ref{app:num}. 
+See also \citet{LeVeque:1992,Tadmor1998,Chen:2006} for introductions into the topic.
 
+The conservation laws take the following form 
+%
+\begin{align}
+    \partial_t\boldsymbol{u} + \nabla\cdot\boldsymbol{f}(\boldsymbol{u}) = 0, \hspace{10mm} &(t,x)\in \text{I\!R}_{+}\times\text{I\!R}^d , \\
+    \boldsymbol{u}(0, x) = \boldsymbol{u}(x), \hspace{18mm} &x\in \text{ I\!R},
+    \label{eq:theory:conservlaws}
+\end{align}
+%
+where $\boldsymbol{u}$ is the vector of $m$ unknowns, $\boldsymbol{f}=(\boldsymbol{\boldsymbol{f}^1,...,\boldsymbol{f}^m})$ is a $d$-dimensional flux and $\boldsymbol{u_0}\in\big[L^{\infty}(\text{I\!R}^d)\big]^m$ is the initial data. 
 
+The solution to Eq.~\eqref{eq:theory:conservlaws} can develop discontinuities
+irrespective of initial data. Thus ``weak solution'' to the system are considered,
+which are not unique even for scalar cases. 
+The condition for a solution to be entropic is equivalent enforcing that the 
+shock formation is irrecersible \citep{LeVeque:1992}.
+%The existance and uniqness of such solutions was investigated \citep{Kruzkov:1970,DiPerna:1985,Benartzi:2007} in the scalar case, but for the system of 
+%conservation laws it is not well uncerstood, and was shown only for specific 
+%cases of Euler eq. \citep{Chen:2009}, while even the existance of such solution
+%in general case is not guaranteed \citep{Curtis:1972} but was shown for specific 
+%cases \citep{Smoller:1993}.
+%The weak solution exists for a strictly hyperbolic systems,
+%(where $\nabla_{\boldsymbol{u}}\boldsymbol{f}$ has a complete set of real eigenvalues and eigenvectors) having small enough initial jump \citep{Lax:1957}.
 
+%%%% \textbf{Consistency, Stability and Convergence}
+%Only linear theory is considered with $m=1$
+%\begin{align}
+%    \partial_t u + \nabla\cdot\boldmath(u) = 0&, \hspace{10mm} (t,x) \in I\!R_{+}\times I\! R^d \\ 
+%    u(0, x) = u_o(x)&, \hspace{15mm} x\in I\!R^{d},
+%\end{align}
+%where $u$ is now just a scalar function. 
+%Consider the case where $u$ is now just a scalar function. 
+% with $u(t)$ not being a smooth function of time.
+%The Eq.~\eqref{eq:theory:conservlaws} can be seen as a system of \acp{ODE}, 
+%
+%\begin{equation} % subequations
+%    \frac{\text{d}u(t)}{\text{d}t} = \mathcal{L}[u(t)], \hspace{10mm} u(0) = u_0,
+%    \frac{\text{d}u^{\Delta}(t)}{\text{d}t} = L^{\Delta}[u^{\Delta}(t)], \hspace{10mm} u^{\Delta}(0) = P^{\Delta}[u_0],
+%    \label{eq:theory:conservlawsode}
+%\end{equation}
+%
+%where $\mathcal{L}(\cdot)$ is the operator associated with the $-\nabla\cdot\boldsymbol{f}(\cdot)$.
+% 
+Introducing the $\mathcal{L}(\cdot)$, the operator associated with the $-\nabla\cdot\boldsymbol{f}(\cdot)$.
+the numerical approximation to the scalar form of the conservation law Eq.\eqref{eq:theory:conservlaws} can be written as 
+%
+\begin{equation}
+\frac{\text{d}u^{\Delta}(t)}{\text{d}t} = L^{\Delta}[u^{\Delta}(t)], \hspace{10mm} u^{\Delta}(0) = P^{\Delta}[u_0] \approxeq u_0,
+\label{eq:theory:conservlawsodepde}
+\end{equation}
+%
+where $\Delta$ is the discretization parameter,
+$u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \ie, $u^{\delta}\approxeq u u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator, associated error with which is negligible $u^{\Delta}(0) = u_0$. 
 
+%The \textit{local truncation error} reads 
+%%
+%\begin{equation}
+%r^{\Delta} = L^{\Delta}[u(t)] - \mathcal{L}[u(t)],
+%\end{equation}
+%%
+%where $u(t)$ is the exact solution to Eq.~\eqref{eq:theory:conservlaws}.
+%A scheme is called \textit{consistent} if $r^{\Delta}\rightarrow 0$ when 
+%$\Delta\rightarrow 0$ in a given, task dependent, norm for all possible initial data $u_0$.
+%A scheme is called \textit{of order $r$} if 
+%\begin{equation}
+%|| r^{\Delta}(t) || = \mathcal{O}(\Delta^r).
+%\end{equation}
+%A scheme is called \textit{stable} if the norm $L^{\Delta}$ is limited 
+%\begin{equation}
+%|||L^{\Delta}||| := \sup \frac{||L^{\Delta}||}{||\upsilon||}\leq C,
+%\end{equation}
+%where $C\geq 0$ is a constant independent of $\upsilon$. 
+%A scheme is called \textit{convergent} if 
+%\begin{equation}
+%\lim_{\Delta\rightarrow 0} ||u^{\Delta}(t)-u(t)|| = 0, \hspace{10mm} \text{a.e. } t\in \text{I\!R}_{+}.
+%\end{equation}
+%The relation between the consistency, stability and convergence is given by the Lax-Richtmeyer equivalence theorem \citep{Lax:1956}. It states that the numerical approximation of well-posed problems is convergent if and only if the scheme is stable and consistent. 
+
+%%%% Non-Linear Equations and Non-Linear Stability
+The system Eq~\eqref{eq:theory:conservlawsodepde} is a system of ordinary differential equations, where the space discretization introduces a considerably larger error than time.
+The conservation laws in a fully discrete form read 
+%
+\begin{equation}
+u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)]
+\end{equation}
+%
+where $\Delta$ is the discretization parameter for both time and space.
+This is possible thanks to \ac{CFL} condition, which is in essence a linear stability condition of a time-integrator, that links two discretizations. 
+
+%For a fully-discrete from, the truncation error reads 
+%\begin{equation}
+%r^{\Delta}(t) = T^{\Delta}_{\Delta t}[u(t)] - u(t + \Delta t) = T^{\Delta}_{\Delta t}[u(t)] - \mathcal{T}_{\Delta t}[u(t)],
+%\end{equation}
+%where $u(t)$ is the exact solution to Eq.~\eqref{eq:theory:conservlaws}. 
+%For the consistency, it is required that the norm $||\cdot||$, $||r^{\Delta}(t)||\rightarrow 0$ when $\Delta\rightarrow 0$. 
+%A scheme is said to be of an order $r$ if $||r^{\Delta}(t) = \mathcal{O}(\Delta^r)||$. 
+%A scheme is regarded to be \textit{linearly stable} if 
+%\begin{equation}
+%|||T^{\Delta}_{\Delta t}||| \leq C,
+%\end{equation}
+%where $C$ is a constant. 
+%
+% For a numerical scheme in a non-linear case, the important point is to obtain conditions that are sufficient for a scheme to be convergent. 
+%Then, the Lax-Wendroff theorem will ensure that this solution is a weak solution.
+%Hoever, it won't necesseraly be a entropic solution and additional criterion would be 
+%needed.
+
+%%%% Derivation of the conditions that is sufficient for convergence.
+%Then, the goal is to construct a numerical scheme that is able to mimic 
+%the BV-invariance of the exact conservation laws.
+%Then the Lax-Wendroff Theorem would assure that the numerical scheme that is $L^1$ stable if consistent produces a sequence of solutions, for different discretization parameter $\Delta$, that will converge in $L^1$-norm to a weak solution as we decrease $\Delta$.
+
+Of particular interest are schemes that are \ac{TVD}. 
+The property consist of requiring \ac{BV} invariance-like property, 
+%This implies that for any sequence of functions $[\upsilon_n]\in\text{BV}(\Omega)$ there is a subsequence converging in the $L^1$-norm to a function $L^1 _{\text{loc}}(\omega)$. 
+for which while Lax-Wendroff Theorem ensures $L^1$ stability,
+%producing a sequence of solutions, for different discretization parameter $\Delta$, 
+%that will converge in $L^1$-norm to a weak solution as we decrease $\Delta$
+a more specific, \ac{TV}-stability, is added as a requirement. 
+%Which reads, taht there exist a sequence $\{u^{\Delta_i}\}$ and $\epsilon > 0$ 
+%such that $\Delta_i\rightarrow 0 $ when $i\rightarrow \infty$ and
+%$\text{dist}(W,u^{\Delta_i})>\epsilon$ for any $i$.
+An example of such scheme is a 1D monotone scheme \citep{LeVeque:1992}
+It was shown that numerical solutions, obtained with a consistent stable and 
+monotone scheme converges to a weak and entropic solution of Eq~\eqref{eq:theory:conservlaws}
+\citep{Crandall:1980} albeit at first order accuracy only \citep{Harten:1976}.
+The latter issue was resolved via introduction of non-linear dissipation methods that reduces convergence only locally to the first order in the vicinity of the discontinuities
+These schemes are high-order accuracy, high \ac{HRSC} schemes.
+%Multiple other high order accuracy schemes have been proposed with however weaker conditions of non-linear stability and not yet fully explored convergence. For example, schemes that satisfy the maximum-principle \ie, such that if $m < u_0 < M$ then $u^{\Delta}(t,\cdot)\in[m, M]$. Such is the second-order central-scheme by Kurganov and Tadmor \citep{Kurganov:2000}. 
+It is however remains that the commonly used modern multidimensional \ac{HRSC} schemes are not \ac{TVD} or even has been shown to be TV-stable. Numerical evidence to support a hypothesis that these schemes converge to the entropic solution of conservation laws, how the mathematical proof is yet to be provided. 
+%Additionally, even the stabolity and convergence in one-dimensional case has not been forven for a general system of non-linear conservation laws, \cite{LeVeque:2002}, while there also numerical evidence for the convergence of these schemes. 
+%It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}. Similarly, to prove the convergence of their numerical approximation likely requiresa  better understanding of the mathematical properties of systems of conservation laws. In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
+
+\paragraph{Finite-Volume Methods}
+
+%Riemann problem is a specific initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuity in the domain of interest.
+%Riemann solvers are specific methods for computing the numerical flux across a discontinuity in the Riemann problem.
+%An iterative solution to the RP is too costly, especially in MHD. Popular approximations are: Roe solver, HLLE solver, HLLC solver
+
+The \ac{FV} (Godunov-type) methods based on the Godunov scheme \citep{Godunov:1959}, 
+are prime tools to obtain solutions with discontinuities without spurious numerical extrema and with minimum numerical dissipation \citep{Toro:1999}.
+These schemes are very popular in the field of relativistic hydrodynamics. 
+%First shown to be at most first order accurate \citep{Godunov:1959}, they can be higher order by %scheme has to be non-linear \citep{Boris:1971,vanLeer:1973}
+%Consider a 1D scalar hyperbolic equation (advection equation),
+%\begin{equation}
+%\partial_t u + \partial_x f(u) = 0.
+%\label{eq:theory:fv:adveq}
+%\end{equation}
+%and a control volume
+%\begin{equation}
+%\bar{u}_i ^n = \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i + 1/2}} u(x, t^n) \text{d}x.
+%\end{equation}
+%where in one dimension reduce to $[x_{i-1/2},x_{i+1/2}]$, over which the averages of $u$. 
+%The condition, that has to be satisfied for a time-step is the \ac{CFL} condition, 
+%\begin{equation}
+%\text{CFL}:=\frac{\Delta^0}{\Delta^1}\leq\frac{1}{c},
+%\end{equation}
+%where $c$ is the maximum propagation speed.
 
 
 
