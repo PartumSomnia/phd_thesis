@@ -471,12 +471,12 @@ Let us now consider control volumes, which in one dimension reduce to $[x_{i-1/2
 Averaging the advection equation Eq~\eqref{eq:theory:fv:adveq} over one control volume and one time-step we obtain
 
 \begin{equation}
-\frac{\bar{u}_{i}^{n+1}-\bar{u}_{i}^{n}}{\Delta^0} = \frac{1}{\Delta^0}\int_{t_n}^{t_{n+1}}\big\{f[u(t,x_{i-1/2})] - f[u(t,x_{i+1/2})]\big\}\text{d}t
-\label{eq:theory:fv:intadveq}
+    \frac{\bar{u}_{i}^{n+1}-\bar{u}_{i}^{n}}{\Delta^0} = \frac{1}{\Delta^1}\int_{t_n}^{t_{n+1}}\big\{f[u(t,x_{i-1/2})] - f[u(t,x_{i+1/2})]\big\}\text{d}t
+    \label{eq:theory:fv:intadveq}
 \end{equation}
 
 without making any approximation. 
-We note that the computation of integrals on the \ac{RHS of Eq.~\eqref{eq:theory:fv:intadveq} only requires to solve a sequence of Riemann problems centered at the intefaces between control-volumes.
+We note that the computation of integrals on the \ac{RHS} of Eq.~\eqref{eq:theory:fv:intadveq} only requires to solve a sequence of Riemann problems centered at the intefaces between control-volumes.
 
 To construct a \ac{FV} scheme, we now approximate the integral from of the conservation law Eq.~\eqref{eq:theory:fv:intadveq}. At each times-step we heve an approximate solution $\{U_{i}^{n}\}_{i\in\mathbb{Z}} \approx \{\bar{u}_{i}^{n}\}_{i\in\mathbb{Z}}$ and evaluate the solution at the next time-step, $\{U_{i}^{n+1}\}_{i\in\mathbb{Z}}$. The assumption, introduced by Godunov, that allows to obtain the solution is the following. Assume that a solution can be represented as a piece-wise constant, \ie,
 
@@ -494,7 +494,7 @@ where $\chi_i(x)$ is the cahracteristic function of the control volume, \ie,
 \end{cases}
 \end{equation}
 
-then, for a sufficiently small time-step $\Delta^0$ the integral form of advection equation Eq.~\eqref{eq:theory:fv:intadveq} can be solved exactly. This is allowed as the Riemann problems, needed to compute the integrals in the \ac{RHS of Eq.~\eqref{eq:theory:fv:intadveq}, are centered about the interfaces between adjacent control-volumes. Solution of these Riemann problems yields $u_{t, x_{i-1/2}}$ for all $i$ and all $t\in[t_n, t_{n+1}]$. The condition, that has to be satisfied for a time-step is the \ac{CFL} condition, 
+then, for a sufficiently small time-step $\Delta^0$ the integral form of advection equation Eq.~\eqref{eq:theory:fv:intadveq} can be solved exactly. This is allowed as the Riemann problems, needed to compute the integrals in the \ac{RHS} of Eq.~\eqref{eq:theory:fv:intadveq}, are centered about the interfaces between adjacent control-volumes. Solution of these Riemann problems yields $u_{t, x_{i-1/2}}$ for all $i$ and all $t\in[t_n, t_{n+1}]$. The condition, that has to be satisfied for a time-step is the \ac{CFL} condition, 
 
 \begin{equation}
 \text{CFL}:=\frac{\Delta^0}{\Delta^1}\leq\frac{1}{c},
@@ -510,7 +510,7 @@ Let us summarize the the Godunov scheme
 
 \begin{itemize}
     \item Given the solution at time $t= t_n$ as $\{U_i ^n\}_{i\in\mathbb{Z}}$, a piece-wise constant function $U^n(x)$ is constructed, such that it is only non-zero within a given control volume, \ie, $U^n(x) = U_i ^n$ if $x\in[x_{i-1/2}, x_{i+1/2}]$
-    \item Then, the integral from of the advection equation Eq.~\ref{eq:theory:fv:intadveq} is evolved exaclty for one time-step with initial data given by $U^n(x)$ to obtain $\{U^{n+1}_i\}_{i\in\mathbb{Z}}$ 
+    \item Then, the integral from of the advection equation Eq.~\eqref{eq:theory:fv:intadveq} is evolved exaclty for one time-step with initial data given by $U^n(x)$ to obtain $\{U^{n+1}_i\}_{i\in\mathbb{Z}}$ 
 \end{itemize}
 
 It is important to emphasize, that the assumption that the solution can be represented as a piece-wise constant in each control-volume, is the sole approximation of the Godunov scheme. \textcolor{red}{grphical representation... do I need it?} 
@@ -563,7 +563,8 @@ where$\Omega_a$ is a control volume, $\boldsymbol{\nu}$ is the inwards pointing 
 As long as the solution of the Riemann problem can be constructed, the \ac{FV} scheme can be applied to a system of equations. 
 
 %It is important to mention, that as at every time step we average the solution, $U^n(x) = \Sigma_i U_i ^n \chi_i(x)$, we destroy most of the information regarding full solution of the Riemann problem at every interface. Thus, a construction of a monotone FV scheme would required increasing the diffusivity of the method, even with the approximate Reimann solvers \cite{Harten:1983}. In case of a relativistic Euler equations, where the solution of the Reimann problem is complex, requiring iterative procedure, this property as shown be very usefull \cite{Marti:1994,Pons:2000,Giacomazzo:2005jy}. 
-A popular examples or such solvers are \ac{HLLE} solver \citep{Roe:1981}, the Marquina flux-formula \citep{Donat:1996} and \ac{HLLC} solver \cite{Einfeldt:1988}. However, not all the flux-formulas constructed starting from an approximate solution of the original Reimann problem, \ie,
+A popular examples or such solvers are \ac{HLLE} solver \citep{Roe:1981}, the Marquina flux-formula \citep{Donat:1996} and \ac{HLLC} solver \citep{Einfeldt:1988}. 
+However, not all the flux-formulas constructed starting from an approximate solution of the original Reimann problem, \ie,
 
 \begin{equation}
 F(U_L, U_R) = f(u^*(U_L, U_R)), 
@@ -582,32 +583,36 @@ Thus, a scheme converges to the correct entropic solution of the conservation la
 Notably, higher order schemes have lower numerical dissipation. Thus, in high order \ac{FV} schemes use of approximate flux is more justified.
 
 
+
 \subsubsection{TVD Finite-Volume Methods}
 
-The loss of information regarding the solution of the Reimann problem in the averaging procedure prevents us from constracting higher order FV scheme. However, it was shown, that the information on the solution can be \textit{reconstructed} from the averages $\{U_i ^n\}_{i\in\mathbb{Z}}$ using non-linear reconstruction procedure. This prevents spurious oscillations from arising. The procedure can be outlined as a following. Consider a solution withing a given control volume $U(x)$. Instead of setting $U(x) = U_i$ when $x\in[x_{i-1/2},x_{i+1/2}]$, the second order approximation of $u$ is used as 
+The loss of information regarding the solution of the Riemann problem in the averaging procedure prevents us from constructing higher order \ac{FV} scheme. However, it was shown, that the information can be \textit{reconstructed} from the averages $\{U_i ^n\}_{i\in\mathbb{Z}}$ using non-linear reconstruction procedure. This prevents spurious oscillations from arising. The procedure can be outlined as a following. Consider a solution withing a given control volume $U(x)$. Instead of setting $U(x) = U_i$ when $x\in[x_{i-1/2},x_{i+1/2}]$, the second order approximation of $u$ is used as 
 
 \begin{equation}
 U_i(x) = U_i + \sigma_i(x-x_i), \hspace{10mm}x\in[x_{i-1/2},x_{i+1/2}]
 \end{equation}
 
-where $\sigma_i$ is the reconstructed slope in $[x_{i-1/2},x_{i+1/2}]$. \\
+where $\sigma_i$ is the reconstructed slope in $[x_{i-1/2},x_{i+1/2}]$. 
 
-The $U_i(x)$ is essentially a profile of the solution $U$. We however set it with index $i$ as the profiles of two different control volumes might not agree at the interface between them. It is thus conveneitn to introduce the $\pm$ to indicate the from what side the slope is considered, talking about the inteface \textit{i.e.,} $U^{\pm} _{i-1/2}$ stands for $U_{i-1}(x_{i-1/2})$ and $U_i(x_{i-1/2})$. Applying this to the semi-discrete FV scheme we obtain 
+The $U_i(x)$ is essentially a profile of the solution $U$. We however set it with index $i$ as the profiles of two different control volumes might not agree at the interface between each other. It is thus convenient to introduce the $\pm$ to indicate the from what side the slope is considered, talking about the interface \ie, $U^{\pm} _{i-1/2}$ stands for $U_{i-1}(x_{i-1/2})$ and $U_i(x_{i-1/2})$. Applying this to the semi-discrete \ac{FV} scheme we obtain 
 
 \begin{equation}
 \frac{\text{d} U_i}{\text{d}t} = \frac{1}{\Delta^1}\big[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})\big]
 \label{eq:theory:fv:semi-disc-2ord}
 \end{equation}
 
-This is allowed as long as we are considering a semi-discrete formulation, as in this case the the instantaneous flux is given by $F(U_L, U_R)$, \textit{i.e.,} the solution at the interface between two cells at time $t_n ^+$ depends only on the jump between the two state $U_L$ and $U_R$. Thus, the second order scheme in time and space can be constructed, if a second order time-integrator is used in \ref{eq:theory:fv:semi-disc-2ord}. This is no longer the case in a fully descrete scheme, as $u(t, x_{i-1/2})$ is no longer time-independent. There, a solution of a generalized Riemann problem\footnote{A problem, with initial data having a piecewise linear profile} a use of predictor-corrector approach to compute the fluxes with second-order accuracy in time. \\
+This is allowed as long as we are considering a semi-discrete formulation, as in this case the the instantaneous flux is given by $F(U_L, U_R)$, \ie, the solution at the interface between two cells at time $t_n ^+$ depends only on the jump between the two state $U_L$ and $U_R$. Thus, the second order scheme in time and space can be constructed, if a second order time-integrator is used in Eq.~\eqref{eq:theory:fv:semi-disc-2ord}. This is no longer the case in a fully discrete scheme, as $u(t, x_{i-1/2})$ is no longer time-independent. There, a solution of a generalized Riemann problem\footnote{
+    A problem, with initial data having a piecewise linear profile
+} a use of predictor-corrector approach to compute the fluxes with second-order accuracy in time. 
 
-Now let us consider the choice of $\sigma_i$. It can be shown that if 
+Now let us consider the choice of $\sigma_i$. 
+It can be shown that if 
 
 \begin{equation}
 \text{TV}\Bigg[\sum_{i}U_{i}(x)\chi_{i};\mathbb{R}\Bigg] \leq \text{TV}\Bigg[\sum_{i}U_{i}\chi_{i}(x);\mathbb{R}\Bigg]
 \end{equation}
 
-then the scheme \ref{eq:theory:fv:semi-disc-2ord} is TVD \cite{LeVeque:1992}. To satisfy this condition a special limiter, \textit{slope-limiter} has to be employed. The reason for that is that the scheme has to be limited to the first order near shocks to prevent oscillations. Consider an example a of a particular limiter, the \textit{minmod} limiter
+then the scheme Eq.~\eqref{eq:theory:fv:semi-disc-2ord} is \ac{TVD} \eqcite{LeVeque:1992}. To satisfy this condition a special limiter, \textit{slope-limiter} has to be employed. The reason for that is that the scheme has to be limited to the first order near shocks to prevent oscillations. Consider an example a of a particular limiter, the \textit{minmod} limiter
 
 \begin{equation}
 \sigma_i = \frac{1}{\Delta^1}\text{minmod}(U_{i+1} - U_{i}, U_{i}-U_{i-1}),
@@ -632,88 +637,119 @@ The minmod$2$ reconstruction is an another example
 
 Notably, most of the slop-limiting techniques are only first order accurate at extrema. \\
 
-The extension of a TVD FV scheme to a multi-dimensions is a Cartesian grids is done via a direction-by-direction approach. For an unstructured grid, however, the reconstruction in barycentric coordinates has to be performed. 
+The extension of a \ac{TVD} \ac{FV} scheme to a multi-dimensions is a Cartesian grids is done via a direction-by-direction approach. For an unstructured grid, however, the reconstruction in barycentric coordinates has to be performed. 
 
-To extend the sheme to a system of equations the reconstraction can be performed component-vise. In case of the the relativistic Euler equation, the fact that $\bar{u}_i = u(x_i)$ is of second order accuracy is often unitized. It is usually conventient and less computationally expensive to perform the reconsturction in primitive variables, as the vallues at the interface are less likely to be unphysical. 
+To extend the scheme to a system of equations the reconstruction can be performed component-vise. In case of the the relativistic Euler equation, the fact that $\bar{u}_i = u(x_i)$ is of second order accuracy is often unitized. It is usually convenient and less computationally expensive to perform the reconstruction in primitive variables, as the values at the interface are less likely to be unphysical. 
 
 \textcolor{red}{what is actually reconstraction?..}
+
+
 
 \subsubsection{Higher-Order Finite-Volume Methods}
 
 In the previous subsection we showed that the extension of the Godunov scheme to second order can be achieved via introducing the profile $\sigma_i$, or a slope. This we effectively performed a linear regression of the solution $u$. This can be extended to a polynomial regression, to express the solution $u$ as a piecewise polynomial. The reconstruction however, becomes more involved.
 
+
 \paragraph{Reconstruction Operators}
 
-Let us beging with a simple one-dimensional case and expand on it later. Let $\upsilon(x)$ be a generic function whose volume average is 
+Let us begin with a simple one-dimensional case and expand on it later. 
+Let $\upsilon(x)$ be a generic function whose volume average is 
 
 \begin{equation}
 \widetilde{\upsilon}_i := \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i+1/2}}\upsilon(x)\text{d}x.
 \end{equation}
 
-and consider how it can be reconstructed at higher orders. A non-linear operator  $\mathcal{R}$ that allows that returns a high-order approximation of $\upsilon$ at a given point $x$ from $\widetilde{\upsilon}$ volume averages, is a reconstruction operator. As, in general, function $\upsilon(x)$ can contain discontinuities, lift-biased ($\mathcal{R}^-$) and right-biased ($\mathcal{R}^+$) reconstruction operators. Consider an $\mathcal{R}$ reconstraction operator of order $r$, that acts on a set of averages $\{\widetilde{\upsilon}_i\}$, then
+and consider how it can be reconstructed at higher orders. A non-linear operator  $\mathcal{R}$ that allows that returns a high-order approximation of $\upsilon$ at a given point $x$ from $\widetilde{\upsilon}$ volume averages, is a reconstruction operator. As, in general, function $\upsilon(x)$ can contain discontinuities, lift-biased ($\mathcal{R}^-$) and right-biased ($\mathcal{R}^+$) reconstruction operators. Consider an $\mathcal{R}$ reconstruction operator of order $r$, that acts on a set of averages $\{\widetilde{\upsilon}_i\}$, then
 
 \begin{align}
 [\mathcal{R}^{-}(\{\widetilde{\upsilon}_{i}\})](x) &= \lim_{y\rightarrow x^{-}} \upsilon(y) + \mathcal{O}(\Delta^r), \\
 [\mathcal{R}^{+}(\{\widetilde{\upsilon}_{i}\})](x) &= \lim_{y\rightarrow x^{+}} \upsilon(y) + \mathcal{O}(\Delta^r).
 \end{align}
 
-The result of acting with $\mathcal{R}^-$ ($\mathcal{R}^+$) on the $\upsilon$ is then at $x_{i+1/2}$ is $\upsilon^{-}_{i+1/2}$ ($\upsilon^{+}_{i+1/2}$). Examples of reconstruction operators are: the piecewise parabolic method (PPM) \cite{Colella:1984,Colella:2008}, the piecewise hyperbolic method (PHM) \cite{Marquina:1994}, the essentially nonoscillatory (ENO) \cite{Harten:1987,Shu:1988,Shu:1989}, weighted essentially non-oscillatory (WENO) \cite{Liu:1994,Jiang:1996} and monotonicity-preserving (MP5) \cite{Suresh:1997} algorithms. \\
-The PPM reconstruction is based on the piece-wise parabolic interpolation, that extends the slope-limiter approach. Series of limiters used in PPM have been extensively investigated for the presence of spurious oscillations, and even though this method has not been shown to be TVD, it is widely used in many FV schemes and in numerical relativistic hydrodynamics \cite{Baiotti:2004wn,Mignone:2005ns}\\
-The ENO reconstruction scheme employs standard Lagrange interpolation. It can, in principle  be extended to any order of as it utilizes the recursive procedure. By selecting a stencil that yields the smoothest solution it allows to avoid Gibbs oscillations due to interpolation across discontinuities. And while the ENO scheme is not TVD, it was shown that 
+The result of acting with $\mathcal{R}^-$ ($\mathcal{R}^+$) on the $\upsilon$ is then at $x_{i+1/2}$ is $\upsilon^{-}_{i+1/2}$ ($\upsilon^{+}_{i+1/2}$). 
+%
+Examples include 
+the \ac{PPM} \citep{Colella:1984,Colella:2008}, 
+the \ac{PHM} \citep{Marquina:1994}, 
+the \ac{ENO} \citep{Harten:1987,Shu:1988,Shu:1989}, 
+the \ac{WENO} \citep{Liu:1994,Jiang:1996} and 
+the \ac{MP5} \citep{Suresh:1997} 
+algorithms.
+%
+The \ac{PPM} reconstruction is based on the piece-wise parabolic interpolation, that extends the slope-limiter approach. 
+Series of limiters used in \ac{PPM} have been extensively investigated for the presence of spurious oscillations, and even though this method has not been shown to be \ac{TVD}, it is widely used in many \ac{FV} schemes and in numerical relativistic hydrodynamics \cite{Baiotti:2004wn,Mignone:2005ns}
+%
+The \ac{ENO} reconstruction scheme employs standard Lagrange interpolation. 
+It can, in principle be extended to any order of as it utilizes the recursive procedure. By selecting a stencil that yields the smoothest solution it allows to avoid Gibbs oscillations due to interpolation across discontinuities. 
+And while the \ac{ENO} scheme is not \ac{TVD}, it was shown that 
 
 \begin{equation}
 \text{TV}[\mathcal{R}(\{\widetilde{\upsilon}_i\}); \text{I\!R}] \leq \text{TV}[\{\widetilde{\upsilon}; \text{I\!R}\}] + \mathcal{O}\big((\Delta^1)^r\big)
 \end{equation}
 
-where $r$ is thge order of reconstruction \cite{Harten:1987}. \\
+where $r$ is thge order of reconstruction \cite{Harten:1987}. 
 
-In the WENO scheme a weighted average of the reconstructed polynomial on each stencil is taken instead of selecting the one with which yields smoothest solution. The order of accuracy is maximized in smooth regions, while non-smooth stencils are suppressed through small weights. Thus, by combining results from multiple reconstructions, it achieves the $2r-1$ order of accuracy (where $r$ is an order of accuracy of ENO scheme). This is a modified ENO approach that considerably reduces the computational resources needed, as the conditional statements are removed. Generally, WENO schemes of order below 7 ($r\leq 4$) are used. Higher order schemes have shown to be unstable without special order-reducing techniques \cite{Gerolymos:2009,Tchekhovskoy:2007zn} or additional limiters \cite{Balsara:2000}.\\
-Examples of the WENO schemes,with respect to how the weights are constructed are the following. In mapped-WENO scheme reduced dissipation is achieved via mapping procedure \cite{Henrick:2005}. In WENOZ scheme, improved non-linear weights are prescribed, that yields a results comparable with the fifth order mapped-WENO scheme, while being less computationally expensive. 
+In the \ac{WENO} scheme a weighted average of the reconstructed polynomial on each stencil is taken instead of selecting the one with which yields smoothest solution. The order of accuracy is maximized in smooth regions, while non-smooth stencils are suppressed through small weights. Thus, by combining results from multiple reconstructions, it achieves the $2r-1$ order of accuracy (where $r$ is an order of accuracy of \ac{ENO} scheme). This is a modified \ac{ENO} approach that considerably reduces the computational resources needed, as the conditional statements are removed. Generally, \ac{WENO} schemes of order below $7$ ($r\leq 4$) are used.
+Higher order schemes have shown to be unstable without special order-reducing techniques \citep{Gerolymos:2009,Tchekhovskoy:2007zn} or additional limiters \citep{Balsara:2000}.
 
-In a extensive study, Gerolymos et al. \cite{Gerolymos:2009} have compared various WENO schemes, providing tabulated coefficients and implementation details.\\
+Examples of the \ac{WENO} schemes, with respect to how the weights are constructed are the following. In mapped-\ac{WENO} scheme reduced dissipation is achieved via mapping procedure \citep{Henrick:2005}. In WENOZ scheme, improved non-linear weights are prescribed, that yields a results comparable with the fifth order mapped-\ac{WENO} scheme, while being less computationally expensive. 
 
-The basic WENO reconstruction yilelds the smoothosts soluton, utililizing the smoothness indicator, that, in case of the smooth solution maximizes the order of accuracy, while minimizing it when the discontinuities are detected. The final solution is then an weighted average of a set of lower order reconstructions of $\widetilde{\upsilon}_i '$ on numerous overlapping stencils. A different approach in employed in a bandwidth-optimized WENO schemes, where wieghts are adjusted to minimize the attenuation of high-frequency modes, instead of maximising the smopoothness of the solution. \\
-In the basic WENO scheme, the smooth function is constructed in a ways as to much as many terms as possible in a Teylor decomposition of a target function. In a bandwidth-optimized WENO scheme, the function is constracted in a way as to provide the best approximation to the Fourier coefficients of the targeted function. In addition, "over-adaptation" is prevented by using the modified non-linear smoothness indicators. This allows to reduce the numerical dissipation. We refer the reader to \cite{Martin:2006} and \cite{Taylor:2007} for more detailed discussion. \\
+In a extensive study, Gerolymos et al. \citep{Gerolymos:2009} have compared various \ac{WENO} schemes, providing tabulated coefficients and implementation details.
 
-The MP5 scheme utilizes the fifth order reconstraction alongside with flattening prcedure, that prevents the artificial extrema in the targeted function from arising. Esseincially, it is a monotonicity-preserving PPM scheme, extended to fifth order. By design, the reconstraction sheme, does not introduce spurious oscillations. This is hiwever, not certain in case of WENO schemes. Meanwhile, the MP5 scheme contains multiple conditional stataemtens in limiting procedure, that are absent in WENO.
+The basic \ac{WENO} reconstruction yields the smoothest solution, utilizing the smoothness indicator, that, in case of the smooth solution maximizes the order of accuracy, while minimizing it when the discontinuities are detected. The final solution is then an weighted average of a set of lower order reconstructions of $\widetilde{\upsilon}_i '$ on numerous overlapping stencils. 
+A different approach in employed in a bandwidth-optimized \ac{WENO} schemes, where weights are adjusted to minimize the attenuation of high-frequency modes, instead of maximizing the smoothness of the solution. 
+
+In the basic \ac{WENO} scheme, the smooth function is constructed in a ways as to much as many terms as possible in a Teylor decomposition of a target function. In a bandwidth-optimized \ac{WENO} scheme, the function is constructed in a way as to provide the best approximation to the Fourier coefficients of the targeted function. 
+In addition, ``over-adaptation'' is prevented by using the modified non-linear smoothness indicators. This allows to reduce the numerical dissipation. We refer the reader to \citep{Martin:2006} and \citep{Taylor:2007} for more detailed discussion. 
+
+The \ac{MP5} scheme utilizes the fifth order reconstruction alongside with flattening procedure, that prevents the artificial extrema in the targeted function from arising. Essentially, it is a monotonicity-preserving \ac{PPM} scheme, extended to fifth order. 
+By design, the reconstruction scheme, does not introduce spurious oscillations. This is however, not certain in case of \ac{WENO} schemes. Meanwhile, the \ac{MP5} scheme contains multiple conditional statements in limiting procedure, that are absent in \ac{WENO}.
+
+
 
 \paragraph{Very-High-Order Finite-Volume Schemes}
 
-A high order version of FV method in 1D can be constracted following the procedure we outlined in desiging the second-order FV scheme. Making use of high order, non-oscillatory reconstruction operators $\mathcal{R}$, that we split into $\mathcal{R}^+$ and $\mathcal{R}^-$, that when acting on a suluition $U$ yield $U^+$ and $U^-$, we write 
+A high order version of \ac{FV} method in 1D can be constructed following the procedure we outlined in designing the second-order \ac{FV} scheme. Making use of high order, non-oscillatory reconstruction operators $\mathcal{R}$, that we split into $\mathcal{R}^+$ and $\mathcal{R}^-$, that when acting on a solution $U$ yield $U^+$ and $U^-$, we write 
 
 \begin{equation}
 \frac{\text{d}U_i}{\text{d}_t} = \frac{1}{\Delta^1}[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})],
 \end{equation}
 
-in semi-discrete form. \\
-An such a scheme would have the order of accuracy equal to the one of the reconstruction algorithm. However, as the algorithms always fall to the first order near in the vicinity of discontinuities, the actual accuracy order would depend on the solution. \\
+in semi-discrete form. 
 
-A seemingly simple approach of extending high order FV to multi-dimensional case, however, faces a serious challenge. In the formula \ref{eq:theory:fv:1storder3dscheme} we have use simple fluxes, which for a high order schemes have to be computed via suitable quadrature formulas. This makes the sheme complex. \\
+Such a scheme would have the order of accuracy equal to the one of the reconstruction algorithm. However, as the algorithms always fall to the first order near in the vicinity of discontinuities, the actual accuracy order would depend on the solution. 
 
-In addition, with respect to the system of equations, to avoid spurious oscillations in higher order schemes, the reconstruction needs to be performed on local characteristic variables, instead of previously mentioned, component-vise approach. \\
+A seemingly simple approach of extending high order \ac{FV} to multi-dimensional case, however, faces a serious challenge. In the formula Eq~\eqref{eq:theory:fv:1storder3dscheme} we have use simple fluxes, which for a high order schemes have to be computed via suitable quadrature formulas. This makes the scheme complex. 
 
-Moreover, as it is generally not possible to preserve higher order accuracy in conversion from volume-averaged conserved variables to volume-averaged primitive ones. Thus, the reconstruction have to be done in terms of the former. \\
+In addition, with respect to the system of equations, to avoid spurious oscillations in higher order schemes, the reconstruction needs to be performed on local characteristic variables, instead of previously mentioned, component-vise approach. 
 
-The high-order FV schemes coupled with general relativity become numerically very expensive. The reason for that is that they require high-order quadrature of the metric source terms as well as high-order
-schemes to interpolate the metric at the quadrature points for the calculation of the fluxes. \\
+Moreover, as it is generally not possible to preserve higher order accuracy in conversion from volume-averaged conserved variables to volume-averaged primitive ones. Thus, the reconstruction have to be done in terms of the former. 
 
-Overall, even though considerable complexities involved, high order FV schemes, due to their unmached accuracy in compariosn with other second-order schemes, make them partular usefull in multiple applications in Newtonian and relativistic hydrodynamics, (see \textit{e.g.} \cite{Tchekhovskoy:2007zn}) and in unstractured grid applications, using generalized WENO scheme (see \textit{e.g.,} \cite{Dumbser:2007})
+The high-order \ac{FV} schemes coupled with \ac{GR} become numerically very expensive. The reason for that is that they require high-order quadrature of the metric source terms as well as high-order
+schemes to interpolate the metric at the quadrature points for the calculation of the fluxes. 
+
+Overall, even though considerable complexities are involved, high order \ac{FV} schemes, due to their unmatched accuracy in comparison with other second-order schemes, make them particular useful in multiple applications in Newtonian and relativistic hydrodynamics, (see \eg, \citet{Tchekhovskoy:2007zn}) and in unstructured grid applications, using generalized \ac{WENO} scheme (see \eg, \citet{Dumbser:2007})
 
 \subsection{Central Methods}
 
-A central scheme is a scheme the monotone scheme that does not requrie aa Reimann solver. First such scmee was developed by Lax and Friedrichs (LxF) \cite{Lax:1954,Friedrichs:1954}. It has however a larger numerical dissipation in comparison to Godunov scheme, but it is simpler to implement and less expensive. Its lack of accuracy due to numerical dissipation prevents this scheme from being a popular choice. \\
-A second order central scheme was developed by Nessyahu and Tadmor (NT) \cite{Nessyahu:1990}. Kurganov and Tadmor (KT) \cite{Kurganov:2000} have further advanced the scheme, which populirized high-order central schemes. \\
-The Lax-Friedrichs scheme can be understood when a \textit{dual grid} is introduced into the Godunov scheme as follows. Consider a time $t_n$, and the numerical solution $U^n$, its local averages are then given by $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$. To obtain a solution at the time $t_{n+1}$, we compute the local averages of the solution on a dual grid $\{x_{i+1/2}\}_{i\in\mathbb{Z}}$, \textit{i.e.,} $\{U_{i+1/2}^{n+1}\}_{i\in\mathbb{Z}}$ in the center. Hence, the name of the scheme. The following steps go through alternating between the \textit{primal} and \textit{dual} grids. \\
-In more detains, consider a solution $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$ as a starting point. To obtain $\{U_{i+1/2}^{n+1}\}_{i\in \mathbb{Z}}$, we employ the Godunov scheme for the advection equation \ref{eq:theory:fv:adveq} 
+A central scheme is a monotone scheme that does not require aa Riemann solver. 
+%
+First such scheme was developed by \ac{LxF} \citep{Lax:1954,Friedrichs:1954}. It has however a larger numerical dissipation in comparison to Godunov scheme, but it is simpler to implement and less expensive. Its lack of accuracy due to numerical dissipation prevents this scheme from being a popular choice. 
+%
+A second order central scheme was developed by \ac{NT} \citep{Nessyahu:1990}. \ac{KT} \citep{Kurganov:2000} have further advanced the scheme, which popularized high-order central schemes. 
+
+The Lax-Friedrichs scheme can be understood when a \textit{dual grid} is introduced into the Godunov scheme as follows. Consider a time $t_n$, and the numerical solution $U^n$, its local averages are then given by $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$. To obtain a solution at the time $t_{n+1}$, we compute the local averages of the solution on a dual grid $\{x_{i+1/2}\}_{i\in\mathbb{Z}}$, \ie $\{U_{i+1/2}^{n+1}\}_{i\in\mathbb{Z}}$ in the center. Hence, the name of the scheme. The following steps go through alternating between the \textit{primal} and \textit{dual} grids. 
+
+In more detains, consider a solution $\{U_{i}^{n}\}_{i\in \mathbb{Z}}$ as a starting point. To obtain $\{U_{i+1/2}^{n+1}\}_{i\in \mathbb{Z}}$, we employ the Godunov scheme for the advection equation Eq.~\eqref{eq:theory:fv:adveq} 
 
 \begin{equation}
 \frac{U_{i+1/2}^{n+1} - U_{i+1/2}^{n}}{\Delta^0} = \frac{1}{\Delta^1}\int_{t_n}^{t_{n+1}}\big\{ f[u(t,x_i)] -f[u(t,x_{i+1})]  \big\}\text{d}t.
 \label{eq:theory:fv:central:intadveq}
 \end{equation}
 
-Note,  solution at cell centers remain free of discontinuities for duration of a timestep if the CFL $\leq 1/2 a$, $a$ is the maximum local-characteristic speed. Thus the r.h.s of \ref{eq:theory:fv:central:intadveq} can be computed via a simple quadrature in time, without Reimann solvers. \\
+Note, the solution at cell centers remain free of discontinuities for duration of a time-step if the \ac{CFL} $\leq 1/2 a$, $a$ is the maximum local-characteristic speed. Thus the \ac{RHS} of Eq.~\eqref{eq:theory:fv:central:intadveq} can be computed via a simple quadrature in time, without Reimann solvers. 
 
-Let us consider a solution, $U^n(x)$, that line in Godunovscheme, is a piecewise constant 
+Let us consider a solution, $U^n(x)$, that line in Godunov scheme, is a piecewise constant 
 
 \begin{equation}
 U^{n}(x) = \sum_i U_{i}^{n}\chi_i(x),
@@ -725,7 +761,7 @@ then $u(t,x_i) = U_{i}^{n}$ for $t\in[t_n. t_{n+1}]$ and
 U_{i+1/2}^{n} = \frac{U_i ^n + U_{i+1}^n}{2}
 \end{equation}
 
-and the \ref{eq:theory:fv:central:intadveq} reads as
+and the Eq~\eqref{eq:theory:fv:central:intadveq} reads as
 
 \begin{equation}
 U_{i+1/2}^{n+1} = \frac{U_i ^n + U_{i+1}^n}{2} + \frac{\Delta^0}{\Delta^1}[f(U_i ^n) - f(U_{i+1} ^n)]
@@ -733,24 +769,24 @@ U_{i+1/2}^{n+1} = \frac{U_i ^n + U_{i+1}^n}{2} + \frac{\Delta^0}{\Delta^1}[f(U_i
 
 \textcolor{red}{graphical representation -- fig 3.2 -- is it needed?}
 
-Nessyahu and Tadmor \cite{Nessyahu:1990} have introduced the second order central scheme. Instead of piecewise constant reconstruction, they employed a minmod to obtain a piecewise linear approximation of $u^n$, and for time flux quadrature, they used a predictor-corrector approach. \\
+Nessyahu and Tadmor \citep{Nessyahu:1990} have introduced the second order central scheme. Instead of piecewise constant reconstruction, they employed a minmod to obtain a piecewise linear approximation of $u^n$, and for time flux quadrature, they used a predictor-corrector approach. 
 
-The dissipation of of the LxF and NT schemes is time-step depended. For a small $\Delta^0$ it makes schemes very dissipative. To improve the accuracy of the scheme Kurganov and Tadmor \cite{Kurganov:2000} proposed to limit the averaging on the dual grid to the region of spacetime spanned by the largest characteristics of the Riemann problem. Thus, while in the LxF and NT schemes the averging of the solution was supported in the whole grid, in the KT scheme, $U^{n+1}_{i+1/2}$ is only allowed in the region where affected by the results of the local Riemann problem. This reduces the dissipation and also allows the semi-descrete formulation 
+The dissipation of of the \ac{LxF} and \ac{NT} schemes is time-step depended. For a small $\Delta^0$ it makes schemes very dissipative. To improve the accuracy of the scheme Kurganov and Tadmor \citep{Kurganov:2000} proposed to limit the averaging on the dual grid to the region of spacetime spanned by the largest characteristics of the Riemann problem. Thus, while in the \ac{LxF} and \ac{NT} schemes the averging of the solution was supported in the whole grid, in the \ac{KT} scheme, $U^{n+1}_{i+1/2}$ is only allowed in the region where affected by the results of the local Riemann problem. This reduces the dissipation and also allows the semi-descrete formulation 
 
 \begin{equation}
 \frac{\text{d} U_i}{\text{d} t} = \frac{1}{\Delta^{1}}\big[F(U_{i-1/2}^{-},U_{i-1/2}^{+}) - F(U_{i+1/2}^{-},U_{i+1/2}^{+})\big],
 \end{equation}
 
-where $F$ are numerical fluxes \textit{i.e.,}
+where $F$ are numerical fluxes \ie,
 
 \begin{equation}
 F(U_L, U_R) = \frac{f(U_L) + f(U_R)}{2} - \frac{a}{2}[U_R - U_L].
 \label{eq:theory:fv:central:fluxes}
 \end{equation}
 
-Essentially, the KT scheme is very similar to the Godunov scheme with fluxes evaluated through equation \ref{eq:theory:fv:central:fluxes}, Rusanov fluxes \cite{Kurganov:2000}. This also assures the stability of the system when $1/2 < a \cdot \text{CFL} \leq 1$. However, in that case the interpenetration of the scheme is no longer applicable. \\
+Essentially, the \ac{KT} scheme is very similar to the Godunov scheme with fluxes evaluated through equation Eq~\eqref{eq:theory:fv:central:fluxes}, Rusanov fluxes \citep{Kurganov:2000}. This also assures the stability of the system when $1/2 < a \cdot \text{CFL} \leq 1$. However, in that case the interpenetration of the scheme is no longer applicable. 
 
-Lastly, we revisit the difference between the finite-volume (upwind) and central shemes. The main one lies in the constraction of these schemes, as in their form the latter can alwasy be regarded as a FV scheme with added Rusanov "Reimann solver". In particular, only for KT scheme, the maximum principle without additioanl "maximum-principle enforcing limiters" was proven in multi-dimensional case. \\
+Lastly, we revisit the difference between the \ac{FV} (upwind) and central schemes. The main one lies in the construction of these schemes, as in their form the latter can always be regarded as a \ac{FV} scheme with added Rusanov ``Reimann solver''. In particular, only for \ac{KT} scheme, the maximum principle without additional ``maximum-principle enforcing limiters'' was proven in multi-dimensional case. 
 
 
 \subsection{Finite-Difference Methods}

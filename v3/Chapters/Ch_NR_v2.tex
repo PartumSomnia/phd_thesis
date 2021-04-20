@@ -2409,10 +2409,106 @@ These schemes are very popular in the field of relativistic hydrodynamics.
 %\end{equation}
 %where $c$ is the maximum propagation speed.
 
+Consider $1$D scalar advection equation, 
+$\partial_t u + \partial_x f(u) = 0.$, 
+that is cast on a uniformly-spaced grids in space and time 
+%\begin{equation}
+%x_i = i\Delta^1, \hspace{5mm} i\in\mathbb{Z}, \hspace{10mm} t_n = n\Delta^0, \hspace{5mm} n\in\mathbb{N}
+%\end{equation}
+and averaged over control-volumes $[x_{i-1/2},x_{i+1/2}]$, 
+%that read, 
+%\begin{equation}
+%    \bar{u}_i ^n = \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i + 1/2}} u(x, t^n) \text{d}x.
+%\end{equation}
+%
+and one time-step 
+%
+\begin{equation}
+    \frac{\bar{u}_{i}^{n+1}-\bar{u}_{i}^{n}}{\Delta^0} = \frac{1}{\Delta^1}\int_{t_n}^{t_{n+1}}\big\{f[u(t,x_{i-1/2})] - f[u(t,x_{i+1/2})]\big\}\text{d}t
+    \label{eq:theory:fv:intadveq}
+\end{equation}
+where discretization parameters $\Delta^0$ and $\Delta^1$ are connected via \ac{CFL} 
+condition $ \text{CFL}:= \Delta^0 / \Delta^1 \leq 1/c$, with $c$ being the 
+maximum propagation speed.
+
+Then, a \ac{FV} scheme is constructed by approximating integrals in 
+Eq.~\eqref{eq:theory:fv:intadveq} at each time-step 
+%$\{U_{i}^{n}\}_{i\in\mathbb{Z}} \approx \{\bar{u}_{i}^{n}\}_{i\in\mathbb{Z}}$
+assuming that a solution can be represented as a piece-wise constant
+%$U^n(x) = \sum_{i\in\mathbb{Z}}U_i ^n \chi_i (x)$
+%where $\chi_i(x)$ is the cahracteristic function of the control volume, 
+%that is only non-zero $\text{ if } x\in[x_{i-1/2},x_{i+1/2}]$
+.
+%
+The evaluation of the \ac{RHS} of Eq.~\eqref{eq:theory:fv:intadveq} only requires to solve a sequence of Riemann problems\footnote{
+    Riemann problem is a specific \ac{IVP} composed of a conservation equation together with piece-wise constant initial data which has a single discontinuity in the domain of interest. 
+    %In numerical analysis it appears naturally in finite volume method for the solution of conservation law equations due to the discreteness of the grid.
+} centered at the interfaces between control-volumes.
+
+%Note, that this is the only approximation of the Godunov scheme.
+%Then, for a sufficiently small time-step $\Delta^0$ the integral form of advection equation Eq.~\eqref{eq:theory:fv:intadveq} can be solved exactly. This is allowed as the Riemann problems, needed to compute the integrals in the \ac{RHS} of Eq.~\eqref{eq:theory:fv:intadveq}, are centered about the interfaces between adjacent control-volumes.
+%CFL condition allows for the interface value of the solution of the various Riemann problems to be computed exactly for most conservation laws, and be independent from each other. 
+
+%Introducing the \textit{numerical flux} $F(U_{i-1}^{n}):=f[u^*(U_{i-1}^{n}, U_{i}^{n})]$
+%(to express the dependency of the solution $u(t, x_{i-1/2})$ on $U_{i-1} ^n$ and $U_{i} ^n$ as $u(t, x_{1/2}) =: u^* (U_{i-1}^{n}, U_{i}^n)$)
+%the Gudonov scheme in a semi-discrete form can be written as 
+%\begin{equation}
+%\frac{\text{d}U_i}{\text{d} t} = \frac{1}{\Delta^1}[F(U_{i-1}, U_{i}) - F(U_i, U_{i+1})].
+%\label{eq:theory:fv:semi-discrete}
+%\end{equation}
+%where the time Euler time integrator is sufficient and makes scheme exact.
+%
+%The semi-discrete form is overall useful in contracting higher order \ac{FV} schemes as well as in discussing a coupling between hydrodynamic equations with some other system of equations \eg, the spacetime evolution equations, that is not solved using a \ac{FV} scheme.
+%
+As long as the solution of the Riemann problem can be constructed, the \ac{FV} scheme can be applied to a system of equations. 
+A popular examples or such solvers are \ac{HLLE} solver \citep{Roe:1981}, the Marquina flux-formula \citep{Donat:1996} and \ac{HLLC} solver \citep{Einfeldt:1988}.
+%A scheme converges to the correct entropic solution of the conservation law if it is non-linearly stable and the flux-formula is compatible with the entropy inequality. 
+%Notably, higher order schemes have lower numerical dissipation. Thus, in high order \ac{FV} schemes use of approximate flux is more justified.
+
+%\subsubsection{TVD Finite-Volume Methods}
+The averaging procedure performed on the solution leads to the loss of information,
+and thus makes a scheme the first order accurate at most.
+The information can be \textit{reconstructed} via non-linear reconstruction procedure,
+that also prevents spurious oscillations from arising.
+This is achieved by introducing the profile or slope, $\sigma_i$, into the reconstructed solution 
+%\begin{equation}
+%U_i(x) = U_i + \sigma_i(x-x_i), \hspace{10mm}x\in[x_{i-1/2},x_{i+1/2}]
+%\end{equation}
+%in $[x_{i-1/2},x_{i+1/2}]$.
+%$U_i(x)$ is essentially a profile of the solution $U$ (within a given volume element '$i$').
+effectively performing a linear regression of the solution $u$.
+%In a semi-discrete from then the \ac{FV} scheme reads 
+%\begin{equation}
+%\frac{\text{d} U_i}{\text{d}t} = \frac{1}{\Delta^1}\big[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})\big]
+%\label{eq:theory:fv:semi-disc-2ord}
+%\end{equation}
+%where $\pm$ indicates what side the slope is considered
+in each control volume, with a limiter to assure 
+%that the scheme is \ac{TVD}
+that the scheme is first order near shocks to prevent oscillations.
+This allows to construct second-order accurate scheme. 
+%
+%\subsubsection{Higher-Order Finite-Volume Methods}
+Higher order schemes can be constructed by performing 
+polynomial regression, to express the solution $u$ as a piecewise polynomial, with
+more sophisticated reconstruction operators.
+Examples include 
+the \ac{PPM} \citep{Colella:1984,Colella:2008}, 
+the \ac{PHM} \citep{Marquina:1994}, 
+the \ac{ENO} \citep{Harten:1987,Shu:1988,Shu:1989}, 
+the \ac{WENO} \citep{Liu:1994,Jiang:1996} and 
+the \ac{MP5} \citep{Suresh:1997} 
+algorithms.
+Specifically, in \ac{WENO} scheme several reconstruction stencils are considered and 
+then the weighted average of the reconstructed polynomial on each stencil is taken.
+The order of accuracy is maximized in smooth regions, while non-smooth stencils are suppressed through small weights.
+This method has an advantage of being computationally efficient.
+%The basic \ac{WENO} reconstruction yields the smoothest solution, utilizing the smoothness indicator, that, in case of the smooth solution maximizes the order of accuracy, while minimizing it when the discontinuities are detected. The final solution is then an weighted average of a set of lower order reconstructions of $\widetilde{\upsilon}_i '$ on numerous overlapping stencils.
+%In the basic \ac{WENO} scheme, the smooth function is constructed in a ways as to much as many terms as possible in a Teylor decomposition of a target function.
+%Overall, even though considerable complexities are involved, high order \ac{FV} schemes, due to their unmatched accuracy in comparison with other second-order schemes, make them particular useful in multiple applications in Newtonian and relativistic hydrodynamics, (see \eg, \citet{Tchekhovskoy:2007zn}) and in unstructured grid applications, using generalized \ac{WENO} scheme (see \eg, \citet{Dumbser:2007})
 
 
-
-
+\paragraph{Central Methods}
 
 
 
