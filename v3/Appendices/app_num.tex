@@ -730,6 +730,8 @@ schemes to interpolate the metric at the quadrature points for the calculation o
 
 Overall, even though considerable complexities are involved, high order \ac{FV} schemes, due to their unmatched accuracy in comparison with other second-order schemes, make them particular useful in multiple applications in Newtonian and relativistic hydrodynamics, (see \eg, \citet{Tchekhovskoy:2007zn}) and in unstructured grid applications, using generalized \ac{WENO} scheme (see \eg, \citet{Dumbser:2007})
 
+
+
 \subsection{Central Methods}
 
 A central scheme is a monotone scheme that does not require aa Riemann solver. 
@@ -789,11 +791,13 @@ Essentially, the \ac{KT} scheme is very similar to the Godunov scheme with fluxe
 Lastly, we revisit the difference between the \ac{FV} (upwind) and central schemes. The main one lies in the construction of these schemes, as in their form the latter can always be regarded as a \ac{FV} scheme with added Rusanov ``Reimann solver''. In particular, only for \ac{KT} scheme, the maximum principle without additional ``maximum-principle enforcing limiters'' was proven in multi-dimensional case. 
 
 
+
 \subsection{Finite-Difference Methods}
 
-In the high order upwind finite difference (FD) schemes the approximation is done point-wise instead of averaging over volumes as it is done in FV schemes. Interestingly, these schemes were proposed as better performing alternatives to ENO and WENO schemes of very high order. \cite{Shu:1988,Shu:1989,Jiang:1996}. Especially in the multi-dimensional case, FD schemes are much more superior to the high order FV schemes in turms of efficiency. \cite{Shu:1999,Shu:2003}. \\
+In the high order upwind \ac{FD} schemes the approximation is done point-wise instead of averaging over volumes as it is done in \ac{FV} schemes. Interestingly, these schemes were proposed as better performing alternatives to \ac{ENO} and \ac{WENO} schemes of very high order \citep{Shu:1988,Shu:1989,Jiang:1996}. 
+Especially in the multi-dimensional case, \ac{FD} schemes are much more superior to the high order \ac{FV} schemes in terms of efficiency \citep{Shu:1999,Shu:2003}. 
 
-Here we aim to discuss finite difference high resolution shock capturing schemes in very brief manner. We refer the reader to specialized literature for a in-depth discussion. In particular, for the discussion of FD ENO/WENO HRSC schemes see \cite{Shu:1999}, and for FD MP5 scheme -- see \cite{Mignone:2010}. \\
+Here we aim to discuss \ac{FD} \ac{HRSC} schemes in very brief manner. We refer the reader to specialized literature for a in-depth discussion. In particular, for the discussion of \ac{FD} \ac{ENO}/\ac{WENO} \ac{HRSC} schemes see \citep{Shu:1999}, and for \ac{FD} \ac{MP5} scheme -- see \citep{Mignone:2010}. 
 
 Let us start by introducing a system of hyperbolic balance-laws as
 
@@ -808,38 +812,48 @@ For the grid, we employ a uniform Cartesian for the ease of discussion
 \boldsymbol{x}_{i,j,k} = (i\Delta^1, j\Delta^2, k\Delta^3), \hspace{5mm} i,j,k\in \mathbb{Z}.
 \end{equation}
 
-In the following discussion, we will not elaborate on the comparison between different representations of a solution \textit{i.e.,} exact, volume averaged, their approximations, reconstractions. We thus only need, for a quantity $u$, to define the numerical approxiamtion at a given point $x_{i,j,k}$, as $u_{i,j,k}$. 
+In the following discussion, we will not elaborate on the comparison between different representations of a solution \ie, exact, volume averaged, their approximations, reconstructions. We thus only need, for a quantity $u$, to define the numerical approximation at a given point $x_{i,j,k}$, as $u_{i,j,k}$. 
 
-For the \ref{eq:theory:fd:hypsys} the FD scheme reads
+For the Eq.~\eqref{eq:theory:fd:hypsys} the \ac{FD} scheme reads
 
 \begin{align}
 \frac{d\boldsymbol{F}^{0}_{i,j,k}}{dt} = \boldsymbol{S}_{i,j,k} &+ \frac{\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}}{\Delta^1} \\
 & + \frac{\boldsymbol{F}^{2}_{i,j-1/2,k} - \boldsymbol{F}^{2}_{i,j+1/2,k}}{\Delta^2} + \frac{\boldsymbol{F}^{3}_{i,j,k-1/2} + \boldsymbol{F}^{3}_{i,j,k+1/2}}{\Delta^3},
 \end{align}
 
-which is identical to the semi-descrete form of the finite volume scheme introduced before \ref{eq:theory:fv:1storder3dscheme}. However, there terms $\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}$ represented integrals of the control volumes along the boundary. If FD scheme, these are direct (high-order, non-oscillatory) approximations of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. \\
+which is identical to the semi-discrete form of the \ac{FV} scheme introduced before Eq.~\eqref{eq:theory:fv:1storder3dscheme}. However, there terms $\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}$ represented integrals of the control volumes along the boundary. If \ac{FD} scheme, these are direct (high-order, non-oscillatory) approximations of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. 
 
-Note, that as at the second order the volume averages and point-wise values are the same, the FD and FV schemes read identically. The difference becomes important at higher orders and in many dimensions, especially for the performance of a scheme. Consider the FD high order multi-dimensional scheme, At region boundaries, it does not require any quadrature, Reimann solvers or extra primitive recovery calls \textcolor{gray}{while still requiring reconstruction operators}. This makes a schemem much less computationally expensive. In addition, In general relativistic hydrodynamics, the source term treatment is simpler and more direct, as onlu the point-wise values are requried. This helped popularize the FD for GRHD applications. \\
+Note, that as at the second order the volume averages and point-wise values are the same, the \ac{FD} and \ac{FV} schemes read identically. The difference becomes important at higher orders and in many dimensions, especially for the performance of a scheme. 
+%
+Consider the \ac{FD} high order multi-dimensional scheme, At region boundaries, it does not require any quadrature, Riemann solvers or extra primitive recovery calls \textcolor{gray}{
+    while still requiring reconstruction operators
+}. 
+This makes a scheme much less computationally expensive. In addition, In \ac{GRHD}, the source term treatment is simpler and more direct, as only the point-wise values are required. This helped popularize the \ac{FD} for \ac{GRHD} applications. 
 
-For the following discussion on the computation of the descrete derivatives on the r.h.s onf the \ref{eq:theory:fd:hypsys}, let us first approach this task in case of a simple equation, the one-deminesiona advection eqiation \ref{eq:theory:fv:adveq}, which is also hyperbolic scalar equation. 
+%% creation of the scheme
+For the following discussion on the computation of the discrete derivatives on the \ac{RHS} of the Eq.~\eqref{eq:theory:fd:hypsys}, let us first approach this task in case of a simple equation, the one-dimensional advection equation Eq.~\eqref{eq:theory:fv:adveq}, which is also hyperbolic scalar equation. 
 
-In FV scheme, the reconstraction operators are used to evaluate the left $U_L$ and right $U_R$ from which, via approximate Reimann solvers, the fluxes are computed after. In FD schemes the reconstruction operators are also used, but to evaulate the (non-oscillatory approximation) of $\partial_x f$, referenced above. It is convenient to express $f$ as follows
+In \ac{FV} scheme, the reconstruction operators are used to evaluate the left $U_L$ and right $U_R$ from which, via approximate Riemann solvers, the fluxes are computed after. In \ac{FD} schemes the reconstruction operators are also used, but to evaluate the (non-oscillatory approximation) of $\partial_x f$, referenced above. 
+
+It is convenient to express $f$ as follows
 
 \begin{equation}
 f\big[u(x_i)\big] = \frac{1}{\Delta}\int_{x-1/2}^{x+1/2}h(\xi)d\xi,
 \label{eq:theory:fd:introd_h}
 \end{equation}
 
-where we, following \cite{Shu:1988}, employed function $h(x)$ in a manner that its average between $x_{i+1/2}$ and $x_{i-1/2}$ stands for the value of $f$ at $x_i$. Then, 
+where we, following \citet{Shu:1988}, employed function $h(x)$ in a manner that its average between $x_{i+1/2}$ and $x_{i-1/2}$ stands for the value of $f$ at $x_i$. Then, 
 
 \begin{equation}
 \frac{\partial f}{\partial x}\Big|_{x_i} = \frac{h(x_{i+1/2}) - h(x_{i-1/2})}{\Delta}.
 \label{eq:theory:fd:diff_via_h}
 \end{equation}
 
-That that there were no approximations done in writing \ref{eq:theory:fd:introd_h} and \ref{eq:theory:fd:diff_via_h}. This allows to obtain an approximation to the derivative $\partial f/\partial x$ at $x_i$ of accuracy $r$, -- the same order as the reconstraction operator $\mathcal{R}$, that was used to recover $h_{i+1/2}$. In addition, as only the values at $x_i$ of $f$ are needed for computation, $h$ is never computed at any time. \\
+Note, that there were no approximations done in writing Eq.~\eqref{eq:theory:fd:introd_h} and Eq.~\eqref{eq:theory:fd:diff_via_h}. This allows to obtain an approximation to the derivative $\partial f/\partial x$ at $x_i$ of accuracy $r$, -- the same order as the reconstruction operator $\mathcal{R}$, that was used to recover $h_{i+1/2}$. In addition, as only the values at $x_i$ of $f$ are needed for computation, $h$ is never computed at any time. 
 
-The stability of the scheme is assured by correctly upwinding the reconstraction. Consider the case of $f'(u)>0$. Then, if we allow
+The stability of the scheme is assured by correctly unwinding the reconstruction. 
+Consider the case of $f'(u)>0$. 
+Then, if we allow
 
 \begin{equation}
 \widetilde{\upsilon}_i = f\big[u(x_i)\big] = \frac{1}{\Delta}\int_{x_{i-1/2}}^{x^{i+1/2}}h(\xi)d \xi
@@ -857,11 +871,13 @@ then
 \frac{\partial f(u)}{\partial x} = \frac{f_{i+1/2} - f_{i-1/2}}{\Delta} + \mathcal{O}(\Delta^r)
 \end{equation}
 
-yields the required high order approximation to $\partial_x$ at $x_i$. \\
+yields the required high order approximation to $\partial_x$ at $x_i$. 
 
-In a more general case, where the beahviour $f'(x)>0$ is not assured, the flux $f$ is split in a left-goping $f^{-}$ and right-going $f^{+}$ as $f = f^{+} + f^{-}$, for which separate upwind reconstructions are used to assure the stability. Note that this procedure is rather similar application of a Reimann solver in finite volume schemes. In some cases the direct correspondance between the flux-splitting methods and particualr Reimann solvers can be established. \\
+In a more general case, where the behaviour $f'(x)>0$ is not assured, the flux $f$ is split in a left-going $f^{-}$ and right-going $f^{+}$ as $f = f^{+} + f^{-}$, for which separate upwind reconstructions are used to assure the stability. Note that this procedure is rather similar application of a Riemann solver in \ac{FV} schemes. 
+In some cases the direct correspondence between the flux-splitting methods and particular Riemann solvers can be established. 
 
-We consider here tow ways, how the flux splitting can be done. The ones that are of relevents to this theiss are: \textit{Roe flux-split}, \textit{i.e.,}
+We consider here two ways, how the flux splitting can be done. 
+The ones that are of relevent to this thesis are: \textit{Roe flux-split}, \ie,
 
 \begin{equation}
 f = f^{\pm}, \text{  if  } [f'(\bar{u})]_{x_{i+1/2}} \lessgtr 0
@@ -870,23 +886,28 @@ f = f^{\pm}, \text{  if  } [f'(\bar{u})]_{x_{i+1/2}} \lessgtr 0
 
 where $\bar{u}_{x+1/2} := (1/2) (u_i + u_{i+1})$, 
 
-and the Rusanov flux-split \cite{Shu:1997} \textit{i.e.,}
+and the Rusanov flux-split \citep{Shu:1997} \ie,
 
 \begin{equation}
 f^{\pm} = f(u) \pm \alpha u, \hspace{5mm} a \max[f'(u)],
 \label{eq:theory:fd:laxfluxsplit}
 \end{equation}
 
-where the maximum is taken over the reconstruction operator stencil. \\ 
+where the maximum is taken over the reconstruction operator stencil. 
 
-With respect to the efficiency, the Roe flux splittes appears superiour, as it requires only one reconstraction. However, it was shown \cite{LeVeque:1992} that, if the transonic refraction waves are pesnet, this flux splitter can lead to the formation of entropy-violating shocks. In addition, the flux splitter is a odd-even decoupling phenomenon \cite{Quirk:1994}. One of the solutions was suggested in \cite{Radice:2012cu} to replace Roe flux split with Lax-Friedrichs one when $u$ or $f$ are not monotonic within the reconstruction stencil. 
+With respect to the efficiency, the Roe flux-splitter appears superior, as it requires only one reconstruction. However, it was shown by \citet{LeVeque:1992}, if the transonic refraction waves are present, this flux-splitter can lead to the formation of entropy-violating shocks. In addition, the flux splitter can introduce an odd-even decoupling phenomenon \citep{Quirk:1994}. One of the solutions was suggested in \citet{Radice:2012cu} to replace Roe flux split with Lax-Friedrichs one when $u$ or $f$ are not monotonic within the reconstruction stencil. 
 
-It is important to note that in our discussion an implicit assumption is made that the function $f$ is convex. In case of relativistic hydrodynamics this is indeed so, however, -- not in the case of relativistic-magneto-hydrodynamics. \\
+It is important to note that in our discussion an implicit assumption is made that the function $f$ is convex. 
+In case of relativistic hydrodynamics this is indeed so, however, -- not in the case of relativistic-magneto-hydrodynamics. 
 
-In addition, in \cite{LeVeque:1992}, a more strict condition imposed on the where Roe flux splitter has to be used instead of Lax-Friedrichs. \textcolor{red}{Our implementation is based on the experience, that a more frequent usage of Roe splitter, decreases comutational costs, as $u$ and $f$ are already computed on the grid, while $f'(u)$ is not. This appears to be sufficient to avoid odd-even decoupling in the tests performed. All the results shown in this thesis, obtain using this Roe-split with this "entropy fix" [This is David's work. Not theory. Not sure how to incorporate it.]} \\
+In addition, in \citet{LeVeque:1992}, a more strict condition was imposed on the where Roe flux splitter has to be used instead of Lax-Friedrichs. 
+\textcolor{red}{
+    Our implementation is based on the experience, that a more frequent usage of Roe splitter, decreases comutational costs, as $u$ and $f$ are already computed on the grid, while $f'(u)$ is not. This appears to be sufficient to avoid odd-even decoupling in the tests performed. All the results shown in this thesis, obtain using this Roe-split with this "entropy fix" [This is David's work. Not theory. Not sure how to incorporate it.]
+} 
 
-Now, let us consider the general system of hyperbolic balance-laws \ref{eq:theory:fd:hypsys}. The spatial derivatives of the fluxes $\partial_{\alpha} F_{i,j,k} ^{\alpha}$ can be evaluated via a component-by-component approach using the algorithm described above. And while, this is sufficient for lower (up to the second) order schemes, in higher order ones it excites spurious numerical oscillations.
-This problem can be alleviated if reconstraction is done on local characteristic variables of the ssystem. For simplicity, let us consider a one-dimensional case $\alpha={0,1}$. Then, the we employ Jacobian matrices
+Now, let us consider the general system of hyperbolic balance-laws Eq.~\eqref{eq:theory:fd:hypsys}. The spatial derivatives of the fluxes $\partial_{\alpha} F_{i,j,k} ^{\alpha}$ can be evaluated via a component-by-component approach using the algorithm described above. And while, this is sufficient for lower (up to the second) order schemes, in higher order ones it excites spurious numerical oscillations.
+This problem can be alleviated if reconstruction is done on local characteristic variables of the ssystem. 
+For simplicity, let us consider a one-dimensional case $\alpha={0,1}$. Then, the we employ Jacobian matrices
 
 \begin{equation}
 \boldsymbol{A}^{\alpha} = \frac{\partial \boldsymbol{F}^{\alpha}}{\partial u}\Big|_{\bar{\boldsymbol{u}}}, \hspace{5mm} \alpha = 0,1,
@@ -900,17 +921,18 @@ where
 \label{eq:theory:fd:aver_ubar}
 \end{equation}
 
-to reconstract the fluxes $F^1 _{i+1/2, j, k}$. The $\bar{u}$ is the average state at the point of reconstruction. \\
+to reconstruct the fluxes $F^1 _{i+1/2, j, k}$. The $\bar{u}$ is the average state at the point of reconstruction. 
 
-Notably, the average \ref{eq:theory:fd:aver_ubar} and present in \ref{eq:theory:fd:roefluxsplit} and \ref{eq:theory:fd:jacobreconstr} is considerably less complicated then the ones proposed in \cite{Roe:1981}. It was shown that the use of $\bar{u}$ \ref{eq:theory:fd:aver_ubar} instead of averaging proposed in \cite{Roe:1981} has no significant impact on the quality of the solution in FD schemes, even when relativistic case is concerned. \\
+Notably, the average Eq.~\eqref{eq:theory:fd:aver_ubar} and present in Eq.~\eqref{eq:theory:fd:roefluxsplit} and Eq.~\eqref{eq:theory:fd:jacobreconstr} is considerably less complicated then the ones proposed in \citet{Roe:1981}. It was shown that the use of $\bar{u}$ Eq.~\eqref{eq:theory:fd:aver_ubar} instead of averaging proposed in \citet{Roe:1981} has no significant impact on the quality of the solution in \ac{FD} schemes, even when relativistic case is concerned. 
 
-As the \ref{eq:theory:fd:hypsys} is strongly hyprebolic, the matrix $\boldsymbol{A}^0$ can be inverted. Then the generalized eigenvalue problem 
+As the Eq.~\eqref{eq:theory:fd:hypsys} is strongly hyperbolic, the matrix $\boldsymbol{A}^0$ can be inverted. 
+Then the generalized eigenvalue problem 
 
 \begin{equation}
 [\boldsymbol{A}^1 - \lambda_{(1)}\boldsymbol{A}^0]r_{(I)} = 0,
 \end{equation}
 
-has only real eigenvalues $\lambda_{(I)}$ and $N$ real, independent, right-eigenvectors, $r_{(I)}$ [see, \textit{e.g.,} \cite{Anile:1990}]
+has only real eigenvalues $\lambda_{(I)}$ and $N$ real, independent, right-eigenvectors, $r_{(I)}$ [see, \eg, \citet{Anile:1990}]
 
 Let the matrix of eigenvectors be $R$ as 
 
@@ -918,13 +940,14 @@ Let the matrix of eigenvectors be $R$ as
 R_{J}^{I} = r^{I}_{(J)},
 \end{equation}
 
-and $L$ its inverse. Then, the local characteristic variables are 
+and $L$ its inverse. 
+Then, the local characteristic variables are 
 
 \begin{equation}
 \omega = Lu, \hspace{10mm} Q = LF^1
 \end{equation}
 
-and we perform component-wse reconstraction to obtain $Q_{1+1/2,j,k}$, where $\omega$ is used in palce of $u$ and $Q$ in place of $f$ in the \ref{eq:theory:fd:laxfluxsplit}. 
+and we perform component-wise reconstruction to obtain $Q_{1+1/2,j,k}$, where $\omega$ is used in palce of $u$ and $Q$ in place of $f$ in the Eq.~\eqref{eq:theory:fd:laxfluxsplit}. 
 
 Then, we set
 
@@ -932,9 +955,16 @@ Then, we set
 F^1_{i+1/2, j, k} = RQ_{i+1/2, j, k}.
 \end{equation}
 
-The approximate of $\partial_a F^a$ in terms of $x_{i,j,k}$ then is obtained, repeating the procedure for other dimensions. \textcolor{red}{Results shown in this thesis are obtained, via reconstraction of local charactersitic variables.} \\
+The approximate of $\partial_a F^a$ in terms of $x_{i,j,k}$ then is obtained, repeating the procedure for other dimensions. \textcolor{red}{
+    Results shown in this thesis are obtained, via reconstraction of local charactersitic variables.
+} \\
 
-The major disadvantage of finite differencing schemes, however, is they they are primarely adopted for Cartesian grids (uiform or with Berger-Oliger-style AMR \cite{Berger:1984}). In case of cell-centered AMR with refluxing, \cite{Berger:1989}, the FD scheme reduce to second order at the boundary of refinment levels. \textcolor{red}{These limitations however are of second importance for the results presented in this thesis [Are they really?..]}
+The major disadvantage of finite differencing schemes, however, is they they are primarely adopted for Cartesian grids (uniform or with Berger-Oliger-style \ac{AMR} \citep{Berger:1984}). 
+In case of cell-centered \ac{AMR} with re-fluxing, \citep{Berger:1989}, the \ac{FD} scheme reduce to second order at the boundary of refinement levels. \textcolor{red}{
+    These limitations however are of second importance for the results presented in this thesis [Are they really?..]
+}
+
+
 
 \subsection{Discontinuous Galerkin Methods}
 

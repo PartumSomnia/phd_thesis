@@ -6,8 +6,7 @@ In the simulations the \ac{EFE} descibing the spacetime dynamics, are formulated
 way more suitable for numerical applications. We discuss this formulations in 
 Sec.~\ref{sec:method:nr:gr}, where we summarize the equations for \ac{NR}.
 The basis of \ac{EFE} and \ac{GR} is not covered here for the sake of brevity. For that we 
-refer to 
-\citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}.
+refer to \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}.
 
 
 \section{Numerical relativity in short}
@@ -2409,13 +2408,13 @@ These schemes are very popular in the field of relativistic hydrodynamics.
 %\end{equation}
 %where $c$ is the maximum propagation speed.
 
-Consider $1$D scalar advection equation, 
+Consider a $1$D scalar advection equation, 
 $\partial_t u + \partial_x f(u) = 0.$, 
 that is cast on a uniformly-spaced grids in space and time 
 %\begin{equation}
 %x_i = i\Delta^1, \hspace{5mm} i\in\mathbb{Z}, \hspace{10mm} t_n = n\Delta^0, \hspace{5mm} n\in\mathbb{N}
 %\end{equation}
-and averaged over control-volumes $[x_{i-1/2},x_{i+1/2}]$, 
+and averaged over control-volumes, $[x_{i-1/2},x_{i+1/2}]$, 
 %that read, 
 %\begin{equation}
 %    \bar{u}_i ^n = \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i + 1/2}} u(x, t^n) \text{d}x.
@@ -2510,158 +2509,84 @@ This method has an advantage of being computationally efficient.
 
 \paragraph{Central Methods}
 
+A central scheme is a monotone scheme that does not require aa Riemann solver. 
+
+First such scheme was developed by \ac{LxF} \citep{Lax:1954,Friedrichs:1954}, 
+it exhibited larger numerical dissipation then Godunov scheme, restricting its usefulness.
+A second order central scheme was developed by \ac{NT} \citep{Nessyahu:1990}.
+\ac{KT} \citep{Kurganov:2000} introduced further advancements, which helped popularizing high-order central schemes. 
+
+%The \ac{LxF} scheme is constructed by introducing a dual grid 
+%$\{x_{i+1/2}\}_{i\in\mathbb{Z}}$ at each time step $t_n$ into the Godunov scheme,
+%and computing averages,
+%$\{U_{i}^{n}\}_{i\in \mathbb{Z}}$, 
+%that are required for the solution at $t_{n+1}$ on the dual grid 
+%\ie $\{U_{i+1/2}^{n+1}\}_{i\in\mathbb{Z}}$,
+%at the centers, -- hence the name of the scheme. 
+%
+%The following steps go through alternating between 
+%the \textit{primal} and \textit{dual} grids. 
+
+%The high order central scheme are similar to \ac{FV} (upwind) scheme. The main 
+%difference lies in the construction.
+
+\paragraph{Finite-Difference Methods}
+
+%In the high order upwind \ac{FD} schemes the approximation is done point-wise instead of averaging over volumes as it is done in \ac{FV} schemes. Interestingly, these schemes were proposed as better performing alternatives to \ac{ENO} and \ac{WENO} schemes of very high order \citep{Shu:1988,Shu:1989,Jiang:1996}. 
+%Especially in the multi-dimensional case, \ac{FD} schemes are much more superior to the high order \ac{FV} schemes in terms of efficiency \citep{Shu:1999,Shu:2003}. 
+%
+%Here we aim to discuss \ac{FD} \ac{HRSC} schemes in very brief manner. We refer the reader to specialized literature for a in-depth discussion. In particular, for the discussion of \ac{FD} \ac{ENO}/\ac{WENO} \ac{HRSC} schemes see \citep{Shu:1999}, and for \ac{FD} \ac{MP5} scheme -- see \citep{Mignone:2010}. 
+
+In application to the which is also hyperbolic scalar equation, a conservation law, the \ac{FD} scheme is very similar to the \ac{FV} scheme, 
+% Eq.~\eqref{eq:theory:fv:1storder3dscheme}.
+(Eq.~\eqref{eq:theory:fv:intadveq} if considered in a 
+semi-discrete form).
+However,instead of integrals of the control volumes along the boundary
+If \ac{FD} scheme, these are direct (high-order, non-oscillatory) approximations 
+of the point-wise value of the solution.
+Thus, at second order, where  volume averages and point-wise values are the same,
+the \ac{FD} and \ac{FV} schemes read identically.
+The difference becomes important at higher orders and in many dimensions, 
+where \ac{FD} scheme lifts the need to evaluate Riemann problem at region boundaries,
+especially for the performance of a scheme.
+%The reconstruction is still used though, but to evaluate the non-oscillatory approximation $of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. 
+%in 
+%\begin{align}
+%\frac{d\boldsymbol{F}^{0}_{i,j,k}}{dt} = \boldsymbol{S}_{i,j,k} &+ \frac{\boldsymbol{F}^{1}_{i-1/2,j,k} - \boldsymbol{F}^{1}_{i+1/2,j,k}}{\Delta^1} \\
+%& + \frac{\boldsymbol{F}^{2}_{i,j-1/2,k} - \boldsymbol{F}^{2}_{i,j+1/2,k}}{\Delta^2} + \frac{\boldsymbol{F}^{3}_{i,j,k-1/2} + \boldsymbol{F}^{3}_{i,j,k+1/2}}{\Delta^3},
+%\end{align}
+%which is 
+%\begin{equation} 
+%f\big[u(x_i)\big] = \frac{1}{\Delta}\int_{x-1/2}^{x+1/2}h(\xi)d\xi,
+%\label{eq:theory:fd:introd_h}
+%\end{equation}
+Additionally, in \ac{GRHD} applications, the treatment of source terms simplifies as 
+only point-wise values are needed.
+
+%In the \ac{FD} scheme reconstruction operators $\mathcal{R}$
+%evaluate the (non-oscillatory approximation) of $\partial_x f$, referenced above.
+%The stability of the scheme is assured by correctly unwinding the reconstruction. 
+%If the behaviour $f'(x)>0$ is not assured, the flux $f$ is split in a left-going $f^{-}$ and right-going $f^{+}$ as $f = f^{+} + f^{-}$, for which separate upwind reconstructions are used to assure the stability. This resembles the iemann solver in \ac{FV} schemes. 
+%Popular flux splitters are Roe flux-split and 
+%and the Rusanov flux-split \citep{Shu:1997},
+%where the former is superior in terms of efficency but was shown to produce 
+%entropy-violating shocks if transonic refraction waves are present \citep{LeVeque:1992}
+%
+%In the general system of hyperbolic balance-laws
+%Eq.~\eqref{eq:theory:fd:hypsys}.
+%The spatial derivatives of the fluxes $\partial_{\alpha} F_{i,j,k} ^{\alpha}$ can be evaluated via a component-by-component approach using the algorithm described above,
+%where reconstruction is done on local characteristic variables of the ssystem to avoid 
+%spurious numerical oscillations.
+
+
+%\subsection{Discontinuous Galerkin Methods}
+%\subsubsection{Runge-Kutta Discontinuous-Galerkin Methods}
+
+\subsection{Atmosphere treatment}
 
 
 
 
-
-%% ======================================== EOS used
-%\subsection{Microphysical EOS}
-%
-%
-%
-%This subsection is based introduction in the recent publications 
-%\cite{Radice:2018pdn,Perego:2019adq,Bernuzzi:2020txg,Nedora:2020pak}
-%
-%\begin{figure}[t]
-%    \centering 
-%    \includegraphics[width=0.49\textwidth]{tov_mr.pdf}
-%    \caption{Mass-radius relations for the EOSs used in this work. 
-%        Markers along the sequences indicate the NSs smulated in this work.}  
-%    \label{fig:method:tov_mr}
-%\end{figure}
-%
-%For our models we employ $5$ finite-temperature, composition-dependent equations of state, namely the 
-%HS(DD2) (hereafter DD2) \cite{Typel:2009sy,Hempel:2009mc}, 
-%BLh, \cite{Bombaci:2018ksa}, 
-%LS220, \cite{Lattimer:1991nc}, 
-%HS(SFHo), (hereafter SFHo) \cite{Steiner:2012rk} and 
-%SLy4-SOR EOS (hereafter SLy4) \cite{daSilvaSchneider:2017jpg}.
-%
-%All EOS include neutrinos $(n)$, protons $(p)$, nuclei, electrons, positrons, and photons
-%as important thermodynamic degrees of freedom.
-%
-%The radii and maximum masses of neutron stars composed of the cold, neutrino-less $\beta$-equilibrium matter,
-%from these EOS, fall in line with the current astrophysical constraints, 
-%\textit{e.g.,} LIGO/Virgo constrain on tidal deformability 
-%\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}
-%
-%All EOS models have symmetry energy at saturation density that are in argeement with experimental limits.
-%Notably, the LS220 has a especially steep dependency of its symmetry energy on density (\textit{e.g.,} \cite{Lattimer:2012xj,Danielewicz:2013upa}. Thus, this EOS might predict too low symmetry energy below the saturation density. 
-%
-%%% LS220
-%The LS220 EOS is based on a non-relativistic (liquid droplet) Skyrme model.
-%The absolute value of the nuclear bulk incompressibility is set to $220$~MeV, hence, the name.
-%The EOS includes surface effects and it models $\alpha$-particles as an ideal, classical
-%non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued. 
-%%Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
-%%particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
-%%Heavy nuclei are considered with single nucleus approximation. 
-%The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
-%LS220 does not satisfy the constraints from Chiral effective field theory \cite{Hempel:2017ikt}
-%
-%%% DD2
-%DD2 (and SFHo) employs the statistical equilibrium to treat the ensemble of several thousands nuclei.
-%The high-density nuclear matter is treated via RMF approach for unbound nucleons \cite{Hempel:2009mc}.
-%The excluded volume mechanism is utilized for the phase transition from nuclei to homogeneous
-%nuclear matter (when densities approch the nuclear saturation density).
-%DD2 employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions \cite{Typel:2009sy}.
-%It was however noted that DD2 is not in very good agreement with the so-called flow-constraint \cite{Danielewicz:2002pu}.
-%
-%%% SFHo [more rephrasing needed!]
-%Similar to DD2, SFHo combines a statistical ensemble of numerous nuclei, under the assumption of nuclear
-%statistical equilibrium (NSE) to treat the homogeneous matter, 
-%with the relativistic mean field approach for the unbound nucleons to treat high-density homogeneous nuclear matter.
-%It however employs a different parameterizations and values for modeling the mean-field nuclear interactions, 
-%which is motivated by neutron star radius measurements from low-mass X-ray
-%binaries (\cite{Steiner:2012rk} and references therein).
-%
-%The DD2 and SFHo are based on nuclear statistical equilibrium, but 
-%different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
-%In these EOSs a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these EOSs mean-field nuclear interactions have different parameterizations and values.
-%
-%%% SLy4
-%The SLy4 EOS eomplyed in this work is the finite temperature extension \cite{daSilvaSchneider:2017jpg}
-%of the basic SLY4 Skryme parametrisation for cold nuclear NS matter \cite{Douchin:2001sv}.
-%The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
-%treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
-%Which is a more advanced version of LS220 treatment (model).
-%When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
-%free energy is chosen, (first order transition).
-%
-%%% BLh
-%BLh is a new finite temperature EOS \cite{Logoteta:2020yxf}
-%This EOS is a finite temperature extension of the cold, $\beta$-equilibrium EOS, \cite{Bombaci:2018ksa},
-%which was applied to model the BNS merger in \cite{Endrizzi:2018uwl}.
-%The equation of state is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach.
-%where microphysical approach based on a specific nuclear interaction is employed for the homogeneous nuclear phase.
-%The interactions between nucleos are described through a potential derived perturbatively 
-%in Chiral-Effective-Field theory \cite{Machleidt:2011zz}
-%The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
-%Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
-%The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
-%The non-homogeneous phase of the EOS is treated by smoothly connecting the high density BLh EOS to the low-density oart of the SFHo EOS.
-%
-%
-%\subsubsection{Finite temperature treatment}
-%
-%
-%Thermal effects are included a different way in these EOS. 
-%In particular particle correlations beyond the mean field approximation are included only in the BLh EOS.
-%In other EOS thermal effects enter in the nucleon effective mass, that depend on temperature and density.
-%These effects, however, are important for the thermal evolution of the NS matter.
-%
-%%% LS220 and SLy4
-%In the EOSs that are based on the Skyrme effecrive nuclear interatcions, \textit{e.g.,} LS220 and SLy4
-%the thermal effects are added in the following form. 
-%Consider a zero temperature internal energy functional, which depends explicitly on the nuclear density.
-%The part of this functional that is resposible for interactions is divided into the 
-%subpart that represents the two-body nucleon-nucleon interactions, (it is quadratic in nuclear density) and a 
-%subpart that mimics the effect of many body nuclear forces (proportional to the nuclear density in certain power).
-%Then, both the single particle potentials as well as kinetic energy effective mass dependence play a role
-%in the temperature dependence of the nuclear effective interaction.
-%The single particle potential are computed via the variation of the internal energy with respect to the 
-%neutron and proton densities.
-%Thus, the smaller the effective masss the larger are kinetic energies and hence, hgiher matter temperature. 
-%If the entropy remains unchainched.
-%Thus, the finite temperature behavior of these EOSs is largely set by the nucleon effective mass.
-%%Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
-%For LS220, the nucleon mass is its bare nucleon mass (for any densities) \gray{so... $m_{N}^*=m_{N}$??}.
-%For SFHo, $m_N ^* / m_N = 0.76$ at saturation density. 
-%For DD2 $m_N^*/m_N = 0.56$ 
-%For BLh $\red{None}$ 
-%For SLy4 $m_N^*/m_N=0.70$ at saturation density. 
-%where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
-%
-%%% SFHo (and DD2??)
-%For the SFHo and DD2 EOS, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
-%meson exchanges for descibing nuclear interactions, and the mean-field approximation is used
-%to solve the resulted Euler-Largrange equations. 
-%The thermal effects for various species are introduced via Fermi-Dirac distributions at finite temperatures.
-%Then, self consitent solution of the mean filed eqution introduces the temperature dependence into other 
-%thermodynamic quantities (through fiurst mesons and nucleon fields)
-%
-%%% BLh
-%The BLh EOS employs a different approach to incorporate temperature effects.
-%The method is based on evaluating the free energy in the Brueckner-Hartree-Fock, which in turn requires,
-%the effective in-medium nuclear interactions to be defined (starting from the bare nuclear potential).
-%\gray{This effective interaction is obtained by solving
-%    the Bethe-Goldstone integral equation which describe the nucleon 
-%    scattering in the nuclear medium and properly takes into
-%    account the Pauli principle}.
-%Then, the nucleon single particle potentials are evaluated (via integration of the on-shell effective interaction matrix)
-%, which represent the mean field that a nucleon with a certain momenum experience surrounded by other nucleons.
-%The nucleon single particle potentials, then, allow to evaulate the free energy, and subsequently, 
-%other thermodynamic quantities.
-%Notable difference with other EOS discussed here is that the many-body correlations extend beyond the mean field approximation, and are not present in other EOS. 
-%This EOS was first employed for the BNS merger simulations in \cite{Bernuzzi:2020txg}.
-%
-%\subsubsection{TOV}
-%
-%To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
-%The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
-%for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
-%Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 
 %% =====================================================================================
 %%
