@@ -117,7 +117,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \newcommand{\gcm}{g cm$^{-3}$}
 \def\igscm{{\rm cm^{2}\,g^{-1}}}
 \newcommand{\dd}{\text{d}}
-
+\newcommand{\Mmax}{\ensuremath{M_\text{max}^\text{TOV}}} % High-q paper
 
 \newcommand{\GW}{GW170817}
 \newcommand{\AT}{AT2017gfo} %{{SSS17a}} %{{AT170817A}} % AT2017gfo
@@ -255,7 +255,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \newacro{TVD}{total-variation diminishing}
 \newacro{BV}{bounded variation}
 \newacro{TV}{total variation}
-\newacro{PPM}piecewise parabolic method
+\newacro{PPM}{piecewise parabolic method}
 \newacro{PHM}{piecewise hyperbolic method}
 \newacro{ENO}{essentially non-oscillatory}
 \newacro{WENO}{weighted essentially non-oscillatory}
@@ -265,7 +265,11 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \newacro{LxF}{Lax and Friedrichs}
 \newacro{NT}{Nessyahu and Tadmor}
 \newacro{KT}{Kurganov and Tadmor}
-\newacro{AMR}{adaptive mesh refinement }
+\newacro{AMR}{adaptive mesh refinement}
+\newacro{PPL}{positivity preserving limiter}
+\newacro{SSP}{strong stability preserving}
+\newacro{PDE}{partial differential equation}
+\newacroplural{PDE}[PDEs]{partial differential equations}
 
 \newacro{DE}{dynamical ejecta}
 \newacro{SWW}{\swind{}}
@@ -530,7 +534,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 
 % \part{Numerical relativity simulations of neutron star mergers}
 \include{Chapters/Ch_Introduction}
-\include{Chapters/Ch_NR}
+%\include{Chapters/Ch_NR}
 \include{Chapters/Ch_NR_v2}
 %\include{Chapters/Ch_BNS_MergSims}
 %\include{Chapters/Ch_Nucleosynthesis}
@@ -560,7 +564,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %\include{Appendices/app_efe}
 %\include{Appendices/app_adm}
 %\include{Appendices/app_eul}
-\include{Appendices/app_num}
+%\include{Appendices/app_num}
 %\include{Appendices/app_ang}
 %\include{Appendices/app_nuc}
 %\include{Appendices/app_mkn}
