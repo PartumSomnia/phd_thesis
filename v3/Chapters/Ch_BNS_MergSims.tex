@@ -4,14 +4,17 @@
 
 \label{ch:bns_sims} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+In this chapter we discuss the \ac{BNS} merger simulations.
+In section \red{XX} we descibe the simulation setup, in 
+Sec.~\red{XXX} we discuss the overall dynamics of mergers which 
+is followed by model detailed dynamics of the \red{xxxx}
 
+%\subsubsection{TOV}
 
-\subsubsection{TOV}
-
-To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
-The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
-for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
-Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
+%To characterize these EOS, that employs very different microphyscis and finite temperature properties and their relation to the electron fraction, we consider the TOV solutions, presented on the figure \ref{fig:method:tov_mr}.
+%The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
+%for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
+%Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 
 %% =====================================================================================
 %%
@@ -20,131 +23,135 @@ Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
 %% =====================================================================================
 
 
-\section{Code}
+\section{Simulation Setup}
 
+%We perform the \ac{NR} \ac{BNS} merger simulations using the code \ac{WhiskyTHC}
 
 \subsection{Initial Data}
 
-For Each EOS considered, we compute the irrotational BNS configurations in quasi-circular orbit.
-We employ the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, that 
-solves the general relativistic initial data problem.
-The initial separation (of the qusi-circular orbit) is chosen $\sim40$~km and that corresponds to $~2-3$ orbits before merger.
 
-The EOS table used for the initial data computation is the minimum temperature slice
-$(T\sim 0.5 - 0.1)$~MeV of the finite temperature EOS table used for the evolution.
+We compute the irrotational \ac{BNS} configurations in quasi-circular orbit for 
+each \ac{EOS} considered, \eg, SLy4, SFHo, LS220, BLh and DD2 \acp{EOS}.
+The initial configuration is obtained via the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, 
+that solves the general relativistic initial data problem \red{in what approximation? Thin sandwitch?}.
+The initial separation (of the qusi-circular orbit) is chosen $\sim40$~km and that
+ corresponds to $~2-3$ orbits before merger.
+%
+The \acp{EOS} tables used for the initial data computation are the minimum temperature slices
+$(T\sim 0.5 - 0.1)$~MeV of the finite temperature \acp{EOS} tables used for the evolution.
 The assumption of the neutrino-less beta-equilibrium is made.
-At constant temperature, at lowest densities, the photon energy (radiation) is a dominant contribution to 
-pressure. Thus, we substruct this contribution from the tables.
-%Addiitionally, the assuming constant temperature, we also remove the photon (radiation) energy contribution to the pressure (which dominates at the lowest densities)
-
-The EOS table for the minimum temperature slice of the EOS table used for the evolution assuming neutrino-less beta-equilibrium.
-Assuming constant temperature, we also remove the photon energy contribution to the pressure.
-
+At constant temperature, at lowest densities, the photon energy (radiation) is a dominant 
+contribution to pressure. Thus, we substruct this contribution from the tables.
+%
 %In the evolution code, passing the initial data, the mapping is done from the zero temerature
 In the evolution code, the electron fraction is set by the beta equilibrium condition. 
-The specific internal energy is reset in accordance with minimum temperature slice of the EOS table used for evolution.
+The specific internal energy is reset in accordance with minimum 
+temperature slice of the \ac{EOS} table used for evolution.
 
-Errors present in the initial data in introduced during the mapping result in a small oscillations of netron stars.
-In terms of relative changes in central density these amounts to $\sim2-3\%$ \cite{Radice:2018pdn}
+%Errors present in the initial data in introduced during the mapping 
+%result in a small oscillations of \acp{NS}.
+%In terms of relative changes in central density these amounts to 
+%$\sim2-3\%$ \citep{Radice:2018pdn}
+
 
 
 \subsection{Evolution with \texttt{WhiskyTHC}}
 
+%In order to perform numerical simulations of fluid flow, accurate numerical codes are essencial. Codes that flux-conservative finite-difference HRSC schemes offer a ciertain degree of simplicity, while high-order finite volume schemes are more computationally expensive (as they require solution of multiple Riemann problems at the interface between regions) \cite{Reisswig:2009us,Shu:2001rep} as well as complex averaging and de-averaging procedures \cite{Tchekhovskoy:2007zn}.
 
-In this part we review the numerical relativity code that was used to model binary neutron star mergers analyzed in this thesis.
-The part is based on the David Radice PhD thesis where most of the methods are discussed \cite{Radice:2013apa}, and on the published results and regarding code structure and \cite{Radice:2012cu,Radice:2013xpa,Radice:2013hxh,Radice:2015nva}.
+The evolution of \ac{BNS} systems is performed with \wisky{} \ac{NR} code \cite{Radice:2013apa,Radice:2012cu,Radice:2013xpa,Radice:2013hxh,
+    Radice:2015nva,Radice:2016dwd,Radice:2018pdn,Radice:2020ids}.
+\wisky{} is a result of combination of two \texttt{Whisky} \citep{Baiotti:2004wn} and \texttt{THC}.
+The \texttt{THC} part stands for the Templated-Hydrodynamics Code developed using the \texttt{Cactus} framework 
+\citep{Goodale:2003}. 
+In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed . 
+%The "templated" in the code name stands for a modern paradigm in C++ programming, the templated programming, where a part of the code can be generated from the prescribed templates at compiling time (\textit{e.g.,} \cite{Yang:2001})
+%
+%The \texttt{THC} has several primitive variable reconstruction schemes implemented, such as MP5, classical monotonicity preserving \cite{Suresh:1997,Mignone:2010} the weighted essentially non oscillatory (WENO) schemes WENO5 and WENO7 \cite{Liu:1994,Jiang:1996,Shu:1997} and two bandwidth-optimized WENO schemes WENO3B and WENO4B \cite{Martin:2006,Taylor:2007}, contracted for modeling the compressible turbulence. Note, that the number in scheme name stands for a formal order of accuracy.
+%
+%High-order flux-vector splitting finite-differencing techniques came from the former, while the module for 
+%the recovery of the primitive quantities as well as the equation of state framework from the latter \cite{Galeazzi:2013mia}. %Tabulated temperature and composition dependent equation of states can be used.
 
-In order to perform numerical simulations of fluid flow, accurate numerical codes are essencial. Codes that flux-conservative finite-difference HRSC schemes offer a ciertain degree of simplicity, while high-order finite volume schemes are more computationally expensive (as they require solution of multiple Riemann problems at the interface between regions) \cite{Reisswig:2009us,Shu:2001rep} as well as complex averaging and de-averaging procedures \cite{Tchekhovskoy:2007zn}.
+\wisky{} solves the equations of \ac{GRHD} in conservation form using a \ac{FD} scheme. 
+%\red{tripple check the FD is used for space time evol and central FV method is for hydro}
+The flux reconstruction is done in local-characteristic variables using the \ac{MP5} scheme.
+% see \textit{e.g.,} \cite{Rezzolla:2013} \red{CHECK}.
+The space-time is evolved using the Z4c formulation Eq.~\eqref{eq:theory:z4c_equations}, solved via \ac{FD} 
+code publicly available through \texttt{Einstein Toolkit}, \citep{McLachlan,Loffler:2011ay}.%\red{CHECK}.
+%There, the central stencil is used throughout, and only terms associated with the advection along the 
+%shift vector are treated using the upwinded by one grid point stencil. 
+%The accuracy of the scheme is available at 6th and 8th order, while $4$th is commonly employed. 
+%In addition, the fifth order Kreiss-Oliger style artificial dissipation \cite{Kreiss:1973} is 
+%added to aid with non-linear stability. 
 
-The \texttt{THC} code is the Templated-Hydrodynamics Code developed using the \texttt{Cactus} framework \cite{Goodale:2003}. In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed. The "templated" in the code name stands for a modern paradigm in C++ programming, the templated programming, where a part of the code can be generated from the prescribed templates at compiling time (\textit{e.g.,} \cite{Yang:2001})
-
-The \texttt{THC} has several primitive cariable reconstruction schemes implemented, such as MP5, classical monotonicity preserving \cite{Suresh:1997,Mignone:2010} the weighted essentially non oscillatory (WENO) schemes WENO5 and WENO7 \cite{Liu:1994,Jiang:1996,Shu:1997} and two bandwidth-optimized WENO schemes WENO3B and WENO4B \cite{Martin:2006,Taylor:2007}, contracted for modeling the compressible turbulence. Note, that the number in scheme name stands for a formal order of accuracy.
-
-\texttt{WhiskyTHC} is a result of combination of two \texttt{Whisky} \cite{Baiotti:2004wn} and \texttt{THC} \cite{Radice:2012cu}. High-order flux-vector splitting finite-differencing techniques came from the former, while the module for the recovery of the primitive quantities as well as the equation of state framework from the latter \cite{Galeazzi:2013mia}. Tabulated temperature and composition dependent equation of states can be used.
-
-Overall, \texttt{WhiskyTHC} solves the equations of general-relativistic hydrodynamics in conservation form \ref{eq:theory:grhdeq_thc} using a finite difference scheme. \red{tripple check the FD is used for space time evol and central FV method is for hydro}
-The flux reconstruction is done in local-characteristic variables using the MP5 scheme, see \textit{e.g.,} \cite{Rezzolla:2013} \red{CHECK}.
-The space-time is evolved using the CCZ4 formulation \ref{eq:theory:ccz4equations}, solved via finite difference code publicly available through \texttt{Einstein Toolkit}, \cite{McLachlan,Loffler:2011ay}.\red{CHECK}.
-There, the central stencil is used throughout, and only terms associated with the advection along the shift vector are treated using the upwinded by one grid point stencil. The accuracy of the scheme is available at 6th and 8th order, while 4th is commonly employed. In addition, the fifth order Kreiss-Oliger style artificial dissipation \cite{Kreiss:1973} is added to aid with non-linear stability.
-
-The code is build on the \texttt{Carpet} AMR driver \cite{Schnetter:2003rb} from the \texttt{Cactus} computational toolkit \cite{Goodale:2003}, incorporating a provided by \texttt{Carpet} Berger-Oliger-style mesh refinement \cite{Berger:1989,Berger:1984} with subcycling in time and refluxing. \textcolor{red}{in Thesis it is said, -- no refluxing was done yet}
-
-To treat the vacuum region, the code utilizes common, 'atmosphere' approach. The atmosphere is referred to an artificial density floor in the simulation domain. It is introduced in order to tackle the challenges arising when considering boundary between the fluid and vacuum in Eulerian (relativistic) hydrodynamics codes \cite{Galeazzi:mThesis:2008,Kastaun:2006,Millmore:2009dk}. 
-The defining property of the atmosphere is that the rest mass density and coordinate velocity are reset to a floor values once the former falls below a certain threshold value during the evolution \cite{Font:2001ew,Baiotti:2004wn}. While showing a reasonable results in second order codes, in higher order ones the numerical oscillations lead to the creation of vacuum nonetheless, that in light of the aforemention atmosphere effect result in the mass and energy violation \cite{Radice:2011qr}. For codes that rely on characteristic variables, the degeneracy in low-density, low-temperature limits also plagues the computation. This problem is the main reason behind the popularity of robust shock capturing codes, even though they are of first order in the general-relativistic hydrodynamics codes. Vacuum treatment for higher order codes is of main challenges to overcome.
-
-There are several approaches in how to treat atmosphere. 
-
-\textit{Standard atmosphere Treatment} or \textit{"ordinary MP5 approach"} is based on setting density that falls below $(1+\epsilon)\rho_{\text{atmo}}$ to the atmosphere density, velocity to zero and internal energy to the one prescubed by the polytropic EoS. The $\rho_{\text{atmo}}$ is usually related to a certain characteristic density, \textit{e.g.,} maximum density at the beginning of the simulation as $\rho_{\text{atmo}} = 10^{-7,-9}\rho_{\text{max}}$. The tolerance parameter $\epsilon$ is usually set to $10^{-2}$ and accounts for excessive oscillations of the fluid–vacuum interface. 
-
-\textit{An Improved Atmosphere Treatment} or \textit{"MP5+LF"} In this approach the component-wise Lax-Friedrichs flux split is turned on when a certain density is reached. This increases the dissipation of the scheme and allows to avoid problems arising in characteristic reconstruction, associated with the degeneracy of the characteristic variables close to vacuum. Unfortunately, if the ejection of low velocity and density matter is concerned, this approach may yield oscillatory solutions and thus creates artifacts. 
-
-\textit{Positivity Preserving Limiter} is an approach discussed in \cite{Radice:2013apa} based on the use of PPL proposed in \cite{Hu:2013}. \gray{Here we provide a brief overview}. \red{No, we not}.
-\gray{While for a simplified case of classical gas dynamics it might require a lower timestep, in the general relativistic case and general tabulated EOS, the positivist of pressure is difficult to assure due to complexity of the energy source terms. It can be mitigated by enforcing a floor value on the pressure}. 
-Note, that adopting a positivity preserving limiter to treat the transition between matter and vacuum, still implies replacing the vacuum with low density fluid at rest, is not a physically accurate approach. That would rely on treating the transition as a free boundary (see \textit{e.g.,} \cite{Kastaun:2006}) The advantage of positivity preserving limiter with respect to a classical atmosphere treatment, is that it allows to have a value of $\rho_{\text{atmo}}$ that does not require further tuning and can be arbitrary small, and assure that the solution is locally conserved. 
-\textcolor{red}{In our models} we employ this approach as follows, at the beginning of the simulations we set the floor density, relying in the subsequent evolution on a positivity preserving limiters to ensure the atmosphere well behavior. Due to negligible density of the atmosphere its accretion has a negligible effect on the evolved object. 
-
-For the extensive tests of different reconstruction methods and atmosphere treatment we refer to the \cite{Radice:2013apa}.
+The code is build on the \texttt{Carpet} \ac{AMR} driver \citep{Schnetter:2003rb} from the 
+\texttt{Cactus} computational toolkit \citep{Goodale:2003}, that incorporates
+\texttt{Carpet} Berger-Oliger-style mesh refinement \citep{Berger:1989,Berger:1984} with subcycling
+in time and refluxing. %\textcolor{red}{in Thesis it is said, -- no refluxing was done yet}
 
 
-\subsection{Hydrodynamics}
+\paragraph{Hydrodynamics}
 
 
 
-\red{THE IDEA IS THAT YOU PUT MAIN EQ AND THEORY INTO THEORY AND HERE JUST USE THE 'PAPER' STUFF}
+%\red{THE IDEA IS THAT YOU PUT MAIN EQ AND THEORY INTO THEORY AND HERE JUST USE THE 'PAPER' STUFF}
 
 The code evolves the proton and neutron number densities, $n_n$ and $n_p$
 respectively, as 
-
+%
 \begin{equation}
 \label{eq:wthc:pndens}
 \nabla_\nu (n_p u^\mu) = R_p^\mu \ \ , \ \ 
 \nabla_\nu (n_n u^\mu) = R_n^\mu \ .
 \end{equation}
-
-\gray{in Radice2016dwd it is $\nabla_{\alpha}(n_e u^{\alpha}) = R$}
-
-\gray{in Galezzi2013, for Whisky, the equations are separate for baryon and leptons: $\nabla_{\alpha}(n_bu^{\alpha})=0$ and $\nabla_{\alpha}(n_eu^{\alpha})=N$, where the $n_b$ and $n_e$ are the baryon and electron number densities respectively.}
-
+%
+%\gray{in Radice2016dwd it is $\nabla_{\alpha}(n_e u^{\alpha}) = R$}
+%
+%\gray{in Galezzi2013, for Whisky, the equations are separate for baryon and leptons: $\nabla_{\alpha}(n_bu^{\alpha})=0$ and $\nabla_{\alpha}(n_eu^{\alpha})=N$, where the $n_b$ and $n_e$ are the baryon and electron number densities respectively.}
+%
 Here $u^{\mu}$ is the fluid four-velocity, $R_p = -R_n$ is the net
 lepton number deposition rate due to the absorption and emission of neutrinos 
-and antineutrinos (\red{see Section XXX})
-
-The $R_{p,n}$ is computed according to the neutrino M0 scheme \cite{Radice:2016dwd,Radice:2018pdn}
-
+and antineutrinos (see Sec.~\ref{sec:theory:neut})
+%
+%The $R_{p,n}$ is computed according to the neutrino M0 scheme (see Sec.~\ref{sec:theory:neut})
+%
 The number densities are related as $n_p=Y_e n$ where $n = n_p + n_e$ is the baryon 
 number density and $Y_e$ is electron fraction.
-
+%
 The matter of a neutron star is approximated with ideal fluid with stress-energy tensor
+%
+%\begin{equation}
+%T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + Pg_{\mu\nu}
+%\end{equation}
 
-\begin{equation}
-T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + Pg_{\mu\nu}
-\end{equation}
+%where $\rho=m_{\text{b}} n$ is the baryon rest-mass density, 
+%$n$ the baryon number density, $m_{\text{b}} \simeq 10^{-24}\,$g 
+%the neutron mass, 
+%\gray{if Galezzi13 it is nucleon mass which is actrually related to the EOS.}
+%$h=1+\epsilon + P/\rho$ the specific enthalpy, 
+%$\epsilon$ the specific internal energy (energy density),
+%and $P$ is \gray{total isotropic} pressure.
 
-where $\rho=m_{\text{b}} n$ is the baryon rest-mass density, 
-$n$ the baryon number density, $m_{\text{b}} \simeq 10^{-24}\,$g 
-the neutron mass, 
-\gray{if Galezzi13 it is nucleon mass which is actrually related to the EOS.}
-$h=1+\epsilon + P/\rho$ the specific enthalpy, 
-$\epsilon$ the specific internal energy (energy density),
-and $P$ is \gray{total isotropic} pressure.
+%Written in a covariant form, the Euler equation for balance of energy and momentum reads
 
-Written in a covariant form, the Euler equation for balance of energy and momentum reads
-
-\begin{equation}
-\label{eq:wthc:euler}
-\nabla_\nu T^{\mu\nu} = Q u^{\mu} \ ,
-\end{equation}
-
-\gray{in Radice2016dwd it is $\nabla_{\beta}T^{\alpha\beta}=\Psi^{\alpha}$
-    with $\Psi^{\alpha} = Q u^{\alpha}$.
-}
-\gray{In the Galezzi:2013 it is $\nabla_{\alpha}T^{\alpha\beta}=\Psi^{\beta}$.
-    There the $T^{\alpha\beta}$ accounts for the ordinary matter and for trappend neutrinos and photons, but it does not include free-streaming neutrinos. Assumed to be similar to the 'test-fluid' they are neglected in constracting RHS of the Eistein equations.
-}
-
-where $Q$ is the net energy deposition rate doe to absorption
-and emission of neutrinos also treated with the M0 scheme.
-\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
+The code solves the Euler equations Eq.~\eqref{eq:theory:tmunu_eq_0} with the \ac{RHS}
+given being $ Q u^{\mu}$ 
+%
+%\begin{equation}
+%\label{eq:wthc:euler}
+%\nabla_\nu T^{\mu\nu} = Q u^{\mu} \ ,
+%\end{equation}
+%
+%\gray{in Radice2016dwd it is $\nabla_{\beta}T^{\alpha\beta}=\Psi^{\alpha}$
+%    with $\Psi^{\alpha} = Q u^{\alpha}$.
+%}
+%\gray{In the Galezzi:2013 it is $\nabla_{\alpha}T^{\alpha\beta}=\Psi^{\beta}$.
+%    There the $T^{\alpha\beta}$ accounts for the ordinary matter and for trappend neutrinos and photons, but it does not include free-streaming neutrinos. Assumed to be similar to the 'test-fluid' they are neglected in constracting RHS of the Eistein equations.
+%}
+%
+where $Q$ is the net energy deposition rate due to absorption
+and emission of neutrinos also treated with the M0 scheme  (see Sec.~\ref{sec:theory:neut}).
+%\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
 
 
 \subsection{Numerical methods}

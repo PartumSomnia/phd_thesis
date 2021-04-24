@@ -1,5 +1,4 @@
-\chapter{Numerical Relativity}
-\label{ch:nr_methods}
+\chapter{Numerical Relativity}\label{ch:nr_methods}
 
 In this thesis we perform numerical simulations of \ac{BNS} mergers. 
 In the simulations the \ac{EFE} descibing the spacetime dynamics, are formulated in a 
@@ -923,11 +922,11 @@ Thus, this \ac{EOS} might predict too low symmetry energy below the saturation d
     The absolute value of the nuclear bulk incompressibility is set to $220$~MeV, hence, the name.
     The \ac{EOS} includes surface effects and it models $\alpha$-particles as an ideal, classical
     non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued. 
-    %Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
-    %particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
-    %Heavy nuclei are considered with single nucleus approximation. 
-    The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
-    LS220 does not satisfy the constraints from Chiral effective field theory \citep{Hempel:2017ikt}.
+%    Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
+%    particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
+%    Heavy nuclei are considered with single nucleus approximation. 
+%    The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
+%    LS220 does not satisfy the constraints from Chiral effective field theory \citep{Hempel:2017ikt}.
     %% ======================= DD2 \& SFHo ===================
     \item DD2 (and SFHo) \acp{EOS} employs the statistical equilibrium to treat the ensemble of several thousands nuclei.
     The high-density nuclear matter is treated via \ac{RMF} approach for unbound nucleons \citep{Hempel:2009mc}.
@@ -946,28 +945,28 @@ Thus, this \ac{EOS} might predict too low symmetry energy below the saturation d
     %% ===
     The DD2 and SFHo \acp{EOS} are based on nuclear statistical equilibrium, but 
     different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
-    In these \acp{EOS} a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these \acp{EOS} mean-field nuclear interactions have different parameterizations and values.
+%    In these \acp{EOS} a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these \acp{EOS} mean-field nuclear interactions have different parameterizations and values.
     %% ======================= SLy4 ===================
-    The SLy4 \ac{EOS} employed in this work is the finite temperature extension \citep{daSilvaSchneider:2017jpg}
+    \item The SLy4 \ac{EOS} employed in this work is the finite temperature extension \citep{daSilvaSchneider:2017jpg}
     of the basic SLY4 Skryme parametrisation for cold nuclear \ac{NS} matter \citep{Douchin:2001sv}.
     The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
     treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
-    Which is a more advanced version of LS220 \ac{EOS} treatment (model).
-    When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
-    free energy is chosen (first order transition).
+%    Which is a more advanced version of LS220 \ac{EOS} treatment (model).
+%    When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
+%    free energy is chosen (first order transition).
     %% ======================= BLh ===================
-    BLh \ac{EOS} is a new finite temperature \ac{EOS} \citep{Logoteta:2020yxf}
+    \item BLh \ac{EOS} is a new finite temperature \ac{EOS} \citep{Logoteta:2020yxf}
     This \ac{EOS} is a finite temperature extension of the cold, $\beta$-equilibrium \ac{EOS}, \citep{Bombaci:2018ksa},
     which was applied to model the \ac{BNS} merger in \citet{Endrizzi:2018uwl}.
-    The \ac{EOS} is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach.
+    The \ac{EOS} is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach,
     where microphysical approach based on a specific nuclear interaction is employed for the homogeneous nuclear phase.
     The interactions between nucleons are described through a potential derived perturbatively 
-    in Chiral-Effective-Field theory \citep{Machleidt:2011zz}
-    The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
-    Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
-    The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
+    in Chiral-Effective-Field theory \citep{Machleidt:2011zz}.
+    %The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
+    %Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
+    %The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
     The non-homogeneous phase of the \ac{EOS} is treated by smoothly connecting the high density 
-    BLh \ac{EOS} to the low-density oart of the SFHo \ac{EOS}.
+    BLh \ac{EOS} to the low-density part of the SFHo \ac{EOS}.
 \end{itemize}
 
 
@@ -980,67 +979,58 @@ In other \acp{EOS} thermal effects primarily in the nucleon effective mass, that
 These effects, however, are important for the thermal evolution of the NS matter.
 
 %% LS220 and SLy4
-In the \acp{EOS} that are based on the Skyrme effecrive nuclear interatcions, \eg, LS220 and SLy4 \acp{EOS} 
-the thermal effects are added in the following form. 
-Consider a zero temperature internal energy functional, which depends explicitly on the nuclear density.
-The part of this functional that is responsible for interactions is divided into the 
-subpart that represents the two-body nucleon-nucleon interactions, (it is quadratic in nuclear density) and a 
-subpart that mimics the effect of many body nuclear forces (proportional to the nuclear density in certain power).
-Then, both the single particle potentials as well as kinetic energy effective mass dependence play a role
-in the temperature dependence of the nuclear effective interaction.
+In the \acp{EOS} that are based on the Skyrme effective nuclear interactions, \eg, LS220 and SLy4 \acp{EOS} 
+the thermal effects are added 
+%in the following form. 
+%Consider a zero temperature internal energy functional, which depends explicitly on the nuclear density.
+%The part of this functional that is responsible for interactions is divided into the 
+%subpart that represents the two-body nucleon-nucleon interactions, (it is quadratic in nuclear density) and a 
+%subpart that mimics the effect of many body nuclear forces (proportional to the nuclear density in certain power).
+%Then, both the single particle potentials as well as kinetic energy effective mass dependence play a role
+%in the temperature dependence of the nuclear effective interaction.
+in a form of the temperature dependency of the nuclear effective interaction.%, described via potentials. 
 %
 The single particle potentials are computed via the variation of the internal energy with respect to the 
-neutron and proton densities. Thus, the smaller the effective masss the larger are kinetic energies and hence, 
+neutron and proton densities. Thus, the smaller the effective masses the larger are kinetic energies and hence, 
 higher matter temperature, assuming the entropy remains constant.
-Thus, the finite temperature behavior of these \acp{EOS} is largely set by the nucleon effective mass.
-%Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
-For LS220 \ac{EOS}, the nucleon mass is its bare nucleon mass (for any densities).
-for SFHo \ac{EOS}, $m_N ^* / m_N = 0.76$ at saturation density, 
-for DD2 \ac{EOS} $m_N^*/m_N = 0.56$, 
-for BLh \ac{EOS} $\red{None}$,  
-for SLy4 \ac{EOS} $m_N^*/m_N=0.70$ at saturation density, 
-where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
+%
+Thus, the finite temperature behavior of these \acp{EOS} is largely set by the nucleon effective mass,
+Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
+%For LS220 \ac{EOS}, the nucleon mass is its bare nucleon mass (for any densities).
+%for SFHo \ac{EOS}, $m_N ^* / m_N = 0.76$ at saturation density, 
+%for DD2 \ac{EOS} $m_N^*/m_N = 0.56$, 
+%% for BLh \ac{EOS} $\red{None}$,  
+%for SLy4 \ac{EOS} $m_N^*/m_N=0.70$ at saturation density, 
+%where $m_{N}^*$ is the effective nucleon mass and $m_N$ is the bare nucleon mass.
 
 %% SFHo (and DD2??)
-For the SFHo and DD2 \acp{EOS}, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
-meson exchanges for describing nuclear interactions, and the mean-field approximation is used
-to solve the resulted Euler-Lagrange equations. 
+%For the SFHo and DD2 \acp{EOS}, the relativistic Lagrangian considers the $\sigma-$, $\omega-$ and $\rho-$
+%meson exchanges for describing nuclear interactions, and the mean-field approximation is used
+%to solve the resulted Euler-Lagrange equations. 
 %
-The thermal effects for various species are introduced via Fermi-Dirac distributions at finite temperatures.
+For the SFHo and DD2 \acp{EOS}, 
+the thermal effects for various species are introduced via Fermi-Dirac distributions at finite temperatures.
 Then, self-consistent solution of the mean filed equation introduces the temperature dependence into other 
 thermodynamic quantities (through first mesons and nucleon fields).
 
 %% BLh
 The BLh \ac{EOS} employs a different approach to incorporate temperature effects.
 The method is based on evaluating the free energy in the Brueckner-Hartree-Fock, which in turn requires,
-the effective in-medium nuclear interactions to be defined (starting from the bare nuclear potential\footnote{
-    This effective interaction is obtained by solving
-    the Bethe-Goldstone integral equation which describe the nucleon 
-    scattering in the nuclear medium and properly takes into
-    account the Pauli principle.
-}).
+the effective in-medium nuclear interactions to be defined.
+%(starting from the bare nuclear potential\footnote{
+%    This effective interaction is obtained by solving
+%    the Bethe-Goldstone integral equation which describe the nucleon 
+%    scattering in the nuclear medium and properly takes into
+%    account the Pauli principle.
+%}).
 %
-Then, the nucleon single particle potentials are evaluated (via integration of the on-shell effective interaction matrix),
+Then, the nucleon single particle potentials are evaluated %(via integration of the on-shell effective interaction matrix),
 that represent the mean field that a nucleon with a certain momentum experience, surrounded by other nucleons.
 From nucleon single particle potentials, the free energy is then evaluated, and subsequently, 
 other thermodynamic quantities. Notable difference with other \acp{EOS} discussed here is that the many-body 
 correlations extend beyond the mean field approximation, and are not present in other \acp{EOS}. 
 This \acp{EOS} was first employed for the \ac{BNS} merger simulations in \citet{Bernuzzi:2020txg}.
 
-Finite temperature effects provides complimentary pressure support,
-which is not sufficient to raise the maximum \ac{TOV} mass 
-\citep{Kaplan:2013wra}, but can increase the radii of hot \acp{NS}.
-Specifically, comparing the cold and hot ($s=2~{k_{\rm B}~{\rm baryon^{-1}}}$)
-configurations, the thermal effects were shown to raise the $R_{1.4}$
-by $15.6 \%$ for the LS220 EOS and $36.4 \%$ for the SLy4 EOS 
-while for the BLh and the SFHo EOS the variation is $\sim 21-22 \%$.
-%
-Both \ac{NS} radius and maximum mass are increased if a \ac{NS} is rotating. 
-For instance, at Keplerian limit, the maximum \ac{NS} mass is increased by 
-$\sim 20\%$ for all \ac{EOS} models and radius by $\sim 40\%$ \citep{Bernuzzi:2020txg}. 
-Naturally, rotation decreases the central density.
-%
-These observations highlight the importance of using full \acp{EOS} with finite-temperature effects. 
 
 
 \paragraph{TOV}
@@ -1076,6 +1066,20 @@ Thus we adopt the following naming convention for \acp{EOS}. Those that lead to 
 radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" \acp{EOS}. 
 Among considered, the DD2 \ac{EOS} is the stiffest, while SLy4 \ac{EOS} is the softest.
 
+Finite temperature effects provides complimentary pressure support,
+which is not sufficient to raise the maximum \ac{TOV} mass 
+\citep{Kaplan:2013wra}, but can increase the radii of hot \acp{NS}.
+Specifically, comparing the cold and hot ($s=2~{k_{\rm B}~{\rm baryon^{-1}}}$)
+configurations, the thermal effects were shown to raise the $R_{1.4}$
+by $15.6 \%$ for the LS220 EOS and $36.4 \%$ for the SLy4 EOS 
+while for the BLh and the SFHo EOS the variation is $\sim 21-22 \%$.
+%
+Both \ac{NS} radius and maximum mass are increased if a \ac{NS} is rotating. 
+For instance, at Keplerian limit, the maximum \ac{NS} mass is increased by 
+$\sim 20\%$ for all \ac{EOS} models and radius by $\sim 40\%$ \citep{Bernuzzi:2020txg}. 
+Naturally, rotation decreases the central density.
+%
+These observations highlight the importance of using full \acp{EOS} with finite-temperature effects. 
 
 %% Thermal (and composition, see \citep{Kaplan:2013wra})
 %% effects are indeed key to quantify the prompt collapse dynamics,
@@ -1307,34 +1311,37 @@ finite sum, converting the integrodifferential equation into a linear system of 
 
 \subsubsection{Neutrino leakage scheme}
 
+\red{Introduce electron fraction, \&
+beta equilibrium condition
+}
+
 \begin{table}
     \caption{
         Weak reactions employed in our simulations and references for their implementation.
         In the left column, $\nu \in \{\nu_e, \bar{\nu}_e, \nu_{x}\}$ denotes any neutrino species, 
         $\nu_{x}$ any heavy-lepton neutrinos, $N \in\{n, p\}$ a nucleon, and $A$ any nucleus.
-        In the central column the role of each reaction is highlighted, with "P" standing for 
-        production, "A" for absorption opacity and "S" for scattering opacity. When two roles are
-        indicated, the second refers to the inverse ($\leftarrow$) reaction.
+        In the central column the role of each reaction is highlighted with "P" standing for 
+        production, "A" for absorption opacity and "S" for scattering opacity.
+        When two roles are included, the second refers to the inverse ($\leftarrow$) reaction.
         Table is taken from \citet{Radice:2018pdn}.
     }
     \label{tab:leakage}
     \begin{center}
-        \begin{tabular}{lll}
+        \begin{tabular}{l l l}
             \hline\hline
             Reaction & Role &  Ref. \\ 
             \hline
             $p + e^- \leftrightarrow \nu_e + n $          & P,A & \citep{Bruenn:1985}  \\
             $n + e^+ \leftrightarrow \bar{\nu}_{e} + p $  & P,A & \citep{Bruenn:1985}  \\
-            $e^+ + e^- \rightarrow \nu + \bar{\nu}$       & P & \citep{Ruffert:1995fs} \\
-            $\gamma + \gamma \rightarrow \nu + \bar{\nu}$ & P & \citep{Ruffert:1995fs} \\
-            $N + N \rightarrow \nu + \bar{\nu} + N  + N$  & P & \citep{Burrows:2004vq} \\
-            $\nu + N \rightarrow \nu + N$                 & S & \citep{Ruffert:1995fs} \\
-            $\nu + A \rightarrow \nu + A$                 & S & \citep{Shapiro:1983du} \\
+            $e^+ + e^- \rightarrow \nu + \bar{\nu}$       & P   & \citep{Ruffert:1995fs} \\
+            $\gamma + \gamma \rightarrow \nu + \bar{\nu}$ & P   & \citep{Ruffert:1995fs} \\
+            $N + N \rightarrow \nu + \bar{\nu} + N  + N$  & P   & \citep{Burrows:2004vq} \\
+            $\nu + N \rightarrow \nu + N$                 & S   & \citep{Ruffert:1995fs} \\
+            $\nu + A \rightarrow \nu + A$                 & S   & \citep{Shapiro:1983du} \\
             \hline\hline
         \end{tabular}
     \end{center}
 \end{table}
-\end{document}
 
 For numerical reasons, the neutrino transport in the optically thick region, 
 where radiation and matter are coupled, is handled the so-called ``leakage scheme''. 
@@ -1514,20 +1521,20 @@ R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{
 \label{eq:method:whisky:Rnueff}
 \end{equation}
 %
-where $t_{\text{diff}}$ is the diffusion time
+where $t_{\text{diff}}$ and $t_{\text{loss}}$ are the neutrino diffusion time and emission timescales,
 %
 \begin{equation}
-t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0}
+t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0} \hspace{5mm} t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
 \end{equation}
 %
-and the neutrino emission timescale 
+%and the neutrino emission timescale 
 %
-\begin{equation}
-t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
-\end{equation}
+%\begin{equation}
+%t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
+%\end{equation}
 %
 and $n_{\nu}$ is the neutrino number density estimated based on the 
-beta equilibrium with neutrinos. 
+beta equilibrium with neutrinos and \red{$\tau_{\nu}$ is the optical depth}.
 The $\mathcal{D}$ is a tuning parameter set to $6$ \citep{Radice:2018pdn}.
 %
 Similarly, the effective energy emission rate $Q_{\nu}^{\text{eff}}$ 
@@ -1887,7 +1894,8 @@ independent radial rays at every timestep of the evolution.
 
 The fluid flow inside remnants of \ac{BNS} mergers is expected to be turbulent. 
 This is because the \ac{MHD} instabilities,
-such as the \ac{KH} instability and the \ac{MRI} \citep{Balbus:1991}.
+such as the \ac{KHI} %\red{Kelvin-Helmholtz (KH)} %\ac{KH} 
+instability and the \ac{MRI} \citep{Balbus:1991}.
 These inabilities operate at scales too small to be resolved in simulations.
 However, magnetic fields, and magnetic stresses induced by them are crucial for 
 the self-consistent treatment of the angular momentum transport in the merger remnant \citep{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}, and for the 
@@ -2389,6 +2397,7 @@ It is however remains that the commonly used modern multidimensional \ac{HRSC} s
 %Additionally, even the stabolity and convergence in one-dimensional case has not been forven for a general system of non-linear conservation laws, \cite{LeVeque:2002}, while there also numerical evidence for the convergence of these schemes. 
 %It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}. Similarly, to prove the convergence of their numerical approximation likely requiresa  better understanding of the mathematical properties of systems of conservation laws. In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
 
+
 \paragraph{Finite-Volume Methods}
 
 %Riemann problem is a specific initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuity in the domain of interest.
@@ -2589,6 +2598,7 @@ only point-wise values are needed.
 %\subsection{Discontinuous Galerkin Methods}
 %\subsubsection{Runge-Kutta Discontinuous-Galerkin Methods}
 
+
 \subsection{Atmosphere treatment}
 
 In the numerical simulations, the atmosphere is referred to an artificial 
@@ -2614,10 +2624,10 @@ A novel, \ac{PPL}, approach is based on the use of \ac{PPL} proposed in \citet{H
 %
 Consider a discrete from of the scalar conservation law in $1$D,
 \begin{equation}
-\begin{align}
+\begin{aligned}
 \frac{u_{i}^{n+1} - u_{i}^{n}}{\Delta^0} = \frac{f_{i-1/2} - f_{i+1/2}}{\Delta^1}, \text{ and let } \lambda = \frac{\Delta^0}{\Delta^1} \text{ so } \\
 u_{i}^{n+1} = \frac{1}{2}(u_{i}^{+} + u_{i}^{-}) = \frac{1}{2}\Big[ (u_{i}^{n} + 2\lambda f_{i-1/2}) + (u_{i}^{n} - 2\lambda f_{i+1/2})\Big].
-\end{align}
+\end{aligned}
 \end{equation}
 where then $u_{i}^{n+1} = u_{i}^{+} + u_{i}^{-}$ and $u_{i}^{n} = u_{i}^{n} - 2\lambda f_{i+1/2}$. Notably, the $u_{i}^{+}$ and $u_{i}^{-}$ as well as $u_{i}^{n+1}$ are positive. 
 %% as any \ac{SSP} time integrator preserves positivity of $u$.
