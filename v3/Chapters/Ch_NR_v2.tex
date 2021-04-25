@@ -1,4 +1,4 @@
-\chapter{Numerical Relativity}\label{ch:nr_methods}
+\chapter{Modern methods in numerical relativity}\label{ch:nr_methods}
 
 In this thesis we perform numerical simulations of \ac{BNS} mergers. 
 In the simulations the \ac{EFE} descibing the spacetime dynamics, are formulated in a 
@@ -8,7 +8,7 @@ The basis of \ac{EFE} and \ac{GR} is not covered here for the sake of brevity. F
 refer to \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2002jm}.
 
 
-\section{Numerical relativity in short}
+\section{Numerical implementation of General Relativity}\label{sec:theory:nr}
 
 %%%% === Additional Intro
 %The \ac{EFE} is the foundation of modern cosmology, the physics of \acp{NS} and \acp{BH},
@@ -38,7 +38,7 @@ manifold is represented as foliation of $3$D spacelike hypersurfaces
 \citep{Alcubierre:2008,Baumgarte:2010,Gourgoulhon:2007ue,Rezzolla:2013}.
 
 
-\subsubsection{3+1-Decomposition}
+\subsection{3+1-Decomposition}
 
 \begin{figure}[t]
     \centering 
@@ -141,7 +141,7 @@ The extrinsic curvature can be interpreted as a "speed of the $\vec{n}$ during t
 transport along the hypersurface $\Sigma_t$".
 
 
-\subsubsection{Gauge conditions}
+\subsection{Gauge conditions}
 
 %% === For the lapse function
 The gauge condition describes the specific foliation of the spacetime, the choice of the 
@@ -195,11 +195,13 @@ is usually referred to as \textit{moving puncture} gauge.
     formualtion of \ac{EFE} (discussed below) it forms a strongly hyperbolic system of equations}
 
 
-\subsubsection{$3+1$-from of Einstein's Field Equations}
+\subsection{$3+1$-from of Einstein's Field Equations}
 
 Here we consider the dynamics of the gravitational field in the $3+1$ formalism.
 
-\paragraph{ADM-Equations}
+\subsubsection{ADM-Equations}
+
+\red{somewhere here put that angular momentum is not defined in GR}
 
 The goal is to split \ac{EFE} Eq.~\eqref{eq:theory:EFE} into a set of constraint and evolutionary 
 equations. Consider the \ac{RHS} of Eq.~\eqref{eq:theory:EFE}, the energy-momentum tensor, 
@@ -354,7 +356,7 @@ In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{
 %The $Z_{\mu}$ is also called the Z4 four-vector.
 
 
-\paragraph{Z4c-evolution system}
+\subsubsection{Z4c-evolution system}
 
 The Z4c formulation of \ac{EFE} was developed in a series of works by \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} and 
 summarized in \citet{Hilditch:2012fp}. 
@@ -455,7 +457,7 @@ the $D_i$ is the derivative operator compatible with the \ac{ADM} metric.
 %where $(\bar{\Delta}_L\beta)^i$ is the vector Laplacian.
 
 
-\subsubsection{Hydrodynamical equations}
+\section{General relativistic hydrodynamics}\label{sec:theory:grhd}
 
 Until now the discussion was centered around the description of the space time and how it 
 evolves. Here we consider the $3+1$ conservative Eulerian formulation of \ac{GRHD} and recall the 
@@ -628,6 +630,7 @@ Consider a stress-energy tensor of a perfect fluid in the comoving frame with th
 %
 \begin{equation}
     T^{\mu\nu} = \rho h u^{\mu}n^{\nu} + p g^{\mu\nu}
+    \label{eq:theory:tmunu_perf}
 \end{equation}
 %
 where $u^{\mu}$ is the four-velocity
@@ -647,6 +650,7 @@ The continuity equation reads
 %
 \begin{equation}
     \nabla_{\nu}(\rho u^{\nu}) = 0,
+    \label{eq:theory:contineq}
 \end{equation}
 %
 assuming the rest mass is conserved.
@@ -861,7 +865,7 @@ used in this thesis to model \ac{BNS} mergers.
 
 
 
-\subsection{Equations of State}
+\section{Neutron Star Equations of State}\label{sec:theory:eos}
 
 %%%% ---------------------------------------------------------
 %%%% === FROM RADICE THESIS -- EOS
@@ -971,7 +975,7 @@ Thus, this \ac{EOS} might predict too low symmetry energy below the saturation d
 
 
 
-\paragraph{Finite temperature treatment}
+\subsection{Finite temperature treatment}
 
 Thermal effects are included a different way in these \acp{EOS}. 
 In particular particle correlations beyond the mean field approximation are included only in the BLh \acp{EOS}.
@@ -1033,7 +1037,7 @@ This \acp{EOS} was first employed for the \ac{BNS} merger simulations in \citet{
 
 
 
-\paragraph{TOV}
+\subsection{EOS in cold configurations of Neutron Stars}
 
 
 \begin{figure}[t]
@@ -1088,7 +1092,7 @@ These observations highlight the importance of using full \acp{EOS} with finite-
 
 
 
-\subsection{Radiation Transport}
+\section{Neutrino Radiation Transport}\label{sec:theory:neut}
 
 During the neutron star mergers, the thermodynamic conditions are such that the powerful 
 neutrino bursts can originate from the hot and shock heated NS matter \citep[\eg][]{Sekiguchi:2011zd}.
@@ -1309,7 +1313,7 @@ finite sum, converting the integrodifferential equation into a linear system of 
 %transformations for $\mathcal{I}$, $\epsilon$, and $\boldsymbol{n}$.
 
 
-\subsubsection{Neutrino leakage scheme}
+\subsection{Neutrino leakage scheme}
 
 \red{Introduce electron fraction, \&
 beta equilibrium condition
@@ -1524,7 +1528,7 @@ R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{
 where $t_{\text{diff}}$ and $t_{\text{loss}}$ are the neutrino diffusion time and emission timescales,
 %
 \begin{equation}
-t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0} \hspace{5mm} t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}
+t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0}, \hspace{5mm} t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}},
 \end{equation}
 %
 %and the neutrino emission timescale 
@@ -1617,7 +1621,7 @@ M0 scheme in the optically thin region \citep{Radice:2016dwd}.
 
 
 
-\subsubsection{Neutrino M0 scheme}
+\subsection{Neutrino M0 scheme}
 
 %% === From Just thesis
 %In order to describe the interaction of free-streaming neutrinos effects with matter a variant of the 
@@ -1662,8 +1666,7 @@ The four-vector of the neutrinos is
 $k^{\alpha} = u^{\alpha} + r^{\alpha}$ 
 %% \end{equation}
 %
-with $k_{\alpha}k^{\alpha} = 0$.
-%% \red{2018pdn: The vector is normalized such that $k^{\alpha}u_{\alpha}=-1$}
+with $k_{\alpha}k^{\alpha} = 0$ normalized such that $k^{\alpha}u_{\alpha}=-1$.
 %
 Next, the affine parameter, $l$, that parameterizes the neutrino's worldline is introduced
 %
@@ -1676,7 +1679,7 @@ such that $(\partial / \partial l)^{\alpha} = k^{\alpha}$.
 Now, with $l$, the Boltzmann equations for the neutrino radiation transport read \citep{Thorne:1981}
 %
 \begin{equation*}
-\frac{D F}{D l} = \mathbb{C}[F]
+\frac{D F}{D l} = \mathbb{C}[F],
 \end{equation*}
 %
 where $F$ is the distribution function for a give neutrino species, and $\mathbb{C}$ is the
@@ -1755,19 +1758,49 @@ The neutrinos are assumed to propagate along the radial rays.
 %%%% -------------------------------------
 
 The balance equation (between absorption and emission of neutrinos) can be obtained from the 
-first moment of the Boltzmann equation \citep{Thorne:1981,Shibata:2011kx}, 
-where the closure is achieved by considering neutrinos propagating only radially with the 
-speed of light. It reads, 
+first moment of the Boltzmann equation \citep{Thorne:1981,Shibata:2011kx}
+%\begin{equation}
+%\label{eq:theory:neut:balanseq1}
+%\nabla_{\alpha}J_{X}^{\alpha} = R_{X}^{\text{eff}} - \kappa_X n_X,
+%\end{equation}
+%\begin{equation}
+%\label{eq:theory:neut:balanseq1}
+%\partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) = \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X)
+%\end{equation}
 %
-\begin{equation}
-\label{eq:theory:neut:balanseq2}
-\partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) = \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X)
-\end{equation}
+%where $n_X$ is the number density, 
+%$\kappa_X$ is the absorption opacity and $R_X^{\text{eff}}$ 
+%is the effective neutrino emission rate.
 %
-where $n_X$ is the number density, $\kappa_X$ is the absorption opacity and
-$R_X^{\text{eff}}$ is the effective neutrino emission rate.
-The equation Eq.~\ref{eq:theory:neut:balanseq2} is then solved numerically on a series of 
-independent radial rays at every timestep of the evolution.
+The closure is achieved by considering neutrinos propagating only radially with the 
+speed of light, $\partial_t$ is a Killing vector. 
+Then the free-streaming neutrino energy satisfies \cite{Radice:2016dwd,Radice:2018pdn}.
+
+\begin{subequations}
+    \begin{align}
+        \partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) &= \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X) \label{eq:theory:neut:balanseq1} \\
+        k^t\partial_t(E_{\nu}^{\text{fs}}\chi) + k^r\partial_r(E_{\nu}^{\text{fs}}\chi) &= \frac{\chi}{n_{\nu}^{\text{fs}}} (Q_{\nu}^{\text{eff}} - E_{\nu}^{\text{fs}}R_{\nu}^{\text{eff}}) \label{eq:theory:neut:balanseq2} 
+    \end{align}
+\end{subequations}
+
+where $n_X$ is the number density, $\chi=-k^{\alpha}(\partial_t)_{\alpha}$
+$\kappa_X$ is the absorption opacity and $R_X^{\text{eff}}$ 
+is the effective neutrino emission rate.
+
+%\begin{equation}
+%\label{eq:theory:neut:balanseq2}
+%\partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) = \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X)
+%\end{equation}
+%
+%\begin{equation} %% Eq 9 from 2018pdn
+%    \label{eq:theory:neut:balanseq2}
+%    k^t\partial_t(E_{\nu}^{\text{fs}}\chi) + k^r\partial_r(E_{\nu}^{\text{fs}}\chi) = \frac{\chi}{n_{\nu}^{\text{fs}}} (Q_{\nu}^{\text{eff}} - E_{\nu}^{\text{fs}}R_{\nu}^{\text{eff}})
+%\end{equation}
+%
+%
+%The equation Eq.~\ref{eq:theory:neut:balanseq2} is then solved 
+%numerically on a series of 
+%independent radial rays at every timestep of the evolution.
 
 %%%% --------------------------------------------
 %% Neutrino average energy evolution
@@ -1888,7 +1921,9 @@ independent radial rays at every timestep of the evolution.
 
 %This subsection is based on the GRLESS method paper \cite{Radice:2017zta}, its extension  \cite{Radice:2020ids}, and its application to the BNS \cite{Radice:2017lry} for dynamical ejecta and summary of this study in \cite{Radice:2018pdn}.
 
-\subsection{Effects of magnetic fields}
+
+
+\section{Effects of magnetic fields}\label{sec:theory:visc}
 
 %% Motivation
 
@@ -2256,7 +2291,7 @@ viscosity or subgrid turbulence.
 %application to post-merger accretion disks \cite{Fernandez:2018kax}.
 
 
-\subsection{Numerical Approximation of Conservation Laws}
+\section{Numerical Approximation of Conservation Laws}\label{sec:theory:num_meth}
 
 In order to accurately model fluid dynamics, properties of which can exhibit 
 discontinuities, \ac{HRSC} schemes are required.
@@ -2398,7 +2433,7 @@ It is however remains that the commonly used modern multidimensional \ac{HRSC} s
 %It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}. Similarly, to prove the convergence of their numerical approximation likely requiresa  better understanding of the mathematical properties of systems of conservation laws. In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
 
 
-\paragraph{Finite-Volume Methods}
+\subsection{Finite-Volume Methods}
 
 %Riemann problem is a specific initial value problem composed of a conservation equation together with piece-wise constant initial data which has a single discontinuity in the domain of interest.
 %Riemann solvers are specific methods for computing the numerical flux across a discontinuity in the Riemann problem.
@@ -2523,7 +2558,7 @@ This method has an advantage of being computationally efficient.
 %Overall, even though considerable complexities are involved, high order \ac{FV} schemes, due to their unmatched accuracy in comparison with other second-order schemes, make them particular useful in multiple applications in Newtonian and relativistic hydrodynamics, (see \eg, \citet{Tchekhovskoy:2007zn}) and in unstructured grid applications, using generalized \ac{WENO} scheme (see \eg, \citet{Dumbser:2007})
 
 
-\paragraph{Central Methods}
+\subsection{Central Methods}
 
 A central scheme is a monotone scheme that does not require aa Riemann solver. 
 
@@ -2546,7 +2581,7 @@ A second order central scheme was developed by \ac{NT} \citep{Nessyahu:1990}.
 %The high order central scheme are similar to \ac{FV} (upwind) scheme. The main 
 %difference lies in the construction.
 
-\paragraph{Finite-Difference Methods}
+\subsection{Finite-Difference Methods}
 
 %In the high order upwind \ac{FD} schemes the approximation is done point-wise instead of averaging over volumes as it is done in \ac{FV} schemes. Interestingly, these schemes were proposed as better performing alternatives to \ac{ENO} and \ac{WENO} schemes of very high order \citep{Shu:1988,Shu:1989,Jiang:1996}. 
 %Especially in the multi-dimensional case, \ac{FD} schemes are much more superior to the high order \ac{FV} schemes in terms of efficiency \citep{Shu:1999,Shu:2003}. 
