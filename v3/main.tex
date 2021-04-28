@@ -78,7 +78,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \usepackage[normalem]{ulem}
 \usepackage{graphicx,psfrag}
 \usepackage{mathrsfs}
-\usepackage{amsmath,amsfonts,amssymb}%%\usepackage{amsmath}
+%\usepackage{amsmath,amsfonts,amssymb}%%\usepackage{amsmath}
 \usepackage{multirow}
 \usepackage{comment}
 \usepackage{ulem}
@@ -87,7 +87,12 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \usepackage[breaklinks,colorlinks,citecolor=blue]{hyperref}
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
-
+\usepackage{rotating}
+\usepackage{lscape}
+%\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{capt-of}% or use the larger `caption` package
+\usepackage{lipsum}% 
 
 %----------------------------------------------------------------------------------------
 %    USER-SPECIFIC DECLARATIONS AND COMMANDS
@@ -535,11 +540,11 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 % Uncomment the lines as you write the chapters
 
 % \part{Numerical relativity simulations of neutron star mergers}
-\include{Chapters/Ch_Introduction}
+%\include{Chapters/Ch_Introduction}
 %\include{Chapters/Ch_NR}
-\include{Chapters/Ch_NR_v2}
+%\include{Chapters/Ch_NR_v2}
 \include{Chapters/Ch_BNS_MergSims}
-%\include{Chapters/Ch_Nucleosynthesis}
+\include{Chapters/Ch_Nucleosynthesis}
 %\include{Chapters/Ch_Kilonova}
 %\include{Chapters/Ch_Afterglow}
 %\include{Chapters/Ch_Statistics}

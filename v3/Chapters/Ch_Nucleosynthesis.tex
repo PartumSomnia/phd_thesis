@@ -11,29 +11,87 @@
 
 \textcolor{red}{Based on the Jones Lippuner PhD thesis}
 
-For a long time the general consensus was that all elements in the universe were synthesized during the Big Bang \citep{Alpher:1948}. Later studies have, however, proven that only elements with atomic number $A<8$ were produced (see \textit{e.g.,} \citet{Alpher:1950,Shaviv:2012}). Thus, only the lightest elements, hydrogen and helium primarily, were produced during in the Big Band \citep{Burbidge:1957}. Heavier elements are synthesized in a plethora of processes that we briefly recall here.
+%For a long time the general consensus was that all elements in the universe 
+%were synthesized during the Big Bang \citep{Alpher:1948}. Later studies have, however, 
+%proven that only elements with atomic number $A<8$ were produced 
+%(see \eg, \citet{Alpher:1950,Shaviv:2012}). Thus, only the lightest elements, hydrogen 
+%and helium primarily, were produced during in the Big Band \citep{Burbidge:1957}. 
+%Heavier elements are synthesized in a plethora of processes that we briefly recall here.
 
-In this chapter we discuss the rapid neutron capture process (\rproc{}) responsible for creation of heavy elements \cite{Burbidge:1957}. We introduce conditions and cites of \rproc{}, its contribution to the Universe' chemical evolution. We briefly discuss how numerous nuclear species, participating in thousands on nuclear reactions, are evolved using the novel \texttt{SkyNet} nuclear reaction network code. Then, we consider binary neutron star mergers as a source of \rproc{} elements. We compute the nucleosynthetic yields from mergers, using the \ac{NR} \ac{BNS} simulations performed with \texttt{WhiskyTHC} code (see sec. \ref{sec:code:WhiskyTHC}) and analyzed in Sec.\ref{sec:ejecta:results}.
+In this chapter we discuss the rapid neutron capture process (\rproc{}) responsible 
+for the creation of heavy elements \citep{Burbidge:1957}. 
+We introduce conditions and cites of \rproc{}, its contribution to the Universe' chemical evolution. 
+We briefly discuss how numerous nuclear species, participating in thousands on nuclear reactions, 
+are evolved using the novel \texttt{SkyNet} nuclear reaction network code. 
+Then, we consider \ac{BNS} mergers as a source of \rproc{} elements. 
+We compute the nucleosynthetic yields from mergers, using the \ac{NR} \ac{BNS} 
+simulations discussed in the chapter~\ref{ch:bns_sims}.
 
-\red{
-[Lippuner 221 page] Note that luminosity of the electron anti-neutrino is higher then the one of the electron neutrino due to \magenta{re-leptonization} of the neutrino emitting disk \cite{Foucart:2015gaa}.
-}
+%\red{
+%[Lippuner 221 page] Note that luminosity of the electron anti-neutrino is higher then the one of the 
+%electron neutrino due to \magenta{re-leptonization} of the neutrino emitting disk \cite{Foucart:2015gaa}.
+%}
 
-\section{Introduction}
+\section{Heaviest elements in the Universe}
 
-It is of paramount importance for testing nucleosynthesis theories and models to have an accurate measurements of relative abundances in the Universe. For Humanity, confined still to just one planet, this is not a trivial task. And while automatic spacecrafts, such as Luna, Apollo and Hayabusa have delivered samples from asteroids, most of the studies are performed using the naturally falling meteorites. The composition of these guests from space is then thoroughly studied via absorption and emission spectroscopy \citep{Shaviv:2012}.
+%It is of paramount importance for testing nucleosynthesis theories and models to have an 
+%accurate measurements of relative abundances in the Universe. For Humanity, confined 
+%still to just one planet, this is not a trivial task. And while automatic spacecrafts, 
+%such as Luna, Apollo and Hayabusa have delivered samples from asteroids, most of the 
+%studies are performed using the naturally falling meteorites. The composition of these 
+%guests from space is then thoroughly studied via absorption and emission spectroscopy 
+%\citep{Shaviv:2012}.
+%
+%The understanding of the solar system isotope and element abundances have come a long way 
+%\citep[\eg][]{Cameron:1973,Anders:1989,Grevesse:1998,Lodders:2003} 
+%%%%\textcolor{red}{add last papper you used for solar A.}
 
-The understanding of the solar system isotope and element abundances  have come a long way \citep[\eg][]{Cameron:1973,Anders:1989,Grevesse:1998,Lodders:2003} 
-\textcolor{red}{add last papper you used for solar A.}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.49\textwidth]{raycasting_smooth_cropped.pdf}
+    \caption{Observed abundances in our solar system as a function of mass number
+        $A$. The lightest elements were created in the Big Bang and fusion in stars predominantly
+        creates alpha elements. The iron peak is made in core-collapse and type
+        Ia \acp{SN}. Elements beyond the iron peak are synthesized by the slow ($s$) and
+        rapid ($r$) neutron capture processes. These processes produce three distinct double
+        peaks. Abundance data from \citet{Lodders:2003}. (Adapted from \citet{Lippuner:2018phd})
+    }
+    \label{fig:nuc:fig11_lip}
+\end{figure}
 
-%% \begin{sidenote}
-%%     \textcolor{red}{Figure with solar observed abundances, showing $r$-elements and $s$-elements}
-%%     The observed obundacnes as a function of atomic mass number $A$ are shown in figure Fig. (XXX). (data from \cite{Lodders:2003}). The plot shows nuclei that are more bound (due to spin pairing of nucleons \cite{Moller:1993ed}), \textit{i.e,} those with an even $A$ number, are more abundant. The lowest binding energy of nuclei with odd number of neutrons and protons (but even $A$) are largely unstable or short-lived. A few exceptions are \textit{e.g.,} $^{40}$K, $^{50}$V, $^{138}$La and $^{176}$Lu, that have a half-life of at least $10^{9}$ years.
-%% \end{sidenote}
+%\begin{sidenote}
+%    \textcolor{red}{Figure with solar observed abundances, showing $r$-elements and $s$-elements}
+%    The observed obundacnes as a function of atomic mass number $A$ are shown in figure Fig. (XXX). 
+%(data from \cite{Lodders:2003}). The plot shows nuclei that are more bound (due to spin pairing of nucleons 
+%\cite{Moller:1993ed}), \textit{i.e,} those with an even $A$ number, are more abundant. The lowest binding 
+%energy of nuclei with odd number of neutrons and protons (but even $A$) are largely unstable or short-lived. 
+%A few exceptions are \textit{e.g.,} $^{40}$K, $^{50}$V, $^{138}$La and $^{176}$Lu, 
+%that have a half-life of at least $10^{9}$ years.
+%\end{sidenote}
 
-The dominant \nuc{} process, responsible for the production of elements, varies with the mass range.
-
-For instance, light elements $A<8$ were synthesized right after the Big Bang. Nuclides before the iron peak, $12\leq A\leq 56$ come from stellar hydrostatic nuclear burning, elements at the iron peak $50\leq A \leq 62$ produces mostly during the type Ia \acp{SN} or explosive silicon burning in \acp{CCSN}. The conditions at these sights are such that the dense material at the \ac{NSE}, expands and cools down. Most of the material beyond iron peak are produced via neutron capture processes \cite{Burbidge:1957}.
+The dominant \nuc{} process, responsible for the production of elements, 
+varies with the mass range.
+%
+For instance, light elements $A<8$ were synthesized right after the Big Bang; 
+nuclides before the iron peak, $12\leq A\leq 56$ come from stellar hydrostatic 
+nuclear burning \citep[\eg][]{Rolfs:1988,Hasen:2004}; 
+elements at the iron peak $50\leq A \leq 62$ produces mostly 
+during the type Ia \acp{SN} or explosive silicon burning in \acp{CCSN} \citep[\eg]{Woosley:2002}. 
+The conditions at these sights are such that the dense material at the \ac{NSE}\footnote{
+    At \ac{NSE} three parameters describe the composition: 
+    density, temperature and electron fraction $Y_e = n_p/(n_p + n_e)$, 
+    where $n_e$ and $n_p$ are the (total) number density of electrons and protons 
+    respectively \citep{Seitenzahl:2009}. 
+    The composition at \ac{NSE} favors more tightly bound nuclides,
+    as they are more difficult to photodissociate.
+}, 
+expands and cools down, enriched with heavy elements \citep{Iwamoto:2000as}. 
+%
+%Most of the material beyond iron peak are produced via neutron capture processes 
+%\citep{Burbidge:1957}.
+Nuclides with $A\geq 56$ cannot be synthesized via standard cycles due to their 
+strong Coulomb barriers. Thus, processes that do not involve charged particles become dominant. 
+These are the neutron capture processes \citep{Burbidge:1957}..
 
 
 %% =======================================================
@@ -42,141 +100,353 @@ For instance, light elements $A<8$ were synthesized right after the Big Bang. Nu
 %%
 %% =======================================================
 
-\subsection{Nucleosynthesis up to the iron peak}
+%\subsection{Nucleosynthesis up to the iron peak}
+%
+%
+%\subsubsection{Big Bang nucleosynthesis}
+%
+%Light elements in the Universe, like hydrogen ($\sim 75\%$ by mass) and helium 
+%($\sim 25\%$ by mass) alongside trace amounts of $^{3}$He and $^{7}$Li were created 
+%during the \ac{BBN} (see \eg, \citet{Tytler:2000qf} and references therein). 
+%And while only a small number of nuclides were involved in \ac{BBN}, 
+%there are large discrepancies between \ac{BBN} models and observations. 
+%For instance, the "lithium problem" \citep{Coc:2013eha}, which origin is not well 
+%understood \citep{Fields:2011zzb}.
+%
+%
+%\subsubsection{Low-mass stellar burning}
+%
+%In order to fuse massive nuclides and overcome the strong Coulomb barrier, high temperatures, 
+%($\geq 10^6$ K) are required. Thus production of heavy elements from hydrogen and helium 
+%is possible only in special environments, in particular, in the interior of stars 
+%\citep{Bethe:1939}. 
+%For the most of their lives stars burn hydrogen into helium. The process releases the 
+%binding energy and maintains the hydrostatic stability of a star. After the hydrogen is 
+%exhausted in the core, a core (atmosphere) contracts (expands), heats up (cools), and the 
+%shell hydrogen burning is initiated, slowly depositing ashes, \eg, helium, into the inert core. 
+%The star's subsequent evolution depends primarily on its mass. If the mass of a star 
+%$M>0.5M_{\odot}$, at some point the helium in the core starts to fuse into $^{12}$C and 
+%$^{16}$O and small amounts of $^{24}$Mg, $^{28}$Si. These elements are called 
+%\textit{alpha elements} \citep{Rolfs:1988,Hasen:2004}. 
+%The end of the core helium burning phase leads to another core contraction phase. 
+%A star of a mass $\sim 8M_{\odot}$ would be able to ignite carbon and oxygen producing 
+%heavier elements afterwards. A less massive star looses its outer layers and becomes a 
+%slowly cooling degenerate core, a white dwarf.
+%
+%
+%\subsubsection{nuclear burning is massive stars}
+%
+%For a star that has $M\geq 8M_{\odot}$, a sequence of burning stages follows, each of 
+%which leads to the exhaustion of a respective fuel, contraction of the core and rise of 
+%its temperature \citep{Woosley:2002}. Carbon burning leads to the production of 
+%$^{20}$Ne, $^{23}$Na and free protons that contribute to the synthesis of non-alpha elements. 
+%As temperature increases, the photodisintegration of $^{20}$Ne becomes possible and a small 
+%amount of $^{24}$Mg is formed. Next, the oxygen burning occurs producing $^{28}$Si $^{31}$P, 
+%and $^{28}$Si and $^{32}$S, that become dominant nuclides in the core by the end of oxygen burning \citep{Rolfs:1988}.
+%
+%The subsequent silicon burning proceeds at $T\sim3.5\times10^9$K through photodissociation 
+%of some of the $^{28}$Si and a sequence of alpha particle captures, "alpha ladder", on the 
+%remaining $^{28}$Si to form $^{32}$S, $^{36}$Ar, $^{40}$Ca, $^{44}$Ti, $^{48}$Cr, $^{52}$Fe 
+%and $^{56}$Ni. This process lasts around a day \citep{Rolfs:1988,Hasen:2004}. Due to high 
+%temperatures present at silicon burning, nuclides with $A\in[28, 62]$ fall into quasi-equilibrium, 
+%meaning that these nuclides (with exception of $^{12}$C, $^{16}$O $^{20}$Ne and $^{24}$Mg), 
+%alpha particles and protons participating in reactions, are in equilibrium with each other. 
+%
+%At $A=56$ the binding energy per nucleon appears reaches its maximum and the silicon burning 
+%cannot produce heavier nuclides with the release of energy. As the fraction of $^{56}$Ni in the 
+%core of a star increases, the support that nuclear burning has provided against gravitational 
+%contraction falls. Meanwhile the mass of the degenerate core still increases as burning proceed in shells.
+%However, when the electron degeneracy pressure can no longer counteract gravity, \ie, when mass 
+%of the core exceeds the effective Chandrasekhar mass\footnote{
+%    The collapse however occur before the core reaches Chandrasekhar mass, and the pressure 
+%    support that rests on the availability of free electrons drops when electrons capture on 
+%    the nuclides becomes possible. To account for this, the effective Chandrasekhar mass was 
+%    introduced.
+%}, 
+%the core collapses leading to a \ac{CCSN} \citep{Woosley:2002}.
+%Thus, the origin of more abundant alpha elements in the Universe is stellar fusion.
+%
+%
+%\subsubsection{Iron Peak}
+%
+%At temperatures higher then $T\sim 5\times10^{9}$K nuclear \ac{NSE} establishes. This is a 
+%balance between the fusion reactions forming a ($N,Z$) nuclide from $N$ neutrons and $Z$ 
+%protons and photodissociation reactions, splitting it back. 
+%At \ac{NSE} three parameters describe the composition: density, temperature and 
+%electron fraction $Y_e = n_p/(n_p + n_e)$, where $n_e$ and $n_p$ are the (total) 
+%number density of electrons and protons respectively \citep{Seitenzahl:2009}. 
+%%
+%The composition at \ac{NSE} favors more tightly bound nuclides, as they are more difficult 
+%to photodissociate. Thus, if the conditions allow, \ie, temperature, density and electron 
+%fraction of the mater, ($Y_e \sim 0.46$, an electron fraction of iron), nuclides at $A\sim56$, 
+%\ie, iron peak elements, dominate \citep{Seitenzahl:2009}. 
+%%
+%For example, \ac{NSE} establishes during the type Ia \acp{SN}, when a thermonuclear 
+%explosion of a white dwarf allows for sufficiently high temperatures and densities. 
+%After the explosion, newly synthesized elements of the iron peak cools, and being stable, 
+%remain in the expanding medium \citep{Iwamoto:2000as}.
+%
+%
+%\subsection{Nucleosynthesis beyond the iron peak}
+%
+%Nuclides with $A\geq 56$ cannot be synthesized via standard cycles due to their strong Coulomb 
+%barriers. Thus, processes that do not involve charged particles become dominant. 
+%These are the neutron capture processes.
+%%
+%As nuclides absorb neutrons and grow larger, their binding energy $Q_n$ decreases. This process 
+%is stopped when $Q_n\sim1$~MeV and energetic photons start to knock out neutrons from a nucleus. 
+%This process is called photodisintegration and a location in the parameter space where it occurs, 
+%(that in turn dependents on temperature and density), is called the 
+%%% [IMPORTANT]
+%neutron drip line 
+%%% ---
+%\citep{Rolfs:1988}.
+%
+%Nuclides produced via neutron capture are generally unstable to a $\beta$-decay, with a timescale 
+%$\tau_{\beta}$, that can be larger or smaller than a neutron capture timescale, $\tau_n$. 
+%In case when $\tau_{\beta}\ll\tau_n$, \ie, when a $\beta$-decay occurs faster then the next 
+%neutron capture, the process is called \textit{slow} or \sproc{}. 
+%Thus, by definition, the \sproc{} moves along the valley of stability\footnote{
+%    a region of stable nuclides in the nuclides chart, a chart in terms of number of neutrons $n_n$ 
+%    and number of protons $n_p$.
+%}, departing no further than by a few nuclides away.
+%On the other hand, if $\tau_{\beta}\gg\tau_n$, \ie, when a neutron capture occurs much faster then 
+%a $\beta$-decay, the process is called \textit{rapid} or \rproc{}. This \nuc{} generates nuclides 
+%near (but not crossing) the neutron drip line (See Fig.~\ref{fig:nuc:fig16_lip})} \citep{Rolfs:1988}. 
+%
+%\begin{figure}[t]
+%    \centering
+%    \includegraphics[width=0.49\textwidth]{raycasting_smooth_cropped.pdf}
+%    \caption{Schematic representation of the $s$- and $r$-process on a section of the
+%        chart of nuclides. The s-process (red) proceeds along the valley of stability and the
+%        r-process (blue) along the neutron drip line. At the closed neutron shell N = 50, the
+%        neutron capture cross section drops by several orders of magnitude, which leads to a
+%        pile up of material there that produces the double-peak features
+%        (Adapted from \citet{Lippuner:2018phd})
+%    }
+%    \label{fig:nuc:fig16_lip}
+%\end{figure}
+%
+%%% --- IMPORTANT --- ORIGIN OF THE PEAKS IN r-PROCESS
+%Notably, the trajectory of $r$-process is interrupted when the neutrons within a nuclide can arrange 
+%themselves in a closed shell. Such configurations are energetically very favorable and thus the cross 
+%section for a subsequent neutron capture reduces. Only after several $\beta$-decays does the $r$-process
+%continue. Thus, nuclides located at points where neutron drip line and closed neutron shell overlap is more
+%abundant. These unstable nuclides will decay back to the valley of stability and some of the neutrons 
+%within them turn to protons, reducing the total mass of them. The indication of this "overproduction" 
+%are the peaks in the abundance patterns at a mass, $A$, slightly lower then the one corresponding to a 
+%closed shell nuclide (see Fig.~\ref{fig:nuc:fig11_lip}).
+%
+%%% --- important
+%A similar "overproduction" of nuclides with a closed neutron shell occurs when an $s$-process is considered.
+%However, in that case it is caused by the cross section of these nuclides being $1-2$ order of magnitude smaller
+%then of neighboring ones \citep{Rolfs:1988}. Thus, in the case of \sproc{}, the peaks in abundance pattern will
+%be at $A$, corresponding to the closed shell exactly, and thus located at larger $A$ than that of the \rproc{}. 
+%Closed shell nuclides are located at $N=50,\: 82, \: 126$ and thus corresponding abundance peaks for $s$-process 
+%are at $A=88, \: 138, \: 208$ and at $A=80,\:130,\:194$ for $r$-process (see \eg, \citet{Arnould:2007gh}) 
+%(See peak structure in Fig.~\ref{fig:nuc:fig11_lip}).
+%
+%%% --- Motivation MP stars --- THE GENERIC SOLAR ABUNDANCES
+%It was found, that the solar \rproc{} abundance pattern is consistent, and can be found anywhere in the 
+%Universe. In particular, in stars that were formed very early on a galactic evolution timescale, the 
+%\ac{MP} halo stars, one would expect to observe less \sproc{} and \rproc{} elements as there might have 
+%been not enough time for the enrichment to take place. However recent studies showed that the solar \rproc{}
+%abundances are present in these stars as well \citep{Sneden:2008,Roederer:2010}, see also Fig.~$8$ in
+%\citet{Sneden:2009}. Thus, modeling the \rproc{} \nuc{} it is expected to reproduce the solar abundances.
+%
+%%% -- can be deleted
+%It is important to note that in addition to \sproc{} and \rproc{}, a possible $i$-process, (intermediate) 
+%is widely discussed. The process operates further from the valley of stability than \sproc{}, but not 
+%reaching neutron drip line \citep{Cowan:1977,Bertolli:2013gka}. Slow and intermediate neutron capture 
+%processes operate within the low-mass \ac{AGB} stars with mass $M\in[1.5,3]M_{\odot}$ and more massive stars,
+%that enrich the interstellar medium with heavy elements via strong winds 
+%\citep[\eg][]{Peters:1968,Couch:1974,Kaeppeler:1994K,Woosley:2002,Straniero:2005hc,Herwig:2011}. 
+%The possible cites for the \rproc{} we discuss in the following subsections.
 
 
-\subsubsection{Big Bang nucleosynthesis}
+\subsection{Possible $r$-process sites}
 
-Light elements in the Universe, like hydrogen ($\sim 75\%$ by mass) and helium ($\sim 25\%$ by mass) alongside trace amounts of $^{3}$He and $^{7}$Li were created during the \ac{BBN} (see \eg, \citet{Tytler:2000qf} and references therein). And while only a small number of nuclides were involved in \ac{BBN}, there are large discrepancies between \ac{BBN} models and observations. For instance, the "lithium problem" \citep{Coc:2013eha}, which origin is not well understood \citep{Fields:2011zzb}.
-
-
-\subsubsection{Low-mass stellar burning}
-
-In order to fuse massive nuclides and overcome the strong Coulomb barrier, high temperatures, ($\geq 10^6$ K) are required. Thus production of heavy elements from hydrogen and helium is possible only in special environments, in particular, in the interior of stars \citep{Bethe:1939}. 
-For the most of their lives stars burn hydrogen into helium. The process releases the binding energy and maintains the hydrostatic stability of a star. After the hydrogen is exhausted in the core, a core (atmosphere) contracts (expands), heats up (cools), and the shell hydrogen burning is initiated, slowly depositing ashes, \eg, helium, into the inert core. 
-The star's subsequent evolution depends primarily on its mass. If the mass of a star $M>0.5M_{\odot}$, at some point the helium in the core starts to fuse into $^{12}$C and $^{16}$O and small amounts of $^{24}$Mg, $^{28}$Si. These elements are called \textit{alpha elements} \citep{Rolfs:1988,Hasen:2004}. 
-The end of the core helium burning phase leads to another core contraction phase. A star of a mass $\sim 8M_{\odot}$ would be able to ignite carbon and oxygen producing heavier elements afterwards. A less massive star looses its outer layers and becomes a slowly cooling degenerate core, a white dwarf.
-
-
-\subsubsection{nuclear burning is massive stars}
-
-For a star that has $M\geq 8M_{\odot}$, a sequence of burning stages follows, each of which leads to the exhaustion of a respective fuel, contraction of the core and rise of its temperature \citep{Woosley:2002}. Carbon burning leads to the production of $^{20}Ne$, $^{23}$Na and free protons that contribute to the synthesis of non-alpha elements. As temperature increases, the photodisintegration of $^{20}$Ne becomes possible and a small amount of $^{24}$Mg is formed. Next, the oxygen burning occurs producing $^{28}$Si $^{31}$P, and $^{28}$Si and $^{32}$S, that become dominant nuclides in the core by the end of oxygen burning \citep{Rolfs:1988}.
-
-The subsequent silicon burning proceeds at $T\sim3.5\times10^9$K through photodissociation of some of the $^{28}$Si and a sequence of alpha particle captures, "alpha ladder", on the remaining $^{28}$Si to form $^{32}$S, $^{36}$Ar, $^{40}$Ca, $^{44}$Ti, $^{48}$Cr, $^{52}$Fe and $^{56}$Ni. This process lasts around a day \citep{Rolfs:1988,Hasen:2004}. Due to high temperatures present at silicon burning, nuclides with $A\in[28, 62]$ fall into quasi-equilibrium, meaning that these nuclides (with exception of $^{12}$C, $^{16}$O $^{20}$Ne and $^{24}$Mg), alpha particles and protons participating in reactions, are in equilibrium with each other. 
-
-At $A=56$ the binding energy per nucleon appears reaches its maximum and the silicon burning cannot produce heavier nuclides with the release of energy. As the fraction of $^{56}$Ni in the core of a star increases, the support that nuclear burning has provided against gravitational contraction falls. Meanwhile the mass of the degenerate core still increases as burning proceed in shells. However, when the electron degeneracy pressure can no longer counteract gravity, \ie, when mass of the core exceeds the effective Chandrasekhar mass \footnote{The collapse however occur before the core reaches Chandrasekhar mass, and the pressure support that rests on the availability of free electrons drops when electrons capture on the nuclides becomes possible. To account for this, the effective Chandrasekhar mass was introduced.}, the core collapses leading to a \ac{CCSN} \cite{Woosley:2002}.
-
-Thus, the origin of more abundant alpha elements in the Universe is stellar fusion.
+Study of possible cites of \rproc{} is a wide and rapidly developing field. The general requirement 
+for \rproc{} is a low electron fraction, or, in other words, neutron-rich conditions. These can be 
+found in a various places for certain models of Big Bang, that include inhomogeneities, 
+\ac{BNS} and \ac{NSBH} mergers and \ac{SN} ejecta (see \citet{Mathews:1990} and references therein). 
+%
+Spectral study of \ac{MP} stars (formed early in the galactic history), combined with models of 
+galactic chemical evolution sheds light on possible dominant cite of \rproc{} material. 
+\textcolor{red}{add more sources/models}. 
+It is now believed that certain types of \acp{SN} and \ac{BNS} mergers are the most likely 
+sources on \rproc{} material \citep{Mathews:1990,Thielemann:2011} \textcolor{red}{add more sources}
 
 
-\subsubsection{Iron Peak}
+\subsubsection{\acp{CCSN}}
 
-At temperatures higher then $T\sim 5\times10^{9}$K nuclear \ac{NSE} establishes. This is a balance between the fusion reactions forming a ($N,Z$) nuclide from $N$ neutrons and $Z$ protons and photodissociation reactions, splitting it back. At \ac{NSE} three parameters describe the composition: 
-%% [IMPORTANT]
-density, temperature and electron fraction $Y_e = n_p/(n_p + n_e)$, where $n_e$ and $n_p$ are the (total) 
-%% ---
-number density of electrons and protons respectively \citep{Seitenzahl:2009}. 
-
-The composition at \ac{NSE} favors more tightly bound nuclides, as they are more difficult to photodissociate. Thus, if the conditions allow, \textit{i.e.,} temperature, density and electron fraction of the mater, ($Y_e \sim 0.46$, an electron fraction of iron), nuclides at $A\sim56$, \textit{i.e.,} iron peak elements, dominate \citep{Seitenzahl:2009}. 
-
-For example, \ac{NSE} establishes during the type Ia \acp{SN}, when a thermonuclear explosion of a white dwarf allows for sufficiently high temperatures and densities. After the explosion, newly synthesized elements of the iron peak cools, and being stable, remain in the expanding medium \citep{Iwamoto:2000as}.
-
-
-\subsubsection{Nucleosynthesis beyond the iron peak}
-
-Nuclides with $A\geq 56$ cannot be synthesized via standard cycles due to their strong Coulomb barriers. Thus, processes that do not involve charged particles become dominant. These are the neutron capture processes.
-
-As nuclides absorb neutrons and grow larger, their binding energy $Q_n$ decreases. This process is stopped when $Q_n\sim1$~MeV and energetic photons start to knock out neutrons from a nucleus. This process is called photodisintegration and a location in the parameter space where it occurs, (that in turn dependents on temperature and density), is called the 
-%% [IMPORTANT]
-neutron drip line 
-%% ---
-\cite{Rolfs:1988}.
-
-Nuclides produced via neutron capture are generally unstable to a $\beta$-decay, with a timescale $\tau_{\beta}$, that can be larger or smaller than a neutron capture timescale, $\tau_n$. 
-In case when $\tau_{\beta}\ll\tau_n$, \ie, when a $\beta$-decay occurs faster then the next neutron capture, the process is called \textit{slow} or \sproc{}. 
-Thus, by definition, the \sproc{} moves along the valley of stability\footnote{a region of stable nuclides in the nuclides chart, a chart in terms of number of neutrons $n_n$ and number of protons $n_p$.}, departing no further than by a few nuclides away.
-On the other hand, if $\tau_{\beta}\gg\tau_n$, \ie, when a neutron capture occurs much faster then a $\beta$-decay, the process is called \textit{rapid} or \rproc{}. This \nuc{} generates nuclides near (but not crossing) the neutron drip line \textcolor{red}{Here a plot, Fig.1.6 from Source would have been useful.} \citep{Rolfs:1988}. 
-
-%% --- IMPORTANT --- ORIGIN OF THE PEAKS IN r-PROCESS
-Notably, the trajectory of $r$-process is interrupted when the neutrons within a nuclide can arrange themselves in a closed shell. Such configurations are energetically very favorable and thus the cross section for a subsequent neutron capture reduces. Only after several $\beta$-decays does the $r$-process continue. Thus, nuclides located at points where neutron drip line and closed neutron shell overlap is more abundant. These unstable nuclides will decay back to the valley of stability and some of the neutrons within them turn to protons, reducing the total mass of them. The indication of this "overproduction" are the peaks in the abundance patterns at a mass, $A$, slightly lower then the one corresponding to a closed shell nuclide. \textcolor{red}{here a ref to a fig with Abundances is needed. }. \red{[NEED a FIGURE]} 
-
-%% --- important
-A similar "overproduction" of nuclides with a closed neutron shell occurs when an $s$-process is considered. However, in that case it is caused by the cross section of these nuclides being $1-2$ order of magnitude smaller then of neighboring ones \citep{Rolfs:1988}. Thus, in the case of \sproc{}, the peaks in abundance pattern will be at $A$, corresponding to the closed shell exactly, and thus located at larger $A$ than that of the \rproc{}. 
-Closed shell nuclides are located at $N=50,\: 82, \: 126$ and thus corresponding abundance peaks for $s$-process are at $A=88, \: 138, \: 208$ and at $A=80,\:130,\:194$ for $r$-process (see \textit{e.g.,} \citet{Arnould:2007gh}) 
-\textcolor{red}{abundance peaks with 'r' and 's' elements is needed.}
-
-%% --- Motivation MP stars --- THE GENERIC SOLAR ABUNDANCES
-It was found, that the solar $r$-process abundance pattern of \rproc{} is consistent, and can be found anywhere in the Universe. In particular, in stars that were formed very early on a galactic evolution timescale, the metal poor halo stars, one would expect to observe less \sproc{} and \rproc{} elements as there might have been not enough time for the enrichment to take place. However recent studies showed that the solar \rproc{} abundances are present in these stars as well \cite{Sneden:2008,Roederer:2010}, see also Fig.~$8$ in \cite{Sneden:2009} \textcolor{red}{and section 1.9}. Thus, modeling the \rproc{} \nuc{} it is expected to reproduce the solar abundances. \textcolor{red}{once again, a figure can be good}
-
-%% -- can be deleted
-It is important to note that in addition to \sproc{} and \rproc{}, a possible $i$-process, (intermediate) is widely discussed. The process operates further from the valley of stability than \sproc{}, but not reaching neutron drip line \citep{Cowan:1977,Bertolli:2013gka}. Slow and intermediate neutron capture processes operate within the low-mass \ac{AGB} stars with mass $M\in[1.5,3]M_{\odot}$ and more massive stars, that enrich the interstellar medium with heavy elements via strong winds  \citep[\eg][]{Peters:1968,Couch:1974,Kaeppeler:1994K,Woosley:2002,Straniero:2005hc,Herwig:2011}. The possible cites for the \rproc{} we discuss in the following subsections.
+Collapse of a massive star produces a hot neutron core, that undergoes deleptonization, releasing 
+$\sim10^{53}$~erg of binding energy in form of strong neutrino flux. These neutrinos, irradiating 
+dense medium around the core, can produce a \nwind{} \citep{Qian:1996xt}, that was suggested to be 
+a promising cite for \rproc{} \citep{Woosley:2002,Wanajo:2006mq}. Later, it was shown however, that 
+the electron fraction in the wind would be too high for a full \rproc{}, and only "light" heavy 
+nuclide up to $A\sim130$ can be synthesized 
+\citep{Qian:1996xt,Thompson:2001ys,Fischer:2010,Roberts:2010,MartinezPinedo:2012rb,Wanajo:2013} \textcolor{red}{add Perego:2017} 
+%
+It is important to note, in the proton-rich \nwind{} nuclides with $A\sim 100$ can be produces 
+via so-called $\nu p$-process. The process relies on a creation of a free neutron from proton by 
+an antineutrino capture. These free neutrons can then be captured by a seed nuclide, $^{64}$Ge seed 
+nuclide and thus nuclides heavier then $^{64}$Ge can be created
+\citep{Frohlich:2006,Pruet:2005qd,Wanajo:2010mc,Arcones:2012}
+%
+A full \rproc{} can be achieved in so-called magnetorotationally driven \acp{CCSN}. This is a rare 
+type of \acp{CCSN}, where a core of the progenitor is rotating rapidly and is strongly magnetized. 
+Induced by a magnetorotational processes \eg, magnetorotational instability, collapse is accompanied by a
+formation of a collimated bipolar jet 
+\citep{Wheeler:2000,Akiyama:2003,Burrows:2007yx,Mosta:2014jaa,Mosta:2015} \textcolor{red}{add Siegel2019?.}.
+Materiel in these jets is predicted to be sufficiently neutron rich to allow for a full \rproc{} 
+nucleosynthesis \citep{Winteler:2012,Nishimura:2015nca}. The rarity of this type of \acp{SN}, 
+however, might not allow it to be the dominant source or $r$-process material \citep{Nishimura:2015nca} 
+(\red{See however Seigal:PAPER}). 
 
 
-\subsubsection{Possible \rproc{} sites}
-
-Study of possible cites of \rproc{} is a wide and rapidly developing field. 
-The general requirement for \rproc{} is a low electron fraction, or, in other words, neutron-rich conditions. These can be found in a various places for certain models of Big Bang, that include inhomogeneities, \ac{BNS} and \ac{NSBH} mergers and supernova ejecta (see \cite{Mathews:1990} and references therein). Spectral study of \ac{MP} stars, combined with models of galactic chemical evolution sheds light on possible dominant cite of \rproc{} material. \textcolor{red}{add more sources/models}. It is now believed that certain types of \acp{SN} and \ac{BNS} mergers are the most likely sources on \rproc{} material \citep{Mathews:1990,Thielemann:2011} \textcolor{red}{add more sources}
-
-
-\paragraph{\acp{CCSN}}
-
-Collapse of a massive star produces a hot neutron core, that undergoes deleptonization, releasing $\sim10^{53}$~erg of binding energy in form of strong neutrino flux. These neutrinos, irradiating dense medium around the core, can produce a \nwind{} \citep{Qian:1996xt}, that was suggested to be a promising cite for \rproc{} \citep{Woosley:2002,Wanajo:2006mq}. Later, it was shown however, that the electron fraction in the wind would be too high for a full \rproc{}, and only "light" heavy nuclide up to $A\sim130$ can be synthesized \citep{Qian:1996xt,Thompson:2001ys,Fischer:2010,Roberts:2010,MartinezPinedo:2012rb,Wanajo:2013} \textcolor{red}{add Perego:2017} 
-
-It is important to note, in the proton-rich \nwind{} nuclides with $A\sim 100$ can be produces via so-called $\nu p$-process. The process relies on a creation of a free neutron from proton by an antineutrino capture. This free neutron can then be captured by a seed nuclide, $^{64}$Ge seed nuclide and thus nuclides heavier then $^{64}$Ge can be created \citep{Frohlich:2006,Pruet:2005qd,Wanajo:2010mc,Arcones:2012}
-
-A full \rproc{} can be achieved in so-called magnetorotationally driven \acp{CCSN}. This is a rare type of \acp{CCSN}, where a core of a progenitor is rotating rapidly and strongly magnetized. Induced by a magnetorotational processes \eg, magnetorotational instability, collapse is accompanied by a formation of a collocated bipolar jet \citep{Wheeler:2000,Akiyama:2003,Burrows:2007yx,Mosta:2014jaa,Mosta:2015} \textcolor{red}{add Siegel2019?.}. Materiel in these jets is predicted to be sufficiently neutron rich to allow for a full \rproc{} nucleosynthesis \citep{Winteler:2012,Nishimura:2015nca}. The rarity of this type of \acp{SN}, however, might not allow it to be the dominant source or $r$-process material \cite{Nishimura:2015nca} (\red{See however Seigal:PAPER}). 
-
-
-\paragraph{\ac{BNS} mergers}
+\subsubsection{Compact object mergers}
 \red{TO BE REWRITTEN -- REPETITION OF PREVIOUS CHAPTERS}
 
 %% --- MIGHT NEED TO BE SHORTENED A LOT!  OR MOVED TO INTRODUCTION!
-Mergers of two \acp{NS} or a \ac{NS} and a \ac{BH} are regarded as one of the main cites of \rproc{} material. Formed in a evolution of a binary of massive stars, compact objects orbit each other for gigayears, before slow loss of energy from the system due to gravitational waves reduces their orbit and they merge \citep{Hulse:1975,Lattimer:2004sa,Price:2006fi}. 
+Mergers of two \acp{NS} or a \ac{NS} and a \ac{BH} are regarded as one of the main cites 
+of \rproc{} material \red{list of refs}. Compact objects, formed in a binary evolution of massive stars, 
+orbit each other for gigayears, before slow loss of energy from the system due to \acp{GW} 
+reduces their orbit and they merge \citep[\eg][]{Hulse:1975,Lattimer:2004sa,Price:2006fi}. 
+%
+%The late inspiral and merger of \ac{BNS} or a \ac{NSBH} have been studied extensively via smooth particle 
+%simulations \red{[REFS]} \ac{HD} simulations \red{[REFS]} and \ac{NR} simulations with simplified gravity \red{[REFS]} 
+%or full \ac{GR} \red{[REFS]}. The composition of a \acp{NS} in these simulations have been modeled with 
+%simplified polytropic \red{[REFS]} or piece-wise polytropic \red{[REFS]} or microphsyical \acp{EOS} \red{[REFS]}. 
+%The physical setup of these simulations have also evolved to eventually include effects of
+%neutrino radiation transport \red{[REFS]} and magnetic fields \red{[REFS]}. 
 
-The late inspiral and merger of \ac{BNS} or a \ac{NSBH} have been studied extensively via smooth particle simulations \red{[REFS]} \ac{HD} simulations \red{[REFS]} and \ac{NR} simulations with simplified gravity \red{[REFS]} or full \ac{GR} \red{[REFS]}. The composition of a \acp{NS} in these simulations have been modeled with simplified polytropic \red{[REFS]} or piece-wise polytropic \red{[REFS]} or microphsyical \acp{EOS} \red{[REFS]}. The physical setup of these simulations have also evolved to eventually include effects of neutrino radiation transport \red{[REFS]} and magnetic fields \red{[REFS]}. 
+%These studies have shown that shortly before and during the merger, the neutron star(s) undergo(s) a tidal 
+%deformation and disruption. Streams of neutron-reach matter are then ejected into the circombinary 
+%with enough energy to be not graviationally bound to the system \citep{Price:2006fi,Foucart:2014nda,Sekiguchi:2015dma,Kyutoku:2015gda,Radice:2016dwd}. 
 
-These studies have shown that shortly before and during the merger, the neutron star(s) undergo(s) a tidal deformation and disruption. Streams of neutron-reach matter are then ejected into the circombinary with enough energy to be not graviationally bound to the system \citep{Price:2006fi,Foucart:2014nda,Sekiguchi:2015dma,Kyutoku:2015gda,Radice:2016dwd}. 
+%% For details on the ejecta from \ac{BNS} mergers see Chapter \ref{ch:BNS_results}.
+%% In addition, in case of a \ac{BNS}, when \acp{NS} collide, material at the collision interface, heated by shocks, 
+%% gets 'squeezed' and launched in the directions perpendicular to the plane of the binary \cite{Bauswein:2013,Hotokezaka:2013b} \red{[REFS]}. 
+%% Generally, these tow components, tidal and shocked, constitute the \textit{dynamical ejecta}. Where the term 
+%% ejecta referrers to the material that has enough energy to leave the system. 
+%% The properties of the dynamical ejecta from BNS have a broad distribution, especailly in terms of mass and ejectron fraction 
+%% [\red{[REFS]} \& myFitPaper], where the former lies in range $(10^{-4},10^{-2})M_{\odot}$ and the latter $(0.05,0.45)$. 
+%% We discuss dynamical ejecta properties of BNS in more details in section \red{sec:results:dyn\_ej:prop} and nucleosynthesis 
+%% in it in \red{sec:results:dyn\_ej:nucleo}. In case of NSBH the ejecta mass was shown be larger, reaching $0.1M_{\odot}$ with 
+%% low electron fraction, $\leq0.2$ but it requires that masses of BH and NS are comparable and BH is rapidly spinning 
+%% \cite{Foucart:2014nda}\red{[REFS]}. If the BH is much more massive then NS, the latter would be 'swallowed' with no ejecta \red{[REFS]}.
+%% After the merger, there are expected to be additional ejecta. For general postmerger configuration consists of a remnant, massive neutron 
+%% star (MNS) or a black hole sorrounded by a disk (torus) of bounded matter. In the first case,  a strong neutrino flux from cooling MNS and 
+%% disk can drive an outflow in the direction, perpendicular to the plane of the binary, the so-called \nwind{} 
+%% (see Figure 1 from \cite{Perego:2014fma}) \red{[REFS],Jujibayashi+20}. This ejecta is expected to occure on a timescales of 
+%% $\sim100$ms postmerger, be not very neutron rich $Y_e\sim(0.2-0.45)$ due to neutrino irradiation and have a mass of 
+%% $(10^{-4}-10^{-3})M_{\odot}$ \red{[REFS]}. 
+%% The massive nutron star born in a merger exhibit dynamical oscillations \red{[REFS]}. The $m=1$ mode, so-called 
+%% "one-armed spiral instability" especially can persisit on a $\sim100$ms powtmerger timescale and become a dominant mode 
+%% \red{[REFS], MainPaper}. This oscillations can inject energy within the disk, where via angular momentum transport it leads 
+%% to an outer part of the disk to become unbound. This ejecta, the \textit{\swind{}} was shown to occur in all cases where the MNS is present. 
+%% It has high electron fraction and its mass depends on a lifetime of the remnant, and for a $\sim100$ms it can amount to a few 
+%% $\times\sim10^{-2}M_{\odot}$ \red{[Letter, MainPaper]}. We discuss the mechanism that drives the \swind{} in the section 
+%% \red{sec:results:swind:mechanism} and the ejecta properties in \red{sec:results:swind:prop} and corresponding 
+%% nucleosynthesis in \red{sec:results:swind:nucleo}.
+%% On a longer timescales, the viscous processes and alpha recombination in the disk, surrounding MNS or a BH are expected 
+%% to unbind additional material. This is so-called \textit{secular ejecta}. It is expected to be massive and neutron rich. 
+%% However, due to long timescales involved, it is very difficult model \red{[REFS]}.
 
-For details on the ejecta from \ac{BNS} mergers see Chapter \ref{ch:BNS_results}.
-%% In addition, in case of a \ac{BNS}, when \acp{NS} collide, material at the collision interface, heated by shocks, gets 'squeezed' and launched in the directions perpendicular to the plane of the binary \cite{Bauswein:2013,Hotokezaka:2013b} \red{[REFS]}. 
-%% Generally, these tow components, tidal and shocked, constitute the \textit{dynamical ejecta}. Where the term ejecta referrers to the material that has enough energy to leave the system. 
-%% The properties of the dynamical ejecta from BNS have a broad distribution, especailly in terms of mass and ejectron fraction [\red{[REFS]} \& myFitPaper], where the former lies in range $(10^{-4},10^{-2})M_{\odot}$ and the latter $(0.05,0.45)$. We discuss dynamical ejecta properties of BNS in more details in section \red{sec:results:dyn\_ej:prop} and nucleosynthesis in it in \red{sec:results:dyn\_ej:nucleo}. In case of NSBH the ejecta mass was shown be larger, reaching $0.1M_{\odot}$ with low electron fraction, $\leq0.2$ but it requires that masses of BH and NS are comparable and BH is rapidly spinning \cite{Foucart:2014nda}\red{[REFS]}. If the BH is much more massive then NS, the latter would be 'swallowed' with no ejecta \red{[REFS]}.
-%% After the merger, there are expected to be additional ejecta. For general postmerger configuration consists of a remnant, massive neutron star (MNS) or a black hole sorrounded by a disk (torus) of bounded matter. In the first case,  a strong neutrino flux from cooling MNS and disk can drive an outflow in the direction, perpendicular to the plane of the binary, the so-called \textit{neutrino-driven wind} (see Figure 1 from \cite{Perego:2014fma}) \red{[REFS],Jujibayashi+20}. This ejecta is expected to occure on a timescales of $\sim100$ms postmerger, be not very neutron rich $Y_e\sim(0.2-0.45)$ due to neutrino irradiation and have a mass of $(10^{-4}-10^{-3})M_{\odot}$ \red{[REFS]}. 
-%% The massive nutron star born in a merger exhibit dynamical oscillations \red{[REFS]}. The $m=1$ mode, so-called "one-armed spiral instability" especially can persisit on a $\sim100$ms powtmerger timescale and become a dominant mode \red{[REFS], MainPaper}. This oscillations can inject energy within the disk, where via angular momentum transport it leads to an outer part of the disk to become unbound. This ejecta, the \textit{\swind{}} was shown to occur in all cases where the MNS is present. It has high electron fraction and its mass depends on a lifetime of the remnant, and for a $\sim100$ms it can amount to a few $\times\sim10^{-2}M_{\odot}$ \red{[Letter, MainPaper]}. We discuss the mechanism that drives the \swind{} in the section \red{sec:results:swind:mechanism} and the ejecta properties in \red{sec:results:swind:prop} and corresponding nucleosynthesis in \red{sec:results:swind:nucleo}.
-%% On a longer timescales, the viscous processes and alpha recombination in the disk, surrounding MNS or a BH are expected to unbind additional material. This is so-called \textit{secular ejecta}. It is expected to be massive and neutron rich. However, due to long timescales involved, it is very difficult model \red{[REFS]}.
-
-The \ac{BNS} and \ac{NSBH} mergers thus eject a neutron rich material in which \rproc{} can take place, producing nuclides beyond $A=300$. However thous are unsubtle to fission, and decay shortly after being formed. The decay produces, before they reach the valley of stability, capture again free neutrons and grow up to $A=300$ and the cycle repeats. This is so-called 
+\ac{BNS} and \ac{NSBH} mergers eject a neutron rich material (see chapter~\ref{ch:bns_sims}) 
+in which \rproc{} can take place, producing nuclides beyond $A=300$. Over-saturated with neutrons, nuclei 
+are unsubtle to fission, and decay shortly after being formed. The decay products, before they reach the 
+valley of stability, capture again free neutrons and grow up to $A=300$ and the cycle repeats. 
 %% -- important 
-fission cycle. 
+This is so-called fission cycle. 
 %% --- 
-It is maintained as long as there are free neutrons. After, the nuclides decay to the valley of stability for the last time, forming the remarkably robust abundance pattern, independent of the number of cycles \citep{Korobkin:2012uy,Bauswein:2013,Mendoza-Temis:2014mja}, (see also Figure 4 from \citet{Korobkin:2012uy}).
+It is maintained as long as there are free neutrons. After, the nuclides decay to the valley of stability 
+for the last time, forming the remarkably robust abundance pattern, independent of the number of cycles
+\citep{Korobkin:2012uy,Bauswein:2013,Mendoza-Temis:2014mja}, (see also Figure 4 in \citet{Korobkin:2012uy}).
+
+Numerical models have shown that the final \rproc{} abundances in the \ac{BNS} and \ac{NSBH} mergers ejecta 
+are robust and reproduce the solar ones robustly 
+\citep{Freiburghaus:1999,Goriely:2011vg,Goriely:2015fqa,Wanajo:2014wha,Just:2014fka,Radice:2016dwd}\red{[Refs]}. 
+Recent observations of the one and only detected so far merger have confirmed that \ac{BNS} mergers do 
+produce \rproc{} elements \red{[Refs] incl. Stroncium paper}.
 
 
-\subsubsection{Galactic chemical evolution}
+\subsection{Galactic chemical evolution}
 
-Numerical models have shown that the final \rproc{} abundances in the \ac{BNS} and \ac{NSBH} mergers ejecta are robust and reproduce the solar ones robustly. \citep{Freiburghaus:1999,Goriely:2011vg,Goriely:2015fqa,Wanajo:2014wha,Just:2014fka,Radice:2016dwd}\red{[Refs]}. Recent observations of the one and only detected so far merger have confirmed that \ac{BNS} is a cite of \rproc{} \red{[Refs]}.
-However, the question of weather \ac{BNS} (\ac{NSBH}) is a dominant cite or \rproc{} \nuc{} remains open \citep{Qian:2000bh,Argast:2003he,Matteucci:2014}. 
-In particular as it is difficult to explain the observed enrichment of very \ac{MP} stars with \rproc{} elements. In addition, the observed rather uniform \rproc{} abundances in the Galaxy is not very well explained.
-
-%% Delay
-After the \ac{BBN}, the Universe consisting of hydrogen and helium, with traces of lithium, have expanded and cooled. Under the influence of dark matter, the primordial gas fragmented, clumped and first stars, galaxies and galaxy clusters have formed. During their lifetime the first stars (population III stars) converted light elements into heavier ones and then ejected them into the \ac{ISM} during \ac{SN} events. Future populations of stars were born of gas enriched with heavy elements, in particular, iron. Thus, the amount of elements heavier then hydrogen and helium is stars (\ie, metallicity) increased with each stellar generation and there exists an age-metallicity relation  \citep{Matteucci:2012}. Important to note, that multiple dark matter sub-halos contributed to the formation of the galaxy and there might not be a unique age-metallicity relation (see \eg, \citet{Ishimaru:2015} and references therein).
-%% Delay
-The enrichment of interstellar medium with heavy elements from stellar interior occurs immediately after stars die. However, the \rproc{} elements, produced in \ac{BNS} (\ac{NSBH}) mergers can only enrich \ac{ISM} when compact objects inspiral and merge which on average takes $(0.1-1)\times10^{9}$ years \citep{DeDonder:2004cx,Dominik:2012kk}. The exact delay time is however highly uncertain and depends on a poorly understood common envelop evolution phase of the binary (progenitors). And it was shown, that a small percentage of compact binaries might form with a time delay before merger as small as $10^{6}$ years \citep{Dominik:2012kk}. 
-
-%% Study observations
-To study the chemical evolution of stars in the galaxy, the Spectroscopic surveys \footnote{And indicative quantity of metallicity measured in such iron-to-hydrogen ration, [Fe/H], that reads as a $\log_{10}$ of the abundance of a element $X$ to hydrogen, normalized to solar ration, \textit{i.e.,} in the sun for every X, [X/H]$= 0$. If a stars has [Fe/H]$=-2$, it is said that this star ahs a 100 times less iron compared to hydrogen then sun.} are conducted \citep{Edvardsson:1993,Suda:2008na}. 
-%% Scatter
-Mergers of compact objects are rare events and thus expected to introduce a considerable scatter into the \rproc{} elements distribution in the Galaxy. However, observations show that the distribution is more uniform than expected \citep{Argast:2003he}.
-%% Scatter
-However, recent population synthesis models have indicated that with a contribution from magnetorotationallydriven \acp{CCSN} the compact object mergers can account for the observed scatter of heavy elements \citep{Ishimaru:2015,Cescutti:2015,Wehmeyer:2015,VanDeVoort:2015}.
-
+While there are several generally accepted cites for the \rproc{}, the main one is yet to be selected
+\citep[\eg][]{Qian:2000bh,Argast:2003he,Matteucci:2014}
+%
+%%% DELAY
+For instance, if \ac{BNS} mergers are the main cite, than the observed \rproc{} enrichment 
+is difficult to explain as it requires very early source of \rproc{} material, when no mergers 
+should have had happened yet, as the inspiral time ads a so-called \textit{time delay} to the enrichment.
+This time delay is $\sim(0.1-1)\times10^{9}$ years \citep{DeDonder:2004cx,Dominik:2012kk}.
+The exact delay time is however highly uncertain and depends on a poorly understood common envelop evolution 
+phase of the binary (progenitors). And it was shown, that a small percentage of compact binaries might form 
+with a time delay before merger as small as $10^{6}$ years \citep{Dominik:2012kk}. 
+%%%% SCATTER
+Additionally,
+mergers of compact objects are rare events and thus expected to introduce a considerable scatter 
+into the \rproc{} elements distribution in the Galaxy. 
+However, observations show that the distribution is more uniform than expected \citep{Argast:2003he}.
+%%%% CCSN as a contributor
+Notably, recent population synthesis models have indicated that with a contribution from 
+magnetorotationallydriven \acp{CCSN} the compact object mergers can account for the 
+observed scatter of heavy elements \citep{Ishimaru:2015,Cescutti:2015,Wehmeyer:2015,VanDeVoort:2015}.
+%
+%%%% --------------------------------
+%%%% IN MORE  DETAILS 
+%%%% --------------------------------
+%%%% Delay
+%After the \ac{BBN}, the Universe consisting of hydrogen and helium, with traces of lithium, have expanded and cooled. 
+%Under the influence of dark matter, the primordial gas fragmented, clumped and first stars, galaxies and galaxy 
+%clusters have formed. During their lifetime the first stars (population III stars) converted light elements into 
+%heavier ones and then ejected them into the \ac{ISM} during \ac{SN} events. Future populations of stars were born 
+%of gas enriched with heavy elements, in particular, iron. Thus, the amount of elements heavier then hydrogen and 
+%helium is stars (\ie, metallicity) increased with each stellar generation and there exists an age-metallicity relation 
+%\citep{Matteucci:2012}. Important to note, that multiple dark matter sub-halos contributed to the formation of the 
+%galaxy and there might not be a unique age-metallicity relation (see \eg, \citet{Ishimaru:2015} and references therein).
+%%% Delay
+%The enrichment of interstellar medium with heavy elements from stellar interior occurs immediately after stars die. 
+%However, the \rproc{} elements, produced in \ac{BNS} (\ac{NSBH}) mergers can only enrich \ac{ISM} when compact objects 
+%inspiral and merge which on average takes $(0.1-1)\times10^{9}$ years \citep{DeDonder:2004cx,Dominik:2012kk}. 
+%The exact delay time is however highly uncertain and depends on a poorly understood common envelop evolution phase of the binary 
+%(progenitors). And it was shown, that a small percentage of compact binaries might form with a time delay 
+%before merger as small as $10^{6}$ years \citep{Dominik:2012kk}. 
+%
+%%% Study observations
+%To study the chemical evolution of stars in the galaxy, the spectroscopic surveys\footnote{
+%    And indicative quantity of metallicity measured in such iron-to-hydrogen ration, [Fe/H], that reads as a $\log_{10}$
+%    of the abundance of a element $X$ to hydrogen, normalized to solar ration, \ie, in the sun for every X, [X/H]$= 0$. 
+%    If a stars has [Fe/H]$=-2$, it is said that this star ahs a 100 times less iron compared to hydrogen then sun.
+%} are conducted \citep{Edvardsson:1993,Suda:2008na}. 
+%%% Scatter
+%Mergers of compact objects are rare events and thus expected to introduce a considerable 
+%scatter into the \rproc{} elements distribution in the Galaxy. However, observations show that the 
+%distribution is more uniform than expected \citep{Argast:2003he}.
+%%% Scatter
+%However, recent population synthesis models have indicated that with a contribution from 
+%magnetorotationallydriven \acp{CCSN} the compact object mergers can account for the observed 
+%scatter of heavy elements \citep{Ishimaru:2015,Cescutti:2015,Wehmeyer:2015,VanDeVoort:2015}.
+%
 %% 244Pu
-Comparison between the solar system and earth crust abundances of $^{244}$Pu have indicated that this nuclide might have been produced rare events with high yield \citep{Wallner:2015}. This statement was confirmed via models of galactic mixing \citep{Hotokezaka:2015zea}, that also showed that there appears to be no degeneracy between rare high yields events (\ac{BNS}/\ac{NSBH}) and frequent low yield ones (\ac{CCSN}). Similar conclusion was draws from studying $^{244}Pu$ abundances in meteorites \citep{Tsujimoto:2017}.
-
+Comparison between the solar system and earth crust abundances of $^{244}$Pu have indicated that this 
+nuclide might have been produced in rare events with high yield \citep{Wallner:2015}. This statement 
+was confirmed via models of galactic mixing \citep{Hotokezaka:2015zea}, that also showed that there 
+appears to be no degeneracy between rare high yields events (\ac{BNS}/\ac{NSBH}) 
+and frequent low yield ones (\ie, \ac{CCSN}). Similar conclusion was draws from studying $^{244}Pu$ 
+abundances in meteorites \citep{Tsujimoto:2017}.
+%
 %% UFDG
-Study on \acp{UFG} also point towards a rare high yield events for \rproc{} nucleosynthesis. In particular, the \ac{UFG} Reticulum II was shown to have a solar \rproc{} abundances, while \ac{UFG} of similar type tend to have $2-3$ times less \rproc{} elements. This suggests that a rare high-yield event has modified Reticulum II chemical composition and high europium abundances indicate that it was a compact object merger \citep{Ji:2016}. 
-
-Thus it is still unclear whether observed degree of homogeneity in \rproc{} elements distribution in the galaxy and \rproc{} elements enrichment of very \ac{MP} stars can be explained by object mergers only. 
+Study on \acp{UFG} also point towards a rare high yield events for \rproc{} nucleosynthesis. In particular, 
+the \ac{UFG} Reticulum II was shown to have a solar \rproc{} abundances, while \ac{UFG} of similar type tend 
+to have $2-3$ times less \rproc{} elements. This suggests that a rare high-yield event has modified 
+Reticulum II chemical composition and high europium abundances indicate that it was a compact object merger 
+\citep{Ji:2016}. 
+%
+%Thus it is still unclear whether observed degree of homogeneity in \rproc{} elements distribution in the galaxy and 
+%\rproc{} elements enrichment of very \ac{MP} stars can be explained by compact object mergers only. 
 %% Scatter
 
 \red{Mention Actinide abundaces problem.}
@@ -188,197 +458,335 @@ Thus it is still unclear whether observed degree of homogeneity in \rproc{} elem
 %%
 %% =======================================================
 
-\section{Nuclear reaction network}
+\section{Modeling the nucleosynthesis}
 
-Nuclear reactions play an important role in numerous astrophysical cites, where sufficiently high temperatures and densities are achieved. In particular, in main sequence stars nuclear fusion prevents stars from collapsing, releasing the binding energy, counteracting gravity \citep{Bethe:1939}. When stars do undergo a core collapse, the nuclear and weak reactions govern the explosion by introducing and removing energy (\eg, via neutrino cooling and heating). 
-
-A small amount of the material synthesized in the explosive burning is ejected into the \ac{ISM}  \citep{Nomoto:1997if,Woosley:2002}. It is composed mostly of iron-group elements, enriched with heavier elements synthesized in weak \rproc{} \citep{Wanajo:2013} and \sproc{} \citep{Burbidge:1957}. 
-Enrichment of \ac{ISM} with even heavier elements, synthesized in full \rproc{}, is believed to occur manly in compact binary mergers \citep{Freiburghaus:1999}, \red{where the material with ifferent composition is ejected on a prolonged timescale via numerous physical processes [ManyRefs]}. \gray{In addition, nuclear burning in a form of thermonuclear explosion occurs when matter is accreted onto a white dwarf or a neutron star, producing electromagnetic transients Novae and X-ray bursts \cite{Boyd:2008,Freiburghaus:1999}}
-
+Nuclear reactions play an important role in numerous astrophysical cites, where sufficiently high temperatures 
+and densities are achieved. 
+%In particular, in main sequence stars nuclear fusion prevents stars from collapsing, releasing the binding energy, 
+%counteracting gravity \citep{Bethe:1939}. When stars do undergo a core collapse, the nuclear and weak reactions 
+%govern the explosion by introducing and removing energy (\eg, via neutrino cooling and heating). 
+%%
+%A small amount of the material synthesized in the explosive burning is ejected into the \ac{ISM}  
+%\citep{Nomoto:1997if,Woosley:2002}. It is composed mostly of iron-group elements, enriched with heavier elements 
+%synthesized in weak \rproc{} \citep{Wanajo:2013} and \sproc{} \citep{Burbidge:1957}. 
+%Enrichment of \ac{ISM} with even heavier elements, synthesized in full \rproc{}, is believed to occur manly in 
+%compact binary mergers \citep{Freiburghaus:1999}, \red{where the material with ifferent composition is ejected on 
+%    a prolonged timescale via numerous physical processes [ManyRefs]}.
+% \gray{In addition, nuclear burning in a form of thermonuclear explosion occurs when matter is accreted onto a 
+%     white dwarf or a neutron star, producing electromagnetic transients Novae and X-ray bursts \cite{Boyd:2008,Freiburghaus:1999}}
+%
 %% ========== INTORCUTION TO NRN 
-To study the aforementioned phenomena, it is necessary to model nuclear reactions and not only focusing on the total energy generation \citep[\eg][]{Weaver:1978,Mueller:1986,Timmes:1999} but tracking the evolution of the whole ensemble of nuclear species \red{[Refs]}. A mathematical and/or numerical model that describes coupled nuclear reactions, tracking the evolution of abundances of various species, coupled by a non-liear reaction, rates is called \ac{NRN}.
-
+To study the \nuc{} in different physical environments, it is necessary to model nuclear reactions focusing not 
+only on the total energy generation \citep[\eg][]{Weaver:1978,Mueller:1986,Timmes:1999} but tracking the evolution 
+of the whole ensemble of nuclear species. A mathematical and/or numerical model that describes coupled nuclear reactions, 
+tracking the evolution of abundances of various species, coupled by a non-linear reaction, rates is called \ac{NRN}.
+%
 % BBN
-The complexity of networks, \ie, the number of species and reactions evolved, varies depending on the intended implementation. For instance, for a \ac{BBN} rarely more then a dozen nuclear species are evolved 
-\citep{Wagoner:1973,Orlov:2000,Nollett:2000fh,Coc:2013eha,Cyburt:2015mya}. 
-
-% STellar
-Stellar evolution models also included reaction networks starting from a few species and reactions \citep[\eg][]{Hayashi:1962,Hofmeister:1964} and incorporating tens or even hundreds of them in a more recent and advanced models \citep{Arnett:1977,Weaver:1978,Paxton:2011,Bressan:2012,Jones:2015}
-
-% SN
-Networks designed for explosive nuclear burning and supernovae evolved from including a few tens of species \citep[\eg][]{Truran:1966,Truran:1967,Arnett:1969,Woosley:1973} to including hundreds of species and reactions, (\eg, in type Ia \acp{SN} \citep{Thielemann:1986,Hillebrandt:2013gna,Seitenzahl:2013,Leung:2015fxa}, in \acp{CCSN} \citep{Thielemann:1986,Limongi:2003ui,Heger:2008td,Harris:2014}, in novae \citep{Weiss:1990,Jose:1997vf,Iliadis:2002zz,Starrfield:2016} and X-ray bursts \citep{Schatz:2001xx,Woosley:2003cd,Cyburt:2010,Parikh:2012hx}) 
-
+The complexity of networks, \ie, the number of species and reactions evolved, varies depending on the intended 
+implementation. 
+%
+%For instance, for a \ac{BBN} rarely more then a dozen nuclear species are evolved 
+%\citep{Wagoner:1973,Orlov:2000,Nollett:2000fh,Coc:2013eha,Cyburt:2015mya}. 
+%
+%% STellar
+%Stellar evolution models also included reaction networks starting from a few species and reactions 
+%\citep[\eg][]{Hayashi:1962,Hofmeister:1964} and incorporating tens or even hundreds of them in a more 
+%recent and advanced models \citep{Arnett:1977,Weaver:1978,Paxton:2011,Bressan:2012,Jones:2015}
+%
+%% SN
+%Networks designed for explosive nuclear burning and supernovae evolved from including a few tens of species 
+%\citep[\eg][]{Truran:1966,Truran:1967,Arnett:1969,Woosley:1973} to including hundreds of species and reactions, 
+%(\eg, in type Ia \acp{SN} \citep{Thielemann:1986,Hillebrandt:2013gna,Seitenzahl:2013,Leung:2015fxa}, in \acp{CCSN} 
+%\citep{Thielemann:1986,Limongi:2003ui,Heger:2008td,Harris:2014}, in novae 
+%\citep{Weiss:1990,Jose:1997vf,Iliadis:2002zz,Starrfield:2016} and X-ray bursts 
+%\citep{Schatz:2001xx,Woosley:2003cd,Cyburt:2010,Parikh:2012hx}) 
+%
 % r-process 
-Neutron capture results in a creation of unstable nuclides, that decay via complex chains of reaction, involving hundreds and thousands steps. Thus, \acp{NRN} have to be adequately complex for modeling the \sproc{}, \citep[\eg][]{Prantzos:1990,Kaeppeler:2011,Nishimura:2017zdi} and even more so to model \rproc{}. In particular, in \acp{CCSN} neutrino driven winds \citep[\eg][]{Woosley:1992,Arcones:2010,Wanajo:2013}, in outflows from magnetorotational \acp{CCSN} \citep[\eg][]{Winteler:2012,Nishimura:2015nca}.
-In compact object mergers several cites with different conditions require modeling. In particular, the \ac{DE} \citep{Goriely:2011vg,Bauswein:2013yna,Wanajo:2014wha,Just:2014fka,Fernandez:2016sbf}\red{[Refs]}, the disk (torus) formed after merger around the remnant \citep{Surman:2008qf,Perego:2014fma,Martin:2015hxa,Lippuner:2017tyn}\red{[Refs]}. This however does not limit the scope of where modeling of neutron capture nucleosynthesis is done. See \citep{Blinnikov:1996,Panov:1995,Panov:2001,Mumpower:2011ar}\red{[Refs]} for an overview.
+For instance, neutron capture results in a creation of unstable nuclides, that decay via complex chains of reaction, 
+involving hundreds and thousands of steps. Thus, \acp{NRN} have to be adequately complex for modeling the 
+\sproc{}, \citep[\eg][]{Prantzos:1990,Kaeppeler:2011,Nishimura:2017zdi} and even more so to model \rproc{}. 
+The target for such studies include \acp{CCSN} neutrino driven winds \citep[\eg][]{Woosley:1992,Arcones:2010,Wanajo:2013}, 
+and outflows from magnetorotational \acp{CCSN} \citep[\eg][]{Winteler:2012,Nishimura:2015nca}.
+In compact object mergers several cites with different conditions require modeling. In particular, the \ac{DE} \citep{Goriely:2011vg,Bauswein:2013yna,Wanajo:2014wha,Just:2014fka,Fernandez:2016sbf}\red{[Refs]}, 
+the disk (torus) formed after merger around the remnant 
+\citep{Surman:2008qf,Perego:2014fma,Martin:2015hxa,Lippuner:2017tyn}\red{[Refs]}. 
+and the related outflow \red{[Refs]}.
+This however does not limit the scope of where modeling of neutron capture nucleosynthesis is done. 
+See \citep{Blinnikov:1996,Panov:1995,Panov:2001,Mumpower:2011ar}\red{[Refs]} for an overview.
 
-% modelling the network
-The key component of a \ac{NRN} is the interaction between two and more nuclides, that are characterized by \ac{RR} as well as single particle reactions, such as $\beta$-decay.
-Charged particle reactions require that the Coulomb barrier to be overcome. Thus, in general, \ac{RR} depend strongly on the particle energy as well as on resonances in compound nuclear systems (\textit{e.g.,} \cite{Clayton:1968}, \textsection{4}). 
-In a the single-particle reactions, \eg, $\beta$-decay, it is common to assumed a constant \ac{RR}, which is strictly speaking is true only in vacuum. Another common approach to treating complex reactions, is to assume that reactants from a single nuclide that undergoes a chain of decays into reaction products. This is called a Hauser-Feshbach approach. It is particularly useful for reactions far from the valley of stability with a long chains of decay \citep{Hauser:1952,Rauscher:2000fx,Goriely:2008zu}. 
-In addition, in order to model the nuclear \ac{NSE} and $\beta$-decay rates, nuclide masses and partition functions \citep{Arcones:2010dz,Brett:2012jn,Mendoza-Temis:2014mja,Mumpower:2015ova} have to be prescribed. This data is not fully available and have large uncertainties (see \eg, \citet{Lunney:2003,Schatz:2013,Mumpower:2015ova} and references therein). Thus, often theoretical models for nuclear masses and $\beta$-decay properties are used for many species \citep{Lunney:2003,Moller:2003,Mumpower:2015ova}. 
+%%%% generals of a network
+The key component of a \ac{NRN} is the interaction between two and more nuclides, that are characterized by \ac{RR} 
+as well as single particle reactions, such as $\beta$-decay.
+Charged particle reactions require that the Coulomb barrier to be overcome. Thus, in general, \ac{RR} depend strongly 
+on the particle energy as well as on resonances in compound nuclear systems (see \eg, \citet{Clayton:1968}, \textsection{4}). 
+In a the single-particle reactions, \eg, $\beta$-decay, it is common to assumed a constant \ac{RR}, which is strictly 
+speaking is true only in vacuum. Another common approach to treating complex reactions, is to assume that reactants 
+from a single nuclide that undergoes a chain of decays into reaction products. This is called a Hauser-Feshbach approach. 
+It is particularly useful for reactions far from the valley of stability with a long chains of decay 
+\citep{Hauser:1952,Rauscher:2000fx,Goriely:2008zu}. 
+In addition, in order to model the nuclear \ac{NSE} and $\beta$-decay rates, nuclide masses and partition functions 
+\citep{Arcones:2010dz,Brett:2012jn,Mendoza-Temis:2014mja,Mumpower:2015ova} have to be prescribed. 
+This data is not fully available and have large uncertainties (see \eg, \citet{Lunney:2003,Schatz:2013,Mumpower:2015ova} 
+and references therein). Thus, often theoretical models for nuclear masses and $\beta$-decay properties are used for many 
+species \citep{Lunney:2003,Moller:2003,Mumpower:2015ova}. 
 
 % Other NRN codes
 Several nuclear reaction networks are available in the literature. In particular: a set of networks by 
-\citet{Timmes:1999} \footnote{\url{http://cococubed.asu.edu/code_pages/burn.shtml}}, 
-\texttt{XNet} by \citet{Hix:1999} \footnote{\url{http://eagle.phys.utk.edu/xnet/trac}} , 
-\texttt{NucNet} by \citet{Meyer:2007} and a  \footnote{\url{https://sourceforge.net/projects/nucnet-tools}}
-\texttt{SkyNet} by \citet{Lippuner:2015gwa} \footnote{\url{https://bitbucket.org/jlippuner/skynet}}.
+\citet{Timmes:1999}\footnote{\url{http://cococubed.asu.edu/code_pages/burn.shtml}}, 
+\texttt{XNet} by \citet{Hix:1999}\footnote{\url{http://eagle.phys.utk.edu/xnet/trac}} , 
+\texttt{NucNet} by \citet{Meyer:2007} \footnote{\url{https://sourceforge.net/projects/nucnet-tools}}
+and \texttt{SkyNet} by \citet{Lippuner:2015gwa}\footnote{\url{https://bitbucket.org/jlippuner/skynet}}.
+The latter is a popular choice studying nucleosynthesis in neutron rich environment
+\citep{Lippuner:2015gwa,Radice:2016dwd,Roberts:2016igt,Lippuner:2017tyn,Siegel:2017nub,Vlasov:2017nou,Fernandez:2016sbf}
 
-%% === END OF INTRODUCTION 
-In this chapter we employ \texttt{SkyNet} \ac{NRN} to compute nucleosynthetic yields in \ac{BNS} mergers ejecta. In the following, we discuss this network in more details.
-\texttt{Skynet} is a modular and versatile \ac{NRN} designed initially for \rproc{} \nuc{} calculations. It is capable of evolving arbitrary set of nuclear
-species in \ac{NSE} as well as switching to a full network self-consistently. The network incorporates screening corrections and equation of state that consideres an entire composition.
 
-\texttt{SkyNet} is a popular choice for studying nucleosynthesis in neutron rich environment \citep{Lippuner:2015gwa,Radice:2016dwd,Roberts:2016igt,Lippuner:2017tyn,Siegel:2017nub,Vlasov:2017nou,Fernandez:2016sbf} \red{[Refs(us,david)]}, .
+%In this chapter we use \ac{NRN} \texttt{SkyNet} to compute nucleosynthetic yields in \ac{BNS} mergers ejecta. 
+%First we briefly overview the method in Sec.~\ref{sec:nuc:skynet}, then we discuss the parameterized 
+%\nuc{} calculations and their application ot the \ac{BNS} ejecta.
+
+%In the following, we discuss this network in more details.
+%\texttt{Skynet} is a modular and versatile \ac{NRN} designed initially for \rproc{} \nuc{} calculations. It is capable of evolving arbitrary set of nuclear
+%species in \ac{NSE} as well as switching to a full network self-consistently. The network incorporates screening corrections and equation of state that consideres an entire composition.
+%
+%\texttt{SkyNet} is a popular choice for studying nucleosynthesis in neutron rich environment \citep{Lippuner:2015gwa,Radice:2016dwd,Roberts:2016igt,Lippuner:2017tyn,Siegel:2017nub,Vlasov:2017nou,Fernandez:2016sbf} \red{[Refs(us,david)]}, .
 
 
 %% === CAN BE COMMENTED OUT! === Except thedefinition of abundances, perhaps
-\subsection{Nuclear reaction network basics}
+\subsection{Basics of a nuclear reaction network }
 
-\acp{NRN} allow to track the evolution of a system of many species that undergo nuclear transmutations in prescribed reactions given the \acp{RR}. The rate equations describe microscopic processes. They are based on the kinetic theory. For instance, a system of non-correlated particles, involved in interactions, some of which can change particle type, can be described in terms of  ad distribution function. The evolution of this function is given by Kinetic theory \red{Danielewicz and Bertsch, 1991; Buss et al., 2012}. 
-Generally, only a subset of particles is evolved by a \ac{NRN}, while for some the conditions are assumed to be unchanged. For instance, photons are assumed to be in equilibrium at all times, while electron and positron densities are set by the charge neutrality. 
+\acp{NRN} allow to track the evolution of a system of many species that undergo nuclear transmutations in 
+prescribed reactions given the \acp{RR}. The rate equations describe microscopic processes. 
+They are based on the kinetic theory. For instance, a system of non-correlated particles, involved 
+in interactions, some of which can change particle type, can be described in terms of a distribution function. 
+%%%%The evolution of this function is given by Kinetic theory \red{Danielewicz and Bertsch, 1991; Buss et al., 2012}. 
+Generally, only a subset of particles is evolved by a \ac{NRN}, while for some the conditions are assumed 
+to be unchanged. For instance, photons are assumed to be in equilibrium at all times, while electron and 
+positron densities are set by the charge neutrality. 
 
 % Abundances
-Describing particle interaction and nuclide transmutation it is common to introduce the entrance and exit channels representing reactants and products. Then, reaction rate is defined as a speed at which a reaction proceeds per particle in the entrance channel. Thus, if there is no change between particles in entrance and exit channels, the \ac{RR} is zero. A particular usefull quantity is \textit{abundance} $Y_i$, defined as 
-
+Describing particle interaction and nuclide transmutation it is common to introduce the entrance 
+and exit channels representing reactants and products. Then, reaction rate is defined as a speed 
+at which a reaction proceeds per particle in the entrance channel. Thus, if there is no change between 
+particles in entrance and exit channels, the \ac{RR} is zero. 
+A particular useful quantity is \textit{abundance} $Y_i$, defined as 
+%
 \begin{equation}
 \label{eq:theory:nuc:abundance}
 Y_i = \frac{n_i}{n_B} = \frac{N_i/V}{N_B/V} = \frac{N_i}{N_B},
 \end{equation}
-
-where $V$ is the volume of the fluid element, $N_i$ and $N_B$ are the total numbers of particles of species $i$ and baryons respectively. 
-It is usually abundances of $Y_i$ that are evolved in \acp{NRN} instead of particle number densities $n_i$ as the latter depend on the volume that often is not constant. 
-
+%
+where $V$ is the volume of the fluid element, $N_i$ and $N_B$ are the total numbers of particles 
+of species $i$ and baryons respectively. 
+It is usually abundances of $Y_i$ that are evolved in \acp{NRN} instead of particle number densities $n_i$ 
+as the latter depend on the volume that often is not constant. 
+%
 The abundance evolution equation reads
-
+%
 \begin{equation}
 \frac{\text{d}Y_i}{\text{d}t} = \sum\lambda_{\alpha}(-R_{i}^{\alpha}+P_{i}^{\alpha})N_{i}^{\alpha}\prod_{m\in\mathcal{R}_{\alpha}}Y_m^{N_{m}^{\alpha}}
 \end{equation}
+%
+where $\lambda_{\alpha}$ is the \ac{RR} of the forward process, $R_{i}^{\alpha}$ are reactants, 
+$P_{i}^{\alpha}$ are products, $N_{i}^{\alpha}$ number of particles of the species $i$ involved 
+and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of species $i$ involved (see \eg, \citet{Hix:1999}).
+%
+The \texttt{SkyNet} solves a coupled, first-order, non-linear system of equation, Eq.~\eqref{eq:theory:nuc:abundance} 
+for a given set of reaction rates $\lambda_{\alpha}$. The Eq.~\eqref{eq:theory:nuc:abundance} can be understood 
+as following. The time derivative of the species $i$ abundances is given by the sum over all reactions, 
+in which the species in question participate. Each reaction contribution consists of multiplies: 
+\ac{RR}, a factor describing creation or destruction of particles (of species $i$), \ie, number of particles, 
+and an abundances of reactants. 
 
-where $\lambda_{\alpha}$ is the \ac{RR} of the forward process, $R_{i}^{\alpha}$ are reactants, $P_{i}^{\alpha}$ are products, $N_{i}^{\alpha}$ number of particles of the species $i$ involved and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of species $i$ involved (see \eg, \citet{Hix:1999}).
-The \texttt{SkyNet} solves a coupled, first-order, non-linear system of equation, \eqref{eq:theory:nuc:abundance} for a given set of reaction rates $\lambda_{\alpha}$.
-The Eq.~\eqref{eq:theory:nuc:abundance} can be understood as following. The time derivative of the species $i$ abundances is given by the sum over all reactions, in which the species in question participate. Each reaction contribution consists of multiplies: \ac{RR}, a factor describing creation or destruction of particles (of species $i$), \ie, number of particles, and an abundances of reactants. 
-
-A representative example is carbon burning $^{12}\text{C} + ^{4}\text{He} \leftrightarrow ^{16}\text{O}$:
-
-\begin{eqnarray*}
-    \frac{\text{d}Y^{12}\text{C}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
-    \frac{\text{d}Y^{4}\text{He}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
-    \frac{\text{d}Y^{16}\text{O}}{\text{d}t} &= \lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots . \\
-\end{eqnarray*}
-
-
-%% === COULD DEFINITLY BE COMMENTED OUT!
-\subsubsection{Reaction rates and velocity averaged cross-sections}
-
-
-% On the particle distribution function: GENRAL
-In general, the particle distribution function has a complex dependency on the macro- and micro- physical parameters. However, scattering processes, redistribution energy between nuclear species, bring particles into thermal equilibrium. Then, the distribution function and \acp{RR}, simplify considerably and depend only on temperature and chemical potential. 
-% On the Dist.Func. of Boltzmann particle
-In addition, in most applications the distribution function for Boltzmann particles is assumed to be given by thermal \ac{MBD}. Then the reactions in which nuclei and photons participate depend only on temperature and density.
-% On the neturinos 
-Leptons, \eg, neutrinos, are generally not included into a \ac{NRN} explicitly, as their distribution is often non-thermal and difficult to treat. The electron-positron chemical potential is set to obey the charge neutrality. Then, the weak \acp{RR} depend, besides temperature, number density of baryons and electron fraction, on the predefined neutrino distribution function \red{(see e.g.,Reddy et al., 1998 for two-particle charged currentweak interaction description and --- section 2C))}. 
-% Cross section
-An important quantity entering the \acp{NRN} is the reaction \ac{CS}. Considering incoming particles, projectiles, $j$, scattering on stationary targets $i$, it the $\sigma_{\alpha}$ can be defined as a ration of the number of reactions per target, $i$, over the flux of incoming projectiles, $j$. For Boltzmann particles, then, the reaction rate reads 
-
-\begin{equation}
-\lambda_{\alpha} = N_{\alpha}n_{B}\langle\sigma_{\alpha}\nu_{\text{rel}}\rangle
-\end{equation}
-
-where $N_{\alpha}$ accounts for not double counting particles entering reactions, $\nu_{\text{rel}}$ is the relative velocity between particles and $n_B$ is the number density of baryons. The expression in $\langle\cdot\rangle$ states the \ac{CS} averaged over the relative velocities between two given particles. 
-The relation between \ac{RR} and \ac{CS} then reads 
-
-\begin{equation}
-r_{i,j} = n_1 n_2 N_{\alpha} \langle\sigma_{\alpha}\nu_{\text{rel}}\rangle.
-\end{equation}
-
-See \textit{e.g.,} \cite{Clayton:1968}, \paragraphmark{4}; \cite{Rolfs:1988}, \paragraphmark{3}
-
-%% === Can also be safely commented out
-\subsubsection{\ac{NSE} and inverse \acp{RR}}
+%A representative example is carbon burning $^{12}\text{C} + ^{4}\text{He} \leftrightarrow ^{16}\text{O}$:
+%%
+%\begin{equation}
+%\begin{aligned}
+%    \frac{\text{d}Y^{12}\text{C}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
+%    \frac{\text{d}Y^{4}\text{He}}{\text{d}t} &= -\lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots , \\
+%    \frac{\text{d}Y^{16}\text{O}}{\text{d}t} &= \lambda_{\alpha}Y_{^{12}\text{C}} Y_{^{4}\text{He}} + \lambda_{\alpha'}Y_{^{16}\text{O}} + \dots . \\
+%\end{aligned}
+%\end{equation}
+%%
 
 
-In addition to forward reactions, inverse ones, if are not too unlikely, play a significant role in \nuc{} calculations. Considering the strong reactions. For instance, the inverse reaction to the neutron capture can be even more frequent than the forward process. At high enough temperatures the photodissociation reaction becomes as frequent the fusion. 
-When the rate of a forward reaction becomes equal to that of the inverse, the reaction is said to be in equilibrium. 
-If all reactions considered are in equilibrium, it is said that a \ac{NSE} is established. This condition can also be thought of as, a mixture of free protons and neutrons creating a nucleus which is dissociated back into free neutrons and protons. In other words, when composition enters the \ac{NSE}, forward and inverse reactions fall into an equilibrium. The \ac{NSE} composition can generally be computed from the equality of chemical potentials. 
+%%%%----------------------------------------------------------
+%%%% Reaction rates and velocity averaged cross-sections
+%%%%---------------------------------------------------------
+%\subsubsection{Reaction rates and velocity averaged cross-sections}
+%
+%% On the particle distribution function: GENRAL
+%In general, the particle distribution function has a complex dependency on the macro- and micro- 
+%physical parameters. However, scattering processes, redistribution energy between nuclear species, 
+%bring particles into thermal equilibrium. Then, the distribution function and \acp{RR}, simplify 
+%considerably and depend only on temperature and chemical potential. 
+%% On the Dist.Func. of Boltzmann particle
+%In addition, in most applications the distribution function for Boltzmann particles is assumed to be 
+%given by thermal \ac{MBD}. Then the reactions in which nuclei and photons participate depend only on 
+%temperature and density.
+%% On the neturinos 
+%Leptons, \eg, neutrinos, are generally not included into a \ac{NRN} explicitly, as their distribution 
+%is often non-thermal and difficult to treat. The electron-positron chemical potential is set to obey 
+%the charge neutrality. Then, the weak \acp{RR} depend, besides temperature, number density of baryons 
+%and electron fraction, on the predefined neutrino distribution function 
+%%%%% \red{(see e.g.,Reddy et al., 1998 for two-particle charged currentweak interaction description and --- section 2C))}. 
+%%
+%% Cross section
+%An important quantity entering the \acp{NRN} is the reaction \ac{CS}. Considering incoming particles, 
+%projectiles, $j$, scattering on stationary targets $i$, it the $\sigma_{\alpha}$ can be defined as a 
+%ration of the number of reactions per target, $i$, over the flux of incoming projectiles, $j$. 
+%For Boltzmann particles, then, the reaction rate reads 
+%%
+%\begin{equation}
+%\lambda_{\alpha} = N_{\alpha}n_{B}\langle\sigma_{\alpha}\nu_{\text{rel}}\rangle
+%\end{equation}
+%%
+%where $N_{\alpha}$ accounts for not double counting particles entering reactions, $\nu_{\text{rel}}$ 
+%is the relative velocity between particles and $n_B$ is the number density of baryons. 
+%The expression in $\langle\cdot\rangle$ states the \ac{CS} averaged over the relative 
+%velocities between two given particles. The relation between \ac{RR} and \ac{CS} then reads 
+%%
+%\begin{equation}
+%r_{i,j} = n_1 n_2 N_{\alpha} \langle\sigma_{\alpha}\nu_{\text{rel}}\rangle.
+%\end{equation}
+%%
+%See \eg \citet{Clayton:1968}, \paragraphmark{4} and \citet{Rolfs:1988}, \paragraphmark{3} for 
+%more detailed derivation.
 
-The abundance of species $i$ in chemical equilibrium, assuming Boltzmann gas, is given 
+%%%%-------------------------------------------------------------
+%%%% \ac{NSE} and inverse \acp{RR} (incl. definition of NSE)
+%%%%-------------------------------------------------------------
+%\subsubsection{\ac{NSE} and inverse \acp{RR}}
+%
+%In addition to forward reactions, inverse ones, if are not too unlikely, play a significant 
+%role in \nuc{} calculations. Considering the strong reactions. for instance, the inverse reaction 
+%to the neutron capture can be even more frequent than the forward process. At high enough 
+%temperatures the photodissociation reaction becomes as frequent the fusion. 
+%%
+%When the rate of a forward reaction becomes equal to that of the inverse, 
+%the reaction is said to be in equilibrium. If all reactions considered are in equilibrium, 
+%it is said that a \ac{NSE} is established. This condition can also be thought of as, a mixture of free 
+%protons and neutrons creating a nucleus which is dissociated back into free neutrons and protons. 
+%In other words, when composition enters the \ac{NSE}, forward and inverse reactions fall into an equilibrium. 
+%The \ac{NSE} composition can generally be computed from the equality of chemical potentials. 
+%%
+%The abundance of species $i$ in chemical equilibrium, assuming Boltzmann gas, is given 
+%%
+%\begin{equation}
+%Y_{i;\text{eq}} = \frac{G_i(T)}{n_B}\Bigg(\frac{m_i T}{2\pi}\Bigg)^{3/2}\exp\Bigg(\frac{\mu_i - m_i}{T}\Bigg),
+%\end{equation}
+%%
+%where $G(T)$ is the internal partition function of species $i$, $m_i$ is its rest mass, 
+%$\mu_i$ is its chemical potential, $T$ is the temperature.
 
-\begin{equation}
-Y_{i;\text{eq}} = \frac{G_i(T)}{n_B}\Bigg(\frac{m_i T}{2\pi}\Bigg)^{3/2}\exp\Bigg(\frac{\mu_i - m_i}{T}\Bigg),
-\end{equation}
+%%%%----------------------------------------------------------------------
+%%%% Network Evolution
+%%%%----------------------------------------------------------------------
+%%%% \red{physics from previouse subsection implemented in SkyNet}
+In essence, a nuclear reaction network evolves a large system of coupled non-linear \acp{ODEs} 
+given in a form of Eq.~\eqref{eq:theory:nuc:abundance}. As \acp{RR} can span order of magnitude, 
+the system of \acp{ODE} is very stiff \citep{Timmes:1999,Hix:2005pf}, and implicit \ac{ODE} solvers 
+are more suited for it \citet{Timmes:1999,Winteler:2012,Longland:2014} 
+or specifically adapted explicit methods \citet{Feger:2011,Guidry:2011,Guidry:2012,Guidry:2011a,Guidry:2011b,Brock:2015}. 
+\texttt{SkyNet} relies on the first-order implicit backward Euler method \citep{Hix:1999}. \red{Check}
+%
+For temperature and density, functions of time, the network evolves the composition vector $Y(t)$ via 
+implicit backward Euler method, obtaining the abundances at the end of the timestep as well as 
+$\dot{Y}(Y,T,\rho)$, time derivative of the abundances, from known abundances at the beginning of it. 
+%
+The problem amounts to a multi-dimensional root-finding problem. \texttt{SkyNet} uses Newton-Raphson method. 
+The Jacobian matrix is $N\times N$ for $N$ nuclear species and can be expensive to invert and store. 
+But most of its entries are zero, as not all species are directly related via a single reaction. 
 
-where $G(T)$ is the internal partition function of species $i$, $m_i$ is its rest mass, $\mu_i$ is its chemical potential, $T$ is the temperature.
+%%%%------------------------------------------------------
+%%%% Self-heating evolution [DETAILS]
+%%%%------------------------------------------------------
+%\paragraph{Self-heating evolution}
+%
+%The density as a function of time is usually given, \eg, from \ac{HD} simulations. Temperature, 
+%however, in most cases does not include heating from \nuc{}. On the other hand, \nuc{} itself depends 
+%on the fluid thermodynamics, as Kinetic theory and balance equations state. Simultaneously, binding 
+%energy released in nuclear reactions affects fluid state. Thus a \textit{self-heating} network evolution is requited. 
+%This is done following the First Law of thermodynamics, in which system entropy, 
+%volume and composition are treated as independent variables.
+%%
+%The system takes into account external heating (per baryon) $\dot{\epsilon}_{\text{ext}}$ 
+%and neutrino heating \& cooling $\dot{\epsilon}_{\nu}$. In \texttt{SkyNet} the implementation is 
+%such that while abundances are evolved implicitly, the entropy is computed explicitly 
+%(at the end of the timestep, from the one at the beginning of the timestep, using Newton-Raphson 
+%root-finder, after that the temperature is evaluated from \ac{EOS})
+%\red{[it was mentioned that fullly implicit scheme was planned]}
+%%
+%The total heating rate, $\dot{\epsilon}_{\text{tot}}$ is computed as following:
+%%
+%\begin{equation}
+%\dot{\epsilon}_{\text{tot}} = \frac{\Delta q}{\Delta t} + \dot{\epsilon}_{\text{nuc}} = -\dot{\epsilon}_{\nu} + \dot{\epsilon}_{\text{ext}} - \frac{1}{\Delta t}\sum_i \Delta Y_i \mathcal{M}_i
+%\end{equation}
+%%
+%where $\Delta q$ is the infinitesimal heat added to the system from the surroundings per baryion, 
+%\ie, $\delta Q/N$ and $Y_i=N_i/N_B$ are the abundances for which $\sum_i Y_i A_i = 1$, $\epsilon_{\text{ext}}$ 
+%is the external \ac{RR} (per baryon), $\mathcal{M}_i=m_i - A_i m_u$ is the mass excess, $\epsilon_{\nu}$ 
+%is the neutrino heating/cooling rate of the system on the environment, 
+%$\epsilon_{\text{nuc}} = (-1/\Delta t)\sum_i\Delta Y_i \mathcal{M}_i$ is the rate of release of binding 
+%energy in nuclear reactions.
+%%
+%Notably, $\dot{\epsilon}_{\text{tot}}$ is generally composed of different components \citep{Barnes:2016umi},
+%%\red{SEE also KILONOVA section} depending on thermolisation efficiency. For instance, kinetic energy of massive fission fragments thermilizes very efficiently, while light neutrinos do not. \red{this is planned to be taken into account for Kilonva calculations} 
+
+%%%%------------------------------------------
+%%%% Convergence criteria and time stepping -- MORE DETAILS
+%%%%------------------------------------------
+%\paragraph{Convergence criteria and time stepping}
+%
+%Timestep depends on the convergence of the Newton-Raphson rootfinder. 
+%Convergence criterion for a Newton-Raphson method:
+%%
+%\begin{equation}
+%\sum_{x_i^{n+1}\geq Y_{\text{thr}}}\Bigg|\frac{x_{i}^{(n+1)} - x_{i}^{(n)}}{x_{i}^{(n+1)}}\Bigg| < \epsilon_{\text{tol},\Delta x}
+%\end{equation}
+%%
+%where $x_{i}^{(n+1)}$ is the $i$-th component of the vector $x_{n+1}$. Here $x$ is the unknown abundances at the end of the timestep. Usually, $\epsilon_{\text{tol},\Delta x}$ is set to $10^{-6}$.
+%Another convergence criterion: assurance of the total baryon number conservation 
+%%
+%\begin{equation}
+%\Bigg| 1- \sum_i x_i^{(n+1)}A_i \Bigg| < \epsilon_{\text{tol},\text{mass}}
+%\end{equation}
+%%
+%where $x_{i}^{(n+1)}$ represents abundances $Y_i(t+\Delta t)$
+%After a successful timestep a scheme tries to increase timestep, if not limited by a rapid growth of a given abundances. 
+%\gray{A proper way to re-normalize abundances $Y_{i,\text{new}} = Y_i/\sum_i A_i Y_i$
+%    to assure that $\sum_i A_i Y_i = 1$ exactly}
+
+%%%%------------------------------------------
+%%%% \ac{NSE} evolution mode -- MORE DETAILS
+%%%%------------------------------------------
+%\paragraph{\ac{NSE} evolution mode}
+%
+%\texttt{SkyNet} tracks the composition evolved, and if it approaches \ac{NSE}, 
+%it automatically switches from full network evolution (where Jacobian approaches numerical 
+%singularity as partial derivatives become zero), to the \ac{NSE} scheme. 
+%In \ac{NSE} mode, \texttt{SkyNet} evolves only the thermodynamic quantities, \ie, entropy, 
+%$s$, and electron fraction, $Y_e$, of the composition, following the weak reactions ($\beta$-decay, 
+%neutrino reactions). The temperature is computed from \ac{EOS}. 
+%Two coupled \acp{ODE} are obtained for $Y_e$ and $s$ that are evolved via adaptive 
+%step-size \ac{RK} method, an explicit integration method, that is allowed for a not-too-stiff equations.
 
 
-%% === COMMENT IT OUR
-\subsection{Network Evolution}
-\red{physics from previouse subsection implemented in SkyNet}
-In essence, a nuclear reaction network evolves a large system of coupled non-linear \acp{ODEs} given in a form of \eqref{eq:theory:nuc:abundance}. As \acp{RR} can span order of magnitude, the system of \acp{ODE} is very stiff \cite{Timmes:1999,Hix:2005pf}, and implicit \ac{ODE} solvers are mode suited for it \cite{Timmes:1999,Winteler:2012,Longland:2014}. \gray{or specifically adapted explicit methods \cite{Feger:2011,Guidry:2011,Guidry:2012,Guidry:2011a,Guidry:2011b,Brock:2015}}. 
-\texttt{SkyNet} relies on the first-order implicit backward Euler method \cite{Hix:1999}. \red{Check}
-
-For temperature and density, functions of time, the network evolves the composition vector $Y(t)$ via implicit backward Euler method, obtaining the abundances at the end of the timestep as well as $\dot{Y}(Y,T,\rho)$, time derivative of the abundances, from known abundances at the beginning of it. 
-The problem amounts to a multi-dimensional root-finding problem. \texttt{SkyNet} uses Newton-Raphson method. The Jacobian matrix is $N\times N$ for $N$ nuclear species and can be expensive to invert and store. But most of its entries are zero, as not all species are directly related via a single reaction. 
-
-
-\paragraph{Self-heating evolution}
-
-The density as a function of time is usually given, \eg, from \ac{HD} simulations. Temperature, however, in most cases does not include heating from \nuc{}. On the other hand, \nuc{} itself depends on the fluid thermodynamics, as Kinetic theory and balance equations state. Simultaneously, binding energy released in nuclear reactions affects fluid state. Thus a \textit{self-heating} network evolution is requited. This is done following the First Law of thermodynamics, in which system entropy, volume and composition are treated as independent variables.
-
-The system takes into account external heating (per baryon) $\dot{\epsilon}_{\text{ext}}$ and neutrino heating \& cooling $\dot{\epsilon}_{\nu}$.
-In \texttt{SkyNet} the implementation is such that while abundances are evolved implicitly,
-the entropy is computed explicitly (at the end of the timestep, from the one at the beginning of the timestep, using Newton-Raphson root-finder, after that the temperature is evaluated from \ac{EOS})
-\red{[it was mentioned that fullly implicit scheme was planned]}
-The total heating rate, $\dot{\epsilon}_{\text{tot}}$ is computed as following:
-
-\begin{equation}
-\dot{\epsilon}_{\text{tot}} = \frac{\Delta q}{\Delta t} + \dot{\epsilon}_{\text{nuc}} = -\dot{\epsilon}_{\nu} + \dot{\epsilon}_{\text{ext}} - \frac{1}{\Delta t}\sum_i \Delta Y_i \mathcal{M}_i
-\end{equation}
-
-where $\Delta q$ is the infinitesimal heat added to the system from the surroundings per baryion, \ie, $\delta Q/N$ and $Y_i=N_i/N_B$ are the abundances for which $\sum_i Y_i A_i = 1$, $\epsilon_{\text{ext}}$ is the external \ac{RR} (per baryon), $\mathcal{M}_i=m_i - A_i m_u$ is the mass excess, $\epsilon_{\nu}$ is the neutrino heating/cooling rate of the system on the environment, $\epsilon_{\text{nuc}} = (-1/\Delta t)\sum_i\Delta Y_i \mathcal{M}_i$ is the rate of release of binding energy in nuclear reactions.
-Notably, $\dot{\epsilon}_{\text{tot}}$ is generally composed of different components \citep{Barnes:2016umi},
-\red{SEE also KILONOVA section} depending on thermolisation efficiency. For instance, kinetic energy of massive fission fragments thermilizes very efficiently, while light neutrinos do not. \red{this is planned to be taken into account for Kilonva calculations} 
+%\paragraph{Electron screening}
+%
+%A Coulomb (electron) screening occurs when the nuclear reactions proceed at sufficiently 
+%low temperatures and high densities where electron gas to becomes non-uniform, centered around nuclei, 
+%creating an electron charge. This reduces the repulsion of two positively charged nuclei, enhancing the \ac{RR}. 
+%(Note that for neutron capture screening does not affect \ac{RR}).
+%%
+%Naively, the effectiveness of the screening depends on the ratio between Coulumb interaction energy 
+%(between nucleus and nearby electrons) to the thermal energy. If the latter is large, the electron 
+%gas is diffuse and screening is ineffective.
+%\gray{SkyNet assumes that the ions (nuclides) are non-degenerate and non-relativistic.
+%    Therefore, they obey Boltzmann statistics}
+%\gray{Many subsections on the theory of screening.}
 
 
-\paragraph{Convergence criteria and time stepping}
-
-Timestep depends on the convergence of the Newton-Raphson rootfinder. 
-Convergence criterion for a Newton-Raphson method:
-
-\begin{equation}
-\sum_{x_i^{n+1}\geq Y_{\text{thr}}}\Bigg|\frac{x_{i}^{(n+1)} - x_{i}^{(n)}}{x_{i}^{(n+1)}}\Bigg| < \epsilon_{\text{tol},\Delta x}
-\end{equation}
-
-where $x_{i}^{(n+1)}$ is the $i$-th component of the vector $x_{n+1}$. Here $x$ is the unknown abundances at the end of the timestep. Usually, $\epsilon_{\text{tol},\Delta x}$ is set to $10^{-6}$.
-Another convergence criterion: assurance of the total baryon number conservation 
-
-\begin{equation}
-\Bigg| 1- \sum_i x_i^{(n+1)}A_i \Bigg| < \epsilon_{\text{tol},\text{mass}}
-\end{equation}
-
-where $x_{i}^{(n+1)}$ represents abundances $Y_i(t+\Delta t)$
-After a successful timestep a scheme tries to increase timestep, if not limited by a rapid growth of a given abundances. 
-\gray{A proper way to re-normalize abundances $Y_{i,\text{new}} = Y_i/\sum_i A_i Y_i$
-    to assure that $\sum_i A_i Y_i = 1$ exactly}
-
-
-\paragraph{\ac{NSE} evolution mode}
-
-\texttt{SkyNet} tracks the composition evolved, and if it approaches \ac{NSE}, it automatically switches from full network evolution (where Jacobian approaches numerical singularity as partial derivatives become zero), to the \ac{NSE} scheme. 
-In \ac{NSE} mode, \texttt{SkyNet} evolves only the thermodynamic quantities, \ie, entropy, $s$, and electron fraction, $Y_e$, of the composition, following the weak reactions ($\beta$-decay, neutrino reactions). The temperature is computed from \ac{EOS}. 
-Two coupled \acp{ODE} are obtained for $Y_e$ and $s$ that are evolved via adaptive step-size \ac{RK} method, an explicit integration method, that is allowed for a not-too-stiff equations.
-
-
-\paragraph{Electron screening}
-
-A Coulomb (electron) screening occurs when the nuclear reactions proceed at sufficiently low temperatures and high densities where electron gas to becomes non-uniform, centered around nuclei, creating an electron charge. This reduces the repulsion of two positively charged nuclei, enhancing the \ac{RR}. (Note that for neutron capture screening does not affect \ac{RR}).
-Naively, the effectiveness of the screening depends on the ratio between Coulumb interaction energy (between nucleus and nearby electrons) to the thermal energy. If the latter is large, the electron gas is diffuse and screening is ineffective.
-\gray{SkyNet assumes that the ions (nuclides) are non-degenerate and non-relativistic.
-    Therefore, they obey Boltzmann statistics}
-\gray{Many subsections on the theory of screening.}
-
-
+\subsection{Parameterized \nuc{}}
 
 
 
@@ -391,44 +799,70 @@ In this section we recall the previous results obtained with \texttt{SkyNet} for
 \subsection{\rproc{} lanthanides production and heating rates in \acp{kN}}
 \red{On the lanthanides production, opacities and kilonova of BNS ejecta MODIFIED[]}
 
-\ac{BNS} or \ac{NSBH} mergers emit \acp{GW} \citep{TheLIGOScientific:2014jea} and eject a small amount of mass via dynamical processes \citep{Lattimer:1977}. 
+\ac{BNS} or \ac{NSBH} mergers emit \acp{GW} \citep{TheLIGOScientific:2014jea} and eject a small 
+amount of mass via dynamical processes \citep{Lattimer:1977}. 
 
 %% GRB
-%They also power short gamma-ray bursts (sGRB) (\textit{e.g.,} Lee and Ramirez-Ruiz, 2007; Nakar, 2007; Gehrels et al.,
-%2009). An example of such merger is the GW170817 event, a merger of two neutron stars that was observed as a source of graitatial waves, electromagnetic transient, Kilonova, and unusually dimm short, off-axis, sGRB. \cite{NEW PEOPLE}.
+They also power short gamma-ray bursts (sGRB) (\textit{e.g.,} Lee and Ramirez-Ruiz, 2007; Nakar, 2007; Gehrels et al.,
+2009). An example of such merger is the GW170817 event, a merger of two neutron stars that was observed 
+as a source of graitatial waves, electromagnetic transient, Kilonova, and unusually dimm short, off-axis, sGRB. \cite{NEW PEOPLE}.
 
 %% RADIO EMISSION (Ejecta)
-%\gray{The ejecta material, interaction with interstellar medium (ISM) results in an additional electromagnetic counterpart in primaraly, radio bnand, on a timescale of a few weeks. \cite{Nakar:2011cw} }
+\gray{The ejecta material, interaction with interstellar medium (ISM) results in an additional 
+electromagnetic counterpart in primaraly, radio bnand, on a timescale of a few weeks. \cite{Nakar:2011cw} }
 
-Neutron-rich material ejected during the merger, undergoes the \rproc{} \nuc{}, in which heavy nuclides, up to $A\sim 300$, are created. Subsequently, these unstable nuclides decay into the valley of stability after the neutron capture ceases, (see, \eg, \citet{Burbidge:1957} for the process description). 
+Neutron-rich material ejected during the merger, undergoes the \rproc{} \nuc{}, in which heavy nuclides, 
+up to $A\sim 300$, are created. Subsequently, these unstable nuclides decay into the valley of stability 
+after the neutron capture ceases, (see, \eg, \citet{Burbidge:1957} for the process description). 
 %
 Thus, \ac{BNS} and \ac{NSBH} mergers are one of the prime sources of the \rproc{} elements in the Universe \citep{Argast:2003he,Shen:2015,VanDeVoort:2015,Ramirez-Ruiz:2014fsa}, 
 
-The radioactive decay of unstable nuclides formed during decompression of the ejecta releases enough energy to power an \ac{EM} transient in optical and near infrared, that peaks on a timescale from hours to a week \citep{Li:1998bw,Kulkarni:2005jw,Metzger:2010,Kasen:2013xka,Tanaka:2013ana}. 
+The radioactive decay of unstable nuclides formed during decompression of the ejecta releases enough 
+energy to power an \ac{EM} transient in optical and near infrared, that peaks on a timescale from hours to a week
+\citep{Li:1998bw,Kulkarni:2005jw,Metzger:2010,Kasen:2013xka,Tanaka:2013ana}. 
 This transient is called "kilonova" \citep{Metzger:2010} or "macronova" \citep{Kulkarni:2005jw}. 
-Such transients were suspected for the events of \acp{GRB}, GRB130603B \citep{Tanvir:2013pia,Berger:2013wna} and GRB060614 \citep{Yang:2015pha,Jin:2015txa} as an excess in infrared afterglow, that is an indication of a \rproc{} material decay. 
-\red{In 2017 the Kilonova was directly observed, following the gravitational wave signal from merging neutron stars}. \red{[REFS]} 
+Such transients were suspected for the events of \acp{GRB}, GRB130603B \citep{Tanvir:2013pia,Berger:2013wna} 
+and GRB060614 \citep{Yang:2015pha,Jin:2015txa} as an excess in 
+infrared afterglow, that is an indication of a \rproc{} material decay. 
+\red{In 2017 the Kilonova was directly observed, following the gravitational 
+    wave signal from merging neutron stars}. \red{[REFS]} 
 
-Properties of the \ac{EM} counterpart to mergers sensibly depend on the ejecta geometry, mass, velocity and composition. These parameters differ for various types of ejecta. In case of \ac{DE}, two sub-components are usually considered with a cold one ejected tidally near the plane of the binary and \citep{Lattimer:1977,Freiburghaus:1999}, and a fast shock-heated one, squeezed out at the collision interface in polar direction \citep{Bauswein:2013yna,Hotokezaka:2013b}. 
-On a longer timescale if the merger results in the formation of a disk around the remnant, additional mass ejection from it continues via winds \citep{Fernandez:2013tya,Perego:2014fma,Just:2014fka}.
-Generally, the electron fraction of the ejecta depends on the weak interactions, in particular on the weak interaction timescale relative to the dynamical timescale.
-Thus, the tidal component of the dynamical ejecta would have low electron fraction \citep{Korobkin:2012uy}, the wind from the disk, irradiated by the neutrinos and heated up by shocks would have high $Y_e$ \citep{Just:2014fka,Richers:2015lma} and the shocked component of the \ac{DE} would take an intermediate value, depending on the energetic of the collision \citep{Wanajo:2014wha,Goriely:2015fqa}. 
+Properties of the \ac{EM} counterpart to mergers sensibly depend on the ejecta geometry, mass, 
+velocity and composition. These parameters differ for various types of ejecta. In case of \ac{DE}, 
+two sub-components are usually considered with a cold one ejected tidally near the plane of the binary and 
+\citep{Lattimer:1977,Freiburghaus:1999}, and a fast shock-heated one, squeezed out at the collision 
+interface in polar direction \citep{Bauswein:2013yna,Hotokezaka:2013b}. 
+On a longer timescale if the merger results in the formation of a disk around the remnant, 
+additional mass ejection from it continues via winds \citep{Fernandez:2013tya,Perego:2014fma,Just:2014fka}.
+Generally, the electron fraction of the ejecta depends on the weak interactions, in particular on 
+the weak interaction timescale relative to the dynamical timescale.
+Thus, the tidal component of the dynamical ejecta would have low electron fraction \citep{Korobkin:2012uy}, 
+the wind from the disk, irradiated by the neutrinos and heated up by shocks would 
+have high $Y_e$ \citep{Just:2014fka,Richers:2015lma} and the shocked component of the \ac{DE} would take an 
+intermediate value, depending on the energetic of the collision \citep{Wanajo:2014wha,Goriely:2015fqa}. 
 
-For the material with initial electron fraction $Y_e\leq 0.2$ the fission cycling in a strong \rproc{} makes final composition rather independent of the exact value of $Y_e$ \citep{Metzger:2010,Roberts:2011,Goriely:2011vg}. 
+For the material with initial electron fraction $Y_e\leq 0.2$ the fission cycling in a strong \rproc{} makes 
+final composition rather independent of the exact value of $Y_e$ \citep{Metzger:2010,Roberts:2011,Goriely:2011vg}. 
 If the $Y_e\in[0.2,0.3]$, however, the final composition of the outflow depends on the details of the incomplete \rproc{} \nuc{} \citep{Korobkin:2012uy,Grossman:2013lqa,Kasen:2014toa}
 
-As an adiabatic expansion of the outflow removes most of the initial energy of it, the \ac{EM} emission is powered by the decay of heavy elements \citep{Metzger:2010}. 
+As an adiabatic expansion of the outflow removes most of the initial energy of it, the \ac{EM} emission 
+is powered by the decay of heavy elements \citep{Metzger:2010}. 
 Properties of this emission, besides mass, velocity and heating rate of the outflow, depend also on its opacity. 
 
 % Properties of the electromagnetic emission also depends on the opacity of the emitting material, which in turn is set by its composition. 
 
 % This the composition of the ouflow at $\sim 1$~day, as well as mass and velocity, sets the nueclar heating rate and opacity of the material \cite{Li:1998bw}. 
 %
-It was shown that the presence of elements synthesized in \rproc{}, \eg, lanthanides and actinides can significantly increase it \citep{Kasen:2013xka,Tanaka:2013ana}. 
-This is due to their large atomic complexity, that allow for a number of transitions far in excess of those found in iron-group elements. 
-As the time of the luminosity peak of transients depend on when the material becomes transparent, the presence and the exact amount of lanthanides and actinides defines the observe properties of the \ac{kN} \citep{Barnes:2013wka,Tanaka:2013ana}. 
+It was shown that the presence of elements synthesized in \rproc{}, \eg, lanthanides and actinides 
+can significantly increase it \citep{Kasen:2013xka,Tanaka:2013ana}. 
+This is due to their large atomic complexity, that allow for a number of transitions far 
+in excess of those found in iron-group elements. 
+As the time of the luminosity peak of transients depend on when the material becomes transparent, 
+the presence and the exact amount of lanthanides and actinides defines the observe properties of the 
+\ac{kN} \citep{Barnes:2013wka,Tanaka:2013ana}. 
 %
-Thus, accurate modeling of the composition of the outflow is of prime importance for predicting the electromagnetic counterparts to mergers. 
+Thus, accurate modeling of the composition of the outflow is of prime importance 
+for predicting the electromagnetic counterparts to mergers. 
 
 
 %% --- CAN BE USED AS METHOD!!! 
@@ -448,20 +882,23 @@ Thus, accurate modeling of the composition of the outflow is of prime importance
 
 %% --- From Lippuner paper 
 
-Here a parameterized approach is adopted that allows for a systematic study of the effects of ejecta on the nucleosynthetic abundances and possible implication for \ac{EM} signals. 
+Here a parameterized approach is adopted that allows for a systematic study of the effects 
+of ejecta on the nucleosynthetic abundances and possible implication for \ac{EM} signals. 
 
 The expaniding outflow is described with three parameters:
 
 \begin{itemize}
-    \item Ejecta electron fraction $Y_e=N_p/N_B$, where $N_p$ and $N_B$ are the numbers of protons and baryons. The $Y_e$ is sampled uniformly between \red{$0.01$} and \red{$0.5$}. $Y_e$ above that is not favorable for \rproc{}.
+    \item Ejecta electron fraction $Y_e=N_p/N_B$, where $N_p$ and $N_B$ are the numbers of protons and baryons. 
+    The $Y_e$ is sampled uniformly between \red{$0.01$} and \red{$0.5$}. $Y_e$ above that is not favorable for \rproc{}.
     \item Ejecta specific entropy, $s$. It is sampled lorarithmically between $1$ and $100$ $k_B/\text{baryon}$.
-    \item Ejecta expansion timescale $\tau$. This quantity describes the ejecta expansion while it undergoes the nucleosynthesis. $\tau$ is sampled between \red{$0.1$ms and $500$ms} 
+    \item Ejecta expansion timescale $\tau$. This quantity describes the 
+    ejecta expansion while it undergoes the nucleosynthesis. $\tau$ is sampled between \red{$0.1$ms and $500$ms} 
     \item The density profile is chosen as following 
     \begin{equation}
         \rho(t) = 
         \begin{cases}
             \rho_0 \exp(-t / \tau) & \text{ if } t \leq 3\tau, \\
-            \rho_0 \Big(\frac{3\tau}{e t})^3 & \text{ if } t \geq 3\tau, 
+            \rho_0 \Big(\frac{3\tau}{e t}\Big)^3 & \text{ if } t \geq 3\tau, 
         \end{cases}
     \end{equation}
     where $\rho_0$ is the initial density and $e = 2.72$.
@@ -474,7 +911,7 @@ The expaniding outflow is described with three parameters:
 
 %% --- From our paper
 
-The details on how the parameterized \nuc{} tables were computed are described in \cite{Lippuner:2015gwa}
+The details on how the parameterized \nuc{} tables were computed are described in \citep{Lippuner:2015gwa}
 
 The nucleosynthesis calculations are performed in postprocessing
 following the same approach as in \cite{Radice:2016dwd,Radice:2018pdn}.
@@ -536,7 +973,9 @@ This was done in \eg,
 \citet{Goriely:2011vg,Korobkin:2012uy,Grossman:2013lqa,Wanajo:2014wha,Just:2014fka,Martin:2015hxa}.
 
 %% --- Uncertanties
-Note: the exact \rproc{} abundance pattern(at a $3$rd peak in particular) depends on the nuclear mass model, reaction rate and fission fragment distribution (\citep[\eg][]{Goriely:2004qb,Arcones:2010dz,Mumpower:2011ar,Mendoza-Temis:2014mja,Eichler:2014kma})
+Note: the exact \rproc{} abundance pattern(at a $3$rd peak in particular) depends on the 
+nuclear mass model, reaction rate and fission fragment distribution 
+(\citep[\eg][]{Goriely:2004qb,Arcones:2010dz,Mumpower:2011ar,Mendoza-Temis:2014mja,Eichler:2014kma})
 
 
 %% =======================================================
