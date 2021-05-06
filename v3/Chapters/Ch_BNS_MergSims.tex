@@ -1050,7 +1050,7 @@ the average electron fraction is lower as the strong neutrino emitter,
 %at low electron fraction as the neutrino emitted by the disk itself 
 %are the only source of neutrinos. 
 
-
+%\end{document}
 
 %% -----------------------------------------------
 %%
@@ -1210,14 +1210,14 @@ while the \swind{} could remove $10^{-2}\,\Msun$ on a timescale of a $\sim100$~m
         evolution as estimated in \citet{Radice:2018xqa}. The crosses are
         a linear extrapolation in time of the solid black line. The gray
         shaded region is the region of stability of rigidly rotating NS equilibria,
-        computed via \ac{RNS} code\footnote{
-            \url{http://www.gravity.phys.uwm.edu/rns/#:~:text=RNS%20is%20a%20code%20written,are%20supplied%20by%20the%20user.}
-        }
+        computed via \ac{RNS} code
         Adopted from \cite{Nedora:2020pak}
     }
     \label{fig:total_j_mb_rns_blh}
 \end{figure}
-
+%        \footnote{
+%            \url{http://www.gravity.phys.uwm.edu/rns/#:~:text=RNS%20is%20a%20code%20written,are%20supplied%20by%20the%20user.}
+%        }
 Quantitative understanding of the \pmerg{} dynamics on the timescales 
 longer than those presented here requires ab-initio \ac{NR} simulations in 
 $(3+1)D$ with compete physics.
@@ -1255,7 +1255,7 @@ We evaluate the amount of angular momentum lost to \acp{GW} following the
     \texttt{scidata}, available at \url{https://bitbucket.org/dradice/scidata}.
 }.
 %
-Substructed from the initial data \ac{ADM} angular momentum \red{(see \url{https://arxiv.org/pdf/1001.5429.pdf})} 
+Substructed from the initial data \ac{ADM} angular momentum %\red{(see \url{https://arxiv.org/pdf/1001.5429.pdf})} 
 we obtain the value that is left to the system after the \ac{GW} phase 
 (the yellow marker in Fig.~\ref{fig:total_j_mb_rns_blh}).
 %
@@ -1853,10 +1853,10 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
 
 \begin{figure}[t]
     \centering 
-    \includegraphics[width=0.50\textwidth]{ejecta_postdyn/ejecta_profiles_dd2_ls220_long.pdf}
+    \includegraphics[width=0.70\textwidth]{ejecta_postdyn/ejecta_profiles_dd2_ls220_long.pdf}
     \caption{Evolution of unbound mass for dynamical ejecta
         (dashed lines)
-        and \wind{}
+        and \swind{}
         (solid lines). $t=0$ marks the moment of merger, the vertical
         line marks the collapse time of the model with LS220 \ac{EOS}.
         Adapted from \cite{Nedora:2019jhl}.
@@ -1877,7 +1877,6 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
         peaks at ${\sim}0.3$ and it is distributed from $0.1$ to $0.4$.
         Adapted from \citet{Nedora:2020pak}.
     }
-    %
     \label{fig:ejecta:bern:hist}
 \end{figure*}
 
@@ -1912,76 +1911,87 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
 \input{Tables/tabWind.tex}
 %% --------------------------------
 
-The interaction between the \ac{MNS} remnant and the disk produces density waves, 
-that propagating outwards through the disk induce the outflow, 
+As we discussed above, the the interaction between the \ac{MNS} remnant and the disk 
+produces density waves, that propagating outwards through the disk and induce massive outflows, 
 the \ac{SWW} (see Sec.~\ref{sec:bns_sims:remdisk}).
 %
-The \ac{SWW} is the matter unbound according to the Bernoulli criterion 
+We track the \ac{SWW} as the matter unbound according to the Bernoulli criterion 
 (see Sec.~\ref{sec:bns_sims:method:ejecta}). Its calculation is turned on when
 the \ac{DE} mass flux stops, which on average corresponds to ${\sim10}$~ms \pmerg{} 
 %
+
+%\subsubsection{Spiral wave wind and the remnant lifetime}
+
+%
 First we consider two characteristic simulation that produce long- and short-lived
-remnants. Both models have $q=1.00$ and their \acp{EOS} respectively, are DD2 and LS220. 
+remnants. Simulations have $q=1.00$ and DD2 and LS220 \acp{EOS} respectively.
 We find that if the remnant is long-lived, total \ac{SWW} mass exceeds that of the \ac{DE},
 as shown also in Fig.~\ref{fig:mej:bern_short_long}.
 %
+%This is a simple consequence of the fact the \ac{SWW} mass flux continues for as long as 
+%remnant survives.
+%
+The inclusion of turbulent viscosity alters all the ejecta masses with an
+additional component \cite{Radice:2018ghv} and, for the viscosity parametrization we
+have considered, it enhances the DD2 \ac{SWW} mass by ${\sim}25$\%. \red{Letter stuff. Not sure if true}
+ac factor that exceeds the resolution effects.
+%
+Specifically, we find that the ejecta mass increases by ${\sim}+15\%$ and ${\sim}+8\%$, 
+when the resoltuion increases from LR to SR and from SR to HR respectively.
+Hence, finite grid effects tend to increase mass. A similar analysis on the average 
+electron fraction and velocity indicate variations below $4\%$.
+% --- Repetition below
+%The angular distribution of the \ac{SWW} resembles that of the \ac{DE} and is 
+%largely equatorial, as shown in Fig.~\ref{fig:ej_properties}. 
+%%
+%The velocity distribution,
+%however, is rather different with a narrow peak around $0.1-0.2\,$c, depending on the 
+%stiffness of the \ac{EOS}. Notably, properties of the \ac{SWW} are sensitive to the 
+%lifetime of the remnant, as at early times they are modified by the trace presence of the 
+%\ac{DE} and not-yet-relaxed \pmerg{} environment.
+%%
+%The electron fraction of the \ac{SWW} also shows a narrow distribution with a peak 
+%at ${\geq}0.25$, which is considerably higher than that of the \ac{DE}. 
+%Notably, the electron fraction is lower if the remnant is short-lived as it 
+%disks around NS remnants are less compact, colder, and optically thicker than those 
+%around black holes~\citep{Perego:2019adq}, the outer layers of the DD2 disk have a
+%lower $Y_e$ than the LS220 disk and so does the \ac{SWW} coming from those layers.
 
-\gray{
-    %% From Letter
-    The long lived NS remnant (DD2) develops a \ac{SWW} more massive than the dynamical ejecta,
-    as shown also in Fig.~\ref{fig:ej_properties}.
-    The \ac{SWW} mass is larger the longer the remnant survives and 
-    the more massive the disks are. It continues as long as as the 
-    remnant does not collapse and the spiral modes persist.
-    Thus, binary mass asymetry can enhance the \ac{SWW}
-    as we find in simulations discussed elsewhere [In Prep.].
-    The inclusion of turbulent viscosity alters all the ejecta masses with an
-    additional component and, for the viscosity parametrization we
-    have considered, it enhances the DD2 \ac{SWW} mass by ${\sim}25$\%.
-    %
-    The viscosity effect is larger than resolution effects.
-    Comparing data at different grid resolutions we find that the
-    largest variation is in the wind mass. The relative variation
-    of mass from data pairs at increasing resolutions is ${\sim}+15\%$
-    (LR-SR) and ${\sim}+8\%$ (SR-HR). Hence, finite grid effects tend to
-    increase mass. A similar analysis on the average electronfraction
-    and velocity indicate variations below $4\%$.
-    % 
-    The \ac{SWW} has an angular distribution of mass similar to the
-    dynamical ejecta with material mostly confined to the orbital plane,
-    as shown by the histograms in Fig.~\ref{fig:ej_properties}.
-    On the contrary, the velocity profiles show a drastic difference
-    between the two ejecta components. While the dynamical ejecta has a
-    broad velocity distribution \citep{Hotokezaka:2012ze,Bauswein:2013yna,Radice:2018pdn}, the 
-    \ac{SWW} velocity is narrowly distributed around  
-    $0.2$c in the case of a long-lived remnant (DD2).
-    The \ac{SWW} from the short-lived
-    remnant (LS220) has a broader velocity distribution extending down to
-    $0.1$c.
-    This is due to the spiral-wave shutting down and the disk
-    transition to a more steady accretion. As a consequence, the \ac{SWW}
-    ceases but ejecta continue as a slower disc wind driven
-    by nuclear recombination solely.
-    The electron fraction of the \ac{SWW} has a
-    narrower distribution than the dynamical ejecta in both
-    cases. But because disks around NS remnants are less compact, 
-    colder, and optically thicker than those around black
-    holes~\citep{Perego:2019adq}, the outer layers of the DD2 disk have a 
-    lower $Y_e$ than the LS220 disk and so does the \ac{SWW} coming from
-    those layers.
-    While the \ac{SWW} is generic in its hydrodynamics origin, the
-    quantification of its properties relies on the accurate microphysics and
-    neutrino treatment in our simulations.
-}
+%\gray{
+%    %% From Letter
+%    The \ac{SWW} has an angular distribution of mass similar to the
+%    dynamical ejecta with material mostly confined to the orbital plane,
+%    as shown by the histograms in Fig.~\ref{fig:ej_properties}.
+%    On the contrary, the velocity profiles show a drastic difference
+%    between the two ejecta components. While the dynamical ejecta has a
+%    broad velocity distribution \citep{Hotokezaka:2012ze,Bauswein:2013yna,Radice:2018pdn}, the 
+%    \ac{SWW} velocity is narrowly distributed around  
+%    $0.2$c in the case of a long-lived remnant (DD2).
+%    The \ac{SWW} from the short-lived
+%    remnant (LS220) has a broader velocity distribution extending down to
+%    $0.1$c.
+%    This is due to the spiral-wave shutting down and the disk
+%    transition to a more steady accretion. As a consequence, the \ac{SWW}
+%    ceases but ejecta continue as a slower disc wind driven
+%    by nuclear recombination solely.
+%    The electron fraction of the \ac{SWW} has a
+%    narrower distribution than the dynamical ejecta in both
+%    cases. But because disks around NS remnants are less compact, 
+%    colder, and optically thicker than those around black
+%    holes~\citep{Perego:2019adq}, the outer layers of the DD2 disk have a 
+%    lower $Y_e$ than the LS220 disk and so does the \ac{SWW} coming from
+%    those layers.
+%    While the \ac{SWW} is generic in its hydrodynamics origin, the
+%    quantification of its properties relies on the accurate microphysics and
+%    neutrino treatment in our simulations.
+%}
 
-
-
-
-
+% \subsubsection{Spiral wave wind for all models}
 
 We report the overall properties of the \ac{SWW} for all the models with the 
 long-lived \ac{MNS} remnant that were also evolved for a sufficiently long time 
 in the Tab.~\ref{tab:spiralwavewind}. 
+%
 The time evolution of the total mass of the \ac{SWW} is shown in the Fig.~\ref{fig:mej:bern}.
 We observe that in all simulations \acp{SWW} persists till end without saturation.
 This is because the outflow is driven by the angular momentum and mass transport 
@@ -1989,38 +1999,38 @@ induced by the dynamical instabilities in the remnant, the $m=1,2$ modes, discus
 above. And as the $m=1$ modes are not efficiently damped \citep{Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,East:2016zvv},
 the \ac{SWW} could theoretically continue until the system collapses to a \ac{BH} 
 or reaches the equilibrium (Sec.~\ref{sec:bns_dynsmics_overview}).
-
+%
 The strongest \ac{SWW} is found in binaries with $q>1$, such as 
-$q=1.67$ and LS220 $q=\red{1.4}$. 
+$q=1.67$ and LS220 \ac{EOS} $q=\red{1.4}$. 
 With the mass-loss rate ${\sim}0.5\, \Msun/{\text{s}}$, these models can eject 
 ${\sim}0.02\,\Msun$ within ${\sim}50$~ms of \pmerg{} evolution.
-We find that as the \ac{EOS} becomes softer, lower \mr{} is needed to achieve high 
+We find that as the \ac{EOS} becomes softer, lower \mr{} is needed to achieve high  % contradiction with [1]
 mass flux. For instance, the \ac{SWW} mass flux for BLh* $q=1.66$ is achieved by the 
-model LS220* with $q=1.22$. 
-A possible explanation for this is that the models with softer \ac{EOS} have stronger 
+model LS220* $q=1.22$. 
+A possible explanation for this is that the models with softer \acp{EOS} have stronger 
 $m=1$ modes in the remnant (see Sec.~\ref{sec:bns_sims:remdisk}).
 When \ac{MNS} remnant collapses to a \ac{BH} and the mechanism that injects angular 
 momentum into the disk shuts down, the \ac{SWW} mass flux subsides. 
-Thus, the total ejected mass via \ac{SWW} is directly related  o the lifetime of the 
+Thus, the total ejected mass via \ac{SWW} is directly related to the lifetime of the 
 \ac{MNS} remnant, an addition to the binary parameters, \ac{EOS} and \mr{}.
-
+%
 The \ac{SWW} mass flux depends on the disk configuration, as more extended disks 
 have outer layers that are less gravitationally bound. In turn, the disk 
 configuration is dependent on the thermal effects. Higher temperature leads to 
 stronger thermal pressure that increases the disk size. 
 However, the dependency of the \ac{SWW} mass flux on the stiffness of the \ac{EOS} 
-appears to be stronger, as the stiffer \ac{EOS} leads to a more massive disk 
-(Sec.~\ref{sec:overview}). More simulations with longer postmerger evolution are needed 
+appears to be stronger, as the stiffer \ac{EOS} leads to a more massive disk  % contradiction with [1]
+(Fig.~\ref{fig:disk_mass_evo}). More simulations with longer postmerger evolution are needed 
 to make a quantitative assessment. 
 Overall the \swind{} from the long-lived remnant has a mass flux $\geq 0.4\, \Msun/{\text{s}}$.
 
 We find that the properties of the \ac{SWW} depend only weakly on the binary parameters,
 \mr{} and \ac{EOS}. The mass-histograms of the wind angular distribution, velocity and 
-electron fraction are displayed in Fig.~\ref{fig:ejecta:bern:hist}. 
+electron fraction are displayed in Fig.~\ref{fig:ejecta:bern:hist} for representative models. 
 The angular distribution of the \ac{SWW} is similar to that of the \ac{DE}. The ejecta 
 has a broad distribution around the binary plane.
 The \ac{SWW} has a high average electron fraction, with the overall 
-broad distribution of $0.1\lesssim \ayw\lesssim0.4$ that peaks at ${\sim}0.35$.
+broad distribution of $0.1\lesssim \ayw\lesssim0.4$ that peaks at ${\simeq}0.35$.
 The low electron fraction material originates primarily at early times, when the 
 material did not have enough time to be processed by neutrinos and before the 
 outflow reaches quasi-steady state.
@@ -2059,26 +2069,22 @@ should be associated to a stiff \ac{EOS}.
     \label{fig:slice:heating_hu}
 \end{figure*}
 
-In this section we investigate in detail the 
-high electron fraction, polar component of the \acp{SWW}.
-We propose that this outflow is mostly driven by the neutrino 
+In this section we focus on the high electron fraction, polar component of the 
+\acp{SWW}. We propose that this outflow is mostly driven by the neutrino 
 reabsorption, rather than by the dynamical mechanism responsible for the bulk of the 
-\ac{SWW}.
-
+\ac{SWW}. We consider the feducial model BLh $q=1.00$ (SR). 
+%
 The presence of the baryonic winds developing on the timescale of $\mathcal{O}(10)$~ms
 and driven by the neutrino absorption above the remnant, where the neutrino flux is strong 
 was reported before \citep[\eg][]{Perego:2014fma}. 
-
-In this section we focus of the feducial model BLh $q=1.00$ (SR). 
-
+%
 In the left column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
-the the Bernoulli parameter, 
-$-hu_t$ (see Sec.\ref{sec:method:Bernoulli}), and the fluid electron 
-fraction. 
-
+the the Bernoulli parameter, $-hu_t$ (see Sec.\ref{sec:bns_sims:method:ejecta}), and the fluid 
+electron fraction. 
+%
 In the right column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
 the the Bernoulli parameter with the heating energy rate due to electron anti-neutrino absorption 
-$Q_{\text{abs};\:\bar{\nu}_e}$ (see Sec.~\ref{method:M0:eq_for_Q}) divided by with 
+$Q_{\text{abs};\:\bar{\nu}_e}$ (see Sec.~\ref{sec:nr_methods:neut}) divided by with 
 $D=W\rho\sqrt{\gamma}$ (fluid's conserved rest-mass density)
 We observe that the electron fraction in the polar region with angle 
 from binary plane $\theta>60^{\circ}$ reaches $Y_e\sim0.35$ due to the absorption of 
@@ -2086,9 +2092,9 @@ electron-type neutrinos.
 The strongest neutrino heating occurs in the vicinity of the remnant at densities 
 $\rho\sim10^{11}$~\gcm, that roughly correspond to the region where neutrinos decouple,
 the so-called neutrinosphere \citep{Endrizzi:2019trv}.
-
+%
 In Fig.~\ref{fig:slice:heating_hu} we compare the Bernoulli parameter, 
-$-hu_t$ (see Sec.\ref{sec:method:Bernoulli}), that is always plotted 
+$-hu_t$ (see Sec.\ref{sec:bns_sims:method:ejecta}), that is always plotted 
 on the right half of a panel, with the electron fraction (left 
 column of plots and heating energy rate due to electron anti-neutrino absorption 
 $Q_{\text{abs};\:\bar{\nu}_e}$ divided by with $D=W\rho\sqrt{\gamma}$ 
@@ -2096,27 +2102,27 @@ $Q_{\text{abs};\:\bar{\nu}_e}$ divided by with $D=W\rho\sqrt{\gamma}$
 The observed correlation between the $E_\nu/D$ \red{???} and $-h u_t$ further suggests, 
 that the outflow around the polar axis is driven by the neutrino absorption. 
 Additionally, we found that if the neutrino absorption is not included into the 
-simulation, \eg, using leakage only, the \nwind{} is absent. 
-%% --- 
+simulation, \eg, using leakage only, the \nwind{} is absent. \red{bullshit}
+%
 The collimated polar outflow can be further boosted and stabilized by the presence of the 
 strong magnetic fields \citep{Bucciantini:2011kx,Ciolfi:2020hgg,Mosta:2020hlh}.
-%% ---
+%
 Notably, there is not clear distinction between the \nwind{} and \ac{SWW}, especially 
 at the intermediate latitudes ($\theta \sim 45^{\circ}$), where both mechanisms types of 
 ejecta are present, and both, neutrino absorption and dyanmical effects driving the \ac{SWW} 
 are contributing. 
-%% --- 
-In order to compute the mass flux of the \nwind{} an additional criterion is required. 
-We consider two physically motivated criteria, the geometrical, flaggin the part of the \ac{SWW} 
-and \nwind{} if it is polar, \ie, $\theta>60^{\circ}$, and the composition criterion, $Y_e > 0.35$.
-%% --- 
+%
+In order to compute the mass flux of the \nwind{} we impose an additional to the Bernoulli, criteria.
+We consider two physically motivated options, the geometrical, flagging the part of the \ac{SWW} 
+as \nwind{} if it is polar, \ie, $\theta>60^{\circ}$, and the composition criterion, if $Y_e > 0.35$.
+%
 We find that the \nwind{} is not a steady state outflow, contrary to the bulk of the \ac{SWW}.
 After the initial strong rise, the mass flux rapidly decays in time, and for most models stops 
 by the end of the simulations. This behaviour is independent of the criterion we use. 
-We attribute it to the rise of the baryon loading above the remnant as the material gets lifted 
+We attribute this to the rise of the baryon loading above the remnant as the material gets lifted 
 by thermal pressure from the disk.
 The total mass of the \nwind{} is ${\sim}10^{-3}-10^{-4}M_{\odot}$. Its properties resemble those 
-reported in e.g. \citet{Dessart:2008zd,Perego:2014fma,Fujibayashi:2020dvr}
+reported in \eg, \citet{Dessart:2008zd,Perego:2014fma,Fujibayashi:2020dvr}.
 Notably, in some of the works, the \nwind{} was found to require longer timescales to develop, 
 achieving the quasi-steady state. 
 This can be attributed to the strict criteria to isolate the \nwind{} and by the absence of the 
