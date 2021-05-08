@@ -1,82 +1,11 @@
-% Chapter Template
+%%%% --------------------------------------------------------------------------
+%%
+%%          K I L O N O V A
+%%
+%%%% --------------------------------------------------------------------------
+\chapter{Kilonova} \label{ch:kilonova} 
 
-\chapter{Chapter Title Here} % Main chapter title
-
-\label{ch:kilonova} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-
-
-
-
-
-Nuclides, synthesized in \rproc{} are very neutron rich and unstable (see chapter~\ref{ch:nucleo}). 
-After the last fission cycle, they decay to the valley of stability. 
-This process takes from hours to days and released energy can power an 
-\ac{EM} transient, called \ac{kN} or Macronova  
-\citep[\eg][]{Li:1998bw,Kulkarni:2005jw,Metzger:2010,Roberts:2011,Metzger:2016pju,Wollaeger:2017ahm}
-%
-In 2017 such \ac{EM} signal, \AT{}, was detected after the \ac{GW} trigger, \GW{}
-\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,LIGOScientific:2018mvr}.
-It confirmed that indeed, \rproc{} nucleosynthesis takes place in the ejecta from merger 
-of compact objects, in that case of two \ac{NS} 
-\citep{Arcavi:2017xiz,Coulter:2017wya,Drout:2017ijr,Evans:2017mmy,Hallinan:2017woc,Kasliwal:2017ngb,
-    Nicholl:2017ahq,Smartt:2017fuw,Soares-santos:2017lru,Tanvir:2017pws,
-    Troja:2017nqp,Mooley:2018dlz,Ruan:2017bha,Lyman:2018qjg}. 
-% [RED]
-\ac{kN} has a complex observational signature due to different ejecta components with various 
-compositions contribution to it. In particular, it was shown that if produced, 
-lanthanides $(58\leq Z \leq71)$ and actinides $(90\leq Z \leq 103)$, that have an open $f$-shell 
-and hence a multitude of absorption lines, increases the opacity of emitting region by a factor of $10$. 
-These elements are produced only if electron fraction of the ejecta was sufficiently low, 
-$Y_e\leq 0.25$ \citep{Lippuner:2015gwa}, present for example in a tidal component of dynamical ejecta. 
-High opacity would imply that a transient is dim $(\sim10^{40})$ erg s$^{-1}$ and peak around a 
-weak after merger in the red/infrared band \citep{Barnes:2013wka,Grossman:2013lqa,Lippuner:2015gwa}. 
-% [BLUE]
-If the ejecta electron fraction is high, $Y_e \geq 0.25$, weak $r$-process would produce a small amount 
-of lanthanides and the opacity of the emitting region would thus be lower. The kilonova signal originating 
-from such ejecta would be bright and peak on a timescale of a few days in blue band \citep{Kasen:2014toa,Martin:2015hxa}. 
-%
-Indeed, both blue and red components were observed in the case of \AT{}, that confirmed the general picture
-\citep[\eg][]{Villar:2017wcc}. However, estimated mass of the ejecta required to explain the red component 
-is larger then what is predicted by numerical relativity simulations \red{refs}. It is believed that the most 
-contribution to this component comes from the low $Y_e$, slow but massive outflow 
-from the degenrate disk on a secular timescale \red{refs}.
-%
-In a high velocity tale of the \ac{DE}, the neutrons might avoid being captuired on a seed nuclide and freely 
-decay, producing a short, a few hours, and bright \ac{UV} precursor \citep{Metzger:2014yda}. 
-Unfortunately, in case of \AT{}, the \ac{EM} followup started \red{11} hours after the \ac{GW} detection.
-%
-See Figure 6 from \cite{Metzger:2016pju} for an examples of lightcurves of Kilonova and precursor.
-%
-%A very high energy emission from the non-thermalized radiation is weak and can be 
-%detected only for a sufficiently close event \cite{Hotokezaka:2015cma}.
-% 
-Notably, prior to \AT{}, the were candidates to based on the detection of \ac{SGRB}, \eg, 
-GRB130603B, \citep{Berger:2013wna,Tanvir:2013pia}, 
-GRB060614 \citep{Jin:2015txa,Yang:2015pha}, 
-GRB050709 \citep{Jin:2016pnm}. 
-However the exact nature of the observed signals were not strongly confirmed. 
-%
-The search for \ac{EM} counterparts to mergers continues, involving observatories around the world \citep{Law:2009,Singer:2014qca,Bellm:2014,Kasliwal:2016uhu}.
-%
-\red{motivation why it is important to model nucleosynthesis}
-
-
-\red{Subsection of GRBs}
-\cite{Lee:2007js,Nakar:2007yr,Gehrels:2009,Fernandez:2015use}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In this chapter we review the thermal counterpart to \ac{BNS} mergers 
 
 %% =====================================================================================
 %%
@@ -86,48 +15,149 @@ The search for \ac{EM} counterparts to mergers continues, involving observatorie
 
 \section{Introduction}
 
-%% Based on the Barns Thesis 
-\red{this is based on the Barnes PhD thesis on Opacities for Kilonva (Rad.Transport)}
-\red{Based on Metzger paper }
 
-The decay of the \rproc{} elements releases energy, that thermalizes in the ejecta 
-and lead to the observed \ac{EM} transient, the kilonova \citep[\eg][]{Metzger:2016pju}.
+
+Nuclides, synthesized in \rproc{} are very neutron rich and unstable. After the last 
+fission cycle, they decay to the valley of stability (see chapter~\ref{ch:nucleo}). 
 %
-This is day-to-week long, thermal, supernovae-like transient, powered by the 
-radioactive decay of heavy, neutron rich elements, synthesized in the expanding 
-merger ejecta \citep{Li:1998bw}. They accompany \ac{BNS} and \ac{NSBH} 
-(where ejecta os present) mergers and surve as a probe of origin of heaviest
- elements in the universe \citep{Metzger:2010}.
+%This process takes from hours to days and released energy 
+%can power an \ac{EM} transient, called \ac{kN} or Macronova  
+%\citep[\eg][]{Li:1998bw,Kulkarni:2005jw,Metzger:2010,Roberts:2011,Metzger:2016pju,Wollaeger:2017ahm}
 %
-During the \ac{BNS} mergers, the neutron-rich material is ejected (see Chapter \ref{ch:bns_sims} for details).
-The conditions of the eject are such that they allow for the \rproc{}, that produces heavy elements 
-far from the valley of stability (see Chapter \ref{ch:nucleo} for details).
-\citet{Li:1998bw} suggested that an \ac{EM} transient can be powered by the radioactive decay 
-of the material ejected in \ac{BNS} or \ac{NSBH} mergers. They also showed that contrary to the normal \acp{SN}, 
-the ejecta would quickly become transparent to its own emission, peaking on a timescale of around a few days. 
-The main difficulty in this pioneering work was the lack of a \ac{nuc} model to 
-model to estimate the radioactive heating of the ejecta. 
+%
+%During the \ac{BNS} mergers, the neutron-rich material is ejected 
+%(see Chapter \ref{ch:bns_sims} for details). The conditions of the eject are such that they allow 
+%for the \rproc{}, that produces heavy elements far from the valley of stability (see Chapter 
+%\ref{ch:nucleo} for details) 
+Li et al., \citep{Li:1998bw} suggested that an \ac{EM} transient can be powered by the radioactive 
+decay of the material enriched with \rproc{} elements, ejected in \ac{BNS} or \ac{NSBH} mergers. 
+They also showed that contrary to the normal \acp{SN}, the ejecta would quickly become transparent 
+to its own emission, peaking on a timescale of around a few days. The main difficulty in this 
+pioneering work was the lack of a \ac{nuc} model to model to estimate the radioactive heating of the 
+ejecta. 
+%
+The understanding of \ac{kN} has significantly improved since then
+\citep[\eg][]{Kulkarni:2005jw,Metzger:2010,Roberts:2011,Metzger:2016pju,Wollaeger:2017ahm}
+%
+but the only unambiguous detection of \ac{kN} so far, was the thermal transient, \AT{}, 
+\citep{Coulter:2017wya,Chornock:2017sdf,Nicholl:2017ahq,Cowperthwaite:2017dyu,Tanvir:2017pws,Tanaka:2017qxj}
+that was observed after the \ac{GW} trigger, \GW{}, 
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,LIGOScientific:2018mvr}.
+%
+This observation provided evidences that the ejection of neutron-rich matter from compact 
+binary mergers is one of the primary site for \rproc{} nucleosynthesis 
+%\citep{Lattimer:1974slx,Li:1998bw,Kulkarni:2005jw,Rosswog:2005su,Metzger:2010,Roberts:2011,Kasen:2013xka}.
+\citep{Arcavi:2017xiz,Coulter:2017wya,Drout:2017ijr,Evans:2017mmy,Hallinan:2017woc,Kasliwal:2017ngb,
+    Nicholl:2017ahq,Smartt:2017fuw,Soares-santos:2017lru,Tanvir:2017pws,
+    Troja:2017nqp,Mooley:2018dlz,Ruan:2017bha,Lyman:2018qjg}. 
+%The \ac{kN} is the \ac{EM} \ac{UV}/optical/\ac{NIR} transient, powered by the 
+%radioactive decay of the elements synthesized via \rproc{} in expanding ejecta.
+%
+The peak in \ac{NIR} band of \AT{} occurred several days after the merger \citep{Chornock:2017sdf}.
+It is generally consistent with emission from the high opacity material, with a sizable 
+fraction of lanthanides \citep{Kasen:2013xka}
+%
+The peak in \ac{UV}/optical band, however, occurred in less than one day after the merger 
+\citep{Nicholl:2017ahq}. This requires the opacity of the material to be sufficiently low, 
+suggesting that only partial \rproc{} \nuc{} took place in the corresponding ejecta 
+\citep{Martin:2015hxa}.
+%
+These observations that material with distinctly different properties contributed to the emission.
+%
+% [RED]
+%\ac{kN} has a complex observational signature due to different ejecta components with various 
+%compositions contribution to it. 
+In particular, it was shown that if produced, 
+lanthanides $(58\leq Z \leq71)$ and actinides $(90\leq Z \leq 103)$ with their open $f$-shell 
+and hence a plethora of absorption lines, increase opacity of emitting region by a factor of $10$. 
+%
+These elements are produced only if electron fraction of the ejecta was sufficiently low, 
+$Y_e\leq 0.25$ \citep{Lippuner:2015gwa}, present for example in a tidal component of \ac{DE}. 
+High opacity would imply that a transient is dim $(\sim10^{40})$ erg s$^{-1}$ and peak around a 
+weak after merger in the red/infrared band \citep{Barnes:2013wka,Grossman:2013lqa,Lippuner:2015gwa}. 
+%
+% [BLUE]
+If the ejecta electron fraction is high, $Y_e \geq 0.25$, weak \rproc{} would produce a small amount 
+of lanthanides and the opacity of the emitting region would thus be lower. The kilonova signal originating 
+from such ejecta would be bright and peak on a timescale of a few days in blue band 
+\citep{Kasen:2014toa,Martin:2015hxa}. 
+%
+%
+Indeed, both and red components were observed in the case of \AT{}, that confirmed the general 
+picture \citep[\eg][]{Villar:2017wcc}. However, estimated mass of the ejecta required to explain 
+the red component is larger then what is predicted by numerical relativity simulations \red{refs}. 
+It is believed that the most contribution to this component comes from the low $Y_e$, slow but 
+massive outflow from the degenrate disk on a secular timescale \red{refs}.
+%
+Semi-analytic two-components (red and blue) spherical \ac{kN} models to the \AT{} observations 
+provided estimates for the ejecta properties for these two components. 
+%
+Specifically, for the langhinide poor (rich) \ie, blue (red) components, the required mass is 
+$2.5\times10^{-2}M_{\odot}$ ($5.0\times10^{-2}M_{\odot}$) and velocity $0.27$c ($0.15$c)
+\citep{Cowperthwaite:2017dyu,Villar:2017wcc}. 
+See however \citep{Waxman:2017sqv} for an alternative interpretation.
+See also \citep{Siegel:2019mlp} for the compiled data on the \ac{kN} models.
+%
+Similar estimates are obtained with $1$D radiation transport \ac{kN} models
+\citep{Tanvir:2017pws,Tanaka:2017qxj}.
+%
+%A very high energy emission from the non-thermalized radiation is weak and can be 
+%detected only for a sufficiently close event \cite{Hotokezaka:2015cma}.
+% 
+Notably, prior to \AT{}, there were other candidates based on the detection of \ac{SGRB}, 
+with infrared excess \eg, 
+GRB130603B, \citep{Berger:2013wna,Tanvir:2013pia}, 
+GRB060614 \citep{Jin:2015txa,Yang:2015pha}, 
+GRB050709 \citep{Jin:2016pnm}.
+GRB200522A \citep{WRONG}  Bruni:2021ilp
+However the exact nature of the observed signals were not well constrained. 
+%
+The search for \ac{EM} counterparts to mergers continues, involving observatories around the world 
+\citep{Law:2009,Singer:2014qca,Bellm:2014,Kasliwal:2016uhu}.
+%
+
+
+
+\section{Modeling the \ac{kN} emission}
+
+The way to model \ac{EM} emission from the stratified, asymmetric ejecta is to perform 
+multi-dimensional, multi-group radiative transfer simulation coupled to \ac{HD} (or \ac{MHD}) 
+simulation of the ejecta itself \cite[\eg][]{Bulla:2019muo}.
+%
+It is however possible to compute the bolometric properties considering the total amount 
+of energy released and emitted by radioactive decay within ejecta. 
+
+%
+%Here a simplified model is considered of a transient, powered by the radioactive decay 
+%within the ejecta only. Several other assumptions are made. In particular, the ejecta 
+%expansion is homologous (faster matter ahead of slow one) \citep{Rosswog:2013kqa}. %%{(Rosswog et al 2014)}
+%
+%\red{this is based on the Barnes PhD thesis on Opacities for Kilonva (Rad.Transport)}
+%\red{Based on Metzger paper }
 
 
 %% --------------------------
 %% SIMPLE MODEL
 %% --------------------------
 
-Consider the following simplified approach to compute the \ac{EM} signal from \rproc{}
-elements enriched ejecta. Let the total energy release by the radioactive decay of isotopes 
-'$i$' be $\dot{Q}_i \propto \exp(-t/\tau_i)$, where is $\tau_i$ is the half-life. If $\tau$ 
+%\subsubsection{Basic ingredients}
+
+%Consider the following simplified approach to compute the \ac{EM} signal from \rproc{}
+%elements enriched material. 
+Let the total energy release by the radioactive decay of isotopes '$i$' be 
+$\dot{Q}_i \propto \exp(-t/\tau_i)$, where is $\tau_i$ is the half-life. If $\tau$ 
 are distributed equally per logarithmic time (at any $t$ the dominant species have $\tau\sim t$), 
 the heating rate of the ejecta at time $t$ is
 %
-\begin{equation}
-\dot{Q}_{LP} = \frac{f M c^2}{t}
-\end{equation}
+%\begin{equation}
+$\dot{Q}_{LP} = f M c^2 / t$,
+%\end{equation}
 %
 where $f$ is free parameter and $M$ is the ejecta mass.
 %
 Note, however that in general heating is time-dependent as thermodynamic histories of the expanding 
 ejecta (from \ac{NR} simulations) showed \citep{Metzger:2010,Roberts:2011,Korobkin:2012uy}.
-See also \citet{Hotokezaka:2017dbk} for the discussion on physical principles behind this decay.
+See also \citet{Hotokezaka:2017dbk} for the discussion on physical principles behind the decay.
 %
 %In addition, provided by \citet{Li:1998bw}, normalization $f$ resulted in overestimation of the peak 
 %luminosity of the \ac{kN}, that plagued the \ac{kN} searches for a decade 
@@ -137,8 +167,8 @@ The first self-consistent estimation of the heating rates based on the \ac{NRN} 
 of the \rproc{} in the ejecta, carried out by the \citet{Metzger:2010}. The authors showed that the base 
 on the dynamical ejecta \ac{EM} transient is $\sim10^3$ times brighter then nove -- hence, the term, kilonova. 
 It was also shown the ejecta electron fraction does not affect the heating rates considerably, 
-and performed the first estimations of the thermalization efficiency of decay products. 
-\red{ can be linked to the TE section/appendix from PhD}
+and performed the first estimations of the thermalization efficiency of decay products. \red{see methods...}
+%\red{ can be linked to the TE section/appendix from PhD}
 %
 The term macronova was however coind by \citet{Kulkarni:2005jw} who considered a transient powered by the 
 decay of radioactive $^{56}$Ni and free neutrons. However, as it was shown later, $^{56}$Ni can only be 
@@ -147,7 +177,7 @@ formed in small quantities on the outskirts of the ejecta.
 Besides the intricate radioactive heating rates, determining the ejecta opacity presents a 
 formidable challenge. The general lack of experimental data and numerical models of the singly 
 and doubly ionized heavy \rproc{} elements opacity, complicates the issue. Initially, gray iron 
-group opacities, used by supernovae community, were adopted \citep{Roberts:2011}. However, it was 
+group opacities, used by \acp{SN} community, were adopted \citep{Roberts:2011}. However, it was 
 shown later that this is an underestimation of the \rproc{} elements opacities \citep{Kasen:2013xka}. 
 The high line density and complex atomic structures of lanthanides and actinides can raise their 
 opacities significantly. This was later confirmed by \citep{Tanaka:2013ana}. Higher opacities shift 
@@ -155,19 +185,28 @@ the peak time to later times ${\sim}1$~weak \citep{Barnes:2013wka}
 and shift the spectral peak from optical/UV to \ac{NIR}.
 
 
-\subsection{Basic model of the \ac{kN}}
-
-Consider a shell of an ejecta, expanding with constant velocity, $\upsilon$, such that 
-$R\approx\upsilon t$ at any point in time $t$. Assume spherical symmetry, justified by 
-ejecta previous lateral expansion \citep{Roberts:2011,Grossman:2013lqa,Rosswog:2013kqa}
+%\subsection{Basic model of the \ac{kN}}
 %
-Assume further that the ejecta is hot.
-The thermal energy is not immediately radiated away due to high optical depth and long diffusion timescales:
+Next, consider a shell of an ejecta, expanding with constant velocity, $\upsilon$, such that 
+$R\approx\upsilon t$ at any point in time $t$. 
+For simplicity, we also assume spherical symmetry\footnote{
+    Commonly adopted in early works in \acp{kN} \citep[\eg][]{Roberts:2011,Grossman:2013lqa,Rosswog:2013kqa},
+    this assumption is generally not accurate due to  complex geometry of material ejected in \ac{BNS} mergers 
+    (see chapter \ref{ch:bns_sims} for details).
+}
 %
-\begin{align}
-\tau &= \rho \kappa R = \frac{3}{4}\frac{M\kappa}{4\pi R^2}\\ 
-t_{diff} &\approx \frac{R}{c}\tau = \frac{3}{4}\frac{M\kappa}{4\pi c R} = \frac{3}{4}\frac{M\kappa}{\pi c \upsilon t}
-\end{align}
+Assume further that the ejecta is hot and that the the thermal energy is not immediately 
+radiated away due to high optical depth and long diffusion timescales given by 
+%
+\begin{equation}
+    \tau = \rho \kappa R = \frac{3}{4}\frac{M\kappa}{4\pi R^2} \hspace{5mm} 
+    t_{diff} \approx \frac{R}{c}\tau = \frac{3}{4}\frac{M\kappa}{4\pi c R} = \frac{3}{4}\frac{M\kappa}{\pi c \upsilon t}
+\end{equation}
+%
+%\begin{align}
+%\tau &= \rho \kappa R = \frac{3}{4}\frac{M\kappa}{4\pi R^2}\\ 
+%t_{diff} &\approx \frac{R}{c}\tau = \frac{3}{4}\frac{M\kappa}{4\pi c R} = \frac{3}{4}\frac{M\kappa}{\pi c \upsilon t}
+%\end{align}
 %
 where $M$ is the ejecta mass, $\kappa$ is the opacity (cross section per unit mass), 
 $\rho$ is the density, \eg, $\rho=3M/(4\pi R^3)$ is the mean density.
@@ -175,127 +214,50 @@ $\rho$ is the density, \eg, $\rho=3M/(4\pi R^3)$ is the mean density.
 The diffusion timescale decreases with ejecta expanding. 
 When $t_{diff}$ reaches $t$, the radiation can escape the ejecta \citep{Arnett:1982}. 
 Hence, the characteristic timescale of the peak of emitted radiation 
-%
+\red{check the eq.}
 \begin{equation}
-    t_{peak} = \Big(\frac{3}{4}\frac{1}{\beta}\frac{M\kappa}{\pi \upsilon c}\Big)
+    t_{peak} = \Big(\frac{3}{4}\frac{1}{\beta}\frac{M\kappa}{\pi \upsilon c}\Big)^{1/2}
 \end{equation}
 %
 where the constant $\beta$ depends on the exact density profile of the ejecta. 
 The $t_{peak}$ is of order of days for lanthanides-free and weeks for lanthanides-rich ejecta.
 %
-Regading the ejecta temperature. If there is no additional heating, even ejected with $10^9$~K, 
-the ejecta cools very quickly via adiabatic losses. Thus, when it reaches 
-$R_{peak} = \upsilon t_{peak}$, when it is transparent, it is effectively cold and invisible. 
+Regarding the ejecta temperature. If there is no additional heating, even ejected with $10^9$~K, 
+material cools very quickly via adiabatic losses. Eventually, when ejecta expands to 
+$R_{peak} = \upsilon t_{peak}$, and becomes transparent, it is effectively cold.
 %
 However, there is an additional source of energy withing the ejecta. Several of them, in fact. 
-These might include the contribution from the central engine, \rproc{} element radioactive heating). 
-These contribute to the total heating rate $\dot{Q}(t)$, that relates to the peak luminocity 
+These might include the contribution from the central engine and \rproc{} element radioactive heating. 
+The sources contribute to the total heating rate $\dot{Q}(t)$, that sets the peak luminosity 
 of the transient via \textit{Arnett's Law} \citep{Arnett:1982}.
-%
-Thus, overall, three ingredients are required to understand the observations of \ac{kN}. These are 
-\begin{itemize}
-    \item The ejecta properties: $M$, $\upsilon$, $Y_e$,
-    \item The composition of the expanding ejecta and its optical opacity.
-    \item Dominant sources of energy within the ejecta, heating rate $\dot{Q}(t)$, and how 
-    efficient this energy thermalizes.
-\end{itemize}
-%
-We discuss the properties of the ejecta from \ac{BNS} mergers in the Chapter~\ref{ch:bns_sims}.
-%
-Here we focus on two other kilonova ingredients.
-\red{Here I skip a large part of the paper with BNS and NSBH ejecta discussion}
 
 
 
-\subsection{Opacity}
+\subsubsection{Emission from stratified ejecta}
+%\subsection{Unified Toy Model}
+%\red{commented}
 
-The ejecta is composed of the produces of \rproc{}, a complex mixture of heavy elements with 
-rich atomic structure. 
-%% free-free opacities
-For the photons of the lowest energy \ac{FIR}, \eg, lowest frequency, the free-free absorption 
-in the ionized gas is the dominant source of opacity. Expansion, the recombination removes 
-free $e$, also decreases $\rho$, and thus $\kappa_{ff}$.
-%% bound-bound opacities
-For \ac{NIR}/optical photons, the bound-bound transitions are the main source of opacity. 
-Here the dependency on the ejecta composition strongly affects the \textit{effective} continuum opacity. 
-If most complex atoms in the ejecta belong to the iron group, with valence $d$-shell electrons, 
-then the opacity is moderate. However, if elements with valence, partially filled $f$-shell, 
-(lanthinides \& actinides), are present, then the opacity increases by up to two orders of magnitude
-\citep{Kasen:2013xka,Tanaka:2013ana,Fontes:2015,Fontes:2017zfb}. 
-Bound-bound opacity rises with photon $\nu$ (as the number of lines).
 %
-The \textit{plank mean expansion opacity} can be approximated as 
-$\kappa_r = 200 (T/4000K)^{5.5}$ cm$^2$g$^{-1}$ for $T\in(1-4)\times10^3$~K and just 
-$\kappa_r = 200$ cm$^2$g$^{-1}$ for $T\in(4-10)\times10^{3}$~k, motivated by 
-Figure~10 it \citet{Kasen:2013xka}. More accurate opacity estimations are plagued by the 
-complexity of the atomic structure. The quantum mechanics models of high-$Z$ atoms exists, 
-but has to be calibrated to the so far absent experimental data.
-%
-% Line opacity -> Effectve continoum opacity
-Additional complexity arises in approximation the line opacities to the effective opacity.
-One common way is to consider the line expansion opacity formalism \citep{Pinto:2000}, that is 
-based on the Sobolev approximation. This method was applied to \acp{kN} modeling by 
-\citet{Barnes:2013wka} and \citet{Tanaka:2013ana}. However, it is unreliable if line width is 
-large \ie, if line spacing of strong lines become comparable to the intrinsic thermal line width 
-\citep{Kasen:2013xka,Fontes:2015,Fontes:2017zfb}. 
-%
-%% clumping
-In addition, clumping that might occur when $T\leq10^3$~K might affect escaping 
-emission \citep{Takami:2014oqa}. The formation of the ``\rproc{} dust'' may have a complex 
-effect on optical/UV opacity. The process of dust formation is complex and not 
-well understood in general \citep{Cherchneff:2009sj,Lazzati:2016}
-%
-%% Ejecta re-ionisation
-For even higher energy photos, \ac{UV}/X-ray, bound-free transitions dominate the opacity. 
-For that ejecta ought to become mostly neutral, which occures naturally as it cools, unless 
-there is a source of ionizing radiation, \eg, the remnant. 
-See for details in \eg, \citet{Metzger:2013cha}. 
-Even though very large luminocities are required from the engine initially, 
-they decrease rapidly as ejecta expands. Thus, at late times it is possible that ejecta would be 
-re-ionized, especially in case of a long-lived remnant \citep{Metzger:2013cha}. The re-ionisation 
-can reduce the optical opacity, reducing the prominence of \ac{FIR} peak, 
-a generally regarded distingushed feature of a Kilonova.
-%
-%% X-ray,. Gamma-rays, thermalization
-At even higher energies, hard X-ray photons, an important source of opacity is the 
-electron scattering with Klein-Nishina corrections. Notably, if the wavelength of photons 
-become smaller then the scale of an atom, the contribution from both, free and bound into 
-nuclei electrons ought to be considered. At high energies, the scattering of photons is inelastic. 
-However, these processes are important as ejecta opacity to very high energy photons, 
-$\gamma$-rays with energy in order of MeVs, determines the thermalisation of the \rproc{} decay products.
-%
-%% pair-creation
-For extremely high photon energies $h\nu \gg m_e c^2$a pair creation becomes important. 
-In particular this is so if remnant is a magnetar with large spin-down luminosity. 
-Then, the at peak of the \ac{kN} emission, the pair creation might prevent pair-creation 
-photons from escaping the kilonova. 
-
-
-\subsection{Unified Toy Model}
-\red{commented}
-The way to model \ac{EM} emission from the ejecta is to perform multi-dimensional, 
-multi-group radiative transfer simulation coupled to \ac{HD} (or \ac{MHD}) simulation of the ejecta itself.
-%
-Here a simplified model is considered of a transient, powered by the radioactive decay 
-within the ejecta only. Several other assumptions are made. In particular, the ejecta expansion is homologous 
-(faster matter ahead of slow one) \cite{Rosswog:2013kqa}%%{(Rosswog et al 2014)}
-The mass-velocity distribution is 
+Consider the ejecta with a given mass-velocity distribution, that can be approximated as 
 $M_{\upsilon} = M(\upsilon / \upsilon_0)^{-\beta}$, for $\upsilon \geq \upsilon_0$,
-where $M$ is the total mass, $\upsilon_0$ is the average, minimum velocity. $\beta$ can be assumed to te $3$, 
-\cite{Bauswein:2013yna}%%{(Bauswein et al 2013a)}. 
-However see \cite{Piran:2012wd}%%{Piran et al 2013} 
+where $M$ is the total mass, $\upsilon_0$ is the average, minimum velocity. 
+The parameter $\beta$ can be set to $3$ \citep{Bauswein:2013yna}. %%{(Bauswein et al 2013a)}. 
+However see \citet{Piran:2012wd}%%{Piran et al 2013} 
 for a more complex velocity profiles.
+%
 %
 The diffusion timescale defines when the radiation escapes the ejecta. For a layer with 
 $\upsilon$ and $M_{\upsilon}$ and opacity $\kappa_{\upsilon}$ it is 
 %
 \begin{equation}
-t_{d,\upsilon} \approx \frac{3}{4\pi}\frac{M_{\upsilon}\kappa_{\upsilon}}{\beta Rc} = \frac{1}{4\pi}\frac{M_{\upsilon}^{4/3}\kappa_{\upsilon}}{M^{1/3}\upsilon_0 t c}
+t_{d,\upsilon} \approx \frac{3}{4\pi}\frac{M_{\upsilon}\kappa_{\upsilon}}{\beta Rc} = 
+\frac{1}{4\pi}\frac{M_{\upsilon}^{4/3}\kappa_{\upsilon}}{M^{1/3}\upsilon_0 t c}
 \end{equation}
 %
 where $\beta=3$ was assumed. 
 %
-This equation implies that at time $t=t_{d,\upsilon}$ the radiation from the layer $M_{\upsilon}$ peaks.
+This equation implies that at time $t=t_{d,\upsilon}$ the radiation from the layer $M_{\upsilon}$ 
+peaks.
 %
 The $M_{\upsilon}(t)$ is related to the total mass of the ejecta and 
 peak time (when radiation diffuses from the entire ejecta)
@@ -324,7 +286,8 @@ and the layer's thermal energy changes according to
 %
 \begin{equation}
 \label{eq:theory:mkn:energ}
-\frac{dE_{\upsilon}}{dt} = \underbracket{-\frac{E_{\upsilon}}{R_{\upsilon}} \frac{dR_{\upsilon}}{dt}}_{PdV\text{ losses}} - \underbracket{L_{\upsilon}}_{\text{rad. los.}} + \underbrace{\dot{Q}}_{\text{heating sources}},
+\frac{dE_{\upsilon}}{dt} = \underbracket{-\frac{E_{\upsilon}}{R_{\upsilon}} \frac{dR_{\upsilon}}{dt}}_{PdV\text{ losses}} - 
+\underbracket{L_{\upsilon}}_{\text{rad. los.}} + \underbrace{\dot{Q}}_{\text{heating sources}},
 \end{equation}
 %
 where the radiative losses take form
@@ -339,12 +302,14 @@ light crossing time (important for when the layer is optically thin) \red{did no
 The heating sources $\dot{Q}$ include
 %
 \begin{equation}
-\dot{Q}(t) = \underbrace{\dot{Q}_{r,\upsilon}}_{\text{radioactivity}} + \underbrace{\dot{Q}_{mag}}_{\text{magnetar}} + \underbrace{\dot{Q}_{fb}}_{\text{fall-bak accretion}}
+\dot{Q}(t) = \underbrace{\dot{Q}_{r,\upsilon}}_{\text{radioactivity}} + \underbrace{\dot{Q}_{mag}}_{\text{magnetar}} + 
+\underbrace{\dot{Q}_{fb}}_{\text{fall-bak accretion}}.
 \end{equation}
 %
-Next, even though in principle the effect of radiation pressure on ejecta ought be considered, 
+%
+Next, even though in principle the effect of radiation pressure on ejecta oughtto  be considered, 
 in case where radioactive heating, total energy input $\int \dot{Q}_{r,\upsilon}dt < E_{kin,0}$ 
-of the ejecta, \cite{Metzger:2010,Rosswog:2013kqa} %\cite{(Metzger et al 2011; Rosswog et al 2013)}, 
+of the ejecta \citep{Metzger:2010,Rosswog:2013kqa} %\cite{(Metzger et al 2011; Rosswog et al 2013)}, 
 this effect can be neglected.
 Meanwhile, central engine might provide enough energy to modify the free expansion model. 
 Then the equation for the central shell velocity evolution reads 
@@ -368,13 +333,13 @@ where $L_{tot} = \sum(L_{\upsilon dm_{\upsilon}})$ is the total luminosity
 (cumulative for all mass shells). At the point where optical depth 
 $\sum(\kappa_{\upsilon}dm_{\upsilon})=1$ the photosphere is located with radius $R_{ph}(t)$. 
 %
-The flux density of the source at photon frequency $\nu$ is given by 
-%
-\begin{equation}
-F_{\nu}(t) = \frac{2\pi h \nu^3}{c^2} \frac{1}{\exp\Big(\frac{h\nu}{kT_{eff}}\Big) - 1} \frac{R_{ph}^2}{D^2}
-\end{equation}
-%
-where, $D$ is the distnace to the source. (Cosmological effects are neglected here).
+%The flux density of the source at photon frequency $\nu$ is given by 
+%%
+%\begin{equation}
+%F_{\nu}(t) = \frac{2\pi h \nu^3}{c^2} \frac{1}{\exp\Big(\frac{h\nu}{kT_{eff}}\Big) - 1} \frac{R_{ph}^2}{D^2}
+%\end{equation}
+%%
+%where, $D$ is the distnace to the source. (Cosmological effects are neglected here).
 %
 Additionally, the opacity $\kappa_{\upsilon}$ depends on the temperature of the 
 layer $T_{\upsilon}$, that itself can be computed as 
@@ -384,6 +349,7 @@ T_{\upsilon} = \Bigg(\frac{3E_{\upsilon}}{4\pi a R^{3}_{\upsilon}}\Bigg)^{1/4}
 \end{equation}
 %
 assuming that the ejecta internal energy is dominated by the radiation. 
+%
 %
 Finally, in order to compute the \ac{EM} emission from the ejecta, 
 the equation Eq.~\eqref{eq:theory:mkn:energ} ought be solved for $E_{\upsilon}$ (and $L_{\upsilon}$) 
@@ -397,61 +363,220 @@ Initial kinetic energy of the ejecta is quickly removed by the adiabatic expansi
 thermal energy of the ejecta, when its emission peaks, is dominated by the heating.
 
 
-\subsection{\rproc{} heating}
+In this simplified description thee key 
+components can be selected for modelling the \ac{kN}.
+These are 
+\begin{itemize}
+    \item ejecta properties, $M$, $\upsilon$, $Y_e$,
+    \item composition of the expanding ejecta and its optical opacity.
+    \item dominant sources of energy within the ejecta, heating rate $\dot{Q}(t)$, and how 
+    efficient this energy thermalizes.
+\end{itemize}
+%
+We discuss the properties of the ejecta from \ac{BNS} mergers in the chapter~\ref{ch:bns_sims}.
+Here we focus on two other ingredients.
+%\red{Here I skip a large part of the paper with BNS and NSBH ejecta discussion}
+
+
+
+
+\paragraph{Opacity}
+
+Withing the ejecta, there are several sources of opacity that affect photons with
+different energies.
+%The heavy \rproc{} elements that enrich the ejecta have a complex atomic structure.
+%
+%% free-free opacities
+For the photons of the lowest energy (frequency), \ac{FIR}, the free-free absorption 
+in the ionized gas is the dominant source of opacity. Expansion, the recombination removes 
+free $e$, also decreases $\rho$, and thus $\kappa_{ff}$.
+%
+%% bound-bound opacities
+For \ac{NIR}/optical photons, the bound-bound transitions are the main source of opacity. 
+Here the dependency on the ejecta composition strongly affects the \textit{effective} 
+continuum opacity. If most complex atoms in the ejecta belong to the iron group, with 
+valence $d$-shell electrons, then the opacity is moderate. However, if elements with 
+valence, partially filled $f$-shell, (lanthinides \& actinides), are present, then the 
+opacity increases by up to two orders of magnitude
+\citep{Kasen:2013xka,Tanaka:2013ana,Fontes:2015,Fontes:2017zfb}. 
+Bound-bound opacity rises with photon $\nu$ (as the number of lines).
+%
+The \textit{plank mean expansion opacity} can be approximated as 
+$\kappa_r = 200 (T/4000K)^{5.5}$ cm$^2$g$^{-1}$ for $T\in(1-4)\times10^3$~K and just 
+$\kappa_r = 200$ cm$^2$g$^{-1}$ for $T\in(4-10)\times10^{3}$~k, motivated by 
+Figure~10 it \citet{Kasen:2013xka}. More accurate opacity estimations are plagued by the 
+complexity of the atomic structure. The quantum mechanics models of high-$Z$ atoms exists, 
+but has to be calibrated to the so far absent experimental data.
+%
+% Line opacity -> Effectve continoum opacity
+Additional complexity arises in approximation the line opacities to the effective opacity.
+One common way is to consider the line expansion opacity formalism \citep{Pinto:2000}, that is 
+based on the Sobolev approximation. This method was applied to \acp{kN} modeling by 
+\citet{Barnes:2013wka} and \citet{Tanaka:2013ana}. However, it is unreliable if line width is 
+large \ie, if line spacing of strong lines become comparable to the intrinsic thermal line width 
+\citep{Kasen:2013xka,Fontes:2015,Fontes:2017zfb}. 
+%
+%% clumping
+In addition, clumping that might occur when $T\leq10^3$~K might affect escaping 
+emission \citep{Takami:2014oqa}. The formation of the ``\rproc{} dust'' may have a complex 
+effect on optical/\ac{UV} opacity. The process of dust formation is complex and not 
+well understood in general \citep{Cherchneff:2009sj,Lazzati:2016}
+%
+%% Ejecta re-ionisation
+For higher energy photos, \ac{UV}/X-ray, bound-free transitions dominate the opacity. 
+For that ejecta ought to become mostly neutral, which occures naturally as it cools, unless 
+there is a source of ionizing radiation, \eg, the remnant. 
+See for details in \eg, \citet{Metzger:2013cha}. 
+Even though very large luminocities are required from the engine initially, 
+they decrease rapidly as ejecta expands. Thus, at late times it is possible that ejecta would be 
+re-ionized, especially in case of a long-lived remnant \citep{Metzger:2013cha}. The re-ionisation 
+can reduce the optical opacity, reducing the prominence of \ac{FIR} peak, 
+a generally regarded distingushed feature of a Kilonova.
+%
+%% X-ray,. Gamma-rays, thermalization
+At even higher energies, hard X-ray photons, an important source of opacity is the 
+electron scattering with Klein-Nishina corrections. Notably, if the wavelength of photons 
+become smaller then the scale of an atom, the contribution from both, free and bound into 
+nuclei electrons ought to be considered. At high energies, the scattering of photons is inelastic. 
+However, these processes are important as ejecta opacity to very high energy photons, 
+$\gamma$-rays with energy in order of MeVs, determines the thermalisation of the \rproc{} 
+decay products.
+%
+%% pair-creation
+For extremely high photon energies $h\nu \gg m_e c^2$a pair creation becomes important. 
+In particular this is so if remnant is a magnetar with large spin-down luminosity. 
+Then, the at peak of the \ac{kN} emission, the pair creation might prevent pair-creation 
+photons from escaping the kilonova. 
+
+
+
+\paragraph{\rproc{} heating}
 %
 Consider an ejecta mass layer $dM_{\upsilon}$ (with velocity $\upsilon$).
-The layer has a fraction $X{r,\upsilon}$ of \rproc{} elements, specific heating, $\dot{e}_r(t)$,  for which is 
-
+The layer has a fraction $X{r,\upsilon}$ of \rproc{} elements, specific heating, $\dot{e}_r(t)$,  
+for which is 
+%
 \begin{equation}
 \dot{Q}_{r,\upsilon} = dM_{\upsilon}X_{r,\upsilon}\dot{e}_{r}(t).
 \end{equation}
+%
+The heating occurs through a combination of $\beta$-decays, $\alpha$-decays and fission 
+\citep{Metzger:2010,Barnes:2016umi,Hotokezaka:2017dbk}. These decay products then thermalize 
+with an efficiency, $\varepsilon_{th,\upsilon}$, that depends on interactions between them and 
+thermal plasma. Neutrinos can freely escape the ejecta. Very high energy photos, gamma rays, 
+are also free after about $\sim 1$~day as the Klein-Nishina opacity decreases 
+\citep{Hotokezaka:2017dbk,Barnes:2016umi}.
+%
+The $\alpha$ and $\beta$ particles however interact efficiently with the matter via 
+ionization \citep{Barnes:2016umi} and Coulumb scattering \citep{Metzger:2010}.
+%\red{Here it repeats the Barns et al findings on thermalization efficiency}
+For a fixed energy $\alpha$-particles thermalize more efficiently, then $\beta$-particles.
+For charged particles, the process depends on the magnetic field strength and configuration 
+\citep{Barnes:2016umi}. Additionally, if actinides are produced in \rproc{}, their decay, 
+involving $\alpha$-particles allows for higher thermalization efficiency. 
+\red{double check with before, Barnes}. 
+Thus, nuclear phsyics input, that determines the amount of actinides, have an effect on the 
+thermalization efficiency of \rproc{} elements in the ejecta.
+%
+%For a neutron-rich ejecta, $Y_e\leq0.2$, the heating rate is dominated by a large statistical 
+%ensemble of nuclei, and the following can be assumed \citep{Korobkin:2012uy},
+%%
+%\begin{equation}
+%\dot{e}_r = 4\times 10^{18} \varepsilon_{th,\upsilon}(0.5 - \pi^{-1} \arctan[(t-t_0)/\sigma])^{1.3} \text{ erg } \text{s}^{-1} \text{g}^{-1}
+%\label{eq:kilonova:heat_korob}
+%\end{equation}
+%%
+%Here $t_0=1.3$~s, $\sigma=0.11$~s constants. 
+%The $\varepsilon_{th,m}$ is the thermalisation efficiency.
+%In general, both $\varepsilon_{th,\upsilon}$ and 
+%%
+%The heating rate prescribed by this equation has first a constant segment, $\propto1$~s, 
+%(depletion of free neutrons by $r$-process) and a decrease segment $\propto t^{-1.3}$, 
+%(when heavy nuclei decay to stability) \citep{Metzger:2010,Roberts:2011}. 
+%Notably, at higher $Y_e$, the nuclear heating is dominated by specific nuclei and has a complex form.
+%%
+%It was shown however, that on a timescale relevant for \ac{kN}, and $Y_e$ present in \ac{BNS} 
+%($Y_e\leq0.4$), the heating rate can be assumed constant within the accuracy of a few.
+%(see \eg, Fig.~7 in \citet{Lippuner:2015gwa}).
+%%
+%The dependency of $\dot{Q}_{r.\upsilon}$ on the nuclear physics models was shown to be week, 
+%unlike the $r$-process abundances themselves \citep{Eichler:2014kma,Wu:2016pnw,Mumpower:2015ova}.
+%See however \citet{Barnes:2020nfi} for a more recent assessment.
+%
+%Regarding the thermalization efficiency of the energy released, \citep{Barnes:2016umi} provides 
+%a recipe that sets the $\varepsilon_{th,\upsilon}$ decreasing from $\sim0.5$ at around 
+%$1$~day to $\sim0.1$ at around $1$~week. 
+%
+%\begin{equation}
+%\varepsilon_{th,\upsilon}(t) = 0.36 \Bigg[ \exp(-a_{\upsilon}, t_{day}) + \frac{\ln(1+2b_{\upsilon} 
+%    t_{day}^{d_{\upsilon}})}{2b_{\upsilon}t_{day}^{d_{\upsilon}}} \Bigg]
+%\end{equation}
+%
+%where $t_{day}$ is the time in days, ${a_{\upsilon}, b_{\upsilon}, d_{\upsilon}}$ are the constants that 
+%depend on the ejecta layer properties, mass and velocity. 
 
-The heating occurs through a combination of $\beta$-decays, $\alpha$-decays and fission \citep{Metzger:2010,Barnes:2016umi,Hotokezaka:2017dbk}. These decay products them thermalize with an effciency $\varepsilon_{th,\upsilon}$, depending on interactions between them and thermal plasma.
-Thus, neutrinos can freely escape the ejecta. Very high energy photos, gamma rays, are also free after about $\sim 1$~day as the Klein-Nishina opacity decreases \citep{Hotokezaka:2017dbk,Barnes:2016umi}.
-The $\alpha$ and $\beta$ particles however interact efficiently with the matter via ionization \citep{Barnes:2016umi} and Coulumb scattering \cite{Metzger:2010}.
-\red{Here it repeats the Barns et al findings on thermalization efficiency}
-For a fixed energy $\alpha$-particles thermalzie more efficiently, then $\beta$-particles.
-For charged particles, the process depends on the magnetic field strength and configuration \citep{Barnes:2016umi}.
-Additionally, if actinides are produced in \rproc{}, their decay, involving $\alpha$-particles allows for high thermalization efficiency. \red{double check with before, Barnes}. Thus, nuclear phsyics input, that determins the amount of actinides, have an effect on the thermalization efficinecy of \rproc{} elements in the ejecta.
 
-For a neutron-rich ejecta, $Y_e\leq0.2$, the heating rate is dominated by a large statistical ensemble of nuclei, and the following can be assumed \citep{Korobkin:2012uy},
 
+%% FROM Breschi et al (from perego et al)
+For a neutron-rich ejecta, $Y_e\leq0.2$, the heating rate is dominated by a large statistical 
+ensemble of nuclei, however at higher $Y_e\leq0.2$ corrections are required. 
+The time-dependent nuclear heating rate $\epsilon_{\text{nuc}}$ \red{assert notations} 
+can be approximated via an analytic fitting formula, derived from detailed nucleosynthesis 
+calculations~\citep{Korobkin:2012uy}  
+%
 \begin{equation}
-\dot{e}_r = 4\times 10^{18} \varepsilon_{th,\upsilon}(0.5 - \pi^{-1} \arctan[(t-t_0)/\sigma])^{1.3} \text{ erg } \text{s}^{-1} \text{g}^{-1}
+\label{eq:kilonova:eps_korob}
+\epsilon_{\text{nuc}}(t)= \epsilon_0 \, \frac{\epsilon_{\text{th}}(t)}{0.5} \, \epsilon_{\text{nr}}(t) \,
+\left[ \frac{1}{2} - \frac{1}{\pi} \arctan\left(\frac{t-t_0}{\sigma}\right)\right]^{\alpha}\,,
 \end{equation}
-
-Here $t_0=1.3$~s, $\sigma=0.11$~s constants. The $\varepsilon_{th,m}$ is the thermalisation efficiency.
-
-The heating rate prescibed by this equation has first a constant segment, $\propto1$~s, (depletion of free neutrons by $r$-process) and a decrease segment $\propto t^{-1.3}$, (when heavy nuclei decay to stability) \citep{Metzger:2010,Roberts:2011}. 
-Notably, at higher $Y_e$, the nuclear heating is doinated by specific nuclei and has a complex form.
-
-It was shown however, that on a timescale relevant for \ac{kN}, and $Y_e$ present in \ac{BNS} ($Y_e\leq0.4$), the heating rate can be assumed constant within the accuracy of a few.
-(see \eg, Fig.~7 in \citet{Lippuner:2015gwa}).
-
-The dependency of $\dot{Q}_{r.\upsilon}$ on the nuclear physics models was shown to be week, unlike the $r$-process abundances themselves \citep{Eichler:2014kma,Wu:2016pnw,Mumpower:2015ova}
-
-Regarding the thermalization efficiency of the energy released, \citep{Barnes:2016umi} provides a recepi that sets the $\varepsilon_{th,\upsilon}$ decreasing from $\sim0.5$ at around $1$~day to $\sim0.1$ at around $1$~week. 
-
+%
+where $\sigma = 0.11$~s, $t_0 = 1.3$~s, $\alpha=1.3$ and $\epsilon_{\text{th}}(t)$ is the 
+thermalization efficiency tabulated according to \citet{Barnes:2016umi}.
+\red{$\epsilon_0$ is not introduced. Is it a constant?}
+%
+The heating factor $\epsilon_{\text{nr}}(t) $ is introduced as in \citet{Perego:2017wtu} to roughly adjust 
+the Eq.~\eqref{eq:epsnuc} in the regime of mildly neutron-rich matter (characterized by an initial 
+electron fraction $Y_e \gtrsim 0.25$), \citep[see, \eg][]{Martin:2015hxa}:
+%
 \begin{equation}
-\varepsilon_{th,\upsilon}(t) = 0.36 \Bigg[ \exp(-a_{\upsilon}, t_{day}) + \frac{\ln(1+2b_{\upsilon} t_{day}^{d_{\upsilon}})}{2b_{\upsilon}t_{day}^{d_{\upsilon}}} \Bigg]
+\label{eq:epsnr}
+\epsilon_{\text{nr}}(t,\kappa) = \left[1-w(\kappa)\right] + w(\kappa)\,\epsilon_{Y_e}(t)\,,  
 \end{equation}
+%
+where $w(\kappa)$ is a logarithmic smooth clump function such that $w(\kappa < 1~\igscm) = 1$ and 
+$w(\kappa > 10~\igscm)=0$ and the factor $\epsilon_{Y_e}(t)$ accounts for the dependency on $Y_e$:
+if $Y_e < 0.25$, then $\epsilon_{Y_e}(t)=1$, otherwise, when $Y_e \ge 0.25$,
+%
+\begin{equation}
+\label{eq:epsye}
+\epsilon_{Y_e}(t) =\epsilon_{\text{min}}+{\epsilon_{\text{max}}}{\left[1+ e ^{4(t/t_\epsilon-1)}\right]}^{-1}\,,
+\end{equation}
+%
+where $t_\epsilon = 1~{\text{day}}$, $\epsilon_{\text{min}}=0.5$ an $\epsilon_{\text{max}} = 2.5$.
 
-where $t_{day}$ is the time in days, ${a_{\upsilon}, b_{\upsilon}, d_{\upsilon}}$ are the constants that depend on the ejecta layer properties, mass and velocity. 
 
 
 \subsection{\ac{kN} properties}
 
 From a simple, toy model \citep{Metzger:2016pju}, the ejecta properties can be translated 
 into the properties of light curves. 
-
-Consider the case where the lanthanides-rich ejecta is present, \eg, in tidal outflows of \ac{BNS} and \ac{NSBH} mergers.
-There a toy model predicts a light curve from such low-$Y_e$ ejecta that peaks in \ac{NIR} (in relatively good agreement with radiation transport model of \cite{Barnes:2016umi}) on a timescale of several days (week). This is so-called ``red \ac{kN}''.
-The disagreement with radiation transfer models most noticeable in the post-peak period, where toy model predicts sharp decay, while the radiation transport models predict smooth decline. The reason for it is the toy model's assumption of optically thick black-body emission. As ejecta expands cools and become optically thin, this assumption breaks down.
-It is important to note, that the toy model does not take into account other emergent sources of opacity at late times, such as clumping, dust formation, photo-ionization from central engine. These may smooth the post-peak light curves.
+%
+Consider the case where the lanthanides-rich ejecta is present, \eg, in tidal outflows of 
+\ac{BNS} and \ac{NSBH} mergers. There a toy model predicts a light curve from such low-$Y_e$ 
+ejecta that peaks in \ac{NIR} (in relatively good agreement with radiation transport model of 
+\citet{Barnes:2016umi}) on a timescale of several days (week). This is so-called ``red \ac{kN}''.
+The disagreement with radiation transfer models most noticeable in the post-peak period, 
+where toy model predicts sharp decay, while the radiation transport models predict smooth decline. 
+The reason for it is the toy model's assumption of optically thick black-body emission. 
+As ejecta expands cools and become optically thin, this assumption breaks down.
+It is important to note, that the toy model does not take into account other emergent sources 
+of opacity at late times, such as clumping, dust formation, photo-ionization from central engine. 
+These may smooth the post-peak light curves.
 
 Next, consider the ejecta with high electron fraction, \eg, \nwind, or \ac{SWW}, reprocessed by neutrinos.
-Such ejecta would have negligible amount of elements of lanthanides group \citep{Metzger:2014ila} and thus have a different EM signature.
-The emission from such ejecta peaks in optical/R,I bands on a time scale of days. It is $2-3$ magnitudes brighter then red \ac{kN}. This component is called ``blue \ac{kN}''
+Such ejecta would have negligible amount of elements of lanthanides group \citep{Metzger:2014ila} 
+and thus have a different \ac{EM} signature. The emission from such ejecta peaks in optical/\ac{IR} 
+bands on a time scale of days. It is $2-3$ magnitudes brighter then red \ac{kN}. This component is called ``blue \ac{kN}''
 This emission is assumed to be of polar origin and contribute to the total \ac{EM} signature of the BNS ejecta. 
 
 
@@ -664,34 +789,6 @@ This emission is assumed to be of polar origin and contribute to the total \ac{E
 %
 %\red{This might serve as a gread introduction to the thesis!}
 
-\subsection{\AT{}}
-
-The observation of the kilonova (kN) AT2017gfo \citep{Coulter:2017wya,Chornock:2017sdf,Nicholl:2017ahq,Cowperthwaite:2017dyu,Tanvir:2017pws,Tanaka:2017qxj}
-associated to the binary neutron star (BNS) merger GW170817 \citep{TheLIGOScientific:2017qsa} provided
-evidence 
-that the ejection of neutron-rich matter from compact binary mergers is a primary site for
-$r$-process
-nucleosynthesis~\citep{Lattimer:1974slx,Li:1998bw,Kulkarni:2005jw,Rosswog:2005su,Metzger:2010,Roberts:2011,Kasen:2013xka}.
-%% ---
-The \ac{kN} is the \ac{EM} \ac{UV}/optical/\ac{NIR} transient, powered by the 
-radioactive decay of the elements synthesized via \rproc{} in expanding ejecta.
-%% --- 
-The peak in \ac{NIR} band of \AT{} occurred several days after the
-merger \citep{Chornock:2017sdf}.
-It is generally consistent with emission from the high opacity material, with with a sizable fraction of lanthanides \citep{Kasen:2013xka}
-%% ---
-The peak in \ac{UV}/optical band, however, occurred in less than one day after the
-merger \citep{Nicholl:2017ahq}. 
-This requires the opacity of the material to be sufficiently low, suggesting  that only partial \rproc{} \nuc{} took place in the corresponding ejecta  \citep{Martin:2015hxa}.
-%% ---
-Smianalytic two-components (red and blue) spherical model \ac{kN} models to the \AT{} observations provided estimates for the ejecta properties for these two components. 
-Specifically, for the langhinide poor (rich) \ie, blue (red) components, the required mass is $2.5\times10^{-2}M_{\odot}$ ($5.0\times10^{-2}M_{\odot}$) and velocity $0.27$c ($0.15$c)
-\citep{Cowperthwaite:2017dyu,Villar:2017wcc}
-(See however \citep{Waxman:2017sqv} for an alternative interpretation.)
-%% ---
-Similar estimates are obtained with 1D radiation transport \ac{kN} models
-\citep{Tanvir:2017pws,Tanaka:2017qxj}.
-
 
 
 %% =====================================================================================
@@ -704,83 +801,117 @@ Similar estimates are obtained with 1D radiation transport \ac{kN} models
 
 \section{Method}
 
-We compute the \ac{kN} \acp{LC} using the multicomponent, anisotropic semi-analytical \texttt{MKN} model first introduced in \citet{Perego:2017wtu} and largely based on the \ac{kN} models presented in \citet{Grossman:2013lqa} and \citet{Martin:2015hxa}.
-%% ---
+We compute the \ac{kN} \acp{LC} using the multicomponent, anisotropic semi-analytical 
+\texttt{MKN} model first introduced in \citet{Perego:2017wtu} and largely based on the 
+\ac{kN} models presented in \citet{Grossman:2013lqa} and \citet{Martin:2015hxa}.
+%
 The geometry of the ejecta is directly imported from the 
 \ac{NR} simulations in a form of the angular profiles with 
 respect to the polar angle and averaging over the azimuthal angle.
-In a several cases we also use the analytical ejecta profiles, with either smooth of step-like dependency on the polar angle.
-%% ---
+In a several cases we also use the analytical ejecta profiles, with 
+either smooth of step-like dependency on the polar angle.
+%
 The viewing angle $\theta_{\text{obs}}$ is measured as the angle between the 
 polar axis and the line of sight of the observer.
-%% ---
+%-
+% Ejecta profile
 Each ejecta component (\eg, \ac{DE}, \ac{SWW}) is described through 
 the angular distribution of its ejected mass, $M_{\text{ej}}(\theta)$, 
 velocity $\upsilon_{\text{ej}}(\theta)$,
 and opacity, $\kappa_{\text{ej}}(\theta)$.
-%% ---
-The polar angle $\theta$, measured from the rotational axis is discretized in $N_\theta=30$ angular bins evenly spaced in $\cos{\theta}$.
-%% ---
+%
+The polar angle $\theta$, measured from the rotational axis is discretized in 
+$N_\theta=30$ angular bins evenly spaced in $\cos{\theta}$.
+%
 Additionally, within each ray, the matter 
-has a fixed velocity distribution, $\xi(\upsilon)$ such that $\xi(\upsilon) \propto (1 - \left(\upsilon/\upsilon_{\text{max}}\right)^{2})^{3}$, where $\xi(\upsilon) \dd \upsilon$ is the matter contained in an infinitesimal layer of speed $\left[\upsilon,\upsilon+\dd \upsilon\right]$, and $\upsilon_{\text{max}}=\upsilon_{\text{max}}(\upsilon_{\text{RMS}})$ is the maximum velocity at the outermost edge of the component.
-%% ---
-The characteristic quantities $\varrho$, $\upsilon$ and $\kappa$ are then evaluated for every bin according to the assumed input profiles.
-For every bin, we estimate the emitted luminosity using the radial model described in Ref.~\cite{Perego:2017wtu}, and in \S{4} of \citet{Barbieri:2019kli}.
-%% ---
-The model assumes that the thermal radiation is emitted at the photosphere, located at $R_{\text{ph}}$, with 
-effective emission temperature $T_{\text{eff}}$ via the 
-Stefan-Boltzmann law, \ie, the black-body radiation. 
-This assumption is justified to model the emission from the early time ejecta, when it is hot and opaque. However, at later times, \red{as ejecta falls out of \ac{LTE} with its radiation, the assumption breaks.}.
-
-The time-dependent nuclear heating
-rate $\epsilon_{\text{nuc}}$ \red{assert notations} entering these calculations is approximated by an analytic fitting formula, derived from detailed nucleosynthesis calculations~\cite{Korobkin:2012uy},
-
+has a fixed velocity distribution, $\xi(\upsilon)$ such that 
 \begin{equation}
-\label{eq:epsnuc}
-\epsilon_{\text{nuc}}(t)= \epsilon_0 \, \frac{\epsilon_{\text{th}}(t)}{0.5} \, \epsilon_{\text{nr}}(t) \,\left[ \frac{1}{2} - \frac{1}{\pi} \arctan\left(\frac{t-t_0}{\sigma}\right)\right]^{\alpha}\,,
+\xi(\upsilon) \propto \Big(1 - \left(\frac{\upsilon}{\upsilon_{\text{max}}}\right)^{2}\Big)^{3}, 
 \end{equation}
-
-where $\sigma = 0.11$~s, $t_0 = 1.3$~s, $\alpha=1.3$ and $\epsilon_{\text{th}}(t)$ is the thermalization 
-efficiency tabulated according to \citet{Barnes:2016umi}.
-\red{$\epsilon_0$ is not introduced. Is it a constant?}
-%% --- 
-The heating factor $\epsilon_{\text{nr}}(t) $ is introduced as in \citet{Perego:2017wtu} to roughly adjust the Eq.~\eqref{eq:epsnuc} in the regime of mildly neutron-rich matter (characterized by an initial electron fraction $Y_e \gtrsim 0.25$), \citep[see, \eg][]{Martin:2015hxa}:
-
-\begin{equation}
-\label{eq:epsnr}
-\epsilon_{\text{nr}}(t,\kappa) = \left[1-w(\kappa)\right] + w(\kappa)\,\epsilon_{Y_e}(t)\,,  
-\end{equation}
-
-where $w(\kappa)$ is a logarithmic smooth clump function such that $w(\kappa < 1~\igscm) = 1$ and 
-$w(\kappa > 10~\igscm)=0$ and the factor $\epsilon_{Y_e}(t)$ accounts for the dependency on $Y_e$:
-if $Y_e < 0.25$, then $\epsilon_{Y_e}(t)=1$, otherwise, when $Y_e \ge 0.25$,
-
-\begin{equation}
-\label{eq:epsye}
-\epsilon_{Y_e}(t) =\epsilon_{\text{min}}+{\epsilon_{\text{max}}}{\left[1+ e ^{4(t/t_\epsilon-1)}\right]}^{-1}\,,
-\end{equation}
-
-where $t_\epsilon = 1~{\text{day}}$, $\epsilon_{\text{min}}=0.5$ an $\epsilon_{\text{max}} = 2.5$.
-
-The opacity of an atom depends on its ionization state \red{might reference Barns work}. When atoms become neutral, the photon opacity sharply decreases. This was shown to have a stron effect on \acp{LC} in high-frequency bands, \eg, $V$, $U$, $B$ and $g$ \citep{Villar:2017oya}.
-In order to account for the drop in opacity when the temperature falls below the certain value that corresponds to the full recombination, the $T_{\text{floor}}$ \cite{Kasen:2017sxr,Kasen:2018drm}, 
-this is set as a minimum value $T_{\text{eff}}$.
-Due to the presence of lanthanides in the ejcta, two floor 
-temperatures are introduce depending on the composition,
-the $T_{\text{floot}}^{\text{Ni}}$ and $T_{\text{floot}}^{\text{La}}$ for the lanthanides free and richi ejecta respectively.
-
-
+where $\xi(\upsilon) \dd \upsilon$ is the matter contained in an infinitesimal layer of speed 
+$\left[\upsilon,\upsilon+\dd \upsilon\right]$, and 
+$\upsilon_{\text{max}}=\upsilon_{\text{max}}(\upsilon_{\text{RMS}})$ 
+is the maximum velocity at the outermost edge of the component.
+%
+The characteristic quantities $\varrho$, $\upsilon$ and $\kappa$ are then evaluated 
+for every bin according to the assumed input profiles.
+Then the emitted luminocity is evaluated for every bin 
+using the radial model described in \citet{Perego:2017wtu}, and in 
+\S{4} of \citet{Barbieri:2019kli}.
+%
+The model assumes that the thermal radiation is emitted at the photosphere, located at 
+$R_{\text{ph}}$, with effective emission temperature $T_{\text{eff}}$ via the 
+Stefan-Boltzmann law, \ie, the black-body radiation. This assumption is justified to 
+model the emission from the early time ejecta, when it is hot and opaque. However, at later 
+times, \red{as ejecta falls out of \ac{LTE} with its radiation}, the assumption breaks.
+%
+% Heating rates
+The time-dependent nuclear heating are approximated as Eq.~\eqref{eq:kilonova:eps_korob}.
+%rate $\epsilon_{\text{nuc}}$ \red{assert notations} entering these calculations is approximated 
+%by an analytic fitting formula, derived from detailed nucleosynthesis 
+%calculations~\citep{Korobkin:2012uy} Eq.~\eqref{eq:kilonova:heat_korob}, 
+%modified as follows
+%                                            << moved above >>>
+%\begin{equation}
+%\label{eq:epsnuc}
+%\epsilon_{\text{nuc}}(t)= \epsilon_0 \, \frac{\epsilon_{\text{th}}(t)}{0.5} \, \epsilon_{\text{nr}}(t) \,
+%\left[ \frac{1}{2} - \frac{1}{\pi} \arctan\left(\frac{t-t_0}{\sigma}\right)\right]^{\alpha}\,,
+%\end{equation}
+%%
+%where $\sigma = 0.11$~s, $t_0 = 1.3$~s, $\alpha=1.3$ and $\epsilon_{\text{th}}(t)$ is the 
+%thermalization efficiency tabulated according to \citet{Barnes:2016umi}.
+%\red{$\epsilon_0$ is not introduced. Is it a constant?}
+%%
+%The heating factor $\epsilon_{\text{nr}}(t) $ is introduced as in \citet{Perego:2017wtu} to roughly adjust 
+%the Eq.~\eqref{eq:epsnuc} in the regime of mildly neutron-rich matter (characterized by an initial 
+%electron fraction $Y_e \gtrsim 0.25$), \citep[see, \eg][]{Martin:2015hxa}:
+%%
+%\begin{equation}
+%\label{eq:epsnr}
+%\epsilon_{\text{nr}}(t,\kappa) = \left[1-w(\kappa)\right] + w(\kappa)\,\epsilon_{Y_e}(t)\,,  
+%\end{equation}
+%%
+%where $w(\kappa)$ is a logarithmic smooth clump function such that $w(\kappa < 1~\igscm) = 1$ and 
+%$w(\kappa > 10~\igscm)=0$ and the factor $\epsilon_{Y_e}(t)$ accounts for the dependency on $Y_e$:
+%if $Y_e < 0.25$, then $\epsilon_{Y_e}(t)=1$, otherwise, when $Y_e \ge 0.25$,
+%%
+%\begin{equation}
+%\label{eq:epsye}
+%\epsilon_{Y_e}(t) =\epsilon_{\text{min}}+{\epsilon_{\text{max}}}{\left[1+ e ^{4(t/t_\epsilon-1)}\right]}^{-1}\,,
+%\end{equation}
+%%
+%where $t_\epsilon = 1~{\text{day}}$, $\epsilon_{\text{min}}=0.5$ an $\epsilon_{\text{max}} = 2.5$.
+%
+% Opacity 
+The mean plank opacities for the hot ejecta are adopted from the systematic study 
+(see Figure.~4 in \citet{Tanaka:2019iqp}).
+%Notably, the atomic opacity depends on its ionization state. %\red{might reference Barns work}. 
+When temperature drops and atoms become neutral, the photon opacity sharply decreases. 
+This was shown to have a strong effect on 
+\acp{LC} in high-frequency bands, \eg, $V$, $U$, $B$ and $g$ \citep{Villar:2017oya}. In order to account 
+for the drop in opacity when the temperature falls below the certain value that corresponds to the full 
+recombination, the $T_{\text{floor}}$ \citep{Kasen:2017sxr,Kasen:2018drm}, this is set as a minimum value 
+$T_{\text{eff}}$. Due to the presence of lanthanides in the ejcta, two floor temperatures are introduce 
+depending on the composition, the $T_{\text{floot}}^{\text{Ni}}$ and $T_{\text{floot}}^{\text{La}}$ for 
+the lanthanides free and rich ejecta respectively.
+%
+% EATS integrator
 The emission coming from the different bins is combined to obtain the spectral flux at the observer location:
-
+%
 \begin{equation}
 \label{eq:spectral_flux}
-F_{\nu}(\mathbf{n},t) = \int_{\mathbf{n}_{\Omega} \cdot \mathbf{n}> 0} \left( \frac{R_{\text{ph}}(\Omega,t)}{D_L} \right)^2  B_{\nu}(T_{\text{eff}}(\Omega,t))~\mathbf{n} \cdot  \dd\boldsymbol{\Omega} 
+F_{\nu}(\mathbf{n},t) = \int_{\mathbf{n}_{\Omega} \cdot \mathbf{n}> 0} 
+\left( \frac{R_{\text{ph}}(\Omega,t)}{D_L} \right)^2  B_{\nu}(T_{\text{eff}}(\Omega,t))~\mathbf{n} \cdot  \dd\boldsymbol{\Omega} 
 \end{equation}
-
-where $\mathbf{n}$ is the unitary vector along the line of sight, $\mathbf{n}_{\Omega}$ is the unitary vector spanning the solid angle $\Omega$, $D_L$ is the luminosity distance, $R_{\text{ph}}$ is the local radial coordinate of the photospheric surface, and $B_{\nu}(T_{\rm eff})$ is the spectral radiance at frequency $\nu$ for a surface of temperature $T_{\text{eff}}$
-
+%
+where $\mathbf{n}$ is the unitary vector along the line of sight, $\mathbf{n}_{\Omega}$ is the unitary 
+vector spanning the solid angle $\Omega$, $D_L$ is the luminosity distance, $R_{\text{ph}}$ is the local 
+radial coordinate of the photospheric surface, and $B_{\nu}(T_{\rm eff})$ is the spectral radiance at 
+frequency $\nu$ for a surface of temperature $T_{\text{eff}}$
+%
+% Magnitudes
 We also make use of the apparent AB magnitude mag$_b$ in a given photometric band $b$, defined as:
-
+%
 \begin{equation}
 \label{eq:mag}
 \text{mag}_b(\mathbf{n},t) = -2.5 \log_{10}\left( F_{\nu_b}(\mathbf{n},t) \right)-48.6\,,
