@@ -1,45 +1,108 @@
 % Chapter Template
 
-\chapter{Non-thermal emission from compact object merger} % Main chapter title
+\chapter{Non-thermal emission from compact object merger} \label{ch:afterglow} 
 
-\label{ch:afg} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+In this chapter we consider non-thermal \ac{EM} counterparts of \ac{BNS} 
+mergers, the \ac{SGRB} and \ac{kN} afterglows.
 
 
-\section{$\gamma$-ray bursts}
 
-\acp{GRB} are irregular pulses of gamma-ray radiation with broken power-law (non-thermal) spectrum, peaking at KeV-MeV \citep{Band:1993,Kouveliotou:1993,Meegan:1992xg}.
 
-With respect to the duration, \ac{GRB} are split into two categories: \ac{SGRB}, that last $< \sim 2$~s and long \ac{GRB} that last $> \sim 2$~s. The latter are the result of the collapse of massive $\geq 15M_{\odot}$ stars, while the former, at least in part, is attributed to mergers of compact objects. Only very recently it was directly confirmed \citep{TheLIGOScientific:2017qsa}. However, the exact physical origin of different duration \ac{GRB} is not fully understood.
 
-Indications that long \ac{GRB} are associated with core-collapse supernovae, \acp{SN}, are two fold. These \acp{GRB} are typically observed in star-forming regions of their host galaxies \citep[\eg][]{Bloom:2000pq,Bloom:2002hc,Fruchter:2006py,Christensen:2004yx,CastroCeron:2006jh} and several \acp{GRB} are spectroscopically associated with Type Ic \acp{SN}, albeit these \acp{GRB} were significantly less bright and might not be typical \acp{GRB} \citep[\eg][]{Liang:2006ci,Bromberg:2011fm}. Additionally, the late time behaviour of some \acp{GRB} includes a \acp{SN}-like "bump" in the optical and spectral changes that might imply that underlying \acp{SN} flux becomes dominant over \acp{GRB} \citep[\eg][]{Bloom:1999,Woosley:2006fn}.
+\section{$\gamma$-ray bursts and kilonova afterglows}
 
-The \acp{GRB} are distant events, most of which were localized to outside the local group \citep[\eg][]{Mao:1992,Piran:1992,Fenimore:1993}. Particularly useful for distance estimation were the observations of \ac{GRB} afterglow, fading X-ray \& optical emission, that allow to estimate the redshift
-\citep[\eg][]{Costa:1997cg,Frontera:1997ae}.
-
-Analysis of the multi-wavelength afterglow data for \acp{GRB} \cite[\eg][]{Panaitescu:2001bx} suggested the mechanism behind the afterglow emission is the synchrotron radiation from the forward, external forward-shock, which forms when \ac{GRB}-ejecta sweeps-up the circumburst medium
-\footnote{The specific indications are the power law decay of the light curves, $F_{\nu}\propto^{-1}$ and power-law spectrum $F_{\nu}\propto\nu^{-0.9\pm 0.5}$.} 
+\acp{GRB} are irregular pulses of gamma-ray radiation with broken power-law 
+(non-thermal) spectrum, peaking at KeV-MeV \citep{Band:1993,Kouveliotou:1993,Meegan:1992xg}.
+%
+With respect to the duration, \ac{GRB} are split into two categories: \ac{SGRB}, 
+that last ${\leq}2$~s and long \ac{GRB} that last ${\gsim}2$~s. The latter are the 
+result of the collapse of massive ${\geq}15M_{\odot}$ stars, while the former, at 
+least in part, is attributed to mergers of compact objects. Only very recently it 
+was directly confirmed with the detection of \ac{SGRB} \GRB{} that accompanied 
+the \ac{GW} event \GW{} \citep{TheLIGOScientific:2017qsa}. However, the exact physical 
+origin of different duration \ac{GRB} is not fully understood.
+%
+Indications that long \ac{GRB} are associated with core-collapse supernovae, \acp{SN}, 
+are two fold. These \acp{GRB} are typically observed in star-forming regions of their 
+host galaxies \citep[\eg][]{Bloom:2000pq,Bloom:2002hc,Fruchter:2006py,Christensen:2004yx,CastroCeron:2006jh} 
+and several \acp{GRB} are spectroscopically associated with Type Ic \acp{SN}, albeit 
+these \acp{GRB} were significantly less bright and might not be typical \acp{GRB} 
+\citep[\eg][]{Liang:2006ci,Bromberg:2011fm}. Additionally, the late time behaviour 
+of some \acp{GRB} includes a \acp{SN}-like "bump" in the optical and spectral changes 
+that might imply that underlying \acp{SN} flux becomes dominant over \acp{GRB} 
+\citep[\eg][]{Bloom:1999,Woosley:2006fn}.
+%
+The \acp{GRB} are distant events, most of which were localized to outside the local 
+group \citep[\eg][]{Mao:1992,Piran:1992,Fenimore:1993}. Particularly useful for distance 
+estimation were the observations of \ac{GRB} afterglow, fading X-ray \& optical emission, 
+that allow to estimate the redshift \citep[\eg][]{Costa:1997cg,Frontera:1997ae}.
+%
+Analysis of the multi-wavelength afterglow data for \acp{GRB} \citep[\eg][]{Panaitescu:2001bx} 
+suggested the mechanism behind the afterglow emission is the synchrotron radiation from the 
+external forward-shock, which forms when \ac{GRB}-ejecta sweeps-up the \ac{CBM} or \ac{ISM}
+medium\footnote{
+    The specific indications are the power law decay of the light curves, 
+    $F_{\nu}\propto^{-1}$ and power-law spectrum $F_{\nu}\propto\nu^{-0.9\pm 0.5}$.
+} 
 \citep{Rees:1992ek,Paczynski:1993gz,Meszaros:1993ju,Meszaros:1996sv}.
-
-The temporal behavior of many (but not all) \acp{GRB} shows a change, a steepening of the light-curve (to $F_{\nu}\propto t^{-2.2}$) at $\sim 1$~day after the burst. This is usually attributed to the 
+%
+The temporal behavior of many (but not all) \acp{GRB} shows a change, a steepening 
+of the light-curve (to $F_{\nu}\propto t^{-2.2}$) at $\sim 1$~day after the burst. 
+This is usually attributed to the 
 %\gray{deceleration of the colimated GRB-outflow, jet, and decrease on the realtivisitc beaming. This in turn makes the edge of the jet visible to an observer.} 
-finite angular extend of the \ac{GRB}-ejecta, jet \citep[\eg][]{Rhoads:1999wm,Sari:1999mr}. When jet decelerates and relativistic beaming decreases (and the jet edge becomes visible), the optical and X-ray lightcurves decay achromatically faster. This achromatic transition from slow to faster decay is called "jet-break".
-
-%% PROBLEMO -- jet-break is not a universal feature.
-Notably, this jet-break is not observed in all GRBs which presents a question why \citep[\eg][]{Fan:2006pj,Panaitescu:2006,Liang:2007ti,Sato:2006jg,Liang:2007rn,Curran:2007cp,Racusin:2008bx}
-
-%% PROBLEMO -- GRB density seems uniform, but SSE models predict wind-like profile
-Models of the broadband emission of \acp{GRB} with jet-break showed that the circomburst medium, \ac{CBM}, is uniform with number density \red{$\sim 10^{-3}$} \citep{Panaitescu:2001bx}. If \acp{GRB} produced in collapse of massive stars \citep{Woosley:1993,Paczynski:1997yg}, this contradicts the expected density profile from stellar winds, \eg, $\rho\propto r^{-2}$ \citep[\eg][]{Dai:1998iz, Chevalier:1999jy, Chevalier:1999mi,Ramirez-Ruiz:2001} \red{this might be very outdated.}
-
+finite angular extend of the \ac{GRB}-ejecta, jet \citep[\eg][]{Rhoads:1999wm,Sari:1999mr}. 
+When jet decelerates and relativistic beaming decreases (and the jet edge becomes visible), 
+the optical and X-ray lightcurves decay achromatically faster. This achromatic transition 
+from slow to faster decay is called "jet-break".
+%
+%%% PROBLEMO -- jet-break is not a universal feature.
+%Notably, this jet-break is not observed in all \acp{GRB} for the reason that is not fully 
+%understood \citep[\eg][]{Fan:2006pj,Panaitescu:2006,Liang:2007ti,Sato:2006jg,Liang:2007rn,Curran:2007cp,Racusin:2008bx}
+%%
+%%% PROBLEMO -- GRB density seems uniform, but SSE models predict wind-like profile
+%Models of the broadband emission of \acp{GRB} with jet-break showed that the 
+%\ac{CBM}, is uniform with number density \red{$\sim 10^{-3}$} \citep{Panaitescu:2001bx}. 
+%If \acp{GRB} produced in collapse of massive stars \citep{Woosley:1993,Paczynski:1997yg}, 
+%this contradicts the expected density profile from stellar winds, \eg, $\rho\propto r^{-2}$ 
+%\citep[\eg][]{Dai:1998iz,Chevalier:1999jy,Chevalier:1999mi,Ramirez-Ruiz:2001} 
+%\red{this might be very outdated.}
+%
 %% sGRB
-Regarding the short duration \ac{GRB}. Their origin was first connected with the elliptical galaxes with older stellar population \citep[\eg][]{Gehrels:2005qk,Fox:2005kv,Barthelmy:2005bx,Berger:2005dr,Panaitescu:2005er,Bloom:2005qx,Guetta:2005bb,Nakar:2007yr} and thus with merger of neutrons stars. A more direct evidence came with the detection of \GRB{} \cite{Abbott:2018wiz}, a \ac{SGRB} that accombaned the \ac{GW} detection and \ac{kN}.
+The origin of \acp{SGRB} was first connected with the elliptical galaxes, and with 
+older stellar population 
+\citep[\eg][]{Gehrels:2005qk,Fox:2005kv,Barthelmy:2005bx,Berger:2005dr,Panaitescu:2005er,Bloom:2005qx,Guetta:2005bb,Nakar:2007yr} 
+and thus with \ac{BNS} mergers. A more direct evidence came with the \GRB{}
+\citep{Savchenko:2017ffs,Alexander:2017aly,Troja:2017nqp,Monitor:2017mdv,Nynka:2018vup,Hajela:2019mjy}, 
+detected by the space observatories Fermi \citep{TheFermi-LAT:2015kwa} and INTEGRAL \citep{Winkler:2011}.
+%
+Generally \acp{SGRB} show a complex time behavior of early afterglow X-ray emission, 
+in particular a presence of a plateau ($F_{x}\propto t^{-1/2}$), after the initial sharp 
+decrease ($F_{x}\propto t^{-3}$) which a standard forward shock model does not predict. 
+This implies that early X-ray afterglow is shaped by a variety of physical processes 
+\citep{Zhang:2005fa}.
+%
+The \GRB{} was dimmer then any other events of its class. 
+Different interpretations for its dimness and slow rising flux were proposed: off-axis jet, 
+cocoon or structured jet. Now it is commonly accepted that \GRB{} was a structured jet 
+observed off-axis 
+\citep[\eg][]{Fong:2017ekk,Troja:2017nqp,Margutti:2018xqd,Lamb:2017ych,Lamb:2018ohw,Ryan:2019fhz,Alexander:2018dcl,Mooley:2018dlz,Ghirlanda:2018uyx}.
+The \GRB{} late emission, the afterglow, provided information on 
+the energetics of the event and on the properties of the circumburst medium 
+\citep[\eg][]{Hajela:2019mjy}. 
 
-Continuous observations of \ac{SGRB} showed a complex time behavior of early afterglow X-ray emission, in particular a presence of a plateau ($F_{x}\propto t^{-1/2}$), after the initial sharp decrease ($F_{x}\propto t^{-3}$) which a standard forward shock model does not predict. This implied that early X-ray afterglow is shaped by a variety of physical processes \citep{Zhang:2005fa}.
-
-Two main questions that stem from these observations: is the mechanism behind the prompt $\gamma$-ray emission and early afterglow emission is the same (or do they originate from the same outflow), and is the early X-ray radiation produced by the external shock (just a blast wave takes long time to become self-similar) or does it originate from an internal shock?
-An indication that the long-lived central engine activity might affect the afterglow came from the observed sharp increase in X-ray flux (flares) on a scale of minutes to hours after the end of the \ac{GRB}
-\citep{Burrows:2005ww,Chincarini:2007fp,Chincarini:2010,Margutti:2011}, which could not be attributed to the inhomogeneities in the \ac{CBM}.
-%% PROBLEMO!
-Thus, the early X-ray behaviour of \acp{GRB} $t < 10^{4}$~s post-burst is not well understood and seems to be in tension with standard afterglow forward shock emission model.
+%%%% EARLY emission problem
+%Two main questions stem from these observations: is the mechanism behind the prompt 
+%$\gamma$-ray emission and early afterglow emission is the same (or do they originate from 
+%the same outflow), and is the early X-ray radiation produced by the external shock (just a 
+%blast wave takes long time to become self-similar) or does it originate from an internal 
+%shock? An indication that the long-lived central engine activity might affect the 
+%afterglow came from the observed sharp increase in X-ray flux (flares) on a 
+%scale of minutes to hours after the end of the \ac{GRB}
+%\citep{Burrows:2005ww,Chincarini:2007fp,Chincarini:2010,Margutti:2011}, 
+%which could not be attributed to the inhomogeneities in the \ac{CBM}.
+%%% PROBLEMO!
+%Thus, the early X-ray behaviour of \acp{GRB} $t < 10^{4}$~s post-burst is not well 
+%understood and seems to be in tension with standard afterglow forward shock emission model.
 
 %\textcolor{red}{
 %    One of the foremost unanswered questions about GRBs is the physical mechanism
@@ -54,46 +117,280 @@ Thus, the early X-ray behaviour of \acp{GRB} $t < 10^{4}$~s post-burst is not we
 %    pairs, or is the energy primarily in magnetic fields?
 %}
 
-Once again, while it is suggested that the high energy emission, after the propmt phase is produced by the synchrotron process in the external forward shock, \citep{Kumar:2009,Ghisellini:2010}, the mechanism behind the high and low energy $\gamma$-ray emission in the prompt phase remains unknown. 
-Possible mechanisms include: inverse Compton and synchrotron emission in internal and external shocks
-\citep[\eg][]{Rees:1992ek,Dermer:1998py,Lyutikov:2003ih,Zhang:2011} and 
-photospheric radiation with contribution from multiple \ac{IC} scatterings
-\citep[\eg][]{Thompson:1994zh,Ghisellini:1998jy,Meszaros:1999gb,Peer:2005qoc,Peer:2008udu,Giannios:2006jb,Ioka:2007qk,Asano:2009gi,Lazzati:2010,Beloborodov:2010,Toma:2011}.
+%Once again, while it is suggested that the high energy emission, after the propmt phase is produced 
+%by the synchrotron process in the external forward shock, \citep{Kumar:2009,Ghisellini:2010}, 
+%the mechanism behind the high and low energy $\gamma$-ray emission in the prompt phase remains unknown. 
+%Possible mechanisms include: inverse Compton and synchrotron emission in internal and external shocks
+%\citep[\eg][]{Rees:1992ek,Dermer:1998py,Lyutikov:2003ih,Zhang:2011} and 
+%photospheric radiation with contribution from multiple \ac{IC} scatterings
+%\citep[\eg][]{Thompson:1994zh,Ghisellini:1998jy,Meszaros:1999gb,Peer:2005qoc,Peer:2008udu,Giannios:2006jb,Ioka:2007qk,Asano:2009gi,Lazzati:2010,Beloborodov:2010,Toma:2011}.
 
 %% from the Afterglow paper
-One of the \ac{EM} counterparts, that observed for \GW{} was the short \ac{GRB}, \GRB{} \citep{Savchenko:2017ffs,Alexander:2017aly,Troja:2017nqp,Monitor:2017mdv,Nynka:2018vup,Hajela:2019mjy}, detected by the space observatories Fermi \citep{TheFermi-LAT:2015kwa} and INTEGRAL \citep{Winkler:2011}.
-
-This \ac{SGRB} was dimmer then any other events of its class. 
-Different interpretations for its dimness and slow rising flux were proposed: off-axis jet, cocoon or structured jet. 
-Now it is commonly accepted that \GRB{} was a structured jet observed off-axis 
-\citep[\eg][]{Fong:2017ekk,Troja:2017nqp,Margutti:2018xqd,Lamb:2017ych,Lamb:2018ohw,Ryan:2019fhz}.
-The \GRB{} late emission, the afterglow, provided further information on 
-the energetics of the event and on the properties of the circumburst medium \citep[\eg][]{Hajela:2019mjy}.
 
 
-\subsection{kilonova afterglow}
 
-In addition to the \ac{GRB} beamed emission, the non-thermal, more isotropic emission is expected from electrons accelerated in shocks formed between the (mildly) relativistic ejecta and the \ac{ISM} \citep{Nakar:2011cw}. This emission is expected to peak in radio band and continue on a time scale of tens of years after merger. Notably, all ejecta components will contribute to the emission, but  depending on the ejecta velocities and kinetic energy, the brightness in different frequencies and timescales differs. 
+%\subsection{kilonova afterglow}
 
-Various ejecta components interact with each other and with \ac{ISM}. The latter, generates a long-lived blast wave. The shock, propagating upstream, amplifies (random) magnetic fields and accelerates electrons, that subsequently emit synchrotron radiation. This process in phenomenological similar to the for the \ac{GRB} afterglow and \ac{SN} early remnants. 
+In addition to the \ac{GRB} beamed emission, the non-thermal, more isotropic 
+emission is expected from electrons accelerated in shocks formed between the 
+(mildly) relativistic ejecta and the \ac{ISM} \citep{Nakar:2011cw}. This emission 
+is expected to peak in radio band and continue on a time scale of tens of years 
+after merger. Notably, all ejecta components will contribute to the emission, 
+but depending on the ejecta velocities and kinetic energy, 
+the brightness in different frequencies and timescales differs. 
+%
+Various ejecta components interact with each other and with \ac{ISM}. The latter, 
+generates a long-lived blast wave. The shock, propagating upstream, amplifies 
+(random) magnetic fields and accelerates electrons, that subsequently emit 
+synchrotron radiation. This process in phenomenological similar to the for the 
+\ac{GRB} afterglow and \ac{SN} early remnants. 
+%
+Numerical simulations of \ac{BNS} mergers showed the presence of mildly relativistic 
+ejecta (See Sec.~\ref{sec:bns_sims:method:ejecta}). 
+Several studies on the possible non-thermal electromagnetic emission of this ejecta 
+have been carried out 
+\citep[\eg][]{Piran:2012wd,Hotokezaka:2015eja,Hotokezaka:2018gmo,Radice:2018pdn}. 
+Notably, the observed non-thermal emission from \GW{}, was first interpreted 
+as the non-thermal emission from the ejecta \citep{Mooley:2017enz}.
+This interpretation was however disproved by the emergence of jet break
+%
+%Specifically, a strong radio emission is expected from \ac{BNS} ejecta \citep{Piran:2012wd,Hotokezaka:2015eja}. 
+The \ac{BNS} merger radio remnant is expected to peak on a time-scale 
+of years after the merger and be visible over a similar timescale. Notably, this is 
+assuming that the ejecta is expanding into the unshocked \ac{ISM}, as it was shown 
+that if the \ac{ISM} is pre-shocked by the jetted outflow, and the \ac{ISM} density is 
+reduced, the kilonova afterglow would be delayed. 
+%
+In \citet{Piran:2012wd}, the synthetic \ac{kN} afterglow \acp{LC} are calculated 
+for a set of \ac{NR} \ac{BNS} merger simulation with properties typical to the 
+Galactic binary population and \ac{ISM} density usually found in the Galactic disk, 
+$\nism\sim1\ccm$. Authors showed that the from a binary of two $1.4\Msun$ \acp{NS}, 
+the kilonova afterglow would peak $\sim10$~years after the merger if $\nism = 0.1\ccm$ 
+and $\sim3$~years if $\nism = 1\ccm$ in radio bands, $\nu=1.4$~GGz and $\nu=150$~MGz. 
+Notably, both values of the \ac{ISM} density are larger than what is inferred for \GW{}. 
+Indeed, jet fitting models and dependent analysis of the diffuse emission suggest 
+$\nism\in(10^{-4},10^{-2})\gcm$ \citep{Hajela:2019mjy}.
+%In \citet{Piran:2012wd} authors focus on the observational prospects of this afterglow 
+%and compare it to other \ac{EM} emission expected for \ac{BNS}. 
 
-Numerical simulations of \ac{BNS} mergers showed the presence of mildly relativistic ejecta several 
-studies on the possible non-thermal electromagnetic emission of this ejecta have been carried out 
-\citet[\eg][]{Piran:2012wd,Hotokezaka:2015eja,Radice:2018pdn}. Additionally, the observed non-thermal emission from \GW{}, before the achromatic (jet) break, was interpreted as the non-thermal emission 
-from the ejecta \citep{Mooley:2017enz}.
 
-Specifically, a strong radio emission is expected from \ac{BNS} ejecta \citep{Piran:2012wd,Hotokezaka:2015eja}. Such radio remnant is expected to peak on a time-scale 
-of years after the merger and be visible over a similar timescale. Notably, this is assuming that the 
-ejecta is expanding into the unshocked \ac{ISM}, as it was shown that if the \ac{ISM} is 
-pre-shocked by the jetted outflow, and the \ac{ISM} density is reduced, the kilonova afterglow would 
-be delayed. 
-In \citet{Piran:2012wd}, the synthetic \ac{kN} afterglow \acp{LC} are calculated for a set of \ac{NR} \ac{BNS} merger simulation with properties typical to the Galactic binary population and \ac{ISM} density usually found in the Galactic disk, $\nism\sim1\ccm$. Authors showed that the from a binary of two $1.4\Msun$ \acp{NS}, the kilonova afterglow would peak $\sim10$~years after the merger if $\nism = 0.1\ccm$ and $\sim3$~years if $\nism = 1\ccm$ in radio bands, $\nu=1.4$~GGz and $\nu=150$~MGz. Notably, both values of the \ac{ISM} density are larger than what is inferred for \GW{}. Indeed, jet fitting models and idependent analysis of the diffuse emission (\red{hajela+19}) suggest $\nism\in(10^{-4},10^{-2})\gcm$ \citep{Hajela:2019mjy}.
-In \citet{Piran:2012wd} authors focus on the observational prospects of this afterglow and compare it to other \ac{EM} emission expected for \ac{BNS}. 
+%\red{motivation why it is important to model nucleosynthesis}
+%
+%
+%\red{Subsection of GRBs}
+%\cite{Lee:2007js,Nakar:2007yr,Gehrels:2009,Fernandez:2015use}
 
 
-\red{motivation why it is important to model nucleosynthesis}
 
 
-\red{Subsection of GRBs}
-\cite{Lee:2007js,Nakar:2007yr,Gehrels:2009,Fernandez:2015use}
 
+\section{Afterglow theory}
+
+\red{Based in the \cite{Kumar:2014upa} work}.
+In this section we outline of the most relevant physical processes in \ac{GRB}
+and \ac{kN} afterglows. It is not meant as a comprehensive theoretical review. 
+For this we refer the interested reader to the momnograph by \citet{RybickiLightman:1985}, 
+as well as books of high energy astrophysics by \citet{Longair:2011,Dermer:2009}.
+
+
+\subsection{Special relativistic effects}
+
+Consider a moving source of radiation and an observer with a line of sight to the source.
+Let $\upsilon$, $\Gamma$ and $\theta$ be the source velocity, 
+\ac{LF} and angle with the line of sight.
+%
+Consider three frames of reference, the comoving frame (usually denoted with a prime $'$),
+the lab frame, where the source is seen as moving with $\upsilon$ and observer frame.
+Then, if two photons are emitted in the comoving frame with time difference of $\delta t'$,
+which is in the lab frame $\delta t = \Gamma \delta t'$, the observer sees the two 
+photons arrive with 
+%
+\begin{eqnarray}
+\delta t_{obs} &= \delta t + \frac{(d - \upsilon\cos(\theta) \delta t)}{c} - \frac{d}{c} \\
+&= \delta t (1 - \upsilon \cos(\theta) / c) \\
+&= \delta t' \Gamma (1 - \upsilon \cos(\theta) / c)\\
+&= \delta t' \mathcal{D}^{-1}
+\end{eqnarray}
+%
+where $d$ is the distance to the source, and 
+%
+\begin{equation}
+\mathcal{D} = \frac{1}{\Gamma(1 - (\upsilon/c) \cos(\theta))} = \frac{1}{\Gamma(1 - \beta\cos(\theta))}
+\label{eq:afterglow:dop_fac}
+\end{equation}
+%
+is the \ac{DF}. 
+
+
+Next, we consider the transformation of the photon frequencies. 
+%
+The Lorentz transformation of the photon $4$-momentum in comoving frame, \eg,, 
+$\nu'(1, \cos(\theta'), \sin(\theta'),0)$ to the lab frame $4$-momentum 
+$\nu(1, \cos(\theta), \sin(\theta), 0)$
+%
+\begin{equation}
+\nu = \nu' \Gamma(1+\upsilon \cos(\theta')/c) \text{ \& } \nu\cos(\theta) = \nu' \Gamma (\cos(\theta') + \upsilon/c)
+\end{equation}
+%
+or 
+%
+\begin{equation}
+\nu = \frac{\nu'}{\Gamma (1 - \upsilon\cos(\theta)/c)} = \nu' / \mathcal{D}
+\label{eq:afterglow:dop_fac_freq}
+\end{equation}
+%
+%which is a standard Doppler shift formula.
+
+
+
+%\subsubsection{Relativistic beaming of photons}
+
+We have shown that $\nu = \nu' \mathcal{D}$, but also 
+$\sin(\theta) = \sin(\theta')/\mathcal{D}$. Then the transverse component of the 
+momentum is invariant under the Lorentz transformation, \eg, 
+$\nu_{\perp}' = \nu'\sin(\theta') = \nu\sin(\theta) \nu_{\perp}$. 
+For a beam of photons it imples that the angular size of the beem is smaller 
+in the lab frame than in the comoving frame by $\propto \Gamma$.
+%
+The solid angle of a conical beam of photons, $d\Gamma$ then 
+%
+\begin{equation}
+d\Gamma = \sin(\theta)d\theta d\phi = \sin(\theta') d\theta' d\phi' / \mathcal{D}^2 = d\Omega'/\mathcal{D}^2
+\end{equation}
+%
+is smaller in the lab frame than in the comoving frame.
+%
+%Next, consider a frequency integrated total energy radiated per 
+%unit time over the $4\pi$ steradians, denoted as $P$. 
+%%
+%The power in the lab frame $P = P'\Gamma\delta t'/(\Gamma\delta t') = P'$. 
+%Hence, power radiated by particles is \magenta{Lorentz invariant}.
+
+
+%\subsubsection{Transformation of specific luminosity and specific intensity}
+
+Consider a spherically symmetric source, expanding with \ac{LF} $\Gamma$.
+%
+The \magenta{specific luminosity} is defined as the total energy that passes 
+through the surface enclosing the source per unit time, per unit frequency, 
+$L_{\nu} = dE / d\nu dt_{obs}$. 
+As $d\nu dt_{obs} = d\nu' dt'$ and $E=\Gamma E'$, the Lorentz transformation 
+of luminosity is
+%
+\begin{equation}
+L_{\nu} = \frac{dE}{d\nu dt_{obs}} = \Gamma \frac{dE'}{d\nu' dt'} = \Gamma L_{\nu}'
+\end{equation}
+%
+assuming that the $3$-momentum is zero (as the source is spherically symmetric).
+%
+The \magenta{specific intensity} is defined as a flux per unit frequency 
+and per unit solid angle, mediated by photons, traversing surface $dA$, 
+perpendicular to the conical beam, confining the photons, 
+%
+\begin{equation}
+I_{\nu} = \frac{dE}{d\nu dt_{obs} dA d\Omega}
+\end{equation}
+%
+that has a Lorentz transformation $I_{\nu} = \mathcal{D}^3 I_{\nu'}'$ 
+as $d\nu dt_{obs} dA$ is the Lorentz invariant.
+
+
+
+%\subsubsection{Observed \ac{LC} from a source that is suddenly turned off}
+
+When considering the extended source that suddenly turns off, the observed emission, 
+due to the final size of its origin, does not shuts down, but steeply delines and can 
+be computing integrating over the \ac{EATS}.
+%
+Consider a thin shell with a point, characterized by $(r,\theta,\phi)$ where $\theta$ 
+is the angle measured with respect to the line of sight to the observer. Then, photons, 
+emitted at $(r=\upsilon t, \theta,\phi)$ arrive at the observer with a time delay with 
+respect to a photon emitted at $r=0$ of
+%
+\begin{equation}
+t_{obs} = t - \frac{r \cos(\theta)}{c} = t(1-\frac{\upsilon\cos(\theta)}{c}) = \frac{t}{\Gamma\mathcal{D}}
+\end{equation}
+
+
+Now, consider the observed emission from the source at frequency $\nu$. 
+The starting time is $t_{0;obs}\approx(R_0 2 c \Gamma^2)$, \red{check!} 
+at which photons, emitted from $(R_0, 0, 0)$ arrive, At later times, 
+$t_{obs}>t_{0;obs}$, the observer still sees photons emitted when $r < R_0$. 
+%
+Assume that the intrinsic emission spectrum is $I_{\nu'}' = I'\nu^{'-\beta}$.
+Then, at $t_{obs} > t_{0;obs}$ the radiation from $\theta > \theta_t$ 
+(where $\theta_t$ corresponds to $t_{obs} = R_0 (1/\upsilon - \cos(\theta_t)/c)$) 
+reaches the observer.
+%
+The observed flux \eg, $f_{\nu} \propto \int I_{\nu} d\Omega$, has the following 
+Lorentz transformation 
+$f_{\nu}\propto\int_{\theta_t} d\theta \sin(\theta_t) \mathcal{D}^{-(3+\beta)}$.
+%
+%
+Now, consider a more rigorous derivation of the transformation of the specific 
+flux in observer frame from relativistic source with comoving specific intensity 
+$I_{\nu'}'$ and spectrum $\propto \nu^{' -\beta}$
+%
+\begin{equation}
+f_{\nu}(t_{obs}) = \int d\Omega_{obs} I_{\nu} \cos(\theta_{obs}) = 2\pi \int d\theta_{obs} \frac{ I_{\nu'_0}' \nu_{0}^{'\beta}\sin(2\theta_{obs})[(1+z)\Gamma]^{-(3+\beta)} }{ 2\nu^{\beta} [ 1-\upsilon\cos(\theta + \theta_{obs}) / c ]^{3+\beta} }
+\end{equation}
+%
+where $\nu_0 '$ is a frequency that lies on the power law segment of the spectrum for 
+$I_{\nu'}'$. The Lorentz transformation of the specific intensity was made above. 
+The factor $(1+z)^{3+\beta}$ accounts for the Redshift on the frequency. 
+%
+Assuming that $\sin(\theta)/d_{A} = \sin(\theta_{obs})/r$, the above integral writes 
+%
+\begin{equation}
+f_{\nu} \approx \frac{ 2\pi I' \nu' _0 \nu_{0}^{'\beta}\nu^{-\beta} }{[(1+z)\Gamma]^{3+\beta}} \Big( \frac{R_0}{d_A} \Big)^2 \int_{\theta_t}^{\pi / 2} d\theta \frac{\sin(\theta)\cos(\theta)}{(1-\upsilon\cos(\theta)/c)^{3+\beta}},
+\end{equation}
+where $\theta+\theta_{obs}$ in the denominator was replaced with $\theta$ as $\theta_{obs}\ll\theta$.
+The integral is simple to compute. Ir yields
+
+\begin{equation}
+f_{\nu}(t_{obs}) \propto (1 - \upsilon\cos(\theta_t)/c)^{-(2 + \beta)}\nu^{-\beta} \propto t_{obs}^{-(2+\beta)} \nu^{-\beta},
+\end{equation}
+%
+This equation shows, that the observed radiation does not immediately turns off 
+when the source switches off. The flux falls off rapidly with time and vanishes 
+when $\theta_t$ exceeds the angular size of the source $(\theta_j)$.
+
+
+
+
+In order to compute the flux seen by the observer, we perform the standard 
+integration over the \ac{EATS}.
+
+The method can be summarized as follows.
+The structured blast wave is composed of infinitesimal elements,
+each of which is evolved within its own $(d\phi, d\theta)$
+cell, center of which has coordinates $(\phi_c, \theta_c)$.
+
+Then for each cell, the observational angle, $\mu$, is computed as 
+
+\begin{equation}
+    \cos(\mu) = \sin(\alpha) \sin(\theta_c) \sin(\phi_c) 
+     + \cos(\alpha) \cos(\theta_c).
+\end{equation}
+
+Then the radiation at time $t$ is observed if $t_{obs}$
+
+\begin{equation}
+    t_{obs} = t_{lab} +\frac{r}{c}(1 - \cos{\mu})
+\end{equation}
+
+where 
+
+\begin{equation}
+t_{lab} = \int \frac{1}{\beta c} dr
+\end{equation}
+%
+is the time measured in the laboratory frame of reference.
+%
+Then we interpolate the part of the dynamical evolution
+of the infinitesimal jet that corresponds to this $t_{obs}$,
+and emitted the radiation during this time.
+The flux, $F_i$, for a given Doppler-shifted frequency, 
+$\nu_{obs}'$, is then obtained for each infinitesimal segment.
+Integrating over the $F_i$ we obtain the total flux emitted by the 
+blast wave and observed at time $t_{obs}$

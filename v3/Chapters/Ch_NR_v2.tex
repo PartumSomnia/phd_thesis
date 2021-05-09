@@ -1037,7 +1037,7 @@ This \acp{EOS} was first employed for the \ac{BNS} merger simulations in \citet{
 
 
 
-\subsection{EOS in cold configurations of Neutron Stars}
+\subsection{\ac{EOS} in cold configurations of Neutron Stars}
 
 
 \begin{figure}[t]
@@ -1088,8 +1088,22 @@ These observations highlight the importance of using full \acp{EOS} with finite-
 %% Thermal (and composition, see \citep{Kaplan:2013wra})
 %% effects are indeed key to quantify the prompt collapse dynamics,
 %% mass-shedding in the remnant and disc properties.
-
-
+Unless stated otherwise, we label the \acp{NS} of the binary with subscripts $A$, $B$.
+The individual gravitational masses are indicated as $M_A$, $M_B$, 
+the baryonic masses as $M_{b~A}$, $M_{b~B}$, 
+the total mass as $M = M_A + M_B$, 
+and the mass ratio $q=M_A/M_B\geq1$. 
+%\red{perhaps the Lambda definition has to be moved to the bns-sims chapter}
+We define the quadrupolar tidal parameters as
+$\Lambda_i \equiv 2/3\, C_i^{-5} k^{(2)}_i$
+where $k_i^{(2)}$ is the dimensionless gravitoelectric Love number \cite{Damour:2009vw}, 
+$C_i \equiv GM_A/(c^2R_A)$ the compactness parameter, and $i=A,B$.
+The reduced tidal parameter \cite{Favata:2013rwa} is:
+\begin{equation}
+\tilde\Lambda = \frac{16}{13}\frac{(M_A+12 M_B)M_A^4 \Lambda_A}{M^5}+(A\leftrightarrow B)\,.
+\label{eq:nr_methods:Lambda_tilde}
+\end{equation}
+We use CGS units except for masses and velocities, given in units of $\Msun$ and $c$, respectively.
 
 
 \section{Neutrino Radiation Transport}\label{sec:nr_methods:neut}
@@ -1367,7 +1381,7 @@ It was first proposed by \citet{vanRiper:1981mko} to study the neutrino cooling 
 in the \ac{CCSN}. The leakage scheme is popular to model neutrino effects in \acp{CCSN} 
 and compact object mergers.
 %
-A modified version of \cite{Galeazzi:2013mia} scheme is implemented in 
+A modified version of \citet{Galeazzi:2013mia} scheme is implemented in 
 \ac{NR} code \wisky{} \citep{Radice:2016dwd,Radice:2018pdn}.
 
 %Non-equilibrium weak-interaction processes lead to the production of numerous neutrions 
