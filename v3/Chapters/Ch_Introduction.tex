@@ -299,7 +299,7 @@ abundances are present in these stars as well \citep{Sneden:2008,Roederer:2010},
 %The possible cites for the \rproc{} we discuss in the following subsections.
 
 
-\subsection{Possible $r$-process sites}
+\subsubsection{Possible $r$-process sites}
 
 Study of possible cites of \rproc{} is a wide and rapidly developing field. The general requirement 
 for \rproc{} is a low electron fraction, or, in other words, neutron-rich conditions. These can be 
@@ -313,7 +313,7 @@ It is now believed that certain types of \acp{SN} and \ac{BNS} mergers are the m
 sources on \rproc{} material \citep{Mathews:1990,Thielemann:2011} \textcolor{red}{add more sources}
 
 
-\subsubsection{\acp{CCSN}}
+%\subsubsection*{\acp{CCSN}}
 
 Collapse of a massive star produces a hot neutron core, that undergoes deleptonization, releasing 
 $\sim10^{53}$~erg of binding energy in form of strong neutrino flux. These neutrinos, irradiating 
@@ -340,7 +340,7 @@ however, might not allow it to be the dominant source or $r$-process material \c
 (\red{See however Seigal:PAPER}). 
 
 
-\subsubsection{Compact object mergers}
+%\subsubsection{Compact object mergers}
 \red{TO BE REWRITTEN -- REPETITION OF PREVIOUS CHAPTERS}
 
 %% --- MIGHT NEED TO BE SHORTENED A LOT!  OR MOVED TO INTRODUCTION!
@@ -428,7 +428,7 @@ Recent observations of the one and only detected so far merger have confirmed th
 produce \rproc{} elements \red{[Refs] incl. Stroncium paper}.
 
 
-\subsection{Galactic chemical evolution}
+\subsubsection{Galactic chemical evolution}
 
 While there are several generally accepted cites for the \rproc{}, the main one is yet to be 
 determined \citep[\eg][]{Qian:2000bh,Argast:2003he,Matteucci:2014}
@@ -515,7 +515,7 @@ Reticulum II chemical composition and high europium abundances indicate that it 
 %%
 %% =======================================================
 
-\section{Kilonova}
+\subsection{Kilonova}
 
 Nuclides, synthesized in \rproc{} are very neutron rich and unstable. After the last 
 fission cycle, they decay to the valley of stability (see chapter~\ref{ch:nucleo}). 
@@ -624,7 +624,7 @@ The search for \ac{EM} counterparts to mergers continues, involving observatorie
 %% =======================================================
 
 
-\section{$\gamma$-ray bursts and kilonova afterglows}
+\subsection{$\gamma$-ray bursts and kilonova afterglows}
 
 \acp{GRB} are irregular pulses of gamma-ray radiation with broken power-law 
 (non-thermal) spectrum, peaking at KeV-MeV \citep{Band:1993,Kouveliotou:1993,Meegan:1992xg}.
@@ -851,7 +851,7 @@ split. Certain groups focused on including more 'matter physics', \eg, microphsy
 approximate neutrino readiation transport, effects of magnetic fields and turbulence, while 
 others proceeded with simplified \acp{EOS} but more sophisticated implementations of \ac{GR}, 
 via post-Newtonian methods \cite{(e.g. Faber & Rasio, 2000)}, 
-relativistic conformal-flatness approximation \cite{(e.g. Wilson et al., 1996; Oechslin et al., 2002; Faber et al., 2004)} or considering the fill-\ac{GR} \cite{e.g., Shibata & Uryu, 2000; Baiotti et al., 2008; Thierfelder et al., 201}. Recently, these simulations that adopt both, full \ac{GR}, microphsycial \ac{EOS},
+relativistic conformal-flatness approximation \cite{(e.g. Wilson et al., 1996; Oechslin et al., 2002; Faber et al., 2004)} or considering the fill-\ac{GR} \cite{e.g., Shibata & Uryu, 2000; Baiotti et al., 2008; Thierfelder et al., 201}. Recently, these simulations that adopt both, full \ac{GR}, microphsycial \ac{EOS},
 advanced treatment of neutrinos and \ac{MHD} turbulence emerged \cite{ OUR SIMULATIONS \& Rezolla \& shibata}
 The self-consistent implementation of magnetic fields into the simulations were implemented in 
 alongside Newtonian physics by \cite{Price & Rosswog (2006)} full general relativity, 
@@ -900,6 +900,141 @@ a \ac{BH} after the redistribution of the angular momentum. However, this scenar
 unconfirmed as it requires long-term, fully self-consistent investigation with expensive 
 \ac{NR} simulations. In this thesis we attempt to constrain this evolutionary path.
 
+After the merger, a remnant, be it a \ac{NS} or a \ac{BH} can be surrounded by a matter, that 
+have a different rotation profile, lower density (compare to \ac{NS}) but still gravitationally 
+bound to the central object. This matter is generally called disk or torus. Its mass and 
+properties are crucial in determining the long-term evolution of the system and \pmerg{} 
+outflows. However, they are not well understood on a quantitative level, as long-term 
+self-consistent \ac{NR} simulations with advanced physics input that are required for their study 
+are very computationally expensive. 
+%In this thesis we attempt to advance our understanding of the disk by by means of our 
+%own \ac{NR} simulations and via statistical analysis of all the data publicly available from 
+%other groups.
+
+%%%% <<< moved from BNS_merg_sims :: ejecta >>> 
+When \acp{NS} collide and merger, matter is ejected through a number of 
+different physical processes, gaining enough energy to become graviationally 
+unbound (according to the criteria discussed in Sec.~\ref{sec:bns_sims:method:ejecta}). 
+%\alpedit{The matter ejected on dynamical timescale of the system (${\sim}10$~ms) 
+%is called the dynamical ejecta.}{
+In particular, the matter ejected within a few dynamical timescales (\ie, ${\sim}10$~ms) 
+after merger by tidal torques and hydrodynamics shocks driven by core bounces 
+is called \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn}. 
+%
+% From AFTERGLOW paper
+%
+Several mechanisms contribute to the ejection, and depending on the 
+binary parameters, their relative contribution differs.
+%
+For instance, shortly before and during the merger, the outer parts 
+of the \acp{NS}, opposite to the collisional interface, are stripped 
+away by the tidal torque and centrifugal forces. This is the tidal 
+component of the \ac{DE}. It is more massive in binaries with 
+larger \mr{} and is maximum in those that experience tidal disruption 
+\citep[\eg][]{Radice:2018pdn,Bernuzzi:2020txg}.
+%
+Such ejecta is neutron rich, confined largely to the orbital plane and exhibits 
+a crescent-like azimuthal structure \citep{Bernuzzi:2020txg}.
+%
+Overall, the tidal ejecta component is mostly equatorial and its 
+velocity is related to the \acp{NS}' velocity at merger and 
+and the system's escape velocity, and is $\sim0.2$~c.
+%
+When \acp{NS}' cores collide and bounce, shocks propagate outwards inducing 
+matter ejection. Additionally, a small amount of material at the 
+\acp{NS}' collisional interface is shock-heated and launched into the polar 
+direction. This comprises the shocked component of the \ac{DE}.
+%
+It is more massive and faster if \acp{NS}' radii are smaller and they collide 
+at higher velocities \citep[\eg][]{Radice:2018pdn}. 
+%
+Overall the dynamical ejecta has a broad distribution in terms of composition, 
+velocity and mass, dependent on the parameters of the binary and \ac{NS} \ac{EOS}.
+%% === ON THE FAST DYNAMICAL EJECTA IN PARTICULAR ===========
+
+\red{Might add 'on a longer timescale other ejecta components are expected'}
+
+
+\subsection{Accretion disks}
+
+Accretion disks comprise the matter that is orbits the central object near rotational 
+equilibrium and accretes onto the central object. Such phenomena can be found in a variety of 
+incarnations and on a broad range of spatial scales in the Universe, \eg, around proto-stellar
+object during the star formation, in X-ray binaries, when the matter from the massive 
+companion star is being accreted onto a compact object, or in \ac{AGN}
+\cite{see e.g. Pringle, 1981; Balbus & Hawley, 1998; Spruit, 2010a, for reviews}.
+While being studied for a long time via a broad range of methods, the key physical mechanisms, 
+that induce the accretion, \ie, the transport of angular momentum, is not well understood.
+This problem becomes considerably more complex, when the central object is not axisymmetric 
+and interact with the disk. 
+One of the mechanisms responsible for the transport of angular momentum, is the torque between
+differentially rotating fluid elements exerted by microscopic viscosity. However, it is 
+orders of magnitudes weaker than what is required to explain the observed accretion rates 
+\cite{e.g. Lust, 1952} 
+%Additionally, an effecitve shear streses are generated in the flued
+%that is sugjected to stochastic small-scale motions in the flow tih high Reynolds nuimbers.
+
+\paragraph{The $\alpha$-viscosity approximation}
+
+It is possible to describe the disk turbulence without known the exact mechanism responsible 
+for it. Shakura \& Sunyaev (1973) \cite{Shakura & Sunyaev (1973)} proposed a method to 
+parameterize the shear stress under the assumption that the disk flow is quasi-laminar. 
+This is so-called ``turbulent kinematic $\alpha$-viscosity'' model, that can be derived 
+from the dimensional analysis. For the characteristic quantities of the local disk medium, 
+the sound speed $c_s$ and the Keplerian\footnote{
+    By Keplerian we imply a stationary orbit, where the gravitaional attraction is balanced 
+    by the centrifugal force exactly.
+} angular velocity $\Omega_K$, the $\alpha$-viscocity more reads 
+%
+\begin{equation}
+    \nu_{\rm vis} = \alpha_{\rm vis} \frac{c_{s}^2}{\Omega_K}
+\end{equation}
+%
+where the parameter $\alpha$ controls the ``strength'' of large scale shear stresses that drive 
+the accretion. Generally, $\alpha$ is not a constant and depends on local hydrodynamic 
+conditions in the disk. While not being a self-consistent, the model is simple and powerful 
+and is widely used in studies of accretion disks, \eg, the 
+``advection domianted accretion flow'' (ADAF, \cite{Narayan & Yi, 1994}). 
+The $\alpha$-model is used to study the geometrically thick accretion disks in 
+multi-dimensional time-dependent simulations. It allows to avoid the numerical issues 
+related to a more self-consistent, elemental description of the turbulence.
+\cite{(e.g. Stone et al., 1999; Igumenshchev et al., 2000 Lee et al., 2005 
+Mac-Fadyen & Woosley, 1999; Setiawan et al., 2006}
+
+Origin of the underlying instability behind the disk turbulence, and thus the angular 
+momentum transport is not well understood. The purely hydrodynamic instability within 
+discs with very large Reynolds numbers reaching ${\sim}10^{14}$ within the flow, was 
+not identified, contrary to the ideal shear flows, that are localloy non-linearly unstable 
+showing the presence of turbulence \cite{e.g. Orszag & Kells, 1980)}. In disks, the nearly 
+Keplerian profile seems to be the stabilizing property \cite{e.g. Balbus & Hawley, 1998)}.
+Notably, the discretization of the hydrodynamic equations introduces the so-called 
+numerical viscosity (see more detains in Sec.~\ref{sec:nr_methds:visc}) which further 
+challenges the interpretation of the numerical models of turbulent flows 
+(see \cite{e.g. Lesur & Papaloizou, 2010})
+
+
+\paragraph{Magnetized accretion disks}
+
+Seed magnetic fields within an accretion disk can be amplified via so-called \ac{MRI} to the 
+scales at which they become dynamically important and induce turbulence and magnetic 
+shear tension. This, in turn, enhances the angular momentum transport. 
+Models of magnetized accretion disks are widely used to study the formation of the 
+relativistic jets, that are projenitors of \acp{GRB}. 
+Several mechanisms have been proposed. For instance, the 
+magneto-centrifugal acceleration mechanism, \cite{e.g. Spruit, 2010b}, where 
+the jet is powered by the accretion disk alone, and the Blandford \& Znajek mechanism, 
+(BZ-process) where the jet is powered by the rotating central BH, rotational energy from
+which is extracted by the Poynting flux of magnetic field directed outward.
+
+
+\subsection{Post-merger accretion disks}
+
+
+
+
+\section{Previous works}
+
+As discussed in 
 
 
 %\red{biased for Shibata papers [from his 2019 paper with hotokezaka]}
@@ -981,3 +1116,8 @@ unconfirmed as it requires long-term, fully self-consistent investigation with e
 %pressing open problems in nuclear and high-energy astrophysics – such as the origin of heavy elements,
 %the nature of neutron stars (NSs), and the origin of SGRBs – is encoded in these and future observations.
 %However, theory is essential to turn observations into answers.
+
+\section{Aims and organization of this thesis}
+
+A \pmerg{} \ac{MNS}-disk system hosts a variety of interesting physics, most of which are 
+are currently not well understood.
