@@ -32,7 +32,7 @@ the \rproc{}, that is responsible for the production of the heaviest elements in
 Universe, lanthanides and actinides. 
 
 Wide range of possible types and properties of ejecta lead to a similarly broad 
-range in \ac{EM} counterparts to \ac{BNS} mergers. The Perhaps, two of the most 
+range in \ac{EM} counterparts to \ac{BNS} mergers. Perhaps, two of the most 
 well studied ones are the \ac{kN}, a thermal counterpart powered by the decay of 
 newly synthesized heavy elements in the ejecta, and \acp{SGRB}, generally non-thermal 
 emission from the ultrarelativistic collimated outflow, formed after the merger. 
@@ -58,7 +58,71 @@ context of our study and we conclude the chapter by summarizing the main points 
 motivation for this thesis and its structural arrangement.
 
 
+%% <<< From Radice Review >>>
+\ac{BNS} mergers lie in the center of a variety of physical processes in astrophysics.
+The first ever detection of such event by LIGO/Virgo \acp{GW} observatories and 
+numerous \ac{EM} observatories, the \GW{} had significantly advanced our understanding 
+of gravity, physics of dense matter, \acp{SGRB} and origins of \rproc{} elements 
+\cite{1,2,3}. 
+%
+Detection and analysis of \acp{GW} from inspiraling \acp{NS} allows to asses 
+the \ac{NS} \ac{EOS}, quantified by so-called tidal deformability, and as such, the 
+properties of matter at supernuclear densities \cite{5,6,7}. Information about matter 
+at densities several times that of the nuclear matter 
+% and tepmteratures of tens of MeVs 
+can be obtained from \acp{GW} emitted by the \acp{BNS} merger product \cite{8,9,10,11}. 
+%
+The conditions within the matter, ejected at mergers are sufficient for the \rproc{} 
+\nuc{}, responsible for the production of the heaviest elements in the Universe
+% such as gold 
+\cite{12}. This was confirmed by \ac{MM} observations of \GW{} \cite{12}. 
+% however, it is unclear whether \ac{BNS} mergers is the dominant source of 
+% \rproc{} elements in the universe, or if other \rproc{} cites are required to 
+% explain the observed abundances in the oldest stars, \ac{UFG} and our solar system. 
+
+Single \acp{NS} are very compact object, where compactness 
+$C_{i} = GM_i/R_i^2c^2\propto0.15$ and effects of \ac{GR} cannot be neglected 
+when describing them. A pair of \acp{NS} orbiting each other slowly loses the 
+angular momentum to \acp{GW}. The timescale for the radiation reaction, however, 
+is much longer than the orbital period for most of the inspiral and the 
+system evolution can still be considered adiabatic. 
+% For instance, the inspiral can be considered as a sequence of circular orbits. 
+% However, during last orbits before merger, the finite size (tides) and \ac{HD}
+% effects starts to become important. 
+The inspiral ends at the onset of the Roche lobe overflow, when the binary 
+reaches the mass-shedding limit \cite{13}.
+
+In order to study the dynamical phase of \ac{BNS} mergers and \pmerg{} evolution, 
+sophisticated \ac{NR} simulations are required. Modern, state-of-the-art methods 
+include full \ac{GR}; composition-dependent nuclear \ac{EOS} with finite-temperature 
+effects, \ac{GRMHD}, advanced neutrino trasport (with varying degree of sophystication,
+\cite{14, 15, 16, 17, 18, 19, 20, 21}.
+
+In this thesis we perform \ac{NR} simulations of \ac{BNS} mergers, report on their 
+qualitative and quantitative picture and its implication for the \ac{EM} signatures.
+We focus on the nuclear astrophsyics aspect of the mergers, and on the comparison 
+between theoretical predictions and observations of \GW{}, discussing the 
+\rproc{} \nuc{}, thermal \ac{EM} transient, and non-thermal \ac{EM} afterglow. 
+
+For the general overview on the topic we refer to \cite{22},
+For the most recent reviews on the topic we recommend the following reviews:
+Radice, for the discussing of the \pmerg{} dynamics and ejecta,
+Bernuzzis, for the \ac{GW} aspect of the mergers \cite{Bernuzzi}
+Shibata & Hotokezaka for the discussing of the ejecta \cite{Shibata & Hotokezaka}.
+For more detailed discussion on \ac{EM} counterparts to mergers we refer to \cite{23,24,25}.
+
+This chapter is organized as follows...
+First we discuss the observational context of the \ac{BNS} mergers, focusing on the 
+ejecta \nuc{} and \ac{EM} counterparts.
+Then we overview the current picture of \ac{BNS} mergers with emphasis on the 
+\pmerg{} dynamics and mass ejection mechanisms. 
+Finally, we state the goals of this thesis.
+
+
+
+
 \section{Observational context}
+
 
 %% =====================================================================================
 %%
@@ -808,6 +872,294 @@ $\nism\in(10^{-4},10^{-2})$\gcm \citep{Hajela:2019mjy}.
 
 \section{Theoretical picture}
 
+%% -------------------------------------------------------
+%%
+%% I N S P I R A L
+%%
+%% ------------------------------------------------------
+
+\subsection{Inspiral}
+
+%%%% --- Formed in the Radice Review apper
+Formed in the evolution of massive stars in the binary, \acp{NS} obit has largely circular 
+\cite{4} by the time stars inspiral and their \ac{GW} emission becomes observable. 
+The last thoughsand orbits take around few mintues during which, the \ac{GW} signal rises 
+in frequency and amplitude (so-called chirp) and the peak of signal marks the 
+\textit{moment of merger}.
+
+\subsubsection{Two Body Dynamics}
+
+If two stars are well-separated (\ie, the point-mass approximation applies) and their 
+angular velocity is small, then their quasi-circular
+quasi-adiabatic inspiral can be approximated with the \ac{GR} expansion in $\upsilon/c$ 
+(that is valid when $\upsilon/c \ll 1$), the so-called \ac{PN} approximation to \ac{GR}.
+The characteristic of this evolutionary stage is that the radiation-reaction timescale 
+is longer than the orbital one, \ie, $\dot{\Omega}/\omega^2\ll 1$.
+
+The \ac{GW} signal is emitted at two times the orbital frequency. The amplitude and phase of 
+the signal, at the leading order are given by the quadruple formula 
+%
+\begin{equation}
+    h(t) \sim \frac{1}{d}\mathcal{M}_c^{5/3} f_{GW}^{2/3}, \hspace{5mm} \phi(t) \sim 2\mathcal{M}_c^{-5/8}t^{5/8} = 2\nu^{-3/8}(t/M)^{5/8},
+\end{equation}
+%
+where $\mathcal{M}_c = M\nu^{3/5}$ is the chirp mass, $M=M_A + M_B$ is the binary mass, 
+$\nu=M_A M_B/M^2$ is the symmetric \mr{}, $f_{GW} = \dot{\phi}$, $d$ is the distance of the source.
+Here, the $G=c=1$ are the units, and geometric coefficients are neglected for brevity. 
+%
+The influence of the \acp{NS} finite size (tidal effects) enters at fifth \ac{PN} order, 
+and it is important for the ground-based detectors. 
+%
+The \ac{PN} expansion, being the asymptomatic expansion, looses its accuracy at high 
+frequencies $f_{GW}\gtrsim 50\,$Hz. 
+%
+Another approach to approximate the inspiral of \acp{NS} is the \ac{EOB} formalism, that 
+is applicable to high as well as low velocity regimes \cite{28}.
+The approach in similar to that employed in the Newtonian dynamics, motion of a particles 
+with mass $\mu=\nu M$ in the effective potential is equivalent to the relative motion of two 
+particles. Using the effective particle, $\mu$ and effecttive metric, the dynamics of 
+\ac{GR} can be mapped into its motion. 
+This is the Hamiltonian formalism that describes the dyanmics of all stages of binary evolution 
+semianalytically that was extended ti \ac{BNS} by Damour \& Nagar \cite{29} with tidal effects.
+It is a unified framework that allows to include perturbation to two-body problem, 
+resum the \ac{PN} series, and add information from \ac{NR} simulations. See review \cite{30}.
+
+\subsubsection{Effects of tides}
+
+A multi-chart approach to treating the deformable, self-gravitating bodies in \ac{PN} dynamics 
+was proposed by Damour, Soffel and Xu in the '90s \cite{31}. In the formalism, the bodies are 
+``dissected'' \gray{skeletonized} into worldliness with global properties, \ie, the \textit{outer problem}, 
+which is matched to the \textit{inner problem} that considers how the worldtube around a given 
+body is influenced by another body, which in the case of \ac{BNS}, is related to the 
+tidal effects induced by the external gravitational field of another body.
+Matching the outer problem with the inner translates into the inclusion of the tidal 
+deformation effects into the orbital dynamics (and consequently, \ac{GW} emission). 
+%\gray{Here the presentation of \cite{32,29} is considred}
+
+In \cite{33,32,34}, the fully relativistic formulation of the \textit{inner problem} was 
+designed. Consider two bodies, $A$ and $B$. 
+The (external) gravitoelectric $G_L^A$ and gravitomagnetic $H_L^A$ tidal moments can be 
+introduced as the 
+symmetric-trace-free projections of the derivatives of the externally generated parts of 
+the local respective fields $\bar{E}_{\alpha}$ and $\bar{B}_{\alpha}$, \eg, 
+$G_L^A = \partial_{\langle L-1}\bar{E}^A_{\alpha_l\rangle}|_{X^{\alpha}}\rightarrow 0$, 
+(where $X^{\alpha}$ are local coordinates \cite{32}).
+In the local frame of the first body, the \red{internally generated mass} $M_L ^A$ and spin 
+$S_L ^A$ multipole moments, (here $L=i_1,i_2,...,i_l$, is the multi-index) depend on the external
+tidal moments via \textit{tidal polarizability coefficients}, 
+%
+\begin{equation}
+    M_{L}^{A} = \mu_l G_{L}^A, \hspace{5mm} S_{L}^A = \sigma_l H_L^A,
+\end{equation}
+%
+The $l$-th order (external) gravitoelectric (gravitomagnetic) fields induce $l$-th order 
+mass (spin) multipolar moments in a \ac{NS}, characterized by respective coefficients, 
+$G\mu_l$ ($G\sigma_l$), that have dimensions of [length]$^{2l+1}$.
+%
+The dimensionless relativistic Love numbers are defined as
+%
+\begin{equation}
+    k_l = \frac{(2l - 1)!!}{2}\frac{G\mu_l}{R^{2l + 1}}, \hspace{5mm} j_l = \frac{(2l-1)!!}{2}\frac{G\sigma_l}{R^{2l+1}},
+\end{equation}
+%
+where $R$ is the radius of a \ac{NS}. 
+In many studies, only the dominant $l=2$ mode is considered, \eg, \cite{33}. 
+For \acp{BH}, $\mu_l=\sigma_l=0$ \cite{32,34}.
+%
+Under the assumptions that the external field is quiasi-static (``adiabatic tides''), the 
+Love numbers can be computed by considering the stationary perturbations of the spherical 
+relativistic star. 
+%
+The problem has to be solved in full \ac{GR}, on account of strong dependency of the 
+tidal coefficients on the star compactness. 
+% 
+Love numbers carry the information about the \ac{EOS} into the \ac{BNS} dynamics due to 
+their dependency on the \ac{EOS} used for the equilibrium \acp{NS} in question.
+
+On the other hand, if the external field is dynamic, than the effects induced by a \ac{NS}, 
+at linear order in the deformation, can be formulated as a superposition of the proper modes 
+of the \ac{NS}. The excitation of modes occur when the resonant frequency of modes is matched 
+by the star's orbital frequency. 
+This approach has been studied in Newtonian gravity, in GR for a test-mass circling the 
+\ac{NS}, and for \acp{NS} of similar mass in \ac{PN} theory \cite{35,36,37}.
+Dynamical external field induces ``dynamical tides'', among which the most important are the 
+pressure modes ($f$-modes) in the non-resonant way\footnote{
+    The resonance for $f$-modes occur in kHz
+    regime, that is achieved only at merger, when two \acp{NN} are no longer isolated objects. 
+    Other mode,s such as $g$- and $r$-modes do not contribute significantly, due to their 
+    lower energies (albeit also lower frequencies).
+}
+
+By modifying the \ac{GR} effective action, it is possible to include the finite-size effects 
+into the \ac{PN} two-body dynamics:
+%
+\begin{equation}
+    S = S_{GR} + S_{pointmass} = \frac{1}{16\pi G}\int R\sqrt{|g|}dx - \sum_{A}\int M_A \dd s_A
+\end{equation}
+%
+where the last term of the \ac{RHS} is the ``disected'' representation \red{as} a point mass, 
+with non-minimal coupling of worldlines 
+%
+\begin{equation}
+    S_{nonminimal} = \sum_{A}\frac{\mu_l^{A}}{2l!}\int (G_L^A)^2 \dd s_A + \frac{l \sigma_l^A}{l! 2(l+1)} \int(H_{L}^A)^2 \dd s_A.
+\end{equation}
+%
+Linear in the tidal deformation, the introduced term affects the system evolution only at 5th 
+\ac{PN} order. With respect to the two-body Lagrangian, the finite size effects at leading order 
+(Newtonian) depend only on the gravitoelectric terms as 
+%
+\begin{equation}
+    \label{eq:intro:tidal_largangian}
+    L^{LO}_{tidal} = k_2^A G M_B^2\frac{R_A^5}{r^6} + (A\leftrightarrow B),
+\end{equation}
+%
+where $r$ is the distance between \acp{NS}. 
+%
+Note, that when $r$ is small, the tidal corrections contribute to the attractive interaction,
+(Eq.~\eqref{eq:intro:tidal_largangian}). 
+%
+The finite-size effects can be shown in the modifed Kepler law, obtained from the quadrupolar 
+gravitroelectric term 
+%
+\begin{eqnarray}
+    \Omega^2 r^3 = G M \Big[ 1 + 12 \frac{M_A}{M_B} \frac{R_A^5}{r^5} k_2^A + (A\leftrightarrow B) \Big].
+\end{eqnarray}
+%
+Thus, if the inclusion of tidal interaction raises the frequency at a given radius, \ie, 
+\acp{NS} spin faster if tidal effects are present and merger sooner producing signal with 
+higher frequency. 
+%
+Setting $r=R_A+R_B$ the frequency at merger can be estimated. There, $2GM\Omega\approxeq2(M_B/(MC_B) + M_B/(MC_B))^{-3/2}$ \cite{29}. 
+For \acp{NS} of the same mass one obtains 
+%
+\begin{equation}
+    f_{GW}^{contact} \approxeq 1.327 \Big( \frac{C}{0.15} \Big)^{3/2} \Big( \frac{M}{2.8M_{\odot}} \Big) \text{kHz}.
+\end{equation}
+
+The \ac{EOB} two-body Hamiltonian for \acp{BNS} with zero spin can be written via effective Hamiltonian:
+%
+\begin{equation}
+    H_{EOB} = M\sqrt{1 + 2\nu (\hat{H}_{eff} - 1)}, 
+    \hat{H}_{eff} = \frac{H_{eff}}{\mu} = \sqrt{A(u;\nu)(1 + p_{\phi}^2u^2 + 2\nu(4-3\nu)u^2p_{r^*}^4) + p_{r^*}^2}
+\end{equation}
+%
+where $u=GM/rc^2$ is the Newtonian potential. 
+Consder the Schwarszchild spacetime and a particle in it with $\nu\rightarrow0$ and 
+$A(u;0) = 1-2u$. Then, the $H_{eff}$ becomes the particle Hamiltonian.
+%
+\red{skipped a bit on the PN and A_0 for }
+%
+The potential $A$ includes the tidal component as $A = A_0 + A_{tidal}$, that can be 
+written as \cite{40}
+%
+\begin{equation}
+    A_{tidal} = \sum_{l\geq 2}\Big[ k_l^{A+}u^{2l+2}(1+\alpha_1^{(l+)}u ... ) + k_{l}^{A-}u^{2l+3}(1+\alpha_1^{(l-1)}u + ...) + (A\leftrightarrow B) \Big]
+\end{equation}
+%
+where $\alpha_i^{(l)}(\nu)$ are coefficients and 
+%
+\begin{equation}
+    k_{l}^{A+} = 2k_l^A\big( \frac{M_A}{MC_A} \big)^{2l+1}\frac{M_B}{M_A}, \hspace{5mm} k_l^{A-} = 2j_l^A\Big( \frac{M_A}{M C_A} \Big)^{2l + 1} \frac{M_B}{M_A}
+\end{equation}
+%
+are the multipolar tidal polarizability coupling constants. 
+%
+The physical meaning of these formulae can be seen from the Newtonian limit \ie, 
+%
+\begin{equation}
+    H_{EOB} \approxeq Mc^2 + \frac{\mu}{2}p^2 + \frac{\mu}{2}(A-1) = Mc^2 + \frac{\mu}{2}p^2 + \frac{\mu}{2}\Big( -\frac{2 G M}{c^2 r^2} + \cdots - \frac{\kappa_2^T}{r^5} \Big).
+\end{equation}
+%
+where $\kappa_2^T = \kappa_2^A + \kappa_2^B$ is the constant accounting for the tidal 
+interactions at leading order.
+For a physically motivated range of masses (1-2)$\Msun$ and \mr{}s $q\in[1,2]$ the 
+$\kappa_2^T\sim[50,500]$. 
+Similarly, one can defile the $\Lambda_2^i = 2/3 k_2^i (c^2 R_i/GM_i)^5$ with $i\in\{A,B\}$.
+Then, instead of $\kappa_2^T$, the \textit{reduced tidal deformability} is used
+%
+\begin{equation}
+    \tilde{\Lambda} = \frac{16}{13}\frac{(M_A + 12M_B)M_A^4}{M^5}\Lambda_A + (A\leftrightarrow B).
+\end{equation}
+%
+
+The \ac{GW} waveform compliments gives the radiaiton raeaction for the conservative 
+dynamics discussed above \cite{41}. The waveform also includes the tidal corrections \cite{6,42},
+that at leading order can be written via stationaly phase approximation 
+%
+\begin{equation}
+    h(f) = Af^{-7/6}e^{-i(\Psi_0(x) + \Psi_{tidal}(x))} = Af^{-7/6}e^{-i(\Psi_0(x)-39/4\kappa_2^Tx^{5/2})}
+\end{equation}
+%
+where $x(f) = (\pi G M f / c^3)^{2/3}$ and $\Psi_0(x)$ is point-mass phase.
+%
+Impartatly, the contribution to the waveform from the tidal interactions at leading order 
+depends solely on $k_2^T$. 
+Hence, from observed \ac{GW} signal, this $k_2^T$ (or $\tilde{\Lambda}$) can be measured 
+accurately. 
+%
+\ac{EOB} has been tested...
+
+
+
+
+\subsection{Merger and \pmerg{}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Theoretical picture}
+
 The properties and structure of matter at nuclear saturation density, 
 $\rho_{\rm nuc}\approx2.7\times10^{14}\,$\gcm, are not well understood partially due to 
 the complexity of the \ac{QCD} many-body problem and partially to to the 
@@ -957,6 +1309,17 @@ velocity and mass, dependent on the parameters of the binary and \ac{NS} \ac{EOS
 
 \red{Might add 'on a longer timescale other ejecta components are expected'}
 
+\subsection{Post-merger remnant}
+
+After the merger, the newly born \ac{MNS} remnant is not axisymmetric. It is 
+subjected to dynamical instabilities, that to the large degree define its interaction 
+with the surrounding medium and its lifetime. The remnant dies not rotate as a 
+single "rigid" body, but instead exhibit the differential rotation, where 
+different layers rotate at different angular velocities. This excess in 
+angular momentum with respert to the \ac{RNS} provides an additional support 
+against gravitational collapse. \acp{GW} can carry away a large amount 
+of angular momentum 
+
 
 \subsection{Accretion disks}
 
@@ -1036,11 +1399,9 @@ Having discussed the astrophysical phenomena related to the \pmerg{} evolution o
 the \ac{BNS} systems, we now outline the overall qualitative picture of the physical 
 processes operating in this events.
 
-After the merger, the newly born \ac{MNS} remnant is not axisymmetric. It is 
-subjected to dynamical instabilities, that to the large degree define its interaction 
-with the surrounding medium and its lifetime. The Remnant is hot and a strong emitter 
-of neutrinos, which are partially abosrbed and reprocessed by the disk. The disk 
-itself is hot, moderately dense with the neutrino rich inner matter, shielded from 
+The Remnant is hot and a strong emitter of neutrinos, which are partially absorbed 
+and reprocessed by the disk. 
+The disk itself is hot, moderately dense with the neutrino rich inner matter, shielded from 
 the neutrino irradiation, and proton-rich outer layers. The disk mainly consists of 
 electrons, positrons, protons and free nucleons. As the shocks generated at merger 
 subside, three main processes starts to dominate the disk evolution: mass and and 
@@ -1058,7 +1419,8 @@ higher and coupling between matter and neutrinos is increased, which leads to
 an increased frequency on neutrino reabsorptions. Thus, neutrinos can transport 
 energy and lepton number from the point of creating, in the hot and dense inner 
 regions, outwards. The energy deposition can drive subrelativistic wind of 
-gravitationally unbound mater, the so-called \nwind{}. \gray{The wind is a place for \rproc{} \nuc{} and EM counterpart} \gray{Additionally, an outow could also be powered by means of magnetic-field effects or the energy release from nucleons recombining to $\alpha$-particles.}
+gravitationally unbound mater, the so-called \nwind{}. \gray{The wind is a place for \rproc{} \nuc{} and EM counterpart} \gray{Additionally, an out
+ow could also be powered by means of magnetic-field effects or the energy release from nucleons recombining to $\alpha$-particles.}
 At the innermost parts of the disk, the temperatures and densities are so high 
 that neutrinos are effectively ``trapped'' by the matter and are advocated by the 
 flow. This classifies as \textit{diffusion regime}. The neutrinos ability to 
@@ -1080,11 +1442,92 @@ Notably, the jet formation is one of the key, not well understood processes
 related to \ac{BNS} mergers.
 
 
-
-
 \section{Previous works}
 
+\acp{BNS} mergers have been studied as a possible cite of \rproc{} \nuc{} 
+since `70s \citep{Lattimer:1974a,Symbalisty:1982a,Rosswog:1998hy,Freiburghaus:1999,Rosswog:2005su}. 
 
+The radioactive decay of $r$-process elements produces a
+characteristic electromagnetic (EM) transient in the UV/optical/NIR
+bands, called kilonova (kN) \citep{Li:1998bw,Kulkarni:2005jw,Metzger:2010sy,Roberts:2011xz,Kasen:2013xka},
+that was observed as counterpart of the gravitational-wave event GW170817 \citep{Abbott:2017wuw,Abbott:2017oio,Abbott:2018wiz,Abbott:2018hgk}
+and it was named AT2017gfo
+\citep{Arcavi:2017xiz,Coulter:2017wya,Drout:2017ijr,Evans:2017mmy,Hallinan:2017woc,Kasliwal:2017ngb,Nicholl:2017ahq,Smartt:2017fuw,Soares-santos:2017lru,Tanvir:2017pws,Troja:2017nqp,Mooley:2018dlz,Ruan:2017bha,Lyman:2018qjg}.
+The NIR luminosity of AT2017gfo peaked at several days after the
+merger \citep{Chornock:2017sdf}, and it is consistent with the expectation
+that the opacities of expanding $r$-process material are dominated by 
+lanthanides and possibly actinides \citep{Kasen:2013xka}.  
+The UV/optical luminosity peaked instead less than one day after the
+merger \citep{Nicholl:2017ahq}, and it originates from ejected material
+that experienced only a partial $r$-process nucleosynthesis
+\citep{Martin:2015hxa}.
+
+The ejecta masses inferred from observations \citep{Cowperthwaite:2017dyu,Villar:2017wcc,Tanvir:2017pws,Tanaka:2017qxj,Perego:2017wtu,Kawaguchi:2018ptg} are not compatible with those predicted by numerical simulations with targeted neutron star (NS) masses, and several questions remain open. 
+In particular, understanding the early blue kN remains a challenging
+aspect to explain for most models.
+Both semi-analytical and radiation transport
+models require large ejecta velocities and electron fractions ($Y_e$'s),
+different from those found in simulations,
+\citep[\eg][]{Fahlman:2018llv,Nedora:2019jhl}.
+The late red kN component requires ejecta masses generally
+not observed for the dynamical ejecta computed in numerical relativity (NR) simulations \citep{Radice:2018pdn}. 
+In addition, the number of components and the geometry of the emission can have a significant 
+effect on the ejecta parameters 
+\citep{Perego:2017wtu,Kawaguchi:2018ptg}. Also, it is important to note that the photon diffusion and
+emission is often simplified in semi-analytical kN models \citep[\eg][]{Villar:2017wcc,Perego:2017wtu,Siegel:2019mlp}, and  
+more accurate radiation transfer computations may alter the inferred ejecta parameters 
+\citep{Kawaguchi:2018ptg,Korobkin:2020spe}. However, photon radiation transfer simulations often employ ad-hoc, simplified ejecta different from those computed from ab-initio simulations. 
+
+%% NR methods & dynamical ejecta
+Key for interpreting BNS electromagnetic emissions is the detailed modeling of
+the mass ejection from BNS mergers, which must include general
+relativity, a microphysical equation of states (EOS) of strongly interacting
+matter, relativistic (magneto-)hydrodynamics, and neutrino
+transport. NR simulations performed so far
+mostly focused on the dynamical ejecta that are launched during merger
+by tidal torques (tidal component) and by the shocks generated by the
+bounce of the NS cores (shocked component),
+\citep[\eg][]{Hotokezaka:2013iia,Bauswein:2013yna,Wanajo:2014wha,Sekiguchi:2015dma,Radice:2016dwd,Sekiguchi:2016bjd,Radice:2018pdn,Vincent:2019kor}. In
+equal-mass mergers, the shocked component is found to be a factor
+${\sim}10$ more massive than the tidal component. This is in
+contrast to early works that employed Newtonian gravity and in which
+the tidal component dominated the ejecta due to the weaker gravity and
+stiffer EOS employed in those simulations
+\citep{Ruffert:1996by,Rosswog:1998hy,Rosswog:2001fh,Rosswog:2003rv,Rosswog:2003tn,Rosswog:2003ts,Oechslin:2006uk,Rosswog:2013kqa,Korobkin:2012uy}.
+However, even the dynamical ejecta found in NR simulations cannot account alone for the
+bright blue and late red components of the observed kN in AT2017gfo \citep{Siegel:2019mlp}.
+
+Winds originating from the merger remnant on timescales of
+$\O(0.1-1\,{\rm s})$ can unbind $O(0.1\, \Msun)$ from the remnant and
+represent (if present) the largest contribution to the kilonova signal
+\citep{Dessart:2008zd,Fernandez:2014bra,Just:2014fka,Lippuner:2017bfm,Siegel:2017nub,Fujibayashi:2017puw,Radice:2018xqa,Fernandez:2018kax,Janiuk:2019rrt,Miller:2019dpt,Fujibayashi:2020qda,Mosta:2020hlh}.
+Thus far, these winds have been mostly studied by means of long-term
+Newtonian simulations of neutrino-cooled disks, assuming simplified
+initial conditions, \citep[\eg]{Metzger:2008av,Beloborodov:2008nx,Lee:2009uc,Fernandez:2012kh}.
+Ab-initio (3+1)D NR simulations of the merger with weak-interactions and
+magnetohydrodynamics are not yet fully developed at sufficiently long timescales \citep{Sekiguchi:2011zd,Wanajo:2014wha,Sekiguchi:2015dma,Palenzuela:2015dqa,Radice:2016dwd,Lehner:2016lxy,Sekiguchi:2016bjd,Foucart:2016vxd,Bovard:2017mvn,Fujibayashi:2017puw,Fujibayashi:2017xsz,Radice:2018xqa,Nedora:2019jhl,Vincent:2019kor,Bernuzzi:2020txg}.
+These simulations are essential to interpret AT2017gfo and future events.
+For example, long-term (up to $100$~ms postmerger) NR simulations 
+pointed out the existence of \swind{} in which there are
+favourable conditions (large ejecta mass, high-velocity and not extremely neutron rich conditions) 
+for the early emission from lanthanide poor material \citep{Nedora:2019jhl}.
+Such mass ejection can also be boosted by global large-scale magnetic
+stresses \citep{Metzger:2018uni,Siegel:2017jug,Siegel:2017nub},
+although significant mass fluxes can only be achieved by fine-tuning
+initial configuration or setting unrealistic strength of the magnetic
+field \citep[\eg][]{Ciolfi:2020hgg,Mosta:2020hlh}.
+A third contribution can come from neutrino-driven winds of mass ${\sim} 10^{-4}-10^{-3}M_{\odot}$ originating above the remnant, 
+but their mass cannot account for bright signals \citep{Dessart:2008zd,Perego:2014fma,Just:2014fka}.
+
+The nucleosynthesis from BNS mergers is believed to provide a major
+contribution to the $r$-process material in the Universe.
+However, whether or not BNS mergers are the only source is still debated and 
+possible additional $r$-process sites, such as collapsars, 
+jet-driven supernovae, and neutron star implosions, have been proposed
+\citep{Argast:2003he,Duan:2010af,Winteler:2012hu,Nishimura:2015nca,Hirai:2015npa,Bramante:2016mzo,Nishimura:2016hak,Fuller:2017uyd,Mosta:2017geb,Siegel:2018zxq,Ji:2019ssk,Bartos:2019twj,vandeVoort:2019bxg,Wehmeyer:2019ovu,Vassh:2019cey}.
+In particular, it is not clear if BNS mergers can explain r-process enriched ultra-faint dwarf galaxies,
+classical dwarf galaxies \citep{Ji:2015wzg,Bramante:2016mzo,Safarzadeh:2018ent,Safarzadeh:2018fdy,Skuladottir:2019bjz,Bonetti:2019fxj}, 
+and the evolution of $r$-process abundances both at early and late times \citep{Safarzadeh:2017riw,Safarzadeh:2018ent,Bonetti:2018nwo,Cote:2018qku,Hotokezaka:2018aui,Banerjee:2020eak}
 
 
 %\red{biased for Shibata papers [from his 2019 paper with hotokezaka]}
