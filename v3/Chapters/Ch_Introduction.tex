@@ -870,7 +870,7 @@ $\nism\in(10^{-4},10^{-2})$\gcm \citep{Hajela:2019mjy}.
 %%
 %% =======================================================
 
-\section{Theoretical picture}
+
 
 %% -------------------------------------------------------
 %%
@@ -900,7 +900,7 @@ The \ac{GW} signal is emitted at two times the orbital frequency. The amplitude 
 the signal, at the leading order are given by the quadruple formula 
 %
 \begin{equation}
-    h(t) \sim \frac{1}{d}\mathcal{M}_c^{5/3} f_{GW}^{2/3}, \hspace{5mm} \phi(t) \sim 2\mathcal{M}_c^{-5/8}t^{5/8} = 2\nu^{-3/8}(t/M)^{5/8},
+    h(t) \sim \frac{1}{d}\mathcal{M}_c^{5/3} f_{GW}^{2/3} = \nu\frac{M}{d}(Mf_{GW}(t))^{2/3}, \hspace{5mm} \phi(t) \sim 2\mathcal{M}_c^{-5/8}t^{5/8} = 2\nu^{-3/8}(t/M)^{5/8},
 \end{equation}
 %
 where $\mathcal{M}_c = M\nu^{3/5}$ is the chirp mass, $M=M_A + M_B$ is the binary mass, 
@@ -1097,7 +1097,75 @@ depends solely on $k_2^T$.
 Hence, from observed \ac{GW} signal, this $k_2^T$ (or $\tilde{\Lambda}$) can be measured 
 accurately. 
 %
-\ac{EOB} has been tested...
+There have been extensive tests of the \ac{EOB} formalism for \ac{BNS} mergers agains \ac{NR} 
+simulations \cite{43,38,44,45,46}. 
+The accuracy of the \ac{EOB} approximation of tides, the $A_{tidal}$, decreases during 
+the last orbits and for very large $k_2^T$. Modified versions of \ac{EOB} were developed 
+with gravitational self-force calculations of tides computed at high-order TEOBResumS 
+\cite{44,47,46,48} and dynamical tides (SEOBNRT) \cite{49}.
+When spin cannot be neglected, the tidal interactions become more complex \cite{50,51}.
+The oblateness of a spinning \ac{NS} leads to the deformed gravitational field that is 
+characterized by the quadrupole tensor, and produces an attractive contribution to the 
+potential, modifying the inspiral at the $2$nd \ac{PN} order $\mathcal{O}(\upsilon/c)^4$
+\cite{50}. 
+There are also hybrid models of \ac{EOB} and \ac{NR} \cite{52,53}
+
+
+\subsubsection{Gravitational Waves}
+
+\ac{EOB} is the only approach to compute waveforms in the region of parameter space where 
+\ac{NR} is not available/feasible and \ac{PN} is not accurate.
+The \ac{PN} approach becomes inaccurate at 50Hz \cite{6}, leading to very high \ac{SNR},
+reducing the ability to estimate parameters for \ac{GW} accurately. 
+\ac{NR} simulations are computationally expensive and it is very challenging to 
+control the phase errors with sub-radiant precision over a large number of orbits \cite{54}.
+The \ac{EOB} models can be augmented with the formulism descibing the 
+high frequency emisison of the remnant (kiloHertz), that itself can be build from the 
+available \ac{NR} \ac{HD} simulations \cite{56,57,58}. 
+%
+Overall, the tidal interactions are very important in determining the time of the 
+merger (number of revolutions) and the \ac{GW} signal frequency at merger. 
+%
+\red{Skipped a bit on GW SNR}
+%
+From \ac{GW} signal, the information about the chirp mass (related to $I_{-10}$),
+where $I_p = \int \dd\ln f(\gamma(f))f x^{2p}(f)$ with $\gamma(f)df$ being the 
+measure of the detector noise \cite{59,6}, and mostly comes from the low frequency signal.
+Similarly, the low frequency signal, $\leq50$~Hz and $\leq100$~Hz contains information 
+on the symmetric \mr{} and \ac{SNR}. On the other hand, the information about tidal effects 
+(tidal parameters) is related to $I_{+10}$, and accurate high-frequency waveform models 
+are required for their estimations. 
+
+From the Newtonian limit discussed above, it follows that the system dynamics at merger 
+is determined mainly by $\kappa_2^T$ \cite{44}. \ac{NR} simulations verified this 
+prediction \cite{60,55}. 
+
+With respect to the \GW{} most of the information was obtained in $30-600$~Hz frequency 
+range ($\sim 1300$ orbits).
+The signal was interpreted as coming from a \ac{BNS} merger with total mass of $\simeq2.7\Msun$,
+chirp mass $\mathcal{M}=1.186(1)\Msun$, \mr{} $q\in[1,1.34]$ and $\tilde{\Lambda}\simeq 300$ 
+(with an upper bound of $\sim800$) \cite{1,2,61}.
+Inclusion of the \ac{EM} counterparts into the analysis leads to higher $\tilde{\Lambda}$ being 
+more favoured \cite{62,63}.
+
+The estimation of individual masses and \mr{} is more subjected to uncertanties and 
+systematic, \ie, spin prior \cite{2}. Due to the partial degeneracy between the tidal 
+parameters and the \mr{}, the \ac{EOS} constraints are also subjected to uncertainties. 
+Specifically, assuming that stars had small spin $\leq 0.05$, the stars radii can be 
+constrained to $11-12$~km \cite{64,65}. 
+Assuming also that \ac{EOS} can support a non-rotating \ac{NS} with a mass $1.97\Msun$, 
+results in  $R\sim 11.9\pm 1.4$~km and $90\%$ credibility \cite{65}.
+
+\ac{GW} signal during the Inspiral (including tidal phasing) also provides constraints 
+on the \ac{EOS} viewed in the pressure-density diagram \cite{65}. 
+For an example case of a \ac{BNS} with $\rho_{\rm max} \approxeq 2 \rho_0$, 
+the estimated value of pressure is $P(2\rho_0)=3.5_{-1.7}^{2.7}\times10^{34}$ dyn cm$^{-2}$ 
+at $90\%$ confidence level.
+
+For \GW{} the peak of the \ac{GW} signal, the merger, was not detected. However, from the 
+probability distribution of $\tilde{\Lambda}$, adopting \ac{NR}-motivated fitting 
+formula, it is possible to asses the peak frequency that falls in $1.2 - 2$kHz \cite{55}.
+The \ac{GW} peak luminocity is estimated to be $\geq 0.1\times 10^{56}$ erg/s \cite{61}. 
 
 
 
