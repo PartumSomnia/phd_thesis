@@ -1172,33 +1172,329 @@ The \ac{GW} peak luminocity is estimated to be $\geq 0.1\times 10^{56}$ erg/s \c
 
 \subsection{Merger and \pmerg{}}
 
+After the \acp{NS} inspiral and merge, the dynamics of the system becomes significantly 
+more complex, as temperatures and densities rise by orders of magnitude and new 
+physical effects, \eg, magnetic fields and weak interaction, start to affect the evolution. 
+The \pmerg{} phase is not well understood, and mainly explored with miltiphsyics \ac{NR} 
+simulations with various degrees of sophistication and resolution. 
+
+The summary of the \ac{BNS} \pmerg{} evolution is shown in Fig.~\ref{fig:RadFig1}. 
+There are several trajectories that system can take, depending when the formed remnant 
+collapses to a \ac{BH}. The early \pmerg{} phase is charaterized by strong \ac{GW} 
+emission and hydrodynamic effects. After it, several interlinked processes guvern the 
+evolution: the \ac{MHD} stresses, contributing to the angular momentum and redistribution 
+and neutrino emission, that alters the matter composition and cools is.
+If \ac{BH} does not form, the \ac{MHD} torques and residual \ac{GW} emission spin down 
+the remnant.
+
+\subsubsection{Dynamics and Thermodynamics Conditions}
+
+Prior to the merger, the \ac{NS} can be considered as being in cold, neutrinoless, 
+weak equilibrium with only marginal heating due to tidal deformation at the last orbits.
+The dynamics at merger is dominated by the \acp{NS} orbital motion
+as $\upsilon_{rad}\ll\upsilon_{orb}$\footnote{
+    Orbital speed can be written as $\upsilon_{orb}\eqsim\Omega r\eqsim\sqrt{GM/(R_A + R_B)}$
+    that for equal mass binary is $\upsilon_{orb}/c\eqsim\sqrt{C}\eqsim0.39(C/0.15)^{1/2}$.
+    The radial velocity is beven by the evolution of the orbital frequency, as 
+    $\omega_r \eqsim 2\Omega r \dot{\Omega}/(3\Omega^2)$. The $\dot{\Omega}$ can be 
+    estimated from the fact, that orbital frequency satisfies 
+    $\dot{\Omega}_{GW}\sim(3456/125)(G\mathcal{M}/c^3)^5\Omega_{GW}^{11}$ during the 
+    inspiral. Then, the radial velocity reads 
+    \begin{equation}
+        \upsilon_r/c\eqsim\frac{192\pi}{15}\frac{G^3 M^3}{c^5(R_A + R_B)^3}\frac{q}{(1+q)^2}
+    \end{equation}
+    that for equal mass gives $\upsilon_r/c \eqsim 0.0034 (C/0.15)^3$.
+}.
+%Merger time, $t_{merg}$, estimated from the \ac{GW} frequency at \acp{NS} collisition 
+%for comparable \ac{NS} masses is given by 
+%\begin{equation}
+%    t_{merg}\eqsim\frac{1}{2f_{GW}^{contact}}\eqsim1.50\text{ms}\Big(\frac{M}{2.8\,\Msun}\Big)^{1}
+%\end{equation}
+%where the frequency of \acp{GW} when \acp{NS} come into contact, \ie, when the distance 
+%between them, $r = R_A + R_B$ can be evaluated from the Kepler law, given by 
+%the quadrupolar gravitoelectric term, % Eq.~7
+%$2GM\Omega \eqsim 2(M_B/(MC_B) + M_B/(MC_B))^{-3/2}$ \cite{29},
+%as 
+%\begin{equation}
+%    f_{GW}^{contact} \eqsim 1.327 \Big(\frac{C}{0.15}\Big)^{3/2}\Big( \frac{M}{2.8\,\Msun} \Big) \text{ kHz}
+%\end{equation}
+that is $\upsilon_{orb}\eqsim\Omega r\eqsim\sqrt{GM/(R_A + R_B)}$, indicating that 
+more compact binaries experience more rapid, more violent mergers.
+
+% Remnant
+When \acp{NS} collide, their deformed cores squeeze past each other, triggering \ac{KHI},
+in the first bounce. After several of these bounces, the cores fuse into a single object.
+At collision, \ac{KHI} is triggered by the \acp{NS} cores plunging into the companion,
+squeezing past each other inducing first wave of gravity-driven compression. 
+The maximum values of temperatures and densities are reached then \cite{70}. As 
+nuclear and centrifugal forces start to dominate, the cores bounce until gravity 
+pulls them back. 
+Notably, formed in the violent, fast collision, the remnant core while is being far from 
+hydrodynamic equilibrium, does not exhibit shocks. This is due to high speed of sound 
+of nuclear matter at supra-nuclear densities 
+%($c_s\gtrsim0.2\, c$, at $\rho\gtrsim\rho_0$)
+.
+Shocks form at the \ac{NS} surface, accelerating matter to mildly-relativistic velocities 
+(\ref{Sec:intro:bns:ejecta}).
+Not processed by shocks, the fluid inside the cores remains cold 
+%$T\lesssim10\,$MeV, $s\lesssim1\,k_B$/baryon 
+throughout the merger. The fluid at the interface between bouncing cores, however,
+heats up through compression and shear dissipation 
+up to $T\sim70-110\,$MeV, creating a pair of hot regions, offset by $\sim\pi/2$ with 
+respect to dense cold regions \cite{71}.
+%
+The evolution proceeds towards more axisymmetric, stable remnant, but can be 
+interrupted by the \ac{BH} formation. 
+
+%% Disk Foramtion
+The matter outside the bouncing cores, lifted by tidal torques and squeezed at the 
+collisional interface forms a disk (or a torus).
+Due to different contributions with different properties, the disk is highly non-uniform.
+The overall properties of the disk, such as mass, have complex dependency on 
+binary parameters, that can be expressed, as a first approximation, via fitting 
+formulae to \ac{NR} simulations \cite{62,72,63}. 
+As outer part of this quasi-adiabatically expands 
+%with $T^3/\rho^3\sim\text{const}$ as the \ac{EOS} is dominated by non-relativisitc baryons
+its inner region cools. 
+%
+As was mentioned above, the newly born remnant is not hydrodynamically stable. 
+Its dynamics is characterized by the pronounced $m=2$ bar- and $m=1$ one-armed-
+deformations \cite{}, \red{more}, inducing spiral waves, propagating through the 
+disk \red{FIG}. Additionally, the former leads to the strong \ac{GW} emission 
+in $\sim10-20$~ms \pmerg{}. The backreaction from the energy and angular momentum 
+loss dumps the $m=2$ mode efficiently and \ac{GW} emission subsides. 
+%We refer to this evolutionary phase as \ac{GW}-dominated \pmerg{} phase.
+%Notably, the $m=1$ mode, however, can persist due to mode coupling 
+%\cite{Dietrich:2016phd}. 
+That makes the end of the ``\ac{GW}-driven phase'' of \pmerg{} evolution. 
+
+% Disk Settling down 
+Weak processes and spiral density waves, shocking periodically the fluid, 
+bring the disk to the configuration, that can be described by smooth 
+temperature profile 
+%from $\sim10\,$MeV at $\rho\eqsim10^{13}$\gcm to $\sim0.1\,$MeV at $\rho\eqsim10^4$\gcm
+%with entropy $\in(3,10)$ $k_B$/baryon
+and quasi-Keplerian orbit.
+%
+% IF BH forms
+If the remnant collapses to a \ac{BH}, the densest part of the disk is 
+accreted on the dynamical timescale, reducing the total mass by half 
+%and the disk maxiumum density to $\sim10^{12}\,$\gcm,
+and radial extend \cite{70}.
+
+% Magnetic fields
+While \acp{MF} are not expected to affect the \ac{BNS} inspiral, their influence 
+on the postmerger evolution can be strong \cite{73,19}, as they get amplified 
+to the values exceeding that of magnetar, $10^{16}\,$Gauss, by a range of processes, 
+\eg, flux freezing and compression, \ac{KHI} at the collisional interface \cite{74},
+\ac{MRI}, \cite{73,19} and \ac{MF} winding \cite{73},
+%
+
+Whether the ordered, large-scale \acp{MF} can form in \pmerg{} environment 
+via the dynamo process is presently unknown. The are important in producing 
+polar collimated outflows, jets \cite{75,76} and mildly relativistic outflows
+\cite{77,78}. Random magnetic fields are also relevant for \pmerg{} evolution, 
+as they generate stresses, enhancing angular momentum transport. Presently, 
+these processes are not well understood, as seed \ac{MHD} instabilities operate at 
+small scales (centimeters) and cannot be resolved in global \ac{MHD} \ac{BNS} merger 
+simulations
+% with reslistic initial condiitons.
+One possibility, is enhance the seed \acp{MF} to bring the instabilities to larger 
+scales \cite{74,19}.
+
+The effect of \acp{MF} on the angular momentum transport can be approximated via 
+the $\alpha$-viscosity model \cite{Shakura:1972te}. These effects are important 
+in detetrmining the remnant structure, lifetime and hence, the \pmerg{} \acp{GW} 
+\cite{20,79}. 
+%The timescale for the angular momentum redistribution in the remnant \cite{80} 
+%\begin{equation}
+%    t_{rem} \eqsim \alpha^{-1}R_{rem}^2\Omega_{rem}c_s^{-2}\eqsim 0.56\,s\Big(\frac{\alpha}{0.001}\Big)^{-1}\Big(\frac{R_{rem}}{15\,\text{km}}\Big)^2 \Big( \frac{\Omega_{rem}}{10^4\,\text{kHz}} \Big) \Big(\frac{c_s}{0.2\,c}\Big)^{-2}
+%\end{equation}
+%where $\Omega_{rem}$ and $c_s$ are the angular momentum and sound speed respectively.
+an the loss of angular momentum bring the remnant closer to either stable, 
+rigidly rotating configuration of collapse \cite{80}. 
+%
+The \acp{MF} effects within the Keplerian disk facilitate accretion \cite{24,21,78,81},
+%on a timescale
+%\begin{equation}
+%    t_{disk} = \alpha^{-1}\Big(\frac{H}{R}\Big)^{-2}\Omega^{-1}_K \eqsim 0.78 \Big(\frac{\alpha}{0.02}\Big)^{-1}\Big(\frac{H/R}{1/3}\Big)^{-2}\Big(\frac{M_{rem}}{2.5\,\Msun}\Big)^{-1/2}\Big(\frac{R_{disk}}{100\,\text{km}}\Big)^{3/2}
+%\end{equation}
+%where $M_{rem}$ is the mass of the central remnant and $R_{disk}$ is the radial 
+%scale of the disk.
+
+%%%% Neutrinos
+The prime cooling mechanism of the post-\ac{GW}-dominated phase is the emission of 
+neutirinos, produced by hot, dense part of the disk and remnant, and that are 
+able to escape \cite{82,83,14}. 
+%The typical neutrino mean free path is 
+%\begin{equation}
+%    \lambda_{\nu} = \Big(n_B\sigma_0(E_{\nu}/m_e c^2)^2\Big)^{-1}\simeq 24.6\,\text{m}\,(\rho/10^{14}\,\text{g}\,\text{cm}^{-3})^{-1}(E_{\nu}/10\,\text{MeV})^{-2},
+%\end{equation}
+%where $n_B$ is the density of baryons, and 
+%\begin{equation}
+%    \sigma_0 \simeq 4G_{F}^2 (m_e c^2)^2 / (\pi(\hbar c)^4)\simeq 1.76\times 10^{-44} \, \text{cm}^2
+%\end{equation}
+%is the typical neutrino cross section scale, and $E_{\nu}$ is the neutrino energy.
+%Considering the charactersitic remnant temperature as  $T_{rem}\simeq20\,$MeV 
+%energy of the thermal neutrinos then $E_{\nu}\simeq 3.15T_{rem}$ and optical depth 
+%$\tau_{\nu}\simeq R_{rem}/\lambda_{\nu}=\mathcal{O}(10^{4})$.
+The neutrinos are radiated on a diffusion timescale \cite{84}:
+%\begin{equation}
+%    t_{diff} \simeq \frac{\tau_{\nu}R_{rem}}{c}\simeq 4.28\,s\Big( \frac{R_{rem}}{15\,\text{km}} \Big)^{-1}\Big(\frac{M_{rem}}{2.5\,\Msun}\Big)\Big(\frac{T_{rem}}{20\,\text{MeV}}\Big)^2.
+%\end{equation}
+
+Within the remnant, neutrinos are in weak and thermal equilibrium with matter.
+due to charged current reaction. There, production of $\nu_e$ is suppressed by 
+degeneracy and as $\mu_n-\mu_p+\mu_e<0$ at high temperatures, the electron 
+anti-neutrinos, $\bar{\nu}_{e}$, dominate. The effect of these ``trapped'' 
+neutrinos on the remnant evolution is not very strong \cite{16,70}.
+%
+Within the disk, however, the optical depth for neutrinos is ${\simeq}1$ so 
+the they can diffuse out on a timescale of milliseconds, lowering the disk 
+temperature. The cooling rate is controlled by the degeneracy state of neutrinos 
+%that is kept at mild values by the feedback negative effect, higher 
+%values have on the cooling rate.
+\cite{85}.
+
+During the early \pmerg{}, the $L_{\bar{\nu}_e}\gtrsim L_{\nu_e}$, as the 
+free neutrinos are abundant in the diskand the absorption opacity for $\nu_e$ 
+exceeds that of $\bar{\nu}_e$.
+Thus, alongside heating and decompression, the initially cold matter in weak 
+equilibrium, undergoes \textit{leptonization} 
+%The heavy neutrinos, $\nu_{\mu,\tau}$, are balanced by pair processes and 
+%decouple from matter at higher densities and temperatures within the remnant
+%namely $\rho\gtrsim10^{13}$\gcm and $T\gtrsim8\,$MeV 
+\cite{84,86}
+%The, BNS simulations including
+%neutrino transport predict the mean neutrino energies at infinity
+%$E_{\nu_{e}}(\sim 10\,\text{MeV})\lesssim E_{\bar{\nu}_e}(\sim 15\,\text{MeV}) \lesssim E_{\nu_{\mu,\tau}}(\sim 20\,\text{MeV})$. Notably, binaries with higher mass 
+%show higher neutrino energies \cite{14,86}.
+
+Neutrinos with different energies decouple from matter in different regions.
+%due to the stron dependency of the cross section on the incoming neutrino energy.
+Average energy $\nu_{e}$ and $\bar{\nu}_e$ decouple at ${\sim}10^{11}$\gcm, found 
+in the disk, while low energy neutrinos decouple at higher $\rho\sim10^{13}$\gcm.
+The geometric surface along which neutrinos decouple is generally called ``neutrino 
+surface'' \cite{84,86}.
+%The dependency of the location and the geometry of this surface on the thermodynamics 
+%conditions and neutrino energy facilitates the need to coherent treatment of the 
+%strong and weak interactions over a broad span of densities and temepratures.
+Thus, the energy dependent (spectral) neutrino radiation trasport is required in 
+\ac{BNS} merger simulations
+
+While it has been shown that neutrino flavor conversions may occur in the \ac{BNS} 
+\pmerg{} environment, \eg, the matter-neutrino oscillations, induced by the 
+the fact that $\bar{\nu}_e$ decouple at smaller radii then $\nu_{e}$ \cite{\eg, 87,88}, 
+and fast-flavor conversions above the neutrino surface \cite{89}, their impact 
+on the properties of the ejected material remains largely unexplored.
+%More works of neutrino quantum kinetics equations \cite{90,91}, that include 
+%collisional integral and angular and energy distributions of neutrinos are required.
+
+One of the main unknowns with respect to \ac{BNS} mergers, is the high density part, 
+$\rho{\gtrsim}\rho_0$ of the \ac{NS} \ac{EOS} \cite{\eg, 92,93}, that relate to the 
+relevant thermodynamic degrees of freedom and nucleonic interactions. For instance, 
+the emergence of the new species, \eg, hyperons, pions, muons, and nuclear 
+resonances, would lower the matter degeneracy, and thus, soften the \ac{EOS} \cite{\eg, 95,94}.
+Additionally, the emergence of to deconfined quark matter, due to \ac{QCD} phase transition,
+would alter \ac{EOS} at very high temperatures and densities that not well constrained 
+\cite{96}.
 
 
+\subsubsection{Fate of the Remnant}
 
+The end product of \ac{BNS} merger depends primarely on the binary parameters, (masses, 
+\mr{}) and \ac{EOS}, and in particular, on the maximum supported mass of a non-rotating 
+\ac{NS}, $M_{max}^{TOV}$ \cite{22}, as well as on the finite temperature and 
+non-beta-equalibrium composition effects. 
 
+The \ac{BH} formation directly at merger is usually referred to as \ac{PC}. 
+The conditions for it depend on \ac{EOS} and not well understood. 
+Simulations show that in equal mass binaries, \ac{PC} occurs if the total mass 
+$M\gtrsim M_{thr} = k_{thr}M_{max}^{TOV}$, where $k_thr\in(1.3,1.7)$ that depends on 
+\ac{EOS} \cite{97,98,99,100}.
+%(or $\kappa_2^T\lesssim43-73$, or $\tilde{\Lambda}\lesssim338-386$.
+Simulations of uneqal mass binaries show that the threshold is lower \cite{101}, and 
+$k_{thr}\propto C_{1.6}$, with $C_{1.6}$ being the compactness of the $1.6\,\Msun$ 
+\ac{NS} \cite{99,100,101}. As \ac{PC} cases are not expected to ejecta large 
+amount of material and be \ac{EM}-loud (in case of comparable mass binary), the \GW{} 
+is believed to be not a \ac{PC} case, \cite{103,101}. 
 
+The remnant that does not undergo \ac{PC} is a massive \ac{NS}, temprarly suppoerted 
+by fast rotation \cite{105, 106, 97, 98, 14, 80, 107}, whose lifetime depends 
+intricately on the \ac{EOS}, finite temperature effects, and viscosity. A commonly 
+adopted classification, based on the properties of equilibrium models (neglecting the 
+dynamical and finite temperature, and magnetic effects), \ie, $M_{max}^{TOV}$ and
+$M_{max}^{RNS}$\footnote{
+    $M_{max}^{RNS}$ is the maximum mass of a rigidly rotating \ac{NS} (no differential 
+    rotation) supported by zero-temperature (cold) \ac{EOS}. Also sometimes referred as 
+    mass-shedding limit.
+    % $M_{max}^{TOV}$ and $M_{max}^{RNS}$ are agnostic to thermal or magnetic eects 
+    %which can impact the stability of the remnant in nontrivial ways (108, 72)
+}
+and include 
+\ac{HMNS} if $M > M_{max}^{RNS}$, 
+\ac{SMNS} if $M_{max}^{TOV} \leq M_{max}^{RNS}$,
+and stable \ac{MNS} if $M < M_{max}^{TOV}$ \cite{\eg, 105}.
+The \ac{HMNS} is supported by differential rotation, that viscosity reduces with time. 
+Hence, they are expected to collapse to a \ac{BH}. The \ac{SMNS} can avoid the collapse 
+even after reaching rigidly rotating configuration. The lifetime of \ac{HMNS} and \ac{SMNS}
+depends on efficiently of mass and angular momentum loss (to, \eg, massive winds) and 
+finite temperature effects \cite{72}. Based on these uncertainties, we distinguish between
+\textit{short-lived} remnants, that collapse to \ac{BH} during \ac{GW}-dominated phase, 
+% taht correspods to ${\sim}10-20\,$ms after merger \cite{107,60}
+and \textit{long-lived} otherwise.
 
+If a remnant can achieve rigid rotation, its evolution then characterized by the emission 
+of \acp{GW} (due to residual asphericity) and magnetic braking, reducing further its 
+angular momentum, until either \ac{BH} forms, or stable non-rotating equilibrium is reached.
+The observations of \acp{SGRB} with X-ray plateu \cite{109,110,111}, if indeed given by the 
+magnetar activity\footnote{
+    There are other possible explanations behind the X-ray plateu emission of \acp{SGRB} 
+    \cite{113}
+}, suggest that the remnant may survive from seconds to hours \cite{111, 112}.
+Most of the energy, ${\sim}10^{52}\,$erg, that a remnant needs to lose before collapsing 
+most likely is carried away in a form of \acp{GW}, as \ac{EM} observations of \GW{} suggest.
+%This emission can be observed for the nearby event \cite{111}, priding direct information 
+%on the remnant fate. However this emission was not observed for \GW{} \cite{67,68}
 
+From \ac{EM} observations of the merger the fate of the remnant, albeit in the 
+model-dependent way can be inferred. In case of \GW{}, the presence of such counterpart 
+strongly disfavors \ac{PC} \cite{103,101,62}, while leaving the question whether it was 
+\ac{HMNS} or \ac{SMNS} open. Margalit \& Metzger \cite{103} suggested that the remnant 
+was short-lived, on account of the non-detection of the expected ${\sim}10^{52}\,$erg, 
+from the spin-down of the long-lived one. Assuming thus that \GW{} produced \ac{HMNS}, 
+constraints can be placed on $M_{max}^{TOV}{\lesssim}2.2\Msun$ \cite{103}.
 
+On the other hand, employing the magnetar model of \acp{SGRB} to \GW{} \cite{115,116,117},
+lead to the requirement of a very long-lived remnant (months) and weak dipol \acp{MF} \cite{115},
+giving a different constraint on the maximum mass of the non-rotating star, 
+$M_{max}^{TOV}{\gtrsim}2.2\Msun$ 
+%and up to an order of magnitude lower ejecta mass ${\sim}10^{-3}\,\Msun$, that is attributed 
+%to reducied amount of emergy from radioactive decay is required to explain the observed 
+%UV/optical/infrared observations \cite{16}. 
+%There have been indications of the X-ray flaring activity in \GRB{} \cite{117}, but 
+%follow-up observations did not confirm it \cite{118}
+. 
 
+\subsubsection{Multimessenger Signatures}
 
+During and after the merger, neutron-rich material is ejected from the system on the 
+dynamical \cite{119, 120, 121, 15, 122} and secular \cite{123, 84, 24, 124, 21, 78, 81} 
+timescales via a number of processes (see Sec.~\ref{sec:intro:bns:ejecta}), that 
+undergo \rproc{} \nuc{}, synthesizing neutron-rich unstable elements \cite{82,15,12},
+that subsequently decay, releasing energy that thermalizes and can be observed as 
+a \ac{EM} transient, \ac{kN} with quasi-thermal spectrum \cite{25}. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Additionally, \acp{BHS} mergers produce collimated, ultra-relativistic outflows, jets, 
+classified as \acp{SGRB} (See Sec.~\ref{sec:intro:grb})
+%, with the late-time afterglow 
+%\ac{EM} emission originating from the interaction between the cold ejecta and \ac{ISM} \cite{23}
+%and the early-time, prompt emission of poorly understood origin 
+\cite{82,125}.
+There are several mechanisms that can launch a jet, inclding the \red{See Just thesis intro}
+\gray{magnetic-field-mediated energy extraction from the spinning \ac{BH}} \cite{126,76}, 
+magnetized winds from a remnant magnetar \cite{109,75} and neutrino-antineutrino powered 
+fireball \cite{82}.
 
 
 
