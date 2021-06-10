@@ -1,0 +1,284 @@
+%% =====================================================================================
+%%
+%%               C O D E -- W H I S K Y - T H C
+%%
+%% =====================================================================================
+\chapter{Simulation Setup} \label{app:whisky}%\label{sec:bns_sims:setup}
+
+%We perform the \ac{NR} \ac{BNS} merger simulations using the code \ac{WhiskyTHC}
+
+\section{Initial Data}
+
+
+We compute the irrotational \ac{BNS} configurations in quasi-circular orbit for 
+each \ac{EOS} considered, \eg, SLy4, SFHo, LS220, BLh and DD2 \acp{EOS}.
+The initial configuration is obtained via the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, 
+that solves the general relativistic initial data problem \red{in what approximation? Thin sandwitch?}.
+The initial separation (of the qusi-circular orbit) is chosen $\sim40$~km and that
+ corresponds to $~2-3$ orbits before merger.
+%
+The \acp{EOS} tables used for the initial data computation are the minimum temperature slices
+$(T\sim 0.5 - 0.1)$~MeV of the finite temperature \acp{EOS} tables used for the evolution.
+The assumption of the neutrino-less beta-equilibrium is made.
+At constant temperature, at lowest densities, the photon energy (radiation) is a dominant 
+contribution to pressure. Thus, we substruct this contribution from the tables.
+%
+%In the evolution code, passing the initial data, the mapping is done from the zero temerature
+In the evolution code, the electron fraction is set by the beta equilibrium condition. 
+The specific internal energy is reset in accordance with minimum 
+temperature slice of the \ac{EOS} table used for evolution.
+
+%Errors present in the initial data in introduced during the mapping 
+%result in a small oscillations of \acp{NS}.
+%In terms of relative changes in central density these amounts to 
+%$\sim2-3\%$ \citep{Radice:2018pdn}
+
+
+
+
+
+\section{Evolution}
+
+%In order to perform numerical simulations of fluid flow, accurate numerical codes are essencial. 
+%Codes that flux-conservative finite-difference HRSC schemes offer a ciertain degree of simplicity, 
+%while high-order finite volume schemes are more computationally expensive (as they require 
+%solution of multiple Riemann problems at the interface between regions) \cite{Reisswig:2009us,Shu:2001rep} 
+%as well as complex averaging and de-averaging procedures \cite{Tchekhovskoy:2007zn}.
+
+The evolution of \ac{BNS} systems is performed with \wisky{} \ac{NR} code
+ \citep{Radice:2013apa,Radice:2012cu,Radice:2013xpa,Radice:2013hxh,
+    Radice:2015nva,Radice:2016dwd,Radice:2018pdn,Radice:2020ids}.
+\wisky{} is a result of combination of two \texttt{Whisky} \citep{Baiotti:2004wn} and \texttt{THC}.
+The \texttt{THC} part stands for the Templated-Hydrodynamics Code developed using the \texttt{Cactus} framework 
+\citep{Goodale:2003}. 
+In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed . 
+%The "templated" in the code name stands for a modern paradigm in C++ programming, the templated 
+%programming, where a part of the code can be generated from the prescribed templates at 
+%compiling time (\textit{e.g.,} \cite{Yang:2001})
+%
+%The \texttt{THC} has several primitive variable reconstruction schemes implemented, 
+%such as MP5, classical monotonicity preserving \cite{Suresh:1997,Mignone:2010} the weighted 
+%essentially non oscillatory (WENO) schemes WENO5 and WENO7 \cite{Liu:1994,Jiang:1996,Shu:1997} 
+%and two bandwidth-optimized WENO schemes WENO3B and WENO4B \cite{Martin:2006,Taylor:2007}, 
+%contracted for modeling the compressible turbulence. Note, that the number 
+%in scheme name stands for a formal order of accuracy.
+%
+%High-order flux-vector splitting finite-differencing techniques came from 
+%the former, while the module for the recovery of the primitive quantities as 
+%well as the equation of state framework from the latter \cite{Galeazzi:2013mia}. 
+%Tabulated temperature and composition dependent equation of states can be used.
+%
+\wisky{} solves the equations of \ac{GRHD} in conservation form using a \ac{FD} scheme. 
+%
+%% Spacetime evolution
+The spacetime is evolved using the Z4c formulation of Einstein's equations
+(see Sec.~\ref{sec:theory:nr}) as implemented in the \texttt{CTGamma} code
+\citep{Pollney:2009yz,Reisswig:2013sqa}
+which is part of the \texttt{Einstein Toolkit} \citep{Loffler:2011ay}.
+%
+%\cite{Bernuzzi:2009ex,Hilditch:2012fp} as implemented in the \texttt{CTGamma} code
+%\cite{Pollney:2009yz,Reisswig:2013sqa} which is part of the \texttt{Einstein Toolkit} 
+%\cite{Loffler:2011ay}.
+%
+The non-linear stability of evolution is assured via Kreiss-Oliger dissipation. 
+The spacial discritisation is done via fourth-order finite-differencing implemented in \texttt{CTGamma}.
+%
+%\red{tripple check the FD is used for space time evol and central FV method is for hydro}
+The flux reconstruction is done in local-characteristic variables using the \ac{MP5} scheme.
+% see \textit{e.g.,} \cite{Rezzolla:2013} \red{CHECK}.
+%The space-time is evolved using the Z4c formulation (see Sec.~\ref{sec:theory:nr}), 
+%solved via \ac{FD} code publicly available through \texttt{Einstein Toolkit}, 
+%\citep{McLachlan,Loffler:2011ay}.%\red{CHECK}.
+
+%There, the central stencil is used throughout, and only terms associated with the advection along the 
+%shift vector are treated using the upwinded by one grid point stencil. 
+%The accuracy of the scheme is available at 6th and 8th order, while $4$th is commonly employed. 
+%In addition, the fifth order Kreiss-Oliger style artificial dissipation \cite{Kreiss:1973} is 
+%added to aid with non-linear stability. 
+%
+
+%\paragraph{Hydrodynamics}
+The code solves continuity equations (Eq.~\eqref{eq:theory:contineq}) separately for 
+protons and neutrinos, $n_n$ and $n_p$, with the \ac{RHS} prescribed by the 
+lepton number deposition rate due to the absorption and emission of neutrinos 
+and antineutrinos, $R_p^\mu$ and $R_n^\mu$, (with $R_p = -R_n$) 
+from leakage plus M0 scheme (See~\ref{sec:theory:neut}).
+%The code evolves the proton and neutron number densities, $n_n$ and $n_p$
+%respectively, as 
+%
+%\begin{equation}
+%\label{eq:wthc:pndens}
+%\nabla_\nu (n_p u^\mu) = R_p^\mu \ \ , \ \ 
+%\nabla_\nu (n_n u^\mu) = R_n^\mu \ .
+%\end{equation}
+%
+%\gray{in Radice2016dwd it is $\nabla_{\alpha}(n_e u^{\alpha}) = R$}
+%
+%\gray{in Galezzi2013, for Whisky, the equations are separate for baryon and leptons: 
+%$\nabla_{\alpha}(n_bu^{\alpha})=0$ and $\nabla_{\alpha}(n_eu^{\alpha})=N$, 
+%where the $n_b$ and $n_e$ are the baryon and electron number densities respectively.}
+%
+%Here $u^{\mu}$ is the fluid four-velocity, $R_p = -R_n$ is the net
+%lepton number deposition rate due to the absorption and emission of neutrinos 
+%and antineutrinos (see Sec.~\ref{sec:theory:neut})
+%
+%The $R_{p,n}$ is computed according to the neutrino M0 scheme (see Sec.~\ref{sec:theory:neut})
+%
+The number densities are related as $n_p=Y_e n$ where $n = n_p + n_e$ is the baryon 
+number density and $Y_e$ is electron fraction.
+%
+The matter of a neutron star is approximated with ideal fluid 
+with stress-energy tensor Eq.~\eqref{eq:theory:tmunu_perf},
+%
+%\begin{equation}
+%T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + Pg_{\mu\nu}
+%\end{equation}
+
+%where $\rho=m_{\text{b}} n$ is the baryon rest-mass density, 
+%$n$ the baryon number density, $m_{\text{b}} \simeq 10^{-24}\,$g 
+%the neutron mass, 
+%\gray{if Galezzi13 it is nucleon mass which is actrually related to the EOS.}
+%$h=1+\epsilon + P/\rho$ the specific enthalpy, 
+%$\epsilon$ the specific internal energy (energy density),
+%and $P$ is \gray{total isotropic} pressure.
+
+%Written in a covariant form, the Euler equation for balance of energy and momentum reads
+
+The code solves the Euler equations (Eq.~\eqref{eq:theory:tmunu_eq_0}) 
+with the \ac{RHS} given being $ Q u^{\mu}$
+%
+%\begin{equation}
+%\label{eq:wthc:euler}
+%\nabla_\nu T^{\mu\nu} = Q u^{\mu} \ ,
+%\end{equation}
+%
+%\gray{in Radice2016dwd it is $\nabla_{\beta}T^{\alpha\beta}=\Psi^{\alpha}$
+%    with $\Psi^{\alpha} = Q u^{\alpha}$.
+%}
+%\gray{In the Galezzi:2013 it is $\nabla_{\alpha}T^{\alpha\beta}=\Psi^{\beta}$.
+%    There the $T^{\alpha\beta}$ accounts for the ordinary matter and for trappend 
+%neutrinos and photons, but it does not include free-streaming neutrinos. Assumed to be 
+%similar to the 'test-fluid' they are neglected in constracting RHS of the Eistein equations.
+%}
+%
+where $Q$ is the net energy deposition rate due to absorption
+and emission of neutrinos also treated with the M0 scheme  
+(see Sec.~\ref{sec:theory:neut}).
+%\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
+
+
+
+
+%\subsection{Numerical methods}
+The continuity and Euler equations are discretized via \ac{HRSC} schemes
+(see Sec.~\ref{sec:theory:num_meth}).
+%
+%\eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens}.
+Specifically, the code employs central \ac{KT} scheme \citep{Kurganov:2000} with 
+\ac{HLLE} flux formula \citep{Einfeldt:1988} and non-oscillatory reconstruction 
+of the primitive variables with the \ac{MP5} scheme of \citep{Suresh:1997}.
+%
+Shock capturing schemes require the presence of a low density atmosphere around neutron stars.
+We assume the constant value of $\rho_0 = m_p n \approx 6\times 10^4$~\gcm.
+%
+The rest-mass consirvation in the presence of artificial atmosphere is assured via 
+\ac{PPL} approach.
+%
+The local number densities of neutrons and protons separately, are assured via 
+multi-fluid advection method of \citet{Plewa:1998nma}
+%
+The outflow properties are extracted when the density exceeds the atmosphere density
+by several orders of magnitude.
+%
+The coupling between the spacetime and hydrodynamic evolution is achieved via 
+\ac{MOL}.
+%
+Time integrator of choice is \ac{SSP} third-order Runge-Kutta scheme \citep{Gottlieb:2009}.
+The timestep is regulated by the \ac{CFL} condition, that required \ac{CFL} factor 
+to be $<0.25$ for numerical stability. 
+To assure that the \ac{PPL} implemented in \texttt{WhiskyTHC} maintains 
+the density positive, the \ac{CFL} factor is set to $0.15$.
+
+
+%\subsection{AMR}
+The code is build on the \texttt{Carpet} \ac{AMR} driver \citep{Schnetter:2003rb} from the 
+\texttt{Cactus} computational toolkit \citep{Goodale:2003}, that incorporates
+\texttt{Carpet} Berger-Oliger-style mesh refinement \citep{Berger:1989,Berger:1984} 
+with sub-cycling in time and refluxing. %\textcolor{red}{in Thesis it is said, --
+% no refluxing was done yet} 
+%The code uses the Berger-Oliger conservative adaptive mesh renement (AMR) \cite{Berger:1984} 
+%with sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} 
+%\cite{Berger:1989,Reisswig:2012nc} as provided by the \texttt{Carpet module} of the \texttt{Einstein Toolkit} 
+%\cite{Schnetter:2003rb}. 
+
+
+%\subsection{Neutrino scheme}
+%
+%
+%\begin{table}
+%    \caption{
+%        Weak reactions employed in our simulations and references for their implementation.
+%        In the left column, $\nu \in \{\nu_e, \bar{\nu}_e, \nu_{x}\}$ denotes any neutrino species, 
+%        $\nu_{x}$ any heavy-lepton neutrinos, $N \in\{n, p\}$ a nucleon, and $A$ any nucleus.
+%        In the central column the role of each reaction is highlighted, with "P" standing for 
+%        production, "A" for absorption opacity and "S" for scattering opacity. When two roles are
+%        indicated, the second refers to the inverse ($\leftarrow$) reaction.
+%        Table is taken from \cite{Radice:2018pdn}.
+%    }
+%    \label{tab:leakage}
+%    \begin{center}
+%        \begin{tabular}{lll}
+%            \hline\hline
+%            Reaction & Role &  Ref. \\ 
+%            \hline
+%            $p + e^- \leftrightarrow \nu_e + n $          & P,A & \cite{Bruenn:1985}  \\
+%            $n + e^+ \leftrightarrow \bar{\nu}_{e} + p $  & P,A & \cite{Bruenn:1985}  \\
+%            $e^+ + e^- \rightarrow \nu + \bar{\nu}$       & P & \cite{Ruffert:1995fs} \\
+%            $\gamma + \gamma \rightarrow \nu + \bar{\nu}$ & P & \cite{Ruffert:1995fs} \\
+%            $N + N \rightarrow \nu + \bar{\nu} + N  + N$  & P & \cite{Burrows:2004vq} \\
+%            $\nu + N \rightarrow \nu + N$                 & S & \cite{Ruffert:1995fs} \\
+%            $\nu + A \rightarrow \nu + A$                 & S & \cite{Shapiro:1983du} \\
+%            \hline\hline
+%        \end{tabular}
+%    \end{center}
+%\end{table}
+%
+%\red{JUST Name the chemes and reference the equations}
+%\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
+%
+%\subsection{Code General Setup}
+
+\section{Geometry and resolution}
+
+The simulation domain is a cube of $3.024$~km each side, 
+whose center is at the center of mass of the binary.
+The \ac{AMR} structure has $7$ refinement levels, with the finest 
+covering both compact objects during the inspiral and the remnant \pmerg{}.
+%
+We consider several resolution setups: Low (LR), 
+standard (SR) and high (HR) with the finest refinement level being 
+$h=246$~m, $h=185$~m and $h=123$~m respectively.
+%
+In the simulations where the neutirno M0 scheme is included,
+it is switched on shortly before the merger. 
+%The equations \eqref{eq:method:whisky:eq7} and \eqref{eq:method:whisky:eq9} 
+The Eqs.~\eqref{eq:theory:neut:balanseq} \eqref{eq:theory:neut:balanseq2}
+and are solved on the uniform spherical grid with radius $\approx 756$~km, 
+and resolution $n_r\times n_{\theta}\times n_{\phi} = 3096 \times 32 \times 64$
+grid points.
+%
+A subset of models discussed in this thesis include the effective treatment of viscosity
+(see Sec.~\ref{sec:theory:visc}). 
+
+We consider $33$ distinct binary with total masses 
+$\red{[None,None]}$ and mass-ratio $q\in[1.00,1.82]$.
+In all models the neutrino leakage plus M0 scheme. 
+Most models were computed at at least two resolutions. 
+and include the effect of subgrid turbulence, viscosity.
+
+%\gray{Summary of all results in given in the table...}
+%
+%\gray{Each run is nameed as}
+%
+%\gray{We simulate each model for at least $\red{None}$~ms after 
+%the merger or a few milliseconds after BH formation}

@@ -2393,9 +2393,9 @@ The solution to Eq.~\eqref{eq:theory:conservlaws} can develop discontinuities
 irrespective of initial data. The solutions are generally not 
 unique even for scalar cases and are called ``weak solution''. %to the system are considered,
 %which are not unique even for scalar cases. 
-An important requirement for the solution is to be entropic, and its 
-enforcing is equivalent to demanding that shock formation is irrecersible
-\citep{LeVeque:1992}.
+An important requirement for the solution is to be entropic \ie, 
+%, and its enforcing is equivalent to demanding 
+that the shock formation is irrecersible \citep{LeVeque:1992}.
 %The condition for a solution to be entropic is equivalent enforcing that the 
 %shock formation is irrecersible \citep{LeVeque:1992}.
 %The existance and uniqness of such solutions was investigated \citep{Kruzkov:1970,DiPerna:1985,Benartzi:2007} in the scalar case, but for the system of 
@@ -2434,7 +2434,9 @@ the numerical approximation to the scalar form of the conservation law Eq.~\eqre
 \end{equation}
 %
 where $\Delta$ is the discretization parameter,
-$u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \ie, $u^{\delta}\approxeq u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator, associated error with which is negligible $u^{\Delta}(0) = u_0$. 
+$u^{\Delta}$ and $L^{\Delta}$ are approximations of $u$ and $\mathcal{L}$, \ie, $u^{\delta}\approxeq u$, $L^{\Delta}\approxeq \mathcal{L}$ and $P^{\Delta}$ is a projection operator\footnote{
+    Associated error the projection operatior can be considered negligible $u^{\Delta}(0) = u_0$
+}. 
 
 %The \textit{local truncation error} reads 
 %%
@@ -2465,11 +2467,11 @@ The system Eq~\eqref{eq:theory:conservlawsodepde} is a system of \acp{ODE}, wher
 The conservation laws in a fully discrete form read 
 %
 \begin{equation}
-u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)]
+u^{\Delta}(t+\Delta t) = T^{\Delta} _{\Delta t}[u^{\Delta}(t)],
 \end{equation}
 %
 where $\Delta$ is the discretization parameter for both time and space, which is 
-possible to define due to \ac{CFL} condition, which is, in essence, a linear stability
+possible to introduce due to \ac{CFL} condition, which is, in essence, a linear stability
 condition of a time-integrator that links two discretizations. 
 
 %For a fully-discrete from, the truncation error reads 
@@ -2495,6 +2497,8 @@ condition of a time-integrator that links two discretizations.
 %the BV-invariance of the exact conservation laws.
 %Then the Lax-Wendroff Theorem would assure that the numerical scheme that is $L^1$ stable if consistent produces a sequence of solutions, for different discretization parameter $\Delta$, that will converge in $L^1$-norm to a weak solution as we decrease $\Delta$.
 
+\red{the following text can be commented out}
+There are several mathematical properties that are desired to have in a scheme.
 Of particular interest are schemes that are \ac{TVD}. 
 The property consist of requiring \ac{BV} invariance-like property, 
 %This implies that for any sequence of functions $[\upsilon_n]\in\text{BV}(\Omega)$ there is a subsequence converging in the $L^1$-norm to a function $L^1 _{\text{loc}}(\omega)$. 
@@ -2509,10 +2513,10 @@ An example of such scheme is a 1D monotone scheme \citep{LeVeque:1992}.
 It was shown that numerical solutions, obtained with a consistent stable and 
 monotone scheme converge to a weak and entropic solution of Eq~\eqref{eq:theory:conservlaws}
 \citep{Crandall:1980} albeit at first order accuracy only \citep{Harten:1976}.
-The latter issue was resolved via introduction of non-linear dissipation methods that reduce convergence only locally to the first order in the vicinity of the discontinuities
+The latter issue was resolved with introduction of non-linear dissipation methods that with which convergence is reduced only locally to the first order in the vicinity of the discontinuities
 These schemes are high-order accuracy, high \ac{HRSC} schemes.
 %Multiple other high order accuracy schemes have been proposed with however weaker conditions of non-linear stability and not yet fully explored convergence. For example, schemes that satisfy the maximum-principle \ie, such that if $m < u_0 < M$ then $u^{\Delta}(t,\cdot)\in[m, M]$. Such is the second-order central-scheme by Kurganov and Tadmor \citep{Kurganov:2000}. 
-It is however remains that the commonly used modern multidimensional \ac{HRSC} schemes are not \ac{TVD} or even yet proven to be TV-stable. There are numerical evidence indicating
+It is however remains that the commonly used modern multidimensional \ac{HRSC} schemes are not \ac{TVD} or even yet proven to be TV-stable. There are numerical evidences indicating
 that these schemes converge to the entropic solution of conservation laws. However, the mathematical proof is yet to be provided. 
 %Additionally, even the stabolity and convergence in one-dimensional case has not been forven for a general system of non-linear conservation laws, \cite{LeVeque:2002}, while there also numerical evidence for the convergence of these schemes. 
 %It is believed that a more precise characterization of piecewise-regular entropic solutions of conservation laws would lead to a proof of convergence for high order schemes \cite{Tadmor1998}. Similarly, to prove the convergence of their numerical approximation likely requiresa  better understanding of the mathematical properties of systems of conservation laws. In light of a high demand for a practical approach, however, a more heuristic approach has been employed to the study of HRSC schemes for systems of conservation laws. And usually a starting point for such study is a one-dimensional scalar case for which TV-stability and convergence can be more easily explored.
@@ -2524,7 +2528,7 @@ that these schemes converge to the entropic solution of conservation laws. Howev
 %Riemann solvers are specific methods for computing the numerical flux across a discontinuity in the Riemann problem.
 %An iterative solution to the RP is too costly, especially in MHD. Popular approximations are: Roe solver, HLLE solver, HLLC solver
 
-The \ac{FV} (Godunov-type) methods based on the Godunov scheme \citep{Godunov:1959}, 
+Godunov-type (based on the Godunov scheme \citep{Godunov:1959}) \ac{FV} methods 
 are prime tools to obtain solutions with discontinuities without spurious numerical extrema and with minimum numerical dissipation \citep{Toro:1999}.
 These schemes are very popular in the field of relativistic hydrodynamics. 
 %First shown to be at most first order accurate \citep{Godunov:1959}, they can be higher order by %scheme has to be non-linear \citep{Boris:1971,vanLeer:1973}
@@ -2546,7 +2550,7 @@ These schemes are very popular in the field of relativistic hydrodynamics.
 
 Consider a $1$D scalar advection equation, 
 $\partial_t u + \partial_x f(u) = 0$, 
-that is cast on a uniformly-spaced grid in space and time, that reads 
+that is cast on a uniformly-spaced grid in space and time, 
 %\begin{equation}
 %x_i = i\Delta^1, \hspace{5mm} i\in\mathbb{Z}, \hspace{10mm} t_n = n\Delta^0, \hspace{5mm} n\in\mathbb{N}
 %\end{equation}
@@ -2556,10 +2560,10 @@ and averaged over control-volumes, $[x_{i-1/2},x_{i+1/2}]$,
 %    \bar{u}_i ^n = \frac{1}{\Delta^1}\int_{x_{i-1/2}}^{x_{i + 1/2}} u(x, t^n) \text{d}x.
 %\end{equation}
 %
-and one time-step 
+and one time-step as 
 %
 \begin{equation}
-    \frac{\bar{u}_{i}^{n+1}-\bar{u}_{i}^{n}}{\Delta^0} = \frac{1}{\Delta^1}\int_{t_n}^{t_{n+1}}\big\{f[u(t,x_{i-1/2})] - f[u(t,x_{i+1/2})]\big\}\text{d}t
+    \frac{\bar{u}_{i}^{n+1}-\bar{u}_{i}^{n}}{\Delta^0} = \frac{1}{\Delta^1}\int_{t_n}^{t_{n+1}}\big\{f[u(t,x_{i-1/2})] - f[u(t,x_{i+1/2})]\big\}\text{d}t,
     \label{eq:theory:fv:intadveq}
 \end{equation}
 where discretization parameters $\Delta^0$ and $\Delta^1$ are connected via \ac{CFL} 
@@ -2595,12 +2599,12 @@ The evaluation of the \ac{RHS} of Eq.~\eqref{eq:theory:fv:intadveq} only require
 %The semi-discrete form is overall useful in contracting higher order \ac{FV} schemes as well as in discussing a coupling between hydrodynamic equations with some other system of equations \eg, the spacetime evolution equations, that is not solved using a \ac{FV} scheme.
 %
 As long as the solution of the Riemann problem can be constructed, the \ac{FV} scheme can be applied to a system of equations. 
-A popular examples or such solvers are \ac{HLLE} solver \citep{Roe:1981}, the Marquina flux-formula \citep{Donat:1996} and \ac{HLLC} solver \citep{Einfeldt:1988}.
+A popular examples or Riemann solvers are \ac{HLLE} solver \citep{Roe:1981}, the Marquina flux-formula \citep{Donat:1996} and \ac{HLLC} solver \citep{Einfeldt:1988}.
 %A scheme converges to the correct entropic solution of the conservation law if it is non-linearly stable and the flux-formula is compatible with the entropy inequality. 
 %Notably, higher order schemes have lower numerical dissipation. Thus, in high order \ac{FV} schemes use of approximate flux is more justified.
 
 %\subsubsection{TVD Finite-Volume Methods}
-The averaging procedure performed on the solution leads to the loss of information,
+The averaging procedure (over control volumes) performed on the solution leads to the loss of information,
 and thus makes a scheme the first order accurate at most.
 The information can be \textit{reconstructed} via non-linear reconstruction procedure,
 that also prevents spurious oscillations from arising.
@@ -2610,21 +2614,21 @@ This is achieved by introducing the profile or slope, $\sigma_i$, into the recon
 %\end{equation}
 %in $[x_{i-1/2},x_{i+1/2}]$.
 %$U_i(x)$ is essentially a profile of the solution $U$ (within a given volume element '$i$').
-effectively performing a linear regression of the solution $u$.
+effectively performing a linear regression of the solution, $u$, 
 %In a semi-discrete from then the \ac{FV} scheme reads 
 %\begin{equation}
 %\frac{\text{d} U_i}{\text{d}t} = \frac{1}{\Delta^1}\big[F(U^{-}_{i-1/2},U^{+}_{i-1/2}) - F(U^{-}_{i+1/2},U^{+}_{i+1/2})\big]
 %\label{eq:theory:fv:semi-disc-2ord}
 %\end{equation}
 %where $\pm$ indicates what side the slope is considered
-in each control volume, with a limiter to assure 
+in each control volume, with a limiter to ensure 
 %that the scheme is \ac{TVD}
 that the scheme is first order near shocks to prevent oscillations.
 This allows to construct second-order accurate scheme. 
 %
 %\subsubsection{Higher-Order Finite-Volume Methods}
 Higher order schemes can be constructed by performing 
-polynomial regression, to express the solution $u$ as a piecewise polynomial, with
+polynomial regressions to express the solution, $u$, as a piecewise polynomial, with
 more sophisticated reconstruction operators.
 Examples include 
 the \ac{PPM} \citep{Colella:1984,Colella:2008}, 
@@ -2644,9 +2648,9 @@ This method has an advantage of being computationally efficient.
 
 \subsection{Central Methods}
 
-A central scheme is a monotone scheme that does not require aa Riemann solver. 
-
-First such scheme was developed by \ac{LxF} \citep{Lax:1954,Friedrichs:1954}, 
+A central scheme is a monotone scheme that does not require a Riemann solver. 
+%
+First such scheme was developed by \ac{LxF} \citep{Lax:1954,Friedrichs:1954}; 
 it exhibited larger numerical dissipation then Godunov scheme, restricting its usefulness.
 A second order central scheme was developed by \ac{NT} \citep{Nessyahu:1990}.
 \ac{KT} \citep{Kurganov:2000} introduced further advancements, which helped popularizing high-order central schemes. 
@@ -2672,18 +2676,18 @@ A second order central scheme was developed by \ac{NT} \citep{Nessyahu:1990}.
 %
 %Here we aim to discuss \ac{FD} \ac{HRSC} schemes in very brief manner. We refer the reader to specialized literature for a in-depth discussion. In particular, for the discussion of \ac{FD} \ac{ENO}/\ac{WENO} \ac{HRSC} schemes see \citep{Shu:1999}, and for \ac{FD} \ac{MP5} scheme -- see \citep{Mignone:2010}. 
 
-In application to the which is also hyperbolic scalar equation, a conservation law, the \ac{FD} scheme is very similar to the \ac{FV} scheme, 
+In application to hyperbolic scalar equations, (\eg, conservation laws), the \ac{FD} scheme is very similar to the \ac{FV} scheme 
 % Eq.~\eqref{eq:theory:fv:1storder3dscheme}.
 (Eq.~\eqref{eq:theory:fv:intadveq} if considered in a 
 semi-discrete form).
-However,instead of integrals of the control volumes along the boundary
-If \ac{FD} scheme, these are direct (high-order, non-oscillatory) approximations 
-of the point-wise value of the solution.
-Thus, at second order, where  volume averages and point-wise values are the same,
+However, instead of integrating over control volumes along the boundary, 
+in \ac{FD} schemes, direct (high-order, non-oscillatory) approximations 
+of the point-wise values of the solution are used.
+Thus, at second order, where volume averages and point-wise values are the same,
 the \ac{FD} and \ac{FV} schemes read identically.
 The difference becomes important at higher orders and in many dimensions, 
 where \ac{FD} scheme lifts the need to evaluate Riemann problem at region boundaries,
-especially for the performance of a scheme.
+which is very beneficial especially for the performance of a scheme.
 %The reconstruction is still used though, but to evaluate the non-oscillatory approximation $of the point-wise value of $-\partial_1 F^1$ at a point $x_{i,j,k}$. 
 %in 
 %\begin{align}

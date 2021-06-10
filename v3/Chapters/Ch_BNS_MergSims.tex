@@ -1,9 +1,21 @@
 \chapter{Binary Neutron Star merger simulations} \label{ch:bns_sims}
 
-In this chapter we discuss the \ac{BNS} merger simulations.
-In section \red{XX} we descibe the simulation setup, in 
-Sec.~\red{XXX} we discuss the overall dynamics of mergers which 
-is followed by model detailed dynamics of the \red{xxxx}
+In this chapter we discuss the \ac{NR} \ac{BNS} merger simulations,
+published in \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}.
+%
+Simulations are performed with \ac{NR} code \wisky{}, that employs 
+methods discussed in the chapter \ref{ch:nr_methods}. The specifics 
+of the numerical setups are further discussed in Appendix~\ref{app:whisky}.
+The postprocessing methods used to extract the results are 
+given in Appendix~\ref{app:ppr}.
+%
+
+%First 
+%In Sec.~\ref{sec:bns_dynsmics_overview} we give the overview of the 
+%\pmerg{} dynamics, expanding upon the general picture outlined in
+%Sec.~\ref{sec:intro:merg_pmerg}. 
+%In
+
 
 %\subsubsection{TOV}
 
@@ -11,583 +23,6 @@ is followed by model detailed dynamics of the \red{xxxx}
 %The maximum mass of a non-rotating NS that these EOSs support are $2.06$, $2.06$, $2.42$ $None$ $None$ 
 %for SFHo, LS220, DD2, BLh and SLy4 respectively. The NS radii, $R_{1.4}$, then $11.9$, $12.7$, $13.2$ $\red{None}$ $\red{None}$, which in turn is related to the pressure at half saturation density \cite{Lattimer:2012nd}. Thus we adopt the following naming convention for EOS. Those that lead to a NS with smaller radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" EOS.
 %Among considered, the DD2 is the stiffest EOS, while SLy4 is the softest.
-
-%% =====================================================================================
-%%
-%%               C O D E -- W H I S K Y - T H C
-%%
-%% =====================================================================================
-
-
-\section{Simulation Setup} \label{sec:bns_sims:setup}
-
-%We perform the \ac{NR} \ac{BNS} merger simulations using the code \ac{WhiskyTHC}
-
-\subsection{Initial Data}
-
-
-We compute the irrotational \ac{BNS} configurations in quasi-circular orbit for 
-each \ac{EOS} considered, \eg, SLy4, SFHo, LS220, BLh and DD2 \acp{EOS}.
-The initial configuration is obtained via the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, 
-that solves the general relativistic initial data problem \red{in what approximation? Thin sandwitch?}.
-The initial separation (of the qusi-circular orbit) is chosen $\sim40$~km and that
- corresponds to $~2-3$ orbits before merger.
-%
-The \acp{EOS} tables used for the initial data computation are the minimum temperature slices
-$(T\sim 0.5 - 0.1)$~MeV of the finite temperature \acp{EOS} tables used for the evolution.
-The assumption of the neutrino-less beta-equilibrium is made.
-At constant temperature, at lowest densities, the photon energy (radiation) is a dominant 
-contribution to pressure. Thus, we substruct this contribution from the tables.
-%
-%In the evolution code, passing the initial data, the mapping is done from the zero temerature
-In the evolution code, the electron fraction is set by the beta equilibrium condition. 
-The specific internal energy is reset in accordance with minimum 
-temperature slice of the \ac{EOS} table used for evolution.
-
-%Errors present in the initial data in introduced during the mapping 
-%result in a small oscillations of \acp{NS}.
-%In terms of relative changes in central density these amounts to 
-%$\sim2-3\%$ \citep{Radice:2018pdn}
-
-
-
-
-
-\subsection{Evolution}
-
-%In order to perform numerical simulations of fluid flow, accurate numerical codes are essencial. 
-%Codes that flux-conservative finite-difference HRSC schemes offer a ciertain degree of simplicity, 
-%while high-order finite volume schemes are more computationally expensive (as they require 
-%solution of multiple Riemann problems at the interface between regions) \cite{Reisswig:2009us,Shu:2001rep} 
-%as well as complex averaging and de-averaging procedures \cite{Tchekhovskoy:2007zn}.
-
-The evolution of \ac{BNS} systems is performed with \wisky{} \ac{NR} code
- \citep{Radice:2013apa,Radice:2012cu,Radice:2013xpa,Radice:2013hxh,
-    Radice:2015nva,Radice:2016dwd,Radice:2018pdn,Radice:2020ids}.
-\wisky{} is a result of combination of two \texttt{Whisky} \citep{Baiotti:2004wn} and \texttt{THC}.
-The \texttt{THC} part stands for the Templated-Hydrodynamics Code developed using the \texttt{Cactus} framework 
-\citep{Goodale:2003}. 
-In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed . 
-%The "templated" in the code name stands for a modern paradigm in C++ programming, the templated 
-%programming, where a part of the code can be generated from the prescribed templates at 
-%compiling time (\textit{e.g.,} \cite{Yang:2001})
-%
-%The \texttt{THC} has several primitive variable reconstruction schemes implemented, 
-%such as MP5, classical monotonicity preserving \cite{Suresh:1997,Mignone:2010} the weighted 
-%essentially non oscillatory (WENO) schemes WENO5 and WENO7 \cite{Liu:1994,Jiang:1996,Shu:1997} 
-%and two bandwidth-optimized WENO schemes WENO3B and WENO4B \cite{Martin:2006,Taylor:2007}, 
-%contracted for modeling the compressible turbulence. Note, that the number 
-%in scheme name stands for a formal order of accuracy.
-%
-%High-order flux-vector splitting finite-differencing techniques came from 
-%the former, while the module for the recovery of the primitive quantities as 
-%well as the equation of state framework from the latter \cite{Galeazzi:2013mia}. 
-%Tabulated temperature and composition dependent equation of states can be used.
-%
-\wisky{} solves the equations of \ac{GRHD} in conservation form using a \ac{FD} scheme. 
-%
-%% Spacetime evolution
-The spacetime is evolved using the Z4c formulation of Einstein's equations
-(see Sec.~\ref{sec:theory:nr}) as implemented in the \texttt{CTGamma} code
-\citep{Pollney:2009yz,Reisswig:2013sqa}
-which is part of the \texttt{Einstein Toolkit} \citep{Loffler:2011ay}.
-%
-%\cite{Bernuzzi:2009ex,Hilditch:2012fp} as implemented in the \texttt{CTGamma} code
-%\cite{Pollney:2009yz,Reisswig:2013sqa} which is part of the \texttt{Einstein Toolkit} 
-%\cite{Loffler:2011ay}.
-%
-The non-linear stability of evolution is assured via Kreiss-Oliger dissipation. 
-The spacial discritisation is done via fourth-order finite-differencing implemented in \texttt{CTGamma}.
-%
-%\red{tripple check the FD is used for space time evol and central FV method is for hydro}
-The flux reconstruction is done in local-characteristic variables using the \ac{MP5} scheme.
-% see \textit{e.g.,} \cite{Rezzolla:2013} \red{CHECK}.
-%The space-time is evolved using the Z4c formulation (see Sec.~\ref{sec:theory:nr}), 
-%solved via \ac{FD} code publicly available through \texttt{Einstein Toolkit}, 
-%\citep{McLachlan,Loffler:2011ay}.%\red{CHECK}.
-
-%There, the central stencil is used throughout, and only terms associated with the advection along the 
-%shift vector are treated using the upwinded by one grid point stencil. 
-%The accuracy of the scheme is available at 6th and 8th order, while $4$th is commonly employed. 
-%In addition, the fifth order Kreiss-Oliger style artificial dissipation \cite{Kreiss:1973} is 
-%added to aid with non-linear stability. 
-%
-
-%\paragraph{Hydrodynamics}
-The code solves continuity equations (Eq.~\eqref{eq:theory:contineq}) separately for 
-protons and neutrinos, $n_n$ and $n_p$, with the \ac{RHS} prescribed by the 
-lepton number deposition rate due to the absorption and emission of neutrinos 
-and antineutrinos, $R_p^\mu$ and $R_n^\mu$, (with $R_p = -R_n$) 
-from leakage plus M0 scheme (See~\ref{sec:theory:neut}).
-%The code evolves the proton and neutron number densities, $n_n$ and $n_p$
-%respectively, as 
-%
-%\begin{equation}
-%\label{eq:wthc:pndens}
-%\nabla_\nu (n_p u^\mu) = R_p^\mu \ \ , \ \ 
-%\nabla_\nu (n_n u^\mu) = R_n^\mu \ .
-%\end{equation}
-%
-%\gray{in Radice2016dwd it is $\nabla_{\alpha}(n_e u^{\alpha}) = R$}
-%
-%\gray{in Galezzi2013, for Whisky, the equations are separate for baryon and leptons: 
-%$\nabla_{\alpha}(n_bu^{\alpha})=0$ and $\nabla_{\alpha}(n_eu^{\alpha})=N$, 
-%where the $n_b$ and $n_e$ are the baryon and electron number densities respectively.}
-%
-%Here $u^{\mu}$ is the fluid four-velocity, $R_p = -R_n$ is the net
-%lepton number deposition rate due to the absorption and emission of neutrinos 
-%and antineutrinos (see Sec.~\ref{sec:theory:neut})
-%
-%The $R_{p,n}$ is computed according to the neutrino M0 scheme (see Sec.~\ref{sec:theory:neut})
-%
-The number densities are related as $n_p=Y_e n$ where $n = n_p + n_e$ is the baryon 
-number density and $Y_e$ is electron fraction.
-%
-The matter of a neutron star is approximated with ideal fluid 
-with stress-energy tensor Eq.~\eqref{eq:theory:tmunu_perf},
-%
-%\begin{equation}
-%T_{\mu\nu} = \rho h u_{\mu} u_{\nu} + Pg_{\mu\nu}
-%\end{equation}
-
-%where $\rho=m_{\text{b}} n$ is the baryon rest-mass density, 
-%$n$ the baryon number density, $m_{\text{b}} \simeq 10^{-24}\,$g 
-%the neutron mass, 
-%\gray{if Galezzi13 it is nucleon mass which is actrually related to the EOS.}
-%$h=1+\epsilon + P/\rho$ the specific enthalpy, 
-%$\epsilon$ the specific internal energy (energy density),
-%and $P$ is \gray{total isotropic} pressure.
-
-%Written in a covariant form, the Euler equation for balance of energy and momentum reads
-
-The code solves the Euler equations (Eq.~\eqref{eq:theory:tmunu_eq_0}) 
-with the \ac{RHS} given being $ Q u^{\mu}$
-%
-%\begin{equation}
-%\label{eq:wthc:euler}
-%\nabla_\nu T^{\mu\nu} = Q u^{\mu} \ ,
-%\end{equation}
-%
-%\gray{in Radice2016dwd it is $\nabla_{\beta}T^{\alpha\beta}=\Psi^{\alpha}$
-%    with $\Psi^{\alpha} = Q u^{\alpha}$.
-%}
-%\gray{In the Galezzi:2013 it is $\nabla_{\alpha}T^{\alpha\beta}=\Psi^{\beta}$.
-%    There the $T^{\alpha\beta}$ accounts for the ordinary matter and for trappend 
-%neutrinos and photons, but it does not include free-streaming neutrinos. Assumed to be 
-%similar to the 'test-fluid' they are neglected in constracting RHS of the Eistein equations.
-%}
-%
-where $Q$ is the net energy deposition rate due to absorption
-and emission of neutrinos also treated with the M0 scheme  
-(see Sec.~\ref{sec:theory:neut}).
-%\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
-
-
-
-
-%\subsection{Numerical methods}
-The continuity and Euler equations are discretized via \ac{HRSC} schemes
-(see Sec.~\ref{sec:theory:num_meth}).
-%
-%\eqref{eq:wthc:euler} and \eqref{eq:wthc:pndens}.
-Specifically, the code employs central \ac{KT} scheme \citep{Kurganov:2000} with 
-\ac{HLLE} flux formula \citep{Einfeldt:1988} and non-oscillatory reconstruction 
-of the primitive variables with the \ac{MP5} scheme of \citep{Suresh:1997}.
-%
-Shock capturing schemes require the presence of a low density atmosphere around neutron stars.
-We assume the constant value of $\rho_0 = m_p n \approx 6\times 10^4$~\gcm.
-%
-The rest-mass consirvation in the presence of artificial atmosphere is assured via 
-\ac{PPL} approach.
-%
-The local number densities of neutrons and protons separately, are assured via 
-multi-fluid advection method of \citet{Plewa:1998nma}
-%
-The outflow properties are extracted when the density exceeds the atmosphere density
-by several orders of magnitude.
-%
-The coupling between the spacetime and hydrodynamic evolution is achieved via 
-\ac{MOL}.
-%
-Time integrator of choice is \ac{SSP} third-order Runge-Kutta scheme \citep{Gottlieb:2009}.
-The timestep is regulated by the \ac{CFL} condition, that required \ac{CFL} factor 
-to be $<0.25$ for numerical stability. 
-To assure that the \ac{PPL} implemented in \texttt{WhiskyTHC} maintains 
-the density positive, the \ac{CFL} factor is set to $0.15$.
-
-
-%\subsection{AMR}
-The code is build on the \texttt{Carpet} \ac{AMR} driver \citep{Schnetter:2003rb} from the 
-\texttt{Cactus} computational toolkit \citep{Goodale:2003}, that incorporates
-\texttt{Carpet} Berger-Oliger-style mesh refinement \citep{Berger:1989,Berger:1984} 
-with sub-cycling in time and refluxing. %\textcolor{red}{in Thesis it is said, --
-% no refluxing was done yet} 
-%The code uses the Berger-Oliger conservative adaptive mesh renement (AMR) \cite{Berger:1984} 
-%with sub-cycling in time and \red{refluxing (Davids thesis does not have refluxing)} 
-%\cite{Berger:1989,Reisswig:2012nc} as provided by the \texttt{Carpet module} of the \texttt{Einstein Toolkit} 
-%\cite{Schnetter:2003rb}. 
-
-
-%\subsection{Neutrino scheme}
-%
-%
-%\begin{table}
-%    \caption{
-%        Weak reactions employed in our simulations and references for their implementation.
-%        In the left column, $\nu \in \{\nu_e, \bar{\nu}_e, \nu_{x}\}$ denotes any neutrino species, 
-%        $\nu_{x}$ any heavy-lepton neutrinos, $N \in\{n, p\}$ a nucleon, and $A$ any nucleus.
-%        In the central column the role of each reaction is highlighted, with "P" standing for 
-%        production, "A" for absorption opacity and "S" for scattering opacity. When two roles are
-%        indicated, the second refers to the inverse ($\leftarrow$) reaction.
-%        Table is taken from \cite{Radice:2018pdn}.
-%    }
-%    \label{tab:leakage}
-%    \begin{center}
-%        \begin{tabular}{lll}
-%            \hline\hline
-%            Reaction & Role &  Ref. \\ 
-%            \hline
-%            $p + e^- \leftrightarrow \nu_e + n $          & P,A & \cite{Bruenn:1985}  \\
-%            $n + e^+ \leftrightarrow \bar{\nu}_{e} + p $  & P,A & \cite{Bruenn:1985}  \\
-%            $e^+ + e^- \rightarrow \nu + \bar{\nu}$       & P & \cite{Ruffert:1995fs} \\
-%            $\gamma + \gamma \rightarrow \nu + \bar{\nu}$ & P & \cite{Ruffert:1995fs} \\
-%            $N + N \rightarrow \nu + \bar{\nu} + N  + N$  & P & \cite{Burrows:2004vq} \\
-%            $\nu + N \rightarrow \nu + N$                 & S & \cite{Ruffert:1995fs} \\
-%            $\nu + A \rightarrow \nu + A$                 & S & \cite{Shapiro:1983du} \\
-%            \hline\hline
-%        \end{tabular}
-%    \end{center}
-%\end{table}
-%
-%\red{JUST Name the chemes and reference the equations}
-%\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
-%
-%\subsection{Code General Setup}
-
-\subsection{Geometry and resolution}
-
-The simulation domain is a cube of $3.024$~km each side, 
-whose center is at the center of mass of the binary.
-The \ac{AMR} structure has $7$ refinement levels, with the finest 
-covering both compact objects during the inspiral and the remnant \pmerg{}.
-%
-We consider several resolution setups: Low (LR), 
-standard (SR) and high (HR) with the finest refinement level being 
-$h=246$~m, $h=185$~m and $h=123$~m respectively.
-%
-In the simulations where the neutirno M0 scheme is included,
-it is switched on shortly before the merger. 
-%The equations \eqref{eq:method:whisky:eq7} and \eqref{eq:method:whisky:eq9} 
-The Eqs.~\eqref{eq:theory:neut:balanseq} \eqref{eq:theory:neut:balanseq2}
-and are solved on the uniform spherical grid with radius $\approx 756$~km, 
-and resolution $n_r\times n_{\theta}\times n_{\phi} = 3096 \times 32 \times 64$
-grid points.
-%
-A subset of models discussed in this thesis include the effective treatment of viscosity
-(see Sec.~\ref{sec:theory:visc}). 
-
-We consider $33$ distinct binary with total masses 
-$\red{[None,None]}$ and mass-ratio $q\in[1.00,1.82]$.
-In all models the neutrino leakage plus M0 scheme. 
-Most models were computed at at least two resolutions. 
-and include the effect of subgrid turbulence, viscosity.
-
-%\gray{Summary of all results in given in the table...}
-%
-%\gray{Each run is nameed as}
-%
-%\gray{We simulate each model for at least $\red{None}$~ms after 
-%the merger or a few milliseconds after BH formation}
-%
-
-%% =====================================================================================
-%%
-%%               P O S T - P R O C E S S I N G
-%%
-%% =====================================================================================
-
-
-\section{Postprocessing tools and methods}
-
-In this section we discuss the methods used to analyze the simulation data,
-focusing on the overall average quentities that can be used for comparisons 
-of the remnant, disk and ejecta. 
-%
-For this we mainly use the mass-averaged quantities defined as 
-%
-\begin{equation}
-\langle f \rangle = \frac{\sum_i f(m_i)m_i}{\sum_i m_i}
-\end{equation}
-%
-where $m_i$ is the mass contained in the $i$-th bin.
-
-
-
-\subsection{Disk \& Remnant}\label{sec:bns_sims:method:disk}
-
-It is common to discuss the \pmerg{} state of the \ac{BNS} systems in terms of the remnant, 
-a \ac{MNS} or a \ac{BH}, and a disk or torus surrounding it. 
-%However there is not unified convention in how to define the disk and separate it from the former. 
-
-A disk around a \ac{BH} is the matter outside the apparent horizon 
-\citep[\eg]{Dietrich:2015iva,Dietrich:2016hky}. 
-%However, owing to the disk accretion onto a \ac{BH}, the evaluation time is a 
-%crucial parameter, and unfortunately is not consistent in the literature, 
-%(\eg $\sim1$~ms in \citet{Dietrich:2015iva,Dietrich:2016hky} and $\sim30$~ms in \citet{Sekiguchi:2016bjd}).
-
-A disk around a \ac{MNS} is more difficult to define. Commonly, the 
-threshold $\rho\sim 10^{13}$~\gcm is assumed. The choice is motivated by studies that 
-showed that the angular velocity profiles becomes approximately Keplerian at this point 
-\citep[\eg][]{Shibata:2005ss,Shibata:2006nm,Hanauske:2016gia,Kastaun:2016elu}.
-This convection was adopted in several recent works 
-\citep{Radice:2018pdn,Kiuchi:2019lls,Vincent:2019kor}.
-The extraction time here is also important, but less so, as we find that the accretion on the 
-\ac{NS} is considerably slower.
-%In the case where the remnant is a neutron star, the disk definition usually includes 
-%the density cut. For instance, in \cite{Radice:2018pdn,Kiuchi:2019lls,Vincent:2019kor} 
-%the disk is assumed to encompass the matter with $\rho < 10^{13}$~\gcm. 
-%The threshold $\rho\sim 10^{13}$~\gcm corresponds to the point in the remnant where
-%the angular velocity profiles becomes approximately Keplerian, 
-%\citep[\eg][]{Shibata:2005ss,Shibata:2006nm,Hanauske:2016gia,Kastaun:2016elu}.
-%The extraction time here is also important, but less so, as we find that the accretion 
-%on the NS is considerably slower.
-%
-%Overall, we estimate that these differences can amount to a systematic factor of a few,
-%which we employ for the statistical analysis in section \ref{sec:stat:anal}
-
-% In this thesis we define the disk as a matter that satisfies two criteria 
-%$\alpha > 0.15$ and $\tho < 10^{13}\gcm$, where $\alpha$ is the lapse function 
-%(see section \ref{sec:theory:gr3p1}).
-
-We compute the disk baryonic mass of the disks evaluating
-the volume integral of the conserved rest-mass density $D=\sqrt{\gamma}~W\rho$,
-%
-\begin{equation}
-\label{eq:method:mdisk}
-M_{\text{disk}} = \int D \dd^3 x
-\end{equation}
-%
-from $3$D snapshots of the simulations.% in postprocessing.
-
-%% In \cite{Sekiguchi:2016bjd}, the disk mass is extracted at
-%% ${\approx} 30$~ms outside the AH. In \cite{Radice:2018pdn}, the disk mass is computed
-%% as the baryonic mass outside the AH at BH formation, while for NS
-%% remnants the criterion $\rho < 10^{13}$ g cm$^{-3}$ is used. 
-%% In \cite{Kiuchi:2019lls} for both BH and NS outcome the $\rho < 10^{13}$ g cm$^{-3}$ 
-%% criterion is used and time of the extraction is not specified. 
-%% In \cite{Vincent:2019kor} the density criterion is the same, however the simulations 
-%% are significantly shorter (${~\sim 7.5}$~ms) than in other
-%% works. Overall, we estimate that these differences can amount to a
-%% systematic factor of a few.
-
-
-
-\subsection{Density modes} \label{sec:bns_sims:method:modes}
-
-%% FROM THE LETTER 
-
-The hydrodynamic instability in newly formed \acp{MNS} 
-is monitored by a decomposition in Fourier modes
-$e^{-\i m\phi}$ of the Eulerian rest-mass density on the equatorial plane 
-[see Eq.~(1) of \citep{Radice:2016gym}] and characterized by the
-development of a $m=2$ followed by a $m=1$ mode 
-\citep{East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,Bernuzzi:2013rza,Kastaun:2014fna}.
-%In the short-lived remnant (LS220) the $m=1$ mode
-%is subdominant with respect to the $m=2$, and it reaches a maximum close to the collapse
-%\citep{Bernuzzi:2013rza}. Instead, in the long-lived remnant (DD2) the $m=1$
-%becomes the dominant mode at $\sim$20~ms and persists throughout the
-%remnant's lifetime, while the $m=2$ efficiently dissipates via
-%gravitational-wave emission \citep{Bernuzzi:2015opx,Radice:2016gym}.
-%
-%% FROM THE PAPER 
-%
-%During the post-merger evolution the neutron star oscillates the most prominant modes 
-%are quasiradial mode $F$ ($m=0$), the $m=2$ $f$-model 
-%and non-linear combinations of them \citep[\eg][]{Shibata:2000jt,Stergioulas:2011gd}.
-%
-%It has also been shown that the $m=1$, so-called one-armed spiral instability, 
-%is present in the remnant of \ac{BNS} mergers  
-%\citep{Paschalidis:2015mla,Radice:2016gym,East:2016zvv}.
-%
-%In order to investigate the dynamical instabilities in our simulations we 
-%project the rest-mass density onto spherical harmonics,
-%or, in other words, we perform the complex azimuthal mode decomposition of,
-%the conserved rest-mass density.
-For the data availability reasons we consider only $\rho(x,y,z=0,t)$, 
-\ie restrict our analysis to the orbital plane $z=0$
-
-%\red{DOUBLE check the presence of Gamma and W}
-%% \begin{equation}
-%% \label{eq:modes}
-%% C_m = \int \rho(x,y,z=0,t) W e^{-i m \phi} \sqrt{\gamma} %% \text{d}x \text{d} y \, ,
-%% \end{equation}
-\begin{equation}
-\label{eq:modes}
-C_m(t) = \int \rho(x,y,z=0,t) e^{-i m \phi(x,y)} \text{d}x \text{d} y \, ,
-\end{equation}
-%(see \eg~\citet{Baiotti:2009gk}).
-
-% where %% $\rho$ is the rest mass density, 
-% $\gamma$ is the determinant of the three-metric and $W$ is the
-% Lorentz factor between the fluid and the Eulerian observers. 
-%
-We note that the above quantities are gauge dependent.
-%
-%\red{Dietrich in his thesis thinks that the growing m=1 mode is "We can not
-%    exclude the possibility that the growing m = 1 mode is triggered by numerical effects,
-%    but we think that it is a physical hydrodynamical effect due to mode couplings."
-%    Page 53 of the thesis
-%}
-%
-In addition, frequencies of the modes can be computed with the Fourier analysis 
-of the $\rho_{\text{max}}$ and projections $C_{m}$. We resort it for the future work, 
-as in this work we are interested only in their magnitude. 
-
-
-
-
-
-\subsection{Angular momentum} \label{sec:bns_sims:method:ang_mom}
-
-%\red{First, white that in GR the angular momentum is not clearly defined}
-
-%% FROM LETTER 
-
-%From the fluid's stress energy tensor,
-%we compute the angular momentum density flux $J_r = T_{ra}(\partial_\phi)^a$,
-%where $\phi$ is the cylindrical angular coordinate;
-%angular momentum is conserved if $(\partial_\phi)^a$ is a Killing vector.
-%
-%% FROM PAPER 
-
-The fluid's angular momentum analysis in the remnant and disk is performed
-assuming axisymmetry,
-%(see Appendix~\ref{app:ang} for derivation)
-that is, we assume $\phi^{\mu} = (\partial_{\phi})^{\mu}$ is a Killing
-vector. Accordingly, the conservation law (Eq.~\eqref{eq:theory:tmunu_eq_0}) 
-reads
-%
-\begin{equation}
-\partial_t(T^{\mu\nu}\phi_{\nu}n_{\nu}\sqrt{\gamma}) -
-\partial_i(\alpha T^{i \nu}\phi_{\nu}\sqrt{\gamma}) = 0 \ ,
-\end{equation}
-%
-where $n^\mu$ is the normal vector to the spacelike hypersurfaces of
-the spacetime's $3+1$ decomposition.
-%
-The equation implies the conservation of the angular momentum 
-\begin{equation}
-J = % \int j dV = 
-%- \int \, T_{\mu\nu}n^{\mu}\phi^{\nu}\,\dd ^3x = 
--\int \,
-T_{\mu\nu}n^{\mu}\phi^{\nu}\,\sqrt{\gamma}\, \dd^3 x\ .
-\end{equation}
-%
-In the cylindrical coordinates $x^i=(r,\phi,z)$ adapted to the symmetry
-the angular momentum density is  
-%
-\begin{equation}
-j = %-
-\rho h W^2 v_{\phi} \ ,
-\label{eq:method:ang_mom}
-\end{equation}
-%
-and the angular momentum flux is 
-%
-\begin{equation}
-\alpha\sqrt{\gamma}T^r _{\nu}\phi^{\nu} =
-\alpha\sqrt{\gamma}\rho h W^2 (v^{r}v_{\phi}) .
-\end{equation}
-%
-We evaluate these quantities from the 3D snapshots of our simulations.
-
-
-
-
-\subsection{Ejecta} \label{sec:bns_sims:method:ejecta}
-
-To model and study the electromagnetic counterparts to mergers, the amount and properties 
-of the material leaving the system are needed.
-The matter expelled at high velocity may ultimately become unbound from the 
-central gravitational potential. 
-There are two indicators commonly adopted to mark the unbound matter.
-
-\subsubsection{The Geodesic criterion}
-
-Assuming that the spacetime is stationary, ($\partial_t$ is the Killing vector)% \red{confirm}, 
-the four-velocity, $u_t$, (along the time-like killing vector), 
-is a constant of motion for geodesics. 
-Additionally, if the space is asymptotically flat, at infinity the $u_t = -W$, 
-where $W$ is the fluid element Lorentz factor. 
-Then, if a fluid element has $u_t < -1$, it may be considered unbound 
-as it will retain the non-zero positive velocity at infinity. 
-%
-The fluid asymptotic velocity 
-\begin{equation}
-    \upsilon_{\infty} \simeq \sqrt{2E_{\infty}} = \sqrt{(1-u_t ^2)}.
-\end{equation}
-%
-This criterion can be through of as considering the fluid to be made of isolated 
-particles that follow the geodesics. Indeed, the effects of \acp{EOS}, 
-fluids pressure gradient, internal energy and heating %(\eg, due to an $r$-process (\red{see section XXX})) 
-are neglected which might lead to 
-underestimation of the ejecta mass. 
-%
-The space time is also assumed to be static.
-%
-Strictly speaking, none of these assumptions is 
-fulfilled in the \ac{BNS} post-merger environment. However, this criterion 
-is widely used in the literature \citep[\eg][]{Radice:2018pdn,Vincent:2019kor}.
-
-
-
-\subsubsection{The Bernoulli criterion}
-
-From the relativistic Bernoulli equation \citep{Rezzolla:2013}, it follows
-that for a stationary relativistic flow, the $hu_t$ is constant along the 
-fluid worldliens. Here $h$ is the (relativistic) enthalpy, which is
-defined up to a constant factor. 
-%
-If at the spatial infinity the enthalpy is set so $h\rightarrow-1$, 
-%\red{in Vincent it is $h\leftarrow 1$}
-the condition $hu_t < -1$ would mark the unbound matter 
-(as in the assymptotically flat space-time the 
-$u_t = -W$ for the flow particles following geodesics).
-%
-The associated asymptotic velocity is calculated as 
-%
-\begin{equation}
-\upsilon_{\infty} \simeq \sqrt{2 (h (E_{\infty}+1)-1)}. 
-\end{equation}
-%
-The criterion can be regarded as assuming all the internal energy of the fluid 
-gets added to the fluid kinetic energy, as the fluid decompresses \red{(pressure drops?)}.
-%
-%The $r$-process nucleosynthesis that occurs in the outflow deposits the energy.
-%\red{In Vincent it is assumed that the difference in binding energy between the 
-%    particles in NSE at a given $\rho$, $T$ and $Y_e$, and their binding energy at
-%    the same $Y_e$ but low $\rho$ and $T$ is added/substracted from the fluid's kinetic energy.
-%    Out-of-NSE evolution and effects this neglected \citep[][see]{Foucart:2016vxd}
-%    [BUT I AM NOT SURE IF THIS IS THE CASE FOR OUR SIMULATIONS! MAYBE NOT!]}
-%
-This criterion has been reported to estimate the amount of unbound material more accurately
-\citep{Foucart:2015gaa}. 
-Moreover, it was reported that the Bernoulli criterion leads to up to twice 
-the amount of ejecta detected in comparison with the geodesic criterion, 
-if the estimation is done within a given volume \citep{Kastaun:2014fna}.
-
-
-
-We adopt the geodesic criterion to study the "burst-like", short outflows,
-such as dynamical ejecta, where the pressure gradient is not expected to make a significant contribution.
-For the steady-state outflows, like \pmerg{} winds we adopt the Bernoulli criterion.
-%
-The term ejecta would refer to the material gravitationaly 
-unbound according to either of the criteria.
-%
-All ejecta properties are evaluated at $R \simeq 294$ from the center of the 
-simulation domain unless stated otherwise. 
-
 
 
 
@@ -599,24 +34,24 @@ simulation domain unless stated otherwise.
 %% =====================================================================================
 
 
-\section{Results}
+%\section{Results}
 
 
-\red{
-    To be defined: \\
-    Chirp pass \\
-    Gravitational and Baryonic masses
-}
+%\red{
+%    To be defined: \\
+%    Chirp pass \\
+%    Gravitational and Baryonic masses
+%}
 
-In this chapter we review the findings of \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}
-and investigate the long-term \pmerg{} evolution of the binary neutron star. 
+%In this chapter we review the findings of \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}
+%and investigate the long-term \pmerg{} evolution of the binary neutron star. 
+%
+%Such studies are of high astrophysical importance as the ejecta of matter that occur 
+%on various timescales \pmerg{} undergoes \rproc{} and produces observable EM emission. 
+%The discussion of the \rproc{} and EM transits themselves, we resort for the chapter \red{chap:coutnerparts}.
 
-Such studies are of high astrophysical importance as the ejecta of matter that occur 
-on various timescales \pmerg{} undergoes \rproc{} and produces observable EM emission. 
-The discussion of the \rproc{} and EM transits themselves, we resort for the chapter \red{chap:coutnerparts}.
 
-
-The novelty of the set of models discussed in this thesis with respect to the 
+The novelty of the set of simulations discussed in this thesis with respect to the 
 previous study by \citet{Radice:2018pdn} is that all models include the neutrino heating via 
 M0 scheme in addition to the neutrino cooling (see Sec.\ref{sec:nr_methods:neut}), 
 and for most models the effects of subgrid turbulence (see Set.\ref{sec:nr_methds:visc}) 
@@ -625,7 +60,9 @@ dimensionless tidal deformability, $\tilde{\Lambda}$, and mass ratio, motivated 
 %% <<<< moved from EJECTA >>>> 
 
 
-\subsection{Simulations}
+
+\section{Simulations}\label{sec:bns_merg:sims}
+%\subsection{Simulations}
 
 %% --------------------------------
 %% TAB SIM SUMMARY
@@ -673,7 +110,8 @@ binary performed with BLh \ac{EOS}, without subgrid turbulence and at standard r
 %%
 %% ----------------------------------------------------------------------
 
-\subsection{Overview of the remnant dynamics}
+%\subsection{Overview of the remnant dynamics}
+\section{Overview of the remnant dynamics}
 \label{sec:bns_dynsmics_overview}
 
 
@@ -722,7 +160,8 @@ details of \pmerg{} state and on the temperature and composition effects.
 %%
 %% -------------------------------------------------------------
 
-\subsection{Remnant-disk interaction}\label{sec:bns_sims:remdisk}
+\section{Remnant-disk interaction}\label{sec:bns_sims:remdisk}
+%\subsection{Remnant-disk interaction}\label{sec:bns_sims:remdisk}
 
 \begin{figure*}[t]
     \centering 
@@ -856,8 +295,10 @@ subgrid turbulence and \mr{} systematically.
 
 
 \subsection{Remnant-disk evolution}
+%\subsection{Remnant-disk evolution}
 
 \subsubsection*{High mass ratio binaries}
+%\subsection{High mass ratio binaries}
 
 %% --- On THE PROMPT collapse
 We find that in models with high \mr{}, \eg, $q\gtrsim1.67$, the companion star (less 
@@ -890,8 +331,8 @@ We show the evolution of the disk mass of several representative models in Fig.~
     \label{fig:disk_mass_evo}
 \end{figure}
 
-
 \subsubsection*{Binaries with $q\lesssim1.4$}
+%\subsection{Binaries with $q\lesssim1.4$}
 
 Binaries with small mass ratio, ($q\lesssim1.4$) produce a \ac{MNS} remnant
 that either survives on a dynamical timescale, set by the \ac{NS} rotation, before
@@ -907,6 +348,7 @@ and on the inclusion of subgrid turbulence as was previosly noted by \citet{Radi
 
 
 \subsubsection*{Disk of short-lived remnants}
+%\subsection{Disk of short-lived remnants}
 
 During the merger, shocks, generated at the collisional interface of the \ac{NS} cores,
 as well as, tidal torques exerted by the non axisymmetric remnant, result in a formation
@@ -964,8 +406,8 @@ We examine these relations more closely in the chapter~\ref{ch:stat}, Sec.~\ref{
 The disk accretion onto a \ac{BH} removes up to $50\%$ of its mass on a timescale of tens of milliseconds.
 
 
-\subsubsection*{Disk of long-lived remnants}
-
+%\subsubsection*{Disk of long-lived remnants}
+%\subsection{Disk of long-lived remnants}
 
 If the \ac{MNS} is long-lived, the disk has time to complete its formation,
 and thus it is more massive and extended \citep{Perego:2019adq}. 
@@ -1019,6 +461,7 @@ caused by the subgrid turbulence and by the finite grid \citep{Bernuzzi:2020txg,
 \end{figure}
 
 \subsubsection*{Evolution of disk properties}
+%\subsection{Evolution of disk properties}
 
 %% Ye evolution
 The evolution of the mass-weighted electron fraction for the model with
@@ -1057,6 +500,7 @@ the average electron fraction is lower as the strong neutrino emitter,
 %% -----------------------------------------------
 
 \subsection{Final disk structure}
+%\subsection{Final disk structure}
 
 \begin{figure}[t]
     \centering
@@ -1161,6 +605,7 @@ independent of the \ac{EOS} and \mr{}
 %%
 %% -----------------------------------------------
 
+%\subsection{Mass ejection on a longed timescale}
 \subsection{Mass ejection on a longed timescale}
 
 As the disk expands and cools, the recombination of nucleons into alpha particles 
@@ -1844,7 +1289,7 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
 
 \begin{figure}[t]
     \centering 
-    \includegraphics[width=0.50\textwidth]{ejecta_postdyn/wind_mass_flux.pdf}
+    \includegraphics[width=0.30\textwidth]{ejecta_postdyn/wind_mass_flux.pdf}
     \caption{Cumulative mass of the \swind{} from long-lived
         remnants. The wind persists on timescales of $\O(100)\,$~ms with
         mass fluxes ${\sim}0.33-1.23\,\Msun/s$.
@@ -1868,7 +1313,7 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
 
 \begin{figure*}[t]
     \centering 
-    \includegraphics[width=0.99\textwidth]{ejecta_postdyn/wind_hists_shared.pdf}
+    \includegraphics[width=0.75\textwidth]{ejecta_postdyn/wind_hists_shared.pdf}
     \caption{Mass-averaged histograms of the \swind{} for a selected
         subset of long-lived remnant. From left to right: ejecta angular
         distribution, ejecta terminal velocity and electron
@@ -1886,7 +1331,7 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
     \centering
     %% \includegraphics[width=0.49\textwidth]{ejecta_postdyn/ejecta_profiles_dd2_ls220_long.pdf}
     %% \includegraphics[width=0.49\textwidth]{ejecta_postdyn/hist_1D_dd2_ls220_long.pdf}
-    \includegraphics[width=0.99\textwidth]{ejecta_postdyn/corr_dd2.pdf}
+    \includegraphics[width=0.75\textwidth]{ejecta_postdyn/corr_dd2.pdf}
     \caption{Properties of the \ac{SWW} and dynamical ejecta
         computed form the simulations with turbulent viscosity.
         %
