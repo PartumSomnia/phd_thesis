@@ -5,7 +5,7 @@ published in \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}.
 %
 Simulations are performed with \ac{NR} code \wisky{}, that employs 
 methods discussed in the chapter \ref{ch:nr_methods}. The specifics 
-of the numerical setups are further discussed in Appendix~\ref{app:whisky}.
+of the numerical setup are further discussed in Appendix~\ref{app:whisky}.
 The postprocessing methods used to extract the results are 
 given in Appendix~\ref{app:ppr}.
 %
@@ -52,10 +52,15 @@ given in Appendix~\ref{app:ppr}.
 
 
 The novelty of the set of simulations discussed in this thesis with respect to the 
-previous study by \citet{Radice:2018pdn} is that all models include the neutrino heating via 
-M0 scheme in addition to the neutrino cooling (see Sec.\ref{sec:nr_methods:neut}), 
-and for most models the effects of subgrid turbulence (see Set.\ref{sec:nr_methds:visc}) 
-are included. Meanwhile, our models cover a significantly more narrow range in 
+previous study by \citet{Radice:2018pdn} that used the same code,
+similar numerical setup 
+and same \acp{EOS} (except BLh \ac{EOS}), is that all models include the neutrino heating via 
+M0 scheme in addition to the neutrino cooling 
+(as discussed in Sec.~\ref{sec:nr_methods:neut}), 
+and for most models the effects of subgrid turbulence 
+(as discussed in Sec.~\ref{sec:nr_methds:visc}) 
+are included. Additionally, our models cover a significantly more narrow 
+range in 
 dimensionless tidal deformability, $\tilde{\Lambda}$, and mass ratio, motivated by the \GW{}.
 %% <<<< moved from EJECTA >>>> 
 
@@ -73,7 +78,7 @@ dimensionless tidal deformability, $\tilde{\Lambda}$, and mass ratio, motivated 
 In total we consider a sample of $37$ models of unique binaries with the 
 chirp mass $\mathcal{M}_c = 1.188\,\Msun$ that corresponds to the source of \GW{}.
 %
-The total gravitational mass covers the range $M\in[2.73, 2.88]\Msun$, while the 
+The total gravitational mass covers the range $M\in[2.73, 2.88]\,\Msun$, while the 
 mas ration $q=M_A/M_B\in[1,1.8]$. 
 %
 We show the masses and radii of computed models as markers in 
@@ -82,11 +87,11 @@ and the dynamical ejecta properties in Tab.~\ref{tab:sim}.
 %
 Most simulations are performed with at least two resolutions, 
 \texttt{LR} and \texttt{SR}. 
-Additionally, $16$ binaries are simulated at high resolution, \texttt{HR}.
+$16$ binaries are also simulated at high resolution, \texttt{HR}.
 In total $76$ models are computed and analyzed.
 %
-Several binaries that resulted in a formation of a \ac{MNS} that does not collapse 
-to a \ac{BH} are evolved up to $100$~ms \pmerg.
+Several binaries that resulted in a formation of a \ac{NS} remnant that does not collapse 
+to a \ac{BH} are evolved up to $100\,$ms \pmerg.
 %
 Most simulations include the effects of subgrid turbulence. 
 Those that are not are marked with ``*'' next to the equation of state name.
@@ -94,8 +99,8 @@ Those that are not are marked with ``*'' next to the equation of state name.
 The naming convention for simulations is the following: 
 the equation of state name, the mass ratio, and the resolution, \eg, 
 the ``BLh* $q=1.00$ (\texttt{SR})" would refer to the simulation of the equal mass
-binary performed with BLh \ac{EOS}, without subgrid turbulence and at standard resolution. 
-\red{might be redundant}
+binary performed with BLh \ac{EOS}, without subgrid turbulence and at standard resolution. If resolution is not mentioned, \texttt{SR} is assumed.
+%\red{might be redundant}
 %% mass ratio binaries has been already presented in \cite{Bernuzzi:2020txg}.
 %% Together with our previous data these simulations form the largest
 %% sample of merger simulations with microphysics available to date
@@ -133,25 +138,25 @@ binary performed with BLh \ac{EOS}, without subgrid turbulence and at standard r
 
 %\subsection{Overview}
 
-A newly born \ac{MNS} is not axisymmetric. In addition to driving the angular 
+A newly born \ac{NS} \pmerg{} remnant is not axisymmetric. In addition to driving the angular 
 momentum transport, it is a strong emitter of \acp{GW} at kiloHertz frequencies.
-In ${\sim}10-20$~ms \pmerg{} \acp{GW} remove about two times the 
+In ${\sim}10-20\,$ms \pmerg{} \acp{GW} remove about two times the 
 amount of energy that was lost during the inspiral and merger \citep{Bernuzzi:2015opx}.
 %
 After that, the contribution of \acp{GW} to the system evolution, specifically to the 
-angular momentum loss, drops \citep{Radice:2018xqa}. The long-term evolution, $\O(100)$~ms,
-of the remnant is driven primarily by the viscous processes and weak interactions.
+angular momentum loss, drops \citep{Radice:2018xqa}. The long-term evolution, $\mathcal{O}(100)\,$ms,
+of the remnant is driven primarily by viscous processes and weak interactions.
 %
-After the emission of \acp{GW} subsides. However the \acp{MNS} remnant still has an excess 
+After the emission of \acp{GW} subsides, the \ac{NS} remnant still has an excess 
 in angular momentum and gravitational mass, with respect to the cold, 
 rigidly rotating equilibrium with the same baryoinc mass \citep{Radice:2018xqa}.
 %
-Subsequent evolution of the \ac{MNS} proceeds towards the axisymmetric configuration 
+Subsequent evolution of the \ac{NS} remnant proceeds towards the axisymmetric configuration 
 close to the mass-shedding limit. 
-Depending on the lifetime of the \ac{MNS} remnant we distinguish \textit{long-lived}
-and \textit{short-lived} remnants.
-However, would a \ac{MNS} reach this state or collapse to a \ac{BH} depends on the 
-details of \pmerg{} state and on the temperature and composition effects.
+Depending on the lifetime of the \ac{NS} remnant we distinguish \textit{long-lived}
+and \textit{short-lived} remnants (See also \ref{sec:intro:remnant}).
+However, would a \ac{NS} remnant reach a stable state or collapse to a \ac{BH} depends on the 
+details of \pmerg{} conditions and on the temperature and composition effects.
 %
 
 %% -------------------------------------------------------------
@@ -176,81 +181,61 @@ details of \pmerg{} state and on the temperature and composition effects.
         ${\gtrsim}20\,$ms. Turbulent viscosity sustain the $m=2$ mode for
         a longer period. The $m=2$ mode is instead dominant to collapse in
         the short-lived remnant.
-        (Adopted from \cite{Nedora:2020pak})
+        (Adopted from \cite{Nedora:2020pak}).
     }
     \label{fig:dens_modes}
 \end{figure*}
 
-We begin with analyzing the \pmerg{} dynamics of the \ac{MNS} remnant. The standard 
-probe is employed here, namely the complex decomposition of the hydrodynamical models
+We begin by analyzing the \pmerg{} dynamics of the \ac{NS} remnant. The standard 
+probe is employed here, namely the complex decomposition of the hydrodynamical modes
 (see Sec.~\ref{sec:bns_sims:method:modes}). 
 %
 The result of the mode analysis is shown in Fig.~\ref{fig:dens_modes} for two 
-representative simulations, the model with LS220 \ac{EOS}, $q=1.00$ and a 
-short-lived remnant, and model with DD2 \ac{EOS}, $q=1.00$ and a long-lived 
-\ac{MNS} remnant.
+representative simulations, 
+LS220 $q=1.00$ (\texttt{SR}) %the model with LS220 \ac{EOS}, $q=1.00$ and a 
+and 
+DD2 $q=1.00$ (\texttt{SR})  
+that produce short- and long-lived remnants respectively.
+
 %
-The newly born \ac{MNS} remnants are not axisymmetric, displaying characteristic 
-spiral arms, extending outwards from the shock interface of the collided cores 
+The newly born \ac{NS} remnants are not axisymmetric, displaying characteristic 
+spiral arms in their density profile that extend outwards from the shock interface of the collided cores 
 \citep{Shibata:1999wm,Shibata:2006nm,Bernuzzi:2013rza,Kastaun:2014fna,East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg}.
 %
-This arms can be seen in Fig.~\ref{fig:ang_mom_flux}. 
+%These arms, albet in terms of the angular momentum flux (defined in Sec.~\ref{sec:bns_sims:method:ang_mom}) can be seen in Fig.~\ref{fig:ang_mom_flux}. 
 %
-The $m=2$, instability, characterized by a bar-shaped fluid, is the dominant one early 
-in \pmerg{}, while the $m=1$ instability, so-called one-armed spiral instability, 
+The $m=2$ instability, characterized by the bar-shaped geometry dominates  the early \pmerg{}, while the $m=1$ instability, characterized by one-armed geometry,  
 starts to dominate in the late evolution 
 \citep{East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,Bernuzzi:2013rza,Kastaun:2014fna}.
-\red{One sentence 'why', physically}
+Fig.~\ref{fig:dens_modes} corroborates this picture.
 %
-Indeed, the $m=2$ mode remains the dominant one until $\sim15-20$~ms \pmerg{}. 
-After that, the model with LS220 \ac{EOS} and $q=1.00$ forms a \ac{BH}. 
-In the model with DD2 \ac{EOS} and $q=1.00$ model, however, the $m=1$ mode 
-becomes comparable with $m=1$ throughout the remainder of the evolution, while 
-the $m=2$ mode efficiently dissipates through \ac{GW} emission 
+%\red{One sentence 'why', physically}
+%
+Indeed, the $m=2$ mode remains the dominant one until ${\sim}15-20\,$ms \pmerg{}. 
+After that, the 
+LS220 $q=1.00$ model 
+%model with LS220 \ac{EOS} and $q=1.00$
+forms a \ac{BH}. 
+In the 
+DD2 $q=1.00$ model, 
+%model with DD2 \ac{EOS} and $q=1.00$ model, 
+however, the $m=1$ mode 
+becomes comparable with $m=2$ and both persist throughout the remainder of the evolution,
+after \ac{GW}-dominated phase ends 
+%while 
+%the $m=2$ mode efficiently dissipates through \ac{GW} emission 
 \citep{Bernuzzi:2015opx,Radice:2016gym}.
-\red{Why $m=1$ does not dissipates via \acp{GW}}
+%
+%\red{Why $m=1$ does not dissipates via \acp{GW}}
 %
 We find that the magnitude of the $m=1$ mode increases with the binary \mr{}.
 For instance the largest $C_{m=1}$ are found in models BLh and LS220 \acp{EOS}
 and \mr{}s $q=1.43$ and $q=1.22$ respectively. 
 % Stronger $m=1$ leads to more large \ac{SWW} mass flux.  %------------------------------------------- ABOUT WIND
-The dependency of the $C_{m=2}$ on \mr{} however is not clear. 
-Our result is in agreement with what reported by \citet{Lehner:2016wjg}.
+The dependency of the $C_{m=2}$ on \mr{} however is not very clear. 
+Overall, our results are in agreement with what 
+reported by \citet{Lehner:2016wjg}.
 
-Formation of the spiral arms is a generic hydrodynamic effect, that was identified 
-in the \ac{NR} simulations with polytropic \ac{EOS} \citep{Bernuzzi:2013rza,Radice:2016gym}.
-However, the evolution of these arms and quantitative behaviour of hydrodynamic
-modes depends on the physics input. The turbulent viscosity, for instance, 
-leads to the faster suppressing of the $m=2$. By contrast, the $m=1$ modes are not
-significantly affected by viscosity, as shown in Fig.~\ref{fig:dens_modes}.
-%
-In case of the model with the short-lived remnant, \ie, with LS22 \ac{EOS} and
-$q=1.00$, the effect of the subgrid turbulence is not apparent because 
-the dynamical evolution is interrupted by the collapse.
-%
-We compute the angular momentum of the \ac{MNS} remnant following the method,
-discussed in Sec.~\ref{sec:bns_sims:method:ang_mom}, where the remnant is distinguished 
-from the disk on the basis of the rest mass density $\rho=10^{13}$~\gcm{} 
-(see Sec.~\ref{sec:bns_sims:method:disk}).
-%
-We find that for a long-lived \ac{MNS} remnants on a timescale of $\sim20$~ms, 
-about half of the total angular momentum of the \ac{MNS} remnant is transferred 
-into the disk. 
-%% [ from shibata review ]
-This is a consequence of the fact that the remnant \ac{MNS} is strongly deformed 
-after merger and gravitational torque on the surrounding matter, 
-that allows for a rapid angular momentum transport.
-%% ---
-%After, the remnant and the disk settle on quasi-stationary evolution path.
-%(see Sec.~\ref{sec:bns_dynsmics_overview}).
-
-Following the disk and remnant mass evolution we observe, that the spiral 
-density modes inject ${\sim}0.1-0.4\,\Msun$ of baryon mass into the disk during the 
-first ${\sim}20$ms. 
-The mass injection appears to be stronger in models with stiffer \acp{EOS}. 
-With respect to the \mr{}, the higher $q$ binaries form a larger disks 
-(see model with BLh \ac{EOS}, $q=1.82$ and model with LS220 \ac{EOS} $q=1.43$ 
-on the Fig.~\ref{fig:disk_mass_evo} that do not have turbulent viscosity).
 
 \begin{figure}[t]
     \centering 
@@ -264,58 +249,55 @@ on the Fig.~\ref{fig:disk_mass_evo} that do not have turbulent viscosity).
     \label{fig:disk_ang_mom_flux_map_blh_q1}
 \end{figure}
 
-In Fig.~\ref{fig:disk_ang_mom_flux_map_blh_q1} we show how the angular momentum is 
-being transported from the \ac{MNS} remnant into the disk in two model with long-lived 
-\ac{MNS} remnants and included turbulent viscosity.
-%
-These are the models with DD2 \ac{EOS} $q=1.00$ and BLh \ac{EOS} $q=1.00$.
-%
-The angular momentum is transported via spiral waves that correspond to the 
-$m=1$ and $m=2$ hydrodynamic models, discussed above.
-We observer, that in the model with more stiff DD2 \ac{EOS},
-the fist wave is considerably stronger. Notably, the model with DD2 \ac{EOS} and $q=1.00$  
-also has a more massive disk.
-%
-Further, the evolution of the disk-remnant interactions after $\sim20$~ms \pmerg{} 
-is different for two models. While the model with DD2 \ac{EOS} stops 
-shedding mass into its disk and starts slowly accreting, the model with BLh \ac{EOS} 
-continues to shed mass into the disk (see Fig.~\ref{fig:disk_mass_evo} and discussion in
-Sec.~\ref{sec:bns_dynsmics_overview})
-%
-The latter is caused by the strong angular momentum flux \red{actually the plot shows, that it is not}, 
-emanating from the \ac{MNS} remnant and by the larger temperatures, 
-that reached in the model with the BLh \ac{EOS}.
-%
-Larger temperatures lead to lower rotational frequency at which the mass 
-shedding occurs \citep{Kaplan:2013wra}. 
 
-The subgrid turbulence enhances the angular momentum transport. However more simulations of long-lived 
-\ac{MNS} remnants are needed to asses the effects of the 
-subgrid turbulence and \mr{} systematically. 
-
-
-\subsection{Remnant-disk evolution}
-%\subsection{Remnant-disk evolution}
-
-\subsubsection*{High mass ratio binaries}
-%\subsection{High mass ratio binaries}
-
-%% --- On THE PROMPT collapse
-We find that in models with high \mr{}, \eg, $q\gtrsim1.67$, the companion star (less 
-massive one) undergoes tidal disruption before merger as the tidal forces overcome the star's 
-binding energy. The matter forms an disk around the primary.
-The accretion raises the mass of the remaining \ac{NS} beyond the maximum supported limit by the 
-\ac{EOS}, which leads to collapse. 
-These are so-called, prompt collapse cases \citep{Radice:2020ddv,Bernuzzi:2020tgt,Bernuzzi:2020txg}.
-They are characterized by the monotonic increase of the central density during the merger.
-%The newly formed \ac{BH} is surrounded by the accretion disk that was 
-%left from the tidally disrupted companion.
+Formation of the spiral arms is a generic hydrodynamic effect, that was identified 
+in the \ac{NR} simulations with polytropic \acp{EOS} \citep{Bernuzzi:2013rza,Radice:2016gym}.
+However, the evolution of these arms and quantitative behaviour of hydrodynamic
+modes depends on the physics input and not well understood. We observe that  turbulent viscosity, for instance, 
+leads to the faster suppression of the $m=2$. By contrast, the $m=1$ modes are not
+significantly affected by viscosity, as shown in Fig.~\ref{fig:dens_modes}.
 %
-At formation, the disk has a large baryon mass, ${\sim}0.15\,\Msun$, in comparison with 
-disks fromed in prompt collapse of equal mass binaries, \citep[\eg][]{Radice:2018pdn}.  
-The disk is also neutron-rich $Y_e\sim 0.1$.
+If a short-lived remnant is present, \ie, in 
+LS220 $q=1.00$ model, 
+%with LS22 \ac{EOS} and $q=1.00$, 
+the effect of the subgrid turbulence is not apparent because 
+the dynamical evolution is interrupted by the collapse.
+
+%From the fluid's stress energy tensor,
+%we compute the angular momentum density flux $J_r = T_{ra}(\p_\phi)^a$,
+%where $\phi$ is the cylindrical angular coordinate;
+%angular momentum is conserved if $(\p_\phi)^a$ is a Killing vector.
 %
-We show the evolution of the disk mass of several representative models in Fig.~\ref{fig:disk_mass_evo}.
+We compute the angular momentum and its flux from the energy-momentum 
+tensor, Eq.~\eqref{eq:theory:tmunu_perf},
+in cylindrical coordinates, $(r,\, \phi,\, z)$, under the additional
+assumption of axisymmetry with $(\partial_{\phi})^a$ being a Killing vector
+(see Sec.~\ref{sec:bns_sims:method:ang_mom} for more details).
+%
+The disk is assumed the matter with $\rho\leq10^{13}\,$\gcm{} 
+(see also Sec.~\ref{sec:bns_sims:method:disk}).
+%
+We find that for long-lived \ac{NS} remnants on a timescale of ${\sim}20$~ms, 
+about half of the total angular momentum of the remnant is transferred 
+into the disk. 
+%% [ from shibata review ]
+This is a consequence of the fact that the remnant \ac{NS} is strongly deformed 
+after merger and exerts gravitational torques on the surrounding matter, 
+that allow for a rapid angular momentum transport.
+%% ---
+%After, the remnant and the disk settle on quasi-stationary evolution path.
+%(see Sec.~\ref{sec:bns_dynsmics_overview}).
+
+Following the disk and remnant mass evolution we observe, that the spiral 
+density modes inject ${\sim}0.1-0.4\,\Msun$ of baryon mass into the disk during the 
+first ${\sim}20\,$ms. 
+The mass injection appears to be stronger in models with stiffer \acp{EOS}. 
+With respect to the \mr{}, we find that higher $q$ binaries form more massive disks 
+\eg, BLh* $q=1.82$ model (that undergoes \ac{PC}) and 
+LS220* $q=1.43$ model, 
+shown in Fig.~\ref{fig:disk_mass_evo}.
+%(see model with BLh \ac{EOS}, $q=1.82$ and model with LS220 \ac{EOS} $q=1.43$ 
+%on the Fig.~\ref{fig:disk_mass_evo} that do not have turbulent viscosity).
 
 \begin{figure}[t]
     \centering 
@@ -331,45 +313,117 @@ We show the evolution of the disk mass of several representative models in Fig.~
     \label{fig:disk_mass_evo}
 \end{figure}
 
-\subsubsection*{Binaries with $q\lesssim1.4$}
+In Fig.~\ref{fig:disk_ang_mom_flux_map_blh_q1} we show how the angular momentum is 
+being transported from the \ac{NS} remnant into the disk 
+%with its flux defined as $J_r = T_{ra}(\p_\phi)^a$
+in two models with long-lived 
+\ac{NS} remnants: %and included turbulent viscosity:
+DD2* $q=1.00$ and BLh* $q=1.00$.
+%
+%These are the models with DD2 \ac{EOS} $q=1.00$ and BLh \ac{EOS} $q=1.00$.
+%
+The angular momentum is transported via spiral waves, 
+shown in Fig.~\ref{fig:ang_mom_flux}, that correspond to the 
+$m=1$ and $m=2$ hydrodynamic models, discussed above.
+We observer that in the model with more stiff \ac{EOS}, %DD2
+the fist wave is considerably stronger. Notably, 
+the DD2 $q=1.00$ model 
+%the model with DD2 \ac{EOS} and $q=1.00$  
+also has a more massive disk.
+%
+Further, the evolution of the disk-remnant interactions after ${\sim}20\,$ms \pmerg{} 
+is different for two models. While in the DD2* $q=1.00$ model the 
+accretion takes starts to dominate over mass shedding,
+in the BLh $q=1.00$ model the mass shedding prevails till 
+the end of the simulation.
+%shedding mass into its disk stops and accretion begins, in the model with BLh \ac{EOS} the mass shedding does not terminate 
+%continues to shed mass into the disk (see Fig.~\ref{fig:disk_mass_evo}).
+% and discussion in Sec.~\ref{sec:bns_dynsmics_overview})
+%
+The latter is caused by the strong angular momentum flux 
+%\red{actually the plot shows, that it is not}, 
+emanating from the \ac{NS} remnant and by larger temperatures, 
+that reached in the model with the BLh \ac{EOS}.
+%
+Larger temperatures lead to lower rotational frequency at which the mass 
+shedding occurs \citep{Kaplan:2013wra}. 
+
+The subgrid turbulence enhances the angular momentum transport. However more simulations of long-lived 
+\ac{NS} remnants are needed to asses the effects of the 
+subgrid turbulence and \mr{} systematically. 
+
+
+
+\subsection{Remnant-disk evolution}
+%\subsection{Remnant-disk evolution}
+
+%\subsubsection*{High mass ratio binaries}
+%\subsection{High mass ratio binaries}
+
+%% --- On THE PROMPT collapse
+We find that in models with high \mr{}, \eg, $q\gtrsim1.67$, the companion star (less 
+massive one) undergoes tidal disruption before merger as the tidal forces overcome the star's 
+binding energy, creating a disk around the primary.
+The accretion raises the mass of the remaining \ac{NS} beyond the maximum supported limit by the 
+\ac{EOS}, which leads to \ac{PC}. 
+%These are so-called, prompt collapse cases \citep{Radice:2020ddv,Bernuzzi:2020tgt,Bernuzzi:2020txg}.
+These models are characterized by the monotonic increase of the central density during the merger.
+%The newly formed \ac{BH} is surrounded by the accretion disk that was 
+%left from the tidally disrupted companion.
+%
+At formation, the disk is massive, ${\sim}0.15\,\Msun$, in comparison with 
+disks fromed in prompt collapse of equal mass binaries, \citep[\eg][]{Radice:2018pdn}.  
+The disk is also neutron-rich $Y_e\sim 0.1$.
+%
+%and we discuss it separately for low \mr{} and high \mr{} binaries.
+%The evolution of the disk mass is shown in Fig.~\ref{fig:disk_mass_evo}.
+
+%\subsubsection*{Binaries with $q\lesssim1.4$}
 %\subsection{Binaries with $q\lesssim1.4$}
 
-Binaries with small mass ratio, ($q\lesssim1.4$) produce a \ac{MNS} remnant
-that either survives on a dynamical timescale, set by the \ac{NS} rotation, before
-collapsing to a \ac{BH}, or a \ac{MNS} that survives till the end of the simulations.
+Binaries with small mass ratio, $q\lesssim1.4$,
+produce either a short- or a long-lived remnant depending, 
+on the \pmerg{} configuration and properties. 
+%produce a \ac{NS} remnant
+%%that either survives on a dynamical timescale, set by the \ac{NS} rotation, before
+%collapsing to a \ac{BH}, or a \ac{NS} remnant that survives till the end of the simulations.
 %We refer to the former ones as \textit{short-lived} and the latter ones as %% ---------- Defind Above
 %\textit{long-lived} remnants.
 %
 Most binaries producing short-lived remnants have relatively soft \acp{EOS}
-and small \mr{}s, \eg, LS220 \ac{EOS} $q=1,1.1,1.2$, SFHo \ac{EOS} $q=1,1.1,1.4$ 
-and SLy \ac{EOS} $q=1,1.1,1.4$. They collapse within $\sim20$~ms \pmerg. 
+and small \mr{}s, \eg, models LS220 $q=1.1\,q=1.2$, SFHo $q=1.1\,q=1.4$ 
+and SLy $q=1.1\,q=1.4$. They collapse within ${\sim}20$~ms \pmerg. 
 The exact time of the collapse however depends on the simulation resolution 
 and on the inclusion of subgrid turbulence as was previosly noted by \citet{Radice:2017zta}.
 
 
-\subsubsection*{Disk of short-lived remnants}
+%\subsubsection*{Disk of short-lived remnants}
 %\subsection{Disk of short-lived remnants}
 
-During the merger, shocks, generated at the collisional interface of the \ac{NS} cores,
-as well as, tidal torques exerted by the non axisymmetric remnant, result in a formation
-of the disk. Matter, energy and angular momentum are injected into the disk as the spiral 
-density waves propagate outwards from the mass-shedding \ac{MNS} remnant 
-\citep{Bernuzzi:2015opx,Radice:2018xqa}.
+%During the merger, shocks, generated at the collisional interface of the \ac{NS} cores,
+%as well as, tidal torques exerted by the non axisymmetric remnant, result in a formation
+%of the disk. Matter, energy and angular momentum are injected into the disk as the spiral 
+%density waves propagate outwards from the mass-shedding \ac{NS} remnant 
+%\citep{Bernuzzi:2015opx,Radice:2018xqa}.
+%
 %\red{HERE the letter stuff could be added, actually}
 %
 % --- Letter stuff
-These spiral arms extend from the \ac{MNS} into the disk and transport angular 
-momentum outwards as shown in Fig.~\ref{fig:ang_mom_flux}. %Such global density waves are --- written above 
+%The spiral arms extend from the \ac{NS} remnant into the disk and transport angular 
+%momentum outwards as shown in Fig.~\ref{fig:ang_mom_flux}. %Such global density waves are --- written above 
 %a generic and efficient mechanism to redistribute energy and eventually deplete  
 %accretion disks \citep{Goodman:2001a,Rafikov:2016a,Arzamasskiy:2018a}. 
 %% Crucially, we find that both the $m=1$ and $m=2$ modes generate a \wind{} from the
 %% disk's outer layers that is distinct from the dynamical ejecta, see Fig.~\ref{fig:ej_properties}.
 %
-Within these waves the fluid temperature is the highest, which however, decreases rapidly, as 
-disk expands and cools via neutrino emission.
+Within the spiral waves the fluid temperature is the highest,
+(decreasing rapidly, as 
+disk expands and cools via neutrino emission).
 High temperatures lead to the electron-positron pair creation, 
 %% [added from Shibata Review paper]
-facilitating the positron capture by free neutrons $n+e^+p\rightarrow\bar{\nu}_e$ in the disk.
+facilitating the positron capture by free neutrons 
+%$n+e^+ \rightarrow p +\bar{\nu}_e$ 
+in the disk.
 %
 The average particle energies are large, close to the mass difference between neutron 
 and proton. 
@@ -378,8 +432,9 @@ In combination with the high $\nu_e$ and $\bar{\nu}_e$ luminosities,
 the large number of available positrons leads to an increase 
 in the fluid electron fraction, $Y_e$, in relation to the initially neutron-rich material
 \citep{Qian:1996xt}.
+This process is called deleptonization. 
 %
-Additionally, a \ac{MNS} itself is a strong neutrino emitter. The neutrino irradiation of the 
+Additionally, a \ac{NS} remnant itself is a strong neutrino emitter. The neutrino irradiation of the 
 surrounding area alters its composition, as neutrons and protons absorb the neutrinos,
 $n+\nu_e\rightarrow p + e^{-}$ and $p + \bar{\nu}_e\rightarrow n + e^+$.
 This drives the neutron and proton fraction towards equilibrium, and raises the $Y_e$.
@@ -387,21 +442,22 @@ This drives the neutron and proton fraction towards equilibrium, and raises the 
 %    The electron fraction is reset by an initial excess of electron antineutrino emission
 %    and electron neutrino absorption,}
 %% ---
-If \ac{MNS} remnant collapses to a \ac{BH}, the main source of neutrinos shuts down,  
-the inner part of the disk accrets rapidly, and the disk itself settles onto quasi-steady state, 
+If a \ac{NS} remnant collapses to a \ac{BH}, the main source of neutrinos shuts down,  
+the inner part of the disk accrets rapidly, and the disk itself settles onto quasi-steady state 
 with axisymmetric, approximately Keplerian profile (see Fig.~\ref{fig:disk_mass_evo}).
 %
 The inner part of the final disk, at densities $\rho\sim10^{13}$~\gcm, 
-is relatively hot, $T\sim10\,$ MeV, but neutron-rich $Y_e\sim0.1$, as it was shielded 
+is relatively hot, $T\sim10\,$ MeV, but neutron-rich $Y_e\sim0.1$, as it 
+remained shielded 
 from the neutrino irradiation. The matter gets progressively colder and proton-rich 
 outwards with $Y_e$ reaching $0.4$ at the edges.
 %
 The disk mass at formation appears to depend on the \ac{NS} \ac{EOS}. Binaries with 
-stiffer \ac{EOS} (larger \ac{NS} radii) produce more massive disk.
+stiffer \acp{EOS} (larger \ac{NS} radii) produce more massive disks.
 Additionally, the disk mass show a dependency on mass ratio. For instance, the most massive 
 disks are formed in LS220 $q=1.43$ and  BLh $q=1.82$ models, where the latter experiences prompt collapse.
 %
-We examine these relations more closely in the chapter~\ref{ch:stat}, Sec.~\ref{sec:stat:remdisk}.
+We examine these dependencies more closely in the chapter~\ref{ch:stat}, Sec.~\ref{sec:stat:remdisk}.
 %% -- 
 The disk accretion onto a \ac{BH} removes up to $50\%$ of its mass on a timescale of tens of milliseconds.
 
@@ -409,37 +465,47 @@ The disk accretion onto a \ac{BH} removes up to $50\%$ of its mass on a timescal
 %\subsubsection*{Disk of long-lived remnants}
 %\subsection{Disk of long-lived remnants}
 
-If the \ac{MNS} is long-lived, the disk has time to complete its formation,
+If the \ac{NS} remnant is long-lived, the disk has time to complete its formation,
 and thus it is more massive and extended \citep{Perego:2019adq}. 
 %As before, the disk is defined as matter, with $\rho\lesssim10^{13}$~\gcm. 
-The final mass is higher for models with larger \mr{} and stiffer \ac{EOS}.
-For instance, for the model with $q=1.00$ and BLh \ac{EOS}, 
-the disk mass reaches ${\lesssim}0.15\,\Msun$, while the model with $q=1.00$ 
-and DD2 \ac{EOS} it exceeds ${\sim}0.2\,\Msun$. For the models with BLh \acp{EOS}, 
+The final mass is higher for models with larger \mr{}s and stiffer \acp{EOS}.
+For instance, 
+in the BLh $q=1.00$ model
+%for the model with $q=1.00$ and BLh \ac{EOS}, 
+the disk mass reaches ${\lesssim}0.15\,\Msun$, while in the 
+%model with $q=1.00$ and DD2 \ac{EOS} 
+DD2 $q=1.00$ model 
+it exceeds ${\sim}0.2\,\Msun$. For the models with BLh \acp{EOS}, 
 the disk mass increases between $q=1.00$ and $q\sim1.4-1.5$ by a $100\%$.
-%
-The long-term evolution of the disk is driven by its interaction with the \ac{MNS} 
-remnant and cooling. And while in the case of a \ac{BH} remnant, the only possible 
-interaction is the disk accretion onto a \ac{BH}, in the case of a \ac{MNS} remnant 
+
+The long-term evolution of the disk is driven by its interaction with the \ac{NS} remnant 
+remnant and cooling. And while if the central remnant is a \ac{BH}, the only possible 
+interaction is the disk accretion onto a \ac{BH}, in the case of a \ac{NS} remnant 
 the picture is more complex.
 %
 The disk neutrino cooling and gravitational pull from the remnant facilitates the 
 accretion. Simultaneously, spiral density waves inject %generated at shocks,
 energy and angular momentum into the disk as well as centrifugally supported 
-material (the \ac{MNS} undergoes mass-shedding). This heats up the disk and 
-facilitates its expansion. 
+material %(the \ac{NS} remnant undergoes mass-shedding). 
+This heats up the disk and 
+facilitates its expansion.
+This is the case for previously discussed 
+DD2* $q=1.00$ and BLh $q=1.00$ where the 
+quasi-steady state disk accretion and mass-shedding 
+can be observed.
 %
-In the figure Fig.~\ref{fig:disk_mass_evo} the quasi-steady state disk accretion
-is seen for the model with DD2 \ac{EOS} and $q=1.00$. Meanwhile, the mass-shedding 
-by the remnant adds more material into the disk than is being accretted as is the 
-case for the model with BLh \ac{EOS} and $q=1.00$. 
+%In Fig.~\ref{fig:disk_mass_evo} the quasi-steady state disk accretion
+%is seen for the DD2 $q=1.00$ model. Meanwhile, the mass-shedding 
+%by the remnant adds more material into the disk than is being accretted as is the 
+%case for the model with BLh \ac{EOS} and $q=1.00$. 
 %
-The analysis suggests, that this behaviour is due to two main factors: the 
+The latter can be attributed to the 
 very high average temperatures of the remnant and the disk reached in this model, that  
 are a consequence of the thermal effects included into the BLh \ac{EOS} 
 (see Sec.~\ref{sec:nr_methods:eos}), and the softness of the \ac{EOS}, which leads 
-to the strong oscillations of the remnant after merger (see Sec.~\ref{sec:bns_sims:dens_modes}).
-%
+to the strong oscillations of the remnant after merger discussed above.
+%(see Sec.~\ref{sec:bns_sims:dens_modes}).
+
 The inclusion of the subgrid turbulence smears the mass distribution of disk 
 properties. The distributions of electron fraction, entropy per baryon and 
 temperature appears broader. A more detailed quantitative analysis would require more 
@@ -460,32 +526,37 @@ caused by the subgrid turbulence and by the finite grid \citep{Bernuzzi:2020txg,
     \label{fig:total_disk_time_corr_Ye_Blh_q1}
 \end{figure}
 
-\subsubsection*{Evolution of disk properties}
+\subsection{Evolution of disk properties}
 %\subsection{Evolution of disk properties}
 
 %% Ye evolution
-The evolution of the mass-weighted electron fraction for the model with
-BLh \ac{EOS} and $q=1.00$, which is evolved till $\sim 90$~ms after merger, 
+The evolution of the mass-weighted electron fraction in the 
+%the model with BLh \ac{EOS} and $q=1.00$, 
+BLh $q=1.00$ model, 
+which is evolved till $\sim 90$~ms after merger, 
 is shown on the top panel of Fig.~\ref{fig:total_disk_time_corr_Ye_Blh_q1}.
 %
 During the formation, shocks and spiral waves raise the disk electron fraction to
 $Y_e\sim0.25$. As the disk evolves, the bulk of its mass, shielded from neutrinos, 
 (Fig.~\ref{fig:slice:heating_hu}, density contours) returns to neutron-rich 
 condition with $Y_e\lesssim0.1$. The outer part of the disk, however, is 
-subjected to the strong neutrino irradiation and reaches $Y_e\sim0.4$ of a 
-timescale of ${\sim}40$~ms.
+subjected to the strong neutrino irradiation and reaches $Y_e\sim0.4$ on a 
+timescale of ${\sim}40$~ms\footnote{
+    The apparent gap in the $Y_e$ distribution in 
+    Fig.~\ref{fig:total_disk_time_corr_Ye_Blh_q1} at $\langle Y_e \rangle \simeq 0.15$ 
+    might not be of physical origin, but an artifact from the neutrino M0 scheme, 
+    that assumes neutrinos propagate along the radial directions
+    (see Sec.~\ref{sec:nr_methods:neut}), that is not well suited for capturing the 
+    neutrino emission and re-absorption from the disk midplane.
+}.
 %% Note that neutrinos in merger remnants decouple at $\rho\sim10^{11}$~$\gccm$ \citep{Endrizzi:2019trv}. 
-Notably, the apparent gap in the $Y_e$ distribution in 
-Fig.~\ref{fig:total_disk_time_corr_Ye_Blh_q1} at $\langle Y_e \rangle \simeq 0.15$ 
-might not be of physical origin, but an artifact from the neutrino M0 scheme, 
-that assumes neutrinos propagate along the radial directions
-(see Sec.~\ref{sec:nr_methods:neut}, that is not well suited for capturing the 
-neutrino emission and re-bsorption from the disk midplane.
 %
-In case of a short-lived model with LS220 \ac{EOS} and $q=1.43$ 
+In case of a 
+LS220 $q=1.43$ models that produces a 
+short-lived \ac{NS} remnant  % model with LS220 \ac{EOS} and $q=1.43$ 
 (right panel of the Fig.~\ref{fig:total_disk_time_corr_Ye_Blh_q1})
-the average electron fraction is lower as the strong neutrino emitter,
-\ac{MNS}, collapses shortly after merger. 
+the average electron fraction is lower as strongly irradiating remnant the 
+collapses shortly after merger. 
 %
 %Additionally, the outskirts of the more compact disk remain 
 %at low electron fraction as the neutrino emitted by the disk itself 
@@ -532,26 +603,31 @@ the average electron fraction is lower as the strong neutrino emitter,
     \label{fig:final_disk_struct_hist_long}
 \end{figure*}
 
-In this section we discuss the final structure and properties of the disk, 
-focusing on the models with long-lived \ac{MNS} remnants.
-The properties are extracted at typical time $\sim60{-}100$~ms after merger.
+%In this section we discuss the final structure and properties of the disk, 
+%focusing on the models with long-lived \ac{NS} remnants.
+%The properties are extracted at typical time $\sim60{-}100$~ms after merger.
 %
-We find that the generally the disk is optically thick.
-The disk' \ac{RMS} half-openning angle appears to be independent of the 
+From the density contours in Fig.~\ref{fig:snapshots_xy_ye_entr}, 
+we observe that even at ${\sim}88\,$ms after merger the disk
+of BLh $q=1.00$ model remains geometrically thick. 
+%We find that the generally the disk is optically thick.
+Comparing with other models we note that 
+the disk' \ac{RMS} half-openning angle appears to be independent of the 
 \ac{EOS} and \mr{} and is $\langle\theta\rangle_{\text{rms}}\sim60^{\circ}$. 
-The radial extend of the disk, however increases with the \ac{EOS} softness and 
-binary \mr{}.
+The radial extend of the disk, however increases with the \ac{EOS} softness and $q$.
 %
 Similarly, the final disk mass is larger for the unequal mass binaries, 
-ranging overall between ${\sim}0.1M_{\odot}$ and ${\sim}0.4M_{\odot}$
-(see Tab.~\ref{tab:sim}).
+ranging overall between ${\sim}0.1\,M_{\odot}$ and ${\sim}0.4\,M_{\odot}$
+(see Tab.~\ref{tab:sim}) and is larger in case of long-lived remnants, 
+than short-lived ones as \ac{BH} accretion removes ${\sim}50\%$ 
+of the mass in the latter case.
 %
-Notably, for models with long-lived remnants the disk mass is larger,
-that for the those with short-lived remnants. This can be attributed to the 
-rapid accretion onto a \ac{BH} that removes $\sim50\%$ of the disk mass.
+%Notably, for models with long-lived remnants the disk mass is larger,
+%that for the those with short-lived remnants. This can be attributed to the 
+%rapid accretion onto a \ac{BH} that removes $\sim50\%$ of the disk mass.
 %
-We investigate the overall statistical properties of the disk mass for all our models
-and compare them to those available in the literature in Sec.~\ref{sec:stat:remdisk}
+%We investigate the overall statistical properties of the disk mass for all our models
+%and compare them to those available in the literature in Sec.~\ref{sec:stat:remdisk}
 %
 %\gray{
 %    The mean value of the disk mass in out models is 
@@ -566,36 +642,41 @@ and compare them to those available in the literature in Sec.~\ref{sec:stat:remd
 %    datasets from the literature is reported in a companion paper.
 %}
 
-Next, we consider the composition of the disk at the end of the simulation.
+%Next, we consider the composition of the disk at the end of the simulation.
 %
 The mass-averaged temperature, electron fraction and entropy per baryon
-are for several models are shown in Fig.~\ref{fig:final_disk_struct_hist_long}.
+for several representative models are presented in Fig.~\ref{fig:final_disk_struct_hist_long}.
 %
-We observe that the mass-weighted distribution of the entropy and electron 
-fraction show a bimodal structure, which is more pronounced for the 
+The plot shows that the mass-weighted distribution of the entropy and electron 
+fraction have a bimodal structure, more pronounced for the 
 equal mass binaries. 
 Regarding entropy, two peaks are present in the distribution:
-a peak low entropy $s\sim5-10k_B/$baryon, that depends weakly of the 
-\ac{EOS} and \mr{} and corresponds to the bulk, mildly shocked, material. 
-The second peak is found at higher entropy, $s\sim15-22k_B/$baryon.
-It corresponds to the strongly shocked material and is more prominent 
-in models with softer \ac{EOS}. Notably, in the models with higher \mr{}, 
-the second peak is located at lower $s$. The mass-weighted distribution 
+a low entropy peak, $s\sim5-10\,k_B/$baryon, that is largely independent of 
+\ac{EOS} and \mr{} and corresponds to the bulk, mildly shocked, material;
+and the higher entropy peak, $s\sim15-22\,k_B/$baryon that corresponds to 
+the strongly shocked material and is more prominent 
+in models with softer \ac{EOS}. 
+%
+%Notably, in models with higher \mr{}, 
+%the second peak is located at lower $s$. 
+
+The mass-weighted distribution 
 of the electron fraction displays a similar double-peak structure.
 The low $Y_e$ peak that corresponds to the neutrino-shielded part of the 
-disk is located around the $Y_e\sim0.1$. The high $Y_e$ peak is located at 
-$Y_e\sim0.3-0.4$ and corresponds to the outer parts of the disk, subjected 
-to a strong neutrino irradiation.
+disk, is located around the $Y_e\sim0.1$. The high $Y_e$ peak is located at 
+$Y_e\sim0.3-0.4$ and corresponds to the outer parts of the disk,
+where fluid is subjected to the strong neutrino irradiation.
 %
 In Fig.~\ref{fig:snapshots_xy_ye_entr} we show the electron fraction 
 and entropy per baryon on the $xy$ and $xz$ slices of the equal 
 mass model with BLh \ac{EOS}. The plot shows, that the two peaks in the 
 mass-weighted distribution of electron fraction and entropy correspond to 
 different regions within the disk.
-%
-Overall, the most of the disk matter has temperature of $T\sim 1-10\,$MeV, with the 
+
+With respect to tempererature, we find that 
+most of the disk matter has temperature of $T\sim 1-10\,$MeV, with the 
 innermost parts being hotter then the outer outermost. 
-However, the disk temperature distribution appears to be largely 
+The disk temperature distribution appears to be largely 
 independent of the \ac{EOS} and \mr{}
 
 
@@ -617,7 +698,7 @@ This process however is expected to take place on timescales, longer than
 those that are simulated here. On the $\sim100$~ms timescale, however, the outflows 
 are driven by the neutrino heating, above the remnant, the so-called neutrino-driven 
 wind (\nwind; \citep{Dessart:2008zd,Perego:2014fma,Just:2014fka}), and by the dynamical 
-interactions between the \ac{MNS} remnant and the disk, the \swind{} \citep{Nedora:2019jhl}.
+interactions between the \ac{NS} remnant and the disk, the \swind{} \citep{Nedora:2019jhl}.
 %
 We discuss the properties of the \nwind{} found in our simulations
 in Sec.~\ref{sec:bns_sims:nwind} and the properties of the 
@@ -669,7 +750,7 @@ Here we asses the possible long term evolution via an indirect method.
 We consider the model with BLh \ac{EOS} and $q=1.00$, one of the longest runs 
 performed. 
 %
-After the merger, the \ac{MNS} remnant is born with an excess in baryon mass
+After the merger, the \ac{NS} remnant is born with an excess in baryon mass
 with respect to the beta-equilibrium \ac{NS} configurations
 %
 In Fig.~\ref{fig:total_j_mb_rns_blh} we show the evolution of the 
@@ -734,7 +815,7 @@ the \swind{}.
 %
 The extrapolation of the final trend of the mass and angular momentum loss shows that 
 if $\approx0.05\,\Msun$ ($\approx40$\% of the final disk at the end of simulation) is 
-ejected, the \ac{MNS} remnant would approach the rigidly rotating equilibria region 
+ejected, the \ac{NS} remnant would approach the rigidly rotating equilibria region 
 at the mass-shedding limit. Extrapolation indicates, that if the ejecta mass flux does 
 not change, this would occur on a timescale of $\sim 300$~ms \pmerg{}.
 %
@@ -816,7 +897,7 @@ angular momentum transport, the ejecta could be further enhanced by the magnetic
 \citep{Metzger:2006mw,Bucciantini:2011kx,Siegel:2017nub,Fernandez:2018kax,Ciolfi:2020hgg}.
 %
 %
-Other simulations also produce a \ac{MNS} remnants with a similar evolutionary paths. 
+Other simulations also produce a \ac{NS} remnants with a similar evolutionary paths. 
 Models with DD2 \ac{EOS} however, are born with an excess in angular momentum but not in 
 baryon mass. They also evolve toward the rigidly rotating equilibria but slower.
 Models with $q>1.00$ produce remnants that generally have larger excess in angular momentum 
@@ -1358,7 +1439,7 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
 \input{Tables/tabWind.tex}
 %% --------------------------------
 
-As we discussed above, the the interaction between the \ac{MNS} remnant and the disk 
+As we discussed above, the the interaction between the \ac{NS} remnant and the disk 
 produces density waves, that propagating outwards through the disk and induce massive outflows, 
 the \ac{SWW} (see Sec.~\ref{sec:bns_sims:remdisk}).
 %
@@ -1436,7 +1517,7 @@ electron fraction and velocity indicate variations below $4\%$.
 % \subsubsection{Spiral wave wind for all models}
 
 We report the overall properties of the \ac{SWW} for all the models with the 
-long-lived \ac{MNS} remnant that were also evolved for a sufficiently long time 
+long-lived \ac{NS} remnant that were also evolved for a sufficiently long time 
 in the Tab.~\ref{tab:spiralwavewind}. 
 %
 The time evolution of the total mass of the \ac{SWW} is shown in the Fig.~\ref{fig:mej:bern}.
@@ -1456,10 +1537,10 @@ mass flux. For instance, the \ac{SWW} mass flux for BLh* $q=1.66$ is achieved by
 model LS220* $q=1.22$. 
 A possible explanation for this is that the models with softer \acp{EOS} have stronger 
 $m=1$ modes in the remnant (see Sec.~\ref{sec:bns_sims:remdisk}).
-When \ac{MNS} remnant collapses to a \ac{BH} and the mechanism that injects angular 
+When \ac{NS} remnant collapses to a \ac{BH} and the mechanism that injects angular 
 momentum into the disk shuts down, the \ac{SWW} mass flux subsides. 
 Thus, the total ejected mass via \ac{SWW} is directly related to the lifetime of the 
-\ac{MNS} remnant, an addition to the binary parameters, \ac{EOS} and \mr{}.
+\ac{NS} remnant, an addition to the binary parameters, \ac{EOS} and \mr{}.
 %
 The \ac{SWW} mass flux depends on the disk configuration, as more extended disks 
 have outer layers that are less gravitationally bound. In turn, the disk 
@@ -1483,7 +1564,7 @@ material did not have enough time to be processed by neutrinos and before the
 outflow reaches quasi-steady state.
 The \ac{SWW} average velocity is higher for stiffer \ac{EOS}, with the peak 
 of the distribution laying between ${\sim}0.1\,$c and ${\sim}0.2\,$c.
-However, more simulations of the \ac{MNS} remnants long-term evolution are 
+However, more simulations of the \ac{NS} remnants long-term evolution are 
 required to confirm and quantitatively investigate this trend.
 However, if it is indeed a generic feature, then it might imply 
 an \ac{EOS} dependent distinct feature in the electromagnetic counterpart. 
