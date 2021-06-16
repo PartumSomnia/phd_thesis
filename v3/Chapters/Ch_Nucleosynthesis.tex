@@ -8,7 +8,7 @@
 %%
 %% =======================================================
 
-\textcolor{red}{Based on the Jones Lippuner PhD thesis}
+%\textcolor{red}{Based on the Jones Lippuner PhD thesis}
 
 %For a long time the general consensus was that all elements in the universe 
 %were synthesized during the Big Bang \citep{Alpher:1948}. Later studies have, however, 
@@ -17,17 +17,19 @@
 %and helium primarily, were produced during in the Big Band \citep{Burbidge:1957}. 
 %Heavier elements are synthesized in a plethora of processes that we briefly recall here.
 
-In this chapter we discuss the \nuc{} that occur in the matter ejected in \ac{BNS}
-mergers, focusing on the rapid neutron capture process (\rproc{}) responsible 
-for the creation of heavy elements \citep{Burbidge:1957}. 
+%In this chapter we discuss \nuc{} that occurs in the matter ejected in \ac{BNS}
+%mergers, focusing on the rapid neutron capture process (\rproc{}) responsible 
+%for the creation of heavy elements \citep{Burbidge:1957}. 
 %
-We introduce conditions and cites of \rproc{}, its contribution to the Universe' chemical evolution. 
-We briefly discuss how numerous nuclear species, participating in thousands on nuclear 
-reactions, are evolved using the novel \texttt{SkyNet} nuclear reaction network code. 
+In Sec.~\ref{sec:intro:nucleo} we introduced conditions for and cites of
+\rproc{} \nuc{}, and its contribution to the Universe' chemical evolution. 
+Here, we briefly discuss how numerous nuclear species, participating in thousands on nuclear 
+reactions, are evolved using the novel \texttt{SkyNet} nuclear reaction network code, and how the process can be paramtrized for quick 
+calculations of final abundances in \ac{BNS} merger ejecta.
 %
 Then, we consider \ac{BNS} mergers as a source of \rproc{} elements. 
-We compute the nucleosynthetic yields from mergers, using the \ac{NR} \ac{BNS} 
-simulations discussed in the chapter~\ref{ch:bns_sims}.
+We compute the nucleosynthetic yields from merger simulations 
+discussed in the chapter~\ref{ch:bns_sims}.
 
 %\red{
 %[Lippuner 221 page] Note that luminosity of the electron anti-neutrino is higher then the one of the 
@@ -71,7 +73,7 @@ coupled nuclear reactions, tracking the evolution of abundances of various speci
 reaction, rates is called \ac{NRN}.
 %
 % BBN
-The complexity of a network, \ie, the number of species and reactions evolved, 
+The complexity of a network, \ie, the number of species and reactions evolved 
 varies depending on the intended implementation. 
 %
 %For instance, for a \ac{BBN} rarely more then a dozen nuclear species are evolved 
@@ -101,13 +103,13 @@ Targets for such studies include
 \acp{CCSN} neutrino driven winds \citep[\eg][]{Woosley:1992,Arcones:2010,Wanajo:2013},
 and outflows from magnetorotational \acp{CCSN} \citep[\eg][]{Winteler:2012,Nishimura:2015nca}.
 In compact object mergers several cites with different conditions 
-require modeling that include ejecta,
-\citep{Goriely:2011vg,Bauswein:2013yna,Wanajo:2014wha,Just:2014fka,Fernandez:2016sbf}\red{[Refs]}, 
-and a disk (torus) formed after merger around the remnant 
-\citep{Surman:2008qf,Perego:2014fma,Martin:2015hxa,Lippuner:2017tyn}.
+require modeling (See Sec.~\ref{sec:intro:merg_pmerg} and % that include ejecta,
+%\citep{Goriely:2011vg,Bauswein:2013yna,Wanajo:2014wha,Just:2014fka,Fernandez:2016sbf}\red{[Refs]}, 
+%and a disk (torus) formed after merger around the remnant 
+%\citep{Surman:2008qf,Perego:2014fma,Martin:2015hxa,Lippuner:2017tyn}.
 %
-This however does not limit the scope of where modeling of neutron capture nucleosynthesis is done. 
-See \citep[\eg][]{Blinnikov:1996,Panov:1995,Panov:2001,Mumpower:2011ar} for an overview.
+%This however does not limit the scope of where modeling of neutron capture nucleosynthesis is done. 
+\citet[\eg][]{Blinnikov:1996,Panov:1995,Panov:2001,Mumpower:2011ar,Lippuner:2018phd} for an overview.
 
 % Other NRN codes
 Several nuclear reaction networks are available in the literature. 
@@ -136,11 +138,11 @@ The latter is a popular choice studying nucleosynthesis in neutron rich environm
 \subsection{Basics of a nuclear reaction network}
 
 %%%% generals of a network
-The key component of a \ac{NRN} is the interaction between two and more nuclides, 
-that are characterized by \ac{RR} as well as single particle reactions, such as $\beta$-decay.
-Charged particle reactions require that the Coulomb barrier to be overcome. 
-Thus, in general, \ac{RR} depend strongly on the particle energy as well as on 
-resonances in compound nuclear systems (see \eg, \citet{Clayton:1968}, \textsection{4}). 
+The key component of a \ac{NRN} is modeling the interaction between two and more nuclides. 
+These interactions are characterized by \acp{RR} as well as single particle reactions, such as $\beta$-decay.
+Charged particle reactions require the Coulomb barrier to be overcome, 
+and in general, \acp{RR} depend strongly on the particle energy as well as on 
+resonances in compound nuclear systems (see \eg, \textsection{4} in \citet{Clayton:1968}). 
 %
 %In a the single-particle reactions, \eg, $\beta$-decay, it is common to assumed a constant 
 %\ac{RR}, which is strictly speaking is true only in vacuum. Another common approach to 
@@ -171,10 +173,10 @@ are assumed to be unchanged. For instance, photons are assumed to be in equilibr
 times, while electron and positron densities are set by the charge neutrality. 
 
 % Abundances
-Describing particle interaction and nuclide transmutation it is common to introduce the entrance 
-and exit channels representing reactants and products. Then, \ac{RR} is defined as a speed 
+Describing particle interactions and nuclide transmutations it is common to introduce the entrance 
+and exit channels representing reactants and products. Then, the \ac{RR} is defined as the speed 
 at which a reaction proceeds per particle in the entrance channel. 
-Thus, if there is no change between particles in entrance and exit channels, the \ac{RR} is zero. 
+For example, if there is no change between particles in entrance and exit channels, the \ac{RR} is zero. 
 %
 A particular useful quantity is \textit{abundance} $Y_i$, defined as 
 %
@@ -185,8 +187,8 @@ Y_i = \frac{n_i}{n_B} = \frac{N_i/V}{N_B/V} = \frac{N_i}{N_B},
 %
 where $V$ is the volume of the fluid element, $N_i$ and $N_B$ are the total numbers of particles 
 of species $i$ and baryons respectively. 
-It is usually abundances of $Y_i$ that are evolved in \acp{NRN} instead of 
-particle number densities $n_i$ as the latter depend on the volume that often is not constant. 
+It is usually abundances, $Y_i$. that are evolved in \acp{NRN} instead of 
+particle number densities, $n_i$, as the latter depend on the volume that is often not constant. 
 %
 The abundance evolution equation reads
 %
@@ -198,14 +200,14 @@ where $\lambda_{\alpha}$ is the \ac{RR} of the forward process, $R_{i}^{\alpha}$
 $P_{i}^{\alpha}$ are products, $N_{i}^{\alpha}$ number of particles of the species $i$ involved 
 and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of species $i$ involved 
 (see \eg, \citet{Hix:1999}).
-%
-\texttt{SkyNet} solves a coupled, first-order, non-linear system of equation, 
-Eq.~\eqref{eq:theory:nuc:abundance} for a given set of reaction rates $\lambda_{\alpha}$. 
+
+\texttt{SkyNet} solves the system of coupled, first-order, non-linear equation, 
+Eq.~\eqref{eq:theory:nuc:abundance}, for a given set of reaction rates, $\lambda_{\alpha}$. 
 The Eq.~\eqref{eq:theory:nuc:abundance} can be understood as following. 
-The time derivative of the species $i$ abundances is given by the sum over all reactions, 
-in which the species in question participate. Each reaction contribution consists of multiplies: 
-\ac{RR}, a factor describing creation or destruction of particles (of species $i$), 
-\ie, number of particles, and abundances of reactants. 
+The time derivative of the abundances (of species $i$) is given by the sum over all reactions, 
+in which the species in question participate. Each reaction contribution consists of multipliers: 
+a \ac{RR}; a factor describing creation or destruction of particles (of species $i$), 
+\ie, number of particles; and abundances of reactants. 
 %
 %A representative example is carbon burning $^{12}\text{C} + ^{4}\text{He} \leftrightarrow ^{16}\text{O}$:
 %%
@@ -294,12 +296,13 @@ in which the species in question participate. Each reaction contribution consist
 %%%% \red{physics from previouse subsection implemented in SkyNet}
 %In essence, a nuclear reaction network evolves a large system of coupled non-linear \acp{ODEs} 
 %given in a form of Eq.~\eqref{eq:theory:nuc:abundance}. 
+%
 As \acp{RR} can span order of magnitude, 
 the system of \acp{ODE} is very stiff \citep{Timmes:1999,Hix:2005pf}, and implicit \ac{ODE} solvers 
-are more suited for it \citet{Timmes:1999,Winteler:2012,Longland:2014} 
-or specifically adapted explicit methods 
-\citet{Feger:2011,Guidry:2011,Guidry:2012,Guidry:2011a,Guidry:2011b,Brock:2015}. 
-\texttt{SkyNet} relies on the first-order implicit backward Euler method \citep{Hix:1999}. \red{Check}
+are more suited for it \citep{Timmes:1999,Winteler:2012,Longland:2014}.
+%or specifically adapted explicit methods 
+%\citet{Feger:2011,Guidry:2011,Guidry:2012,Guidry:2011a,Guidry:2011b,Brock:2015}. 
+\texttt{SkyNet} relies on the first-order implicit backward Euler method \citep{Hix:1999}. %\red{Check}
 %
 For temperature and density, functions of time, the network evolves the composition 
 vector $Y(t)$ via implicit backward Euler method, obtaining the abundances at 
@@ -307,9 +310,10 @@ the end of the timestep as well as $\dot{Y}(Y,T,\rho)$, time derivative of the a
 from known abundances at the beginning of it. 
 %
 The problem amounts to a multi-dimensional root-finding problem. \texttt{SkyNet} uses 
-Newton-Raphson method. The Jacobian matrix is $N\times N$ for $N$ nuclear species and can 
-be expensive to invert and store. 
-But most of its entries are zero, as not all species are directly related via a single reaction. 
+Newton-Raphson method. 
+%The Jacobian matrix is $N\times N$ for $N$ nuclear species and can 
+%be expensive to invert and store. 
+%But most of its entries are zero, as not all species are directly related via a single reaction. 
 
 %%%%------------------------------------------------------
 %%%% Self-heating evolution [DETAILS]
@@ -412,103 +416,109 @@ But most of its entries are zero, as not all species are directly related via a 
 
 \subsection{Parameterized \nuc{}}
 
-One way to compute the nucleosynthetic yields in the \ac{BNS} merger ejecta is to run a \ac{NRN} 
+One way to evaluate the nucleosynthetic yields in the \ac{BNS} merger ejecta is to run a \ac{NRN} 
 on the ejecta in postprocessing alongside the hydrodynamical evolution model or 
 on the Lagrangian tracer particles 
-\citep[\eg]{Goriely:2011vg,Korobkin:2012uy,Grossman:2013lqa,Wanajo:2014wha,Just:2014fka,Martin:2015hxa}.
+\citep[\eg][]{Goriely:2011vg,Korobkin:2012uy,Grossman:2013lqa,Wanajo:2014wha,Just:2014fka,Martin:2015hxa}.
 This is however numerically expensive when the number of models is large. 
 %
 Another approach is to adopt a parameterized \nuc{} model, computed for a grid of parameters 
 that describe the ejecta and map the \ac{NR} ejecta properties onto this grid to estimate the 
 final abundances \citep{Lippuner:2015gwa}. 
-%
-Several important trends can be noted for a parameterized model 
-(see Figure 3.1 in \citet{Lippuner:2018phd}).
+
+Several important trends can be noted for the parameterized model,
+of \citet{Lippuner:2018phd}, their figure 3.1.
 Specifically, that at high entropy, that result in a high neutron-to-seed ratio, 
-even though seed nuclei are light, full \rproc{} is possible.
-At low entropy, \rproc{} is jugged as there are not many free neutrons available,
-but the presence of very heavy seed nuclei still allows for the \rproc{}
+even if seed nuclei are light, full \rproc{} can occur.
+At low entropy, the \rproc{} is jugged as there are not many free neutrons available,
+but the presence of very heavy seed nuclei still allows for the \nuc{} to proceed. 
 At high $Y_e$, where ejecta is less neutron rich, the full \rproc{} no longer occurs,  
-as there are not enough neutrons per seed nucleus to rich the third peak.
-High entropy and low $Y_e$ allows, however, for $3$rd peak element synthesis as there are 
-few seed nuclei and neutron to seed ration is high.
+as there are not enough neutrons per seed nucleus to reach the third peak.
+However, at high entropy and low $Y_e$ the $3$rd peak element can be synthesis as, while 
+there are few seed nuclei, the neutron to seed ratio is high.
 %
+The main quantity defining the final abundances was shown is the electron fraction.
+
 This method has been successfully applied in \citet{Radice:2016dwd,Radice:2018pdn}.
-In \citet{Radice:2018pdn} comparison between tracer method and the parameterized was done.
-It was shown that within a factor of two, methods yield similar results. However, several 
+In \citet{Radice:2018pdn} the result was compared to the direct \nuc{} calculation on
+tracer particles. 
+It was shown that within a factor of two, both methods yield similar results. However, several 
 caveats were pointed out with respect to the errors arising in ignoring the actual density 
-history ($25\%$). On the other had it was stated that due to the approximation of 
-Eualian flow with Lagrangian the error of $\sim 40\%$ can be expected.
+history (${\simeq}25\%$). On the other hand it was stated that due to the approximation of 
+Eualian flow with Lagrangian, the error of ${\sim}40\%$ can be expected.
 
 
-The method can be summarized as following.
+The details of final abundances calculations using the parameterized model are the following. % method can be summarized as following.
 For a given ejecta type (\eg, \ac{DE} or \ac{SWW}) we obtain the electron fraction,
-entropy, velocity and rest mass density 
-at a given extraction sphere (see Sec.~\ref{sec:method:ejecta}).
+entropy, velocity and rest mass density.% at a given extraction sphere (see Sec.~\ref{sec:}).
 %
 The \rproc{} in a given fluid element depends on how fast it decompresses from the 
-merger environment and is parameterized as follows \cite{Lippuner:2015gwa}.
+merger environment and is parameterized as follows \citep{Lippuner:2015gwa}.
 \begin{itemize}
-    \item 
+    \setlength\itemsep{0.1em}
     %Ejecta electron fraction $Y_e=N_p/N_B$, where 
     %$N_p$ and $N_B$ are the numbers of protons and baryons. 
-    The $Y_e$ is sampled uniformly between $0.01$ and $0.5$ 
-    ($Y_e$ above that is not favorable for \rproc{}).
+    \item Ejecta electron fraction, $Y_e$, is sampled uniformly between $0.01$ and $0.5$ 
+    ($Y_e>0.5$ is not favorable for \rproc{}).
     \item Ejecta specific entropy, $s$, is sampled lorarithmically 
-    between $1$ and $100$ $k_B/\text{baryon}$.
+    between $1$ and $100\, k_B/\text{baryon}$.
     \item Ejecta expansion timescale, % $\tau$,  
     %This quantity describes the ejecta expansion while it undergoes the nucleosynthesis. 
-    $\tau$, is sampled between $0.1$ms and $500$ms.
-    \item The density profile is that if the homologous expanding fluid\footnote{
+    $\tau$, is sampled between $0.1\,$ms and $500\,$ms.
+    \item The ejecta density profile is that if the homologous expanding fluid\footnote{
         homologous expansion means that the velocity is such that the expanding shell 
         does not change with time except for a scaling factor. 
         This scaling factor is proportional to time.
     }.%, the density as a function of time reads 
-    \begin{equation}
+\end{itemize}
+%where $\rho_0$ is the initial density and $e = 2.72$.
+The fixed choice of the density profile,
+\begin{equation}
 %    \rho(t) = 
 %    \begin{cases}
 %    \rho_0 \exp(-t / \tau) & \text{ if } t \leq 3\tau, \\
 %    \rho_0 \Big(\frac{3\tau}{e t}\Big)^3 & \text{ if } t \geq 3\tau, 
 %    \end{cases}
-    \rho(t) = \rho(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{2.72 t}\Big)^3.
-    \label{eq:nuc:rho_nuccalc}
-    \end{equation}
-    %where $\rho_0$ is the initial density and $e = 2.72$.
-    The fixed choice of the density profile gives the control over the dynamical 
-    timescale at the time of \rproc{} while also matching the expected density profile.
-    %
-    This choice holds, as ejecta reaching the extraction sphere has already 
-    significantly decompressed and its density decreased ${\sim}3$~orders of magnitude. 
-    %
-    This profile was shown to be in agreement with \ac{NR} simulations 
-    \citep{Lippuner:2015gwa,Foucart:2014nda}.
-    %
-    The value of the initial, $\rho_0$,  is computed from \ac{NSE} 
-    at the temperature to $6\times10^9$~K and given 
-    entropy $s$. The $\rho_0$ spans range $\sim10^5$ to $10^{12}$~\gcm.
-\end{itemize}
+\rho(t) = \rho(s, Y_e, T=6\text{GK})\Big(\frac{3\tau}{2.72 t}\Big)^3, 
+\label{eq:nuc:rho_nuccalc}
+\end{equation}
+gives the control over the dynamical 
+timescale at the time of \rproc{} while also matching the expected density profile.
 %
-Thus, the main quantity defining the final abundances is the electron fraction.
+This choice holds, as ejecta reaching the extraction sphere has already 
+significantly decompressed and its density decreased by ${\sim}3$~orders of magnitude. 
+%
+This profile was shown to be in agreement with \ac{NR} simulations 
+\citep{Lippuner:2015gwa,Foucart:2014nda}.
+%
+The value of the initial, 
+$\rho_0 = \rho(s, Y_e, T=6\text{GK})$, 
+%$\rho_0$,  
+is computed from \ac{NSE} 
+at the temperature of $6\times10^9\,$K and given 
+entropy $s$. The $\rho_0$ spans range $(10^5 - 10^{12})\,$\gcm.
+%
 
 Assuming that the ejecta from \ac{BNS} merger expands homologosly, 
-
+%
 \begin{equation}
 \rho(t) = \rho_E\Big(\frac{\upsilon_E t}{r_E}\Big)^{-3} = 
 \rho_E\Big(\frac{\upsilon_E t}{r_E}t\Big)^{-3},
 \label{eq:nuc:rho_homolog}
 \end{equation}
-
-Solving together Eq.~\eqref{eq:nuc:rho_homolog} and Eq.~\eqref{eq:nuc:rho_nuccalc},
-the expansion timescale $\tau$ can be extracted.
 %
-In order to compute the nucleosynthetic yields we bin the ejecta in the 
-parameter space of $(s, Y_e, \tau)$. Compute the yields in each bin and sum 
-all the contributions.
+a solving together Eq.~\eqref{eq:nuc:rho_homolog} and Eq.~\eqref{eq:nuc:rho_nuccalc},
+the expansion timescale, $\tau$, can be extracted.
 
-It is important to note, that the exact \rproc{} abundance pattern(at a $3$rd peak in particular) 
+
+In order to compute the nucleosynthetic yields we bin the ejecta in the 
+parameter space of $(s, \, Y_e,\, \tau)$, compute the yields in each bin, and sum 
+all the contributions.
+%
+It is important to note, that the exact \rproc{} abundance pattern (at a $3$rd peak in particular) 
 depend on the nuclear mass model, reaction rate and fission fragment distribution 
-(\citep[\eg][]{Goriely:2004qb,Arcones:2010dz,Mumpower:2011ar,Mendoza-Temis:2014mja,Eichler:2014kma})
-\red{add the paper by Erica Holmbeck}
+\citep[\eg][]{Goriely:2004qb,Arcones:2010dz,Mumpower:2011ar,Mendoza-Temis:2014mja,Eichler:2014kma,Barnes:2020nfi}
+%\red{add the paper by Erica Holmbeck}
 %% --- 
 %Under the assumption of homologous expansion the \rproc{} outcome depends on 
 %the these quantities and can be precomputed.
@@ -693,7 +703,7 @@ depend on the nuclear mass model, reaction rate and fission fragment distributio
 
 
 
-\section{Results}
+\section{Nucleosynthetic yields in \ac{BNS} ejecta}
 
 
 \begin{figure*}[h!]
@@ -780,19 +790,19 @@ depend on the nuclear mass model, reaction rate and fission fragment distributio
 
 
 
-\red{Radice:2018pdn disussion on the accuracy}.
+%\red{Radice:2018pdn disussion on the accuracy}.
 
-\red{Something to check}
-\gray{
-    We do not nd material with expansion timescale of
-    less than 0.5 ms. This seems to exclude the neutron freezeout
-    scenario proposed by Metzger et al. (2015). However,
-    the lack of a very fast component of the ejecta might also
-    be due to numerical effects. Our resolution is probably not
-    high enough to track the very small fraction of the ejecta
-    expected to experience neutron freeze-out in the scenario
-    proposed by Metzger et al. (2015).
-}
+%\red{Something to check}
+%\gray{
+%    We do not nd material with expansion timescale of
+%    less than 0.5 ms. This seems to exclude the neutron freezeout
+%    scenario proposed by Metzger et al. (2015). However,
+%    the lack of a very fast component of the ejecta might also
+%    be due to numerical effects. Our resolution is probably not
+%    high enough to track the very small fraction of the ejecta
+%    expected to experience neutron freeze-out in the scenario
+%    proposed by Metzger et al. (2015).
+%}
 
 
 %% ----------- results ----------------- 
@@ -800,53 +810,72 @@ depend on the nuclear mass model, reaction rate and fission fragment distributio
 With the procedure outlined above we compute the isotopic abundances of 
 the \rproc{} elements $32$~years after merger. 
 %% ---
-Our analysis is the continuation of the previous study of the \ac{BNS} merger ejecta 
-\nuc{} conducted by \citet{Radice:2018pdn}. While we employ the same method
-to compute the abundances, the \ac{NR} simulations of our sample are 
-(i) employ more advanced neutrino treatment, 
+The novelty of this analysis with respect to the previous study by 
+\citep{Radice:2016dwd,Radice:2018pdn}, that used the same code and similar 
+numerical setup, is that we have 
+%
+%Our analysis is the continuation of the previous study of the \ac{BNS} merger ejecta 
+%\nuc{} conducted by \citet{Radice:2018pdn}. While we employ the same method
+%to compute the abundances, the \ac{NR} simulations of our sample are 
+(i) M0 neutrino scheme in all models, 
 %
 %In comparison with the previous study of the \ac{BNS} merger ejecta \nuc{} 
 %conducted by \citet{Radice:2018pdn} with the same method, our \ac{NR} \ac{BNS} models include
 %neutrino self absorption, 
-(ii) and in most cases the effects of the subgrid turbulence, 
-and (iii) span a greater range in terms of \mr{} $q\geq1.8$. 
-Additionally (iv) we consider all types of ejecta present in our simulation.
+(ii) and the effects of the subgrid turbulence in most models, 
+(iii) which span a greater range in terms of \mr{} $q\geq1.8$,
+and finally (iv) we consider several types of ejecta, \eg, \ac{DE}, \ac{SWW}.
 
 
 
-In the Fig.~\ref{fig:nucle:totalyields} (except the bottom right panel), 
-we show the nucleosynthesis yields from overall ejecta with each panel 
-containing all models with a given \ac{EOS} (the \mr{} is color-coded).
+In the Fig.~\ref{fig:nucle:totalyields} (except for the bottom right panel), 
+we show the nucleosynthesis yields from overall ejecta.
+% with each panel encompassing models with a given \ac{EOS} (the \mr{} is color-coded).
 For models with short-lived \ac{MNS} remnants the total ejecta is comprised 
 of the \ac{DE} only, while for models with long-lived ones, the total ejeta 
 consists of \ac{DE} and \ac{SWW}. 
 %
 We compare the model abundances with the recently updated solar residual 
-\rproc{} abundances from \citet{Prantzos2020} 
-(for a review of the solar system abundances see \eg~\citet{Pritychenko:2019xvf}).
+\rproc{} abundances from \citet{Prantzos2020},
+%(and the recent overview on the topic can be found in \eg~\citet{Pritychenko:2019xvf})
 %
-For the qualitative comparison between models and observations we employ 
-the following normalization. 
-The model abundances are multiples by a constant factor that makes the abundances at 
-$A=195$ equal solar.
+multiplying the model abundances by a constant factor that brings the abundances 
+at $A=195$ to that of the solar. This normalization allows to quantitatively 
+assess relative abundances in different models.
 %
-From the plot we observe that final \rproc{} abundances in the ejecta from models that 
-form long-lived \ac{MNS} remnants with DD2 and BLh \acp{EOS}, are in agreement with 
-solar across all three \rproc{} peaks. 
-Which is attributed to the combination of the low-$Y_e$ \ac{DE} where heavy 
-$2$nd and $3$rd \rproc{} elements are produced robustly due to fission cycling 
-and high-$Y_e$ \ac{SWW} with robust properties, where lighter elements, mostly at the 
-first peak are produced. 
+%employing the following normalization.
+%%For the qualitative comparison between models and observations we employ 
+%%the following normalization. 
+%The model abundances are multiples by a constant factor that makes the abundances at 
+%$A=195$ equal solar.
 %
-With respect to the models with short-lived remnants, the final \rproc{} eject abundances 
-at solar $1$st and $2$nd \rproc{} peaks, (at $A\sim 75$ and $A\sim 125$ respectively) 
+From the plot we observe that the final \rproc{} abundances in the ejecta of models 
+with moderately soft \acp{EOS} DD2 and BLh, that form long-lived remannts, are in 
+good agreement with solar across all three \rproc{} peaks. .
+%that 
+%form long-lived \ac{NS} remnants with DD2 and BLh \acp{EOS}, are in agreement with 
+%solar across all three \rproc{} peaks. 
+This is because the \ac{DE} is a robust source of heavy elements with its low 
+$Y_e$, that leads to fission cycling (see Sec.~\ref{sec:intro:nucleo}) and 
+consistent reproduction of $2$nd and $3$rd \rproc{} elements; 
+and \ac{SWW} being a robust source of lighter, $1$st and $2$nd peak elements
+with its moderatly high electron fraction.
+%This can be attributed to the combination of the low-$Y_e$ \ac{DE} -- the source of heavy 
+%$2$nd and $3$rd \rproc{} elements are produced robustly due to fission cycling 
+%(see Sec.~\ref{sec:intro:nucleo}), 
+%and high-$Y_e$ \ac{SWW} with robust properties, where lighter elements, mostly at the 
+%first peak are produced. 
+%
+With respect to the models with short-lived remnants, the final \rproc{} abundances 
+at solar $1$st and $2$nd \rproc{} peaks, 
+%(at $A\sim 75$ and $A\sim 125$ respectively) 
 depend strongly on \mr{}. 
-For instance, models with high \mr{} have \ac{DE} of tidal origin mostly with low 
+For instance, models with high $q$ have \ac{DE} of tidal origin mostly with low 
 electron fraction. The final \rproc{} abundances in this ejecta show the underproduction 
 of light elements. 
 The final abundances in ejecta from equal mass binaries, 
-however, shows that even light \rproc{} elements are 
-synthesized. This is because the neutrino reabsorption raises the electron fraction 
+however, display the presence of light \rproc{} elements which can be attributed 
+tho the neutrino reabsorption raising the electron fraction 
 in the shocked component of the \ac{DE} \citep{Wanajo:2014wha,Radice:2018pdn}. 
 
 %% --- 
@@ -855,24 +884,26 @@ presence of actinides, elements with $A\sim230$.
 The amount of actinides produced, however, depends strongly on the ejecta 
 electron fraction, and thus, on the binary \mr{}.
 The agreement with solar abundances is found only for very asymmetric binaries. 
-Notably, that only for the binaries with the highest \mr{}, $q\sim1.8$, the 
-\rproc{} in the \ac{DE} results in both $3$rd peak and actinides(at $^{232}$Th) abundances 
+Notably, only for the binaries with the highest \mr{}, $q\sim1.8$, the 
+\rproc{} in the \ac{DE} results in both $3$rd peak and actinides (at $^{232}$Th) abundances 
 close to solar values. 
 This suggests that the high \mr{} mergers or \ac{NSBH} mergers might be an 
 important contributor to the cosmic chemical evolution.
 
 %%--- Bottom right panel
-The total ejecta from the models with long-lived \ac{MNS} remnants is dominated by
-the \ac{SWW}, as its mass is generally limited by the \ac{MNS} lifetime 
-or by the evolved time (Sec.~\ref{sec:results:ejecta:sww})
+The total ejecta from the models with long-lived \ac{NS} remnants is dominated by
+the \ac{SWW}, as its mass is generally limited by the remnant lifetime 
+(see Sec.~\ref{sec:bns_sims:ejecta}). 
 In the bottom-right panel of Fig.~\ref{fig:nucle:totalyields} we show separately the 
 final abundances from the \rproc{} in the \ac{DE} and in the \ac{DE} plus \ac{SWW}. 
 The electron fraction of the \ac{SWW} is higher than that of the \ac{DE} 
-(see Fig.~\ref{fig:ejecta:bern:hist}), and this the \rproc{} nucleosynthesis in the 
-\ac{SWW} produces primarily light elements around the first \rproc{} peak, $A<95$.
-We recall here, that due to the choice of the normalization, all abundances are up-scaled 
-to reproduce the $A=195$ peak. We asses here the relative abundances at $1$st and $2$nd
-\rproc{} peaks.
+%(see Fig.~\ref{fig:ejecta:bern:hist}), 
+and thus the \rproc{} nucleosynthesis in the 
+\ac{SWW} produces primarily light elements around the first \rproc{} peak, $A<95$\footnote{
+    Note, that due to the choice of the normalization, all abundances are up-scaled 
+    to reproduce the $A=195$ peak. Here the relative abundances at $1$st and $2$nd
+    \rproc{} peaks are compared.
+}.
 %
 The plot shows that for the models with BLh \ac{EOS} the amount of lighter elements, 
 $A\sim75$, is higher with respect to the model with DD2 \ac{EOS}. This can be attributed 
@@ -883,18 +914,18 @@ In both cases, however, the abundances of light elements are very close to solar
 
 %% --- other ejecta types
 The \rproc{} is expected to take place in other types of ejecta from \ac{BNS} mergers.
-In \nwind{} the neutrino irradiation raises the electron fraction, that, depending 
+In \nwind{} the neutrino irradiation raises the electron fraction, which, depending 
 on the ejecta velocity, can reach the $Y_e\leq 0.45$ \citep{Qian:1996xt}. 
 At this pint the weak equilibrium sets in between the ejecta and neutrinos.
 High electron fraction implies that only the light elements will be produced.
 The numerical studies indeed support this picture 
 \citep{Dessart:2008zd,Perego:2014fma,Just:2014fka,Martin:2015hxa,Foucart:2016rxm}. 
-%% ---
+
 The bulk of the ejecta from \ac{BNS} mergers is expected to come in the form of 
-viscous- and recombination-driven winds, This ejecta, however, is expected to take 
+viscous- and recombination-driven winds. This ejecta, however, is expected to take 
 place over the longer timescales than those of our simulations.
-Studies have shown that this ejecta has a broad distribution of the electron fraction 
-and the \rproc{} nucleosynthesis within it would produce light as well as heavy elements
+Studies have shown that this ejecta has a broad distribution of the electron fraction.
+The \rproc{} \nuc{} within it would produce light as well as heavy elements
 \citep{Fernandez:2013tya,Just:2014fka,Wu:2016pnw,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax}.
-The production of the heavy \rproc{} elements, however, might be supressed in this winds
-if the long-lived \ac{MNS} is present \citep{Metzger:2014ila,Lippuner:2017bfm}.
+The production of the heavy \rproc{} elements, however, might be supressed in these winds
+if the long-lived \ac{NS} is present \citep{Metzger:2014ila,Lippuner:2017bfm}.
