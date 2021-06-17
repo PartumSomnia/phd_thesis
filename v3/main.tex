@@ -93,6 +93,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \usepackage{afterpage}
 \usepackage{capt-of}% or use the larger `caption` package
 \usepackage{lipsum}% 
+\usepackage{adjustbox}
 
 %----------------------------------------------------------------------------------------
 %    USER-SPECIFIC DECLARATIONS AND COMMANDS
@@ -142,6 +143,8 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \newcommand{\mr}{mass ratio}
 \newcommand{\nuc}{nucleosynthesis}
 \newcommand{\wisky}{\texttt{WhiskyTHC}}
+\newcommand{\pyblast}{\texttt{PyBlastAfterglow}}
+\newcommand{\mkn}{\texttt{MKN}}
 \newcommand{\bnc}{bounce} %% or re-bounce
 \newcommand{\trans}{trans-relativistic}
 \newcommand{\blast}{blast wave}
@@ -300,6 +303,8 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \newacro{LIGO}{Laser Interferometer Gravitational-Wave Observatory}
 \newacro{MF}{magentic field}
 \newacroplural{MF}[MFs]{magnetic fields}
+\newacro{AGN}{active galactic nucleus}
+\newacroplural{AGN}[AGNs]{active galactic nuclei}
 
 
 \newacro{DE}{dynamical ejecta}
@@ -573,7 +578,8 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \include{Chapters/Ch_Nucleosynthesis}
 %\include{Chapters/Ch_Kilonova}
 \include{Chapters/Ch_Kilonova_v2}
-\include{Chapters/Ch_Afterglow}
+%\include{Chapters/Ch_Afterglow}
+\include{Chapters/Ch_Afterglow_v2}
 \include{Chapters/Ch_Statistics}
 \include{Chapters/Ch_Conclusion}
 
