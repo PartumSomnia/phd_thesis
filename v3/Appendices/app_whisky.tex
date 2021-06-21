@@ -13,15 +13,15 @@
 We compute the irrotational \ac{BNS} configurations in quasi-circular orbit for 
 each \ac{EOS} considered, \eg, SLy4, SFHo, LS220, BLh and DD2 \acp{EOS}.
 The initial configuration is obtained via the pseudo-spectral code \texttt{Lorene} \citep{Gourgoulhon:2000nn}, 
-that solves the general relativistic initial data problem \red{in what approximation? Thin sandwitch?}.
-The initial separation (of the qusi-circular orbit) is chosen $\sim40$~km and that
+that solves the general relativistic initial data problem. %\red{in what approximation? Thin sandwitch?}.
+The initial separation (of the qusi-circular orbit) is chosen ${\sim}40\,$km and that
  corresponds to $~2-3$ orbits before merger.
 %
 The \acp{EOS} tables used for the initial data computation are the minimum temperature slices
 $(T\sim 0.5 - 0.1)$~MeV of the finite temperature \acp{EOS} tables used for the evolution.
 The assumption of the neutrino-less beta-equilibrium is made.
 At constant temperature, at lowest densities, the photon energy (radiation) is a dominant 
-contribution to pressure. Thus, we substruct this contribution from the tables.
+contribution to pressure, and we substruct that contribution from the tables.
 %
 %In the evolution code, passing the initial data, the mapping is done from the zero temerature
 In the evolution code, the electron fraction is set by the beta equilibrium condition. 
@@ -48,7 +48,7 @@ temperature slice of the \ac{EOS} table used for evolution.
 The evolution of \ac{BNS} systems is performed with \wisky{} \ac{NR} code
  \citep{Radice:2013apa,Radice:2012cu,Radice:2013xpa,Radice:2013hxh,
     Radice:2015nva,Radice:2016dwd,Radice:2018pdn,Radice:2020ids}.
-\wisky{} is a result of combination of two \texttt{Whisky} \citep{Baiotti:2004wn} and \texttt{THC}.
+\wisky{} is a result of combination of the \texttt{Whisky} code \citep{Baiotti:2004wn} and \texttt{THC} code.
 The \texttt{THC} part stands for the Templated-Hydrodynamics Code developed using the \texttt{Cactus} framework 
 \citep{Goodale:2003}. 
 In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed . 
@@ -69,12 +69,12 @@ In \texttt{THC}, the state-of-the-art flux-vector splitting scheme are employed 
 %Tabulated temperature and composition dependent equation of states can be used.
 %
 \wisky{} solves the equations of \ac{GRHD} in conservation form using a \ac{FD} scheme. 
-%
+
 %% Spacetime evolution
 The spacetime is evolved using the Z4c formulation of Einstein's equations
-(see Sec.~\ref{sec:theory:nr}) as implemented in the \texttt{CTGamma} code
+(see Sec.~\ref{sec:theory:z4c}) as implemented in the \texttt{CTGamma} code
 \citep{Pollney:2009yz,Reisswig:2013sqa}
-which is part of the \texttt{Einstein Toolkit} \citep{Loffler:2011ay}.
+which is a part of the \texttt{Einstein Toolkit} \citep{Loffler:2011ay}.
 %
 %\cite{Bernuzzi:2009ex,Hilditch:2012fp} as implemented in the \texttt{CTGamma} code
 %\cite{Pollney:2009yz,Reisswig:2013sqa} which is part of the \texttt{Einstein Toolkit} 
@@ -98,11 +98,11 @@ The flux reconstruction is done in local-characteristic variables using the \ac{
 %
 
 %\paragraph{Hydrodynamics}
-The code solves continuity equations (Eq.~\eqref{eq:theory:contineq}) separately for 
+The code solves continuity equations Eq.~\eqref{eq:theory:contineq} separately for 
 protons and neutrinos, $n_n$ and $n_p$, with the \ac{RHS} prescribed by the 
 lepton number deposition rate due to the absorption and emission of neutrinos 
 and antineutrinos, $R_p^\mu$ and $R_n^\mu$, (with $R_p = -R_n$) 
-from leakage plus M0 scheme (See~\ref{sec:theory:neut}).
+from leakage plus M0 scheme (See~\ref{sec:nr_methods:neut}).
 %The code evolves the proton and neutron number densities, $n_n$ and $n_p$
 %respectively, as 
 %
@@ -163,7 +163,7 @@ with the \ac{RHS} given being $ Q u^{\mu}$
 %
 where $Q$ is the net energy deposition rate due to absorption
 and emission of neutrinos also treated with the M0 scheme  
-(see Sec.~\ref{sec:theory:neut}).
+(see Sec.~\ref{sec:nr_methods:neut}).
 %\red{JUST PUT REFS TO THE EQs THAT ARE IN THE 'nuetrino' AND 'viscosity' sections}
 
 
@@ -191,9 +191,9 @@ The outflow properties are extracted when the density exceeds the atmosphere den
 by several orders of magnitude.
 %
 The coupling between the spacetime and hydrodynamic evolution is achieved via 
-\ac{MOL}.
+the \ac{MOL}.
 %
-Time integrator of choice is \ac{SSP} third-order Runge-Kutta scheme \citep{Gottlieb:2009}.
+Time integrator of choice is the \ac{SSP} third-order \ac{RK} scheme \citep{Gottlieb:2009}.
 The timestep is regulated by the \ac{CFL} condition, that required \ac{CFL} factor 
 to be $<0.25$ for numerical stability. 
 To assure that the \ac{PPL} implemented in \texttt{WhiskyTHC} maintains 
@@ -255,26 +255,28 @@ whose center is at the center of mass of the binary.
 The \ac{AMR} structure has $7$ refinement levels, with the finest 
 covering both compact objects during the inspiral and the remnant \pmerg{}.
 %
-We consider several resolution setups: Low (LR), 
-standard (SR) and high (HR) with the finest refinement level being 
+We consider several resolution setups: Low (\texttt{LR}), 
+standard (\texttt{SR}) and high (\texttt{HR}) with the finest 
+refinement level being 
 $h=246$~m, $h=185$~m and $h=123$~m respectively.
 %
-In the simulations where the neutirno M0 scheme is included,
+In simulations where the neutirno M0 scheme is included,
 it is switched on shortly before the merger. 
 %The equations \eqref{eq:method:whisky:eq7} and \eqref{eq:method:whisky:eq9} 
-The Eqs.~\eqref{eq:theory:neut:balanseq} \eqref{eq:theory:neut:balanseq2}
-and are solved on the uniform spherical grid with radius $\approx 756$~km, 
+The Eqs.~\eqref{eq:theory:neut:balanseq1} and \eqref{eq:theory:neut:balanseq2}
+are then solved on the uniform spherical grid with radius ${\approx}756$~km, 
 and resolution $n_r\times n_{\theta}\times n_{\phi} = 3096 \times 32 \times 64$
 grid points.
 %
 A subset of models discussed in this thesis include the effective treatment of viscosity
-(see Sec.~\ref{sec:theory:visc}). 
+(see Sec.~\ref{sec:nr_methds:visc}). 
 
-We consider $33$ distinct binary with total masses 
-$\red{[None,None]}$ and mass-ratio $q\in[1.00,1.82]$.
-In all models the neutrino leakage plus M0 scheme. 
-Most models were computed at at least two resolutions. 
-and include the effect of subgrid turbulence, viscosity.
+%We consider $33$ distinct binary with total masses 
+%$\red{[None,None]}$ and mass-ratio $q\in[1.00,1.82]$.
+%In all models the neutrino leakage plus M0 scheme. 
+%Most models were computed at at least two resolutions. 
+%and include the effect of subgrid turbulence, viscosity.
+
 
 %\gray{Summary of all results in given in the table...}
 %

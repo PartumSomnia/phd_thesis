@@ -154,6 +154,19 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 
 \newcommand{\ndef}[1]{\textbf{#1}} %% for new definitions 
 
+%% Our models
+\newcommand{\DSrefset}{\texttt{M0RefSet}} 
+%% large leackage dataset that we usually compare to
+\newcommand{\DSheatcool}{\texttt{M0/M1Set}} 
+%% all datasets with neutrino absorption
+\newcommand{\DScool}{\texttt{LeakSet}}
+%% all datasets with leaakge
+\newcommand{\DSnone}{\texttt{NoNusSet}}
+
+\def\chid{\chi_{\nu}^2}
+\def\non{\nonumber}
+
+
 \def\Msun{{\text{M}_{\odot}}}
 \def\Rsun{{\text{R}_{\odot}}}
 \def\md{M^{\text{d}}_{\text{ej}}}
@@ -305,6 +318,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \newacroplural{MF}[MFs]{magnetic fields}
 \newacro{AGN}{active galactic nucleus}
 \newacroplural{AGN}[AGNs]{active galactic nuclei}
+\newacro{MC}{Monte Carlo}
 
 
 \newacro{DE}{dynamical ejecta}
@@ -580,9 +594,9 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \include{Chapters/Ch_Kilonova_v2}
 %\include{Chapters/Ch_Afterglow}
 \include{Chapters/Ch_Afterglow_v2}
-\include{Chapters/Ch_Statistics}
-\include{Chapters/Ch_Conclusion}
-
+%\include{Chapters/Ch_Statistics}
+%\include{Chapters/Ch_Conclusion}
+\include{Chapters/Ch_DiscConclusion}
 %\include{Chapters/Ch_NumRel_Intro}
 %\include{Chapters/Ch_NumRel} 
 %\include{Chapters/Ch_Code_ppr_tools} 
@@ -597,13 +611,14 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
 
-%\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 %
 \include{Appendices/app_whisky}
 \include{Appendices/app_ppr}
+\include{Appendices/app_stt}
 %\include{Appendices/app_efe}
 %\include{Appendices/app_adm}
 %\include{Appendices/app_eul}

@@ -21,7 +21,7 @@ of the remnant, disk and ejecta.
 For this we mainly use the mass-averaged quantities defined as 
 %
 \begin{equation}
-\langle f \rangle = \frac{\sum_i f(m_i)m_i}{\sum_i m_i}
+\langle f \rangle = \frac{\sum_i f(m_i)m_i}{\sum_i m_i}\, ,
 \end{equation}
 %
 where $m_i$ is the mass contained in the $i$-th bin.
@@ -31,20 +31,20 @@ where $m_i$ is the mass contained in the $i$-th bin.
 \section{Disk \& Remnant}\label{sec:bns_sims:method:disk}
 
 It is common to discuss the \pmerg{} state of the \ac{BNS} systems in terms of the remnant, 
-a \ac{MNS} or a \ac{BH}, and a disk or torus surrounding it. 
+a \ac{NS} or a \ac{BH}, and a disk or torus surrounding it. 
 %However there is not unified convention in how to define the disk and separate it from the former. 
 
-A disk around a \ac{BH} is the matter outside the apparent horizon 
-\citep[\eg]{Dietrich:2015iva,Dietrich:2016hky}. 
+%A disk around a \ac{BH} is the matter outside the apparent horizon 
+%\citep[\eg][]{Dietrich:2015iva,Dietrich:2016hky}. 
 %However, owing to the disk accretion onto a \ac{BH}, the evaluation time is a 
 %crucial parameter, and unfortunately is not consistent in the literature, 
 %(\eg $\sim1$~ms in \citet{Dietrich:2015iva,Dietrich:2016hky} and $\sim30$~ms in \citet{Sekiguchi:2016bjd}).
-
-A disk around a \ac{MNS} is more difficult to define. Commonly, the 
-threshold $\rho\sim 10^{13}$~\gcm is assumed. The choice is motivated by studies that 
-showed that the angular velocity profiles becomes approximately Keplerian at this point 
+While a disk around a \ac{BH} can be defined as matter outside the apparent horizon, a disk around a \ac{NS} remnant is more difficult to define. 
+Commonly, the 
+threshold $\rho\sim 10^{13}\,$\gcm{} is assumed. The choice is motivated by studies that 
+showed that the angular velocity profiles become approximately Keplerian at this point 
 \citep[\eg][]{Shibata:2005ss,Shibata:2006nm,Hanauske:2016gia,Kastaun:2016elu}.
-This convection was adopted in several recent works 
+This convention was adopted in several recent works 
 \citep{Radice:2018pdn,Kiuchi:2019lls,Vincent:2019kor}.
 The extraction time here is also important, but less so, as we find that the accretion on the 
 \ac{NS} is considerably slower.
@@ -64,15 +64,16 @@ The extraction time here is also important, but less so, as we find that the acc
 %$\alpha > 0.15$ and $\tho < 10^{13}\gcm$, where $\alpha$ is the lapse function 
 %(see section \ref{sec:theory:gr3p1}).
 
-We compute the disk baryonic mass of the disks evaluating
-the volume integral of the conserved rest-mass density $D=\sqrt{\gamma}~W\rho$,
+We compute the disk baryonic mass evaluating
+the volume integral of the conserved rest-mass density, 
+$D=\sqrt{\gamma}~W\rho$,
 %
 \begin{equation}
 \label{eq:method:mdisk}
-M_{\text{disk}} = \int D \dd^3 x
+M_{\text{disk}} = \int D \dd^3 x\, 
 \end{equation}
 %
-from $3$D snapshots of the simulations.% in postprocessing.
+from $3$D snapshots of our simulations.% in postprocessing.
 
 %% In \cite{Sekiguchi:2016bjd}, the disk mass is extracted at
 %% ${\approx} 30$~ms outside the AH. In \cite{Radice:2018pdn}, the disk mass is computed
@@ -94,7 +95,7 @@ from $3$D snapshots of the simulations.% in postprocessing.
 The hydrodynamic instability in newly formed \acp{MNS} 
 is monitored by a decomposition in Fourier modes
 $e^{- i m \phi}$ of the Eulerian rest-mass density on the equatorial plane 
-[see Eq.~(1) of \citep{Radice:2016gym}] and characterized by the
+\citep[see Eq.~(1) in][]{Radice:2016gym} and characterized by the
 development of a $m=2$ followed by a $m=1$ mode 
 \citep{East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,Bernuzzi:2013rza,Kastaun:2014fna}.
 %In the short-lived remnant (LS220) the $m=1$ mode
@@ -119,7 +120,7 @@ development of a $m=2$ followed by a $m=1$ mode
 %or, in other words, we perform the complex azimuthal mode decomposition of,
 %the conserved rest-mass density.
 For the data availability reasons we consider only $\rho(x,y,z=0,t)$, 
-\ie restrict our analysis to the orbital plane $z=0$
+\ie{} restricting our analysis to the orbital plane $z=0$,
 
 %\red{DOUBLE check the presence of Gamma and W}
 %% \begin{equation}
@@ -128,7 +129,7 @@ For the data availability reasons we consider only $\rho(x,y,z=0,t)$,
 %% \end{equation}
 \begin{equation}
 \label{eq:modes}
-C_m(t) = \int \rho(x,y,z=0,t) e^{-i m \phi(x,y)} \text{d}x \text{d} y \, ,
+C_m(t) = \int \rho(x,y,z=0,t) e^{-i m \phi(x,y)} \text{d}x \text{d} y \, .
 \end{equation}
 %(see \eg~\citet{Baiotti:2009gk}).
 
@@ -144,9 +145,11 @@ We note that the above quantities are gauge dependent.
 %    Page 53 of the thesis
 %}
 %
-In addition, frequencies of the modes can be computed with the Fourier analysis 
-of the $\rho_{\text{max}}$ and projections $C_{m}$. We resort it for the future work, 
-as in this work we are interested only in their magnitude. 
+
+Notably, frequencies of the modes can be computed with the Fourier analysis 
+of the $\rho_{\text{max}}$ and projections $C_{m}$. 
+We leave this for the future work.
+%as in this work we are interested only in their magnitude. 
 
 
 
@@ -169,7 +172,7 @@ The fluid's angular momentum analysis in the remnant and disk is performed
 assuming axisymmetry,
 %(see Appendix~\ref{app:ang} for derivation)
 that is, we assume $\phi^{\mu} = (\partial_{\phi})^{\mu}$ is a Killing
-vector. Accordingly, the conservation law (Eq.~\eqref{eq:theory:tmunu_eq_0}) 
+vector. Accordingly, the conservation law, Eq.~\eqref{eq:theory:tmunu_eq_0} 
 reads
 %
 \begin{equation}
@@ -180,7 +183,7 @@ reads
 where $n^\mu$ is the normal vector to the spacelike hypersurfaces of
 the spacetime's $3+1$ decomposition.
 %
-The equation implies the conservation of the angular momentum 
+The equation implies the conservation of the angular momentum, 
 \begin{equation}
 J = % \int j dV = 
 %- \int \, T_{\mu\nu}n^{\mu}\phi^{\nu}\,\dd ^3x = 
@@ -188,7 +191,7 @@ J = % \int j dV =
 T_{\mu\nu}n^{\mu}\phi^{\nu}\,\sqrt{\gamma}\, \dd^3 x\ .
 \end{equation}
 %
-In the cylindrical coordinates $x^i=(r,\phi,z)$ adapted to the symmetry
+In the cylindrical coordinates $x^i=(r,\phi,z)$ adapted to the symmetry, 
 the angular momentum density is  
 %
 \begin{equation}
@@ -211,15 +214,16 @@ We evaluate these quantities from the 3D snapshots of our simulations.
 
 \section{Ejecta} \label{sec:bns_sims:method:ejecta}
 
-To model and study the electromagnetic counterparts to mergers, the amount and properties 
-of the material leaving the system are needed.
-The matter expelled at high velocity may ultimately become unbound from the 
+%To model and study the electromagnetic counterparts to mergers, the amount and properties 
+%of the material leaving the system are needed.
+The matter expelled at high velocity during \ac{BNS} mergers 
+may ultimately become unbound from the 
 central gravitational potential. 
 There are two indicators commonly adopted to mark the unbound matter.
 
 \subsection{The Geodesic criterion}
 
-Assuming that the spacetime is stationary, ($\partial_t$ is the Killing vector)% \red{confirm}, 
+Assuming that the spacetime is stationary, ($\partial_t$ is the Killing vector) % \red{confirm}, 
 the four-velocity, $u_t$, (along the time-like killing vector), 
 is a constant of motion for geodesics. 
 Additionally, if the space is asymptotically flat, at infinity the $u_t = -W$, 
@@ -227,22 +231,24 @@ where $W$ is the fluid element Lorentz factor.
 Then, if a fluid element has $u_t < -1$, it may be considered unbound 
 as it will retain the non-zero positive velocity at infinity. 
 %
-The fluid asymptotic velocity 
+The fluid asymptotic velocity reads 
 \begin{equation}
 \upsilon_{\infty} \simeq \sqrt{2E_{\infty}} = \sqrt{(1-u_t ^2)}.
 \end{equation}
 %
-This criterion can be through of as considering the fluid to be made of isolated 
-particles that follow the geodesics. Indeed, the effects of \acp{EOS}, 
-fluids pressure gradient, internal energy and heating %(\eg, due to an $r$-process (\red{see section XXX})) 
+This criterion can be thought of as assuming that the fluid to be made of isolated 
+particles that follow geodesics in the static spacetime. 
+Indeed, the effects of \acp{EOS} 
+(fluids pressure gradient, internal energy and heating) %(\eg, due to an $r$-process (\red{see section XXX})) 
 are neglected which might lead to 
-underestimation of the ejecta mass. 
+underestimation in the ejecta mass. 
 %
-The space time is also assumed to be static.
+%The space time is also assumed to be static.
 %
 Strictly speaking, none of these assumptions is 
-fulfilled in the \ac{BNS} post-merger environment. However, this criterion 
-is widely used in the literature \citep[\eg][]{Radice:2018pdn,Vincent:2019kor}.
+fulfilled in the \ac{BNS} \pmerg{} environment. However, this criterion 
+is widely used in the literature 
+\citep[\eg][]{Radice:2018pdn,Vincent:2019kor}.
 
 
 
@@ -266,7 +272,8 @@ The associated asymptotic velocity is calculated as
 \end{equation}
 %
 The criterion can be regarded as assuming all the internal energy of the fluid 
-gets added to the fluid kinetic energy, as the fluid decompresses \red{(pressure drops?)}.
+gets added to the fluid kinetic energy, as the fluid decompresses.
+% \red{(pressure drops?)}.
 %
 %The $r$-process nucleosynthesis that occurs in the outflow deposits the energy.
 %\red{In Vincent it is assumed that the difference in binding energy between the 
@@ -284,7 +291,7 @@ if the estimation is done within a given volume \citep{Kastaun:2014fna}.
 
 
 We adopt the geodesic criterion to study the "burst-like", short outflows,
-such as dynamical ejecta, where the pressure gradient is not expected to make a significant contribution.
+such as \ac{DE}, where the pressure gradient is not expected to make a significant contribution.
 For the steady-state outflows, like \pmerg{} winds we adopt the Bernoulli criterion.
 %
 The term ejecta would refer to the material gravitationaly 

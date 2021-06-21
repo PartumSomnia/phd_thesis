@@ -695,7 +695,7 @@ independent of the \ac{EOS} and \mr{}
 %% -----------------------------------------------
 
 %\subsection{Mass ejection on a longed timescale}
-\subsection{Mass and angular momentum loss}
+\subsection{Mass and angular momentum loss}\label{sec:bns_sims:mj_loss}
 
 As the disk expands and cools, the recombination of nucleons into alpha particles 
 starts to take place. The energy, released in recombination, might be sufficient 
@@ -703,7 +703,7 @@ for the outermost layers to become unbound, generating an outflow and contributi
 to the disk depletion \citep{Beloborodov:2008nx,Lee:2009uc,Fernandez:2013tya}.
 %
 This process however is expected to take place on timescales, longer than
-those simulated here. On the ${\sim}100$~ms timescale, however, the outflows 
+those simulated here. On the ${\sim}100\,$ms timescale, however, the outflows 
 are driven by the neutrino heating, above the remnant, the so-called neutrino-driven 
 wind (\nwind{}; \citet{Dessart:2008zd,Perego:2014fma,Just:2014fka}). 
 %and by the dynamical
@@ -1133,7 +1133,13 @@ found rather week and comparible to the effects of finite grid discretization
 \citep{Bernuzzi:2020txg,Radice:2020ids}.
 
 Overall, we find that the properties of the \ac{DE} depend on the \mr{} and 
-\ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$. 
+\ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$, as 
+%
+\begin{align}\label{eq:polyfit2}
+P_2 ^1(\tilde{\Lambda}) &= b_0 + b_1\tilde\Lambda + b_2 \tilde\Lambda^2, \\\label{eq:polyfit22}
+P_2 ^2(q,\tilde\Lambda) &= b_0 + b_1q + b_2\tilde\Lambda + b_3q ^2 +  b_4 q \tilde\Lambda + b_5\tilde\Lambda^2 \, .
+\end{align}
+%
 The result of a fitting ejecta parameters with the polynomial of these two quantities 
 are shown in bottom panels of Fig.~\ref{fig:ejecta:dyn:dsfits}.
 %

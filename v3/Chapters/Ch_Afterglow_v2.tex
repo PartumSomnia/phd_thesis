@@ -35,18 +35,18 @@ The content of this chapter is based on \citet{Nedora:2021eoj,Hajela:2021faz}.
 %with the semi-analytic code \texttt{PyBlastAfterglow}. 
 %
 We intiialize blast waves using the \ac{NR} ejecta angular and velocity profiles, 
-discussed in Sec.~\ref{sec:bns_sims:fast_de}. 
+discussed in %Sec.~\ref{sec:bns_sims:fast_de}. 
 %These take from of the 
 %Initial data for the dynamical evolution is taken from the \ac{NR} ejecta 
 %profiles for the mass as a function of energy and velocity, that is 
 %are used to compute the kinetic energy distributions 
-(See Ch.~\ref{ch:bns_sims} and Fig.~\ref{fig:ejecta_vel_hist}).
+Ch.~\ref{ch:bns_sims} and shown in Fig.~\ref{fig:ejecta_vel_hist}.
 %
 Then, we compute the adiabatic radial expansion of the ejecta in 
 the thin shell approximation at each polar angle using the kinetic 
 energy distributions.
 %
-We adopt the \blast{} dynamics formalism from \citet{Nava:2013} that cast the 
+We adopt the \blast{} dynamics formalism from \citet{Nava:2013} that casts 
 Eqs.~\eqref{eq:afterglow:blast} as a set of \acp{ODE} for the \blast{} \ac{LF},
 swept-up mass and energy. The system is then solved via 
 4th order adaptive step \ac{RK} method.
@@ -80,17 +80,18 @@ $\gamma_{m}$ and $\gamma_c$ via their \eq~A5.
 %
 
 The flux in the observer frame is obtained by itegrating over the \ac{EATS}, 
-that are obtained by comping the $t_{obs}$ Eq.~\eqref{eq:afterglow:tobs} for each
-segment. The relativist effects are taken into account via 
-Doppler factor Eq.~\eqref{eq:afterglow:dop_fac}.
+that are obtained by comping the $t_{obs}$, \ie, Eq.~\eqref{eq:afterglow:tobs} 
+for each segment. The relativist effects are taken into account via 
+Doppler factor, Eq.~\eqref{eq:afterglow:dop_fac}.
 See \citet{Salmonson:2003} for the detailed discussion of the method, 
 and \citet{Lamb:2018ohw,Fernandez:2021xce} for the recent implementations
 
 
 \subsection{Method validation}
 
-In order to validate the code we compare the results obtained with it to the  
-published in literature. Specifically, we consider the code designed by \citet{Hotokezaka:2015eja},
+In order to validate the code we compare our synthetic \acp{LC} for \ac{NR} 
+\ac{BNS} merger ejecta to those published in the literature. 
+Specifically, we consider the code designed by \citet{Hotokezaka:2015eja},
 and applied to the \ac{BNS} merger ejecta in \citet{Radice:2018pdn}.
 
 \begin{figure}%%[t]
@@ -109,9 +110,9 @@ and applied to the \ac{BNS} merger ejecta in \citet{Radice:2018pdn}.
 \end{figure}
 
 In Fig.~\ref{fig:afg_test} we show the \ac{kN} afterglow \acp{LC} from 
-figures~30 and 31 of \citet{Radice:2018pdn}. The plot shows that that two codes
-are in a good agreement. The discpeancies opserved can be attributed for different 
-physical treatment of the \blast{} dynamics and synchrotron radiation. 
+Figure~$30$ and Figure~$31$ of \citet{Radice:2018pdn}. The plot shows that that 
+two codes are in a good agreement. The discrepancies observed can be attributed 
+for different physical treatment of the \blast{} dynamics and synchrotron radiation. 
 Notably, considering the large uncertainties on microphysical parameters and 
 ejecta properties (discussed below) these discrepancies can be neglected.
 
@@ -120,12 +121,12 @@ ejecta properties (discussed below) these discrepancies can be neglected.
 \section{\ac{kN} afterglow for \GRB{} rebrightening}
 
 
-Fig.~\ref{fig:ejecta_vel_hist}. 
-Notably, since the largest part (in mass) of the ejecta is equatorial it eludes the 
-interaction with the \ac{GRB} collimated ejecta and expands into an unshocked \ac{ISM}.
-The latter can decrease the \ac{ISM} density and delay the peak of the 
-synchotron emission \citep{2020MNRAS.495.4981M}.
-\red{move that to afterglow and rephrase}
+%Fig.~\ref{fig:ejecta_vel_hist}. 
+%Notably, since the largest part (in mass) of the ejecta is equatorial it eludes the 
+%interaction with the \ac{GRB} collimated ejecta and expands into an unshocked \ac{ISM}.
+%The latter can decrease the \ac{ISM} density and delay the peak of the 
+%synchotron emission \citep{2020MNRAS.495.4981M}.
+%\red{move that to afterglow and rephrase}
 
 
 
@@ -171,7 +172,7 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
             (the last row of the table) the parameters are the same for all models shown.
             Other parameters, such as observational angle, are the same everywhere (see text).
             (Adapted from \citet{Nedora:2021eoj})
-        }
+        } \label{tab:pars}
         \scalebox{0.70}{
         \begin{tabular}{l | l l l l}
             Fig~\ref{fig:lightcurves} & $p$ & $\epsilon_e$ & $\epsilon_b$ & $n_{\text{ISM}}$ \\ \hline 
@@ -189,45 +190,25 @@ synchotron emission \citep{2020MNRAS.495.4981M}.
         \end{tabular}
         }
     \end{center}
-    \label{tab:pars}
 \end{table}
 
 In order to compute the \ac{kN} afterglow \acp{LC}, several free parameters of the model
 need to be set. Specifically, we consider the \ac{ISM} density to be uniform with 
 $\nism\in(10^{-3}, 10^{-2})\,\ccm$ \citep{Hajela:2019mjy}. 
 The observational angle, (the angle between the line of sight and the polar axis of the 
-\ac{BNS} system is set to $\theta_{\text{obs}}=30$~deg \citep{TheLIGOScientific:2017qsa}.
-The luminosity distance of NGC 4993, the host galaxy of \GW{} is  $41.3\times10^{6}$~pc 
+\ac{BNS} system) is set to $\theta_{\text{obs}}=30\,$deg \citep{TheLIGOScientific:2017qsa}.
+The luminosity distance of NGC 4993, the host galaxy of \GW{} is  $41.3\times10^{6}\,$pc 
 with the redshift $z=0.0099$ \citep{Hjorth:2017yza}.
 %
 The index of the electron energy distribution, $p$, and microphysical parameters are 
-chosed based on the recent observations of the \GRB{}, where the spectral evolution 
-was detected \cite{Hajela:2021faz}.  (see however \citet{Troja:2021xsw}). 
+chosed based on the recent observations of \GRB{}, where the spectral evolution 
+was detected \citep{Hajela:2021faz}.  
+%(see however \citet{Troja:2021xsw}). 
 %
-We consider the 
+We consider 
 $\varepsilon_e\in(0.1, 0.2)$,
 $\varepsilon_B\in(10^{-3}, 10^{-2})$, 
 $p\in[2.05,2.15]$.
-
-
-In Fig.~\ref{fig:lightcurves} we show the \acp{LC} in X-ray and radio bands for several 
-representative \ac{BNS} merger models together with latest \GRB{} observational data. 
-%% --- lightcurve shape
-Ejecta velocity and angular distribution defines primarily the shape of the \acp{LC}.
-Specifically, \ac{BNS} models with ejecta that show broad velocity distribution 
-(for example, models with SLy4 \ac{EOS} and $q=1$, shown in Fig.~\ref{fig:ejecta_vel_hist})
-leads to a wide \ac{LC}, with an early rise time, comaptible with that of the early \GRB{}
-afterglow. This behaviour is guverned by the deceleration of the fastest ejecta shells, 
-emission from which peak early. If the velocity distribution is rather narrow, with most 
-material moving at ${\leq}0.2$~c (such is the model with LS220 \ac{EOS} and $q=1.43$) 
-the \ac{LC} rise is steeper and occurs later (${\sim}10^2$~days after merger). 
-
-%% --- general agreement with observations
-Notably, the \ac{kN} afterglow \acp{LC} of most models are in good agreement with the 
-rebrightening of the \GRB{} within the uncertain microphsical parameters and \ac{ISM} 
-density.
-Specifically, this agreement is particularly good for models with moderately stiff 
-\acp{EOS} and $1.00<q<1.82$, with respect to the \ac{LC} peak time.
 
 \begin{figure}
     \begin{center}
@@ -249,17 +230,37 @@ Specifically, this agreement is particularly good for models with moderately sti
             $\varepsilon_{\rm B}\sim 10^{-2},2\times 10^{-3},10^{-3}$ for models with 
             LS220, BLh and SFHo \acp{EOS} respectively.
             (Adapted from \citet{Hajela:2021faz})\red{rephrased}
-        }
+        } \label{fig:kn_afterglow}
     \end{center}
-    \label{fig:kn_afterglow}
 \end{figure}
 
+Fig.~\ref{fig:lightcurves} shows the \acp{LC} in X-ray and radio bands for several 
+representative \ac{BNS} merger models together with latest \GRB{} observational data. 
+%% --- lightcurve shape
+We observe, that ejecta velocity and angular distribution defines primarily the shape of the \acp{LC}.
+Specifically, broad velocity distribution (found in equal mass \ac{BNS} models 
+with soft \ac{EOS}, \eg, SLy4 \ac{EOS}) as shown in Fig.~\ref{fig:ejecta_vel_hist} 
+translates into wide \acp{LC}, with an early rise time, comaptible with that of the early \GRB{} afterglow. 
+This behaviour is guverned by the deceleration of the fastest ejecta shells, 
+emission from which peak early. If the velocity distribution is rather narrow, with most of the 
+material moving at ${\leq}0.2$~c (such is the model with LS220 \ac{EOS} and $q=1.43$) 
+the \ac{LC} rise is steeper and occurs later (${\sim}10^2$~days after merger). 
+
+%% --- general agreement with observations
+Notably, the \ac{kN} afterglow \acp{LC} computed for most of our \ac{BNS} merger 
+models are in good agreement with the 
+rebrightening of the \GRB{} within the uncertainty introduced by microphsical 
+parameters and \ac{ISM} density.
+Specifically, this agreement is particularly good for models with moderately stiff 
+\acp{EOS} and $1.00<q<1.82$, with respect to the \ac{LC} peak time.
+
+
 From the \GRB{} model fitting the electron power law index $p$ is well constrain to $p=2.15$
-\citep[\eg][]{Hajela:2019mjy}. The new emergent comonent in \ac{GRB} was found to have a lower 
+\citep[\eg][]{Hajela:2019mjy}. The new emergent comonent in \GRB{} was found to have a lower 
 $p=2.05$ \citep{Hajela:2021faz}. The effect of the decrease in $p$ is shown in 
 Fig.~\ref{fig:kn_afterglow}. Notably, the parameters $p$, $\varepsilon_e$. $\varepsilon_b$ and 
 $\nism$ are very degenerate, meaining that the change of one can be offset by the change in 
-another withing these parameters' ranges of credibility. 
+another withing these parameters' ranges of credibility inferred for \GRB{}. 
 
 \begin{figure}%%[t]
     \centering 
@@ -282,15 +283,16 @@ another withing these parameters' ranges of credibility.
 %% --- Peak FLUX --- [UPDATED] --- IN CASE IT IS NEEDED [ BUT WITH NO FIGURE ]
 If we fix the \ac{ISM} density and microphysical parameters to 
 $\nism=5\times10^{-3}$~\gcm, $\varepsilon_e=0.1$ and $\varepsilon_b=5\times10^{-3}$, 
-we observe that the \ac{LC} peak flux, $F_{\nu;p}$, is the highest for 
-for soft \acp{EOS} such as SLy4. 
+we observe that the \ac{LC} peak flux, $F_{\nu;p}\,$, is the highest for 
+for models with soft \acp{EOS} such as SLy4. 
 In general, however, we do not find a strong dependency between the \ac{EOS} and $F_{\nu;p}$.
-With respect to the \mr{} we find that for models with sift \ac{EOS} the larger the \mr{},
-the smaller the $F_{\nu;p}$. 
+With respect to the \mr{} we find that for models with stiff \acp{EOS}, 
+the larger the \mr{}, the smaller is the $F_{\nu;p}$. 
+%
 This behaviour can be attributed to the overall dependency of the ejecta mass-averaged 
 velocity on the \mr{} (see Fig.~\ref{fig:ejecta:dyn:dsfits}).
 As the mass-averaged velocity decreases when \mr{} increases, the 
-total kinetic energy budget of these models rises \red{eh?}.
+kinetic energy budget of the fast ejecta of these models decreases. 
 Slower, more massive ejecta have lower peak flux.
 Notably, for the models with stiffer \acp{EOS} the dependency on \mr{} is not clear. 
 
@@ -305,11 +307,11 @@ Notably, for the models with stiffer \acp{EOS} the dependency on \mr{} is not cl
 %% --- uncertanties -- subdominat -- ejecta
 We find that the the \ac{LC} shape and peak time do not depend strongly on the 
 uncertain microphysical parameters and \ac{ISM} density. With respect to the latter, 
-the peak time changes by a facter of a few when $\nism\in(10^{-3},10^{-2})~\ccm$.
+the peak time changes by a facter of a few when $\nism\in(10^{-3},10^{-2})\,\ccm$.
 Finite resolution effects that are present in ejecta properties do affect the 
-afterglow \acp{LC}. Specifically, the $t_p$ changes by a factor of ${\leq2}$, 
-and $F_{\nu;p}$ changes withing a factor of ${\leq4}$. However, our analysis 
-shows that the uncertainty in $\nism,\,\varepsilon_e,\,\varepsilon_b$ and $p$ are larger. 
+afterglow \acp{LC}. Specifically, the $t_p$ changes by a factor of 
+${\leq2}$, and $F_{\nu;p}$ changes withing a factor of ${\leq4}$. However, 
+our analysis shows that the uncertainty in $\nism,\,\varepsilon_e,\,\varepsilon_b$ and $p$ are larger. 
 %% --- Robust feature
 %% Specifically, the \ac{LC} shape and the peak time appear to be robust 
 %% both with resolution and with microphysics, as they set by the dynamics 
@@ -351,26 +353,28 @@ uncertain microphysical parameters.
 %% as their $F_{\nu,p}$ is lower then the observations.
 %% However, an increase in $\epsilon_B$ by a factor of $2$ changes this result.
 The condition (i), however, is more robust from that point of view and allows to 
-asses afterglow from which models is more supported by observations.
+asses, afterglow from which models is more supported by observations.
 
 %% --- PEAK TIME 
-We show the peak time of afterglow \acp{LC} of all our models in 
+We show the peak time of the afterglow \acp{LC} of all our models in 
 Fig.~\ref{fig:lightcurve_peaks}. There, the microphysical parameters and $\nism$ are fixed 
 and listed in Tab.~\ref{tab:pars}, last row). 
 We consider all models here, including those that do not have fast ejecta tail 
-(see Sec.~\ref{sec:bns_sims:fast_de}) as they their ejecta is still energetic enough 
+(see Sec.~\ref{sec:bns_sims:fast_de}) as their ejecta is still energetic enough 
 to produce bright afterglow. 
 %
 The \ac{LC} peak times are ${\sim}10^3$~days for all models that do not undergo the 
-tidal disruption. The latter, model with BLh \ac{EOS} and $q=1.82$ produces massive and 
-slow ejecta that is cahracteried by a late afterglow \ac{LC} peak ${\sim}10^4$~days.
+tidal disruption. The latter, (BLh $q=1.82$ (\texttt{SR}) model) produces massive and 
+slow ejecta that is characterized by the late afterglow \ac{LC} peak 
+of ${\sim}10^4\,$days.
 %
 Overall, we observe that the $t_{p}<10^3$~days for models with $q\sim1$ and 
 $t_p>10^3$~days for models with larger \mr{}. This relation appears more prominent for 
-models with soft \ac{EOS}, as the ejecta in these models has a strong controbution from 
-a shocked, fast component when \mr{} is small.
-The kinetic energy of the ejecta fast tail increases with the contribution from the 
-shocked component. And the afterglow of faster, less massive ejecta peaks earlier 
+models with soft \acp{EOS}, as the ejecta in these models has a strong contribution from 
+shocked, fast component of \ac{DE} (when \mr{} is small), and the 
+kinetic energy of the ejecta fast tail increases with the contribution from the 
+shocked component (see Fig.~\ref{fig:ejecta_v06}). 
+And the afterglow of faster, less massive ejecta peaks earlier 
 \citep[\eg][]{Hotokezaka:2015eja}.
 Indeed, the time of the \ac{LC} peak depends primarily on the ejecta 
 dynamics, the so-called deceleration time \citep[\eg][]{Piran:2012wd}.
@@ -380,8 +384,10 @@ dynamics, the so-called deceleration time \citep[\eg][]{Piran:2012wd}.
 %% --- 
 In Fig.~\ref{fig:lightcurve_peaks} we also show the time of the latest observation 
 of the rising flux in \GRB{} (horizontal line). This provides the lower limit on $t_p$
-on accordance with (ii).
-Synthetic \acp{LC} of models with moderate amount of fast ejecta, \eg, models with 
+in accordance with (ii).
+%
+We observe that the synthetic \acp{LC} of models with 
+moderate amount of fast ejecta, \eg, models with 
 \acp{EOS} of mild stiffness and \mr{}, lie above the limit, while models with very 
 energetic fast tails, found $q=1$ models with very stiff \acp{EOS}, peak earlier. 
 %% ---
