@@ -305,7 +305,7 @@ For the disk mass we assume
 10^{-4})M_{\odot}\ .
 \label{eq:disk:mdisk_err}
 \end{equation}
-following again \citep{Radice:2018pdn}.
+following again \citet{Radice:2018pdn}.
 
 %% =================================================================================
 %%
@@ -317,7 +317,7 @@ following again \citep{Radice:2018pdn}.
 \section{Method}
 
 We perform two types of analysis in this chapter.
-First, (i), we asses the quality of different fitting formulae for a given
+First, (i) we asses the quality of different fitting formulae for a given
 dataset and determine the best performing one.
 Second, (ii), we evaluate the differences between datasets that 
 simulate microphysics and neutrino in different ways (if at all).
@@ -392,7 +392,7 @@ electron fraction, and \ac{RMS} half-opening angle. The first three quantity are
 Fig.~\ref{fig:ejecta:dyn:ds} for all datasets. We note that the overall properties of the 
 ejecta are similar between the \DSrefset{} and \DSheatcool{}. This is expected, as these 
 datasets include similar, albeit not the same, physics, regarding \ac{EOS} and neutrino treatment.
-The important exception are the high \mr{} models of \DSrefset{} as their \ac{DE} of tidal 
+The important exceptions are the high \mr{} models of \DSrefset{} as their \ac{DE} of tidal 
 origin only \citep{Bernuzzi:2020txg}.
 Comparing the properties of datasets with and without neutrino reabsorption, we observed 
 that the the inclusion of this effect leads to the \ac{DE} of higher mass, in addition to 
@@ -418,7 +418,7 @@ where we also report the standard deviation computed over the relevant simulatio
 If we add other models with neutrino heating and cooling, \ie, the \DSheatcool{} models,
 we observed that the mean value increases to $(4.17 \pm 3.65)\times 10^{-3}M_{\odot}$.
 This is due to the models with M$1$ neutrino scheme of \citet{Vincent:2019kor} and 
-\citet{Sekiguchi:2016bjd}
+\citet{Sekiguchi:2016bjd}.
 %
 As expected, the inclusion of models with neutrino cooling only, \DScool{}, 
 leads to the decrease in $\amd$ to $2.91\times 10^{-3}M_{\odot}$.
@@ -445,20 +445,23 @@ of models computed with polytropic \acp{EOS}, specifically, models from
     }
     \label{fig:mej_parspace}
 \end{figure}
-%
+
+
 Next, we perform the fitting procedure to the total ejecta mass. 
 We consider the widely used fitting formulae first, 
 \citep{Kawaguchi:2016ana,Dietrich:2016fpt,Radice:2018pdn}, 
 %
 \begin{eqnarray}
+%\begin{equation}
 \label{eq:fit_Mej}
 &\left(\frac{\amd}{10^{-3}M_{\odot}}\right)_{\rm fit} =
 \Big[\alpha\Big(\frac{M_B}{M_A}\Big)^{1/3}\Big(\frac{1-2C_A}{C_A}\Big)+  
 \beta\Big(\frac{M_B}{M_A}\Big)^n \\
 &+ \gamma\Big(1-\frac{M_A}{M_{b\,A}} \Big)\Big]M_{b\,A} + (A\leftrightarrow B) + \delta\non,
+%\end{equation}
 \end{eqnarray}
 %
-and the model presented in \citet{Kruger:2020gig}:
+and the fitting formula presented in \citet{Kruger:2020gig}:
 %
 \begin{equation}
 \label{eq:fit_Mej_Kruger}
@@ -470,16 +473,17 @@ C_A\Bigg)M_A + (A\leftrightarrow B)\right. \ .
 We also employ simple second-order polynomials: 
 the one-parameter formula $(\tilde\Lambda)$ and the two-parameter
 formula in $(q,\tilde\Lambda)$, 
-Eqs.~\eqref{eq:polyfit2} and Eq.~\ref{eq:polyfit22}.  %\red{namely -- MOVED TO EJ SECTION} 
+Eqs.~\eqref{eq:polyfit2} and Eq.~\eqref{eq:polyfit22}
+respectively.  %\red{namely -- MOVED TO EJ SECTION} 
 %
 %We limit the degree of the polynomial to the second order due to the intrinsic 
 %scatter in the data. We leave a more detailed investigation to future work as 
 %more \ac{NR} models at higher resolution become available.
-%
+
 The fitting procedure is performed considering the $\log_{10}(\md)$ instead of 
 $\md$ for numerical reasons. This is motivated by the fact that, even withing 
 \DSrefset{} the values of the $\md$ changes by an order of magnitude for a very 
-similar values of $q$ and $\tilde{\Lambda}$ (See \ref{fig:ejecta:dyn:dsfits}).
+similar values of $q$ and $\tilde{\Lambda}$  (Fig.~\ref{fig:ejecta:dyn:dsfits}).
 %
 Additionally, the error measure we consider for $\md$, Eq.~\eqref{eq:ejecta:mej_err}, 
 is biased towards the data with smaller values of $\md$ (the lower error bar for the 
@@ -507,11 +511,12 @@ approaches lead to similar qualitative fit within the domain of calibration.
 %
 Considering the fitting formulae from the literature, Eq.~\eqref{eq:fit_Mej} and 
 Eq.~\eqref{eq:fit_Mej_Kruger}, we find that the outcome of the fitting procedure depends 
-strongly on the non linear fitting algorithm and on initial guesses. This makes the 
+strongly on the non-linear fitting algorithm and on initial guesses. This makes the 
 fitting ill-constrained. Moreover, in the Eq.~\eqref{eq:fit_Mej_Kruger} the compactness 
-enters twice with opposite trends. The physical motivation of this formula is not clear.
+enters twice with opposite trends. The physical motivation of this choice is not clear.
 %
-We report all the fit calibrations in Appendix~\ref{app:fit}
+We report all the fit calibrations in %Appendix~\ref{app:fit}
+Sec.~\ref{app:coefs}
 with the calibration for the polynomials reported in Tab.~\ref{tab:dynfit:poly};
 and for the Eqs.\eqref{eq:fit_Mej}-\eqref{eq:fit_Mej_Kruger} -- 
 in Tab.~\ref{tab:dynfit:fit_form}.
@@ -528,20 +533,20 @@ lowest $\chid=1.55$, is the second order two-parameter polynomial $P_2^2(q,\tild
 Notably, the Eq.~\eqref{eq:fit_Mej_Kruger} gives a very similar $\chid=1.58$.
 %
 The performance of the $P_2^2(q,\tilde{\Lambda})$ for individual models of the \DSrefset{} 
-is shown on the first panel of Fig.~\ref{fig:ejecta:dyn:dsfits}
+is shown on the first panel of Fig.~\ref{fig:ejecta:dyn:dsfits}.
 %
 % --- From Main paper
-We recall that the \DSrefset{} contains simulations of Ch.~\ref{ch:bns_sism}, and presented 
-in Tab~\ref{tab:sim}. 
-The plot shows the \ac{DE} mass as a function of the \mr{} and (color coded) $\tilde\Lambda$.
-and highlights the strong dependency of the $\md$ of these parameters in the set of targeted 
-simulations. 
+%We recall that the \DSrefset{} contains simulations of Ch.~\ref{ch:bns_sism}, and presented 
+%in Tab~\ref{tab:sim}. 
+%The plot shows the \ac{DE} mass as a function of the \mr{} and (color coded) $\tilde\Lambda$.
+%and highlights the strong dependency of the $\md$ of these parameters in the set of targeted 
+%simulations. 
 %
 %
-Adding the \DSheatcool{} we find a rise in $\chid$ evaluated for all fitting formulae. 
+Adding the models of \DSheatcool{} we find a rise in $\chid$ across all fitting formulae. 
 This can be attributed to the models of \DSheatcool{} spanning a significantly broader range 
 in terms of $\tilde{\Lambda}$. Additionally, with an addition of models from \DSheatcool{} 
-the systematic and methodological uncertainties enter the picture and as we shall see from 
+the systematic and methodological uncertainties enter the picture, and as we shall see from 
 the analysis, they will dominate the overall statistics.
 %
 When all datasets are included, the $P_2^2(q,\tilde{\Lambda})$ and 
@@ -549,10 +554,10 @@ Eq.~\eqref{eq:fit_Mej_Kruger}, remain the best fitting formulae albeit with larg
 $\chid$ of $44$ and $40$ respectively.
 %
 Similar performance of these fitting formulae can be attributed to the fact that in 
-both \mr{} enters explicitly, allowing to capture the leading trends in data.
+both, \mr{} enters explicitly, allowing to capture the leading trends in data.
 The Eq.~\eqref{eq:fit_Mej} also includes the \mr{} but has more degrees of freedom and 
 thus less favorable by the $\chid$ analysis. Additionally, it was pointed out in 
-\citet{Radice:2018pdn}, that this formula dies not reproduce well the systematic 
+\citet{Radice:2018pdn}, that this formula does not reproduce well the systematic 
 trends in the set of models with leakage neutrino scheme.
 %
 Notably, the second order polynomial in only one quantity, $\tilde{\Lambda}$, is failing to 
@@ -560,18 +565,18 @@ capture the main trends in data, giving $\chid=123$ when all models from all dat
 considered. Similarly, a fit with no free parameters, the mean value, does not perform well, 
 giving very large $\chid=196$.
 %
-Thus, we conclude, that the dependency of \mr{} ought to be included into the fitting 
-formula to capture the leading trends in statistical behaviour of $\amd$.
+Thus, we conclude, that the dependency on the \mr{} ought to be included into a fitting 
+formula in order to to capture the leading trends in statistical behaviour of $\amd$.
 
 
-\red{This paragraph is not approved at the time of writing}
+%\red{This paragraph is not approved at the time of writing}
 We show how the $P_2^2(q,\tilde{\Lambda})$ performs when only the 
 \DSrefset{} \& \DSheatcool{} and all models are considered on Fig.~\ref{fig:mej_parspace} 
 on the left and right panels respectively. 
 We observe that the smooth polynomial fit cannot capture the oscillations in data, where 
 the $\amd$ changes by up to an order of magnitude for a very similar values of \mr{} and 
 $\tilde{\Lambda}$. Overall, while for the \DSrefset{} \& \DSheatcool{} the leading trends 
-are appears to be captured by the fit, for all the datasets the fits' predictive power 
+appears to be captured by the fit, for all the datasets the fits' predictive power 
 reduces significantly.
 %
 \begin{figure}[t]
@@ -598,24 +603,24 @@ reduces significantly.
 
 %% --- residual plots
 We display the relative differences between the model data and fit provided data in 
-Fig.~\ref{fig:ejecta:dyn:m}. The plot shows that none of the fitting models can 
-reproduce the $\amd$ of the \DScool{} models with the leakage scheme employed.
+Fig.~\ref{fig:ejecta:dyn:m}. The plot shows that none of the fitting formulae can 
+reproduce the $\amd$ of the \DScool{} models with the leakage neutrino scheme employed.
 %
 While the Eq.~\eqref{eq:fit_Mej_Kruger} and $P_2^2(q,\tilde{\Lambda})$ showed similar 
-$\chid$, the plot shows that the latter reproduces the high ejecta masses better, 
-truncating the distribution at $\sim10^{-2}M_{\odot}$. 
+$\chid$, the plot shows that the latter reproduces the high ejecta masses better. 
+%truncating the distribution at $\sim10^{-2}M_{\odot}$. 
 The poor performance of the single parameter polynomial, $P_2^1(\tilde{\Lambda})$,
 is clear, as the fit gives an almost flat distribution around the mean value of $\amd$.
 Similarly, the Eq.~\eqref{eq:fit_Mej} cannot reproduce the large masses of some 
 models.
 %
 
-\red{This paragraph is not approved at the time of writing}
+%\red{This paragraph is not approved at the time of writing}
 Overall we conclude that the intrinsic scatter in the data hinders performance 
-of any smooth fitting formula. The inclusion \mr{} is required to capture the leading 
+of any smooth fitting formula. The inclusion of \mr{} is required to capture the leading 
 trends in data and the simple polynomial $P_2^2(q,\tilde{\Lambda})$ show a reasonably 
 good statistical performance.
-\gray{We recomment the calibration based on the models with }
+%\gray{We recomment the calibration based on the models with }
 %
 The statistical analysis for considered datasets suggests that the $\amd$ depends 
 sensibly on the physics input of the simulations: neutrino scheme and \ac{EOS} treatment.
@@ -628,7 +633,7 @@ to identify and capture leading trends.
 %% -----------------------------------------------------------
 
 
-\subsection{Mass-averaged velocity}
+\subsection{Mass-averaged velocity}\label{sec:stat:vejstat}
 
 %% VELOCITY 
 \begin{figure}[t]
@@ -662,21 +667,20 @@ to identify and capture leading trends.
 \end{figure}
 
 Considering the mass-averaged ejecta velocity, $\avd$, of the \DSrefset{}, we 
-find that it in overall agreement with the dataset with neutrino leackage scheme 
-of \citet{Radice:2018pdn}, and ranges from $0.11$~c to $0.27$~c. However, while in 
+find that it is in overall agreement with the dataset with neutrino leackage scheme 
+of \citet{Radice:2018pdn}, and ranges from $0.11\, c$ to $0.27\, c$. However, while in 
 that study there was no apparent correlation found between the velocity and binary 
 parameters upon visual inspection, we find that in models of \DSrefset{} the $\avd$ 
 is correlated with $\tilde{\Lambda}$, as shown in Fig~\ref{fig:ejecta:dyn:dsfits}.
 %
-From the plot we observe that the $\avd$ increases with $\tilde{\Lambda}$. This can 
-be attributed to the fact that the \ac{DE} in mergers with $q\sim1$ is dominated by the 
-shocked component and that the shocked component has on average higher velocities when 
-the \acp{NS} of lower radii (with larger $\tilde{\Lambda}$) collide.
-%
-However, in mergers where \mr{} is large enough, the ejecta is dominated by the tidal 
-component that is on average slower as seen in \DSrefset{} and on 
-Fig~\ref{fig:ejecta:dyn:dsfits}.
-%
+%From the plot we observe that the $\avd$ increases with $\tilde{\Lambda}$. This can 
+%be attributed to the fact that the \ac{DE} in mergers with $q\sim1$ is dominated by the 
+%shocked component and that the shocked component has on average higher velocities when 
+%the \acp{NS} of lower radii (with larger $\tilde{\Lambda}$) collide.
+%However, in mergers where \mr{} is large enough, the ejecta is dominated by the tidal 
+%component that is on average slower as seen in \DSrefset{} and on 
+%Fig~\ref{fig:ejecta:dyn:dsfits}.
+
 Overall, the average $\avd$ of all models of \DSrefset{} is 
 %
 \begin{equation}
@@ -685,15 +689,15 @@ Overall, the average $\avd$ of all models of \DSrefset{} is
 \end{equation}
 %
 The average $\avd$ does not significantly change when the the models of \DSheatcool{} 
-are added, reaming at $(0.18 \pm 0.04) \, c$.
-Thus we note, that the ejecta velocity is recovered robustly by simulations with 
+are added, and remain at $(0.18 \pm 0.04) \, c$.
+Hence, we note, that the ejecta velocity is recovered robustly by simulations with 
 similar phsyics input but different numerical setups (unlike the ejecta mass (see above)).
 %
-Adding models with neutrino leakage scheme only, \DScool{}, we find that the mean value of 
-$\avd$ increases to $0.19$~c, while if all the simulations are added, including the \DSnone{}, 
-the increase is more significant, to $0.23$~c. The latter can be attributed to the models 
-with polytropic \acp{EOS} of \citet{Bauswein:2013yna}, which are seen on 
-Fig.~\ref{fig:ejecta:dyn:ds}, as models with highest $\avd$.
+Adding models with neutrino leakage scheme only, \DScool{}, we find that the mean value of ejecta velocity increases to $0.19\, c$, while if all the simulations are added, including the \DSnone{}, 
+the increase is more significant, to $0.23\, c$. The latter can be attributed to the models 
+with polytropic \acp{EOS} of \citet{Bauswein:2013yna}, which as
+displayed in Fig.~\ref{fig:ejecta:dyn:ds}, are the models with 
+the highest $\avd$.
 
 
 %% --- fitting
@@ -702,10 +706,10 @@ reported in \citet{Dietrich:2016hky,Radice:2018pdn}
 %
 \begin{equation}
 {\avd}_{\rm fit} = \Big[\alpha\Big(\frac{M_A}{M_B}\Big)(1+\gamma C_A)\Big] + (A\leftrightarrow B) + \beta
-\label{eq:fit_vej} \, .
+\label{eq:fit_vej} \, ,
 \end{equation}
 %
-and the one and two- parameter second order polynomials in $q$ and $\tilde{\Lambda}$, 
+and one and two- parameter second order polynomials in $q$ and $\tilde{\Lambda}$, 
 Eq.~\eqref{eq:polyfit2}-\eqref{eq:polyfit22}. Notably, the former equation, 
 Eq.~\eqref{eq:fit_vej}, gives a fit that is not well constrained and was found to 
 depend on the choice of the initial guesses for the fitting procedure.
@@ -715,7 +719,7 @@ in Tab.~\ref{tab:dynfit:fit_form} for the Eq.~\eqref{eq:fit_vej}.
 The performance of different fitting formulae is reported in 
 Tab.~\ref{tbl:fit:ejecta:chi2dofsall} in terms of $\chid$.
 %
-For the models of \DSrefset{} the best fitting model is $P_2^2(q,\tilde\Lambda)$ giving the 
+For the models of \DSrefset{}, the best fitting model is $P_2^2(q,\tilde\Lambda)$ giving the lowest 
 $\chid=1.1$ and the second best is the Eq.~\eqref{eq:fit_vej} with $\chid=1.5$.
 The hierarchy does not change when all the datasets are considered with 
 the exception of the set of models with no neutrinos and mostly polytropic 
@@ -758,7 +762,7 @@ the two fitting formulae give comparable results in terms of $\chid$.
 %% Residual plots
 In Fig.~\ref{fig:ejecta:dyn:v} the $\avd$ from datasets is compared to the one 
 inferred from the fitting formulae. The $P_2^2(q,\tilde\Lambda)$ and the 
-Eq.~\eqref{eq:fit_vej} are able to reproduce the model data within the $\sim50\%$ 
+Eq.~\eqref{eq:fit_vej} are able to reproduce the model data within the ${\sim}50\%$ 
 error margin. Notably, models from \DSnone{} are not well reproduced by any fitting 
 formula considered. The single parameter polynomial, $P_2^1(\tilde\Lambda)$ does not 
 reproduce well the models with low $\avd$ and in general shows worse performance in 
@@ -782,9 +786,9 @@ specifically, the \mr{}.
 \subsection{Electron fraction} 
 
 Considering the average value of the mass-averaged electron fraction, $\ayd$, we find 
-that is models of \DSrefset{} it varies from $0.03$ found in very high \mr{} binaries,
+that when models of \DSrefset{} only are considered, it varies from $0.03$ found in very high \mr{} binaries,
 that produce cold, low-$Y_e$, tidal ejecta \citep{Bernuzzi:2020tgt} to $0.27$ in $q\sim1$ 
-binaries, as shown in Fig.~\ref{fig:ejecta:dyn:dsfits}.
+binaries (see also Fig.~\ref{fig:ejecta:dyn:dsfits}). 
 %
 The mean value is 
 %
@@ -793,35 +797,34 @@ The mean value is
 \overline{\ayd} = 0.18 \pm 0.07.
 \end{equation}
 %
-Adding the rest of the models with neutrino heating and cooling, \DSheatcool{} we observe
-an increase of the mean $\ayd$, to $0.20 \pm 0.06$. This can be attributed to the overall 
+Adding the rest of models with neutrino heating and cooling, \DSheatcool{},  we observe
+an increase in the mean $\ayd$, to $0.20 \pm 0.06$. This can be attributed to the overall 
 high $\ayd$ of models with leakage+M$1$ neutrino scheme of 
 \citet{Sekiguchi:2015dma,Sekiguchi:2016bjd}, (see Fig.~\ref{fig:ejecta:dyn:ds}).
 Additionally, most of the models of \DSheatcool{} are low \mr{} models 
 \citep[\eg][]{Vincent:2019kor}.
 %
-Models with leakage neutrino scheme of \DScool{} has on average lower 
-$\ayd$ of $0.14 \pm 0.04$. If added to the \DSheatcool{} and \DSrefset{} the overall average 
+Models with leakage neutrino scheme of \DScool{}, naturally, have on average lower 
+$\ayd$ of $0.14 \pm 0.04$. If models of the \DSheatcool{} and \DSrefset{} are added, the overall average 
 electron fraction decreases back to $0.18$ with standard deviation of $0.06$.
-%
-Here we consider only the polynomials, Eq.~\ref{eq:polyfit2}, Eq.~\ref{eq:polyfit22} as fitting 
-functions and report the resulted calibration in Tab.~\ref{tab:dynfit:poly}.
-When only models of \DSrefset{} are considered, fitting with $P_2^2(q,\tilde{\Lambda})$ 
-results in $\chid=9.1$. This value increase only slightly to $9.7$ when other models with 
+
+As fitting function here we consider only the polynomials, Eq.~\eqref{eq:polyfit2}-\eqref{eq:polyfit22}. 
+We report the resulted calibration in Tab.~\ref{tab:dynfit:poly}.
+When only models of \DSrefset{} are considered, fitted with $P_2^2(q,\tilde{\Lambda})$, the result is $\chid=9.1$. This value increase only slightly to $9.7$ when other models with 
 neutrino cooling and heating of \DSheatcool{} are added. This suggests that the 
 $P_2^2(q,\tilde{\Lambda})$ is able to capture the leading trends in data with similar 
 physics setup. If we add the models of \DScool{}, where the data is statistically different, 
 the $\chid$ increases to $24.9$. Indeed, the $\ayd$ of models with only leakage scheme 
 is systematically different from those of \DSheatcool{} and \DSrefset{} 
-(see Fig.~\ref{fig:ejecta:dyn:ds}).
+as Fig.~\ref{fig:ejecta:dyn:ds} displays.
 
 %% Residual plots
-We compare the $\ayd$ from datasets and predicted by fitting formulae in 
-Fig.~\ref{fig:ejecta:dyn:y} Notably, for all datasets, the $P_2^2(q,\tilde\Lambda)$ is able to 
-reproduce both the low-$Y_e$ and high-$Y_e$ models of \DSheatcool{} and \DSrefset{}.
-It is important to emphasize that the effects of neutrino absorption are of essence for accurate
-computation of electron fraction. Thus, larger set of models available with corresponding 
-physics setup would allow us to improve the fitting formulae.
+We compare the values of $\ayd$ from datasets and predicted by fitting formulae in 
+Fig.~\ref{fig:ejecta:dyn:y}. Notably, for all datasets, the $P_2^2(q,\tilde\Lambda)$ is able to 
+reproduce both the low-$Y_e$ and high-$Y_e$ models of \DSheatcool{} and \DSrefset{}, and therefore the best fitting formula among considered.
+%It is important to emphasize that the effects of neutrino absorption are of essence for accurate
+%computation of electron fraction. Thus, larger set of models available with corresponding 
+%physics setup would allow us to improve the fitting formulae.
 
 %% -----------------------------
 %%
@@ -829,10 +832,10 @@ physics setup would allow us to improve the fitting formulae.
 %%
 %% -------------------------------
 
-\subsection{Root mean square half opening angle} 
+\subsection{Root mean square half opening angle} \label{sec:stat:thetarms}
 
-The eject geometry has been shown to be very important for modeling electromagnetic 
-counterparts to mergers \citep[\eg][]{Perego:2017wtu}. 
+The ejecta geometry has been shown to be very important for modeling \ac{EM} 
+counterparts to mergers (see chapters~\ref{ch:kilonova} and \ref{ch:afterglow}). %\citep[\eg][]{Perego:2017wtu}. 
 Thus, we perform a statistical analysis of the mass-averaged \ac{RMS} half-opening 
 angle of the ejecta across the plane of the binary, $\athetarms$.
 %% --- 
@@ -849,14 +852,13 @@ the element of ejecta respectively.
 Unfortunately, this quantity is available only for the \DSrefset{} and for the subset 
 of models of \citet{Radice:2018pdn} some of which are in \DScool{} and some are in 
 \DSheatcool{} (see Tab~\ref{tab:data}). Hence, the statistical analysis is limited 
-to a small sample of models. The dependency of the $\athetarms$ on the other ejecta 
-parameters discussed above is shown in Fig.~\ref{fig:ejecta:dynej_thetarms}.
+to a small sample of models. The dependency of the $\athetarms$ on other ejecta is shown in Fig.~\ref{fig:ejecta:dynej_thetarms}.
 %
 With respect to the models of \citet{Radice:2018pdn}, we observe that the models of the 
-\DSrefset{} have overall higher $\athetarms$. This suggests that the inclusion of 
+\DSrefset{} have overall larger $\athetarms$. This suggests that the inclusion of 
 neutrino reabsorption leads to a more spherically distributed ejecta.
 %
-The third panel of Fig.~\ref{fig:ejecta:dynej_thetarms} shows the clear linear relation 
+The third panel of Fig.~\ref{fig:ejecta:dynej_thetarms} shows a clear linear relation 
 between the $\athetarms$ and $\ayd$, that can be attributed to the \mr{} dependency of 
 ejecta properties. Binaries with large \mr{} have ejecta of mostly tidal origin that 
 is confined to the binary plane and characterized by low electron fraction. On the 
@@ -894,7 +896,7 @@ The comparison between the values of $\athetarms$ from datasets and inferred by
 fitting formulae is presented in Fig.~\ref{fig:ejecta:dyn:theta}.
 The plot shows that the $P_2^2(q,\tilde{\Lambda})$ reproduces considerably better 
 the low-$\athetarms$ models from the datasets than the one-parameter $P_2^1(\tilde{\Lambda})$.
-Both fitting formulae are able to reproduce the model data within the $\sim 10$~deg
+Both fitting formulae are able to reproduce the model data within the ${\sim}10\,$deg
 error margin.
 %
 %Overall, we conclude that the $P_2^2(q,\tilde{\Lambda})$ is a better fitting formulae.
@@ -950,68 +952,72 @@ error margin.
 %% -------------------------------------------------------------
 
 Considering the disk masses of the models of \DSrefset{} extracted at the end of 
-the simulations (see Ch.~\ref{ch:bns_sims}) we observe that the minimum value, 
-$0.01\Msun$, in models that produce a \ac{BH}, and the maximum value, $0.3\Msun$, 
-in $q\sim1$ models that produce a long-lived \ac{MNS} remnant 
-(see Sec.~\ref{sec:remdisk}).
-The mean value reads 
+the simulations (see Ch.~\ref{ch:bns_sims}, Sec.~\ref{sec:bns_sims:remdisk}) we find that the minimum value, 
+$0.01\,\Msun$, in models that produce a \ac{BH}, and the maximum value, $0.3\,\Msun$, 
+in $q\sim 1$ models that produce a long-lived \ac{NS} remnant 
+(see Sec.~\ref{sec:bns_sims:remdisk}).
+%
+The mean value is  
 %
 \begin{equation}
-\overline{M_{\rm disk}} = (0.156 \pm 0.084) M_{\odot}.
+\overline{M_{\rm disk}} = (0.156 \pm 0.084)\,\Msun.
 \end{equation}
 %
-The value decreases slightly to $(0.147 \pm 0.075)M_{\odot}$ if all models with 
-advanced physics are added (models of \DSheatcool{}), \gray{This can be attributed to 
-    the fact that most models in \DSheatcool{} are less massive than
-    those of the targeted \DSrefset{}}
-The addition of the models of \DScool{} decreases the mean value further to $0.125\Msun$ 
-with the standard deviation of $0.081\Msun$. This is because the largest set of model of 
+The value decreases slightly to $(0.147 \pm 0.075)\,\Msun$ if all models with 
+advanced physics are added (models of \DSheatcool{}), 
+%\gray{This can be attributed to 
+%    the fact that most models in \DSheatcool{} are less massive than
+%    those of the targeted \DSrefset{}}
+The addition of the models of \DScool{} decreases the mean value further to $0.125\,\Msun$ 
+with the standard deviation of $0.081\,\Msun$. This is because the largest set of model of 
 \DScool{}, the models of \citet{Radice:2018pdn} includes binaries of very high mass that 
-at merger form a \ac{BH} with no disk left. Addition of \DSnone{} does not change the mean 
-value as disk masses of models of this dataset are in general agreement with previous 
+at merger form a \ac{BH} with no disk left. 
+If we add models of \DSnone{} the mean value as disk masses 
+does not seem to be affected as models of this dataset show 
+properties that are in general in agreement with previous 
 datasets.
 %
-It is important to note the large uncertainties that enter the statistical analysis of the 
-disk mass, and a fundamental difference between disks around \ac{BH} and \ac{MNS} remnants.
-Specifically we emphasize that in source material (see Tab.~\ref{tab:data}) the disk mass is 
+It is important to emphasize that there are large uncertainties that 
+enter the statistical analysis of the 
+disk mass, in addition to fundamental differences between disks around \ac{BH} and \ac{NS} remnants.
+Specifically we emphasize that in the source material (see Tab.~\ref{tab:data}) the disk mass is 
 computed with different method. 
 %
-In \citet{Dietrich:2015iva,Dietrich:2016hky} only disks around a \ac{BH} remnant are considered, 
-and their masses are evaluated ${\approx}1$~ms after the \ac{BH} formation as a baryonic mass 
+In \citet{Dietrich:2015iva,Dietrich:2016hky} only disks around \ac{BH} remnants are considered, 
+and their masses are evaluated ${\approx}1\,$ms after the \ac{BH} formation as a baryonic mass 
 outside the \ac{AH}, while in \citet{Sekiguchi:2016bjd} the disk masses are evaluated 
 ${\approx}30$~ms after the collapse.
 %
-In \citet{Radice:2018pdn}, both disks around \ac{BH} and \ac{MNS} remnants are considered. 
+In \citet{Radice:2018pdn}, both disks around \ac{BH} and \ac{NS} remnants are considered. 
 For the former case, the $M_{\text{disk}}$ is evaluated as a mass outside the \ac{AH}, while for
 the latter, same density criterion for the disk adopted as in Ch.~\ref{ch:bns_sims}, \ie, the 
 baryonic mass with rest mass density $\rho\leq10^{13}$~\gcm.
 %
 In \citet{Kiuchi:2019lls} the density criterion is used regardless of the remnant: 
-\ac{BH} or \ac{MNS}, with the $M_{\text{disk}}$ evaluated at an unspecified time.
+\ac{BH} or \ac{NS}, with the $M_{\text{disk}}$ evaluated at an unspecified time.
 %
 In \citet{Vincent:2019kor} the density criterion is used, and only the disks around 
-\ac{MNS} remnants are evaluated at fixed ${\sim}7.5$~ms after merger. This is however,
+\ac{NS} remnants are evaluated at fixed ${\sim}7.5$~ms after merger. This is however,
 significantly shorter, than the simulation end time of our simulations, when we evaluated 
 the mass of the disk. 
 %
 The method differences can introduce the systematic factor of a few.
 
 
-We consider the fitting formulae to the $M_{\text{disk}}$ as a function of binary parameters 
-available in literature: \citep{Radice:2018pdn}
+We consider the fitting formulae to the $M_{\text{disk}}$ as a function of binary parameters of \citet{Radice:2018pdn} 
 %
 \begin{equation}
 \left(\frac{M_{\rm{disk}}}{M_{\odot}}\right)_{\rm fit} = \text{max}\Big\{10^{-3}, \alpha + \beta \tanh\Big(\frac{\tilde{\Lambda}-\gamma}{\delta}\Big)\Big\}\,,
 \label{eq:fit_Mdisk}
 \end{equation}
 %
-and \citep{Kruger:2020gig}
+and \citet{Kruger:2020gig} 
 %
 \begin{equation}
 \left(\frac{M_{\rm{disk}}}{M_{\odot}}\right)_{\rm fit} =
 M_A\text{max}\Big\{5\times 10^{-4}, (\alpha C_A + \beta)^\gamma
 \Big)\Big\}
-+ (A\leftrightarrow B)\,.
++ (A\leftrightarrow B)\, ,
 \label{eq:fit_Mdisk_Kruger}
 \end{equation}
 %
@@ -1022,44 +1028,46 @@ Eqs.~\eqref{eq:polyfit2}-\eqref{eq:polyfit22}.
 We find that the value of $M_{\text{disk}}$ can change by up to an order of magnitude 
 for similar values of $q$ and $\tilde{\Lambda}$. Meanwhile, the error measure adapted for the 
 $M_{\text{disk}}$, Eq.~\eqref{eq:disk:mdisk_err}, is biased towards the lower values. 
-The solution that we resorted to in case of $\md$, \ie, to invoke the $\log_{10}$ of the 
+The solution that we resorted to in the case of $\md$, \ie, to invoke the $\log_{10}$ of the 
 quantity, is not applicable here due to special form of the fitting formulae,  
 Eqs.~\eqref{eq:fit_Mdisk}-\eqref{eq:fit_Mdisk_Kruger}, that lead to singularities in fitting.
 %
-This is because the Eq.~\eqref{eq:fit_Mdisk} and Eq.~\eqref{eq:fit_Mdisk_Kruger} give
-ill-conditioned fits. In addition, the fitting function Eq.~\eqref{eq:fit_Mdisk_Kruger} 
+%This is because the Eq.~\eqref{eq:fit_Mdisk} and Eq.~\eqref{eq:fit_Mdisk_Kruger} give
+%ill-conditioned fits. 
+In addition, the fitting function Eq.~\eqref{eq:fit_Mdisk_Kruger} 
 is not smooth, and can return singular values.
 %
 We thus resort to minimizing the residuals instead of $\chid$. However, we still 
 employ $\chid$ for the comparison of different fitting formulae performance. 
 
-The fit calibration of the polynomial fitting formulae is reported in 
-Tab.~\ref{tab:diskfit:poly}, and for the fitting formualae 
-Eqs.~\eqref{eq:polyfit2}-\eqref{eq:polyfit22}. -- in Tab.~\ref{tab:diskfit:form}.
+The calibration of the polynomial fitting formulae is reported in 
+Tab.~\ref{tab:diskfit:poly}, and for the fitting formualae, 
+Eqs.~\eqref{eq:polyfit2}-\eqref{eq:polyfit22} -- in Tab.~\ref{tab:diskfit:form}.
 The fit performance in terms of $\chid$ is presented in Tab.~\ref{tab:DiskFitchi2} for all
 fitting formulae. 
-%
-Upon visual inspection we find that the $M_{\rm disk}$ depends on the \mr{} 
+
+Upon visual inspection we find that the $M_{\rm disk}$ show 
+dependency on the \mr{} 
 and on the $\tilde{\Lambda}$. Indeed, considering the models of \DSrefset{} we find 
 that the polynomial in $q$ and $\tilde{\Lambda}$ displays the best performance with 
-$\chid=425$, with the second best being Eq.~\eqref{eq:fit_Mdisk_Kruger} with $\chid=443$.
+$\chid=425$, with the second best being, Eq.~\eqref{eq:fit_Mdisk_Kruger} with $\chid=443$.
 We recall that the large values of $\chid$ are expected as fitting procedure minimizes 
 residuals and not $\chid$.
 %
 The addition of models with advanced physics of \DSheatcool{} reduces the $\chid$ to 
 $175$ for the $P_2^2(q,\tilde{\Lambda})$. When the rest of the models are added 
 the $\chid$ rises only slightly to $197.6$.
-\red{Qualitatively the same behaviour we observe when perform the fitting producer for each 
-dataset independently within adding them together (see Appendix~\ref{app:fit}.
-}
+%\red{Qualitatively the same behaviour we observe when perform the fitting producer for each 
+%dataset independently within adding them together (see Appendix~\ref{app:fit}.
+%}
 
-\red{Not approved paragraph}
+%\red{Not approved paragraph}
 The values of the $M_{\text{disk}}$ from datasets against the contours of predicted 
 values by $P_2^2(q,\tilde{\Lambda})$ are shown in Fig.~\ref{fig:mdisk_parspace}.
-Similarly to the ejecta mass, the smooth fitting formula, such as $P_2^2(q,\tilde{\Lambda})$
+Similarly to the ejecta mass, the smooth fitting formula, such as $P_2^2(q,\tilde{\Lambda})$, 
 cannot reproduce the data on the level of individual models. However, the 
 polynomial appears to be able to capture the leading trend in data when 
-\DSrefset{} \& \DSheatcool{} is considered.
+models of \DSrefset{} \& \DSheatcool{} are considered.
 When all datasets are employed, the predictive ability of the fit reduces considerably.
 
 %% on the residuals
@@ -1067,17 +1075,16 @@ The relative differences between the data and values given by various fitting fo
 shown in Fig.~\ref{fig:stat_mdisk}.
 %
 The plot shows that the Eq.~\eqref{eq:fit_Mdisk} and $P_2^1(\tilde{\Lambda})$ fitting 
-formulae fail to predict high disk masses found in simulations with high \mr{} 
-(see \ref{ch:bns_sims}).
+formulae fail to predict high disk masses found in simulations with high \mr{}. 
+%(see \ref{ch:bns_sims}).
 Eq.~\eqref{eq:fit_Mdisk_Kruger} reproduces better the high values of $M_{\text{disk}}$, 
-but it fails to capture the low $M_{\text{disk}}$ of the \DSnone{}.
+but it fails to capture the low $M_{\text{disk}}$ of models of the \DSnone{}.
 %
 The overall better performance is seen for $P_2^2(q,\tilde{\Lambda})$, as it is able 
 to reproduce the large $M_{\text{disk}}$ values and gives lower residuals.
-This indicates that both, $q$ and $\tilde{\Lambda}$ are important to reproduce the 
-$M_{\text{disk}}$.
+This indicates that both, $q$ and $\tilde{\Lambda}$ are important to encode the leading trends in $M_{\text{disk}}$.
 However, we note that both residuals and $\chid$ for all fitting models are large.
-With the currently available data considered here fitting formulae are able to reproduce 
+With the currently available data, fitting formulae are able to reproduce 
 the data values within an order of magnitude only.
 
 %Overall, we conclude that among considered the $P_2^2(q,\tilde{\Lambda})$ is the best 
@@ -1098,7 +1105,7 @@ fitting formulae and investigate the statistics more thoroughly.
 %%
 %% =======================================================
 
-\section{Discussion}
+\section{Fit-informed kilonova models}
 
 
 %% KILONVA PLOTS
@@ -1132,74 +1139,74 @@ fitting formulae and investigate the statistics more thoroughly.
     \label{fig:mkn_example}
 \end{figure*}
 
-In this section we investigated statistical properties of the \ac{DE} and remnant from 
-several sets of \ac{NR} \ac{BNS} models. 
+%In this section we investigated statistical properties of the \ac{DE} and remnant from 
+%several sets of \ac{NR} \ac{BNS} models. 
 %
-The analysis showed that the properties of the ejecta and remnant disk mass are subjected 
-to large systematic uncertainties that stem from difference in input physics: neutrino 
-treatment and \ac{EOS}.
+%The analysis showed that the properties of the ejecta and remnant disk mass are subjected 
+%to large systematic uncertainties that stem from difference in input physics: neutrino 
+%treatment and \ac{EOS}.
+%%
+%Additionally, we assessed the performance of different fitting formulae to the ejecta 
+%parameters, such as mass, velocity, electron fraction and \ac{RMS} half-opening angle, 
+%and the disk mass. We noted that the formulae that include explicitly $\tilde{\Lambda}$ 
+%and \mr{} are able to capture the leading trends. Specifically, the simple second order 
+%polynomial, $P_2^2(q,\tilde{\Lambda})$ performs on par or better than more complex 
+%fitting formulae in terms of $\chid$.
+%%
+%However, all fits are characterized by large $\chid$. That suggests that either the 
+%error measures we adopt are too strict, or more complex fitting formulae are required. 
+%We leave this investigation to future works, when larger sample of \ac{NR} \ac{BNS} 
+%models with advanced physics is available.
+%%
+%%We stress that while these fits, provide an important links between the binary parameters 
+%%and the properties of \ac{EM} counterparts, useful for \ac{MM} studies 
+%%%% \citep{Dietrich:2020efo,Breschi:2021tbm,Nicholl:2021abc}, 
+%%they have to be used with caution, specifically, as some fitting formulae suggested in the 
+%%literature give ill-constrain fits.
+%%% --- 
 %
-Additionally, we assessed the performance of different fitting formulae to the ejecta 
-parameters, such as mass, velocity, electron fraction and \ac{RMS} half-opening angle, 
-and the disk mass. We noted that the formulae that include explicitly $\tilde{\Lambda}$ 
-and \mr{} are able to capture the leading trends. Specifically, the simple second order 
-polynomial, $P_2^2(q,\tilde{\Lambda})$ performs on par or better than more complex 
-fitting formulae in terms of $\chid$.
+%Because of its simplicity and overall best (in comparison) performance, we recommend 
+%the second order polynomial in $q$ and $\tilde{\Lambda}$, (the Eq.~\eqref{eq:polyfit22}).
+%For its calibration we suggests datasets with the most advanced physics, \ie, 
+%\DSrefset{} and \DSheatcool{}.
+%The calibration for polynomial fits are given in Tab.~\ref{tab:dynfit:poly} for ejecta 
+%and in Tab.~\ref{tab:diskfit:poly} for the disk. The recommended calibration is 
+%highlighted with gray in the tables.
+%We refer to this fits as ``best fitting formulae'' hereafter.
 %
-However, all fits are characterized by large $\chid$. That suggests that either the 
-error measures we adopt are too strict, or more complex fitting formulae are required. 
-We leave this investigation to future works, when larger sample of \ac{NR} \ac{BNS} 
-models with advanced physics is available.
 %
-%We stress that while these fits, provide an important links between the binary parameters 
-%and the properties of \ac{EM} counterparts, useful for \ac{MM} studies 
-%%% \citep{Dietrich:2020efo,Breschi:2021tbm,Nicholl:2021abc}, 
-%they have to be used with caution, specifically, as some fitting formulae suggested in the 
-%literature give ill-constrain fits.
-%% --- 
+%The best fitting formulae are able to reproduce the ejecta velocity to to ${\sim}50\%$ with 
+%$68\%$ significance range being $(-0.4,0.2)$. The electron fraction is recovered with the 
+%${\sim}0.1$ error margin and the \ac{RMS} half-opening angle is -- with ${\sim}10$~deg
+%error margin.
+%The masses of the \ac{DE} and of the remnant disk are more uncertain and can be faithfully 
+%reproduced only within the order of magnitude and a factor of a few respectively. 
+%While this is a very large error margins, we note, that this is an improvement with 
+%respect to the previous studies \citep[\eg][]{Dietrich:2016fpt}.
+%%% ---
 
-Because of its simplicity and overall best (in comparison) performance, we recommend 
-the second order polynomial in $q$ and $\tilde{\Lambda}$, (the Eq.~\eqref{eq:polyfit22}).
-For its calibration we suggests datasets with the most advanced physics, \ie, 
-\DSrefset{} and \DSheatcool{}.
-The calibration for polynomial fits are given in Tab.~\ref{tab:dynfit:poly} for ejecta 
-and in Tab.~\ref{tab:diskfit:poly} for the disk. The recommended calibration is 
-highlighted with gray in the tables.
-We refer to this fits as ``best fitting formulae'' hereafter.
-
-
-The best fitting formulae are able to reproduce the ejecta velocity to to ${\sim}50\%$ with 
-$68\%$ significance range being $(-0.4,0.2)$. The electron fraction is recovered with the 
-${\sim}0.1$ error margin and the \ac{RMS} half-opening angle is -- with ${\sim}10$~deg
-error margin.
-The masses of the \ac{DE} and of the remnant disk are more uncertain and can be faithfully 
-reproduced only within the order of magnitude and a factor of a few respectively. 
-While this is a very large error margins, we note, that this is an improvement with 
-respect to the previous studies \citep[\eg][]{Dietrich:2016fpt}.
-%% ---
-
-The main conclusion from our analysis is that rather simple fitting formulae are able 
-to fit the data on par or better then more complex fitting formulae available in the 
-literature that also can provide an ill-constrain fits.
-The ejecta and remnant properties are subjected to large uncertainties, that in part 
-are due to different physics input: neutrino treatment and \acp{EOS}.
-Specifically, as the neutrino reabsorption is a crucial component for the reliable 
-estimates of the \ac{DE} mass 
-\citep[\eg][]{Wanajo:2014wha,Sekiguchi:2015dma,Perego:2017wtu,Foucart:2018gis},
-it is highly important to enlarge the \DSheatcool{} and reasses the ejecta properties 
-statistics. 
-%
-Additionally, sets of \ac{NR} models with different chirp masses would allow to asses 
-new trends in data.
+%Overall, we find that rather simple fitting formulae are able 
+%to fit the data on par or better then more complex fitting formulae available in the 
+%literature that also can provide an ill-constrain fits.
+%The ejecta and remnant properties are subjected to large uncertainties, that in part 
+%are due to different physics input: neutrino treatment and \acp{EOS}.
+%Specifically, as the neutrino reabsorption is a crucial component for the reliable 
+%estimates of the \ac{DE} mass 
+%\citep[\eg][]{Wanajo:2014wha,Sekiguchi:2015dma,Perego:2017wtu,Foucart:2018gis},
+%it is highly important to enlarge the \DSheatcool{} and reasses the ejecta properties 
+%statistics. 
+%%
+%Additionally, sets of \ac{NR} models with different chirp masses would allow to asses 
+%new trends in data.
 
 %% --- Kilonova
 Fitting formulae to the ejecta and remnant parameters are often used to predict the 
 properties of the \ac{EM} counterparts to mergers and to infer the properties of the 
 binary from the observations of \ac{EM} counterparts, often as a part of \ac{MM} studies 
-\citep{Dietrich:2020efo,Breschi:2021tbm,Nicholl:2021rcr}.
+\citep{Dietrich:2020efo,Breschi:2021tbm,Nicholl:2021rcr,Dietrich:2020efo}.
 %
 However, it is important to acknowledge the limitations that these simple 
-fitting formulae have 
+fitting formulae have, and that we outlined in the sections above. 
 
 Here we compare the properties of the \ac{kN} \acp{LC} informed by the best fitting 
 formulae and by the ejecta profiles from \ac{NR} simulations presented in 
