@@ -23,7 +23,7 @@ refer to \citet{Arnowitt:1962hi,Landau:1982dva,Wald:1984,Misner:1973,Baumgarte:2
 \ac{EFE} in a covariant form, neglecting the cosmological constant, read
 %
 \begin{equation}
-    G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu}
+    G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu}\, ,
     \label{eq:theory:EFE}
 \end{equation}
 %
@@ -99,7 +99,7 @@ as $\alpha \vec{n}$.% with $n_{\mu} = -\alpha \nabla_{\mu}t$.
 Then, the vector $\vec{t}$ can be written as 
 %
 \begin{equation*}
-\vec{t} = \alpha\vec{n}+\vec{\beta}.
+\vec{t} = \alpha\vec{n}+\vec{\beta}\, ,
 \end{equation*}
 %
 where $\alpha$ is called \textit{lapse function} and $\vec{\beta}$ -- \textit{shift vector}.
@@ -145,7 +145,7 @@ it is a purely spatial tensor.
 The components of the extrinsic curvature are
 %
 \begin{equation}
-    K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu},
+    K_{\mu\nu} = -{\gamma^{\alpha}}_{\mu}\nabla_{\boldsymbol{u}}^{\alpha} n_{\nu} = -\frac{1}{2}\mathcal{L}_{\vec{n}}\gamma_{\mu\nu}\, ,
     \label{eq:theory:extrcurvdef}
 \end{equation}
 %
@@ -176,7 +176,7 @@ lapse function and shift vector. The correct choice is crucial for stable evolut
 One of the widely used slicing conditions is the Bona-Mass{\'o} slicing \citep{Bona:1994dr}, 
 %
 \begin{equation}
-    (\partial_t - \beta^i\partial_i)\alpha = -\alpha^2 f(\alpha)K,
+    (\partial_t - \beta^i\partial_i)\alpha = -\alpha^2 f(\alpha)K\, ,
     \label{eq:theory:slicing_a}
 \end{equation}
 %
@@ -198,7 +198,7 @@ For the spatial gauge condition, the choice of $\beta^i,$ we consider the Gamma-
 \citep{Alcubierre:2002kk,vanMeter:2006vi}, that in the integrated from reads 
 %
 \begin{equation}
-    (\partial_t - \beta^j\partial_j)\beta^i = \mu_S\overline{\Gamma}^i - \eta\beta^i,
+    (\partial_t - \beta^j\partial_j)\beta^i = \mu_S\overline{\Gamma}^i - \eta\beta^i \, ,
     \label{eq:theory:slicing_b}
 \end{equation}
 %
@@ -219,7 +219,7 @@ is usually referred to as \textit{moving puncture} gauge.
 %    formualtion of \ac{EFE} (discussed below) it forms a strongly hyperbolic system of equations}
 
 
-\subsection{$3+1$-from of Einstein's Field Equations}
+\subsection{3+1-from of Einstein's Field Equations}
 
 Here we consider the dynamics of the gravitational field in the $3+1$ formalism,
 where the \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, is split into a set of constraint and 
@@ -235,8 +235,8 @@ $P^{\mu}_{\nu} = \delta_{\nu}^{\mu} + n^{\mu}n_{\nu}$, and obtain that
 %
 \begin{subequations}
     \begin{align}
-    S_{\mu\nu} &= P^{\sigma}_{\mu} P^{\rho}_{\nu} T_{\sigma\rho}, \label{eq:theory:s_munu}\\
-    S_{\mu} &= -P^{\sigma}_{\mu} n^{\rho} T_{\sigma\rho} \label{eq:theory:smu}
+    S_{\mu\nu} &= P^{\sigma}_{\mu} P^{\rho}_{\nu} T_{\sigma\rho}\, , \label{eq:theory:s_munu}\\
+    S_{\mu} &= -P^{\sigma}_{\mu} n^{\rho} T_{\sigma\rho}\, , \label{eq:theory:smu}
     \end{align}
 \end{subequations}
 %
@@ -253,10 +253,10 @@ to perform a split for the Reimann tensor as follows:
 \begin{subequations}
     \begin{align}
         P_{\alpha}^{\delta}P_{\beta}^{\kappa}P_{\mu}^{\lambda}P_{\nu}^{\sigma} {^{(4)}R}_{\delta\kappa\lambda\sigma} 
-        &= {^{(3)}R}_{\alpha\beta\mu\nu} + K_{\alpha\mu}K_{\beta\nu} - K_{\alpha\nu}K_{\beta\mu} \label{eq:theory:gc}\\
+        &= {^{(3)}R}_{\alpha\beta\mu\nu} + K_{\alpha\mu}K_{\beta\nu} - K_{\alpha\nu}K_{\beta\mu}\, , \label{eq:theory:gc}\\
         %
         P_{\alpha}^{\delta}P_{\beta}^{\kappa}P_{\mu}^{\lambda}n^{\sigma} {^{(4)}R}_{\delta\kappa\lambda\sigma} 
-        &= D_{\beta}K_{\alpha\mu} - D_{\alpha}K_{\beta\mu}, \label{eq:theory:gm}
+        &= D_{\beta}K_{\alpha\mu} - D_{\alpha}K_{\beta\mu}\, , \label{eq:theory:gm}
     \end{align}
 \end{subequations}
 %
@@ -267,20 +267,20 @@ the projection of $\nabla_{\mu}$ onto the space orthogonal to $n^{\alpha}$.
 From the Eq.~\eqref{eq:theory:gc}, combining the contracted Gauss relation and \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, one obtains 
 %
 \begin{equation}
-    \gamma^{\alpha\gamma}\gamma^{\beta\delta} {^{(4)}R}_{\alpha\beta\gamma\delta} = {^{(3)}R} + K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2n^{\alpha}n^{\beta}G_{\alpha\beta} = 16\pi E.
+    \gamma^{\alpha\gamma}\gamma^{\beta\delta} {^{(4)}R}_{\alpha\beta\gamma\delta} = {^{(3)}R} + K^2 - K_{\alpha\beta}K^{\alpha\beta} = 2n^{\alpha}n^{\beta}G_{\alpha\beta} = 16\pi E\, .
 \end{equation}
 %
 Similarly, the contraction of Eq.~\eqref{eq:theory:gm} yields
 %
 \begin{equation}
-    \gamma^{\alpha\mu}n^{\nu}{^{(4)}R_{\mu\nu}} = D^{\alpha}K - D_{\mu}K^{\alpha\mu} = \gamma^{\alpha\mu}n^{\nu}G_{\mu\nu} = 8\pi S^{\alpha}.
+    \gamma^{\alpha\mu}n^{\nu}{^{(4)}R_{\mu\nu}} = D^{\alpha}K - D_{\mu}K^{\alpha\mu} = \gamma^{\alpha\mu}n^{\nu}G_{\mu\nu} = 8\pi S^{\alpha}\, .
 \end{equation}
 %
 The obtained two sets of equations 
 %
 \begin{align}
-    {^{(3)}R} + K^2 - K_{\alpha\beta} K^{\alpha\beta} &= 16\pi E, \label{eq:theory:ham_const}\\
-    D_j K^{ij} - D^i K &= 8\pi S^i, \label{eq:theory:mom_const}
+    {^{(3)}R} + K^2 - K_{\alpha\beta} K^{\alpha\beta} &= 16\pi E\, , \label{eq:theory:ham_const}\\
+    D_j K^{ij} - D^i K &= 8\pi S^i\, , \label{eq:theory:mom_const}
 \end{align}
 %
 are called \textit{Hamiltonian} and \textit{momentum constraints}, respectively.
@@ -298,7 +298,7 @@ Next we consider the evolution equations, and begin with writing the induced met
 %Consider the induced metric 
 %
 \begin{equation}
-    \partial_t\gamma_{ij} = -2\alpha K_{ij} + D_{i}\beta_j + D_j \beta_i,
+    \partial_t\gamma_{ij} = -2\alpha K_{ij} + D_{i}\beta_j + D_j \beta_i\, ,
     \label{eq:theory:evol_metric}
 \end{equation}
 %
@@ -308,7 +308,7 @@ and expand the definition of the extrinsic curvature as
     \begin{aligned}
     K_{\alpha\beta} = \frac{1}{2}(K_{\alpha\beta} + K_{\beta\alpha}) = -\frac{1}{2}(n^{\mu}n_{\beta}\nabla_{\mu}n_{\alpha} + \nabla_{\beta}n_{\alpha}+n^{\mu}n_{\alpha}\nabla_{\mu}n_{\beta}+\nabla_{\alpha}n_{\beta}) = \\
     -\frac{1}{2}(n^{\mu}\nabla_{\mu}(n_{\alpha}n_{\beta}) +g_{\alpha\mu}\nabla_{\beta}n^{\mu} + g_{\beta\mu}\nabla_{\alpha}n^{\mu}) = -\frac{1}{2}(n^{\mu}\nabla_{\mu}\gamma_{\alpha\beta} + \gamma_{\alpha\mu} \nabla_{\beta} n^{\mu} + \gamma_{\beta\mu}\nabla_{\alpha}n^{\mu}) = \\
-    -\frac{1}{2}\mathcal{L}_{n}\gamma_{\alpha\beta} = -\frac{1}{2\alpha}(\mathcal{L}_t - \mathcal{L}_{\beta})\gamma_{\alpha\beta} = -\frac{1}{2\alpha}(\partial_t\gamma_{\alpha\beta} - D_{\alpha}\beta_{\beta} - D_{\beta}\beta_{\alpha}).
+    -\frac{1}{2}\mathcal{L}_{n}\gamma_{\alpha\beta} = -\frac{1}{2\alpha}(\mathcal{L}_t - \mathcal{L}_{\beta})\gamma_{\alpha\beta} = -\frac{1}{2\alpha}(\partial_t\gamma_{\alpha\beta} - D_{\alpha}\beta_{\beta} - D_{\beta}\beta_{\alpha})\, .
     \end{aligned}
 \end{equation}
 %
@@ -317,7 +317,7 @@ Then, the evolution equation for the extrinsic curvature reads
 \begin{equation}
     \begin{aligned}
     \partial_t K_{ij} = -D_i D_j \alpha + \beta^k \partial_k K_{ij} + K_{ik}\partial_j \beta^k + K_{kj}\partial_i \beta^k + \\
-    \alpha({^{(3)}R_{ij}} + KK_{ij} - 2K_{ik}{K^k}_j) + 4\pi \alpha (\gamma_{ij}(S-E) - 2S_{ij})
+    \alpha({^{(3)}R_{ij}} + KK_{ij} - 2K_{ik}{K^k}_j) + 4\pi \alpha (\gamma_{ij}(S-E) - 2S_{ij})\, .
     \end{aligned}
     \label{eq:theory:evol_eq}
 \end{equation}
@@ -328,17 +328,17 @@ Eq.~\eqref{eq:theory:gc}, as
 %
 \begin{subequations}
     \begin{align}
-    P_{\alpha}^{\mu}P_{\beta}^{\nu}n^{\rho}n^{\sigma}{^{(4)}R_{\mu\rho\nu\sigma}} = \mathcal{L}_{n} K_{\alpha\beta} + \frac{1}{\alpha} D_{\alpha}D_{\beta}\alpha + {K^{\lambda}}_{\beta}K_{\alpha\lambda}, \label{eq:theory:for_ev1}\\
+    P_{\alpha}^{\mu}P_{\beta}^{\nu}n^{\rho}n^{\sigma}{^{(4)}R_{\mu\rho\nu\sigma}} = \mathcal{L}_{n} K_{\alpha\beta} + \frac{1}{\alpha} D_{\alpha}D_{\beta}\alpha + {K^{\lambda}}_{\beta}K_{\alpha\lambda}\, , \label{eq:theory:for_ev1}\\
     %
     P_{\alpha}^{\mu}P_{\beta}^{\nu}(n^{\rho}n^{\lambda} {^{(4)}R_{\mu\rho\nu\lambda}} + {^{(4)}R_{\mu\nu}}) = 
-    {^{(3)}R_{\alpha\beta}} + KK_{\alpha\beta} - {K^{\lambda}}_{\beta}K_{\alpha\lambda}. \label{eq:theory:for_ev2}
+    {^{(3)}R_{\alpha\beta}} + KK_{\alpha\beta} - {K^{\lambda}}_{\beta}K_{\alpha\lambda}\, . \label{eq:theory:for_ev2}
     \end{align}
 \end{subequations}
 %
 Than, inserting Eq.~\eqref{eq:theory:for_ev1} in Eq.~\eqref{eq:theory:for_ev2} yields
 %
 \begin{equation}
-    \mathcal{L}_n K_{\alpha\beta} = -\frac{1}{\alpha} D_{\alpha} D_{\beta} \alpha - P^{\mu}_{\alpha}P_{\beta}^{\nu} {^{(4)}R_{\mu\nu}} + {^{(3)}R_{\alpha\beta}} + KK_{\alpha\beta} - 2{K^{\lambda}}_{\beta}K_{\alpha\lambda}.
+    \mathcal{L}_n K_{\alpha\beta} = -\frac{1}{\alpha} D_{\alpha} D_{\beta} \alpha - P^{\mu}_{\alpha}P_{\beta}^{\nu} {^{(4)}R_{\mu\nu}} + {^{(3)}R_{\alpha\beta}} + KK_{\alpha\beta} - 2{K^{\lambda}}_{\beta}K_{\alpha\lambda}\, .
 \end{equation}
 %
 The latter can be reformulated to match the evolution equation Eq.~\eqref{eq:theory:evol_eq}.
@@ -393,7 +393,7 @@ and also inherit the constraint violation dampening properties of the original Z
 The \ac{EFE} equations in this formulation read 
 %
 \begin{equation}
-    R_{\alpha\beta} + \nabla_{\alpha}Z_{\beta} + \nabla_{\beta}Z_{\alpha} = 8\pi \Big( T_{\alpha\beta} - \frac{1}{2}g_{\alpha\beta}T \Big) + \kappa_1 (t_{\alpha} Z_{\beta} + t_{\beta}Z_{\alpha} - (1+\kappa_2)g_{\alpha\beta})t_{\gamma}Z^{\gamma},
+    R_{\alpha\beta} + \nabla_{\alpha}Z_{\beta} + \nabla_{\beta}Z_{\alpha} = 8\pi \Big( T_{\alpha\beta} - \frac{1}{2}g_{\alpha\beta}T \Big) + \kappa_1 (t_{\alpha} Z_{\beta} + t_{\beta}Z_{\alpha} - (1+\kappa_2)g_{\alpha\beta})t_{\gamma}Z^{\gamma}\, ,
     \label{eq:theory:z4c_efe}
 \end{equation}
 %
@@ -404,9 +404,9 @@ Eq.~\eqref{eq:theory:z4c_efe} is equivalent to Eq.~\eqref{eq:theory:EFE} when co
 In $3+1$ from the equations read 
 \begin{subequations}
 \begin{align}
-    \widetilde{\gamma}_{ij} = \chi\gamma_{ij} \label{eq:theory:z4c_1}\\
-    \widetilde{A}_{ij} = \chi(K_{ij}-\frac{1}{3}\gamma_{ij}K)\label{eq:theory:z4c_2} \\
-    \hat{K} = \gamma^{ij}K_{ij} - 2\Theta,\label{eq:theory:z4c_3}
+    \widetilde{\gamma}_{ij} = \chi\gamma_{ij}\, , \label{eq:theory:z4c_1}\\
+    \widetilde{A}_{ij} = \chi(K_{ij}-\frac{1}{3}\gamma_{ij}K)\, ,\label{eq:theory:z4c_2} \\
+    \hat{K} = \gamma^{ij}K_{ij} - 2\Theta\, ,\label{eq:theory:z4c_3}
 \end{align}
 \end{subequations}
 %
@@ -591,7 +591,7 @@ begin by writing the energy-momentum conservation law\footnote{
 } 
 %
 \begin{equation}
-    \nabla_{\mu}{T^{\mu\nu}} = 0,
+    \nabla_{\mu}{T^{\mu\nu}} = 0\, ,
     \label{eq:theory:tmunu_eq_0}
 \end{equation}
 %
@@ -658,7 +658,7 @@ there is no heat conduction and there is no viscosity. The former criterion impl
 The stress-energy tensor of a perfect fluid in the comoving frame with the fluid
 %
 \begin{equation}
-    T^{\mu\nu} = \rho h u^{\mu}n^{\nu} + p g^{\mu\nu}
+    T^{\mu\nu} = \rho h u^{\mu}n^{\nu} + p g^{\mu\nu}\, ,
     \label{eq:theory:tmunu_perf}
 \end{equation}
 %
@@ -672,13 +672,13 @@ see Appendix~\ref{app:eul}.
 It reads 
 %
 \begin{equation}
-\rho h n^{\nu} \nabla_{\nu}u^{\mu} = - (g^{\mu\nu} + u^{\mu}u^{\mu})\nabla_{\nu}p.
+\rho h n^{\nu} \nabla_{\nu}u^{\mu} = - (g^{\mu\nu} + u^{\mu}u^{\mu})\nabla_{\nu}p\, .
 \end{equation}
 %
 The continuity equation reads 
 %
 \begin{equation}
-    \nabla_{\nu}(\rho u^{\nu}) = 0,
+    \nabla_{\nu}(\rho u^{\nu}) = 0\, ,
     \label{eq:theory:contineq}
 \end{equation}
 %
@@ -822,7 +822,10 @@ Combining them into the state vectors we obtain $\boldsymbol{w}=(\rho,\upsilon_i
 and $\boldsymbol{q}=(D,S_i,E)$, where the components of the latter read
 %
 \begin{equation}
-    D = \rho W, \hspace{3mm} S_i = \rho h W^2 \upsilon_i, \hspace{3mm} E = \rho h W^2 - p, \hspace{3mm} \tau = E - D,
+    D = \rho W\, , \hspace{3mm} 
+    S_i = \rho h W^2 \upsilon_i\, , \hspace{3mm} 
+    E = \rho h W^2 - p\, , \hspace{3mm} 
+    \tau = E - D\, ,
 \end{equation}
 %
 %\begin{subequations}
@@ -840,7 +843,7 @@ quantity introduced to avoid errors emerging due to $E$ being much smaller then 
 The expressions for the conserved quantities, associated fluxes and sources reads 
 %
 \begin{equation}
-\frac{1}{\sqrt{-g}}\Big[\frac{\partial(\sqrt{\gamma}\boldsymbol{q})}{\partial x^0} + \frac{\partial(\sqrt{-g}\boldsymbol{F}^{i})}{\partial x^i}\Big] = \boldsymbol{S},
+\frac{1}{\sqrt{-g}}\Big[\frac{\partial(\sqrt{\gamma}\boldsymbol{q})}{\partial x^0} + \frac{\partial(\sqrt{-g}\boldsymbol{F}^{i})}{\partial x^i}\Big] = \boldsymbol{S}\, ,
 \label{eq:theory:valencia} % used for THC section Code
 \end{equation}
 %
@@ -848,9 +851,9 @@ where
 %
 \begin{subequations}
     \begin{align}
-    q &= \boldsymbol{q}(\boldsymbol{w}) = (D,\, S_j,\, \tau) \label{eq:theory:grhd_q}\\
-    \boldsymbol{F}^i &= \boldsymbol{F}^i(w) = \Big( D(\upsilon^i-\frac{\beta^i}{\alpha}),\, S_j(\upsilon^i-\frac{\beta^i}{\alpha}) + p\delta^i_j,\, \tau(\upsilon^i-\frac{\beta^i}{\alpha})+p\upsilon^i \Big) \label{eq:theory:grhd_Fi}\\
-    \boldsymbol{S} &= \boldsymbol{S}(\boldsymbol{w})=(0,\,  T^{\mu\nu}(\partial_{\mu}g_{\nu j} - \Gamma^{\sigma}_{\nu\mu}g_{\sigma j}),\,  \alpha(T^{\mu 0}\partial_{\mu}(\log(\alpha)) - T^{\mu\nu}\Gamma^0_{\nu\mu})) \label{eq:theory:grhd_S}
+    q &= \boldsymbol{q}(\boldsymbol{w}) = (D,\, S_j,\, \tau)\, , \label{eq:theory:grhd_q}\\
+    \boldsymbol{F}^i &= \boldsymbol{F}^i(w) = \Big( D(\upsilon^i-\frac{\beta^i}{\alpha}),\, S_j(\upsilon^i-\frac{\beta^i}{\alpha}) + p\delta^i_j,\, \tau(\upsilon^i-\frac{\beta^i}{\alpha})+p\upsilon^i \Big)\, , \label{eq:theory:grhd_Fi}\\
+    \boldsymbol{S} &= \boldsymbol{S}(\boldsymbol{w})=(0,\,  T^{\mu\nu}(\partial_{\mu}g_{\nu j} - \Gamma^{\sigma}_{\nu\mu}g_{\sigma j}),\,  \alpha(T^{\mu 0}\partial_{\mu}(\log(\alpha)) - T^{\mu\nu}\Gamma^0_{\nu\mu}))\, . \label{eq:theory:grhd_S}
     \end{align}
 \end{subequations}
 %
@@ -1146,7 +1149,7 @@ These observations highlight the importance of using full \acp{EOS} with finite-
 
 \section{Neutrino Radiation Transport}\label{sec:nr_methods:neut}
 
-\red{Eq. for Q is needed as it is referenced in the results in Nu-wind}
+%red{Eq. for Q is needed as it is referenced in the results in Nu-wind}
 
 %During the neutron star mergers, the thermodynamic conditions are such that the powerful 
 %neutrino bursts can originate from the hot and shock heated NS matter \citep[\eg][]{Sekiguchi:2011zd}.
@@ -1370,9 +1373,9 @@ finite sum, converting the integrodifferential equation into a linear system of 
 
 \subsection{Neutrino leakage scheme}
 
-\red{Introduce electron fraction, \&
-beta equilibrium condition
-}
+%\red{Introduce electron fraction, \&
+%beta equilibrium condition
+%}
 
 \begin{table}
     \caption{
@@ -1485,16 +1488,16 @@ of both reactions are the same, and the chemical potentials $\mu_{\nu_e,\bar{\nu
 For both, $\beta$-decay, ``\textit{pc}'', and electron capture, ``\textit{ec}'', the emiissivities read \citep{Galeazzi:2013mia}
 \begin{equation}
 \begin{aligned}
-    Q_{pc}(\bar{\nu}_e) &= n_b^{-1}\beta\eta_{pn}T^6F_5(-\eta_e)[1-f_{\bar{\nu}_e}]_{pc} \\
-    Q_{ec}(\nu_e) &= n_b^{-1}\beta\eta_{np}T^6F_{5}(\eta_e)[1-f_{\nu_e}]_{ec}
+    Q_{pc}(\bar{\nu}_e) &= n_b^{-1}\beta\eta_{pn}T^6F_5(-\eta_e)[1-f_{\bar{\nu}_e}]_{pc}\, , \\
+    Q_{ec}(\nu_e) &= n_b^{-1}\beta\eta_{np}T^6F_{5}(\eta_e)[1-f_{\nu_e}]_{ec}\, ,
 \end{aligned}
 \label{eq:theory:qecpc}
 \end{equation}
 and
 \begin{equation}
 \begin{aligned}
-    R_{pc}(\bar{\nu}_e) &= n_b^{-1}\beta\eta_{pn}T^5F_4(-\eta_e)[1-f_{\bar{\nu}_e}]_{pc} \\
-    R_{ec}(\nu_e) &= n_b^{-1}\beta\eta_{np}T^5F_{4}(\eta_e)[1-f_{\nu_e}]_{ec}
+    R_{pc}(\bar{\nu}_e) &= n_b^{-1}\beta\eta_{pn}T^5F_4(-\eta_e)[1-f_{\bar{\nu}_e}]_{pc}\, , \\
+    R_{ec}(\nu_e) &= n_b^{-1}\beta\eta_{np}T^5F_{4}(\eta_e)[1-f_{\nu_e}]_{ec}\, ,
 \end{aligned}
 \label{eq:theory:recpc}
 \end{equation}
@@ -1582,14 +1585,14 @@ total neutrino opacities $\kappa_{\nu;a}^j + \kappa_{\nu;s}^j$ \citep{Neilsen:20
 Optical depth is then used to estimate the effective emission rates \citep{Ruffert:1995fs} as 
 %
 \begin{equation}
-R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{-1}},
+R_{\nu}^{\text{eff}} = \frac{R_{\nu}}{1 + t_{\text{diff}}^0(t^0_{\text{loss}})^{-1}}\, ,
 \label{eq:method:whisky:Rnueff}
 \end{equation}
 %
 where $t_{\text{diff}}$ and $t_{\text{loss}}$ are the neutrino diffusion time and emission timescales,
 %
 \begin{equation}
-t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0}, \hspace{5mm} t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}},
+t_{\text{diff}}^{0} = \mathcal{D}\frac{(\tau_{\nu}^0)^2}{\kappa_{\nu;a}^0 + \kappa_{\nu;s}^0}\, , \hspace{5mm} t_{\text{loss}}^0 = \frac{R_{\nu}}{n_{\nu}}\, ,
 \end{equation}
 %
 %and the neutrino emission timescale 
@@ -1740,7 +1743,7 @@ such that $(\partial / \partial l)^{\alpha} = k^{\alpha}$.
 Now, in terms of $l$, the Boltzmann equations for the neutrino radiation transport read \citep{Thorne:1981}
 %
 \begin{equation*}
-\frac{D F}{D l} = \mathbb{C}[F],
+\frac{D F}{D l} = \mathbb{C}[F]\, ,
 \end{equation*}
 %
 where $F$ is the distribution function for a give neutrino species, and $\mathbb{C}$ is the
@@ -1751,7 +1754,7 @@ The $D/Dl$ is the total derivative in phase space along $p^{\alpha}$ and it read
 %
 \begin{equation}
 \label{eq:method:whisky:neut:bolzeq}
-\frac{DF}{Dl} = k^{\alpha} \Big[ \frac{\partial F}{\partial x^{\alpha}} - \Gamma^{\delta}_{\:\:\alpha\beta}p^{\beta}\frac{\partial F}{\partial p^{\delta}} \Big],
+\frac{DF}{Dl} = k^{\alpha} \Big[ \frac{\partial F}{\partial x^{\alpha}} - \Gamma^{\delta}_{\:\:\alpha\beta}p^{\beta}\frac{\partial F}{\partial p^{\delta}} \Big]\, ,
 \end{equation}
 %
 where $\Gamma^{\delta}_{\:\:\alpha\beta}$ are the Christoffel symbols.
@@ -1840,8 +1843,8 @@ Then the free-streaming neutrino energy satisfies \cite{Radice:2016dwd,Radice:20
 
 \begin{subequations}
     \begin{align}
-        \partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) &= \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X) \label{eq:theory:neut:balanseq1} \\
-        k^t\partial_t(E_{\nu}^{\text{fs}}\chi) + k^r\partial_r(E_{\nu}^{\text{fs}}\chi) &= \frac{\chi}{n_{\nu}^{\text{fs}}} (Q_{\nu}^{\text{eff}} - E_{\nu}^{\text{fs}}R_{\nu}^{\text{eff}}) \label{eq:theory:neut:balanseq2} 
+        \partial_t(\sqrt{-g}n_X k^t) + \partial_r(\sqrt{-g}n_X k^r) &= \sqrt{-g}(R^{\text{eff}}_{X} - \kappa_X n_X)\, , \label{eq:theory:neut:balanseq1} \\
+        k^t\partial_t(E_{\nu}^{\text{fs}}\chi) + k^r\partial_r(E_{\nu}^{\text{fs}}\chi) &= \frac{\chi}{n_{\nu}^{\text{fs}}} (Q_{\nu}^{\text{eff}} - E_{\nu}^{\text{fs}}R_{\nu}^{\text{eff}})\, , \label{eq:theory:neut:balanseq2} 
     \end{align}
 \end{subequations}
 
@@ -2097,7 +2100,7 @@ Eq.~\eqref{eq:theory:tmunu_perf},
 %
 \begin{subequations}
     \begin{align}
-    T_{\mu\nu} &= \rho h u_{\mu} u_{\nu} + pg_{\mu\nu},  \\
+    T_{\mu\nu} &= \rho h u_{\mu} u_{\nu} + pg_{\mu\nu}\, ,  \\
     J^{\mu}_i &= n_i W(n^{\mu} + \upsilon^{\mu}) := D_i (n^{\mu} + \upsilon^{\mu})
     \end{align}
 \end{subequations}
@@ -2133,10 +2136,10 @@ hyper-surface, $n^{\mu}$, the decomposition of the $T_{\mu\nu}$ with respect to 
 %
 \begin{subequations}
 \begin{align}
-T_{\mu\nu} =& En_{\mu}n_{\nu} + S_{\mu}n_{\nu} + S_{\nu}n_{\mu} + S_{\mu\nu}, \text{ where } \\
-E =& T_{\mu\nu}n^{\mu}n^{\nu} = \rho h W^2 - p, \\
-S_{\mu} =& -\gamma_{\mu\alpha}n_{\beta}T^{\alpha\beta} = \rho h W^2 \upsilon_{\mu}, \\
-S_{\mu\nu} =& \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} \gray{ + \tau_{\mu\nu}}
+T_{\mu\nu} =& En_{\mu}n_{\nu} + S_{\mu}n_{\nu} + S_{\nu}n_{\mu} + S_{\mu\nu}\, , \text{ where } \\
+E =& T_{\mu\nu}n^{\mu}n^{\nu} = \rho h W^2 - p\, , \\
+S_{\mu} =& -\gamma_{\mu\alpha}n_{\beta}T^{\alpha\beta} = \rho h W^2 \upsilon_{\mu}\, , \\
+S_{\mu\nu} =& \gamma_{\mu\alpha}\gamma_{\mu\beta}T^{\alpha\beta} = S_{\mu}\upsilon_{\nu} + p \gamma_{\mu\nu} \, %\gray{ + \tau_{\mu\nu}}\, ,
 \end{align}
 \end{subequations}
 %
@@ -2146,7 +2149,7 @@ and $\gamma_{\mu\nu}$ is the spatial metric.
 %
 The \ac{GRHD} equations in the conservative form without neutrino source terms,
 Eq.~\eqref{eq:theory:valencia} \&
-Eqs.~\eqref{eq:theory:grhd_q},\eqref{eq:theory:grhd_Fi},\eqref{eq:theory:grhd_S}, 
+Eqs.~\eqref{eq:theory:grhd_q}, \eqref{eq:theory:grhd_Fi}, \eqref{eq:theory:grhd_S}, 
 read 
 %
 %Neglecting the neutrino source terms, the equations of energy and momentum conservation, 
@@ -2154,8 +2157,8 @@ read
 \begin{equation}
 \label{eq:theory:whisky:emomcons_lk}
 \begin{aligned}
-\partial_t(\sqrt{\gamma}D_n) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_n \Big] &= 0, \\
-\partial_t(\sqrt{\gamma}D_p) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_p \Big] &= 0, \\
+\partial_t(\sqrt{\gamma}D_n) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_n \Big] &= 0\, , \\
+\partial_t(\sqrt{\gamma}D_p) + \partial_j\Big[ \alpha\sqrt{\gamma}(\upsilon^j + n^j)D_p \Big] &= 0\, , \\
 \partial_t(\sqrt{\gamma}S_i) + \partial_j\Big[ \alpha \sqrt{\gamma} (S_i^{\; j} + S_i n^j) \Big] &= 
 \alpha \sqrt{\gamma}\Big( \frac{1}{2} S^{jk} \partial_i \gamma_{jk} \frac{1}{\alpha} S_k \partial_i \beta^k - E\partial_i \log(\alpha) \Big) \\
 \partial_t(\sqrt{\gamma}E) + \partial_j\Big[ \alpha \sqrt{\gamma} (S^{j} + E n^j) \Big] &= 
@@ -2215,8 +2218,8 @@ The required closure is given as follows,
 %
 \begin{equation}
 \begin{aligned}
-\overline{S_i\upsilon_j} &= \overline{S_i}\overline{\upsilon_j} + \tau_{ij}, \\
-\overline{D\upsilon^i} &= \overline{D}\overline{\upsilon^i} + \mu^i
+\overline{S_i\upsilon_j} &= \overline{S_i}\overline{\upsilon_j} + \tau_{ij}\, , \\
+\overline{D\upsilon^i} &= \overline{D}\overline{\upsilon^i} + \mu^i\, ,
 \end{aligned}
 \end{equation}
 %
@@ -2251,7 +2254,7 @@ the $\tau_{ij}$ can be computed \citep{Radice:2017zta}
 \begin{equation}
 %% \begin{aligned}
 \tau_{ij} = %%-2\nu_T\rho h W^2\Big[ \frac{1}{2}(\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big] = \\
--2 \nu_T (\epsilon + p)W^2\Big[ \frac{1}{2} (\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big]
+-2 \nu_T (\epsilon + p)W^2\Big[ \frac{1}{2} (\nabla_i\overline{\upsilon_j} + \nabla_j\overline{\upsilon_i}) - \frac{1}{3}\nabla_k\overline{\upsilon^k}\gamma_{ij} \Big] \, ,
 %% \end{aligned}
 \end{equation}
 %

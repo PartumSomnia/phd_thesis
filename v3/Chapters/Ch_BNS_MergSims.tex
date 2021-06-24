@@ -6,8 +6,9 @@ published in \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}.
 Simulations are performed with \ac{NR} code \wisky{}, that employs 
 methods discussed in the chapter \ref{ch:nr_methods}. The specifics 
 of the numerical setup are further discussed in Appendix~\ref{app:whisky}.
-The postprocessing methods used to extract the results are 
-given in Appendix~\ref{app:ppr}.
+%
+We employ standard postprocessing techniques to extract the information 
+from simulations that we discuss in more detains in Appendix~\ref{ch:ppr}.
 %
 
 %First 
@@ -923,16 +924,15 @@ where $M$ the central object mass and $m_b$ is the average baryon mass.
 Thus, a ring of material located at $r < r^*$, once it becomes unbound
 would remove, in addition to its specific angular
 momentum $j(r)$, also the angular momentum required to reach
-to $r^*$. If the disk is Keplerian, the 
- angular momentum carried away by the ring initially at
-$r$ is 
+to $r^*$. If the disk is Keplerian, the angular momentum carried away by 
+the ring initially at $r$ is 
 %
-\begin{equation*}
-    j^*(r) = j(r) ( r^* / r )^{1/2},
-\end{equation*}
+%\begin{equation*}
+    $ j^*(r) = j(r) ( r^* / r )^{1/2}\, ,$
+%\end{equation*}
 %
-where $r^* = 300 G/c^2M$assumed as fiducial value, corresponding
-to $M \approxeq 2.5M_{\odot}$ \citep{Radice:2018xqa}.
+where $ r^{*} = 300 G / c^2 M $ is the fiducial value, corresponding
+to assumed total mass $M \approxeq 2.5M_{\odot}$ \citep{Radice:2018xqa}.
 The expected trajectory is shown as the green line in Fig.~\ref{fig:total_j_mb_rns_blh}.
 
 %\red{WHAT the fuck is Keplerian limit, mass-shedding limit and rigidly rotating equilibria}
@@ -1045,15 +1045,17 @@ velocity and mass, dependent on the parameters of the binary and \ac{NS} \ac{EOS
 We flag the matter as \ac{DE} that has $u_t < -1$, where $u_{\alpha}$ is the 
 fluid four-velocity passing the extraction sphere located at $R=294\,$km 
 from the remnant (unless specified otherwise).
-See Sec.\ref{sec:bns_sims:method:ejecta} for more details.
+See Sec.~\ref{sec:bns_sims:method:ejecta} for more details.
 %
-The dynamical ejecta mass flux saturates ${\lesssim}20\,$ms after merger.
+The \ac{DE} mass flux saturates ${\lesssim}20\,$ms after merger.
 Thus, for all out simulations, the ejecta properties are final.
 %
 To perform quantitative analysis we compute mass-averaged quantities, such 
-as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$.
+as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$ 
+(see Ch.~\ref{ch:ppr}, and Eq.~\ref{eq:ppr:average} there).
+%
 We show the result in Fig.~\ref{fig:ejecta:dyn:dsfits}.
-A specific point of our analysis is the comparsion with previous study of 
+A specific point of our analysis is the comparison with previous study of 
 \citet{Radice:2018pdn}, where the same simulation setup was used, but 
 the neutrino reabsorption was not included.
 %
@@ -1069,8 +1071,8 @@ the neutrino reabsorption was not included.
         The bottom panels show the relative difference between the data
         and the fit polynomial fit discussed in the text.
         (Adapted from \citet{Nedora:2020pak})
-        \red{Is not referenced in velocity and Ye sections!}
-        \red{but referenced in the afterglow section}
+        %\red{Is not referenced in velocity and Ye sections!}
+        %\red{but referenced in the afterglow section}
     }
     \label{fig:ejecta:dyn:dsfits}
 \end{figure*}
@@ -1090,8 +1092,9 @@ the neutrino reabsorption was not included.
 %ejecta properties in the chapter \ref{ch:stat}.
 %
 %Specifically, we observer, 
-We find that neutrino absorption leads to not only an 
-increase in average electron fraction but also to larger total ejected mass 
+Comparing out simulation data with other models available in the literature 
+(Sec.~\ref{sec:stat:ejecta}), e find that neutrino absorption leads to not only 
+an increase in average electron fraction but also to larger total ejected mass 
 and velocity. 
 %The latter two would be crucial for the non-thermal, 
 %kilonova afterglow (see Sec.\red{sec:KilonovaAfterglow}).
@@ -1102,17 +1105,17 @@ and velocity.
 %quantity calculated for data of \citep{Radice:2018pdn} 
 %is $\overline{\md} = (1.352\pm 1.250)\times 10^{-3}\,\Msun$.
 The mass-averaged terminal velocity of the dynamical ejecta 
-ranges between $0.1$c and $0.3$c, and in a good agreement with 
-\cite{Radice:2018pdn}.
+ranges between $0.1\,c$ and $0.3\,c$, and in a good agreement with 
+\citep{Radice:2018pdn}.
 %The mass-averaged velocity, averaged over all the simulations, is 
 %$\overline{\avd} = (0.172\pm0.038)\,{\text{c}}$.
 %
-We find that in our set of models, there is a correlation of $\avd$ with the tidal parameter 
-$\tilde{\Lambda}$: the higher the $\tilde{\Lambda}$ the lower the $\avd$.
-This can be understood from the tidal/shocked components of the \ac{DE} 
-(see Sec.~\ref{sec:intro:merg_pmerg}).
+We find that in our set of models, there is a correlation of $\avd$ with the 
+tidal parameter $\tilde{\Lambda}$: the higher the $\tilde{\Lambda}$ the lower 
+the $\avd$. This can be understood from the tidal/shocked components of the 
+\ac{DE} (see Sec.~\ref{sec:intro:merg_pmerg}).
 %
-We also find that the ejecta velocity, found in our simulations 
+We also find that the ejecta velocity, found in our simulations, 
 is recovered in \ac{NR} simulations with more advanced neutrino 
 treatment performed by other groups (see Sec.~\ref{sec:stat:vejstat}).
 %
@@ -1129,7 +1132,8 @@ treatment performed by other groups (see Sec.~\ref{sec:stat:vejstat}).
 %The velocity of the latter also is smaller for larger $\tilde{\Lambda}$, as stars collide 
 %at slower velocities due to their larger radii. 
 %%% ---
-The mass-averaged electron fraction, $\ayd$, of our models lies the range $(0.1, 0.3)$.
+In our models, the mass-averaged electron fraction, $\ayd$, 
+lies the range $(0.1, 0.3)$.
 %with an averaged value among all models $\overline{\ayd} = 0.175 \pm 0.063$.
 %Notably, the \citet{Radice:2018pdn} reported a more narrow range, $(0.1, 0.2)$.
 %This is a clear effect of the neutrino absorption included in our models, that elevates 
@@ -1139,16 +1143,15 @@ The mass-averaged electron fraction, $\ayd$, of our models lies the range $(0.1,
 %scheme of \citet{Sekiguchi:2016bjd} and \citet{Vincent:2019kor}.
 %%% ---
 The angular distribution of the \ac{DE} is found to depend 
-on the neutrino treatment. SPecifically, the inclusion of 
+on the neutrino treatment. Specifically, the inclusion of 
 neutrino reabsorption leads to a more spherically distributed ejecta
 (see Sec.~\ref{sec:stat:thetarms}).
-
 %%%---
 The effect of subgrid turbulence on the dynamical ejecta properties however,
-found rather week and comparible to the effects of finite grid discretization 
+found rather week and comparable to the effects of finite grid discretization 
 \citep{Bernuzzi:2020txg,Radice:2020ids}.
 
-Overall, we find that the properties of the \ac{DE} depend on the \mr{} and 
+Overall, we observe that the properties of the \ac{DE} depend on the \mr{} and 
 \ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$, as 
 %
 \begin{align}\label{eq:polyfit2}
@@ -1161,9 +1164,10 @@ are shown in bottom panels of Fig.~\ref{fig:ejecta:dyn:dsfits}.
 %
 This assertion is supported by a more thorough analysis of the ejecta 
 properties and disk mass, discussed in Appendix.~\ref{ch:stat}, 
+and thus we refer to these formulae as ``best fitting formulae''.
 %
-and more ab-initio simulations with complete physics and publicly available 
-data are required to refine these relations.
+A larger sample of ab-initio simulations with complete physics and 
+publicly available data are required to refine these relations.
 
 
 
