@@ -1,14 +1,17 @@
 \chapter{Binary Neutron Star merger simulations} \label{ch:bns_sims}
 
-In this chapter we discuss the \ac{NR} \ac{BNS} merger simulations,
-published in \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}.
+In this chapter we discuss the \ac{NR} \ac{BNS} merger simulations, 
+that were presented in related to this thesis publications 
+\citet{Nedora:2019jhl,Nedora:2020pak,Nedora:2021eoj}.
+%published in \citet{Nedora:2019jhl} and \citet{Nedora:2020pak}.
 %
 Simulations are performed with \ac{NR} code \wisky{}, that employs 
-methods discussed in the chapter \ref{ch:nr_methods}. The specifics 
-of the numerical setup are further discussed in Appendix~\ref{app:whisky}.
+methods discussed in the chapter~\ref{ch:nr_methods}. The specifics 
+of the numerical setup can be found in Appendix~\ref{app:whisky}.
 %
 We employ standard postprocessing techniques to extract the information 
-from simulations that we discuss in more detains in Appendix~\ref{ch:ppr}.
+from simulations, \eg, mass-averaged quantities, that we discuss 
+detailed description of which can be found it Appendix~\ref{ch:ppr}.
 %
 
 %First 
@@ -53,16 +56,16 @@ from simulations that we discuss in more detains in Appendix~\ref{ch:ppr}.
 
 
 The novelty of the set of simulations discussed in this thesis with respect to the 
-previous study by \citet{Radice:2018pdn} that used the same code,
+previous study by \citet{Radice:2018pdn} where the same code,
 similar numerical setup 
-and same \acp{EOS} (except BLh \ac{EOS}), is that all models include the neutrino heating via 
+and same \acp{EOS} (except BLh \ac{EOS}) were used, 
+is that all models include the neutrino heating via 
 M0 scheme in addition to the neutrino cooling 
 (as discussed in Sec.~\ref{sec:nr_methods:neut}), 
-and for most models the effects of subgrid turbulence 
-(as discussed in Sec.~\ref{sec:nr_methds:visc}) 
-are included. Additionally, our models cover a significantly more narrow 
-range in 
-dimensionless tidal deformability, $\tilde{\Lambda}$, and mass ratio, motivated by the \GW{}.
+and for most models the effects of subgrid turbulence  
+are included (as discussed in Sec.~\ref{sec:nr_methds:visc}). 
+Additionally, all our models are targeted to the \GW{} 
+(with corresponding chirp mass).
 %% <<<< moved from EJECTA >>>> 
 
 
@@ -931,7 +934,7 @@ the ring initially at $r$ is
     $ j^*(r) = j(r) ( r^* / r )^{1/2}\, ,$
 %\end{equation*}
 %
-where $ r^{*} = 300 G / c^2 M $ is the fiducial value, corresponding
+where $ r^{*} = 300 G / c^2 M \,$ is the fiducial value, corresponding
 to assumed total mass $M \approxeq 2.5M_{\odot}$ \citep{Radice:2018xqa}.
 The expected trajectory is shown as the green line in Fig.~\ref{fig:total_j_mb_rns_blh}.
 
@@ -1052,7 +1055,7 @@ Thus, for all out simulations, the ejecta properties are final.
 %
 To perform quantitative analysis we compute mass-averaged quantities, such 
 as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$ 
-(see Ch.~\ref{ch:ppr}, and Eq.~\ref{eq:ppr:average} there).
+(see App.~\ref{ch:ppr}, and Eq.~\ref{eq:ppr:average} there).
 %
 We show the result in Fig.~\ref{fig:ejecta:dyn:dsfits}.
 A specific point of our analysis is the comparison with previous study of 
@@ -1117,7 +1120,7 @@ the $\avd$. This can be understood from the tidal/shocked components of the
 %
 We also find that the ejecta velocity, found in our simulations, 
 is recovered in \ac{NR} simulations with more advanced neutrino 
-treatment performed by other groups (see Sec.~\ref{sec:stat:vejstat}).
+treatment performed by other groups (see App.~\ref{sec:stat:vejstat}).
 %
 %From the plot we observe that the $\avd$ increases with $\tilde{\Lambda}$. This can 
 %be attributed to the fact that the \ac{DE} in mergers with $q\sim1$ is dominated by the 
@@ -1145,7 +1148,7 @@ lies the range $(0.1, 0.3)$.
 The angular distribution of the \ac{DE} is found to depend 
 on the neutrino treatment. Specifically, the inclusion of 
 neutrino reabsorption leads to a more spherically distributed ejecta
-(see Sec.~\ref{sec:stat:thetarms}).
+(see App.~\ref{sec:stat:thetarms}).
 %%%---
 The effect of subgrid turbulence on the dynamical ejecta properties however,
 found rather week and comparable to the effects of finite grid discretization 

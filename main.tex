@@ -2813,7 +2813,7 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
         
         \item \textit{An Improved Atmosphere Treatment} or \textit{"MP5+LF"} In this approach the component-wise Lax-Friedrichs flux split is turned on when a certain density is reached. This increases the dissipation of the scheme and allows to avoid problems arising in characteristic reconstruction, associated with the degeneracy of the characteristic variables close to vacuum. Unfortunatelly, if the ejection of low velocity and density matter is concered, this approach may yield oscillatory solutions and thus creates artifacts. 
         
-        \item \textit{Positivity Preserving Limiter} a novel approach based on the use of PPL proposed in \cite{Hu:2013}. Here we provide a brief overview. 
+        \item \textit{Positivity Preserving Limiter} a novel approach based on the use of PPL proposed in \citet{Hu:2013}. Here we provide a brief overview. 
         Consider a simple scalar conservation law in 1D
         
         \begin{equation}
@@ -2821,7 +2821,7 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
             \label{eq:theory:whickythc:atmo:conslaw}
         \end{equation}
 
-        Since for a SSP time integrator a time update is convex combination of Euler steps, for which the positivity of $u$ is guaranteed for any scheme, the general discrete from of \ref{eq:theory:whickythc:atmo:conslaw} can be written as 
+        Since for a \ac{SSP} time integrator a time update is convex combination of Euler steps, for which the positivity of $u$ is guaranteed for any scheme, the general discrete from of Eq~\eqref{eq:theory:whickythc:atmo:conslaw} can be written as 
         
         \begin{equation}
             \frac{u_{i}^{n+1} - u_{i}^{n}}{\Delta^0} = \frac{f_{i-1/2} - f_{i+1/2}}{\Delta^1}
@@ -2833,7 +2833,9 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
             u_{i}^{n+1} = \frac{1}{2}(u_{i}^{+} + u_{i}^{-}) = \frac{1}{2}\Big[ (u_{i}^{n} + 2\lambda f_{i-1/2}) + (u_{i}^{n} - 2\lambda f_{i+1/2})\Big].
         \end{equation}
         
-        where then $u_{i}^{n+1} = u_{i}^{+} + u_{i}^{-}$ and $u_{i}^{n} = u_{i}^{n} - 2\lambda f_{i+1/2}$. Notably, the $u_{i}^{+}$ and $u_{i}^{-}$ as well as $u_{i}^{n+1}$ are positive. In \cite{Hu:2013} it was pointed out that if a first-order Lax-Friedrichs scheme with $\lambda\leq 1/2a$ (with $a$ being the maximum propagation speed) is used for evaluating $f_{i\pm 1/2}$, the $u_{i}^{\pm}\geq \text{min}_i u_{i}^{n}$ \cite{Zhang:2010}. \textcolor{red}{not understand that}. Then the suggested point is ti change the $f_{i+1/2}$ to be 
+        where then $u_{i}^{n+1} = u_{i}^{+} + u_{i}^{-}$ and $u_{i}^{n} = u_{i}^{n} - 2\lambda f_{i+1/2}$. Notably, the $u_{i}^{+}$ and $u_{i}^{-}$ as well as $u_{i}^{n+1}$ are positive. 
+        
+        In \citet{Hu:2013} it was pointed out that if a first-order Lax-Friedrichs scheme with $\lambda\leq 1/2a$ (with $a$ being the maximum propagation speed) is used for evaluating $f_{i\pm 1/2}$, the $u_{i}^{\pm}\geq \text{min}_i u_{i}^{n}$ \citep{Zhang:2010}. \textcolor{red}{not understand that}. Then the suggested point is ti change the $f_{i+1/2}$ to be 
         
         \begin{equation}
             f_{i+1/2} = \theta f_{i+1/2}^{\text{HO}} + (1-\theta)f_{i+1/2}^{\text{LF}},
@@ -2843,7 +2845,7 @@ Goal is to model the inspiral of BNS to produce accurate waveforms. \textcolor{r
         
         In a multidimensional case the the component-vise extension is employed. \textcolor{red}{formula that I will not used for $u_{i,j,k}^{n+1}$}.
         
-        In \cite{Hu:2013} the extension of the method to the system of conservation laws was also proposed. 
+        In \citet{Hu:2013} the extension of the method to the system of conservation laws was also proposed. 
         
         The complications however are present when the source terms are treated. While for a simplified case of classical gas dynamics it might require a lower timestep, in the general relativistic case and general tabulated EOS, the positivist of pressure is difficult to assure due to complexity of the energy source terms. It can be mitigated by enforcing a floor value on the pressure.
         
