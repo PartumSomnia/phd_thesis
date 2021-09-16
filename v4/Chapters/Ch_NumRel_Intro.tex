@@ -1,0 +1,91 @@
+% Chapter 1
+
+\chapter{Introduction} % Main chapter title
+
+\label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+
+%----------------------------------------------------------------------------------------
+
+
+\red{biased for Shibata papers [from his 2019 paper with hotokezaka]}
+
+Mergers if neutron star binaries (binary neutron stars (BNS)) and neutron star-black hole 
+(NSBH) are one of the most promising sources of graviational waves (GWs) for ground-based
+detectors (\eg, Advanced LIGO and Virgo, and KAGRA \citep{Abadie:2010hv,Accadia:2010aa,Akutsu:2017kpk}).
+On August 17, 2017 advanced LIGO and Aadvanced Virgo made the first observation of GWs from a binary 
+neutron star merger, the event \GW{}. It is expected that advanced GW observatories will detect more
+events such as \GW{} in the near future.
+
+It is expected that a significant amount of matter is ejected during the neutron star merger. 
+This neutron-rich matter, the ejecta, is a promising site for the rapid neutron racture 
+nucleosynthesis, ($r$-process, see sec.\ref{sef:nucleo}), responsible for the creation of the 
+heaviest elements in the Universe \citep{Lattimer:1974slx,Eichler:1989ve,Thielemann:2017acv}.
+Related to the neutron-rich heavy element synthesis in the ejecta, an electromagnetic (EM) transient
+(Kilonova/mactronova) is expected to be powered by the radioactive decay of the \rproc{} 
+elements \citep{Li:1998bw,Metzger:2010,Roberts:2011,Goriely:2011vg,Korobkin:2012uy,Barnes:2013wka,Tanaka:2013ana}.
+This is the electromagnetic counterpart to the gravitational waves from BNS that, if detected, 
+could constrain aid with the source sky localization and allow further constrain models 
+of the chemical evolution and origin of the heavy \rproc{} elements 
+This is supported by the recent observation of ultra-violet, optical, and infrared signals of
+\GW{} \citep{TheLIGOScientific:2017qsa,Tanaka:2017qxj,Arcavi:2017xiz,Coulter:2017wya,Cowperthwaite:2017dyu,Drout:2017ijr,Evans:2017mmy,Kasliwal:2018fwk,Pian:2017gtc,Smartt:2017fuw,Tanvir:2017pws}. 
+In addition to the nuclear decay powered EM counterpart, a long-lasting synchrotron emission 
+is multi-wavelengths is expected from the merger ejecta propagating through the interstellar
+medium (ISM) \citep{Nakar:2011cw}. 
+Such signal, if detected, would provide an additional information on the merger ejecta velocity profile,
+unafeccted by the ill-constrained details of the \rproc{} nucleosynthesis. 
+
+In order to perform a quantitative studies of the aforementioned topics, first the main aspects 
+of the BNS merger have to clarified. These aspects include the merger process, the mass ejection, 
+the nucleosynthesis and subsequent decay of the heavy elements in the ejecta, and EM emission
+arising from the ejecta. Numerical relativity simulations that include accurate microphysical processes, 
+neutrino radiation transport and magnetohydrodynamics (MHD) are the best tool in this regard. 
+
+Owing to the recent rapid advancement in the field of modeling the BNS in numerical-relativity (NR) 
+the detailed simulations of the mergers are now achievable.
+This allowed to investigate the effects of the neutron star matter equation of state, (EOS) that 
+take into account the finite-temperature effects \citep{Duez:2009yz,Sekiguchi:2011zd},
+the effects of the neutrino cooling \citep{Sekiguchi:2011zd,Deaton:2013sla,Foucart:2014nda,Palenzuela:2015dqa} and neutrino heating \citep{Sekiguchi:2015dma,Foucart:2016rxm}, and
+MHD instability \citep{Kiuchi:2014hja,Kiuchi:2015sga,Kiuchi:2015sga}.
+Numerical relativity simulations are currently the best way to study the mergers and predict the features, 
+that can be tested with later observations.
+
+In BNS mergers the mass ejection processes have been studied with NR simulations have been first 
+investigated by \citet{Hotokezaka:2013b} while in the NSBH mergers by \citet{Foucart:2012vn}. A large number of numerical relativity 
+simulations have been performed to study the nature of the first material that is being ejected 
+on the dynamical timescale (the dynamical ejecta) \cite{(Sekiguchi:2015dma,Palenzuela:2015dqa,Lovelace:2013vma,Kyutoku:2013wxa,Foucart:2015vpa,Foucart:2015gaa,Foucart:2016rxm,Sekiguchi:2016bjd,Lehner:2016lxy,Radice:2016dwd,Foucart:2016vxd,Kyutoku:2017voj,Dietrich:2018uni,Dietrich:2016lyp,Bovard:2017mvn,Radice:2018pdn}. This works showed that ejecta mass depends on the binary parameters, such as mass ration, and on 
+the EOS. The ejecta was found to host material with broad range of compositions, where the latter 
+is usually quantified with electron fraction $Y_e$, which is the electron number density per baryon 
+number density. This wide range of $Y_e$, is however consistent with the observed abundance patterns 
+of \rproc{} elements (with mass number larger $A\sim90$) in the Solar System and metal poor-stars \citep{Wanajo:2014,Radice:2016dwd}.
+
+After a BNS merger, a remnant is born. It can be a black hole (BH) or a massive, stable or unstable, neutron star (MNS). Both could be surrounded by a gravitationally bound matter, a disk (torus). 
+The \pmerg{} evolution have been investigated by many groups \citep{Fernandez:2013tya,Metzger:2014ila,Perego:2014fma,Fernandez:2014cna,Just:2014,Fernandez:2016sbf,Siegel:2017nub,Fujibayashi:2017xsz,Fernandez:2018kax}. 
+Simulations showed that a certain fraction of the disk can become unbound, and be ejected from the system, 
+by viscous, nuclear recombination or MHD effects. 
+This long-term ejecta was found to be more massive then the dynamical ejecta in certain cases and thus,
+even more important for EM counterparts and nucleosynthetic yields.
+
+In this thesis we discuss the numerical relativity simulations performed with the code \texttt{WhiskyTHC}
+
+
+
+In this thesis we perform and analyze numerical relativity simulations of merging neutron stars. 
+These simulations are performed via solving the equations of general relativity, hydrodynamics and radiation, neutrino, transport via special numerical schemes. 
+
+In this chapter we provide a brief description of the main equations and methods used to produce simulations analyzed in this thesis. 
+For the sace of bravity we limit the discussion to the main results and implication important for our work.
+For the underlying principles of the Eintein's theory of General Relativity, for which we here the reado to \red{[GR refs]}.
+For the discussion and derivation of general relativistic hydrodynamics and refer the interested reader to \red{[GRHD refs]}.
+For the Discussion on the radiation transport we refer to \red{GR-Rad refs}
+
+%% from GRLES Raduce paper
+Multimessenger observations of BNS mergers are starting to constrain the poorly known properties of
+matter at extreme densities [11,12,20–36] and the physical processes powering short g-ray bursts (SGRBs)
+[37–42]. They are also beginning to reveal the role played by compact binary mergers in the chemical
+enrichment of the galaxy with r-process elements [8,13,43–62]. The key to the solution of some of the most
+pressing open problems in nuclear and high-energy astrophysics – such as the origin of heavy elements,
+the nature of neutron stars (NSs), and the origin of SGRBs – is encoded in these and future observations.
+However, theory is essential to turn observations into answers.
+
+%% ============================================================ Chapter :: Theory/Methods 
+
