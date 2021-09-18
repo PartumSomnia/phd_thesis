@@ -8,6 +8,11 @@ In this chapter we overview the methods and techniques used to model the
 
 \section{The $3+1$ formulation of General Relativity}\label{sec:nr_methods:nr}
 
+\red{
+    Remove what 'our' simulations use from each section, and say
+    it once in the end of the chapter
+}
+
 %%%% === Additional Intro
 The \ac{EFE} is the foundation of modern cosmology, the physics of \acp{NS} and \acp{BH}, 
 the emission of gravitational radiation, and many other cosmic phenomena, 
@@ -3073,6 +3078,14 @@ subgrid turbulence.
 %
 %
 
+%% --------------------------
+%%
+%% Simulations
+%%
+%% --------------------------
+
+
+
 \section{Simulations and postprocessing}
 
 %TODO add general description of runs / trajectories
@@ -3080,10 +3093,13 @@ subgrid turbulence.
 
 %\chapter{Binary Neutron Star merger simulations} \label{ch:bns_sims}
 
-In this thesis we analyze the \ac{BNS} merger simulations performed 
-with the code \wisky{}, that incorporates methods discussed above. 
+With methods discussed in this chapter, incorporated in 
+the \ac{GRHD} code \wisky{} a a large set of \ac{BNS} merger 
+simulations was performed. We summarize their properties in the
+Tab.~\ref{tab:sim}. 
 %
-The details on the numerical setup are reported in Appendix~\ref{app:whisky}.
+The details on the numerical setup of \wisky{} 
+are reported in Appendix~\ref{app:whisky}.
 
 %% --------------------------------
 %% TAB SIM SUMMARY
@@ -3105,8 +3121,8 @@ Most simulations are performed with at least two resolutions,
 $16$ binaries are also simulated at high resolution, \texttt{HR}.
 In total $76$ models are computed and studied.
 %
-Several binaries that resulted in a formation of a \ac{NS} remnant that does not collapse 
-to a \ac{BH} are evolved up to $100\,$ms \pmerg.
+Several binaries that resulted in a formation of a \ac{NS} remnant 
+that does not collapse to a \ac{BH} are evolved up to $100\,$ms \pmerg.
 %
 Most simulations include the effects of subgrid turbulence. 
 Those that are not are marked with ``*'' next to the equation of state name.

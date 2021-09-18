@@ -75,46 +75,46 @@ Additionally, all our models are targeted to the \GW{}
 
 
 
-\section{Simulations}\label{sec:bns_merg:sims}
+%\section{Simulations}\label{sec:bns_merg:sims}
 %\subsection{Simulations}
 
-%% --------------------------------
-%% TAB SIM SUMMARY
-\input{Tables/tabSim.tex}
-%% --------------------------------
-
-
-In total we consider a sample of $37$ models of unique binaries with the 
-chirp mass $\mathcal{M}_c = 1.188\,\Msun$ that corresponds to the source of \GW{}.
+%%% --------------------------------
+%%% TAB SIM SUMMARY
+%\input{Tables/tabSim.tex}
+%%% --------------------------------
 %
-The total gravitational mass covers the range $M\in[2.73, 2.88]\,\Msun$, while the 
-mas ration $q=M_A/M_B\in[1,1.8]$. 
 %
-We show the masses and radii of computed models as markers in 
-Fig.~\ref{fig:method:tov_mr} and summarize their main properties, 
-and the dynamical ejecta properties in Tab.~\ref{tab:sim}.
-%
-Most simulations are performed with at least two resolutions, 
-\texttt{LR} and \texttt{SR}. 
-$16$ binaries are also simulated at high resolution, \texttt{HR}.
-In total $76$ models are computed and analyzed.
-%
-Several binaries that resulted in a formation of a \ac{NS} remnant that does not collapse 
-to a \ac{BH} are evolved up to $100\,$ms \pmerg.
-%
-Most simulations include the effects of subgrid turbulence. 
-Those that are not are marked with ``*'' next to the equation of state name.
-%
-The naming convention for simulations is the following: 
-the equation of state name, the mass ratio, and the resolution, \eg, 
-the ``BLh* $q=1.00$ (\texttt{SR})" would refer to the simulation of the equal mass
-binary performed with BLh \ac{EOS}, without subgrid turbulence and at standard resolution. If resolution is not mentioned, \texttt{SR} is assumed.
-%\red{might be redundant}
-%% mass ratio binaries has been already presented in \cite{Bernuzzi:2020txg}.
-%% Together with our previous data these simulations form the largest
-%% sample of merger simulations with microphysics available to date
-%% \citep{Bernuzzi:2015opx,Radice:2016dwd,Radice:2016rys,Radice:2017lry,
-%%        Radice:2018xqa,Radice:2018pdn,Perego:2019adq,Endrizzi:2019trv,Bernuzzi:2020txg}.  
+%In total we consider a sample of $37$ models of unique binaries with the 
+%chirp mass $\mathcal{M}_c = 1.188\,\Msun$ that corresponds to the source of \GW{}.
+%%
+%The total gravitational mass covers the range $M\in[2.73, 2.88]\,\Msun$, while the 
+%mas ration $q=M_A/M_B\in[1,1.8]$. 
+%%
+%We show the masses and radii of computed models as markers in 
+%Fig.~\ref{fig:method:tov_mr} and summarize their main properties, 
+%and the dynamical ejecta properties in Tab.~\ref{tab:sim}.
+%%
+%Most simulations are performed with at least two resolutions, 
+%\texttt{LR} and \texttt{SR}. 
+%$16$ binaries are also simulated at high resolution, \texttt{HR}.
+%In total $76$ models are computed and analyzed.
+%%
+%Several binaries that resulted in a formation of a \ac{NS} remnant that does not collapse 
+%to a \ac{BH} are evolved up to $100\,$ms \pmerg.
+%%
+%Most simulations include the effects of subgrid turbulence. 
+%Those that are not are marked with ``*'' next to the equation of state name.
+%%
+%The naming convention for simulations is the following: 
+%the equation of state name, the mass ratio, and the resolution, \eg, 
+%the ``BLh* $q=1.00$ (\texttt{SR})" would refer to the simulation of the equal mass
+%binary performed with BLh \ac{EOS}, without subgrid turbulence and at standard resolution. If resolution is not mentioned, \texttt{SR} is assumed.
+%%\red{might be redundant}
+%%% mass ratio binaries has been already presented in \cite{Bernuzzi:2020txg}.
+%%% Together with our previous data these simulations form the largest
+%%% sample of merger simulations with microphysics available to date
+%%% \citep{Bernuzzi:2015opx,Radice:2016dwd,Radice:2016rys,Radice:2017lry,
+%%%        Radice:2018xqa,Radice:2018pdn,Perego:2019adq,Endrizzi:2019trv,Bernuzzi:2020txg}.  
 
 
 
@@ -196,7 +196,7 @@ details of \pmerg{} conditions and on the temperature and composition effects.
 \end{figure*}
 
 We begin by analyzing the \pmerg{} dynamics of the \ac{NS} remnant.
-The hydrodynamic instability is monitored by a decomposition in Fourier modes
+Hydrodynamic instabilities are monitored by a decomposition in Fourier modes
 $e^{-i m \phi}$ of the Eulerian rest-mass density on the equatorial plane 
 (see Sec.~\ref{sec:bns_sims:method:modes} for more details).
 %[see Eq.~(1) of \citep{Radice:2016gym}] and characterized by the
@@ -378,7 +378,7 @@ subgrid turbulence and \mr{} systematically.
 %\subsection{High mass ratio binaries}
 
 %% --- On THE PROMPT collapse
-We find that in models with high \mr{}, \eg, $q\gtrsim1.67$, the companion star (less 
+We find that in models with high \mr{}, $q\gtrsim1.67$, the companion star (less 
 massive one) undergoes tidal disruption before merger as the tidal forces overcome the star's 
 binding energy, creating a disk around the primary.
 The accretion raises the mass of the remaining \ac{NS} beyond the maximum supported limit by the 
@@ -434,8 +434,8 @@ and on the inclusion of subgrid turbulence as was previosly noted by \citet{Radi
 %% disk's outer layers that is distinct from the dynamical ejecta, see Fig.~\ref{fig:ej_properties}.
 %
 Within the spiral waves the fluid temperature is the highest,
-(decreasing rapidly, as 
-disk expands and cools via neutrino emission).
+decreasing rapidly, as 
+disk expands and cools via neutrino emission.
 High temperatures lead to the electron-positron pair creation, 
 %% [added from Shibata Review paper]
 facilitating the positron capture by free neutrons 
@@ -474,7 +474,7 @@ stiffer \acp{EOS} (larger \ac{NS} radii) produce more massive disks.
 Additionally, the disk mass show a dependency on mass ratio. For instance, the most massive 
 disks are formed in LS220 $q=1.43$ and  BLh $q=1.82$ models, where the latter experiences prompt collapse.
 %
-We examine these dependencies more closely in the chapter~\ref{ch:stat}, Sec.~\ref{sec:stat:remdisk}.
+We examine these dependencies more closely in the chapter~\ref{ch:stat}, Sec.~\ref{sec:stat:remdisk}. \red{Maybe move it also here? in a separate section?}
 %% -- 
 The disk accretion onto a \ac{BH} removes up to $50\%$ of its mass on a timescale of tens of milliseconds.
 
@@ -496,17 +496,17 @@ it exceeds ${\sim}0.2\,\Msun$. For the models with BLh \acp{EOS},
 the disk mass increases between $q=1.00$ and $q\sim1.4-1.5$ by a $100\%$.
 
 The long-term evolution of the disk is driven by its interaction with the \ac{NS} remnant 
-remnant and cooling. And while if the central remnant is a \ac{BH}, the only possible 
+remnant and cooling. If the central remnant is a \ac{BH}, the only possible 
 interaction is the disk accretion onto a \ac{BH}, in the case of a \ac{NS} remnant 
 the picture is more complex.
 %
-The disk neutrino cooling and gravitational pull from the remnant facilitates the 
+Neutrino cooling and gravitational pull from the remnant facilitates the 
 accretion. Simultaneously, spiral density waves inject %generated at shocks,
 energy and angular momentum into the disk as well as centrifugally supported 
-material %(the \ac{NS} remnant undergoes mass-shedding). 
+material.  %(the \ac{NS} remnant undergoes mass-shedding). 
 This heats up the disk and 
 facilitates its expansion.
-This is the case for previously discussed 
+This is the case for the previously discussed 
 DD2* $q=1.00$ and BLh $q=1.00$ where the 
 quasi-steady state disk accretion and mass-shedding 
 can be observed.
@@ -711,10 +711,13 @@ starts to take place. The energy, released in recombination, might be sufficient
 for the outermost layers to become unbound, generating an outflow and contributing 
 to the disk depletion \citep{Beloborodov:2008nx,Lee:2009uc,Fernandez:2013tya}.
 %
-This process however is expected to take place on timescales, longer than
-those simulated here. On the ${\sim}100\,$ms timescale, however, the outflows 
-are driven by the neutrino heating, above the remnant, the so-called neutrino-driven 
-wind (\nwind{}; \citet{Dessart:2008zd,Perego:2014fma,Just:2014fka}). 
+This process, however, is expected to take place on timescales longer than
+those simulated here. 
+Additionally, an outflow induced by viscous heating within the disk and 
+so-called neutrino-driven wind (\nwind{}; \citet{Dessart:2008zd,Perego:2014fma,Just:2014fka})
+driven by neutrino heating above the remnant, are expected to contribute to the 
+mass and angular momentum mass loss. 
+
 %and by the dynamical
 %interactions between the \ac{NS} remnant and the disk, the \swind{} \citep{Nedora:2019jhl}.
 %
@@ -736,8 +739,8 @@ wind (\nwind{}; \citet{Dessart:2008zd,Perego:2014fma,Just:2014fka}).
 %before the end of out simulations, due to rapid baryon loading of the 
 %polar region.
 %The \swind{} will be discussed in detail in Sec.~\ref{sec:spiralw}.
-The effects of these outflows on the dynamical evolution of the remnant 
-lies in the amount of mass and angular momentum they can remove from the system.
+%The effects of these outflows on the dynamical evolution of the remnant 
+%lies in the amount of mass and angular momentum they can remove from the system.
 %
 %Specifically, the \nwind{} have a typical mass of ${\sim} 10^{-4}\,\Msun$, 
 %while the \swind{} could remove $10^{-2}\,\Msun$ on a timescale of a ${\sim}100\,$ms.
@@ -828,7 +831,7 @@ in comparison with the rigidly rotating \ac{NS} configurations with the same bar
 (gray triangular region in Fig.~\ref{fig:total_j_mb_rns_blh}).
 %
 %Similar situation is found for other 
-We observe the same situation across all our models.% \citep{Zappa:2017xba,Radice:2018xqa}.
+We observe the same situation in all our models.% \citep{Zappa:2017xba,Radice:2018xqa}.
 
 
 The \ac{NS} remnant of BLh $q=1.00$ model exceeds also the maximum mass 
@@ -920,12 +923,12 @@ evolution of the long-lived remnant based on the following considerations.
 The recombination of nucleons into nuclei and the subsequent 
 liberation of nuclear binding energy can be a driving force 
 of the massive outflows. Matter becomes unbound gravitationally 
-once it reaches a cylindrical radius $r*$ at which the nuclear recombination energy 
+once it reaches a cylindrical radius $r^*$ at which the nuclear recombination energy 
 equals the gravitational binding energy
 \citep[\eg][]{Fernandez:2013tya}, 
 %
 \begin{equation*}
-    G M m_b / r* \approxeq 8.8\, \text{MeV}, 
+    G M m_b / r^* \simeq 8.8\, \text{MeV}, 
 \end{equation*}
 %
 where $M$ the central object mass and $m_b$ is the average baryon mass.
@@ -1002,7 +1005,7 @@ models with $q\eqsim 1.4$ need to remove $0.2\,\Msun$ to reach equilibrium confi
 Tidal interactions and shocks exerted on the \acp{NS} at merger trigger the ejection of material
 on the dynamical timescale. This is the \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn},
 composed of the tidal an shocked components.
-(see also Sec.~\ref{sec:intro:merg_pmerg}).
+(see also Sec.~\ref{sec:intro:merg_pmerg} \red{INTRO?}).
 %\red{More on the genral mechanism tidal vs shocked}
 %The \ac{DE} is evaluated with the geodesic criterion introduced in Sec.~\ref{sec:method:analysis:ejecta}.
 %
@@ -1050,22 +1053,20 @@ The dynamical ejecta has a broad distribution in terms of composition,
 velocity and mass, dependent on the parameters of the binary and \ac{NS} \ac{EOS}.
 %%% === ON THE FAST DYNAMICAL EJECTA IN PARTICULAR ===========
 
-We flag the matter as \ac{DE} that has $u_t < -1$, where $u_{\alpha}$ is the 
-fluid four-velocity passing the extraction sphere located at $R=294\,$km 
-from the remnant (unless specified otherwise).
-See Sec.~\ref{sec:bns_sims:method:ejecta} for more details.
+We employ the geodesic criterion (See Sec.~\ref{sec:bns_sims:method:ejecta}) 
+to flag the \ac{DE}, extracting its properties at 
+$R=294\,$km from the remnant (unless specified otherwise).
+%We flag the matter as \ac{DE} that has $u_t < -1$, where $u_{\alpha}$ is the 
+%fluid four-velocity passing the extraction sphere located at $R=294\,$km 
+%from the remnant (unless specified otherwise).
+%See Sec.~\ref{sec:bns_sims:method:ejecta} for more details.
 %
 The \ac{DE} mass flux saturates ${\lesssim}20\,$ms after merger.
 Thus, for all out simulations, the ejecta properties are final.
 %
 To perform quantitative analysis we compute mass-averaged quantities, such 
-as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$ 
-(see App.~\ref{ch:ppr}, and Eq.~\ref{eq:ppr:average} there).
-%
-We show the result in Fig.~\ref{fig:ejecta:dyn:dsfits}.
-A specific point of our analysis is the comparison with previous study of 
-\citet{Radice:2018pdn}, where the same simulation setup was used, but 
-the neutrino reabsorption was not included.
+as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$. 
+%(see App.~\ref{ch:ppr}, and Eq.~\ref{eq:ppr:average} there).
 %
 \begin{figure*}[t]
     \centering 
@@ -1085,6 +1086,104 @@ the neutrino reabsorption was not included.
     \label{fig:ejecta:dyn:dsfits}
 \end{figure*}
 %
+We show the result in Fig.~\ref{fig:ejecta:dyn:dsfits}.
+A specific goal of our analysis is the comparison with previous studies 
+of \ac{DE}, in particular with \citet{Radice:2018pdn}, where the same 
+simulation setup was used, but the neutrino reabsorption was not included.
+
+%% -------------------
+\input{Tables/tabDatasets.tex}
+%% -------------------
+
+The datasets used for the analysis are summarized in Tab.~\ref{tab:data}.
+We group them with respect to the employed neutrino treatment:
+
+\begin{itemize}
+    %% ---
+    \item \DSheatcool{} comprises a set of models with neutrino emission 
+    and absorption and microphysical \ac{EOS}. It includes 
+    $8$ models with leakage+M0 of \citet{Radice:2018pdn} and models 
+    of \citet{Sekiguchi:2015dma,Sekiguchi:2016bjd,Vincent:2019kor}
+    in which a leakage+M1 scheme or a M1 gray scheme are employed for the neutrino transport. 
+    Models reported in these studies span 
+    $q\in[1, 1.30]$, 
+    $\tilde{\Lambda}\in[340, 1437]$, 
+    $M_{\rm tot}\in[2.52,2.88]$, 
+    and $M_{\rm chirp}\in[1.10,1.25]$.
+    %% ---
+    \item \DSrefset{} harbors models 
+    discussed in this thesis.
+    %    with the same physical setup as 
+    %    those models with leakage+M0 of \citet{Radice:2018pdn}, that are 
+    %    part of the \DSheatcool{}. However, these models, presented in 
+    %    \citet{Perego:2019adq,Nedora:2019jhl,Bernuzzi:2020txg,Nedora:2020pak}, 
+    %    and disucssed in Ch.~\ref{ch:bns_sims}, 
+    For the reason that they are uniform in turns of the 
+    numerical setup, code and physics and have fixed chirp mass 
+    we group them into a separate, reference dataset. 
+    The models of this set span $q\in[1, 1.82]$, 
+    $\tilde{\Lambda}\in[400, 850]$, 
+    $M_{\rm tot}\in[2.73,2.88]$ with 
+    the chirp mass $M_{\rm chirp}=1.19$.
+    %% ---
+    \item \DScool{} comprises models with leakage scheme as neutrino treatment and 
+    microphysical \ac{EOS}. The dataset includes a subset of models from 
+    \citet{Radice:2018pdn} ($35$ runs denoted as LK),
+    and the set of models from \citet{Lehner:2016lxy}.
+    The models in this dataset span $q\in[1, 1.31]$, 
+    $\tilde{\Lambda}\in[116, 1688]$, 
+    $M_{\rm tot}\in[2.40,3.42]$, 
+    and $M_{\rm chirp}\in[1.04,1.49]$.
+    %% ---
+    \item \DSnone{} is composed of models with piecewise-polytropic \acp{EOS} 
+    \citet{Hotokezaka:2012ze,Dietrich:2015iva,Dietrich:2016hky,
+        Kiuchi:2019lls,Bauswein:2013yna},
+    in which temperature effects are approximated by a
+    gamma-law pressure contribution, while
+    composition and weak effects are neglected.
+    The models in this dataset span 
+    $q\in[1, 2.06]$, 
+    $\tilde{\Lambda}\in[50, 3196]$, 
+    $M_{\rm tot}\in[2.4,4.0]$, 
+    and $M_{\rm chirp}\in[1.04,1.74]$.
+\end{itemize}
+
+%% --- Overal dataseamble
+In total $324$ \ac{NR} models are available.
+For each of which we compute the reduced tidal parameter, $\tilde{\Lambda}$, 
+Eq.~\eqref{eq:intro:Lambda}, solving the \ac{TOV} equations for the corresponding 
+gravitational masses of the stars and \ac{EOS}.
+% 
+For a subset of models with polytropic \acp{EOS} of \citet{Bauswein:2013jpa}
+and \citet{Kiuchi:2019lls}, however, the \ac{EOS} data are not available and, 
+the $\tilde{\Lambda}$ cannot be estimated. We exclude these models from the 
+statistical analysis. Overall, out of $324$, we consider $271$ models for which 
+the required binary data is available/computed. For all $271$ of them the ejecta 
+mass, $\amd$, is present. The average velocity, $\avd$, is available for only $246$ 
+models, as a subset of models from \citet{Kiuchi:2019lls} does not contain this 
+information. The electron fraction is found for $99$ models, as we exclude the 
+subset of models with leakage scheme for which this data is not given in 
+\citet{Lehner:2016lxy}. The \ac{RMS} half-opening angle around the orbital plane, 
+$\athetarms$, of the ejecta is present for $76$ models and the mass of the disk, 
+$M_{\rm disk}$, is given for $119$ models.
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.32\textwidth]{statistics/ej_mej_vej_groups.pdf}
+    \includegraphics[width=0.32\textwidth]{statistics/ej_mej_yeej_groups.pdf}
+    \includegraphics[width=0.32\textwidth]{statistics/ej_vej_yeej_groups.pdf}
+    \caption{Summary of dynamical ejecta properties used in this work.
+        Blue circles represent models of \DSrefset{}, 
+        red diamonds stands for models from \DSheatcool{}, 
+        green crosses are models from \DScool{}
+        and gray squares stand for models from \DSnone{}, 
+        %% 
+        We show for comparison the two-component fit to AT2017gfo as
+        colored patches from \cite{Villar:2017wcc,Siegel:2019mlp}.
+        (Adapted from \citet{Nedora:2020qtd})
+    }
+    \label{fig:ejecta:dyn:ds}
+\end{figure*}
 
 
 

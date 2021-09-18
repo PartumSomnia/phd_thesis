@@ -4,48 +4,105 @@ I have adressed all the comments and suggestions you've
 given in the email as well as in the printed text. 
 
 
+> I read your thesis. It is a good starting point 
+> although not yet at the level for submission.
+> Below some comments. I wanted to attach a scanned copy with 
+> some annotation and some typos marked (not all of them) but the 
+> scanner has failed. I left the hardcopy on your desk, 
+> please collect it from there.
 
-I read your thesis. It is a good starting point although not yet at the level for submission.
-Below some comments. I wanted to attach a scanned copy with some annotation and some typos marked (not all of them) but the scanner has failed. I left the hardcopy on your desk, please collect it from there.
+> Comments
+> =========
 
-Comments
-=========
+> * subtitle missing
 
- * subtitle missing
+TODO: I added the subtitle
 
- * abstract missing
 
+> * abstract missing
 Abstract is important.
 
- * Please add a page with the list of papers relevant for the thesis and a short description (1-2 lines) of what was your precise contribution.
+TODO I added the abstract
+
+
+> * Please add a page with the list of papers relevant for 
+>   the thesis and a short description (1-2 lines) 
+>   of what was your precise contribution.
+
+TODO I added the required page
+
 
  * Chap.1 needs another try.
 
-In the first part you basically copied the Radice+ review which is not good. Here (and also elsewhere), there should *no* evident copy of previous works since the thesis is an original document. I can close an eye on the text taken from papers you co-authored, but elsewhere you need to work out original text.
+> In the first part you basically copied the Radice+ 
+> review which is not good. Here (and also elsewhere), 
+> there should *no* evident copy of previous works since 
+> the thesis is an original document. I can close an eye 
+> on the text taken from papers you co-authored, but elsewhere 
+> you need to work out original text.
 
-Also, take into account that everything in the thesis should be either 'basics' or product of your work. Questions can be asked on any statement you make there, and you are supposed to know it and explain it. E.g. I guess you do not want the committee to ask to explain the skeletonize approach to tides... Hence, you should simplify and be more general on things you did not directly work on; they are needed only for context in some sense.
+> Also, take into account that everything in the thesis 
+> should be either 'basics' or product of your work. 
+> Questions can be asked on any statement you make there, 
+> and you are supposed to know it and explain it. E.g. I guess 
+> you do not want the committee to ask to explain the skeletonize 
+> approach to tides... Hence, you should simplify and be more 
+> general on things you did not directly work on; they are needed 
+> only for context in some sense.
 
-The logic of the first page of the introduction is difficult to follow, and that is not very helpful to start. You could start by summarizing the 170817 observation (which is helpful later) and limit the description to things you need later and can explain properly.
+> The logic of the first page of the introduction is difficult 
+> to follow, and that is not very helpful to start. You could 
+> start by summarizing the 170817 observation (which is helpful 
+> later) and limit the description to things you need later 
+> and can explain properly.
 
-Some basic equations in Sec.1.3.3 and later would be best placed later on when you explain kN and afterglow.
+> Some basic equations in Sec.1.3.3 and later would 
+> be best placed later on when you explain kN and afterglow.
 
- * Chap.2
+TODO
+I've rewritten the introduction chapter. I moved the equations 
+into their respective chapters. 
 
-I would simplify/reduce the 3+1 formalism (you did not really work with that) and can reduce other parts like the viscosity scheme. Again, here the logic is that you did not develop these methods. This chapter could be "Overview on NR methods" and you could even include here the run list and their description.
 
-I would reduce significantly Sec.2.6 for the same reason above.
+> * Chap.2
 
-You should include (or move) here key expressions used later when you explain the analysis and plots like angular momentum, modes, etc. When you comments on the plots the reader must know what is in the figure without skipping back and forth to an Appendix.
+> I would simplify/reduce the 3+1 formalism (you did not really 
+> work with that) and can reduce other parts like the viscosity 
+> scheme. Again, here the logic is that you did not develop these 
+> methods. This chapter could be "Overview on NR methods" and you 
+> could even include here the run list and their description.
 
- * Chap.3
+> I would reduce significantly Sec.2.6 for the same reason above.
 
-There seems to be some repetition with Chap.1 shuffle text accordingly.
+> You should include (or move) here key expressions used later 
+> when you explain the analysis and plots like angular momentum, 
+> modes, etc. When you comments on the plots the reader must know 
+> what is in the figure without skipping back and forth to an Appendix.
 
-There are conflicting statements about recombination as origin of the ejecta, check.
+I significatly shortened the GRHD part of the chap.2.
+I moved Appenidx on postprocessing into the chapter as well as 
+the table with simulations.
 
-Sec.3.4 is a bit unclear. If you move some material key plots and text from the Appendix C it might be more clear.
 
-This is another place where you could/should include (or move) here key expressions used later when you explain the analysis and plots like angular momentum, modes, etc.
+> * Chap.3
+
+> There seems to be some repetition with Chap.1 shuffle text accordingly.
+
+> There are conflicting statements about recombination as origin of the ejecta, check.
+
+> Sec.3.4 is a bit unclear. If you move some material key plots and text 
+> from the Appendix C it might be more clear.
+
+> This is another place where you could/should include (or move) 
+> here key expressions used later when you explain the analysis 
+> and plots like angular momentum, modes, etc.
+
+As Chap.1 has been rewritten the Chap.1 I removed repetitions. 
+I addressed the ejecta origin part. 
+I introduced the subsection on the statistics on the dynamical ejecta. 
+I was reluctened to to so in the first place, as this chapter is about our 
+simulations.
+
 
  * Chap.4 
 

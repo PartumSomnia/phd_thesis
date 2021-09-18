@@ -1,31 +1,1417 @@
 % Chapter Template
 
-\chapter{Non-thermal emission from compact object merger} \label{ch:afterglow} 
+\chapter{Non-thermal emission from \ac{BNS} mergers} \label{ch:afterglow} 
 
 In this chapter we discuss models of the non-thermal counterpart 
 of the \ac{BNS} mergers, the \ac{kN} afterglow.
+
+In Sec.~\ref{sec:intro:afterglow} we recall the origin of the non-thermal 
+emission, and basic methods to calculate of the synchrotron 
+radiation from an expanding into the \ac{ISM} \blast{}.
 %
-In Sec.~\ref{sec:intro:afterglow} we recalled the origin of the non-thermal emission, 
-and basic methods in calculation of the synchrotron radiation from the expanding into the 
-\ac{ISM} \blast{}.
+In Sec.~\ref{sec:afterglow:code} we discuss the novel 
+code to compute the \ac{GRB} and \ac{kN} afterglows,
+\pyblast{}. 
 %
-We compute the \ac{kN} afterglow light curves via 
-semi-analytic, asnisotropic code \pyblast{} 
-from the brief description of which we begin the chapter.
-%
-Then we apply the code \pyblast{} to the dynamical ejecta from our \ac{NR} 
+Finally, in Sec.~\ref{sec:afterglow:results} we apply \pyblast{} 
+to the dynamical ejecta from our \ac{NR} 
 \ac{BNS} merger simulations and investigate how the properties of the 
 fast ejecta tail, discussed in Sec.~\ref{sec:bns_sims:fast_de} affect the 
 \ac{kN} afterglow and compare our models with recently observed rebrightening 
 of \GRB{}.
 %
-The content of this chapter is based on \citet{Nedora:2021eoj,Hajela:2021faz}.
+%The content of this chapter is based on \citet{Nedora:2021eoj,Hajela:2021faz}.
+
+
+
+%% =============================================================
+%%
+%% G R B 
+%%
+%% =============================================================
+
+\subsection{Overview of the afterglow modeling methods}\label{sec:intro:afterglow}
+
+\acp{GRB} are irregular pulses of gamma-ray radiation with broken power-law 
+(non-thermal) spectrum, peaking at KeV-MeV \citep{Band:1993,Kouveliotou:1993,Meegan:1992xg}.
+%
+With respect to the duration, \acp{GRB} are split into two categories: \acp{SGRB}, 
+that last ${\leq}2\,$s and long \acp{GRB} that last ${\gtrsim}2\,$s. 
+It is generally accepted that the latter are the 
+result of the collapse of massive ${\geq}15\,M_{\odot}$ stars, while the former, at 
+least in part, are attributed to mergers of compact objects. 
+%
+The detection of \ac{SGRB} \GRB{} that accompanied 
+the \ac{GW} event \GW{} \citep{TheLIGOScientific:2017qsa} confirmed that. 
+However, the exact physical origin of different duration \acp{GRB} is not fully understood.
+%
+%%%% LGRB
+%Indications that long \ac{GRB} are associated with core-collapse supernovae, \acp{SN}, 
+%are two fold. These \acp{GRB} are typically observed in star-forming regions of their 
+%host galaxies \citep[\eg][]{Bloom:2000pq,Bloom:2002hc,Fruchter:2006py,Christensen:2004yx,CastroCeron:2006jh} 
+%and several \acp{GRB} are spectroscopically associated with Type Ic \acp{SN}, albeit 
+%these \acp{GRB} were significantly less bright and might not be typical \acp{GRB} 
+%\citep[\eg][]{Liang:2006ci,Bromberg:2011fm}. Additionally, the late time behaviour 
+%of some \acp{GRB} includes a \acp{SN}-like "bump" in the optical and spectral changes 
+%that might imply that underlying \acp{SN} flux becomes dominant over \acp{GRB} 
+%\citep[\eg][]{Bloom:1999,Woosley:2006fn}.
+
+%%%% Cosmology implications
+The \acp{GRB} are distant events, most of which were localized to outside the local 
+group \citep[\eg][]{Mao:1992,Piran:1992,Fenimore:1993}. 
+%
+Particularly useful for distance estimations are the observations of \ac{GRB} afterglow
+(fading X-ray, optical and radio emission), 
+that allow to estimate the Redshift \citep[\eg][]{Costa:1997cg,Frontera:1997ae}.
+%
+%%%% Mechanism of radiaiton
+Analysis of the multi-wavelength afterglow data for \acp{GRB} \citep[\eg][]{Panaitescu:2001bx} suggested that the mechanism behind the afterglow 
+emission is the synchrotron radiation from the external forward-shock, which forms 
+when \ac{GRB}-ejecta sweeps-up the \ac{ISM} medium\footnote{
+    The specific indications are the power law decay of the light curves, 
+    $F_{\nu}\propto \nu^{-1}$ and power-law spectrum $F_{\nu}\propto\nu^{-0.9\pm 0.5}$.
+} 
+\citep{Rees:1992ek,Paczynski:1993gz,Meszaros:1993ju,Meszaros:1996sv}.
+%
+
+%%%% Jet break
+%The temporal behavior of many (but not all) \acp{GRB} shows a change, a steepening 
+%of the light-curve (to $F_{\nu}\propto t^{-2.2}$) at $\sim 1$~day after the burst. 
+%This is usually attributed to the 
+%%\gray{deceleration of the colimated GRB-outflow, jet, and decrease on the realtivisitc beaming. This in turn makes the edge of the jet visible to an observer.} 
+%finite angular extend of the \ac{GRB}-ejecta, jet \citep[\eg][]{Rhoads:1999wm,Sari:1999mr}. 
+%When jet decelerates and relativistic beaming decreases (and the jet edge becomes visible), 
+%the optical and X-ray lightcurves decay achromatically faster. This achromatic transition 
+%from slow to faster decay is called "jet-break".
+%
+%%% PROBLEMO -- jet-break is not a universal feature.
+%Notably, this jet-break is not observed in all \acp{GRB} for the reason that is not fully 
+%understood \citep[\eg][]{Fan:2006pj,Panaitescu:2006,Liang:2007ti,Sato:2006jg,Liang:2007rn,Curran:2007cp,Racusin:2008bx}
+%%
+%%% PROBLEMO -- GRB density seems uniform, but SSE models predict wind-like profile
+%Models of the broadband emission of \acp{GRB} with jet-break showed that the 
+%\ac{CBM}, is uniform with number density \red{$\sim 10^{-3}$} \citep{Panaitescu:2001bx}. 
+%If \acp{GRB} produced in collapse of massive stars \citep{Woosley:1993,Paczynski:1997yg}, 
+%this contradicts the expected density profile from stellar winds, \eg, $\rho\propto r^{-2}$ 
+%\citep[\eg][]{Dai:1998iz,Chevalier:1999jy,Chevalier:1999mi,Ramirez-Ruiz:2001} 
+%\red{this might be very outdated.}
+%
+%% sGRB
+The origin of \acp{SGRB} was first linked to elliptical galaxies, with dominant 
+older stellar population 
+\citep[\eg][]{Gehrels:2005qk,Fox:2005kv,Barthelmy:2005bx,Berger:2005dr,Panaitescu:2005er,Bloom:2005qx,Guetta:2005bb,Nakar:2007yr}, 
+and thus with \ac{BNS} mergers. A more direct evidence came with the \GRB{}
+\citep{Savchenko:2017ffs,Alexander:2017aly,Troja:2017nqp,Monitor:2017mdv,Nynka:2018vup,Hajela:2019mjy}, 
+detected by the space observatories Fermi \citep{TheFermi-LAT:2015kwa} and INTEGRAL \citep{Winkler:2011}.
+%
+%Generally \acp{SGRB} show a complex time behavior of early afterglow X-ray emission, 
+%in particular a presence of a plateau ($F_{x}\propto t^{-1/2}$), after the initial sharp 
+%decrease ($F_{x}\propto t^{-3}$) which a standard forward shock model does not predict. 
+%This implies that early X-ray afterglow is shaped by a variety of physical processes 
+%\citep{Zhang:2005fa}.
+%
+
+%%%% EARLY emission problem
+%Two main questions stem from these observations: is the mechanism behind the prompt 
+%$\gamma$-ray emission and early afterglow emission is the same (or do they originate from 
+%the same outflow), and is the early X-ray radiation produced by the external shock (just a 
+%blast wave takes long time to become self-similar) or does it originate from an internal 
+%shock? An indication that the long-lived central engine activity might affect the 
+%afterglow came from the observed sharp increase in X-ray flux (flares) on a 
+%scale of minutes to hours after the end of the \ac{GRB}
+%\citep{Burrows:2005ww,Chincarini:2007fp,Chincarini:2010,Margutti:2011}, 
+%which could not be attributed to the inhomogeneities in the \ac{CBM}.
+%%% PROBLEMO!
+%Thus, the early X-ray behaviour of \acp{GRB} $t < 10^{4}$~s post-burst is not well 
+%understood and seems to be in tension with standard afterglow forward shock emission model.
+
+%\textcolor{red}{
+%    One of the foremost unanswered questions about GRBs is the physical mechanism
+%    by which prompt $\gamma$-rays the radiation that triggers detectors on board
+%    GRB satellites are produced. Is the mechanism the popular internal shock
+%    model 6 \cite{(Rees and Meszaros, 1994)}, the external shock model, or something
+%    entirely different? Are $\gamma$-ray photons generated via the synchrotron process
+%    or inverse-Compton process, or by a different mechanism? Answers to these
+%    questions will help us address some of the most important unsolved problems
+%    in GRBs  how is the explosion powered in these bursts? Does the relativistic
+%    jet produced in these explosions consist of ordinary baryonic matter, electron positron
+%    pairs, or is the energy primarily in magnetic fields?
+%}
+
+%Once again, while it is suggested that the high energy emission, after the propmt phase is produced 
+%by the synchrotron process in the external forward shock, \citep{Kumar:2009,Ghisellini:2010}, 
+%the mechanism behind the high and low energy $\gamma$-ray emission in the prompt phase remains unknown. 
+%Possible mechanisms include: inverse Compton and synchrotron emission in internal and external shocks
+%\citep[\eg][]{Rees:1992ek,Dermer:1998py,Lyutikov:2003ih,Zhang:2011} and 
+%photospheric radiation with contribution from multiple \ac{IC} scatterings
+%\citep[\eg][]{Thompson:1994zh,Ghisellini:1998jy,Meszaros:1999gb,Peer:2005qoc,Peer:2008udu,Giannios:2006jb,Ioka:2007qk,Asano:2009gi,Lazzati:2010,Beloborodov:2010,Toma:2011}.
+
+\GRB{} was dimmer then any other event of its class. Different interpretations for its 
+dimness and slow rising flux were proposed including off-axis jet, cocoon or structured jet. 
+Now it is commonly accepted that \GRB{} was a structured jet\footnote{
+    Structured jet, contrary to the top-hat jet has the angular dependency of the 
+    matter energy and Lorentz factor. Such structure is believed to appear 
+    when jet drills its way through the merger ejecta \citep{Lamb:2017ych}.
+} observed off-axis 
+\citep[\eg][]{Fong:2017ekk,Troja:2017nqp,Margutti:2018xqd,Lamb:2017ych,Lamb:2018ohw,Ryan:2019fhz,Alexander:2018dcl,Mooley:2018dlz,Ghirlanda:2018uyx}.
+%
+The \GRB{} late emission, the afterglow, provided information on the energetics of the 
+event and on the properties of the \ac{ISM} \citep[\eg][]{Hajela:2019mjy}. 
+
+%% ---------------
+%% Kilonova Afterglow
+%% ---------------
+
+
+In addition to the \ac{GRB} beamed emission, more isotropic non-thermal,
+emission is expected from electrons accelerated in shocks formed between the 
+(mildly) relativistic ejecta and the \ac{ISM} \citep{Nakar:2011cw}. This emission 
+is expected to peak in radio band and continue on a time scale of tens of years 
+after merger. Notably, all ejecta components contribute to the emission, 
+but depending on the ejecta velocities and kinetic energy, 
+the brightness in different frequencies and timescales varies. 
+%
+Various ejecta components interact with each other and with \ac{ISM}. The latter 
+generates a long-lived blast wave. The shock, propagating upstream, amplifies 
+(random) magnetic fields and accelerates electrons, that subsequently emit 
+synchrotron radiation. This process in phenomenologically similar 
+to the one responsible for the \ac{GRB} afterglow and \ac{SN} early remnants. 
+%
+Numerical simulations of \ac{BNS} mergers showed the presence of mildly relativistic 
+ejecta, %(see Sec.~\ref{sec:bns_sims:method:ejecta}). 
+and several studies on the possible non-thermal \ac{EM} emission of this ejecta 
+have been carried out 
+\citep[\eg][]{Piran:2012wd,Hotokezaka:2015eja,Hotokezaka:2018gmo,Radice:2018pdn}. 
+%Notably, the observed non-thermal emission from \GW{}, was first interpreted 
+%as the non-thermal emission from the ejecta \citep{Mooley:2017enz}.
+%This interpretation was however disproved by the emergence of jet break
+%
+%
+%Specifically, a strong radio emission is expected from \ac{BNS} ejecta \citep{Piran:2012wd,Hotokezaka:2015eja}. 
+%The \ac{BNS} merger radio remnant is expected to peak on a time-scale 
+%of ${\sim}$years after the merger.% and be visible over a similar timescale. Notably, this is 
+%Assuming that the ejecta is expanding into the unshocked \ac{ISM}, as it was shown 
+%that if the \ac{ISM} is pre-shocked by the jetted outflow, and the \ac{ISM} density is 
+%reduced, the kilonova afterglow would be delayed. 
+%
+%In \citet{Piran:2012wd}, the synthetic \ac{kN} afterglow \acp{LC} are calculated 
+%for a set of \ac{NR} \ac{BNS} merger simulation with properties typical to the 
+%Galactic binary population and \ac{ISM} density usually found in the Galactic disk, 
+%$\nism{\sim1}\ccm$. Authors showed that the from a binary of two $1.4\,\Msun$ \acp{NS}, 
+%the kilonova afterglow would peak $\sim10$~years after the merger if $\nism = 0.1\,\ccm$ 
+%and $\sim3$~years if $\nism = 1\,\ccm$ in radio bands, $\nu=1.4$~GGz and $\nu=150\,$MGz. 
+%Notably, both values of the \ac{ISM} density are larger than what is inferred for \GW{}. 
+%Indeed, jet fitting models and dependent analysis of the diffuse emission suggest 
+%$\nism\in(10^{-4},10^{-2})\,$\gcm \citep{Hajela:2019mjy}.
+%In \citet{Piran:2012wd} authors focus on the observational prospects of this afterglow 
+%and compare it to other \ac{EM} emission expected for \ac{BNS}. 
 
 
 
 
 
-\section{\pyblast{}}
+%%%% -------------------------------------------------------
+%\section{Afterglow theory}  A F T E R G L O W  T H E O R Y 
+%%%% -------------------------------------------------------
+
+%Consider a moving source of radiation and an observer with a line of sight to the source.
+%Let $\upsilon$, $\Gamma$ and $\theta$ be the source velocity, 
+%\ac{LF} and angle with the line of sight.
+%%
+%Consider three frames of reference, the comoving frame (usually denoted with a prime $'$),
+%the lab frame, where the source is seen as moving with $\upsilon$ and observer frame.
+%Then, if two photons are emitted in the comoving frame with time difference of $\delta t'$,
+%which is in the lab frame $\delta t = \Gamma \delta t'$, the observer sees the two 
+%photons arrive with 
+%%
+%%\begin{eqnarray}
+%%\delta t_{obs} &= \delta t + \frac{(d - \upsilon\cos(\theta) \delta t)}{c} - \frac{d}{c} \\
+%%&= \delta t (1 - \upsilon \cos(\theta) / c) \\
+%%&= \delta t' \Gamma (1 - \upsilon \cos(\theta) / c)\\
+%%&= \delta t' \mathcal{D}^{-1}
+%%\end{eqnarray}
+%%
+%$\delta t_{obs} = \delta t' \mathcal{D}^{-1}$
+%%
+%where $d$ is the distance to the source, and 
+%%
+%\begin{equation}
+%\mathcal{D} = \frac{1}{\Gamma(1 - (\upsilon/c) \cos(\theta))} = \frac{1}{\Gamma(1 - \beta\cos(\theta))}
+%\label{eq:afterglow:dop_fac}
+%\end{equation}
+%%
+%is the \ac{DF}. 
+%
+%
+%Next, we consider the transformation of the photon frequencies. 
+%%
+%The Lorentz transformation of the photon $4$-momentum in comoving frame, \eg,, 
+%$\nu'(1, \cos(\theta'), \sin(\theta'),0)$ to the lab frame $4$-momentum 
+%$\nu(1, \cos(\theta), \sin(\theta), 0)$
+%%
+%%\begin{equation}
+%%\nu = \nu' \Gamma(1+\upsilon \cos(\theta')/c) \text{ \& } \nu\cos(\theta) = \nu' \Gamma (\cos(\theta') + \upsilon/c)
+%%\end{equation}
+%%%
+%%or 
+%%
+%\begin{equation}
+%\nu = \frac{\nu'}{\Gamma (1 - \upsilon\cos(\theta)/c)} = \nu' / \mathcal{D}
+%\label{eq:afterglow:dop_fac_freq}
+%\end{equation}
+
+%The robust way to model the \ac{GRB}/\ac{kN} afterglows is to perform 
+%multidynamisional radiation \ac{HD} or \ac{MHD} studies. These, however, 
+%are very numerically expensive, as the timescales for the problem range 
+%from days to tens of years.
+%
+When computing the afterglow emission from the structured relativistic 
+(mildly relativistic) source, several key components are required: 
+(i) special relativistic effects (\eg, beaming and Doppler shift),
+(ii) emission mechanism (\eg, \ac{IC}, synchrotron, cyclotron), 
+and (iii) the dynamical evolution of the emitting matter over the 
+relevant timescale. 
+
+When talking about special relativistic effects, it is convenient 
+to introduce the frame of reference comoving with the fluid (usually denoted with prime, $'$) 
+and observer frame. 
+For an element of the fluid moving with velocity, $\upsilon$, and \ac{LF}, 
+$\Gamma$, at angle, $\theta$, from the line of sight, the Lorentz transformation 
+reads 
+%
+\begin{equation}
+\delta t_{obs} = \frac{\delta t'}{\mathcal{D}}, \hspace{3mm}
+\mathcal{D} = \frac{1}{\Gamma(1 - \beta\cos(\theta))}, \hspace{3mm}
+\nu = \frac{\nu'}{\Gamma (1 - \upsilon\cos(\theta)/c)} = \nu' / \mathcal{D}\, ,
+\label{eq:afterglow:dop_fac}
+\end{equation}
+%
+where $\delta t_{obs}$ is the time interval between successively emitted photons, 
+in observer frame, $\mathcal{D}$ is \ac{LF}, and $\nu=\nu'/\mathcal{D}$ is the 
+classical Doppler shift formula for the frequency of the radiation.
+
+%
+%which is a standard Doppler shift formula.
+%
+%\subsubsection{Relativistic beaming of photons}
+%
+%%%% ---------------------------------------
+%%%% --- On the Angular size of the source
+%%%% ---------------------------------------
+%
+%We have shown that $\nu = \nu' \mathcal{D}$, but also 
+%$\sin(\theta) = \sin(\theta')/\mathcal{D}$. Then the transverse component of the 
+%momentum is invariant under the Lorentz transformation, \eg, 
+%$\nu_{\perp}' = \nu'\sin(\theta') = \nu\sin(\theta) \nu_{\perp}$. 
+%%
+%For a beam of photons it implies that the angular size of the beam is smaller 
+%in the lab frame than in the comoving frame by $\propto \Gamma$.
+%%
+%The solid angle of a conical beam of photons, $d\Gamma$ then 
+%%
+%\begin{equation}
+%d\Gamma = \sin(\theta)d\theta d\phi = \sin(\theta') d\theta' d\phi' / \mathcal{D}^2 = d\Omega'/\mathcal{D}^2
+%\end{equation}
+%%
+%is smaller in the lab frame than in the comoving frame.
+%%
+%Next, consider a frequency integrated total energy radiated per 
+%unit time over the $4\pi$ steradians, denoted as $P$. 
+%%
+%The power in the lab frame $P = P'\Gamma\delta t'/(\Gamma\delta t') = P'$. 
+%Hence, power radiated by particles is \magenta{Lorentz invariant}.
+
+%%%% -------------------------------------------------------------
+%%%% Transformation of specific luminosity and specific intensity
+%%%% -------------------------------------------------------------
+%
+%Consider a spherically symmetric source, expanding with \ac{LF} $\Gamma$.
+%%
+%The \magenta{specific luminosity} is defined as the total energy that passes 
+%through the surface enclosing the source per unit time, per unit frequency, 
+%$L_{\nu} = dE / d\nu dt_{obs}$. 
+%As $d\nu dt_{obs} = d\nu' dt'$ and $E=\Gamma E'$, the Lorentz transformation 
+%of luminosity is
+%%
+%\begin{equation}
+%L_{\nu} = \frac{dE}{d\nu dt_{obs}} = \Gamma \frac{dE'}{d\nu' dt'} = \Gamma L_{\nu}'
+%\end{equation}
+%%
+%assuming that the $3$-momentum is zero (as the source is spherically symmetric).
+%%
+%The \magenta{specific intensity} is defined as a flux per unit frequency 
+%and per unit solid angle, mediated by photons, traversing surface $dA$, 
+%perpendicular to the conical beam, confining the photons, 
+%%
+%\begin{equation}
+%I_{\nu} = \frac{dE}{d\nu dt_{obs} dA d\Omega}
+%\end{equation}
+%%
+%that has a Lorentz transformation $I_{\nu} = \mathcal{D}^3 I_{\nu'}'$ 
+%as $d\nu dt_{obs} dA$ is the Lorentz invariant.
+%
+%%%% ------------------------------------------------------------
+%%%% Observed \ac{LC} from a source that is suddenly turned off
+%%%% ------------------------------------------------------------
+%
+%
+Thus, considering an extended emission source that is variable on a short 
+timescale (a transient), the observed emission should be computed by integrating 
+the emission from different parts of the source, accounting for their respective 
+motion, angles and \acp{LF}. This is called the \ac{EATS} integration. For a spherical 
+thin shell, described by $(r, \theta, \phi)$ coordinates, radiation emitted 
+at $(r=\upsilon t, \theta,\phi)$ arrive at the observer with a time delay with 
+respect to a photon emitted at $r=0$ of
+%
+\begin{equation}
+t_{obs} = t - \frac{r \cos(\theta)}{c} = t\Big(1-\frac{\upsilon\cos(\theta)}{c}\Big) = \frac{t}{\Gamma\mathcal{D}}\, .
+\label{eq:afterglow:tobs}
+\end{equation}
+%
+Then, the total emission at a given, doppler shifted frequency, from the entire 
+shell at the observer frame is obtained by integrated over all elements with the 
+same $t_{obs}$.
+
+%
+%Now, consider the observed emission from the source at frequency $\nu$. 
+%The starting time is $t_{0;obs}\approx(R_0 2 c \Gamma^2)$, \red{check!} 
+%at which photons, emitted from $(R_0, 0, 0)$ arrive, At later times, 
+%$t_{obs}>t_{0;obs}$, the observer still sees photons emitted when $r < R_0$. 
+%%
+%Assume that the intrinsic emission spectrum is $I_{\nu'}' = I'\nu^{'-\beta}$.
+%Then, at $t_{obs} > t_{0;obs}$ the radiation from $\theta > \theta_t$ 
+%(where $\theta_t$ corresponds to $t_{obs} = R_0 (1/\upsilon - \cos(\theta_t)/c)$) 
+%reaches the observer.
+%%
+%The observed flux \eg, $f_{\nu} \propto \int I_{\nu} d\Omega$, has the following 
+%Lorentz transformation 
+%$f_{\nu}\propto\int_{\theta_t} d\theta \sin(\theta_t) \mathcal{D}^{-(3+\beta)}$.
+
+%%%% ---------------------------
+%%%% A More Regorous Derivation
+%%%% ---------------------------
+%Now, consider a more rigorous derivation of the transformation of the specific 
+%flux in observer frame from relativistic source with comoving specific intensity 
+%$I_{\nu'}'$ and spectrum $\propto \nu^{' -\beta}$
+%%
+%\begin{equation}
+%f_{\nu}(t_{obs}) = \int d\Omega_{obs} I_{\nu} \cos(\theta_{obs}) = 2\pi \int d\theta_{obs} \frac{ I_{\nu'_0}' \nu_{0}^{'\beta}\sin(2\theta_{obs})[(1+z)\Gamma]^{-(3+\beta)} }{ 2\nu^{\beta} [ 1-\upsilon\cos(\theta + \theta_{obs}) / c ]^{3+\beta} }
+%\end{equation}
+%%
+%where $\nu_0 '$ is a frequency that lies on the power law segment of the spectrum for 
+%$I_{\nu'}'$. The Lorentz transformation of the specific intensity was made above. 
+%The factor $(1+z)^{3+\beta}$ accounts for the Redshift on the frequency. 
+%%
+%Assuming that $\sin(\theta)/d_{A} = \sin(\theta_{obs})/r$, the above integral writes 
+%%
+%\begin{equation}
+%f_{\nu} \approx \frac{ 2\pi I' \nu' _0 \nu_{0}^{'\beta}\nu^{-\beta} }{[(1+z)\Gamma]^{3+\beta}} \Big( \frac{R_0}{d_A} \Big)^2 \int_{\theta_t}^{\pi / 2} d\theta \frac{\sin(\theta)\cos(\theta)}{(1-\upsilon\cos(\theta)/c)^{3+\beta}},
+%\end{equation}
+%where $\theta+\theta_{obs}$ in the denominator was replaced with $\theta$ as $\theta_{obs}\ll\theta$.
+%The integral is simple to compute. Ir yields
+%
+%\begin{equation}
+%f_{\nu}(t_{obs}) \propto (1 - \upsilon\cos(\theta_t)/c)^{-(2 + \beta)}\nu^{-\beta} \propto t_{obs}^{-(2+\beta)} \nu^{-\beta},
+%\end{equation}
+%%
+%This equation shows, that the observed radiation does not immediately turns off 
+%when the source switches off. The flux falls off rapidly with time and vanishes 
+%when $\theta_t$ exceeds the angular size of the source $(\theta_j)$.
+%
+%
+%The \ac{EATS} integration can be performed as follows.
+%The expanding thin shell is composed of infinitesimal elements,
+%each of which is evolved within its own $(d\phi, d\theta)$
+%cell, center of which has coordinates $(\phi_c, \theta_c)$.
+%%
+%Then for each cell, the observational angle, $\mu$, is computed as 
+%%
+%\begin{equation}
+%    \cos(\mu) = \sin(\alpha) \sin(\theta_c) \sin(\phi_c) 
+%     + \cos(\alpha) \cos(\theta_c).
+%\end{equation}
+%%
+%Then the radiation at time $t$ is observed if $t_{obs}$
+%%
+%\begin{equation}
+%    t_{obs} = t_{lab} +\frac{r}{c}(1 - \cos{\mu})
+%\end{equation}
+%%
+%where 
+%%
+%\begin{equation}
+%    t_{lab} = \int \frac{1}{\beta c} dr
+%\end{equation}
+%%
+%is the time measured in the laboratory frame of reference.
+%%
+%Then we interpolate the part of the dynamical evolution
+%of the infinitesimal jet that corresponds to this $t_{obs}$,
+%and emitted the radiation during this time.
+%The flux, $F_i$, for a given Doppler-shifted frequency, 
+%$\nu_{obs}'$, is then obtained for each infinitesimal segment.
+%Integrating over the $F_i$ we obtain the total flux emitted by the 
+%blast wave and observed at time $t_{obs}$
+
+
+%%%% ------------------------
+%% \subsection{Synchrotron radiation}
+%%%% -----------------------
+
+%Consider an electron moving in the magnetic field, perpendicular to the 
+%field lines. Let $\gamma_e$, $\upsilon_e$ be the electron's \ac{LF} and 
+%velocity and $B$ the magnetic field strength.
+%%
+%The electric field in the electron rest-frame is $E=\gamma_e \upsilon_e B /c$. 
+%The electron acceleration in this field yields radiation, total power of which, 
+%according to the Larmor's formula, 
+%%
+%\begin{equation}
+%P_{syn} = \frac{2q^4E^2}{3c^3m_e}=\frac{2q^4B^2\gamma_e^2\upsilon_e^2}{3c^5m_e^2} = \frac{\sigma_TB^2\gamma_e^2\upsilon_e^2}{4\pi c}
+%\end{equation}
+%%
+%where $\sigma_T = 8\pi q^4 / (3m_e^2c^4)$ is the Thompson cross section. 
+%%
+%The $P_{syn}$ is the Lorentz invariant 
+%(as electric dipole radiation is Lorentz invariant).
+%%
+%Note, that for an isotropic pitch angle distribution, 
+%the average power $\langle P_{syn} \rangle = (2/3)P_{syn}$.
+%%
+%The angular speed of the electron (\eg its Larmor frequency), is
+%%
+%\begin{equation}
+%\omega_L = \frac{q B}{\gamma_e m_e c}
+%\end{equation}
+%%
+%Within the magnetic field, an electron is moving on a spiral trajectory. 
+%The relativistic beaming of emitted radiation leads to a distant observer 
+%being able to see this radiation, only when the electron velocity vector is 
+%within $\angle \sim \gamma_e^{-1}$ from the line of sight. Correspondingly, 
+%only a fraction of orbital time, $t\sim1/(\pi\gamma_e)$, contributes to the 
+%observed radiation, which appears as a repeated pulse. 
+%The duration of this pulse is
+%%
+%\begin{equation}
+%\delta t_{obs} \sim \frac{2}{\gamma_e \omega_L}\frac{1}{2\gamma_e^2}\sim \frac{m_e c}{q B \gamma_e^2}
+%\end{equation}
+%%
+%where we used $\delta t' = \delta t / \gamma_e$. 
+%%
+%Then the characteristic frequency of the synchtrontron radiation is given 
+%by an inverse of $\delta t$ and reads 
+%%
+%\begin{equation}
+%\omega_{syn} \sim \frac{q B \gamma_e^2}{m_e c} \text{ and } \nu_{syn} = \frac{\omega_{syn}}{2\pi} \sim \frac{q B \gamma_e^2}{2\pi m_e c}
+%\end{equation}
+%%
+%where $\nu_{syn}$ is the cyclic frequency.
+%%
+%Note that here the factor $(3/2)\sin(\alpha)$, where $\alpha$ is the pitch 
+%angle between the electron's velocity and the magnetic field is \red{ommited}.
+%%
+%The synchrotron spectrum peaks at $\sim \nu_{syn}$. At $\nu < \nu_{syn}$ the
+%$P_{syn}(\nu)\propto\nu^{1/3}$ (which is determined by the Fourier transform of 
+%the synchrotron pulse profile). At $\nu > \nu_{syn}$ the power decays exponentially. 
+%See \citet{RybickiLightman:1985} for the calculation of synchrotron spectrum. 
+%%
+%The power per unit frequency at the peak of the spectrum is given 
+%%
+%\begin{equation}
+%P_{syn}(\nu_{syn}) \sim \frac{P_{syn}}{\nu_{syn}} \sim \frac{\sigma_T B m_e c^2}{2 q},
+%\end{equation}
+%
+%%%% ------------------
+%%%% Shortened
+%%%% ------------------
+%
+The power of the synchrotron radiation, $P_{syn}$, emitted by an electron moving with 
+the speed, $\upsilon_e$, corresponding to the \ac{LF}, $\gamma_e$, in the magnetic field, $B$, perpendicular 
+to the field lines is given by the Larmor's formula.
+%
+As within the magnetic field, an electron is following the spiral trajectory,
+the characteristic frequency of the synchtrontron radiation, $\nu_{syn}$, is given 
+by the angular speed of the electron (\eg, its Larmor frequency).
+%
+The power per unit frequency at the peak, $P_{syn}(\nu_{syn})$, can be computed as 
+\citep{RybickiLightman:1985}
+%
+\begin{equation}
+P_{syn} = \frac{\sigma_TB^2\gamma_e^2\upsilon_e^2}{4\pi c}, 
+\hspace{5mm} 
+\nu_{syn} \sim \frac{q B \gamma_e^2}{2\pi m_e c},
+\hspace{5mm}
+P_{syn}(\nu_{syn}) \sim \frac{\sigma_T B m_e c^2}{2 q},
+\end{equation}
+%
+where $\sigma_T = 8\pi q^4 / (3m_e^2c^4)$ is the Thompson cross section.
+
+%Now consider the distribution of electrons.
+%Commonly adopted is the power-law distribution, $dn_e/d\gamma_e \propto \gamma_e^{-p}$, which results in emission spectrum $f_{\nu}\propto\nu^{-(p-1)/2}$,
+%which is a consequence of 
+%%
+%\begin{equation}
+%f_{\nu} = \int_{\gamma_{\nu}}^{\infty} d\gamma_e \frac{dn_e}{d\gamma_e}P_{syn}(\nu) \propto \nu^{-(p-1)/2}
+%\end{equation}
+%%
+%as $P_{syn}(\nu) \propto (\nu/\nu_{syn})^{1/3}$ for $\nu < \nu_{syn}$\red{where is this from?}.
+%%
+%Here
+%%
+%\begin{equation}
+%\gamma_{\nu} \sim \Bigg(\frac{2\pi\nu m_e c}{qB}\Bigg)^{1/2}
+%\end{equation}
+%%
+%is the minimum \ac{LF}, above which electrons contribute to the specific flux, 
+%$f_{\nu}$ \red{why?} \gray{This seems to be an equation for $\nu = f(\gamma)$ 
+%    inverted, -- so is the $\nu$ a critical frequency?
+%}
+%
+%%%% ------------------
+%%%% Shortened
+%%%% ------------------
+%
+The synchrotron radiation spectrum, emitted by an ensemble of electrons that have a 
+distribution function, $dn_e/d\gamma_e$ 
+%(with $\gamma_e$ being the electron \ac{LF}), 
+is given by convolving the distribution function with the power spectrum of a single 
+electron, $P_{syn}(\nu)$, as 
+%
+\begin{equation}
+f_{\nu} = \int_{\gamma_{\nu}}^{\infty} d\gamma_e \frac{dn_e}{d\gamma_e}P_{syn}(\nu), 
+%\propto \nu^{-(p-1)/2}
+\label{eq:afterglow:sync_power}
+\end{equation}
+%
+where $\gamma_{\nu}$ is the minimum \ac{LF} above which electrons contribute to the 
+specific flux.
+%
+%%%% ------------------------------------------------------
+%%%% Effect of synchrotron cooling on electron distribution
+%%%% ------------------------------------------------------
+%
+%Consider the effects of electrons cooling. 
+%The characteristic frequency associated with it is $\nu_c$ and $\gamma_c$.
+%Electrons with \ac{LF} $\gamma_e > \gamma_c$ can efficiently loose their energy to 
+%synchrotron radiation. Then, after the time $t_0$, their $\gamma_e$ drops below 
+%$\gamma_c$, 
+%%
+%\begin{equation}
+%c^2 \frac{dm_e}{dt} \gamma_e = -\frac{\sigma_T}{6\pi} B^2 \gamma_e^2 c
+%\end{equation}
+%%
+%\begin{equation}
+%\gamma_c \sim \frac{6 \pi m_e c}{\sigma_T B^2 t_0}
+%\end{equation}
+%%
+%The corresponding characteristic frequency is called the synchrotron cooling 
+%frequency. 
+%%
+%\begin{equation}
+%\nu_c = \frac{3}{4\pi} \gamma_c^2 \frac{q B}{m_e c}
+%\end{equation}
+%%
+%At $\nu_c$ the spectrum of the synchrotron radiation is changing, as electrons 
+%with $\gamma_e > \gamma_c$, the effects of cooling modify the electron distribution. 
+%%
+%%
+%Consider the continuity equation for electrons in the energy space 
+%%
+%\begin{equation}
+%\frac{\partial }{\partial t}\frac{d n_e}{d\gamma_e} + \frac{\partial}{\partial \gamma_e}\Big[ \dot{\gamma_e}\frac{dn_e}{d\gamma_e} \Big] = S(\gamma_e)
+%\end{equation}
+%%
+%where $\dot{\gamma_e} = -\sigma_T B^2 \gamma_e^2 / (6\pi m_e c)$ is the rate at 
+%which electron \ac{LF} changes due to losses, $S(\gamma_e)$ is the injection 
+%rate of electrons into the system.
+%%
+%Assume that the minimum \ac{LF} of injected electrons is $\gamma_m$, \eg, 
+%where $S(\gamma_e) = 0$ for $\gamma_e < \gamma_m$.
+%Then if $\gamma_c < \gamma_e < \gamma_m$ the solution to the equation 
+%$dn_{e}/d\gamma_e \propto \dot{\gamma_e}^{-1} \propto \gamma_e^{-2}$.
+%%
+%Then, for this electron distibution the synchrotron spectrum is 
+%$f_{\nu}\propto\nu^{-1/2}$ 
+%\footnote{If $B=f(t)$, then the distribution function for $\gamma_e$ 
+%    evolves with time and is not a simple pwoer law with index $2$, see \citet{Uhm:2013gwa}.
+%}
+%%
+%For $\gamma_e > \gamma_c > \gamma_m$, the solution to the equation is 
+%$dn_e/d\gamma_e \propto \gamma_e^{-p-1}$ (assuming the constant $B$ field, 
+%the steady state). Then the synchrotron spectrum reads $f_{\nu}\propto\nu^{-p/2}$.
+%
+%%%% ------------------
+%%%% Shortened
+%%%% ------------------
+%
+%Depending on their \ac{LF} and the magnetic field strength, electrons can loose 
+%energy, cool, with different efficiency. For instance, if $\gamma_e > \gamma_c$,
+%where $\gamma_c$ is a certain characteristic \ac{LF}, after a finite $t_0$, the 
+%$\gamma_e$ will drops below $\gamma_c$, 
+%%
+%\begin{equation}
+%c^2 \frac{dm_e}{dt} \gamma_e = -\frac{\sigma_T}{6\pi} B^2 \gamma_e^2 c 
+%\, \rightarrow\, 
+%\gamma_c \sim \frac{6 \pi m_e c}{\sigma_T B^2 t_0}, \,
+%\nu_c = \frac{3}{4\pi} \gamma_c^2 \frac{q B}{m_e c}
+%\end{equation}
+%%
+%where $\nu_c$ is called cooling frequency. 
+%%
+%Thus, the synchrotorn spectrum differ for electrons with $\gamma_e > \gamma_c$.
+%%
+%Consider the continuity equation for electrons in the energy space 
+%%
+%\begin{equation}
+%\frac{\partial }{\partial t}\frac{d n_e}{d\gamma_e} + \frac{\partial}{\partial \gamma_e}\Big[ \dot{\gamma_e}\frac{dn_e}{d\gamma_e} \Big] = S(\gamma_e)
+%\end{equation}
+%%
+%where $\dot{\gamma_e} = -\sigma_T B^2 \gamma_e^2 / (6\pi m_e c)$ is the rate at 
+%which electron \ac{LF} changes due to losses, $S(\gamma_e)$ is the injection 
+%rate of electrons into the system.
+%%
+%Consider steady-state solution $\partial_t/\partial t = 0$.
+%%
+%Assume that the minimum \ac{LF} of injected electrons is $\gamma_m$, \eg, 
+%where $S(\gamma_e) = 0$ for $\gamma_e < \gamma_m$.
+%%Then if $\gamma_c < \gamma_e < \gamma_m$ the solution to the equation 
+%%$dn_{e}/d\gamma_e \propto \dot{\gamma_e}^{-1} \propto \gamma_e^{-2}$.
+%%%
+%%For $\gamma_e > \gamma_c > \gamma_m$, the solution to the equation is 
+%%$dn_e/d\gamma_e \propto \gamma_e^{-p-1}$ (assuming the constant $B$ field, 
+%%the steady state).
+%%
+%Then the electron distribution function then reads
+%%
+%\begin{equation}
+%dn_e/d\gamma_e \propto 
+%\begin{cases}
+%\gamma_e^{-2} &\text{ if } \gamma_c < \gamma_e < \gamma_m, \\
+%\gamma_e^{-p-1} &\text{ if } \gamma_e > \gamma_c > \gamma_m
+%\end{cases}
+%\label{eq:afterglow:elec_dist}
+%\end{equation}
+%%
+%with the former usually referred as \textit{slow cooling} and the latter
+%\textit{fast cooling} regimes.
+%
+%
+%%%% ------------------
+%%%% Shortened x2
+%%%% ------------------
+The electron distribution function, $dn/d\gamma_e$ can be obtained from 
+the continuity equation for electrons in the energy space 
+%
+\begin{equation}
+\label{eq:intro:electron_dist_cont_eq}
+\frac{\partial }{\partial t}\frac{d n_e}{d\gamma_e} + \frac{\partial}{\partial \gamma_e}\Big[ \dot{\gamma_e}\frac{dn_e}{d\gamma_e} \Big] = S(\gamma_e)\, ,
+\end{equation}
+%
+where $\dot{\gamma_e} = -\sigma_T B^2 \gamma_e^2 / (6\pi m_e c)$ is the rate at 
+which electron \ac{LF} changes due to energy losses, $S(\gamma_e)$ is the injection 
+rate of electrons into the system.
+%
+Assuming that the injection of electrons is constant (steady-state solution,
+$\partial_t = 0$), and has a minimum, $\gamma_m$, such that, 
+$S(\gamma_e) = 0$ for $\gamma_e < \gamma_m$, the solutions to the Eq.~\eqref{eq:intro:electron_dist_cont_eq} reads 
+%
+\begin{equation}
+\frac{dn_e}{d\gamma_e} \propto 
+\begin{cases}
+\gamma_e^{-2} &\text{ if } \gamma_c < \gamma_e < \gamma_m, \\
+\gamma_e^{-p-1} &\text{ if } \gamma_e > \gamma_c > \gamma_m
+\end{cases}
+\label{eq:afterglow:elec_dist}
+\end{equation}
+%
+where $\gamma_c$ is the cooling \ac{LF}, above which electrons loose their 
+energy to radiation efficiently over a certain characteristic time.
+%
+The $\gamma_c < \gamma_e < \gamma_m$ regime is usually referred as \textit{slow cooling} and $\gamma_e > \gamma_c > \gamma_m$ as \textit{fast cooling}.
+%
+%%%% ------------------------------------------------------
+%%%% Synchrotron self-absorption frequency
+%%%% ------------------------------------------------------
+%If the photon absorption by the inverse-synchrotron process is important, 
+%another characteristic frequency, $\nu_a$, can be determined. Consider the 
+%Kirchhoff's law, \red{stating that the emergent specific flux cannot exceed the 
+%    black-body flux corresponding to the appropriate electron temperature} which is
+%%
+%\begin{equation}
+%k_BT\approx \max(\gamma_a,\min[\gamma_m,\gamma_c])m_e c^2 / 2.7
+%\end{equation}
+%%
+%where $\gamma_m$, $\gamma_c$ and $\gamma_a$ are electron Lorentz factors 
+%corresponding to $\nu_m$, $\nu_c$ and $\nu_a$.
+%Then the \red{synchrotron self-absorption frequency $\nu_a$ is the 
+%    frequency where the emergent synchrotron flux is equal to the black body flux
+%}
+%%
+%\begin{equation}
+%\frac{2m_ec^2\max(\gamma_a,\min[\gamma_m,\gamma_c])\nu_a^2}{2.7c^2}\approx\frac{\sigma_T B m_e c^2 N_>}{4 \pi q}
+%\end{equation}
+%%
+%where the \ac{LHS} is the Plank function in the Rayleigh-Jeans limit and 
+%$N_{>}$ is the column density of electrons with Lorentz factor larger then 
+%$\max(\gamma_a\min[\gamma_m,\gamma_c])$.
+%%
+%Finally, the order of characteristic frequencies determines the emergent 
+%synchrotron spectrum for a distribution of electrons. 
+%See Fig.X for fast and slow cooling regimes \citet{Sari:1997qe}.
+%
+%%%% ------------------
+%%%% Shortened
+%%%% ------------------
+%
+The photon absorption by the inverse-synchrotron process can be computed by evaluating 
+the black-body flux corresponding to the appropriate electron temperature 
+and equating it to the emergent synchrotron flux. Alternatively, it can be accounted for 
+via flux attenuation \citep{Dermer:2009}.
+%
+
+%%%% ------------------
+%% Maximum energy of synchrotron photons
+%%%% ------------------
+%
+%\subsubsection{Maximum energy of synchrotron photons}
+%%
+%Consider a shock front. Scattering back and forth, particles within it accelerate 
+%via the \magenta{first order Fermi process}, increasing their energy $\times 2$ times, 
+%at every front of the shock.
+%In order to determine what is the maximum energy a particle can reach consider the 
+%following. A charged particle of mass $m$ accelerates while crossing the shock front 
+%on a timescale $\sim$ Larmor time, $t'_L = mc\gamma/(qB')$, where primed quantities 
+%are measured in the rest frame of the fluid and $\gamma$, \ac{LF} on a particle in 
+%the frame, comoving with the shock. 
+%%
+%The particle can accelerate to $\gamma$ only if it losses less then half of its 
+%energy to synchrotron emission in $t'_L$. Then 
+%%
+%\begin{equation}
+%\frac{4 q^4 B^{'2}\gamma^2 t'_L}{9 m^2 c^3} < \frac{m c^2\gamma}{2} \text{ or } \nu\propto \frac{q B' \gamma^2}{2\pi m c} < \frac{9 m c^3}{16\pi q^2}
+%\end{equation}
+%%
+%Thut, for electron the maximum synchrotron photon energy is $\sim 50$~MeV and for 
+%proton it is $\sim 100$~GeV in the shocked fluid comoving frame. \red{assuming 
+%    Bohm diffusion limit.}
+%This limit can be exceeded in case of highly inhoogeneous magnetic field 
+%\citep{Kumar:2012}.
+%%
+%%%%% ------------------
+%%% Inverse-Compton radiation
+%%%%% ------------------
+%%
+%\subsubsection{Inverse-Compton radiation}
+%
+%The \ac{IC} scattering is the scattering of photons by electrons of larger energy, resulting in increase in photon energy on average.
+%%% ---
+%Consider electrons with $\gamma_e$ and photons with frquency $\nu$. Let $h\nu\gamma_e \ll m_e c^2$. The average frequency of scattered photons then $\nu_s\sim\nu\gamma^2_e$.
+%\gray{
+%    This can be seen from considering the scattering in the rest frame of the electron.
+%    Let the incident photon have frequency $\nu' \sim \nu\gamma_e$. (See eq.for Doppler Shift). If $h\nu'\ll m_e c^2$, the scattering is elastic (electron recoil is negligible) and the post-scattering angle distribution is a dipol function. 
+%    Then, transforming the $\nu'$ into the original frame results in $\nu_s\sim\nu\gamma_e^2$.
+%}
+%
+%%% Single electron, Radiation Field
+%Consider a radiation field with photon density $u_{\gamma}$, and an electron moving through it. 
+%Then, the power in \ac{IC}-scattered photons is (assuming $h\nu\gamma_e\ll m_e c^2$)
+%
+%\begin{equation}
+%P_{ic} \sim \sigma_T \int d\nu \frac{u_{\nu} c}{h\nu} h\nu\gamma_e^2 \sim \sigma_T u_{\gamma}\gamma^2_e c;
+%\end{equation}
+%
+%where $u_{\nu}d\nu$ is the energy density in photons of frequency between $\nu$ and $\nu+d\nu$, such $\int d\nu u_{\nu} = u_{\gamma}$. From $P_{sync}$ (see eq.above.somewhere) and this equation $P_{sync}/P_{IC} \sim u_{B}/u_{\gamma}$, where $u_{B}- B^2 / 8\pi$.
+%
+%Now consider, that the radiation field is generated by the synchrotron process, \ie, photons are produced by and scattered on the same electrons (to typically much higher energies). This process is called \magenta{synchrotron-self-Compton} or \ac{SSC}.
+%The relative importance of \ac{IC} process is specified by the Compton paramter $Y$ for a population of energetic electrons. 
+%Consider an energy density in photons for synchrotron process
+%
+%\begin{equation}
+%u_{\gamma} = \int dr \int d\gamma_e \frac{P_{syn}}{c}\frac{dn_e}{d\gamma_e} = \frac{\sigma_T (\delta R) B^2}{6\pi} \int d\gamma_e \gamma^2_e \frac{d n_e}{d\gamma_e} = \frac{\sigma (\delta R) n_e B^2}{6\pi}\langle\gamma_e^2\rangle
+%\end{equation}
+%
+%where $\delta R$ is the radial width of the source, and 
+%
+%\begin{equation}
+%\langle \gamma_c^2\rangle = \frac{1}{n_e} \int d\gamma_e \gamma_c^2\frac{dn_e}{d\gamma_e}.
+%\end{equation}
+%
+%Invoking the formula \red{which} for the $u_{\gamma}$ for synchrotron radiation, the Compton parameter reads 
+%
+%\begin{equation}
+%Y \sim P_{IC} / P_{syn} \text{ where } \tau_e = \sigma_T (\delta R) n_e
+%\end{equation}
+%
+%is the optical depth of the source to Thompson scattering.
+%
+%\paragraph{IC spectrum.}
+%
+%In order to obtain IC radition spectrum, the seed photon spectrum is to be convolved with electron distribution \citep{RybickiLightman:1985}
+%
+%\begin{equation}
+%f_{IC}(\nu_{IC}) \approx \frac{3\sigma_T (\delta_R)}{4} \int d\nu \frac{\nu_{IC}}{\nu^2}f_{syn}(\nu) \int \frac{d\gamma_e}{\gamma_e^2}\frac{dn_e}{d\gamma_e}F\big( \nu_{IC} / 4 \gamma_c^2\nu \big)
+%\end{equation}
+%
+%where 
+%
+%\begin{equation}
+%F(x) \approx \frac{2}{3}(1-x), \text{ and } x = \frac{\nu_{IC}}{4\gamma_e^2\nu}
+%\end{equation}
+%
+%To qualitatively asses the spectrum, assume that the seed photon spectrum is a $\delta$-function around frequency $\nu_0$. Electron distribution is power law with index $p$.
+%%% ---
+%Consider the low energy side, where the spectrum is cut off at $\gamma_m$, is proportional to $\nu_{IC}$ for $\nu_{IC} < 4\gamma_m^2\nu_0$. Then, if \ac{SSA} is neglected, then the \ac{IC} spectrum at low energies is much steeper than the hardest synchrotron spectrum $\propto\nu^{1/3}$.
+%Now, consider the high energy side, $\nu_{IC} > 4 \gamma_m^2\nu_0$. There, the \ac{IC} spectrum approaches $\propto \nu_{IC}^{-(p-1)/2}$, same as the synchrotron process spectrum.
+%
+%\paragraph{IC in Klein-Nishina regime}
+%
+%The assumed non-elastic scattering of photons is only valid as long as photon energy is lower then $m_e c^2$ in the comoving frame. When this condition is not longer valid, the electron recoil in the scattering can no longer be ignored. Additioanlly, the cross-section becomes smaller then $\sigma_T$ (decreasing with rising photon energy). 
+%The electron recoil also leads the the change in upper limit of the scattered photon energy, $\sim m_e c^2 \gamma_e / 2$. See \citet{RybickiLightman:1985} for equations.
+%
+%
+%\subsubsection{Hadronc processes}
+%\red{very brief}
+%
+%Under the hadronic processes one understands the followign processes.
+%The photon-pion process, \ie, the production of pions ($\pi^0, \pi^+$ and $\pi^-$), the decay of $\pi^+$ produces $p^+$ with high lorentz factor that can cool via synchrotron processes.
+%The Bethe-Heitler pair production process.
+%Others...
+
+
+%
+%%%% ----------------------
+%%   \subsection{Dynamics}
+%%%% ----------------------
+%
+%Consider a dynamics of a relativistic blast wave propagating through a \ac{CBM}. 
+%Such scenario is a universal part of the \ac{GRB} theory, that can be treated  independently. Assume that such "fireball" has a \ac{LF} $\Gamma_0$ and a total
+%"isotropic equivalent" energy $E$. The \ac{CBM} has a density profile described 
+%by $n(R) = (A/m_p)R^{-k}$.
+%%
+%The theory of relativist shocks with applications to \ac{AGN} jets was developed 
+%by \citep{Blandford:1976}. Later, the theory was successfully applied to \ac{GRB} 
+%afterglows \citep{Costa:1997cg,vanParadijs:1997wr,Frail:1997qf}. 
+%%
+%Importantly, the power law behaviour of the afterglow \acp{LC} is naturally 
+%reproduces the self-similar nature of the self-similar blast wave solution
+%%
+%%\red{here the physical understanding is emphasized, not the derivation}
+%%
+%Consider the reference frame comoving with the shocked fluid. Then, $\Gamma$ 
+%is the \ac{LF} of this fluid with respect to the unshocked one. The density of 
+%the unshocked fluid in this reference frame is $\Gamma n$, and its particles 
+%are seen as streaming towards the shocked fluid with \ac{LF} $\Gamma$. Generally, 
+%for unshocked fluid it is assumed that the thermal energy of its particles is 
+%much lower than the rest mass, or in other words, that the \ac{CBM} is cold. 
+%%
+%Passing through the cold \ac{CBM}, shock front randomizes the particle, protons, 
+%velocity vectors, raising their thermal energy to $\Gamma^2 m_p c^2$ 
+%(while their \ac{LF} remains unchanged). 
+%In the \red{lab frame the average energy of each down stream proton is $\Gamma^2 m_p c^2$, from which it follows that at radius $R$, the total energy in the shocked plasma }
+%%
+%\begin{equation}
+%E \approx \frac{4\pi A R^{3-k}c^2 \Gamma^2}{3-k}
+%\end{equation}
+%%
+%where $AR^{-k}$ is the density of the \ac{CBM} at radius $R$ and 
+%$4\pi A R^{3-k}/ (3-k)$ is the total swept up mass.
+%%
+%From this equation the dynamic of a blast wave can be inferred. For instance, 
+%assuming $E=\text{const}$, $k=0$ (uniform density in \ac{CBM}), the blast wave 
+%\ac{LF} $\Gamma\propto R^{-3/2}$.
+%%
+%The radius from the \ac{CoE} at which $\Gamma = 1/2 \Gamma_0$, initial value, 
+%when also $1/2 E_0$ is deposited into \ac{CBM}, is called the 
+%\textit{deceleration radius}, $R_d$. 
+%For the uniform \ac{CBM}, it is $R_d\propto E^{1/3} n^{-1/3} R_{0,2}^{-2/3}$.
+%%
+%Additionally, shock compresses the plasma. For \red{highly relativistc shocks}, the compression is $4\Gamma$, giving the density in the comoving frame $4 \Gamma n$.
+%It also accelerates the inbound particles to a power-law distribution function. 
+%Additionally, it amplifies the magnetic fields. 
+%%
+%Essentially, this is all that is required for computing the afterglow emission.
+%%
+%%
+%%
+%\red{Now consider a slightly more rigorous derivation of $R_d$ and compression ratio and entropy generation by the blast wave.}
+%%
+%Now, consider a relativistic shock propagating into a cold upstream medium.
+%The evolution of physical properties of the shock is governed three conservation laws: 
+%baryon number, $n' \Gamma c$, energy and momentum fluxes across the shock front. 
+%The latter two are a embedded into the fluid energy momentum tensor 
+%%
+%\begin{equation}
+%    T^{\mu\nu} = (\rho' c^2 + p') u^{\mu} u^{\nu} + p' g^{\mu\nu},
+%\end{equation}
+%%
+%where $\rho' c^2$ is the total energy density, $p'$ is the pressure 
+%(in the plasma rest frame), $u^{\mu}$ is the $4$-velocity and $g^{\mu\nu}$ 
+%is the metric tensor.
+%%
+%Through some magic the conservation equations mentioned above can be written as \citep{Blandford:1976,Rezzolla:2013} 
+%%
+%\begin{eqnarray}
+%\frac{e_2'}{n_2'} = (\gamma_{21} - 1)m_p c^2 \\
+%\frac{n_2'}{n_1'} = \frac{\hat{\gamma}\gamma_{21} + 1}{\hat{\gamma}-1} \\
+%\gamma_{1s}^2 = \frac{(\gamma_{21} + 1) [\hat{\gamma}(\gamma_{21}-1)+1]^2}{\hat{\gamma}(2-\hat{\gamma})(\gamma_{21}-1)+2}
+%\end{eqnarray}
+%%
+%\begin{figure*}[t]
+%    \centering 
+%    \includegraphics[width=0.45\textwidth]{Fig_8_KZ.pdf}
+%    \caption{
+%        This is a schematic sketch of a pair of shocks produced when a relativistic
+%        jet from a \ac{GRB} collides with the \ac{CBM}, as viewed from the
+%        rest frame of unshocked \ac{CBM}. Regions 2 \& 3 represent shocked \ac{CBM} and \ac{GRB}
+%        jet respectively. They move together with the same \ac{LF} ($\gamma_2$, as viewed
+%        by a stationary observer in the unshocked \ac{CBM}), and have the same pressure but
+%        different densities.
+%        (Adapted from \citet{Kumar:2014upa}, Fig.~8)
+%    }
+%    \label{fig:aafg:theory:sr8}
+%\end{figure*}
+%%
+%Here, in Fig.~\ref{fig:aafg:theory:sr8} 
+%\red{same as in Nava picture that you should put} the $2$ and $1$ subscripts 
+%stand for downstream and upstream respectively, $e'$ is the internal energy density, 
+%$n'$ is the proton number density, (both in the local fluid rest frame), 
+%$\gamma_{21}$ is the relative \ac{LF} of plasma in region $2$ with respect to the 
+%region $1$, $\gamma_{1s}$ is the relative \ac{LF} of plasma in region $1$ with 
+%respect to the shock front and $\hat{\gamma}$ is the adiabatic index of the fluid.
+%%
+%For $\Gamma\gg1$ that usually describes early stage of the \ac{GRB} afterglow
+%\citep{Piran:1999kx}, the $\hat{\gamma}=4/3$ 
+%\red{recall that in subrelativistc it is $\hat{\gamma}=5/3$}
+%%
+%Then, $n_2'/n_1' = 3 ((4/3)\gamma_{21} + 1) = 4\gamma_{21} + 3 \approx 4\gamma_{21}$
+%which implies that the downstream plasma is compressed with compression ratio
+%$4\gamma_{21}$.
+%%
+%Similarly, approximating, the conservation equation 
+%$\frac{e_2'}{n_2'} \approx \gamma_{21} m_p c^2$ and the last equation can be 
+%simplified to $\gamma_{1s} \approx \sqrt{2} \gamma_{21}$, which implies that the 
+%shock front travels faster then the downstream fluid.
+%%
+%Next, consider the self-similar deceleration phase of the blast wave in the 
+%constant density \ac{CBM}. There, the energy conservation reads 
+%%
+%\begin{equation}
+%E = \frac{4 \pi }{3 } R^3 n m_p c^2 \Gamma^2 = \text{ const}
+%\end{equation}
+%%
+%where $\Gamma = \gamma_{21}$ is the \ac{LF} of the blastwave with respect to the 
+%unshocked medium, $R$ is the radius of the blast wave (from \ac{CoE}). 
+%%
+%Note, that in the comoving frame the average proton thermal energy is 
+%$m_p c^2 \Gamma$. In the lab frame it is $m_p c^2 \Gamma^2$. 
+%Overall, we observe that $\Gamma^2 R^3 = \text{ const}$ or 
+%%
+%\begin{equation}
+%\Gamma \propto R^{-3/2}
+%\end{equation}
+%%
+%Now, consider the elapsed time in the observer frame. 
+%As both the blast wave and emitted photons are moving in the same direction with the speed difference of $\sim 1/2 \Gamma^2$, 
+%%
+%\begin{equation}
+%t_{obs} \sim \frac{R}{2\Gamma^2 c} \propto R^4 \propto \Gamma^{-8/3}
+%\end{equation}
+%%
+%and 
+%%
+%\begin{equation}
+%\Gamma \propto R^{-3/2} \propto t_{obs}^{-3/8}, \hspace{3mm} R\propto t_{obs}^{1/4}
+%\end{equation}
+%%
+%
+%%%______________________________________
+%%% on the non-uniform CBM
+%
+%Next, we consider \red{power-law stratified density profile}, 
+%
+%\begin{equation}
+%n = n_0 \Big(\frac{R}{R_0}\Big)^{-k}
+%\end{equation}
+%
+%and obtain similar scaling relations.
+%\red{I do not really need this. I can go directly to Peer model and Nava model}
+%
+%\begin{equation}
+%E = \int n_0 \Big( \frac{R}{R_0} \Big)^{-k} m_p c^2 \Gamma^2  4\pi R^2 dR = \text{ const}
+%\end{equation}
+%
+%where $R^{3-k} \Gamma^2 \text{ const}$. 
+%
+%After some derivation 
+%
+%\begin{equation}
+%\Gamma\propto R^{(k-3)/2}\propto t_{obs}^{(k-3)/(8-2k)}
+%\end{equation}
+%
+%And if $k=0$, the previously derived relation for constant density CBM follows.
+%
+%A particularly useful case is the \ac{CBM} filled with a free wind with constant mass loss rate $\dot{M}$ and wind speed $\upsilon_w$, that gives $\dot{M}=4\pi R^2 n \upsilon_w = \text{ const}$, or $n\propto R^{-k}$, \ie, the case of $k=2$ with $\Gamma\propto R^{-1/2}\propto t_{obs}^{-1/4}$.
+%
+%%%_______________________________________
+%%% On the energy injection
+%
+%Now consider the case where the energy of the blast wave is continuously increasing. A possible physical scenario here is a long-lasting Poynting-flux dominated jet, feeding the fireball \gray{and suppressing the reverse shock}. 
+%Then the energy of the outflow from the central engine has to be included into the energy equation of the blast wave
+%
+%\begin{equation}
+%E_{tot} = E_0 + E_{inj}
+%\end{equation}
+%
+%Consider a central engine with time dependent luminocity  $L(t) = L_0 (t_{obs}/t_0)^{-q}$. Then the energy equation reads
+%
+%\begin{equation}
+%E_{tot} = E_0 + E_{inj} = E_0 + \int_{0}^{t_{obs}} L(t)dt = E_0 + \frac{L_0 t_0^q}{1-q}t_{obs}^{1-q}
+%\end{equation}
+%
+%where $E_0$ is the initial energy of the blast wave and $E_{inj}$ is the injected energy into the blast wave from the central engine.
+%
+%Consider the case when energy injection increases with time noticeably, $q<1$.
+%
+%Then, when $E_{inj} \gg E_0$ for $q<1$, the blast wave scaling 
+%
+%\begin{equation}
+%E_{tot} \sim E_{inj} \propto t_{obs}^{1-q}.
+%\end{equation}
+%
+%and for the constant density \ac{CBM}, $\Gamma^2 R^3 \propto t_{obs}^{1-q}$ which eventually leads to $\Gamma\propto R^{-(2+q)/(4-2q)}\propto t_{obs}^{-(2+q)/8}$.
+%
+%And it is easy to see that if $q\rightarrow 1$, the 'no injection' case is resored.
+%
+%%%____________________________________
+%%% Lorentz factor stratification of the ejecta as the Energy injection
+%
+%The energy can be added to the blast wave in a form of velocity stratified ejecta, when the wave decelerates, \eg,
+%
+%\begin{equation}
+%E\propto \gamma^{1-s}\propto\Gamma^{1-s}
+%\end{equation}
+%
+%where $\gamma$ is the \ac{LF} of the ejecta and $\Gamma$ is the \ac{LF} of the blast wave.
+%Here the effects of the reverse shock can also be neglected as energy injection comes when $\Gamma\sim\gamma$ \red{[How does this work in the Peer/Nava model?]}
+%
+%This method is equivalent to the long-lived central engine with time dependent luminosity (at least for the dynamics of the blast wave), and the coefficient $s$ can be expressed in terms of $q$ \cite{Zhang:2005fa}. 
+%
+%For a uniform density \ac{CBM} the scaling relation reads
+%
+%\begin{equation}
+%\Gamma\propto R^{-3/(1+s)}\propto t_{obs}^{-3/(7+s)}, \hspace{3mm} R\propto t_{obs}^{(1+s)/(7+s)}
+%\end{equation}
+%
+%which then gives $s = (10-7q)/(2+q)$ and $q=(10-2s)/(7+s)$
+%
+%\red{The question is, can I add L(t) to the dE/dr of the Nava model and it is all?..}
+
+A universal part of the afterglow theory is the dynamics of the \trans{} 
+\blast{} propagating through the \ac{ISM}, that is also called "fireball".
+%
+The theory of relativist shocks with applications to \acp{AGN} jets was 
+developed by \citet{Blandford:1976}. Later, the theory was successfully 
+applied to \ac{GRB} afterglows \citep{Costa:1997cg,vanParadijs:1997wr,Frail:1997qf},
+and \ac{kN} afterglows \citep[\eg][]{Nakar:2011cw,Hotokezaka:2015eja,Hotokezaka:2018gmo}.
+
+%%
+%Consider a \blast{} propagating though the cold \ac{CBM} with a power-law
+%density profile, $n(R)$ with a \ac{LF} $\Gamma$.
+%%
+%The the total energy in the shocked plasma then is 
+%$E \approx \frac{4\pi A R^{3-k}c^2 \Gamma^2}{3-k}$
+%where $n(R) \propto AR^{-k}$ is the density of the \ac{CBM} at radius $R$ and 
+%$4\pi A R^{3-k}/ (3-k)$ is the total swept up mass.
+%%
+%The conservation of the total energy governs the dynamics of the \blast{}. 
+%The point at which the \ac{LF} and energy of the \blast{} decreases by half, and when 
+%is referred to as \textit{deceleration radius}, $R_d$. \red{IS it?}.
+%%
+%Passing through the cold \ac{CBM}, shock front randomizes the velocity vectors,
+%of particle, protons, raising their thermal energy, while their \ac{LF} remains
+%unchanged. Additionally, shock compresses the plasma and accelerates the inbound 
+%particles to a power-law distribution function, and amplifies the magnetic fields. 
+%
+Withing a shock front, particles are being scattered back and forth, and get accelerated 
+via the first order Fermi process. This increases their energy ${\times}2$ 
+times, at every front of the shock.
+%
+Given a relativistic shock propagating into a cold upstream medium, 
+the evolution of physical properties of the shock is governed by three conservation
+laws:  baryon number, $n' \Gamma c$, and energy and momentum fluxes across the shock front.
+%
+The latter two are a embedded into the fluid energy momentum tensor 
+(see Sec.~\ref{sec:theory:grhd}, and Eq.~\ref{eq:theory:tmunu_perf} there).
+%
+These equations can be written as \citep{Blandford:1976,Rezzolla:2013} 
+%
+\begin{equation} % subequations
+\frac{e_2'}{n_2'} = (\gamma_{21} - 1)m_p c^2, \hspace{3mm}
+\frac{n_2'}{n_1'} = \frac{\hat{\gamma}\gamma_{21} + 1}{\hat{\gamma}-1}, \hspace{3mm}
+\gamma_{1s}^2 = \frac{(\gamma_{21} + 1) [\hat{\gamma}(\gamma_{21}-1)+1]^2}{\hat{\gamma}(2-\hat{\gamma})(\gamma_{21}-1)+2}\, ,
+\label{eq:afterglow:blast}
+\end{equation} % subequations
+%
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.45\textwidth]{Fig_8_KZ.pdf}
+    \caption{
+        This is a schematic sketch of a pair of shocks produced when a relativistic
+        jet from a \ac{GRB} collides with the \ac{CBM}, as viewed from the
+        rest frame of unshocked \ac{CBM}. Regions 2 \& 3 represent shocked \ac{CBM} and \ac{GRB}
+        jet respectively. They move together with the same \ac{LF} ($\gamma_2$, as viewed
+        by a stationary observer in the unshocked \ac{CBM}), and have the same pressure but
+        different densities.
+        (Adapted from \citet{Kumar:2014upa}, figure~8)
+    }
+    \label{fig:aafg:theory:sr8}
+\end{figure*}
+%
+where subscripts $2$ and $1$ stand for downstream and upstream respectively, 
+shown in Fig.~\ref{fig:aafg:theory:sr8}, 
+$e'$ is the internal energy density, $n'$ is the proton number density, 
+$\gamma_{21}$ is the relative \ac{LF} of plasma in region 
+$2$ with respect to the region $1$
+$\gamma_{1s}$ is the relative \ac{LF} of plasma in region $1$ with respect to the shock front,
+$\hat{\gamma}$ is the adiabatic index of the fluid, which is $\hat{\gamma}=4/3$ for the ideal relativistic 
+fluid and $\hat{\gamma}=5/3$ for subrelativisitc fluid.
+%The $2$ and $1$ regions are also shown in Fig.~\ref{fig:aafg:theory:sr8} 
+%(see also \citep{Nava:2013} for a more comprehensive take).
+%
+Solving the system Eq.~\eqref{eq:afterglow:blast} gives the full evolution 
+of the \blast{}. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% --------------------------------------------------------------------------
+%%               Nucleo & EM counterts
+%% --------------------------------------------------------------------------
+
+\subsection{\ac{BNS} Merger Ejecta} \label{sec:intro:ejecta}
+
+
+%% --------------------------------------------------------------------------
+%%               M M  S I G N A T U R E S
+%% --------------------------------------------------------------------------
+
+%\subsection{Multimessenger Signatures} % -> EM signatures
+
+%As \ac{PC} cases are 
+%not expected to ejecta large amount of material and be \ac{EM}-loud (in case of 
+%comparable mass binary), the \GW{} is believed to be not a \ac{PC} case, 
+%\cite{Margalit:2017dij,Bauswein:2017vtn}. 
+
+During and after the merger, neutron-rich material is ejected on the 
+dynamical \citep{Rosswog:1998hy,Hotokezaka:2013b,Bauswein:2013yna,Wanajo:2014wha,Radice:2018pdn} 
+and secular \citep{Lee:2009,Perego:2014fma,Fernandez:2015use,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,Miller:2019dpt} 
+timescales via a number of processes. %(see Sec.~\ref{sec:intro:bns:ejecta}), 
+The matter then 
+undergoes \rproc{} \nuc{}, synthesizing neutron-rich unstable elements 
+\citep{Eichler:1989ve,Wanajo:2014wha,Cowan:2019pkx},
+that subsequently decay, releasing energy that thermalizes and can be observed as 
+an \ac{EM} transient, \ac{kN} with quasi-thermal spectrum \citep{Metzger:2019zeh},
+and later, non-thermal \ac{kN} afterglow as cold ejecta interacts with \ac{ISM} \citep{Piran:2012wd}.
+%
+%The non-thermal emission associated with \ac{BNS} mergers arise primarily from the
+%interaction between the fast ejecta and \ac{ISM} \citep{Kumar:2014upa,Piran:2012wd}. 
+%%This includes the \ac{kN} afterglow, produced by dynamical/secular ejecta and 
+%For example, the collimated relativistic outflow, jet, can be observed as bright flashes 
+%of high energy $\gamma$-rays, prompt emission, and late time afterglow across all \ac{EM} 
+%bands \citep{Eichler:1989ve,Berger:2013jza} 
+%Notably, the origin of prompt emission is not yet fully understood \citep{Kumar:2014upa},
+%as well as the mechanism responsible for launching the jet. Several possibilities are 
+%considered in the literature. \gray{The \ac{BZ} mechanism, that extracts the rotational energy 
+%    from spinning \ac{BNH} in a strongly magnetized environment} 
+%\citep{Blandford:1977ds,Ruiz:2016rai}, magnetized winds 
+%from the remnant engulfed in strong \acp{MF} 
+%\citep{Zhang:2000wx,Bucciantini:2011kx} and neutrino-antineutrino powered 
+%fireballs \citep{Eichler:1989ve}.
+
+%Both, \ac{kN} and \ac{SGRB} were observed for \GW{}, and are called respectively, \AT{} and \GRB{} 
+%%\cite{kilonova observation list}
+%%\cite{grb observation list}
+%The $\gamma$-ray flash was detected $1.7\,$s after the \ac{GW} trigger by INTEGRAL and 
+%Fermi satellites \citep{Monitor:2017mdv}. The \GRB{} appeared dimmer than other transients of its class, 
+%which was attributed to the \ac{GRB} jet being a structured (not top-hat) jet with central axis
+%misaligned with the line-of-sight and the 
+%\citep[\eg][]{Lazzati:2017zsj,Xie:2018vya}%\cite{Refs of a struct jet model}
+
+%% Neutrinos
+%\ac{BNS} mergers are expected to be strong neutrino emitters, on par with \acp{CCSN}, if 
+%the remnant suvives sufficiently long for trapped neutrinos to escape \cite{72}. However, 
+%detection of this emission is limited to the events in our galaxy, where the merger rate is 
+%once every $\mathcal{O}(10^4)\,$years.
+%The IceCube and VERITAS facilities can detect GeV/TeV neutrinos and photons that might originate 
+%in \ac{SGRB} jet or in the remnant magnetosphere \cite{130,131} if the source is up to 
+%${\sim}10\,$Mpc away. The origin of this very high energy emission, however, is not fully 
+%understood, and their detection would be a ``new messenger'' from \ac{BNS} mergers.
+
+%% postmerger GWs
+%A large amount of energy ${\lesssim}0.1\,\Msun\eqsim 2\times 10^{53}\,$erg is radiated 
+%over the ${\sim}10-20\,$ms after merger in a form of kHz \acp{GW} \cite{107, 60}.
+%While this emission is below the sensitivity of current generation facilities 
+%\cite{97,132,80,133}, it bay be observed by $3$rd gen detectors for close enough events 
+%\cite{57}. 
+%The main peak of \pmerg{} \ac{GW} signal, $f_2$, \cite{132,133,134,135} was shown to 
+%correlate with $R_{1.6}$ \cite{132,80}, (and not with \ac{NS} spin and \mr{} \cite{134,135}).
+%A more tight constraints can be obtained on the $\kappa_2^T$ (or $\tilde{\Lambda}$) from 
+%$f_2$ via the quasi-universal realtion \cite{80,56,57,58,136} 
+
+%% Phase transition and GWs
+%Notably, the \pmerg{} observations of $f_2$, that itself is set by the orbital frequency 
+%that depends on the $k_2^T$ allows to constrain the low-density physics (fixing the $R_{1.6}$ 
+%and $k_2^T$) \cite{44}. Thus, $f_2$, is almost independent on the merger remnant star 
+%deformations (until the collapse), as the rate of angular momentum loss is correlate with the rate of binding energy loss to \acp{GW} \cite{56,107,135,20}. 
+%This trend was also snown to be robust with the presence of the $2$nd order phase transition 
+%after merger, that allows for na additional energy release and amplification of \acp{GW} signal 
+%\cite{9}. This is not exactly the case if the $1$st order phase transition is present, that 
+%leads to the remnant contraction on the dynamical timescale and instead of angular 
+%velocity, it is angular momentum that is conserved, \cite{11}.
+%This such a phase transition can be undetified as disagreement between the $k_2^T$ obtained 
+%from the inspiral \acp{GW} and \pmerg{} \acp{GW} \cite{11} (assuming \ac{PC} did not 
+%occur\cite{10}).
+
+
+%\subsubsection{Mass Ejection, Kilonovae, and Nucleosynthesis}
+
+
+
+%\ac{BNS} mergers result in ejection of material that can be observed, providing the 
+%information of the merger dynamics and properties of the binary, and enrich the 
+%\ac{ISM} with heavy \rproc{} elements \citep{Shibata:2019wef}. The quasi-thermal emission 
+%associated with the decay of heavy \rproc{} elements is qusi-isotropic and thus have 
+%higher changes to be observed \citep{Metzger:2019zeh}
+
+
+
+%%%% Ejecta
+%Generally, the ejecta is classified based on the timescale over which it occurs. 
+The \textit{dynamical ejecta} is generally divided into 
+the cold, low-$Y_e$, \textit{tidal}, produced by strong tidal torques at merger 
+and prominent in very assymetric binaries
+\citep{Rosswog:1998hy,Radice:2016dwd,Dietrich:2016hky},
+and shock-heated, high-$Y_e$, \textit{shocked}, produced 
+by the core \bnc{} induced shock waves, propagating through the \pmerg{} debris 
+\citep{Radice:2018pdn}. %Hotokezaka:2013b, Bauswein:2013yna, Sekiguchi:2016bjd, Dietrich:2016hky,
+%
+The ejecta mass and velocity, as estimated by \ac{NR} simulations, lie in 
+$(10^{-4}-10^{-2})\,\Msun$ and $(0.1-0.3)\,c$ respectively 
+\citep{Hotokezaka:2013b,Bauswein:2013yna,Sekiguchi:2016bjd,Radice:2018pdn}.
+% Depending on the binary \mr{} (that determins the relative controbutions of two
+%components of the dynamical ejecta The outcome of the \rproc{} in the dynamical ejecta is 
+%broadly consistent with the solar \rproc{} abundances.
+
+%%%% Secular ejecta
+On a longer, \textit{secular}, timescale additional matter is ejected in a form of 
+massive winds \citep{Lee:2009,Perego:2014fma,Fernandez:2015use,Siegel:2017nub,
+    Fujibayashi:2017puw,Fernandez:2018kax,Miller:2019dpt}, % & Nedora V, et al. Astrophys. J. 886:L30 (2019)
+that could could be more massive than dynamical one, liberating $(10-40)\%$ of the disk mass. 
+%according to the numerical simulations of the disk evolution 
+%(see \eg, \citet{Radice:2018xqa} for estimates). 
+Various mechanisms contribute to 
+the matter ejection, \eg, neutrino irradiation of the polar region, generating high-$Y_e$, 
+low-mass winds \citep{Perego:2014fma,Miller:2019dpt}; nuclear recombination in the outer 
+part of the disk (after it expanded due to viscous and thermal processes) that can eject 
+${\sim}(10-20)\%$ of the disk mass at ${\sim}0.1\,c$ \citep{Lee:2009,Fernandez:2015use,Fahlman:2018llv};
+and \ac{MHD} effects facilitating matter ejection \citep{Fujibayashi:2017puw,Radice:2018xqa}.
+% & 141 Nedora V, et al. Astrophys. J. 886:L30 (2019)
+
+%%%% Ejecta -> EM signal
+The \pmerg{} disk and remnant properties, and the lifetime of the latter, set by the 
+binary parameters and \ac{EOS} (see Sec.~\ref{sec:intro:remnant}) \citep{Radice:2018xqa,Perego:2019adq} 
+determine the properties of the secular ejecta and hence, the \ac{kN} signal 
+\citep[\eg][]{Radice:2018pdn}.
+%The disk mass dependency on the \ac{EOS} and the remnant lifetime was examined in \cite{72,70},
+%where it was pointed out that short-lived remnant is usually associated with less massive disk.
+Additionally, the presence of the remnant modifies the ejected material by means of 
+neutrino irradiation \citep{Fernandez:2015use}, providing a possibility to infer the nature of 
+the remnant from \ac{EM} observations. Modeling this process, however, requires very long-term 
+$3$D ab-initio \ac{BNS} merger simulations with complete physics, that are absent in presence.
+
+%%%% GW170817 EM signature
+\ac{EM} followup of \GW{} showed the presence of both blue and red \acp{kN}\footnote{
+    See, however, \citet{Waxman:2017sqv} for a different interpretation
+} \citep{Villar:2017wcc}.
+Simplified \ac{kN} fitting models suggest that former requires ${\sim}0.02\,\Msun$ of high-$Y_e$ 
+material ejected at ${\sim}0.25\,c$, and the latter requires ${\sim}0.04\,\Msun$ of low-$Y_e$ 
+material ejected at ${\sim}0.1\,c$. Due to its large mass, the red component is 
+generally thought to originate in secular ejecta with the contribution from the dynamical, while 
+the origin of the blue component is less clear. Specifically, the required amount of high-$Y_e$,
+material (that is somewhat lower if sophisticated radiation transport \ac{kN} models are considered),
+is in tension with the \ac{NR} \ac{BNS} merger simulations 
+\citep{Sekiguchi:2016bjd,Siegel:2019mlp,Perego:2017wtu,Kawaguchi:2018ptg}.
+Additional ejection mechanisms have been proposed to address the discrepancy, \eg, 
+magnetic effects prior to merger \citep{Metzger:2018qfl,Fernandez:2018kax,Radice:2018ghv}. 
+%\gray{spiral waves shocking the accretion 
+%    disk by a long-lived \ac{NS} remnant \cite{141 Nedora V, et al. Astrophys. J. 886:L30 (2019)}}. 
+Future observations and long-term multiphysics \ac{NR} models will undoubtedly shed more light on this tension \citep{Metzger:2018qfl}.
+
+%%%% Fast tail of the ejecta -- UV precourser
+\ac{NR} simulations show that within the velocity distribution of the dynamical ejecta, 
+there is ${\sim}(10^{-6}-10^{-5})\,\Msun$ of matter ejected at ${\sim}0.8\,c$ 
+\citep{Metzger:2014yda,Hotokezaka:2018gmo,Radice:2018pdn,Radice:2018ghv}, due to shocks launched 
+at core bounces \citep{Radice:2018pdn}.
+This matter is sufficiently fast to avoid the neutron capture on seed nuclei 
+%(see Sec.~\ref{sec:intro:nucleo}) 
+and will eventually undergo free-neutron decay, emitting 
+\ac{UV} radiation on a timescale of hours \citep{Metzger:2014yda}. 
+
+%%%% Synchrotron remnant
+%Expanding into the \ac{ISM}, \ac{BNS} merger ejecta generates shocks that amplify 
+%random magnetic fields and accelerates electrons that in turn emit non-thermal radiation 
+%via synchrotron mechanism (see Sec.~\ref{sec:intro:afterglows}). This \ac{kN} afterglow 
+%can be observed on a very long, 
+%moths to years, timescale \citep{Nakar:2011cw,Hotokezaka:2018gmo} and provide information 
+%about merger dynamics and ejecta properties quasi-independent of uncertainty in \rproc{} \nuc{} 
+%affecting the thermal, \ac{kN}, emission. 
+%%
+Since ${\sim}160\,$days after the merger the non-thermal emission from \GW{} have been 
+consistent with \ac{SGRB} afterglow. However, ${\simeq}1243\,$days after the merger, a 
+change in spectral and temporal behaviour of the afterglow was observed, one of the 
+possible explanations of which is the emergence of the \ac{kN} afterglow\footnote{
+    See however \citet{Troja:2021xsw} for the alternative explanation
+} \citep{Hajela:2021faz}.
+The exact nature of this change remains at present unclear. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{\pyblast{}} \label{sec:afterglow:code}
 
 \def\eq{\text{equation}}
 \def\eqs{\text{equations}}
@@ -48,30 +1434,94 @@ energy distributions.
 %
 We adopt the \blast{} dynamics formalism from \citet{Nava:2013} that casts 
 Eqs.~\eqref{eq:afterglow:blast} as a set of \acp{ODE} for the \blast{} \ac{LF},
-swept-up mass and energy. The system is then solved via 
-4th order adaptive step \ac{RK} method.
+swept-up mass and energy, that read respectively 
+%
+\begin{subequations}
+    \label{eq:afterglow:odes_nava}
+    \begin{align}
+    \frac{d\Gamma}{dR} &= -\frac{(\Gamma_{\rm eff} + 1)(\Gamma - 1) c^2\frac{dm}{dR} + \Gamma_{\rm eff}\frac{dE'_{\rm ad}}{dR}}{(M_0 + m) c^2 + E'_{\rm int}\frac{d\Gamma_{\rm eff}\rm }{d\Gamma}}, \\
+    \frac{dE'_{\rm tot}}{dR} &= \frac{dE_{\rm sh}}{dR} + \frac{dE'_{\rm ad}}{dR} + \frac{dE'_{\rm rad}}{dR} \\
+    \frac{dm}{dR} &= 2 \pi \rho (1 - \cos(\theta)) R^2;
+    \end{align}
+\end{subequations}
+%
+where $\Gamma$ is the \blast{} \ac{LF}, $R$ is its radius, 
+$\Gamma_{\rm eff} = (\hat{\gamma})\Gamma^2-\hat{\gamma}+1 / \Gamma$ is the effective 
+\ac{LF} (see \citet{Nava:2013}) where $\hat{\gamma}$ is the fluid adiabatic index, 
+$E'_{\rm tot},\, E'_{\rm int}$ 
+are the total, internal energies, respectively, $dE'_{\rm ad}\, dE'_{\rm rad}$ denote 
+adiabatic and radiative losses, $M_0,\, \theta$ is the initial mass and opening angle
+of the \blast{}, and $\rho$ is the \ac{ISM} density.
+%
+Eqs.~\ref{eq:afterglow:odes_nava} are then solved via 
+explicit Runge-Kutta method of order $8(5,3)$ by \citet{Dormand:1980} (with stepsize control).
+%
 The effects of radiation losses, discussed in \citet{Nava:2013} and lateral 
-spreading of the \blast{}, \citep[\eg][]{Granot:2012} are turned off.
+spreading of the \blast{}, \citep[\eg][]{Granot:2012} are turned off,
+\ie, $d E'_{\rm rad}/dR = d\theta / dR = 0$.
 %
 The adiabatic index, $\hat{\gamma}$, is computed from the approximation to the 
-numerical study of the \trans{} fluid \citep[\eq~5 in][]{Service:1986} as a function 
-of normalized temperature \citep[\eq~11 in][]{Peer:2012}. It smoothly connects the 
+numerical study of the \trans{} fluid \citep{Service:1986}
+%\citep[\eq~5 in][]{Service:1986} as a function 
+%of normalized temperature \citep[\eq~11 in][]{Peer:2012}. 
+%
+\begin{eqnarray}
+\hat{\gamma} \approx (5 - 1.21937z &+ 0.18203z^2 - 0.96583z^3 + \\
+2.32513z^4 &- 2.39332z 5 + 1.07136z^6)/3.
+\end{eqnarray}
+% 
+where $z \approx T/(0.24 + T)$ with is the normalization temperature
+\citep{Peer:2012}.
+%
+It smoothly connects the 
 $\hat{\gamma}=4/3$ and $\hat{\gamma}=5/3$ regimes. 
 
-We adopt a common assumption that a fixed fraction of the \blast{} energy is being
+We adopt a common assumption that a fixed fraction of the \blast{} 
+energy, $E'_{\rm int},$ is being
 deposited into the electrons, $\varepsilon_e$, and magnetic field, $\varepsilon_B$, 
 \citep[\eg][]{Dermer:1997pv}. 
 The injected electrons distribution function is Eq.~\eqref{eq:afterglow:elec_dist},
 with $p$, the spectral index, being a free parameter.
 %
 We compute the characteristic \acp{LF}, $\gamma_c$ and $\gamma_m$ using the standard
-prescriptions \citep[\eqs~A3 and A4 in][respectively]{Johannesson:2006zs}.
+prescriptions \citep[\eg][]{Dermer:2008ev}
+%\citep[\eqs~A3 and A4 in][respectively]{Johannesson:2006zs}.
+%
+\begin{equation}
+\label{eq:afterglow:gmin_gc}
+\gamma_{min} = \frac{p - 2}{p - 1}  \varepsilon_e (\Gamma - 1) , \hspace{5mm} \gamma_c = \frac{6 \pi m_e c }{\sigma_T \Gamma B^{'2} t_{\rm obs}}\, 
+\end{equation}
+%
+where where $t_{obs} = \int \frac{dr}{\beta c}$ is the time in 
+observer frame, $B'$ is the magnetic field strength.
 
-The synchrotron emission in the comoving frame, Eq.~\eqref{eq:afterglow:sync_power},
-is approximated with the smooth broken power-law  
-\citep[\eqs~A2 and A6 in][respectively]{Johannesson:2006zs}, and the 
-the characteristic frequencies are obtained from the characteristic \acp{LF} 
-$\gamma_{m}$ and $\gamma_c$ via their \eq~A5.
+%
+The synchrotron emission in the comoving frame, Eq.~\eqref{eq:afterglow:sync_power}, for the slow and fast cooling 
+regimes is approximated with the smooth broken power-law 
+\citep{Johannesson:2006zs}
+%
+\begin{equation}
+    \begin{aligned}
+    P'(\nu') &= P_{\rm max;\, f}' \Bigg[\Big(\frac{\nu'}{\nu_c'}\Big)^{-\kappa_1/3} + \Big(\frac{\nu'}{\nu_c '}\Big)^{\kappa_1/2}\Bigg]^{-1/\kappa_2} \Bigg[1 + \Big(\frac{\nu'}{\nu_m '}\Big)^{(p-1)\kappa_2/2}\Bigg]^{-1/\kappa_2}, \\
+    P'(\nu') &= P_{\rm max;\, s}' \Bigg[\Big(\frac{\nu'}{\nu_m'}\Big)^{-\kappa_1/3} + \Big(\frac{\nu'}{\nu_m '}\Big)^{\kappa_3(p-1)/2}\Bigg]^{-1/\kappa_3} \Bigg[1 + \Big(\frac{\nu'}{\nu_c '}\Big)^{((1-p)/2 + p/2)\kappa_4}\Bigg]^{-1/\kappa_4},
+    \end{aligned}
+\end{equation}
+%
+where $\nu_i ' = \chi_p \gamma_i^2 (3 B' / 4 \pi m_e c)$ 
+are characteristic frequencies, and the 
+maximum values for the power density
+%
+\begin{align}
+P' _{\rm max;\, f} &= 2.234 \phi_p \frac{q_e^3 n' B'}{m_e c^2}, \\
+P' _{\rm max;\, s} &= 11.17 \phi_p \frac{p-1}{3p-1}\frac{e^3 n' B'}{m_e c^2}.
+\end{align}
+%
+The, $\phi_p$, $\chi_p$, and $\kappa_i$ are polynomials that 
+describe the $p$-dependence \citep{Johannesson:2006zs}.
+
+%\citep[\eqs~A2 and A6 in][respectively]{Johannesson:2006zs}, and the 
+%the characteristic frequencies are obtained from the characteristic \acp{LF} 
+%$\gamma_{m}$ and $\gamma_c$ via their \eq~A5.
 %
 %The synchrotron self-absorption is included via flux attenuation \citep[\eg][]{Dermer:2009}. %
 %However, for the applications discussed in this paper, the self-absorption is not 
@@ -83,8 +1533,12 @@ The flux in the observer frame is obtained by itegrating over the \ac{EATS},
 that are obtained by comping the $t_{obs}$, \ie, Eq.~\eqref{eq:afterglow:tobs} 
 for each segment. The relativist effects are taken into account via 
 Doppler factor, Eq.~\eqref{eq:afterglow:dop_fac}.
-See \citet{Salmonson:2003} for the detailed discussion of the method, 
-and \citet{Lamb:2018ohw,Fernandez:2021xce} for the recent implementations
+%See \citet{Salmonson:2003} for the detailed discussion of the method, 
+%and \citet{Lamb:2018ohw,Fernandez:2021xce} for the recent implementations
+
+
+
+
 
 
 \subsection{Method validation}
@@ -118,7 +1572,7 @@ ejecta properties (discussed below) these discrepancies can be neglected.
 
 
 
-\section{\ac{kN} afterglow for \GRB{} rebrightening}
+\section{\ac{kN} afterglow for \GRB{} rebrightening} \label{sec:afterglow:results}
 
 
 %Fig.~\ref{fig:ejecta_vel_hist}. 
