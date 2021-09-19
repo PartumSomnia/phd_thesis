@@ -472,9 +472,9 @@ outwards with $Y_e$ reaching $0.4$ at the edges.
 The disk mass at formation appears to depend on the \ac{NS} \ac{EOS}. Binaries with 
 stiffer \acp{EOS} (larger \ac{NS} radii) produce more massive disks.
 Additionally, the disk mass show a dependency on mass ratio. For instance, the most massive 
-disks are formed in LS220 $q=1.43$ and  BLh $q=1.82$ models, where the latter experiences prompt collapse.
+disks are formed in LS220 $q=1.43$ and BLh $q=1.82$ models, where the latter experiences prompt collapse.
 %
-We examine these dependencies more closely in the chapter~\ref{ch:stat}, Sec.~\ref{sec:stat:remdisk}. \red{Maybe move it also here? in a separate section?}
+We examine these dependencies more closely in Appendix~\ref{ch:stat}, Sec.~\ref{sec:stat:remdisk}. \red{Maybe move it also here? in a separate section?}
 %% -- 
 The disk accretion onto a \ac{BH} removes up to $50\%$ of its mass on a timescale of tens of milliseconds.
 
@@ -1086,15 +1086,34 @@ as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$.
     \label{fig:ejecta:dyn:dsfits}
 \end{figure*}
 %
-We show the result in Fig.~\ref{fig:ejecta:dyn:dsfits}.
-A specific goal of our analysis is the comparison with previous studies 
-of \ac{DE}, in particular with \citet{Radice:2018pdn}, where the same 
-simulation setup was used, but the neutrino reabsorption was not included.
+Comparing the ejecta properties between simulations with and 
+without subgrid turbilence (See Tab.~\ref{tab:sims}) we observe 
+that the effect of subgrid turbulence on the dynamical 
+ejecta properties however, is rather week and comparable to the effects 
+of finite grid discretization 
+\citep{Bernuzzi:2020txg,Radice:2020ids}.
 
+In Fig.~\ref{fig:ejecta:dyn:dsfits} we show the ejecta mass, velocity and 
+electron fraction as a function of binary parameters: \mr{}, $q$ and 
+reduced tidal deformability, $\tilde{\Lambda}$ for our models. 
+The plot suggests that there are trends in data, relations between ejecta 
+parameters and binary parameter. 
+%
+
+
+
+In order to examine these relations in more details we enlarge the sample 
+of simulations, by collecting the published sets of \ac{BNS} merger models.
+%
+%%
+%A specific goal of our analysis is the comparison with previous studies 
+%of \ac{DE}, in particular with \citet{Radice:2018pdn}, where the same 
+%simulation setup was used, but the neutrino reabsorption was not included.
+%
 %% -------------------
 \input{Tables/tabDatasets.tex}
 %% -------------------
-
+%
 The datasets used for the analysis are summarized in Tab.~\ref{tab:data}.
 We group them with respect to the employed neutrino treatment:
 
@@ -1149,9 +1168,10 @@ We group them with respect to the employed neutrino treatment:
 \end{itemize}
 
 %% --- Overal dataseamble
-In total $324$ \ac{NR} models are available.
+In total $324$ \ac{NR} models are collected.
 For each of which we compute the reduced tidal parameter, $\tilde{\Lambda}$, 
-Eq.~\eqref{eq:intro:Lambda}, solving the \ac{TOV} equations for the corresponding 
+Eq.~\eqref{eq:intro:Lambda} \red{MIGT BE MISSING}, 
+solving the \ac{TOV} equations for the corresponding 
 gravitational masses of the stars and \ac{EOS}.
 % 
 For a subset of models with polytropic \acp{EOS} of \citet{Bauswein:2013jpa}
@@ -1163,9 +1183,10 @@ mass, $\amd$, is present. The average velocity, $\avd$, is available for only $2
 models, as a subset of models from \citet{Kiuchi:2019lls} does not contain this 
 information. The electron fraction is found for $99$ models, as we exclude the 
 subset of models with leakage scheme for which this data is not given in 
-\citet{Lehner:2016lxy}. The \ac{RMS} half-opening angle around the orbital plane, 
-$\athetarms$, of the ejecta is present for $76$ models and the mass of the disk, 
-$M_{\rm disk}$, is given for $119$ models.
+\citet{Lehner:2016lxy}. 
+%The \ac{RMS} half-opening angle around the orbital plane, 
+%$\athetarms$, of the ejecta is present for $76$ models and the mass of the disk, 
+%$M_{\rm disk}$, is given for $119$ models.
 
 \begin{figure*}[t]
     \centering 
@@ -1185,7 +1206,135 @@ $M_{\rm disk}$, is given for $119$ models.
     \label{fig:ejecta:dyn:ds}
 \end{figure*}
 
+The collected data is shown in Fig.~\ref{fig:ejecta:dyn:ds}. We note that the overall properties of the 
+ejecta are similar between the \DSrefset{} and \DSheatcool{}. This is expected, as these 
+datasets include similar, albeit not the same, physics, regarding \ac{EOS} and neutrino treatment.
+%
+The important exceptions are the high \mr{} models of \DSrefset{} as their \ac{DE} of tidal 
+origin only \citep{Bernuzzi:2020txg}.
+%
+Comparing the properties of datasets with and without neutrino reabsorption, we observed 
+that the the inclusion of this effect leads to the \ac{DE} of higher mass, in addition to 
+the epxected increase in average electron fraction. This is especially noticeable when 
+comparing the models of \DSrefset{} and a subset of \citet{Radice:2018pdn} with leakage scheme only.
 
+
+In Appendix \ref{app:coefs} we report the detailed statistical analysis, where we examine the 
+change in mean values of ejecta properties between different datasets and fit the 
+data with different fitting formelae, found in literature, as well as, applying simple 
+polynomials of $q$ and $\tilde{\Lambda}$ of first and second order,
+$P_2^1(q,\tilde{\Lambda})$ and $P_2^2(q,\tilde{\Lambda})$ respectively. 
+The results of this analysis are the following. 
+
+%% --- Mej
+For the ejecta mass we observe 
+that the intrinsic scatter in the data hinders performance 
+of any smooth fitting formula. The inclusion of \mr{} is required to capture the leading 
+trends in data and the simple polynomial $P_2^2(q,\tilde{\Lambda})$ show a comparatively  
+good statistical performance.
+%\gray{We recomment the calibration based on the models with }
+%
+The statistical analysis for considered datasets suggests that the $\amd$ depends 
+sensibly on the physics input of the simulations: neutrino scheme and \ac{EOS} treatment.
+The magnitude of systematic uncertainties reduces the ability of any fitting formulae 
+to identify and capture leading trends.
+
+%% --- vej
+%We find that in our set of models, there is a correlation of $\avd$ with the 
+%tidal parameter $\tilde{\Lambda}$: the higher the $\tilde{\Lambda}$ the lower 
+%the $\avd$. This can be understood from the tidal/shocked components of the 
+%\ac{DE} (see Sec.~\ref{sec:intro:merg_pmerg}) \red{BROKEN REF?}.
+Considering the mass-averaged ejecta velocity, $\avd$, of the \DSrefset{}, we 
+find that it is in overall agreement with the dataset with neutrino leackage scheme 
+of \citet{Radice:2018pdn}, and ranges from $0.11\, c$ to $0.27\, c$. However, while in 
+that study there was no apparent correlation found between the velocity and binary 
+parameters upon visual inspection, we find that in models of \DSrefset{} the $\avd$ 
+is correlated with $\tilde{\Lambda}$, as shown in Fig~\ref{fig:ejecta:dyn:dsfits}.
+%
+The best fitting formula to the $\avd$, among considered, is given by the 
+second order two-parameter polynomial $P_2^2(q,\tilde\Lambda)$ that appears to be able to capture 
+the leading trends in data. 
+%For its calibration, the dataset with the most advanced physics is 
+%recommended, \DSheatcool{} \& \DSrefset{}.
+%
+The ejecta velocity shows a strong dependency on the neutrino treatment 
+and binary parameters, specifically, the \mr{}.
+
+%% --- Yeej 
+Considering the average value of the mass-averaged electron fraction, $\ayd$, we find 
+that when models of \DSrefset{} only are considered, it varies from $0.03$ found in very high 
+\mr{} binaries, that produce cold, low-$Y_e$, tidal ejecta \citep{Bernuzzi:2020tgt} to $0.27$ in $q\sim1$ 
+binaries (see also Fig.~\ref{fig:ejecta:dyn:dsfits}).
+
+Naturally, datasets that include the effects of neutrino absorption display 
+on average higher $\ayd$. 
+%
+Comparing the values of $\ayd$ from datasets and predicted by fitting formulae in 
+we find that for all datasets, the $P_2^2(q,\tilde\Lambda)$ is able to 
+reproduce both the low-$Y_e$ and high-$Y_e$ models of 
+\DSheatcool{} and \DSrefset{}.
+
+%% --- theta_RMS
+%% THETA RMS [3 pandles REFSET]
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.32\textwidth]{statistics/ej_mej_theta_groups.pdf}
+    \includegraphics[width=0.32\textwidth]{statistics/ej_vej_theta_groups.pdf}
+    \includegraphics[width=0.32\textwidth]{statistics/ej_theta_yeej_groups.pdf}
+    \caption{
+        Relations between the ejecta $\theta_{\rm RMS}$ and other parameters of the dynamical
+        ejecta: mass, $\amd$, velocity, $\avd$, and electron fraction $\ayd$ for models from
+        \DSrefset{} and \cite{Radice:2018pdn} from \DScool{} and \DSheatcool{}.
+        Plots show that models with neutrino absorption have
+        higher $\amd$ and larger $\theta_{\rm RMS}$ as well as 
+        a clear correlation between $\theta_{\rm RMS}$ and $\ayd$.
+        (Adapted from \citet{Nedora:2020qtd})
+    }
+    \label{fig:ejecta:dynej_thetarms}
+\end{figure*}
+%
+The ejecta geometry has been shown to be very important for modeling \ac{EM} 
+counterparts to mergers (see chapters~\ref{ch:kilonova} and \ref{ch:afterglow}). %\citep[\eg][]{Perego:2017wtu}. 
+However, it is difficult statistically analyze. For the sake of simplicity 
+we consider the mass-averaged \ac{RMS} half-opening 
+angle of the ejecta across the plane of the binary, $\athetarms$.
+%% --- 
+We introduce the $\athetarms$ in accordance with \citet{Radice:2018pdn}, assuming 
+the axial symmetry and computing:
+%
+\begin{equation}
+\athetarms = \frac{180}{\pi}\Bigg(\frac{\sum m_i \theta_i^2}{\sum m_i}\Bigg)^{1/2}\, ,
+\end{equation}
+%
+where $\theta_i$ and $m_i$ are the angle (from the binary plane) and the mass of 
+the element of ejecta respectively.
+%
+Unfortunately, this quantity is available only for the \DSrefset{} and for the subset 
+of models of \citet{Radice:2018pdn}
+% some of which are in \DScool{} and some are in \DSheatcool{} (see Tab~\ref{tab:data}). 
+Hence, the statistical analysis is limited 
+to a small sample of models. The dependency of the $\athetarms$ on other ejecta is shown in Fig.~\ref{fig:ejecta:dynej_thetarms}.
+%
+With respect to the models of \citet{Radice:2018pdn}, we observe that the models of the 
+\DSrefset{} have overall larger $\athetarms$. This suggests that the inclusion of 
+neutrino reabsorption leads to a more spherically distributed ejecta.
+%
+The third panel of Fig.~\ref{fig:ejecta:dynej_thetarms} shows a clear linear relation 
+between the $\athetarms$ and $\ayd$, that can be attributed to the \mr{} dependency of 
+ejecta properties. Binaries with large \mr{} have ejecta of mostly tidal origin that 
+is confined to the binary plane and characterized by low electron fraction. On the 
+contrary, binaries with $q\sim 1$ have ejecta of both tidal and shock origin that both 
+more spread out and more processed by shocks and neutrino irradiation, hence, higher $\ayd$.
+%
+Similar to the case of $\ayd$, we find that the \polql{} provides the best fit to the data.
+
+Overall, we observe that the properties of the \ac{DE} depend on the \mr{} and 
+\ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$, and a simple 
+polynomial in these two quantities show a comparable or better performance with 
+resepct to other fitting formulae available in the literature. 
+%
+However, larger sample of ab-initio simulations with complete physics and 
+publicly available data are required to refine these relations.
 
 %We overview the overall properties of the dynamical ejecta in our simulations 
 %in in the chapter \ref{ch:stat}, placing them alongside the other available data 
@@ -1199,10 +1348,10 @@ $M_{\rm disk}$, is given for $119$ models.
 %ejecta properties in the chapter \ref{ch:stat}.
 %
 %Specifically, we observer, 
-Comparing out simulation data with other models available in the literature 
-(Sec.~\ref{sec:stat:ejecta}), e find that neutrino absorption leads to not only 
-an increase in average electron fraction but also to larger total ejected mass 
-and velocity. 
+%Comparing out simulation data with other models available in the literature 
+%(Sec.~\ref{sec:stat:ejecta}), we find that neutrino absorption leads to not only 
+%an increase in average electron fraction but also to larger total ejected mass 
+%and velocity. 
 %The latter two would be crucial for the non-thermal, 
 %kilonova afterglow (see Sec.\red{sec:KilonovaAfterglow}).
 %%
@@ -1211,20 +1360,20 @@ and velocity.
 %hereafter we report also the standard deviation), while the same
 %quantity calculated for data of \citep{Radice:2018pdn} 
 %is $\overline{\md} = (1.352\pm 1.250)\times 10^{-3}\,\Msun$.
-The mass-averaged terminal velocity of the dynamical ejecta 
-ranges between $0.1\,c$ and $0.3\,c$, and in a good agreement with 
-\citep{Radice:2018pdn}.
+%The mass-averaged terminal velocity of the dynamical ejecta 
+%ranges between $0.1\,c$ and $0.3\,c$, and in a good agreement with 
+%\citep{Radice:2018pdn}.
 %The mass-averaged velocity, averaged over all the simulations, is 
 %$\overline{\avd} = (0.172\pm0.038)\,{\text{c}}$.
 %
-We find that in our set of models, there is a correlation of $\avd$ with the 
-tidal parameter $\tilde{\Lambda}$: the higher the $\tilde{\Lambda}$ the lower 
-the $\avd$. This can be understood from the tidal/shocked components of the 
-\ac{DE} (see Sec.~\ref{sec:intro:merg_pmerg}).
-%
-We also find that the ejecta velocity, found in our simulations, 
-is recovered in \ac{NR} simulations with more advanced neutrino 
-treatment performed by other groups (see App.~\ref{sec:stat:vejstat}).
+%We find that in our set of models, there is a correlation of $\avd$ with the 
+%tidal parameter $\tilde{\Lambda}$: the higher the $\tilde{\Lambda}$ the lower 
+%the $\avd$. This can be understood from the tidal/shocked components of the 
+%\ac{DE} (see Sec.~\ref{sec:intro:merg_pmerg}) \red{BROKEN REF?}.
+%%
+%We also find that the ejecta velocity, found in our simulations, 
+%is recovered in \ac{NR} simulations with more advanced neutrino 
+%treatment performed by other groups (see App.~\ref{sec:stat:vejstat}).
 %
 %From the plot we observe that the $\avd$ increases with $\tilde{\Lambda}$. This can 
 %be attributed to the fact that the \ac{DE} in mergers with $q\sim1$ is dominated by the 
@@ -1239,8 +1388,8 @@ treatment performed by other groups (see App.~\ref{sec:stat:vejstat}).
 %The velocity of the latter also is smaller for larger $\tilde{\Lambda}$, as stars collide 
 %at slower velocities due to their larger radii. 
 %%% ---
-In our models, the mass-averaged electron fraction, $\ayd$, 
-lies the range $(0.1, 0.3)$.
+%In our models, the mass-averaged electron fraction, $\ayd$, 
+%lies the range $(0.1, 0.3)$.
 %with an averaged value among all models $\overline{\ayd} = 0.175 \pm 0.063$.
 %Notably, the \citet{Radice:2018pdn} reported a more narrow range, $(0.1, 0.2)$.
 %This is a clear effect of the neutrino absorption included in our models, that elevates 
@@ -1249,32 +1398,34 @@ lies the range $(0.1, 0.3)$.
 %Notably, the $\ayd$ of our models is close to those obtained with M1 
 %scheme of \citet{Sekiguchi:2016bjd} and \citet{Vincent:2019kor}.
 %%% ---
-The angular distribution of the \ac{DE} is found to depend 
-on the neutrino treatment. Specifically, the inclusion of 
-neutrino reabsorption leads to a more spherically distributed ejecta
-(see App.~\ref{sec:stat:thetarms}).
-%%%---
-The effect of subgrid turbulence on the dynamical ejecta properties however,
-found rather week and comparable to the effects of finite grid discretization 
-\citep{Bernuzzi:2020txg,Radice:2020ids}.
+%The angular distribution of the \ac{DE} is found to depend 
+%on the neutrino treatment. Specifically, the inclusion of 
+%neutrino reabsorption leads to a more spherically distributed ejecta
+%(see App.~\ref{sec:stat:thetarms}).
+%%%%---
+%The effect of subgrid turbulence on the dynamical ejecta properties however,
+%found rather week and comparable to the effects of finite grid discretization 
+%\citep{Bernuzzi:2020txg,Radice:2020ids}.
+%
+%Overall, we observe that the properties of the \ac{DE} depend on the \mr{} and 
+%\ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$, as 
+%%
+%\begin{align}\label{eq:polyfit2}
+%P_2 ^1(\tilde{\Lambda}) &= b_0 + b_1\tilde\Lambda + b_2 \tilde\Lambda^2, \\\label{eq:polyfit22}
+%P_2 ^2(q,\tilde\Lambda) &= b_0 + b_1q + b_2\tilde\Lambda + b_3q ^2 +  b_4 q \tilde\Lambda + b_5\tilde\Lambda^2 \, .
+%\end{align}
+%%
+%The result of a fitting ejecta parameters with the polynomial of these two quantities 
+%are shown in bottom panels of Fig.~\ref{fig:ejecta:dyn:dsfits}.
+%%
+%This assertion is supported by a more thorough analysis of the ejecta 
+%properties and disk mass, discussed in Appendix.~\ref{ch:stat}, 
+%and thus we refer to these formulae as ``best fitting formulae''.
+%%
+%A larger sample of ab-initio simulations with complete physics and 
+%publicly available data are required to refine these relations.
 
-Overall, we observe that the properties of the \ac{DE} depend on the \mr{} and 
-\ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$, as 
-%
-\begin{align}\label{eq:polyfit2}
-P_2 ^1(\tilde{\Lambda}) &= b_0 + b_1\tilde\Lambda + b_2 \tilde\Lambda^2, \\\label{eq:polyfit22}
-P_2 ^2(q,\tilde\Lambda) &= b_0 + b_1q + b_2\tilde\Lambda + b_3q ^2 +  b_4 q \tilde\Lambda + b_5\tilde\Lambda^2 \, .
-\end{align}
-%
-The result of a fitting ejecta parameters with the polynomial of these two quantities 
-are shown in bottom panels of Fig.~\ref{fig:ejecta:dyn:dsfits}.
-%
-This assertion is supported by a more thorough analysis of the ejecta 
-properties and disk mass, discussed in Appendix.~\ref{ch:stat}, 
-and thus we refer to these formulae as ``best fitting formulae''.
-%
-A larger sample of ab-initio simulations with complete physics and 
-publicly available data are required to refine these relations.
+
 
 
 
@@ -1318,7 +1469,7 @@ publicly available data are required to refine these relations.
 
 In order to analyze the low mass, very fast compoent of the \ac{DE}, we 
 choose the furthest extraction sphere from the remnant, at 
-$R=\approxeq443\,$km %300G/c^2M_{\odot}
+$R = 443\,$km.  %300G/c^2M_{\odot}
 %In this section we discuss the ejecta properties that are extracted at 
 %coordinate radius of $R=300G/c^2M_{\odot}\approxeq443\,$km from the center.
 This assures that the ejecta had the longest evolution 
@@ -1941,7 +2092,7 @@ Notably, in some of the works, the \nwind{} was found to require longer timescal
 achieving the quasi-steady state. 
 This can be attributed to the strict criteria to isolate the \nwind{} and by the absence of the 
 \ac{SWW} in other works. 
-Additionally, our simulations might not be sufficiently long to achieve the donditions 
+Additionally, our simulations might not be sufficiently long to achieve the conditions 
 sufficient for the development of the quasi-steady state \nwind{}.
 %% Additionally, as our models are at most $\sim100$~ms long, the conditions required for the steady 
 %% state \nwind{} might not been achieved.

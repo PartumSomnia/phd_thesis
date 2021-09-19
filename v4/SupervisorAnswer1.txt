@@ -99,7 +99,8 @@ the table with simulations.
 
 As Chap.1 has been rewritten the Chap.1 I removed repetitions. 
 I addressed the ejecta origin part. 
-I introduced the subsection on the statistics on the dynamical ejecta. 
+I expaned the dynamical ejecta part to include more of the results from 
+statitical analysis.
 I was reluctened to to so in the first place, as this chapter is about our 
 simulations.
 

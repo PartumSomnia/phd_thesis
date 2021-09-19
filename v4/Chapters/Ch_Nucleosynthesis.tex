@@ -21,15 +21,16 @@
 %mergers, focusing on the rapid neutron capture process (\rproc{}) responsible 
 %for the creation of heavy elements \citep{Burbidge:1957}. 
 %
-In Sec.~\ref{sec:intro:nucleo} we introduced conditions for and cites of
+In Sec.~\ref{sec:intro:nucleo} we discussed the conditions for and sites of
 \rproc{} \nuc{}, and its contribution to the Universe' chemical evolution. 
 Here, we briefly discuss how numerous nuclear species, participating in thousands on nuclear 
-reactions, are evolved using the novel \texttt{SkyNet} nuclear reaction network code, and how the process can be paramtrized for quick 
+reactions, are evolved using the novel \texttt{SkyNet} nuclear reaction network code, 
+and how the process can be parameterized for quick 
 calculations of final abundances in \ac{BNS} merger ejecta.
 %
 Then, we consider \ac{BNS} mergers as a source of \rproc{} elements. 
 We compute the nucleosynthetic yields from merger simulations 
-discussed in the chapter~\ref{ch:bns_sims}.
+discussed in Chapter~\ref{ch:bns_sims}.
 
 %\red{
 %[Lippuner 221 page] Note that luminosity of the electron anti-neutrino is higher then the one of the 
@@ -70,7 +71,7 @@ To study the \nuc{} in different physical environments, it is necessary to model
 not only on the total energy generation \citep[\eg][]{Weaver:1978,Mueller:1986,Timmes:1999} but tracking the 
 evolution of the whole ensemble of nuclear species. A mathematical and/or numerical model that describes 
 coupled nuclear reactions, tracking the evolution of abundances of various species, coupled by a non-linear 
-reaction, rates is called \ac{NRN}.
+reaction, rates is called \ac{NRN}. \ac{assert full version}
 %
 % BBN
 The complexity of a network, \ie, the number of species and reactions evolved 
@@ -102,7 +103,7 @@ and even more so to model \rproc{}.
 Targets for such studies include 
 \acp{CCSN} neutrino driven winds \citep[\eg][]{Woosley:1992,Arcones:2010,Wanajo:2013},
 and outflows from magnetorotational \acp{CCSN} \citep[\eg][]{Winteler:2012,Nishimura:2015nca}.
-In compact object mergers several cites with different conditions 
+In compact object mergers several sites with different conditions 
 require modeling (See Sec.~\ref{sec:intro:merg_pmerg} and % that include ejecta,
 %\citep{Goriely:2011vg,Bauswein:2013yna,Wanajo:2014wha,Just:2014fka,Fernandez:2016sbf}\red{[Refs]}, 
 %and a disk (torus) formed after merger around the remnant 
@@ -203,7 +204,7 @@ and $Y_m^{N_{m}^{\alpha}}$ are the abundances of the particles of species $i$ in
 
 \texttt{SkyNet} solves the system of coupled, first-order, non-linear equation, 
 Eq.~\eqref{eq:theory:nuc:abundance}, for a given set of reaction rates, $\lambda_{\alpha}$. 
-The Eq.~\eqref{eq:theory:nuc:abundance} can be understood as following. 
+Eq.~\eqref{eq:theory:nuc:abundance} can be understood as following. 
 The time derivative of the abundances (of species $i$) is given by the sum over all reactions, 
 in which the species in question participate. Each reaction contribution consists of multipliers: 
 a \ac{RR}; a factor describing creation or destruction of particles (of species $i$), 
@@ -309,7 +310,7 @@ vector $Y(t)$ via implicit backward Euler method, obtaining the abundances at
 the end of the timestep as well as $\dot{Y}(Y,T,\rho)$, time derivative of the abundances, 
 from known abundances at the beginning of it. 
 %
-The problem amounts to a multi-dimensional root-finding problem. \texttt{SkyNet} uses 
+The problem amounts to a multi-dimensional root-finding problem; \texttt{SkyNet} uses 
 Newton-Raphson method. 
 %The Jacobian matrix is $N\times N$ for $N$ nuclear species and can 
 %be expensive to invert and store. 
@@ -426,8 +427,8 @@ Another approach is to adopt a parameterized \nuc{} model, computed for a grid o
 that describe the ejecta and map the \ac{NR} ejecta properties onto this grid to estimate the 
 final abundances \citep{Lippuner:2015gwa}. 
 
-Several important trends can be noted for the parameterized model,
-of \citet{Lippuner:2018phd}, their figure 3.1.
+Several important trends can be noted for the parameterized model 
+of \citet{Lippuner:2018phd}, (see their Figure 3.1).
 Specifically, that at high entropy, that result in a high neutron-to-seed ratio, 
 even if seed nuclei are light, full \rproc{} can occur.
 At low entropy, the \rproc{} is jugged as there are not many free neutrons available,
@@ -453,19 +454,20 @@ For a given ejecta type (\eg, \ac{DE} or \ac{SWW}) we obtain the electron fracti
 entropy, velocity and rest mass density. % at a given extraction sphere (see Sec.~\ref{sec:}).
 %
 The \rproc{} in a given fluid element depends on how fast it decompresses from the 
-merger environment and is parameterized as follows \citep{Lippuner:2015gwa}.
+merger environment and is parameterized as a function of following ejecta 
+properties \citep{Lippuner:2015gwa}:
 \begin{itemize}
     \setlength\itemsep{0.1em}
     %Ejecta electron fraction $Y_e=N_p/N_B$, where 
     %$N_p$ and $N_B$ are the numbers of protons and baryons. 
-    \item Ejecta electron fraction, $Y_e$, is sampled uniformly between $0.01$ and $0.5$ 
-    ($Y_e>0.5$ is not favorable for \rproc{}).
-    \item Ejecta specific entropy, $s$, is sampled lorarithmically 
-    between $1$ and $100\, k_B/\text{baryon}$.
-    \item Ejecta expansion timescale, % $\tau$,  
+    \item electron fraction, $Y_e$, is sampled uniformly between $0.01$ and $0.5$ 
+    ($Y_e>0.5$ is not favorable for \rproc{});
+    \item specific entropy, $s$, is sampled lorarithmically 
+    between $1$ and $100\, k_B/\text{baryon}$;
+    \item expansion timescale, % $\tau$,  
     %This quantity describes the ejecta expansion while it undergoes the nucleosynthesis. 
-    $\tau$, is sampled between $0.1\,$ms and $500\,$ms.
-    \item The ejecta density profile is that if the homologous expanding fluid\footnote{
+    $\tau$, is sampled between $0.1\,$ms and $500\,$ms;
+    \item density profile is that if the homologous expanding fluid\footnote{
         homologous expansion means that the velocity is such that the expanding shell 
         does not change with time except for a scaling factor. 
         This scaling factor is proportional to time.
