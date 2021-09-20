@@ -29,7 +29,7 @@ TODO I added the abstract
 >   the thesis and a short description (1-2 lines) 
 >   of what was your precise contribution.
 
-TODO I added the required page
+I added the required page
 
 
  * Chap.1 needs another try.

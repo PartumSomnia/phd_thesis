@@ -7,107 +7,184 @@
 %% =====================================================================================
 
 %% From Just
-%A pair of massive stars at the end of their evolution, undergo \ac{SN} explosion, forming, 
-%in certain cases, a pair of compact objects orbiting each other. A particular interesting 
-%example is a pair of \acp{NS}, compact, but heavy objects sustained against gravitational 
-%collapse by the neutron degeneracy pressure. The theory of \ac{GR} predicts that the orbit 
-%of the system shrinks, as \acp{NS} loose energy and angular momentum to \acp{GW}. The 
-%loss continues until \acp{NS} collide at their last orbit a form an axisymmetric object.
-%In this thesis we investigate such a merger, focusing on the aftermath evolution of the 
-%remnant. 
-%
-%The high compactness of \acp{NS} lead to an energetic, explosive merger, where a certain
-%fraction of the \ac{NS} matter is ejected from the system at mildly relativistic 
-%velocities. In addition to the complex dynamics of the system after merger that might 
-%induce additional matter outflows, this makes the \ac{BNS} mergers a strong contributor 
-%to the cosmic chemical evolution. The matter ejected at/after mergers, \ie, ejecta, has 
-%unique properties, rarely found in other astrophysical cites. Specifically, the abundance 
-%of free neutrons allow for the so-called rapid neutron capture process,
-%the \rproc{}, that is responsible for the production of the heaviest elements in the 
-%Universe, lanthanides and actinides. 
-%
-%Wide range of possible types and properties of ejecta lead to a similarly broad 
-%range in \ac{EM} counterparts to \ac{BNS} mergers. Perhaps, two of the most 
+A pair of massive stars at the end of their evolution undergo \acp{SN} explosions, and 
+if stars are sufficiently massive, a pair of compact objects orbiting each other is formed. 
+One of the possible outcomes, is a pair of \acp{NS}, compact, but heavy objects sustained 
+against gravitational collapse by the neutron degeneracy pressure. 
+The theory of \ac{GR} predicts that the orbit of the system shrinks, as \acp{NS} loose energy 
+and angular momentum to \acp{GW}. The stars inspiral until they collide at the last orbit. 
+%ejecting a small fraction of matter into the Universe, leaving a \pmerg{} remnant.
+
+
+The high compactness of \acp{NS} leads to an energetic, explosive merger, where a small 
+fraction of the \ac{NS} matter is ejected from the system at mildly relativistic 
+velocities. 
+Additionally, the massive \pmerg{} remnant and sorrounding it gravitationally bound 
+matter are subjected to complex dynamical interactions, weak processes and magnetically induced 
+turbulence, that might induce additional matter outflows. This makes the \ac{BNS} mergers 
+strong contributors to the cosmic chemical evolution. 
+The matter ejected at/after mergers, \ie, ejecta, has unique properties, rarely found in other 
+astrophysical sites. Specifically, the abundance of free neutrons allow for the so-called 
+rapid neutron capture process (\rproc{}), 
+The \rproc{}, that is responsible for the production of the heaviest elements in the 
+Universe, lanthanides and actinides. 
+
+%Mergers of \acp{BNS} are at the center of a variety of physical processes in astrophysics.
+Wide range of possible types and properties of ejecta lead to a similarly broad 
+range in \ac{EM} counterparts to \ac{BNS} mergers. For instance, the heavy elements 
+produced via \rproc{} \nuc{} eventually decay, powering the quasi-thermal \ac{EM} 
+counterpart, \ac{kN}. Additionally, it \ac{BNS} mergers are expected to produce 
+powerful jets, that can be observed as \acp{SGRB}. Moreover, expanding into \ac{ISM} 
+medium, \ac{BNS} merger ejecta is expected to generate non-thermal, long-lasting 
+afterglow emission. 
+%Perhaps, two of the most 
 %well studied ones are the \ac{kN}, a thermal counterpart powered by the decay of 
 %newly synthesized heavy elements in the ejecta, and \acp{SGRB}, generally non-thermal 
 %emission from the ultrarelativistic collimated outflow, formed after the merger. 
+Together with \ac{GW} emission, these signals allow to study the processes occuring 
+at mergers to a great detains, origin of the \ac{SGRB}, cosmic chemical evolution, 
+and, perhaps most importantly, they provide unique constraints on the theory of gravity 
+and density of matter at many times the nuclear saturation densities. 
 %Study of these \ac{EM} counterparts in conjuncture with \acp{GW} emission allows to 
 %gain unique insigts into the inner workings of the \ac{BNS} merger and previously 
 %unobtainable constraints on the theory of gravity, the properties of matter at 
 %supranuclear densities, origin of the \ac{SGRB}, cosmic chemical evolution. 
+
+
+
+In August 2017, the first \ac{BNS} merger was observed 
+as a source of \ac{GW} waves by \ac{LIGO}/Virgo, \GW{}. The unprecedented \ac{EM} 
+follow-up campaign, spanning hundreds of observatories across the world lead to 
+the identification of the merger \ac{EM} counterparts: \ac{kN}, \AT{} and 
+\ac{SGRB}, \GRB{} 
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,GBM:2017lvd}. 
 %
-%The complexity, non-linearly, non-stationarity and multidimensionality of physical 
-%processes operating at \ac{BNS} mergers on a broad range of scales of length and time 
-%implies that self-consistent, quantitative studies are only possible with numerical 
-%simulations. These simulations, performed with numerical codes that took years of 
-%develop and test, are very computationally expensive, rare and require detailed 
-%postprocessing and analysis. Moreover, the self-consistent modeling of the merger and 
-%\ac{EM} counterparts is still beyond the reach of modern methods. Generally, the 
-%the short-term (hundred of milliseconds) evolution of the merger itself 
-%is handled with \ac{NR} codes while the \nuc{} and \ac{EM} emission are evaluated 
-%after, in postprocessing. Strengthening the connection between these methods is one of 
-%the goals of this thesis. 
+\acp{GW} shed light on the properties of cold matter 
+at supernuclear densities, the \ac{NS} \ac{EOS} 
+\citep{Hinderer:2009ca,Damour:2012yf,DelPozzo:2013ala}, while 
+the properties of matter at densities several times that of the 
+nuclear matter, as well as the astrophysical implications of the merger 
+were largely derived from the \ac{EM} signals 
+\cite{Alexander:2017aly,Villar:2017wcc,Hajela:2019mjy}. \red{add proper refs}
+
+
+The complexity, non-linearity, non-stationarity and multidimensionality of physical 
+processes operating at \ac{BNS} mergers on a wide range of scales of length and time 
+implies that self-consistent, quantitative studies are only possible with numerical 
+simulations 
+\citep{Sekiguchi:2011zd,Wanajo:2014wha,Foucart:2015gaa,Palenzuela:2015dqa,Sekiguchi:2016bjd,Kiuchi:2017zzg,Radice:2017zta,Fujibayashi:2017puw,Radice:2018pdn}.
+These simulations, performed with \ac{NR} codes that took years, sometimes 
+decades to develop and test, are very computationally expensive, rare, and require detailed 
+postprocessing and analysis. 
+%
+Moreover, the self-consistent modeling of the \ac{BNS} merger and its \ac{EM} counterparts 
+is still beyond the reach of modern methods. Generally, the short-term (hundred of milliseconds) 
+evolution of the merger itself is handled with \ac{NR} codes while the 
+\nuc{} and \ac{EM} emission are computed after, in postprocessing. 
+%Strengthening the connection between these methods is one of the goals of this thesis. 
 %
 %In the following sections we sketch the astrophysical background to clarify the 
 %context of our study and we conclude the chapter by summarizing the main points of 
 %motivation for this thesis and its structural arrangement.
 
-
-%% <<< From Radice Review >>>
-Mergers of \acp{BNS} are at the center of a variety of physical processes in astrophysics.
-The first ever detection of such event by \ac{LIGO}/Virgo and 
-numerous \ac{EM} observatories, \GW{}, interpreted as merger of two 
-\acp{NS}, have significantly advanced our understanding 
-of gravity, physics of dense matter, \acp{SGRB} and origins of \rproc{} elements 
-\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,GBM:2017lvd}. 
-
-Emitted during the inspiral, \acp{GW} delivered a plethora of information about  
-\ac{NS} \ac{EOS} at supernuclear densities 
-\citep{Hinderer:2009ca,Damour:2012yf,DelPozzo:2013ala}. 
+In this thesis we postprocess a large set of \ac{NR} \ac{BNS} merger simulations, 
+performed with the state-of-the-art \ac{NR} code \wisky{}, and targeted to the 
+\GW{} (with corresponding binary parameters).
 %
-The properties of matter at densities several times that of the 
-nuclear matter, however, were not well constrained, as the \pmerg{} \ac{GW} 
-was not detected. Future observations of the high frequency \pmerg{} signal 
-will shed more light on these properties 
-\citep{Sekiguchi:2011mc,Radice:2017lry,Most:2018eaw,Bauswein:2018bma}, 
-constraining one of the main quantities, the tidal deformability.
+We focus on the \pmerg{} matter dynamics and properties of ejecta. 
+We asses the nucleosynthetic yields in the ejecta, placing them into astrophysical 
+context. Using the \ac{kN} model, developed by \citet{Perego:2017wtu}, we analyze 
+the \ac{EM} signatures of our \ac{BNS} merger models, comparing them with \AT{}. 
+Additionally, we develop a new code to model non-thermal emission from ejecta 
+expanding into \ac{ISM}, apply it to the outcome of the merger simulations and 
+compare the results with recently observed change in \ac{SGRB} emission. 
+%
+The main goal of our study is to strengthen the link between the ab-inito 
+numerical relativity simulations and observations of \ac{EM} signatures of mergers, 
+and in doing so, provide better constraints on the properties of \GW{} 
+and ultimately, on the properties of matter and supranuclear densities.
 
-The conditions within matter ejected at mergers, \ie, ejecta, are such that the  rapid neutron capture (\rproc{}) 
-\nuc{}, responsible for the production of the heaviest elements in the Universe
-% such as gold 
-can take place \citep{Cowan:2019pkx}.
-Whether \acp{BNS} mergers are the prime source of this material is still unknown.
-% This was confirmed by \ac{MM} observations of \GW{} \cite{12}. 
-% however, it is unclear whether \ac{BNS} mergers is the dominant source of 
-% \rproc{} elements in the universe, or if other \rproc{} cites are required to 
-% explain the observed abundances in the oldest stars, \ac{UFG} and our solar system. 
 
-Single \acp{NS} are very compact but massive objects, 
-%where compactness $C_{i} = GM_i/R_i^2c^2\propto0.15$ and 
-for description of which the effects of \ac{GR} cannot be neglected.
-A pair of \acp{NS} orbiting each other slowly loses its 
-angular momentum to \acp{GW}. The timescale for the radiation reaction, however, 
-is much longer than the orbital period for most of the inspiral and the 
-system evolution can be considered adiabatic. 
-% For instance, the inspiral can be considered as a sequence of circular orbits. 
-% However, during last orbits before merger, the finite size (tides) and \ac{HD}
-% effects starts to become important. 
-The inspiral ends at the onset of the Roche lobe overflow, when the binary 
-reaches the mass-shedding limit \citep{Bejger:2004zx}.
 
-In order to study the dynamical phase of \ac{BNS} mergers and \pmerg{} evolution, 
-sophisticated \ac{NR} simulations are required. Modern, state-of-the-art methods 
-include full \ac{GR}; composition-dependent nuclear \ac{EOS} with finite-temperature 
-effects, \ac{GRMHD} and advanced neutrino transport with varying degree of approximation,
-\citep{Sekiguchi:2011zd,Wanajo:2014wha,Foucart:2015gaa,Palenzuela:2015dqa,Sekiguchi:2016bjd,Kiuchi:2017zzg,Radice:2017zta,Fujibayashi:2017puw}.
+%Single \acp{NS} are very compact but massive objects, 
+%%where compactness $C_{i} = GM_i/R_i^2c^2\propto0.15$ and 
+%for description of which the effects of \ac{GR} cannot be neglected. 
+%%
+%A pair of \acp{NS} orbiting each other slowly loses its 
+%angular momentum to \acp{GW}. 
+%%The timescale for the radiation reaction, however, 
+%%is much longer than the orbital period for most of the inspiral and the 
+%%system evolution can be considered adiabatic. 
+%%For instance, the inspiral can be considered as a sequence of circular orbits. 
+%%However, during last orbits before merger, the finite size (tides) and \ac{HD}
+%%effects starts to become important. 
+%The inspiral ends at the onset of the Roche lobe overflow, when the binary 
+%reaches the mass-shedding limit \citep{Bejger:2004zx}.
+%
+%%% <<< From Radice Review >>>
+%Mergers of \acp{BNS} are at the center of a variety of physical processes 
+%in astrophysics.
+%The first ever detection of such event by \ac{LIGO}/Virgo, \GW{}, 
+%followed up by detections across \ac{EM} spectrum 
+%have significantly advanced our understanding 
+%of gravity, physics of dense matter, origins of \acp{SGRB} and \rproc{} elements 
+%\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,GBM:2017lvd}. 
+%%
+%Specifically, while \acp{GW} shed light on the properties of cold matter 
+%at supernuclear densities, the \ac{NS} \ac{EOS} 
+%\citep{Hinderer:2009ca,Damour:2012yf,DelPozzo:2013ala}, 
+%the properties of matter at densities several times that of the 
+%nuclear matter, as well as the astrophysical implications of the merger 
+%were largely derived from the \ac{EM} signals. 
+%
+%%Emitted during the inspiral, \acp{GW} delivered a plethora of information about  
+%%\ac{NS} \ac{EOS} at supernuclear densities 
+%%\citep{Hinderer:2009ca,Damour:2012yf,DelPozzo:2013ala}. 
+%%%
+%%The properties of matter at densities several times that of the 
+%%nuclear matter, however, were not well constrained, as the \pmerg{} \ac{GW} 
+%%was not detected. Future observations of the high frequency \pmerg{} signal 
+%%will shed more light on these properties 
+%%\citep{Sekiguchi:2011mc,Radice:2017lry,Most:2018eaw,Bauswein:2018bma}, 
+%%constraining one of the main quantities, the tidal deformability.
+%
+%The \ac{EM} signal originates from the matter ejected during or after 
+%the merger by a variety of physical processes, the so-called, ejecta.
+%%
+%The conditions within ejecta, are such that the rapid neutron capture (\rproc{}) 
+%\nuc{}, responsible for the production of the heaviest elements in the Universe
+%such as gold can take place \citep{Cowan:2019pkx}.
+%%
+%Notably, whether \acp{BNS} mergers are the prime source of this material is still unknown.
+%% This was confirmed by \ac{MM} observations of \GW{} \cite{12}. 
+%% however, it is unclear whether \ac{BNS} mergers is the dominant source of 
+%% \rproc{} elements in the universe, or if other \rproc{} cites are required to 
+%% explain the observed abundances in the oldest stars, \ac{UFG} and our solar system. 
+%
+%
+%
+%In order to study the dynamical phase of \ac{BNS} mergers and \pmerg{} evolution, 
+%sophisticated \ac{NR} simulations are required. Modern, state-of-the-art methods 
+%include full \ac{GR}; composition-dependent nuclear \ac{EOS} with finite-temperature 
+%effects, \ac{GRMHD} and advanced neutrino transport with varying degree of approximation,
+%\citep{Sekiguchi:2011zd,Wanajo:2014wha,Foucart:2015gaa,Palenzuela:2015dqa,Sekiguchi:2016bjd,Kiuchi:2017zzg,Radice:2017zta,Fujibayashi:2017puw}.
+%
+%%In this thesis we perform \ac{NR} simulations of \ac{BNS} mergers, report on their 
+%%qualitative and quantitative picture and its implication for the \ac{EM} signatures.
+%%We focus on the nuclear astrophsyics aspect of the mergers, and on the comparison 
+%%between theoretical predictions and observations of \GW{}, discussing the 
+%%\rproc{} \nuc{}, thermal \ac{EM} transient, and non-thermal \ac{EM} afterglow. 
 
-%In this thesis we perform \ac{NR} simulations of \ac{BNS} mergers, report on their 
-%qualitative and quantitative picture and its implication for the \ac{EM} signatures.
-%We focus on the nuclear astrophsyics aspect of the mergers, and on the comparison 
-%between theoretical predictions and observations of \GW{}, discussing the 
-%\rproc{} \nuc{}, thermal \ac{EM} transient, and non-thermal \ac{EM} afterglow. 
 
-In this chapter we provide a brief summary of the current understanding of the 
+%% =====================================================================================
+%%
+%%              T H E O R E T I C A L  P I C 
+%%
+%% =====================================================================================
+
+\section{Theoretical picture of \ac{BNS} mergers}
+
+In this section we provide a brief summary of the current picture of the 
 \ac{BNS} mergers, their impact on the galactic chemical evolution, and their 
 \ac{EM} counterparts. For the sake of brevity we allude most of the technical details, 
 and we refer the interested reader to the following reviews and references therein.
@@ -116,21 +193,6 @@ For the general overview on the topic we refer to \citet{Shibata:2016},
 For a more recent reviews done by different leading groups we refer to 
 \citet{Radice:2020ddv,Bernuzzi:2020tgt,Shibata:2019wef}.
 %
-For the discussion on \ac{EM} counterparts to mergers we refer to 
-%For the most recent reviews on the topic we recommend the following reviews:
-%Radice, for the discussing of the \pmerg{} dynamics and ejecta,
-%Bernuzzis, for the \ac{GW} aspect of the mergers \cite{Bernuzzi:2020tgt}
-%Shibata \& Hotokezaka for the discussing of the ejecta \cite{Shibata:2019wef}.
-\citet{Kumar:2014upa,Fernandez:2015use,Metzger:2019zeh}.
-%
-We conclude the chapter stating the aims and structure of this thesis.
-
-%This chapter is organized as follows...
-%First we discuss the observational context of the \ac{BNS} mergers, focusing on the 
-%ejecta \nuc{} and \ac{EM} counterparts.
-%Then we overview the current picture of \ac{BNS} mergers with emphasis on the 
-%\pmerg{} dynamics and mass ejection mechanisms. 
-%Finally, we state the goals of this thesis.
 
 
 
@@ -151,7 +213,7 @@ We conclude the chapter stating the aims and structure of this thesis.
 %%               I N S P I R A L
 %% --------------------------------------------------------------------------
 
-\section{Inspiral}
+\subsection{Inspiral}
 
 If \acp{NS} are formed through a classical stellar evolution channel of a massive binary, 
 their orbit is mostly circular with little to non eccentricity \citep{Aasi:2013wya}. 
@@ -162,7 +224,7 @@ a matter of minutes. As stars approach each other, the \ac{GW} signal rises in
 frequency and amplitude (so-called chirp), reaching the peak at the \textit{moment of merger}.
 
 %% ---------------------------
-\subsection{Two Body Dynamics}
+\subsubsection{Two Body Dynamics}
 
 The dynamics of two stars, that are sufficiently separated to have relatively small 
 angular velocity (\ie, quasi-adiabatic inspiral of point-masses) 
@@ -206,7 +268,7 @@ introducing the finite size effects. For the review we refer to \citet{Damour:20
 
 
 %% ------------------------------------
-\subsection{Effects of tides}
+\subsubsection{Effects of tides}
 
 A method to treat the finite-size effects in self-gravitating objects in \ac{PN} 
 dynamics was proposed by \citet{Damour:1983a} and is based on ``skeletonizing'' 
@@ -414,7 +476,7 @@ consequently on the \ac{EOS}, can be estimated.
 %There are also hybrid models of \ac{EOB} and \ac{NR} \cite{52,53}
 
 %% -------------------------------------
-\subsection{Gravitational Waves}
+\subsubsection{Gravitational Waves}
 
 The most accurate way to compute waveforms is to conduct \ac{NR} simulations with microphysical 
 \acp{EOS}. However, these simulations are computationally expensive and not available or feasible 
@@ -467,6 +529,10 @@ parameters and the \mr{}, the \ac{EOS} constraints are also subjected to uncerta
 %probability distribution of $\tilde{\Lambda}$, adopting \ac{NR}-motivated fitting 
 %formula, it is possible to asses the peak frequency that falls in $1.2 - 2$kHz \cite{55}.
 %The \ac{GW} peak luminocity is estimated to be $\geq 0.1\times 10^{56}$ erg/s \cite{61}. 
+
+
+
+
 
 
 %% --------------------------------------------------------------------------
@@ -837,6 +903,24 @@ constraint on the maximum mass of the non-rotating star, $M_{max}^{TOV} \gtrsim 
 %% --------------------------------------------------------------------------
 
 \section{Ejecta, \nuc{}, electromagnetic counterparts}
+
+
+For the discussion on \ac{EM} counterparts to mergers we refer to 
+%For the most recent reviews on the topic we recommend the following reviews:
+%Radice, for the discussing of the \pmerg{} dynamics and ejecta,
+%Bernuzzis, for the \ac{GW} aspect of the mergers \cite{Bernuzzi:2020tgt}
+%Shibata \& Hotokezaka for the discussing of the ejecta \cite{Shibata:2019wef}.
+\citet{Kumar:2014upa,Fernandez:2015use,Metzger:2019zeh}.
+%
+%We conclude the chapter stating the aims and structure of this thesis.
+
+%This chapter is organized as follows...
+%First we discuss the observational context of the \ac{BNS} mergers, focusing on the 
+%ejecta \nuc{} and \ac{EM} counterparts.
+%Then we overview the current picture of \ac{BNS} mergers with emphasis on the 
+%\pmerg{} dynamics and mass ejection mechanisms. 
+%Finally, we state the goals of this thesis.
+
 
 \subsection{$R$-process \nuc{}} \label{sec:intro:nucleo}
 

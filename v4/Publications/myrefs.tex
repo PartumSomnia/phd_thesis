@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{geometry}
+% whatever you need here, basically a good idea is to use your real thesis header
+
+
+\geometry{
+    paper=a4paper, % Change to letterpaper for US letter
+    top=2.35cm, % Top margin
+    bottom=2.35cm, % Bottom margin
+    left=3.2765cm,
+    right=2.32cm,
+    %width=16cm, %width of the text
+    %inner=2.5cm, % Inner margin
+    %outer=3.8cm, % Outer margin
+    %bindingoffset=.6cm, % Binding offset    
+    %showframe, % Uncomment to show how the type block is set on the page
+}
+
+
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{acronym}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{graphicx,psfrag}
+\usepackage{mathrsfs}
+%\usepackage{amsmath,amsfonts,amssymb}%%\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{comment}
+\usepackage{ulem}
+\usepackage{colortbl} % for fit tables colored rows
+\usepackage{pifont} % \cmark \xmark % http://ctan.org/pkg/pifont
+\usepackage[breaklinks,colorlinks,citecolor=blue]{hyperref}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\usepackage{rotating}
+\usepackage{lscape}
+%\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{capt-of}% or use the larger `caption` package
+\usepackage{lipsum}% 
+\usepackage{adjustbox}
+
+%\captionsetup{width=\textwidth}
+
+\usepackage{natbib}
+%\usepackage[
+%backend=bibtex,
+%style=authoryear-comp,
+%natbib=true,
+%sorting=debug,
+%maxnames=1,
+%uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-comp,authoryear-comp,firstinits=true) citation style (which resembles APA)
+
+%\addbibresource{myrefbibfile}
+
+
+
+\begin{document}
+Hello world!
+\nocite{*}
+\bibliographystyle{unsrt}% unsrt hapalike
+\bibliography{myrefbibfile}
+\end{document}
