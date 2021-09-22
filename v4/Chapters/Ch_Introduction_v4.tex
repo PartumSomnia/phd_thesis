@@ -186,13 +186,18 @@ and ultimately, on the properties of matter and supranuclear densities.
 
 In this section we provide a brief summary of the current picture of the 
 \ac{BNS} mergers, their impact on the galactic chemical evolution, and their 
-\ac{EM} counterparts. For the sake of brevity we allude most of the technical details, 
-and we refer the interested reader to the following reviews and references therein.
+\ac{EM} counterparts.
 %
-For the general overview on the topic we refer to \citet{Shibata:2016},
-For a more recent reviews done by different leading groups we refer to 
-\citet{Radice:2020ddv,Bernuzzi:2020tgt,Shibata:2019wef}.
-
+This section is based on the recent reviews done by 
+different leading groups working on \ac{BNS} merger simulations 
+\citep{Radice:2020ddv,Bernuzzi:2020tgt,Shibata:2019wef} 
+and their \ac{EM} signatures 
+\citep{Kumar:2014upa,Fernandez:2015use,Metzger:2019zeh}.
+%to which we refer to for more details and references.
+%
+For the sake of brevity we allude most of the technical details, 
+and we refer the interested reader to the aforementioned  
+reviews and references therein.
 
 \subsection{Inspiral}
 
@@ -350,9 +355,16 @@ loss dumps the $m=2$ mode efficiently and \ac{GW} emission subsides.
 %
 This phase of evolution is sometimes referred to as \ac{GW}-dominated \pmerg{} phase.
 %
-The subsequent evolution proceeds towards more axisymmetric, 
-stable remnant. 
-However, at any point it can be interrupted by the \ac{BH} formation. 
+After the emission of \acp{GW} subsides, the \ac{NS} remnant still has an excess 
+in angular momentum and gravitational mass, with respect to the cold, 
+rigidly rotating equilibrium with the same baryoinc mass \citep{Radice:2018xqa}.
+%
+Subsequent evolution of the \ac{NS} remnant proceeds towards the axisymmetric configuration 
+close to the mass-shedding limit. 
+Depending on the lifetime of the \ac{NS} remnant we distinguish \textit{long-lived}
+and \textit{short-lived} remnants.
+However, would a \ac{NS} remnant reach a stable state or collapse to a \ac{BH} depends on the 
+details of \pmerg{} conditions and on the temperature and composition effects.
 
 
 %%%% Disk Foramtion
@@ -635,6 +647,604 @@ while leaving the question whether it was \ac{HMNS} or \ac{SMNS} open
 %%follow-up observations did not confirm it \cite{118}
 
 
-\subsection{Ejecta, \nuc{}, electromagnetic counterparts}
+%\subsection{Ejecta, \nuc{}, electromagnetic counterparts}
 
+%% -------------------------------
+\subsection{Ejecta} \label{sec:intro:ejecta}
+
+%%%% Ejecta
+%Generally, the ejecta is classified based on the timescale over which it occurs. 
+%The \textit{dynamical ejecta} is generally divided into 
+%the cold, low-$Y_e$, \textit{tidal}, produced by strong tidal torques at merger 
+%and prominent in very assymetric binaries
+%\citep{Rosswog:1998hy,Radice:2016dwd,Dietrich:2016hky},
+%and shock-heated, high-$Y_e$, \textit{shocked}, produced 
+%by the core \bnc{} induced shock waves, propagating through the \pmerg{} debris 
+%\citep{Radice:2018pdn}. %Hotokezaka:2013b, Bauswein:2013yna, Sekiguchi:2016bjd, Dietrich:2016hky,
+%
+%The ejecta mass and velocity, as estimated by \ac{NR} simulations, lie in 
+%$(10^{-4}-10^{-2})\,\Msun$ and $(0.1-0.3)\,c$ respectively 
+%\citep{Hotokezaka:2013b,Bauswein:2013yna,Sekiguchi:2016bjd,Radice:2018pdn}.
+% Depending on the binary \mr{} (that determins the relative controbutions of two
+%components of the dynamical ejecta The outcome of the \rproc{} in the dynamical ejecta is 
+%broadly consistent with the solar \rproc{} abundances.
+
+%%%% Secular ejecta
+%On a longer, \textit{secular}, timescale additional matter is ejected in a form of 
+%massive winds \citep{Lee:2009,Perego:2014fma,Fernandez:2015use,Siegel:2017nub,
+%    Fujibayashi:2017puw,Fernandez:2018kax,Miller:2019dpt}, % & Nedora V, et al. Astrophys. J. 886:L30 (2019)
+%that could could be more massive than dynamical one, liberating $(10-40)\%$ of the disk mass. 
+%%according to the numerical simulations of the disk evolution 
+%%(see \eg, \citet{Radice:2018xqa} for estimates). 
+%Various mechanisms contribute to 
+%the matter ejection, \eg, neutrino irradiation of the polar region, generating high-$Y_e$, 
+%low-mass winds \citep{Perego:2014fma,Miller:2019dpt}; nuclear recombination in the outer 
+%part of the disk (after it expanded due to viscous and thermal processes) that can eject 
+%${\sim}(10-20)\%$ of the disk mass at ${\sim}0.1\,c$ \citep{Lee:2009,Fernandez:2015use,Fahlman:2018llv};
+%and \ac{MHD} effects facilitating matter ejection \citep{Fujibayashi:2017puw,Radice:2018xqa}.
+%% & 141 Nedora V, et al. Astrophys. J. 886:L30 (2019)
+
+%%%% Ejecta -> EM signal
+%The \pmerg{} disk and remnant properties, and the lifetime of the latter, set by the 
+%binary parameters and \ac{EOS} (see Sec.~\ref{sec:intro:remnant}) \citep{Radice:2018xqa,Perego:2019adq} 
+%determine the properties of the secular ejecta and hence, the \ac{kN} signal 
+%\citep[\eg][]{Radice:2018pdn}.
+%%The disk mass dependency on the \ac{EOS} and the remnant lifetime was examined in \cite{72,70},
+%%where it was pointed out that short-lived remnant is usually associated with less massive disk.
+%Additionally, the presence of the remnant modifies the ejected material by means of 
+%neutrino irradiation \citep{Fernandez:2015use}, providing a possibility to infer the nature of 
+%the remnant from \ac{EM} observations. Modeling this process, however, requires very long-term 
+%$3$D ab-initio \ac{BNS} merger simulations with complete physics, that are absent in presence.
+
+%%%% GW170817 EM signature
+%\ac{EM} followup of \GW{} showed the presence of both blue and red \acp{kN}\footnote{
+%    See, however, \citet{Waxman:2017sqv} for a different interpretation
+%} \citep{Villar:2017wcc}.
+%Simplified \ac{kN} fitting models suggest that former requires ${\sim}0.02\,\Msun$ of high-$Y_e$ 
+%material ejected at ${\sim}0.25\,c$, and the latter requires ${\sim}0.04\,\Msun$ of low-$Y_e$ 
+%material ejected at ${\sim}0.1\,c$. Due to its large mass, the red component is 
+%generally thought to originate in secular ejecta with the contribution from the dynamical, while 
+%the origin of the blue component is less clear. Specifically, the required amount of high-$Y_e$,
+%material (that is somewhat lower if sophisticated radiation transport \ac{kN} models are considered),
+%is in tension with the \ac{NR} \ac{BNS} merger simulations 
+%\citep{Sekiguchi:2016bjd,Siegel:2019mlp,Perego:2017wtu,Kawaguchi:2018ptg}.
+%Additional ejection mechanisms have been proposed to address the discrepancy, \eg, 
+%magnetic effects prior to merger \citep{Metzger:2018qfl,Fernandez:2018kax,Radice:2018ghv}. 
+%%\gray{spiral waves shocking the accretion 
+%%    disk by a long-lived \ac{NS} remnant \cite{141 Nedora V, et al. Astrophys. J. 886:L30 (2019)}}. 
+%Future observations and long-term multiphysics \ac{NR} models will undoubtedly shed more light on this tension \citep{Metzger:2018qfl}.
+
+%%%% Fast tail of the ejecta -- UV precourser
+%\ac{NR} simulations show that within the velocity distribution of the dynamical ejecta, 
+%there is ${\sim}(10^{-6}-10^{-5})\,\Msun$ of matter ejected at ${\sim}0.8\,c$ 
+%\citep{Metzger:2014yda,Hotokezaka:2018gmo,Radice:2018pdn,Radice:2018ghv}, due to shocks launched 
+%at core bounces \citep{Radice:2018pdn}.
+%This matter is sufficiently fast to avoid the neutron capture on seed nuclei 
+%%(see Sec.~\ref{sec:intro:nucleo}) 
+%and will eventually undergo free-neutron decay, emitting 
+%\ac{UV} radiation on a timescale of hours \citep{Metzger:2014yda}. 
+
+%%%% Synchrotron remnant
+%Expanding into the \ac{ISM}, \ac{BNS} merger ejecta generates shocks that amplify 
+%random magnetic fields and accelerates electrons that in turn emit non-thermal radiation 
+%via synchrotron mechanism (see Sec.~\ref{sec:intro:afterglows}). This \ac{kN} afterglow 
+%can be observed on a very long, 
+%moths to years, timescale \citep{Nakar:2011cw,Hotokezaka:2018gmo} and provide information 
+%about merger dynamics and ejecta properties quasi-independent of uncertainty in \rproc{} \nuc{} 
+%affecting the thermal, \ac{kN}, emission. 
+%%
+%Since ${\sim}160\,$days after the merger the non-thermal emission from \GW{} have been 
+%consistent with \ac{SGRB} afterglow. However, ${\simeq}1243\,$days after the merger, a 
+%change in spectral and temporal behaviour of the afterglow was observed, one of the 
+%possible explanations of which is the emergence of the \ac{kN} afterglow\footnote{
+%    See however \citet{Troja:2021xsw} for the alternative explanation
+%} \citep{Hajela:2021faz}.
+%The exact nature of this change remains at present unclear. 
+
+
+
+
+%%%% DYNAMICAL EJECTA
+Tidal interactions and shocks exerted on the \acp{NS} at merger trigger the 
+ejection of material on the dynamical timescale. This is the \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn},
+composed of the tidal an shocked components.
+%
+Shortly before and during the merger, the outer parts 
+of the \acp{NS}, opposite to the collisional interface, are stripped 
+away by the tidal torque and centrifugal forces. This is the tidal 
+component of the \ac{DE}. It is more massive in binaries with 
+larger \mr{} and is maximum in those that experience tidal disruption 
+\citep[\eg][]{Radice:2018pdn,Bernuzzi:2020txg}.
+%%
+%Such ejecta is neutron rich, confined largely to the orbital plane and exhibits 
+%a crescent-like azimuthal structure \citep{Bernuzzi:2020txg}.
+%
+Overall, the tidal ejecta component is mostly equatorial and its 
+velocity is related to the \acp{NS}' velocity at merger. 
+%and the system's escape velocity, and is $\sim0.2$~c.
+%
+\ac{NR} simulations suggest that the ejecta mass and velocity, 
+lie in $(10^{-4}-10^{-2})\,\Msun$ and $(0.1-0.3)\,c$ respectively 
+\citep{Hotokezaka:2013b,Bauswein:2013yna,Sekiguchi:2016bjd,Radice:2018pdn}.
+%
+When \acp{NS}' cores collide and \bnc{}, shocks propagate outwards inducing 
+matter ejection. Additionally, a small amount of material at the 
+\acp{NS}' collisional interface is shock-heated and launched into the polar 
+direction. This comprises the shocked component of the \ac{DE} 
+\citep{Bauswein:2013yna,Radice:2018pdn}.
+%
+It is more massive and faster if \acp{NS}' radii are smaller and they collide 
+at higher velocities \citep[\eg][]{Radice:2018pdn}. 
+%
+The dynamical ejecta has a broad distribution in terms of composition, 
+velocity and mass, dependent on the parameters of the binary and \ac{NS} \ac{EOS}, 
+%
+and thhe relation between the binary parameters and ejecta properties is still 
+largely uncertain.
+
+\ac{NR} simulations show that within the velocity distribution of the dynamical ejecta, 
+there is ${\sim}(10^{-6}-10^{-5})\,\Msun$ of matter ejected at ${\sim}0.8\,c$ 
+\citep{Metzger:2014yda,Hotokezaka:2018gmo,Radice:2018pdn,Radice:2018ghv}, 
+due to shocks launched at core bounces \citep{Radice:2018pdn}.
+%This matter is sufficiently fast to avoid the neutron capture on seed nuclei 
+%%(see Sec.~\ref{sec:intro:nucleo}) 
+%and will eventually undergo free-neutron decay, emitting 
+%\ac{UV} radiation on a timescale of hours \citep{Metzger:2014yda}. 
+
+
+%%%% WINDS
+%Various mechanisms contribute to 
+%the matter ejection, \eg, neutrino irradiation of the polar region, generating high-$Y_e$, 
+%low-mass winds \citep{Perego:2014fma,Miller:2019dpt}; nuclear recombination in the outer 
+%part of the disk (after it expanded due to viscous and thermal processes) that can eject 
+%${\sim}(10-20)\%$ of the disk mass at ${\sim}0.1\,c$ \citep{Lee:2009,Fernandez:2015use,Fahlman:2018llv};
+%and \ac{MHD} effects facilitating matter ejection \citep{Fujibayashi:2017puw,Radice:2018xqa}.
+As the disk expands and cools, the recombination of nucleons into alpha particles 
+starts to take place. The energy, released in recombination, might be sufficient 
+for the outermost layers to become unbound, generating an outflow and contributing 
+to the disk depletion \citep{Beloborodov:2008nx,Lee:2009uc,Fernandez:2013tya}.
+%
+Analytical estimates and simulations with various approximations show that 
+up tp ${\sim}40\%$ of the disk can be ejected via viscous processes with an 
+typical velocity ${\lesssim}0.1\,$c \citep{Fernandez:2018kax,Radice:2018xqa}.
+The ejecta is expected to be relatively slow and neutron-rich. 
+%\citep{Lee:2009uc,Fernandez:2015use,
+%    Wu:2016pnw,Siegel:2017nub,
+%      Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa,Fujibayashi:2020dvr}.
+%
+This process, however, is expected to take place on timescales longer than
+those simulated here. 
+Additionally, an outflow induced by viscous heating within the disk and 
+so-called neutrino-driven wind (\nwind{}; \citet{Dessart:2008zd,Perego:2014fma,Just:2014fka})
+induced by neutrino heating above the remnant, are expected to contribute to the 
+mass and angular momentum loss. 
+%
+Moreover, the matter outflow could be further enhanced by the magnetic stresses 
+\citep{Metzger:2006mw,Bucciantini:2011kx,Siegel:2017nub,Fernandez:2018kax,Ciolfi:2020hgg}.
+
+The presence of the remnant modifies the ejected material by means of 
+neutrino irradiation \citep{Fernandez:2015use}, providing a possibility to infer the nature of 
+the remnant from \ac{EM} observations. Modeling this process, however, requires very long-term 
+$3$D ab-initio \ac{BNS} merger simulations with complete physics, that are absent in presence.
+
+
+
+\subsection{$R$-process \nuc{}} \label{sec:intro:nucleo}
+
+Nuclides with atomic number  $A\geq 56$ cannot be synthesized via nuclear burning 
+due to their large Coulomb barriers. They are produced via 
+neutron capture processes \citep{Burbidge:1957}.
+%%%% Nucleosynthesis Cites
+The maximum $A$ of a nuclide is limited by its binding energy, $Q_n$. 
+At $Q_n \simeq1 \,$MeV photodisintegration starts breaking nuclides apart. 
+The place in the parameter space of temperature and density where this occurs 
+is called \textit{neutron drip line} \citep{Rolfs:1988}.
+%%%%% Fast and Slow
+Nuclides produced via neutron capture are generally unstable to $\beta$-decay,
+and depending on whether the timescale for the decay is slower (faster) than 
+the timescale of neutron capture, one distinguish rapid (slow) process called,
+\rproc{} (\sproc{}).
+%
+The \sproc{} moves along the valey of stability, while \rproc{} moves along the 
+neutron drip line.
+%
+When a nuclide reaches a closed neutron shell configuration, the cross-section 
+for the subsequent neutron capture shrinks, and capture processes suspends until 
+several $\beta$-decays take place. This results in the overproduction of nuclides 
+that are located at the intersection between the neutron drip line and closed 
+neutron shell for the \rproc{}. This manifests as ``peaks'' in the final abundance 
+pattern at $A$ corresponding to these configurations.
+Closed shell nuclides are located at $N=50,\: 82, \: 126$ and 
+corresponding abundance peaks $A=80,\:130,\:194$ for \rproc{} 
+(see \eg, \citet{Arnould:2007gh}).
+
+%%%% R-proces cites
+Conditions for the \rproc{} can be achieved in different astrophysical cites, \eg, 
+certain types of \acp{SN} and \ac{BNS} mergers where very neutron rich (low 
+electron fraction, $Y_e = 1/(1 + N_n/N_p)$, with $N_n$ and $N_p$ being the 
+total proper number density of neutrons and protons respectively) 
+conditions can be reached
+\citep{Mathews:1990,Thielemann:2011,Lippuner:2015gwa,Siegel:2019mlp}. 
+Regarding the \acp{SN}, winds driven by strong neutrino fluxes from the hot, deleptonized
+core \citep{Qian:1996xt} were suggested as a promising cite \citep{Woosley:2002,Wanajo:2006mq}.
+However, high $Y_e$ found in such winds do not allow for the full \rproc{} and only ``light'' heavy 
+nuclide, up to $A\sim130$, can be synthesized 
+\citep{Qian:1996xt,Thompson:2001ys,Fischer:2010,Roberts:2010,MartinezPinedo:2012rb,Wanajo:2013} 
+%
+A full \rproc{} can be achieved in so-called magnetorotationally driven \ac{CCSN},
+(a rare type of \ac{CCSN} with a rapidly spinning strongly magnetized core), 
+initiated by the \ac{MRI} and accompanied by a % magnetorotational processes \eg, 
+formation of a 
+collimated bipolar jet 
+\citep{Wheeler:2000,Akiyama:2003,Burrows:2007yx,Mosta:2014jaa,Mosta:2015,Siegel:2019mlp}.
+Conditions within such a jet were found to be suffient for full \rproc{} \nuc{} 
+\citep{Winteler:2012,Nishimura:2015nca}.
+%The rarity of this type of \acp{SN}, 
+%however, might not allow for them to be the dominant source or \rproc{} material 
+%\citep{Nishimura:2015nca} 
+
+%Neutron-rich ejecta from \ac{BNS} and \ac{NSBH} mergers are regarded as one of 
+%the main cites or \rproc{} \nuc{}.
+%
+%Mergers of two \acp{NS} or a \ac{NS} and a \ac{BH} are regarded as one of the main cites 
+%of \rproc{} material.% (See Sec.~\ref{sec:intro:bns_merg}). 
+
+%%%% Fission cycling
+Under the very neutron-rich conditions, 
+the nuclides beyond $A=300$ can be produced. Being unstable to fission, they 
+decay into seed nuclides shortly after formation.
+However, before they reach the valley of stability, neutron capture occurs again, and the cycle repeats.
+This is so-called \textit{fission cycling}.
+It is maintained as long as there are free neutrons, after which nuclides decay 
+for the last time, forming a remarkably robust abundance pattern independent of the 
+number of cycles (and thus on the exact conditions) 
+(see figure 4 in \citet{Korobkin:2012uy}).
+
+%%%% Cites
+There is no consensus yet on what is the main source of \rproc{} material in the 
+Universe. 
+Observed \rproc{} abundances in \ac{MP} stars, formed early in the Galactic history, 
+point towards a sources that was active in the early Universe, which is in tension with the long, 
+$10^{6} - 10^{9}$ years, delay time required for compact object inspiral 
+\citep{DeDonder:2004cx,Dominik:2012kk}. This estimate, however, depends strongly on the 
+uncertain common envelop evolution phase of the massive binary (progenitors)
+\citep[\eg][]{Dominik:2012kk}.
+%
+Observations of certain \acp{UFG} suggest that the stars there have been enrighed by rare, 
+high-yield events (\eg, \ac{UFG} Reticulum II showed abundances similar to solar, 
+while other \ac{UFG} galaxies show $2-3$ times lower abundances) \citep{Ji:2016}.
+%
+Earth crust and meteorites $^{244}$Pu studies also point towards rare, high-yield 
+events \citep{Wallner:2015,Tsujimoto:2017}. This scenario has been confirmed with 
+models of galactic mixing \citep{Hotokezaka:2015zea}.
+%
+It is however difficult to explain the observed uniform distribution of \rproc{} 
+elements in the Galaxy with such events \citep{Argast:2003he}.
+%
+Population synthesis models have indicated that with a contribution from 
+magnetorotationallydriven \acp{CCSN} the compact object mergers can account for the 
+observed distribution \citep{Ishimaru:2015,Cescutti:2015,Wehmeyer:2015,VanDeVoort:2015}.
+
+
+
+%% ----------------------------------
+\subsection{Kilonova}
+
+
+\citet{Li:1998bw} suggested that 
+radioactive decay of the material enriched with \rproc{} elements,
+ejected in \ac{BNS} or \ac{NSBH} mergers, can power an \ac{EM} transient.
+%
+Authors showed that contrary to the normal \acp{SN}, 
+the ejecta would quickly become transparent to its own emission, 
+peaking on a timescale of around a few days. 
+%
+The main difficulty in this pioneering work was the lack of a \nuc{}
+models to estimate the radioactive heating in the ejecta. 
+%
+The understanding of \ac{kN} has significantly improved since then
+\citep[\eg][]{Kulkarni:2005jw,Metzger:2010,Roberts:2011,Metzger:2016pju,Wollaeger:2017ahm} 
+and advanced even further with the detection of \AT{} \citep[\eg][]{Metzger:2019zeh}.
+
+The final composition of the ejecta determines its optical opacity, 
+that vary by orders of magnitude if $3$rd peak elements, 
+lanthanides $(58\leq Z \leq71)$ and actinides $(90\leq Z \leq 103)$, are present 
+due to their open $f$-shell and, thus, a plethora of 
+absorption lines \citep{Tanaka:2013ana,Kasen:2013xka}.
+%
+The properties and geometry of different \ac{BNS} merger ejecta 
+that have various optical opacities and heating rates, 
+determining the \ac{kN}, emission \citep{Metzger:2019zeh}.
+%
+Generalizing, two main \ac{kN} components can be distinguished: 
+``blue'' and ``red'' depending on whether the fraction of 
+lanthanides and actinides is low or high.
+%
+The former corresponds to the high $Y_e$ material that produces emission 
+that peaks in \ac{UV}/optical bands on a timescale of hours-days, 
+while the latter is related to low-$Y_e$ material that generates the 
+emission peaking on a significantly 
+longer timescale, tens of days, in \ac{IR} and \ac{NIR} bands
+\citep{Barnes:2013wka,Grossman:2013lqa,Lippuner:2015gwa}.
+%
+Both ``blue \ac{kN}'' and ``red \ac{kN}'' were observed in \AT{}, 
+confirming the qualitative picture and implying a diverse composition 
+of the ejected material
+\citep{
+    Arcavi:2017xiz,Coulter:2017wya,Drout:2017ijr,Evans:2017mmy,Hallinan:2017woc,
+    Kasliwal:2017ngb,Nicholl:2017ahq,Smartt:2017fuw,Soares-santos:2017lru,Tanvir:2017pws,
+    Troja:2017nqp,Mooley:2018dlz,Ruan:2017bha,Lyman:2018qjg
+}.
+%
+%The quantitative analysis -- the comparsion between the ejecta properties 
+%inferred from the \ac{kN} models and those seen in \ac{BNS} merger simulations,
+%however, showed substantial disagreement. Specifically, the \ac{BNS} merger 
+%simulations under-predict the amount of ejecta. The discrepancy is attributed 
+%to the insufficient length of those simulations, which does not capture long-term 
+%secular ejecta. 
+Semi-analytic two-components (red and blue) spherical \ac{kN} models to 
+the \AT{} observations provided estimates for the ejecta properties 
+for these two components. 
+%
+Specifically, for the langhinide poor (rich) \ie, blue (red) components, 
+the required mass is $2.5\times10^{-2}M_{\odot}$ ($5.0\times10^{-2}M_{\odot}$) 
+and velocity $0.27\,$c ($0.15\,$c) \citep{Cowperthwaite:2017dyu,Villar:2017wcc}. 
+%See however \citep{Waxman:2017sqv} for an alternative interpretation.
+%See also \citep{Siegel:2019mlp} for the compiled data on the \ac{kN} models.
+
+%%%% Issue with blue Kilonova
+The outflow properties inferred for \AT{} using multi-componentsm semi-analytic and 
+2D radiation transport \ac{kN} models including the ejecta anisotropy and 
+cross-component irradiation are broadly compatible with the results from simulations, 
+\eg, \citep{Kawaguchi:2018ptg}.% see also Sec.~\ref{sec:intro:kilonova}. 
+%
+%\ac{EM} followup of \GW{} showed the presence of both blue and red \acp{kN}
+%%\footnote{
+%%    See, however, \citet{Waxman:2017sqv} for a different interpretation
+%%} 
+%\citep{Villar:2017wcc}.
+%However, simplified \ac{kN} fitting models suggest that former requires ${\sim}0.02\,\Msun$ of high-$Y_e$ 
+%material ejected at ${\sim}0.25\,c$, and the latter requires ${\sim}0.04\,\Msun$ of low-$Y_e$ 
+%material ejected at ${\sim}0.1\,c$. Due to its large mass, the red component is 
+%generally thought to originate in secular ejecta with the contribution from the dynamical, while 
+%the origin of the blue component is less clear. 
+However, the required amount of high-$Y_e$, material 
+(which is somewhat lower if sophisticated radiation transport 
+\ac{kN} models are considered), is in tension with the \ac{NR} \ac{BNS} merger simulations 
+\citep{Sekiguchi:2016bjd,Siegel:2019mlp,Perego:2017wtu,Kawaguchi:2018ptg}.
+%
+Other ejection mechanisms have been proposed to address the discrepancy, \eg, 
+magnetic effects prior to merger \citep{Metzger:2018qfl,Fernandez:2018kax,Radice:2018ghv}. 
+%\gray{spiral waves shocking the accretion 
+%    disk by a long-lived \ac{NS} remnant \cite{141 Nedora V, et al. Astrophys. J. 886:L30 (2019)}}. 
+Future observations and long-term multiphysics \ac{NR} models 
+will undoubtedly shed more light on this tension \citep{Metzger:2018qfl}.
+%% ---
+The additional challenge, is to reproduce the early blue emission. 
+Both semi-analytical and radiation transport models require ejecta properties 
+different from those found in simulations. In particular, this component 
+requires fast low opacity, massive ejecta \citep{Fahlman:2018llv} that is generally 
+not found in \ac{BNS} simulations.
+%% ---
+Notably, the early blue component can be explained by the emission arising 
+in the interaction between a relativistic jet and the ejecta
+\citep{Lazzati:2016yxl,Bromberg:2017crh,Piro:2017ayh}.
+However, simulations show that that successful jets do not deposit a sufficient amount of thermal energy in the ejecta for this mechanism to work \citep{Duffell:2018iig}. 
+Other possibilities include the presence of highly magnetized winds \citep{Metzger:2018uni,Fernandez:2018kax},
+or the presence of the so-called viscous dynamical ejecta \citep{Radice:2018ghv}.
+These two explanations require the development of large-scale strong magnetic fields.
+
+
+Notably, prior to \AT{}, there were other candidates based on the 
+detection of \ac{SGRB}, with infrared excess \eg, 
+GRB130603B, \citep{Berger:2013wna,Tanvir:2013pia}, 
+GRB060614 \citep{Jin:2015txa,Yang:2015pha}, 
+GRB050709 \citep{Jin:2016pnm}.
+%GRB200522A \citep{WRONG}  Bruni:2021ilp
+However the exact nature of the observed signals were not well constrained. 
+
+
+%% ------------------------------------------------
+\subsection{Non-thermal afterglow}
+
+\acp{GRB} are irregular pulses of gamma-ray radiation with broken power-law 
+(non-thermal) spectrum, peaking at KeV-MeV \citep{Band:1993,Kouveliotou:1993,Meegan:1992xg}.
+%
+With respect to the duration, \acp{GRB} are split into two categories: \acp{SGRB}, 
+that last ${\leq}2\,$s and long \acp{GRB} that last ${\gtrsim}2\,$s. 
+%
+It is generally accepted that the latter are the 
+result of the collapse of massive ${\geq}15\,M_{\odot}$ stars,
+ while the former, at least in part, are attributed to mergers of compact objects. 
+%
+However, the exact physical origin of different duration 
+\acp{GRB} is not fully understood.
+%
+%%%% LGRB
+%Indications that long \ac{GRB} are associated with core-collapse supernovae, \acp{SN}, 
+%are two fold. These \acp{GRB} are typically observed in star-forming regions of their 
+%host galaxies \citep[\eg][]{Bloom:2000pq,Bloom:2002hc,Fruchter:2006py,Christensen:2004yx,CastroCeron:2006jh} 
+%and several \acp{GRB} are spectroscopically associated with Type Ic \acp{SN}, albeit 
+%these \acp{GRB} were significantly less bright and might not be typical \acp{GRB} 
+%\citep[\eg][]{Liang:2006ci,Bromberg:2011fm}. Additionally, the late time behaviour 
+%of some \acp{GRB} includes a \acp{SN}-like "bump" in the optical and spectral changes 
+%that might imply that underlying \acp{SN} flux becomes dominant over \acp{GRB} 
+%\citep[\eg][]{Bloom:1999,Woosley:2006fn}.
+
+%%%% Cosmology implications
+\acp{GRB} are distant events, most of which were localized to outside the local 
+group \citep[\eg][]{Mao:1992,Piran:1992,Fenimore:1993}. 
+%
+Particularly useful for distance estimations are the observations of \ac{GRB} afterglow
+(fading X-ray, optical and radio emission), 
+that allow to estimate the Redshift \citep[\eg][]{Costa:1997cg,Frontera:1997ae}.
+
+%%%% Mechanism of radiaiton
+Analysis of the multi-wavelength afterglow data for \acp{GRB} 
+\citep[\eg][]{Panaitescu:2001bx} suggested that the mechanism behind the afterglow 
+emission is the synchrotron radiation from the external forward-shock, which forms 
+when \ac{GRB}-ejecta sweeps-up the \ac{ISM} medium\footnote{
+    The specific indications are the power law decay of the light curves, 
+    and power-law spectrum. 
+%    with flux decaying as, $F_{\nu}\propto \nu^{-1}$ 
+%    and power-law spectrum $F_{\nu}\propto \nu^{-0.9\pm 0.5}$.
+} 
+\citep{Rees:1992ek,Paczynski:1993gz,Meszaros:1993ju,Meszaros:1996sv}.
+%
+
+%%%% Jet break
+%The temporal behavior of many (but not all) \acp{GRB} shows a change, a steepening 
+%of the light-curve (to $F_{\nu}\propto t^{-2.2}$) at $\sim 1$~day after the burst. 
+%This is usually attributed to the 
+%%\gray{deceleration of the colimated GRB-outflow, jet, and decrease on the realtivisitc beaming. This in turn makes the edge of the jet visible to an observer.} 
+%finite angular extend of the \ac{GRB}-ejecta, jet \citep[\eg][]{Rhoads:1999wm,Sari:1999mr}. 
+%When jet decelerates and relativistic beaming decreases (and the jet edge becomes visible), 
+%the optical and X-ray lightcurves decay achromatically faster. This achromatic transition 
+%from slow to faster decay is called "jet-break".
+%
+%%% PROBLEMO -- jet-break is not a universal feature.
+%Notably, this jet-break is not observed in all \acp{GRB} for the reason that is not fully 
+%understood \citep[\eg][]{Fan:2006pj,Panaitescu:2006,Liang:2007ti,Sato:2006jg,Liang:2007rn,Curran:2007cp,Racusin:2008bx}
+%%
+%%% PROBLEMO -- GRB density seems uniform, but SSE models predict wind-like profile
+%Models of the broadband emission of \acp{GRB} with jet-break showed that the 
+%\ac{CBM}, is uniform with number density \red{$\sim 10^{-3}$} \citep{Panaitescu:2001bx}. 
+%If \acp{GRB} produced in collapse of massive stars \citep{Woosley:1993,Paczynski:1997yg}, 
+%this contradicts the expected density profile from stellar winds, \eg, $\rho\propto r^{-2}$ 
+%\citep[\eg][]{Dai:1998iz,Chevalier:1999jy,Chevalier:1999mi,Ramirez-Ruiz:2001} 
+%\red{this might be very outdated.}
+%
+%% sGRB
+The origin of \acp{SGRB} was first linked to elliptical galaxies, with dominant 
+older stellar population 
+\citep[\eg][]{Gehrels:2005qk,
+%    Fox:2005kv,Barthelmy:2005bx,Berger:2005dr,Panaitescu:2005er,Bloom:2005qx,Guetta:2005bb,
+    Nakar:2007yr}, 
+and thus with \ac{BNS} mergers. 
+%
+A more direct evidence came with the \GRB{}
+\citep{
+    %Savchenko:2017ffs,
+    Alexander:2017aly,Troja:2017nqp,
+    %Monitor:2017mdv,Nynka:2018vup,
+    Hajela:2019mjy}, 
+detected by the space observatories Fermi 
+\citep{TheFermi-LAT:2015kwa} and INTEGRAL \citep{Winkler:2011}.
+%
+%Generally \acp{SGRB} show a complex time behavior of early afterglow X-ray emission, 
+%in particular a presence of a plateau ($F_{x}\propto t^{-1/2}$), after the initial sharp 
+%decrease ($F_{x}\propto t^{-3}$) which a standard forward shock model does not predict. 
+%This implies that early X-ray afterglow is shaped by a variety of physical processes 
+%\citep{Zhang:2005fa}.
+%
+
+%%%% EARLY emission problem
+%Two main questions stem from these observations: is the mechanism behind the prompt 
+%$\gamma$-ray emission and early afterglow emission is the same (or do they originate from 
+%the same outflow), and is the early X-ray radiation produced by the external shock (just a 
+%blast wave takes long time to become self-similar) or does it originate from an internal 
+%shock? An indication that the long-lived central engine activity might affect the 
+%afterglow came from the observed sharp increase in X-ray flux (flares) on a 
+%scale of minutes to hours after the end of the \ac{GRB}
+%\citep{Burrows:2005ww,Chincarini:2007fp,Chincarini:2010,Margutti:2011}, 
+%which could not be attributed to the inhomogeneities in the \ac{CBM}.
+%%% PROBLEMO!
+%Thus, the early X-ray behaviour of \acp{GRB} $t < 10^{4}$~s post-burst is not well 
+%understood and seems to be in tension with standard afterglow forward shock emission model.
+
+%\textcolor{red}{
+%    One of the foremost unanswered questions about GRBs is the physical mechanism
+%    by which prompt $\gamma$-rays the radiation that triggers detectors on board
+%    GRB satellites are produced. Is the mechanism the popular internal shock
+%    model 6 \cite{(Rees and Meszaros, 1994)}, the external shock model, or something
+%    entirely different? Are $\gamma$-ray photons generated via the synchrotron process
+%    or inverse-Compton process, or by a different mechanism? Answers to these
+%    questions will help us address some of the most important unsolved problems
+%    in GRBs  how is the explosion powered in these bursts? Does the relativistic
+%    jet produced in these explosions consist of ordinary baryonic matter, electron positron
+%    pairs, or is the energy primarily in magnetic fields?
+%}
+
+%Once again, while it is suggested that the high energy emission, after the propmt phase is produced 
+%by the synchrotron process in the external forward shock, \citep{Kumar:2009,Ghisellini:2010}, 
+%the mechanism behind the high and low energy $\gamma$-ray emission in the prompt phase remains unknown. 
+%Possible mechanisms include: inverse Compton and synchrotron emission in internal and external shocks
+%\citep[\eg][]{Rees:1992ek,Dermer:1998py,Lyutikov:2003ih,Zhang:2011} and 
+%photospheric radiation with contribution from multiple \ac{IC} scatterings
+%\citep[\eg][]{Thompson:1994zh,Ghisellini:1998jy,Meszaros:1999gb,Peer:2005qoc,Peer:2008udu,Giannios:2006jb,Ioka:2007qk,Asano:2009gi,Lazzati:2010,Beloborodov:2010,Toma:2011}.
+
+While the detection of \ac{SGRB} \GRB{} that accompanied the \ac{GW} event \GW{}
+\citep{TheLIGOScientific:2017qsa} has confirmed that \ac{BNS} mergers are responsible 
+for at least some of \acp{SGRB}, \GRB{} was dimmer than any other event of its class. 
+%Different interpretations for its dimness and slow rising flux were proposed including 
+%Different interpretations for this included off-axis jet, cocoon and structured jet. 
+Now it is commonly accepted that \GRB{} was a structured jet\footnote{
+    Structured jet, contrary to the top-hat jet has the angular dependency of the 
+    matter energy and Lorentz factor. Such structure is believed to appear 
+    when jet drills its way through the merger ejecta \citep{Lamb:2017ych}.
+} observed off-axis 
+\citep[\eg][]{
+%    Fong:2017ekk,Troja:2017nqp,Margutti:2018xqd,Lamb:2017ych,Lamb:2018ohw,
+%    Ryan:2019fhz,Alexander:2018dcl,Mooley:2018dlz,
+    Ghirlanda:2018uyx
+}.
+%
+The \GRB{} late emission, the afterglow, provided information on the energetics of the 
+event and on the properties of the \ac{ISM} \citep[\eg][]{Hajela:2019mjy}. 
+
+%% ---------------
+%% Kilonova Afterglow
+%% ---------------
+
+
+In addition to the \ac{GRB} beamed emission, more isotropic non-thermal,
+emission is expected to arise from electrons accelerated in shocks formed between the 
+(mildly) relativistic ejecta and the \ac{ISM} \citep{Nakar:2011cw}. This 
+\ac{kN} afterglow is expected to peak in radio band and continue on a time scale of years 
+after merger. Notably, all ejecta components contribute to the emission, 
+but depending on the ejecta velocities and kinetic energy, 
+the brightness in different frequencies and timescales varies. 
+%
+Various ejecta components interact with each other and with \ac{ISM}. The latter 
+generates a long-lived blast wave. The shock, propagating upstream, amplifies 
+(random) magnetic fields and accelerates electrons, that subsequently emit 
+synchrotron radiation. This process in phenomenologically similar 
+to the one responsible for the \ac{GRB} afterglow.% and \ac{SN} early remnants. 
+%
+As \ac{NR} simulations showed the presence of mildly relativistic ejecta, 
+(\eg, from core \bnc{}), such emission was studied in past works 
+\citep[\eg][]{Piran:2012wd,Hotokezaka:2015eja,Hotokezaka:2018gmo,Radice:2018pdn}. 
+and was expected in the case of \GW{} \citep[\eg][]{Kathirgamaraju:2018mac}.
+
+Since ${\sim}160\,$days after the merger the non-thermal emission from \GW{} have been 
+consistent with \ac{SGRB} afterglow. However, ${\simeq}1243\,$days after the merger, a 
+change in spectral and temporal behaviour of the afterglow was observed, one of the 
+possible explanations of which is the emergence of the \ac{kN} afterglow\footnote{
+    See however \citet{Troja:2021xsw} for the alternative explanation
+} \citep{Hajela:2021faz}.
+The exact nature of this change remains at present unclear. 
+
+%Notably, the observed non-thermal emission from \GW{}, was first interpreted 
+%as the non-thermal emission from the ejecta \citep{Mooley:2017enz}.
+%This interpretation was however disproved by the emergence of jet break
+%
+%
+%Specifically, a strong radio emission is expected from \ac{BNS} ejecta \citep{Piran:2012wd,Hotokezaka:2015eja}. 
+%The \ac{BNS} merger radio remnant is expected to peak on a time-scale 
+%of ${\sim}$years after the merger.% and be visible over a similar timescale. Notably, this is 
+%Assuming that the ejecta is expanding into the unshocked \ac{ISM}, as it was shown 
+%that if the \ac{ISM} is pre-shocked by the jetted outflow, and the \ac{ISM} density is 
+%reduced, the kilonova afterglow would be delayed. 
+%
+%In \citet{Piran:2012wd}, the synthetic \ac{kN} afterglow \acp{LC} are calculated 
+%for a set of \ac{NR} \ac{BNS} merger simulation with properties typical to the 
+%Galactic binary population and \ac{ISM} density usually found in the Galactic disk, 
+%$\nism{\sim1}\ccm$. Authors showed that the from a binary of two $1.4\,\Msun$ \acp{NS}, 
+%the kilonova afterglow would peak $\sim10$~years after the merger if $\nism = 0.1\,\ccm$ 
+%and $\sim3$~years if $\nism = 1\,\ccm$ in radio bands, $\nu=1.4$~GGz and $\nu=150\,$MGz. 
+%Notably, both values of the \ac{ISM} density are larger than what is inferred for \GW{}. 
+%Indeed, jet fitting models and dependent analysis of the diffuse emission suggest 
+%$\nism\in(10^{-4},10^{-2})\,$\gcm \citep{Hajela:2019mjy}.
+%In \citet{Piran:2012wd} authors focus on the observational prospects of this afterglow 
+%and compare it to other \ac{EM} emission expected for \ac{BNS}. 
 
