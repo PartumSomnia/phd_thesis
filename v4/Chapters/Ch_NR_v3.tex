@@ -1,10 +1,25 @@
-\chapter{Overview on numerical relativity methods}\label{ch:nr_methods}
+\chapter{Methods employed in \ac{BNS} simulations}\label{ch:nr_methods}
 
-In this chapter we overview the methods and techniques used to model the 
-\ac{BNS} mergers. 
+In this chapter we briefly overview the methods and 
+techniques used to simulate \ac{BNS} mergers. 
+%
+The chapter is based on the \ac{NR} monographs by 
+\citet{Alcubierre:2008,Baumgarte:2010,Rezzolla:2013}, 
+augmented with more specialized literature on the 
+methods, implemented in the \ac{NR} code \wisky{}, 
+\citep{Radice:2012cu,Radice:2016dwd,Radice:2017zta,Radice:2018pdn,Radice:2020ids}.
+%
+As we neither develop nor implement any of these methods, 
+we restrict ourselves to a very general overview.
+We refer to the aforementioned sources for a more detailed description.
+%
 
 
-
+%% ---------------------------------------
+%%
+%% NR
+%%
+%% ---------------------------------------
 
 \section{The $3+1$ formulation of General Relativity}\label{sec:nr_methods:nr}
 
@@ -14,9 +29,9 @@ In this chapter we overview the methods and techniques used to model the
 }
 
 %%%% === Additional Intro
-The \ac{EFE} is the foundation of modern cosmology, the physics of \acp{NS} and \acp{BH}, 
-the emission of gravitational radiation, and many other cosmic phenomena, 
-where strong gravity effects are present. 
+The \ac{EFE} is the foundation of modern cosmology, the physics of 
+\acp{NS} and \acp{BH}, the emission of gravitational radiation, 
+and many other cosmic phenomena, where strong gravity effects are present. 
 %The Einstein theory of \ac{GR} has 
 %passed numerous tests in the weak-field regime \citep{Asmodelle:2017sxn} and in a 
 %strong field regime when the gravitaional radiation from the merger of two \acp{BH} was 
@@ -221,7 +236,7 @@ For the spatial gauge condition, the choice of $\beta^i,$ we consider the Gamma-
 The requirements for spatial gauge are similar to the slicing one. 
 %as in the case of the one for $\alpha$, 
 namely, hyperbolicity and minimization of numerical distortions for more stable evolution. 
-This gauge condition tries to decrease the coordinate stretching that occur in the 
+It is preferred, that  gauge condition tries to decrease the coordinate stretching that occur in the 
 vicinity of a singularity. 
 %It was shown to be effective in numerical applications, 
 %in particular for a single moving black hole. However it has a zero-speed mode, 
