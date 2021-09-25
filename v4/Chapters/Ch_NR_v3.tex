@@ -23,13 +23,13 @@ We refer to the aforementioned sources for a more detailed description.
 
 \section{The $3+1$ formulation of General Relativity}\label{sec:nr_methods:nr}
 
-\red{
-    Remove what 'our' simulations use from each section, and say
-    it once in the end of the chapter
-}
+%\red{
+%    Remove what 'our' simulations use from each section, and say
+%    it once in the end of the chapter
+%}
 
 %%%% === Additional Intro
-The \ac{EFE} is the foundation of modern cosmology, the physics of 
+The \ac{EFE} are a cornerstone of modern cosmology, the physics of 
 \acp{NS} and \acp{BH}, the emission of gravitational radiation, 
 and many other cosmic phenomena, where strong gravity effects are present. 
 %The Einstein theory of \ac{GR} has 
@@ -48,15 +48,16 @@ G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu}\, ,
 %\ac{EFE} from the variation of Hilbert action in Appendix~\ref{app:efe})
 %
 where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace 
-$R^{\mu}_{\nu} = R$, $g_{\mu\nu}$ is the metric tensor and 
+$R^{\nu}_{\nu} = R$, $g_{\mu\nu}$ is the metric tensor and 
 $T_{\mu\nu}$ is the stress-energy tensor.
 
 For numerical applications it is desirable to represent Eq.~\eqref{eq:theory:EFE} 
 as an \ac{IVP} where once the initial data is specified at the time zero, 
 the evolution can be computed. 
-This is highly non-trivial task. One of the commonly used methods is to perform 
-\textit{$3+1$ decomposition}, where the $4$D manifold is represented as foliation 
-of $3$D spacelike hypersurfaces 
+This is highly non-trivial task because of the complexity of objects entering 
+Eq.~\eqref{eq:theory:EFE}. One of the commonly used methods is to perform 
+\textit{$3+1$ decomposition}, where the $4$D manifold, representing the space-time, 
+is split into a foliation of $3$D spacelike hypersurfaces 
 \citep{Alcubierre:2008,Baumgarte:2010,Gourgoulhon:2007ue,Rezzolla:2013}.
 
 
@@ -74,7 +75,7 @@ of $3$D spacelike hypersurfaces
 \end{figure}
 
 Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear \acp{PDE} 
-that can be defined on a whole metric $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$ 
+that can be defined on a whole manifold $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$ 
 %where in the latter case, the boundary conditions on 
 with the boundary, $\partial\Omega$.% are required. 
 %
@@ -106,7 +107,7 @@ is allowed, or in other words, that the spacetime is strongly hyperbolic.
 %Consider now two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$ (Fig.~\ref{fig:method:3p1}). 
 The transition between two hypersurfaces, $\Sigma_t$ and $\Sigma_{t+dt}$,
 where $t$ is the smooth scalar function on $\mathcal{M}$, can be decomposed 
-into the part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed as a vector,
+into a part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed as a vector,
 $\vec{\beta}$, and a part normal to the hypersurface $\Sigma_t$ in the direction of 
 $\Sigma_{t+dt}$, $\vec{n}$, as $\alpha \vec{n}$.
 % with $n_{\mu} = -\alpha \nabla_{\mu}t$.
@@ -178,8 +179,10 @@ transport along the hypersurface $\Sigma_t$''.
 %\subsection{Gauge conditions}
 
 %% === For the lapse function
-Gauge conditions describe the specific foliation of the spacetime, the choice of the 
-lapse function and shift vector. The correct choice is crucial for stable evolution 
+To choose a foliation, gauge conditions must be set, \ie, the 
+%Gauge conditions describe the specific foliation of the spacetime, 
+lapse function and shift vector. 
+The correct choice is crucial for stable evolution 
 \citep{Alcubierre:2002kk}
 %\footnote{
 %    An incorrectly chosen gauge may result in 
@@ -206,6 +209,8 @@ alongside the well-posedness of the system of \acp{PDE}.
 %When if $f=1$ the geodesic slicing is recovered, and if $f\rightarrow\infty$, the condition 
 %resembles the maximal slicing \citep{Baumgarte:2002jm}.
 %
+The choice of the lapse function is referred to as slicing condition, 
+while the choice of the shift vector -- spatial gauge condition. 
 In our simulations the so-called ``1+log'' slicing is used. %, when $f(\alpha) = 2/\alpha$.
 %
 The name stems from the fact that if $\beta^i = 0$, 
@@ -222,7 +227,7 @@ expensive numerically \citep{Alcubierre:2002kk}.
 %of hyperbolic equations.
 
 %% === for the shift vecotor
-For the spatial gauge condition, the choice of $\beta^i,$ we consider the Gamma-driver 
+For the spatial gauge condition our simulations employ the Gamma-driver 
 \citep{Alcubierre:2002kk,vanMeter:2006vi}.
 % that in the integrated from reads 
 %%
@@ -233,7 +238,8 @@ For the spatial gauge condition, the choice of $\beta^i,$ we consider the Gamma-
 %%
 %where $\overline{\Gamma}^i$ is the conformal connector (discussed later), $\eta$ is the 
 %dampening parameter, and $\mu_s$ is the gauge parameter.
-The requirements for spatial gauge are similar to the slicing one. 
+The requirements for the spatial gauge are similar to those for 
+the slicing condition. 
 %as in the case of the one for $\alpha$, 
 namely, hyperbolicity and minimization of numerical distortions for more stable evolution. 
 It is preferred, that  gauge condition tries to decrease the coordinate stretching that occur in the 
@@ -259,14 +265,18 @@ it forms a strongly hyperbolic system of equations that can be solved numericall
 %where the \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, is split into a set of constraint and 
 %evolutionary equations.
 
+
+
 The dynamics of the gravitational field is embedded into \ac{EFE}. 
 Casting the \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, into the $3+1$ form results in a 
-system of \textit{evolution} and \textit{constraint} equations.
-
+system of \textit{evolution} and 
+a system of \textit{constraint} equations.
+%
+%
 %\subsubsection{ADM-Equations}
-
+%
 %\red{somewhere here put that angular momentum is not defined in GR}
-
+%
 %We begin with the \ac{RHS} of Eq.~\eqref{eq:theory:EFE}, the energy-momentum tensor, 
 %$T_{\mu\nu}$ in $3+1$ form. For that we employ the spatial projection operator 
 %$P^{\mu}_{\nu} = \delta_{\nu}^{\mu} + n^{\mu}n_{\nu}$, and obtain that 
@@ -281,9 +291,9 @@ system of \textit{evolution} and \textit{constraint} equations.
 %where $S_{\mu\nu}$ is the spatial part of $T_{\mu\nu}$, $S_{\mu}$ is the momentum density, 
 %$S=S^{\mu}S_{\mu}$ is the trace, $E=n^{\mu}n^{\nu}T_{\mu\nu}$ is the energy density 
 %measured by an Eulerian observer with the four-velocity $n^{\nu}$.
-
+%
 As such, the \ac{RHS} of Eq.~\eqref{eq:theory:EFE}, the energy-momentum tensor, 
-$T_{\mu\nu}$ in $3+1$ form can be written using the spatial projection operator, 
+$T_{\mu\nu}$, in $3+1$ form can be written using the spatial projection operator, 
 that decompose $T_{\mu\nu}$ into its 
 spatial part, $S_{\mu\nu}$, 
 momentum density, $S_{\mu}$, and 
@@ -330,14 +340,14 @@ measured by an Eulerian observer with the four-velocity $n^{\nu}$.
 %D_j K^{ij} - D^i K &= 8\pi S^i\, , \label{eq:theory:mom_const}
 %\end{align}
 
-The set of constraint equations is derived by utilizing relations that exist between 
-the $3$D Riemann tensor on a hypersurface, $4$D one and the extrinsic curvature,
-\ie, the Gauss (Gauss-Codazzi) equations, and Codazzi (Codazzi-Mainardi) equations that 
-relate the $4$D Ricci tensor to the extrinsic curvature. 
+The set of constraint equations is derived by utilizing two relations.
+The first, called Gauss (Gauss-Codazzi) equations 
+connects the $3$D Riemann tensor on a hypersurface, $4$D Riemann tensor on the manifold, and the extrinsic curvature. The second, called 
+Codazzi (Codazzi-Mainardi) equations relates the $4$D Ricci tensor to the extrinsic curvature. 
 %
 %are called \textit{Hamiltonian} and \textit{momentum constraints}, respectively.
 %
-The obtained constraint equations, called 
+The derived system of constraint equations, called 
 \textit{Hamiltonian} and \textit{momentum constraints}, 
 represent a set of elliptic equations that must be satisfied on 
 every hypersurface $\Sigma_i$ of the foliation. 
@@ -561,8 +571,8 @@ of the original Z4 formulation, and retain the possibility to chose the gauge.
 %Until now the discussion was centered around the description of spacetime and how it 
 %evolves. Here, we consider the $3+1$ conservative Eulerian formulation of \ac{GRHD} and recall the 
 %evolution equations for matter variables. 
-For the detailed discussion see 
-\textit{e.g.,} \citet{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013}.
+%For the detailed discussion see 
+%\textit{e.g.,} \citet{Misner:1973,Schutz:2009a,Gourgoulhon:2006bn,Andersson:2006nr,Rezzolla:2013}.
 
 %%%%
 %%%% ---------------------------------------------------------
@@ -573,13 +583,14 @@ For the detailed discussion see
 In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of 
 quantities such as energy density, mass, momentum density. However, in general and 
 special relativity, these quantities are not well defined and depend on the observer. 
-In other words, different observers perceive the same fluid being in different thermodynamic 
+In other words, different observers perceive the same fluid as being in different thermodynamic 
 states. Hence, a description of the fluid dynamics in relativity requires 
 a formulation in which a fluid is not represented by a scalar and vector fields, 
 that are observer-dependent, but implicitly by a "flow" in spacetime. 
 These are flux-conservative formulations of \ac{HD}.
 %%
-For instance, classical density, scalar $\rho$, usually defined as the 
+
+next, consider classical density, scalar $\rho$, usually defined as the 
 total umber of particles $N$ of rest-mass $m$ in the volume $V$. 
 Then, the total mass is given by the 
 spatial integral of $\rho \text{d}^3x = m\int_V n \text{d}^3 x = mN$. 
@@ -659,13 +670,14 @@ A better solution is to construct a covariant description in terms of invariant 
 %momentum of the fluid in a general sense. The conservation of the $\nu$-momentum requires 
 %$\vec{\partial}_{\nu}$ to be a Killing vector.
 %%%% -----------------------------------------------------
-The foundation of such formulation is the fluid kinematics, described by its 
+
+The foundation of \ac{HD} is the fluid kinematics, described by its 
 stress-energy tensor. The latter can be obtained by considering the 
 conservation of the number of particles, flux, and the rest-mass density 
-four-vector, that can be written in a form of a mixed tensor $\boldsymbol{T}$.
+four-vector, written in a form of a mixed tensor $\boldsymbol{T}$.
 We have already mentioned $\boldsymbol{T}$, describing the \ac{RHS} of the \ac{EFE}.
-There, if the \ac{EFE} are satisfied, the Bianchi identities dictate that the 
-$\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish \ie, 
+There, if the \ac{EFE} are satisfied, the Bianchi identities dictate that 
+covariant derivative, $\nabla_{\mu}$, of $\boldsymbol{T}$ must vanish \ie, 
 %For the sake of brevity we omit the discussion 
 %on the fluid kinematics and 
 %begin by writing the energy-momentum conservation law\footnote{
@@ -686,10 +698,10 @@ $\nabla_{\mu}{T^{\mu}}_{\nu}$ must vanish \ie,
 In our \ac{BNS} merger simulations, the \ac{NS} matter is modeled as perfect fluid 
 %In the following we limit the discussion to the perfect fluid, 
 meaning that in the co-moving frame, 
-there is no heat conduction and there is no viscosity. The former criterion implies that the fluid is in 
-\ac{LTE}. The latter is more complex, as there is still no consensus on the correct mathematical formulation 
+there is no heat conduction and there is no viscosity. The former criterion implies that the fluid is in the \ac{LTE}. 
+The latter is more complex, as there is still no consensus on the correct mathematical formulation 
 (especially with respect to the numerical applications) of the viscous and/or thermally conducting fluids in 
-\ac{GR} (see e.g., \citet{Andersson:2006nr} and references therein). 
+\ac{GR} \citep[\eg][]{Andersson:2006nr}. 
 
 %%%% ---------------------------------------------------------
 %%%% === FROM RADICE THESIS -- DETAILED Perfect Fluid Intro & Constraction of Tmunu
@@ -753,8 +765,8 @@ $\rho$ is the rest-mass density, the scalar $p$ is pressure,
 $h = 1 + \epsilon = p/\rho$ is the specific enthalpy, 
 $\epsilon$ is the specific internal energy, and $g^{\mu\nu}$ is the metric.
 
-
-The relativistic Euler equation can be obtained from Eq.~\eqref{eq:theory:tmunu_eq_0}, 
+The description of the fluid dynamics, \ie, the relativistic Euler equation 
+can be obtained from Eq.~\eqref{eq:theory:tmunu_eq_0}, 
 by considering the general relativistic Boltzmann equation and Liuville theorem 
 %see Appendix~\ref{app:eul}.
 and it reads 
@@ -899,16 +911,16 @@ the conservative formulation.
 %This can be done in several ways. We focus on the ``Valencia formulation'' of 
 %\ac{GRHD} \citep{Banyuls:1997}. 
 %
-In the numerical code used to produce the simulations discussed in this thesis, \wisky{}, 
-the ``Valencia formulation'' of \ac{GRHD} \citep{Banyuls:1997} was implemented. 
+In \wisky{}, the ``Valencia formulation'' of \ac{GRHD} 
+\citep{Banyuls:1997} was implemented. 
 %
 The formulation introduces the \textit{primitive variables} and the \textit{conserved variables},
 where the former include the proper rest-mass density of the fluid, $\rho$, 
 velocity $\upsilon_i$, and energy density $\epsilon$, as seen by a Lagrangian observer 
 %(\red{moving with the fluid?}), 
 while the latter includes 
-the conserved rest mass, $D$, momentum, $S_i$, and internal energy $E$, as 
-seen by the Eulerian observer.
+the conserved rest-mass, $D$, momentum, $S_i$, and internal energy $E$
+density, as seen by the Eulerian observer.
 %
 It is convenient to combine them into state vectors 
 $\boldsymbol{w}=(\rho,\upsilon_i,\epsilon)$ and $\boldsymbol{q}=(D,S_i,E)$.
@@ -933,8 +945,8 @@ $\boldsymbol{w}=(\rho,\upsilon_i,\epsilon)$ and $\boldsymbol{q}=(D,S_i,E)$.
 %where $W = (1 - \gamma_{kl}\upsilon^k\upsilon^l)$ is the Lorentz factor, and $\tau$ is the
 %quantity introduced to avoid errors emerging due to $E$ being much smaller then $D$. 
 %%
-The expressions for the conserved quantities, associated fluxes, $\boldsymbol{F}^i$ 
-and sources form the first-order, hyperbolic, flux-conservative system  
+The expressions for the conserved quantities, associated fluxes, $\boldsymbol{F}^i$,  
+and sources, $\boldsymbol{S}$, form the first-order, hyperbolic, flux-conservative system  
 %%
 \begin{equation}
 \frac{1}{\sqrt{-g}}\Big[\frac{\partial(\sqrt{\gamma}\boldsymbol{q})}{\partial x^0} + \frac{\partial(\sqrt{-g}\boldsymbol{F}^{i})}{\partial x^i}\Big] = \boldsymbol{S}\, .
@@ -1069,7 +1081,7 @@ tackle the problem of excessive oscillations arising at shocks \citep[\eg][]{Fon
 %%
 %% -------------------------------
 
-\section{Neutron Star Equations of State}\label{sec:nr_methods:eos}
+\section{Neutron star equation of state}\label{sec:nr_methods:eos}
 
 %%%% ---------------------------------------------------------
 %%%% === FROM RADICE THESIS -- EOS
@@ -1109,7 +1121,7 @@ with $\rho\in(\rho_i,\rho_{i+1})$, and $\epsilon_{th}=\epsilon-\epsilon_{cold}$
 
 %% This subsection is based introduction in the recent publications 
 %% \cite{Radice:2018pdn,Perego:2019adq,Bernuzzi:2020txg,Nedora:2020pak}
-In this thesis we consider $5$ finite-temperature, composition-dependent \acp{EOS}, 
+In our \ac{BNS} merger simulations $5$ finite-temperature, composition-dependent \acp{EOS} were used, 
 namely 
 HS(DD2) (hereafter DD2) \citep{Typel:2009sy,Hempel:2009mc}, 
 BLh \citep{Bombaci:2018ksa,Logoteta:2020yxf}, 
@@ -1120,15 +1132,15 @@ SLy4-SOR EOS (hereafter SLy4) \citep{daSilvaSchneider:2017jpg}.
 All \acp{EOS} include neutrinos $(n)$, protons $(p)$, nuclei, electrons, positrons, and photons
 as important thermodynamic degrees of freedom.
 %
-The radii and maximum masses of neutron stars composed of the cold, neutrino-less 
+The radii and maximum masses of \acp{NS} composed of the cold, neutrino-less 
 $\beta$-equilibrium matter from these \acp{EOS} fall in line with the current 
 astrophysical constraints, \eg, LIGO/Virgo constrains from \GW{} 
-\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}. 
 %
-All \acp{EOS} models have symmetry energy at saturation density that are in 
-agreement with experimental limits. Notably, LS220 \ac{EOS} has a particularly steep 
-dependency of its symmetry energy on density \citep[\eg][]{Lattimer:2012xj,Danielewicz:2013upa}. 
-Thus, this \ac{EOS} might predict too low symmetry energy below the saturation density. 
+%All \acp{EOS} models have symmetry energy at saturation density that is in 
+%agreement with experimental limits. Notably, LS220 \ac{EOS} has a particularly steep 
+%dependency of its symmetry energy on density \citep[\eg][]{Lattimer:2012xj,Danielewicz:2013upa}. 
+%Thus, this \ac{EOS} might predict too low symmetry energy below the saturation density. 
 In the following we discuss the $5$ \acp{EOS} in more details.
 
 \begin{itemize}
@@ -1162,6 +1174,8 @@ In the following we discuss the $5$ \acp{EOS} in more details.
     The DD2 and SFHo \acp{EOS} are based on nuclear statistical equilibrium, but with 
     different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
     %    In these \acp{EOS} a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these \acp{EOS} mean-field nuclear interactions have different parameterizations and values.
+    The DD2 \ac{EOS} is the stiffest \ac{EOS} in our sample, giving the 
+    $\tilde{\Lambda}$ for an equal mass binary ${\simeq}850$. 
     %% ======================= SLy4 ===================
     \item The SLy4 \ac{EOS} employed in this work is the finite temperature extension \citep{daSilvaSchneider:2017jpg}
     of the basic SLY4 Skryme parametrisation for cold nuclear \ac{NS} matter \citep{Douchin:2001sv}.
@@ -1170,6 +1184,8 @@ In the following we discuss the $5$ \acp{EOS} in more details.
     %    Which is a more advanced version of LS220 \ac{EOS} treatment (model).
     %    When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
     %    free energy is chosen (first order transition).
+    The SLy4 \ac{EOS} is the softest \ac{EOS} in our sample, 
+    giving the $\tilde{\Lambda}$ for an equal mass binary ${\simeq}400$. 
     %% ======================= BLh ===================
     \item BLh \ac{EOS} \citep{Logoteta:2020yxf} is the
     finite temperature extension of the cold, $\beta$-equilibrium \ac{EOS}, \citep{Bombaci:2018ksa}
@@ -1191,9 +1207,9 @@ In the following we discuss the $5$ \acp{EOS} in more details.
 \subsection{Finite temperature treatment}
 
 Finite temperature effects are important for the thermal evolution of the \ac{NS} matter.
-With the exception of the BLh \ac{EOS} the thermal effects in our sample of \acp{EOS} 
-are primarily included in the nucleon effective mass,
-that depends on temperature and density. 
+%With the exception of the BLh \ac{EOS} the thermal effects in our sample of \acp{EOS} 
+%are primarily included in the nucleon effective mass 
+%that depends on temperature and density. 
 
 %, where 
 %the particular particle correlations beyond the mean field approximation are included.
@@ -1216,8 +1232,8 @@ energy with respect to the neutron and proton densities. Thus, the smaller the e
 masses the larger are kinetic energies and hence, higher matter temperature, assuming 
 the entropy remains constant.
 %
-Thus, the finite temperature behavior of these \acp{EOS} is largely set by the nucleon effective mass,
-Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
+Thus, the finite temperature behavior of these \acp{EOS} is largely set by the nucleon effective mass. 
+%Then, the smaller the effective mass, the higher the temperature (assuming that entropy is unchanged).
 %For LS220 \ac{EOS}, the nucleon mass is its bare nucleon mass (for any densities).
 %for SFHo \ac{EOS}, $m_N ^* / m_N = 0.76$ at saturation density, 
 %for DD2 \ac{EOS} $m_N^*/m_N = 0.56$, 
@@ -1237,7 +1253,7 @@ thermodynamic quantities.% (through first mesons and nucleon fields).
 
 %% BLh
 The BLh \ac{EOS} employs a different approach to incorporate temperature effects.
-The method is based on evaluating the free energy in the Brueckner-Hartree-Fock, 
+The method is based on evaluating the free energy in the Brueckner-Hartree-Fock formalism, 
 which in turn requires, the effective in-medium nuclear interactions to be defined.
 %(starting from the bare nuclear potential\footnote{
 %    This effective interaction is obtained by solving
@@ -1248,10 +1264,11 @@ which in turn requires, the effective in-medium nuclear interactions to be defin
 %
 Then, the nucleon single particle potentials are evaluated %(via integration of the on-shell effective interaction matrix),
 that represent the mean field that a nucleon with a certain momentum experiences, 
-surrounded by other nucleons.From nucleon single particle potentials, the free energy 
-is then evaluated, and subsequently, other thermodynamic quantities. Notable difference 
+surrounded by other nucleons. From nucleon single particle potentials, the free energy 
+is then evaluated, and subsequently, other thermodynamic quantities. 
+A notable difference 
 with other \acp{EOS} discussed here is that the many-body correlations extend beyond the 
-mean field approximation, and are not present in other \acp{EOS}. 
+mean field approximation. % , and are not present in other \acp{EOS}. 
 %
 This \acp{EOS} was first employed for the \ac{BNS} merger 
 simulations for the first time in \citet{Bernuzzi:2020txg}.
@@ -1276,10 +1293,10 @@ temperature properties and their relation to the electron fraction, we consider 
 presented in Fig~\ref{fig:method:tov_mr}.
 %
 For cold, non-rotating \acp{NS}, these \acp{EOS} can support maximum 
-masses in the range $\Mmax\sim 2.06-2.10\Msun$, while the predicted radii of a 1.4$\Msun$ 
+masses in the range $\Mmax\sim 2.06-2.10\,\Msun$, while the predicted radii of a $1.4\,\Msun$ 
 NS lay in the range $R_{1.4}\sim 11.78-12.74$ km. 
-More specifically, LS220, SFHo, SLy4, BLh and DD2 \ac{EOS} have 
-$\Mmax$ of $2.04$, $2.06$, $2.06$, $2.10$ and $2.42$ $M_\odot$, and 
+More specifically, LS220, SFHo, SLy4, BLh and DD2 \acp{EOS} have 
+$\Mmax$ of $2.04$, $2.06$, $2.06$, $2.10$ and $2.42$ $\Msun$, and 
 $R_{1.4}$ of $12.8$, $12.0$, $11.9$, $12.5$ and $13.2$ km respectively,.
 %
 These values are compatible, albeit in general lower, then those inferred from 
@@ -1288,10 +1305,11 @@ by the NICER collaboration \citep{Miller:2019cac,Riley:2019yda}.
 Notably, \acp{EOS} that allow $R_{1.4}\gg 13$~km are currently disfavoured by both 
 \ac{GW} \GW{} and X-ray pulsar observations \citep{Abbott:2018wiz,Miller:2019cac,Riley:2019yda}.
 %
-$\Mmax$ and $R_{1.4}$ related to the pressure at half saturation density \citep{Lattimer:2012nd}.
-Thus we adopt the following naming convention for \acp{EOS}. Those that lead to a \ac{NS} with smaller 
+$\Mmax$ and $R_{1.4}$ are related to the pressure at half saturation density \citep{Lattimer:2012nd}.
+This motivates the naming convention, that we have already introduced 
+for \acp{EOS}. Those that lead to \acp{NS} with smaller 
 radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" \acp{EOS}. 
-Among considered, the DD2 \ac{EOS} is the stiffest, while SLy4 \ac{EOS} is the softest.
+%Among considered, the DD2 \ac{EOS} is the stiffest, while SLy4 \ac{EOS} is the softest.
 
 Finite temperature effects provide complimentary pressure support,
 which is not sufficient to raise the maximum \ac{TOV} mass 
@@ -1306,7 +1324,7 @@ For instance, at Keplerian limit, the maximum \ac{NS} mass is increased by
 $\sim 20\%$ for all \ac{EOS} models and radius by $\sim 40\%$ \citep{Bernuzzi:2020txg}. 
 In addition, fast rotation can decrease the central density.
 %
-These observations highlight the importance of using full \acp{EOS} with finite-temperature effects. 
+These observations highlight the importance of using \acp{EOS} with finite-temperature effects. 
 
 %% Thermal (and composition, see \citep{Kaplan:2013wra})
 %% effects are indeed key to quantify the prompt collapse dynamics,
@@ -1344,7 +1362,7 @@ These observations highlight the importance of using full \acp{EOS} with finite-
 
 %During the neutron star mergers, the thermodynamic conditions are such that the powerful 
 %neutrino bursts can originate from the hot and shock heated NS matter \citep[\eg][]{Sekiguchi:2011zd}.
-At high densities and temperatures reaching several MeV, the weak interaction become 
+At high densities and temperatures reaching several MeV, weak interactions  become 
 increasingly important, moving the material away from the original chemical equilibrium 
 with respect to the $\beta$-processes, and emission of numerous neutrinos with neutrino luminosity 
 reaching $\sim10^{53}\,$erg s$^{-1}$ commences. 
