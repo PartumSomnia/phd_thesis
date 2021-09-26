@@ -912,7 +912,7 @@ the conservative formulation.
 %\ac{GRHD} \citep{Banyuls:1997}. 
 %
 In \wisky{}, the ``Valencia formulation'' of \ac{GRHD} 
-\citep{Banyuls:1997} was implemented. 
+\citep{Banyuls:1997} was implemented \citep{Radice:2013apa}. 
 %
 The formulation introduces the \textit{primitive variables} and the \textit{conserved variables},
 where the former include the proper rest-mass density of the fluid, $\rho$, 
@@ -1288,43 +1288,47 @@ simulations for the first time in \citet{Bernuzzi:2020txg}.
     \label{fig:method:tov_mr}
 \end{figure}
 %% 
-To characterize these \acp{EOS} that employs very different microphyscis and finite 
-temperature properties and their relation to the electron fraction, we consider the \ac{TOV} solutions, 
-presented in Fig~\ref{fig:method:tov_mr}.
+To characterize the \acp{EOS} that employ very different microphyscis and finite 
+temperature properties, and their relation to the electron fraction, we consider 
+the cold, non-rotating \acp{NS} by solving the \ac{TOV} equations.
+The results are shown in Fig~\ref{fig:method:tov_mr}, where we also place 
+the primary of our \ac{BNS} models, that we discuss in details in the next Chapter. 
 %
-For cold, non-rotating \acp{NS}, these \acp{EOS} can support maximum 
-masses in the range $\Mmax\sim 2.06-2.10\,\Msun$, while the predicted radii of a $1.4\,\Msun$ 
-NS lay in the range $R_{1.4}\sim 11.78-12.74$ km. 
+The maximum \ac{TOV} mass supported by these \ac{EOS} span  
+$\Mmax \sim 2.06-2.10\,\Msun$, while the predicted radii of a $1.4\,\Msun$ 
+\ac{NS} lay in the range $R_{1.4}\sim 11.78-12.74$ km. 
 More specifically, LS220, SFHo, SLy4, BLh and DD2 \acp{EOS} have 
 $\Mmax$ of $2.04$, $2.06$, $2.06$, $2.10$ and $2.42$ $\Msun$, and 
-$R_{1.4}$ of $12.8$, $12.0$, $11.9$, $12.5$ and $13.2$ km respectively,.
+$R_{1.4}$ of $12.8$, $12.0$, $11.9$, $12.5$ and $13.2$ km respectively. 
 %
-These values are compatible, albeit in general lower, then those inferred from 
-recent detection of an extremely massive millisecond pulsar \citep{Cromartie:2019kug} and with results obtained 
-by the NICER collaboration \citep{Miller:2019cac,Riley:2019yda}.
-Notably, \acp{EOS} that allow $R_{1.4}\gg 13$~km are currently disfavoured by both 
+These values are compatible, albeit in general lower, than those inferred from the 
+recent detection of an extremely massive millisecond pulsar \citep{Cromartie:2019kug},  
+and with results obtained by the NICER collaboration \citep{Miller:2019cac,Riley:2019yda}.
+Notably, \acp{EOS} that allow $R_{1.4}\gg 13$~km are currently disfavored by both 
 \ac{GW} \GW{} and X-ray pulsar observations \citep{Abbott:2018wiz,Miller:2019cac,Riley:2019yda}.
-%
-$\Mmax$ and $R_{1.4}$ are related to the pressure at half saturation density \citep{Lattimer:2012nd}.
+
+$\Mmax$ and $R_{1.4}$ are related to pressure at half saturation density \citep{Lattimer:2012nd}.
 This motivates the naming convention, that we have already introduced 
-for \acp{EOS}. Those that lead to \acp{NS} with smaller 
-radii are called "softer" and those that lead to a NS with larger radii are referred to as "stiffer" \acp{EOS}. 
+for \acp{EOS}, \ie, those that lead to \acp{NS} with smaller 
+radii are called ``softer'' and those that lead to \acp{NS} with larger radii 
+-- ``stiffer''. 
 %Among considered, the DD2 \ac{EOS} is the stiffest, while SLy4 \ac{EOS} is the softest.
 
-Finite temperature effects provide complimentary pressure support,
+Finite temperature effects provide complimentary pressure support 
 which is not sufficient to raise the maximum \ac{TOV} mass 
-\citep{Kaplan:2013wra}, but can increase the radii of hot \acp{NS}.
+\citep{Kaplan:2013wra}; but it can increase the radii of hot \acp{NS}.
 Specifically, comparing the cold and hot ($s=2~{k_{\rm B}~{\rm baryon^{-1}}}$)
 configurations, the thermal effects were shown to raise the $R_{1.4}$
-by $15.6 \%$ for the LS220 EOS and $36.4 \%$ for the SLy4 EOS 
-while for the BLh and the SFHo EOS the variation is $\sim 21-22 \%$.
+by $15.6 \%$ for the LS220 \ac{EOS} and $36.4 \%$ for the SLy4 EOS 
+while for the BLh and the SFHo \ac{EOS} the variation is $\sim 21-22 \%$.
 %
 Both \ac{NS} radius and maximum mass are increased if a \ac{NS} is rotating. 
 For instance, at Keplerian limit, the maximum \ac{NS} mass is increased by 
 $\sim 20\%$ for all \ac{EOS} models and radius by $\sim 40\%$ \citep{Bernuzzi:2020txg}. 
 In addition, fast rotation can decrease the central density.
 %
-These observations highlight the importance of using \acp{EOS} with finite-temperature effects. 
+These observations highlight the importance of using \acp{EOS} with 
+finite-temperature effects. 
 
 %% Thermal (and composition, see \citep{Kaplan:2013wra})
 %% effects are indeed key to quantify the prompt collapse dynamics,
@@ -1370,9 +1374,9 @@ reaching $\sim10^{53}\,$erg s$^{-1}$ commences.
 % however the baryon pollution of the polar region found in BNS simulations might make it 
 % difficult \red{[refs, i think it was Perego work]}.
 %
-Neutrino transport is of prime importance for shaping the composition of the matter, 
-ejected at mergers (ejecta) \citep{Wanajo:2014wha,Sekiguchi:2015dma,Foucart:2015vpa,Foucart:2015gaa},
-affecting the \nuc{} in the ejecta \citep{Wanajo:2014wha,Goriely:2015fqa} 
+Neutrino transport is of prime importance for recovering the composition of matter, 
+ejected at mergers  \citep{Wanajo:2014wha,Sekiguchi:2015dma,Foucart:2015vpa,Foucart:2015gaa},
+affecting the \nuc{} in ejecta \citep{Wanajo:2014wha,Goriely:2015fqa} 
 (See also Ch.~\ref{ch:nucleo})
 and ultimately electromagnetic counterparts 
 \citep{Metzger:2014ila,Lippuner:2015gwa} (See also Ch.~\ref{ch:kilonova} \& Ch.~\ref{ch:afterglow}).
@@ -1380,20 +1384,20 @@ and ultimately electromagnetic counterparts
 %%%% -----------------------------------------------------
 %%%%         Introduction and Broad discussion  (From David and Others)
 %%%% -----------------------------------------------------
-Neutrino interactions depend on the matter composition, its density and temperature, 
-and on the neutrino energies. For instance, at rest-mass density $10^{12}$\gcm 
+Neutrino interactions depend on matter composition, density and temperature, 
+and neutrino energies. For instance, at rest-mass density $10^{12}$\gcm{} 
 and temperature $\sim10$~MeV, the neutrino scattering on matter becomes so efficient, 
-that they fall into the thermal equilibrium with it. The mean free path of these neutrinos 
+that neutrinos fall into the thermal equilibrium with it. Their mean free path 
 becomes of order of $\sim 50\,$m. These neutrinos are considered \textit{trapped}.
 %
-At low densities, $<10^{11}\,$\gcm, neutrinos with energy $<10\,$MeV are no longer coupled 
-to matter and their mean free path can reach tens of kilometers. Such neutrinos are 
-considered \textit{free-streaming}.
+At low densities, $<10^{11}\,$\gcm, neutrinos with energies $<10\,$MeV 
+are no longer coupled to matter and their mean free path can reach tens 
+of kilometers. Such neutrinos are considered \textit{free-streaming}.
 %
-If there is a sharp density gradient present, \eg, a surface of a neutron star 
-where density falls by several orders of magnitude, then the neutrinos can be effectively 
-divided into trapped and free-streaming. The transition region, however, is more difficult 
-to treat.
+If there is a sharp density gradient present, \eg, a \ac{NS} surface 
+where density falls by several orders of magnitude, than neutrinos can be effectively 
+divided into trapped and free-streaming. The transition region, however, 
+is more difficult to treat.
 % and requires numerically very expensive methods.
 %\textit{e.g.,} Monte Carly methods for solving Boltzmann equations \cite{Abdikamalov:2012zi}. Another alternative is the approximate, "ray-by-ray" \cite{Scheck:2007gw} multi-energy-group neutrino schemes [\textit{e.g.,} multi-group fluxlimited diffusion \cite{Mezzacappa:1993gn} and isotropic diffusion source approximation \cite{Liebendoerfer:2007dz}].
 
@@ -1404,7 +1408,7 @@ of $3$D space, momenta, which requires $2$ additional components, angles, and fi
 component for energy of the carrier. 
 %
 Thus, with an addition of time there are $(6+1)$ dimensions for the problem. 
-In addition, radiation transport depends strongly on the optical depth of the medium, 
+Moreover, radiation transport depends strongly on the optical depth of matter, 
 \ie, how effectively the matter traps neutrinos, reducing their mean-free path.
 %
 %For instance, if the optical depth is high, \ie, the opacity is very large, the transport of 
@@ -1420,9 +1424,9 @@ In addition, radiation transport depends strongly on the optical depth of the me
 %mechanism transitions from diffusion to free streaming. 
 
 
-Most commonly used approaches to simplify the radiation transport relies on reducing the 
-dimensionality of the problem. In particular, -- reducing the number of spatial 
-dimensions by assuming certain symmetries.
+Most commonly used approaches to simplify the radiation transport rely 
+on reducing the dimensionality of the problem. In particular -- 
+reducing the number of spatial dimensions by assuming certain symmetries.
 %Examples are axial or spherical symmetry. And while this have shown to be a reasonable approximation for many astrophysical models, in cases where the system itself does not exhibit any spatial symmetries, 
 %such simplification cannot be done. 
 %%
@@ -1440,7 +1444,7 @@ Notably, the main source of complexity in the radiation transport stems from the
 integral over all 4$\pi$ steradian.
 By dividing the solid angle into a number of discrete angular intervals (rays), the 
 integral can be replaced with a finite sum, converting the integrodifferential equation 
-into a linear system of equations for a multi-index object. 
+into a linear system of equations. % for a multi-index object. 
 %%
 %This method of solving transport equation along several directions in each spatial zone the is called 
 %discrete-ordinate ($S_n$) method \citep{Castor:2004,Ott:2008jb,Sumiyoshi:2012za,Godoy:2012}. 
@@ -1639,24 +1643,23 @@ where radiation and matter are coupled, via
 so-called ``leakage scheme''
 %
 %The method accounts for the optical depth of matter and geometry 
-\citep{Ruffert:1995fs,Rosswog:2003rv,Sekiguchi:2010zz,OConnor:2009iuz,Galeazzi:2013mia}
+\citep{Ruffert:1995fs,Rosswog:2003rv,Sekiguchi:2010zz,OConnor:2009iuz,Galeazzi:2013mia}. 
 %
-For other implementations and methods see \eg, 
-\citet{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,
-    Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
+%For other implementations and methods see \eg, 
+%\citet{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,
+%    Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
 %
 The method approximates the radiation transport evaluating the instantaneous energy loss 
 via neutrino emission and evolution of the composition of the nuclear matter.
-The particular advantage of the method is its computational efficiency and an ability 
-to account for non-trivial geometries of emitting regions.
+The particular advantage of the method is its computational efficiency and 
+its ability to account for non-trivial geometries of emitting regions.
 %
 It was first proposed by \citet{vanRiper:1981mko} to study the neutrino cooling through 
 weak interaction in the \ac{CCSN}. The leakage scheme is popular to model neutrino 
 effects in \acp{CCSN} and compact object mergers.
 %
 A modified version of \citet{Galeazzi:2013mia} scheme is implemented in 
-\ac{NR} the code \wisky{} \citep{Radice:2016dwd,Radice:2018pdn}, and was 
-used to produce the \ac{BNS} merger simulations analyzed in this thesis.
+\ac{NR} the code \wisky{} \citep{Radice:2016dwd,Radice:2018pdn}.
 
 
 
@@ -1669,7 +1672,7 @@ used to produce the \ac{BNS} merger simulations analyzed in this thesis.
 %
 The goal of the scheme is to describe the series of effective emissivities, 
 $R_{\nu}^{\text{eff}}$, and $Q_{\nu}^{\text{eff}}$ for electron neutrinos, $\nu_e$, 
-anti-electron neutrinos $\bar{\nu}_e$ and the heavy-lepton neutrinos, 
+anti-electron neutrinos, $\bar{\nu}_e$, and the heavy-lepton neutrinos, 
 which are collectively labeled as $\nu_x$.
 %
 Here, $R_{\nu}^{\text{eff}}$ describes the the number of neutrinos emitted per second and baryon,
@@ -1693,7 +1696,7 @@ Neutrinos are assumed to be massless and in thermal equilibrium with the surroun
 %
 %where $\mu_e$, $\mu_n$, $\mu_p$ are the relativistic chemical potentials including the rest-mass of the particle. 
 The $R_{\nu}^{\text{eff}}$, and $Q_{\nu}^{\text{eff}}$ can be evaluated from various 
-weak-interaction processes present in the hot and dense matter of the NS. 
+weak-interaction processes that are present in the hot and dense \pmerg{} environment. 
 %The definitions are: the $Q_{\nu_{i}}$ is the energy emitted via neutrinos per second and baryon;
 %the $R_{\nu_{i}}$ is the number of neutrinos emitted per second and baryon.
 %%
@@ -1704,7 +1707,8 @@ weak-interaction processes present in the hot and dense matter of the NS.
 %    \item transverse plasmon decay.
 %\end{itemize}
 %
-The reactions implemented in \wisky{} are listed in Tab.~\ref{tab:leakage}.
+The reactions implemented in \wisky{} and used in our models are 
+listed in Tab.~\ref{tab:leakage}. 
 %
 
 It is possible to evaluate the emission rates corresponding to these processes 
@@ -1712,15 +1716,15 @@ using only the quantities provided by the \ac{EOS} tables.
 %
 %%%% === URCA PROCESS
 For instance, consider the strong neutrino emitting process, the direct Urca process, 
-that consists of the $\beta$-decay, $e^+ + n \rightarrow p + \bar{\nu}_e$ 
+that consists of the $\beta$-decay, $e^+ + n \rightarrow p + \bar{\nu}_e$, 
 and the electron capture on the free nucleons (n), $e^{-} + p \rightarrow n + \nu_e$ 
 (the first two reactions Tab.~\ref{tab:leakage}). 
-This process moves the matter to the $\beta$-equilibrium, in which the rates 
+This process moves matter to the $\beta$-equilibrium, in which the rates 
 of both reactions are the same, and the chemical potentials $\mu_{\nu_e,\bar{\nu}_e}=0$.
 %
-For both, $\beta$-decay, ``\textit{pc}'', and electron capture, ``\textit{ec}'', 
+For both, $\beta$-decay, labeled, \textit{pc}, and electron capture, \textit{ec}, 
 the emiissivities 
-have strong temperature dependence \citep{Galeazzi:2013mia}, 
+have strong temperature, $T$, dependence \citep{Galeazzi:2013mia}, 
 %\begin{equation}
 %\begin{aligned}
 %Q_{pc}(\bar{\nu}_e) &= n_b^{-1}\beta\eta_{pn}T^6F_5(-\eta_e)[1-f_{\bar{\nu}_e}]_{pc}\, , \\
@@ -1738,9 +1742,8 @@ have strong temperature dependence \citep{Galeazzi:2013mia},
 %\end{equation}
 %
 \begin{equation}
-Q_{pc}(\bar{\nu}_e), Q_{ec}(\nu_e) \propto T^6, \hspace{5mm} R_{pc}(\bar{\nu}_e),R_{ec}(\nu_e)\propto T^5, \\
+Q_{pc}(\bar{\nu}_e), Q_{ec}(\nu_e) \propto T^6, \hspace{5mm} R_{pc}(\bar{\nu}_e),R_{ec}(\nu_e)\propto T^5. \\
 \end{equation}
-where $T$ is the temperature. 
 %$n$ are the number densities, $\eta=\mu/T$ with $\mu$ being the 
 %chemical potential, $F_N$ are the Fermi integrals of order $N$,
 %$1-f_{\nu}$ is a factor related to the Fermi-Dirac distribution, $f_{\nu}$, and $\beta$
@@ -1776,7 +1779,7 @@ and their Appendix A.
 %
 The neutrino scattering on nuclei becomes the dominant opacity source 
 at sufficiently low temperatures, $<15\,$MeV, and at densities below 
-the saturation, when such nuclei becomes abundant \citep{Rosswog:2003rv}.
+the saturation, when such nuclei become abundant \citep{Rosswog:2003rv}.
 
 Taking the required scattering and absorption processes, the local mean 
 free-path for each neutrino species can be computed. From it, the 
@@ -1784,9 +1787,9 @@ energy-independent mean free path can be derived, that in turn depends
 only on the local thermodynamic condition. This allows to evaluate the 
 energy-independent part of the optical depth and diffusion rates.
 %
-The optical depth allows to asses the extend of the optically thick region 
-(that is neutrino-species dependent) and it allows to asses the time needed 
-for neutrinos to diffuse out of the dense matter, the diffusion timescales. 
+The optical depth, in turn, allows to asses the extend of the optically thick region 
+(that is neutrino-species dependent) and compute the time needed 
+for neutrinos to diffuse out of the dense matter -- the diffusion timescale. 
 %It should be noted that for cores of a neutron star this diffusion timescale is of order of seconds. 
 %Thus, neutrinos that are expected to contribute the most on the dynamical timescale are the nuetirnos abundantly
 %emitted at the \textit{neutrinosphere} and above \citep{Galeazzi:2013mia,Endrizzi:2018uwl}.
@@ -1848,15 +1851,15 @@ where $t_{\text{diff}}$ and $t_{\text{loss}}$ are the neutrino diffusion time an
 %beta equilibrium with neutrinos, $\tau_{\nu}$ is the optical depth, and 
 %the $\mathcal{D}$ is a tuning parameter set to $6$ 
 \citep{Radice:2018pdn}.
-
-
+%
+%
 Similarly, the effective energy emission rate $Q_{\nu}^{\text{eff}}$ 
 is computed with $\tau_{\nu}^1$, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$.
 
 %Notably, the effect of trapped neutrinos was shown to be weak in the \ac{NS} conditions 
 %\citep{Galeazzi:2013mia} and thus neglected here.
-The neutrinos that escape according to the effective rate $R_{\nu}^{\text{eff}}$,
-with the average energy $U_{\nu}^{\text{eff}}/R_{\nu}^{\text{eff}}$ 
+The neutrinos that escape according to the effective rate $R_{\nu}^{\text{eff}}$ 
+%with the average energy $U_{\nu}^{\text{eff}}/R_{\nu}^{\text{eff}}$ 
 comprise the free streaming neutrinos with $n_{\nu}^{\text{fs}}$. 
 %
 These neutrinos are treated afterwards according to the 
@@ -1940,7 +1943,7 @@ M0 scheme in the optically thin region \citep{Radice:2016dwd}.
 
 %The free-streaming neutrinos are treated via a variant of the moment equations of energy transport, 
 %the M0 scheme \citep{Radice:2016dwd,Radice:2018pdn}.
-Computation of the free-streaming neutrino number density and energy is 
+Computation of the free-streaming neutrino number density and energy evolution is 
 %$n_{\nu_e}$, $n_{\bar{n}_e}$, $E_{\nu_e}$ and $E_{\bar{\nu}_e}$ is 
 done via the zeroth momentum (M0) of the free-streaming neutrino distribution 
 function on a set of individual radial rays, with the closure adopted 
@@ -2018,19 +2021,20 @@ the neutrino transport \citep{Thorne:1981},
 \end{equation*}
 %%
 where $l$ parameterizes the neutrino's worldline, 
-$F$ is the distribution function for a give neutrino species, and $\mathbb{C}$ 
+$F$ is the distribution function for a given neutrino species, and $\mathbb{C}$ 
 is the ``collisional operator'' that describes the interactions.
 %
 %Boltzmann equation, Eq.~\eqref{eq:method:whisky:neut:bolzeq}, allows to describe
 %the evolution of the free-steaming neutrinos and track their average energy.
 %
-The source of neutrinos are be taken from the effective emissivities computed 
+The source of neutrinos are taken from the effective emissivities computed 
 with the leakage scheme.
 %The source terms in the equation can be computed by taking the effective emissivities 
 %from the leakage scheme.
 The collisional term is approximated in a way that it only includes neutrino 
 absorption and emission. Scattering is neglected. 
-For the evaluation of the absorption opacities, (of $\nu_{e}$ and $\bar{\nu}_{e}$) 
+For the evaluation of the absorption opacities, 
+%(of $\nu_{e}$ and $\bar{\nu}_{e}$) 
 the \ac{LTE} is assumed.
 %The closure to Eq.~\eqref{eq:method:whisky:neut:bolzeq} is given by 
 %considering neutrinos propagating only along the radial rays. 
@@ -2102,7 +2106,7 @@ the \ac{LTE} is assumed.
 The closure is achieved by considering neutrinos propagating only radially 
 with the speed of light, %, $\partial_t$ is a Killing vector. 
 %Then the free-streaming neutrino energy satisfies 
-\cite{Radice:2016dwd,Radice:2018pdn}.
+\citep{Radice:2016dwd,Radice:2018pdn}.
 
 The M0 scheme was included in all \ac{BNS} merger 
 simulations discussed in this thesis.
@@ -2255,6 +2259,13 @@ simulations discussed in this thesis.
 %This subsection is based on the GRLESS method paper \cite{Radice:2017zta}, its extension  \cite{Radice:2020ids}, and its application to the BNS \cite{Radice:2017lry} for dynamical ejecta and summary of this study in \cite{Radice:2018pdn}.
 
 
+
+%% --------------------------------
+%% TAB SIM SUMMARY
+\input{Tables/tabSim.tex}
+%% --------------------------------
+
+
 %% -------------------------
 %%
 %% TURBULENCE
@@ -2277,17 +2288,17 @@ and for magnetically driven winds and collimated jets
 \citep{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
 %
 Such effects are studied with high-resolution \ac{GRMHD} simulations. 
-However, despite rapid progress of \ac{GRMHD} simulations 
+However, despite rapid progress in these methods 
 \citep[\eg][]{Rezzolla:2011da,Kiuchi:2014hja,Ruiz:2016rai},
 the degree to which the magnetoturbulence affects the structure and the 
-lifetime of the remnant before collapse is still poorly constrained.
+lifetime of the \pmerg{} \ac{NS} remnant before collapse is still poorly constrained.
 %
-Specifically, while the \ac{MRI} is believed to be present within the 
-\pmerg{} \ac{NS} remnant, and is responsible for the redistribution of angular 
+Specifically, while the \ac{MRI} are believed to be present within the 
+remnant, and are responsible for the redistribution of angular 
 momentum, affecting 
 its lifetime, \citep[\eg][]{Duez:2006qe,Siegel:2013nrw}, 
-the fastest growing modes of the \ac{MRI} remain beyond 
-reach even at very high resolutions \citep[\eg][]{Kiuchi:2014hja}.
+the fastest growing modes of \ac{MRI} remain beyond the 
+reach of even very high resolution simulations \citep[\eg][]{Kiuchi:2014hja}.
 %%%% ------------------
 % More Discussion
 %%%% ------------------
@@ -2328,12 +2339,11 @@ reach even at very high resolutions \citep[\eg][]{Kiuchi:2014hja}.
 %% A version of the \ac{GRLES} approach was implemented into the Spectral Einstein Code (SpEC) for 2D axisymmetric simulations \cite{Jesse:2020oss}.
 %%%% -----------
 
-
-\ac{BNS} merger simulations, analyzed in this thesis, did not include magnetic 
-fields. However, their effect on the angular momentum transport was accounted 
-for via the effective method implemented in the code \wisky{}. 
-
-
+In \wisky{} an effective method, based on the \ac{LES} model, 
+is employed to account for the \ac{MF} induced 
+turbulence \citep{Radice:2017zta,Radice:2020ids}.
+%
+%
 %In the following we describe a method that allows to account for the effects of \ac{MHD} 
 %instabilities on the angular momentum transport but does not require complex and numerically 
 %expensive \ac{GRMHD} simulations. 
@@ -2372,7 +2382,7 @@ for via the effective method implemented in the code \wisky{}.
 %
 %where $\rho$ is the density, $h$ is the specific enthalpy, $u_{\mu}$ is the fluid four-velocity, 
 %and $g_{\mu\nu}$ is the spacetime metric.
-
+%
 %%%%%%% --- Review of Valencia formulation -- SHORT
 %We begin by recalling the perfect fluid's stress energy tensor,
 %Eq.~\eqref{eq:theory:tmunu_perf}, 
@@ -2450,16 +2460,17 @@ for via the effective method implemented in the code \wisky{}.
 %$\gamma_{ij}$ is the three metric and $K_{ij}$ is the extrinsic curvature, 
 %and $\sqrt{\gamma}$ is the spatial volume element.
 %%%%%%%%%%%%%%%%
-
-The approach considers the \ac{GRHD} equations in the conservative form 
-without neutrino source terms, Eq.~\eqref{eq:theory:valencia}, 
 %
-which are closed with a given \ac{EOS} and Euler equations for conservation of 
+The approach considers the \ac{GRHD} equations in the conservative form 
+without neutrino source terms, 
+% Eq.~\eqref{eq:theory:valencia}, 
+%
+which are closed with a given \ac{EOS} and Euler equation for conservation of 
 baryon and lepton numbers.
 %
 Importantly, while modes of all scales are present in these equations, 
 %Eq.~\eqref{eq:theory:whisky:emomcons_lk}, 
-only 'resolved' modes are evolved in numerical simulations. 
+only ``resolved'' modes are evolved in numerical simulations. 
 %In other works, in numerical applications the 'coarse-grained' version of hydrodynamic equations
 %is considered \cite{Radice:2017zta}.}.
 
@@ -2475,8 +2486,8 @@ only 'resolved' modes are evolved in numerical simulations.
 %    and does not changed during the averaging.
 %}.
 
-In accordance with \ac{LES} model, the linear filtering operator,
-is introduced that discards the modes or features below a given scale. 
+In accordance with the \ac{LES} model, a linear filtering operator 
+is introduced that discards modes or features below a given scale. 
 Numerically, this requires a cell-averaging operator to perform filtering.
 %
 %
@@ -2499,7 +2510,7 @@ Numerically, this requires a cell-averaging operator to perform filtering.
 %However, the equations are not closed. 
 The averaging procedure 
 %of Eqs.~\eqref{eq:theory:whisky:emomcons_lk} 
-yields 
+yields a 
 %The equations (Eqs.~\eqref{eq:theory:whisky:emomcons_lk} after averaging) 
 system of non-linear equations. 
 %, and $\overline{D_{n}}$, $\overline{D_p}$, 
@@ -2518,7 +2529,7 @@ system of non-linear equations.
 %%or stress, 
 %and $\mu^i$ is the sub-scale rest-mass diffusion.
 %
-The required closure is achieved by introducing the 
+The required closure is than achieved by introducing the 
 so-called subgrid-scale turbulence tensor \citep{Radice:2017zta}. 
 
 %If $\tau_{ij}=0$, there is no subgrid turbulence. 
@@ -2564,8 +2575,8 @@ so-called subgrid-scale turbulence tensor \citep{Radice:2017zta}.
 %%%%%%%%%%%%%%%%%%%%%
 
 
-The turbulence tensor can in tern be expressed as a function of 
-$\nu_T = l_{\text{mix}}c_s$, the turbulent viscosity, where $l_{\text{mix}}$,
+The turbulence tensor can, in tern, be expressed as a function of 
+turbulent viscosity, $\nu_T = l_{\text{mix}}c_s$, where $l_{\text{mix}}$,
 is the mixing length which is characteristic length scale of turbulence, 
 $c_s$ is the sound speed.
 %
@@ -2617,15 +2628,16 @@ $ l_{\text{mix}} = \alpha c_s \Omega^{-1} $,
 where $\Omega$ is the angular velocity of the fluid \citep{Shakura:1972te}.
 %
 The value of $\alpha$ can be constrained by very high resolution 
-\ac{GRMHD} simulations with seed magnetic field $(10^{15}~G)$ strong 
-enough that the \ac{MRI} within the remnant is resolved. 
+\ac{GRMHD} simulations with seed magnetic field 
+%$(10^{15}~G)$ 
+strong enough that the \ac{MRI} within the remnant \ac{NS} are resolved. 
 This was done in \citet{Radice:2020ids} (see their Fig.~71) 
-using \ac{GRMHD} of \citet{Kiuchi:2017zzg}.
+using \ac{GRMHD} simulation of \citet{Kiuchi:2017zzg}.
 
 
-A subset of \ac{BNS} merger simulations we analyze was computed with this 
-model of the subgrid turbulence. We refer to them as simulations with viscosity or 
-subgrid turbulence. 
+A subset of our \ac{BNS} merger simulations was computed 
+with the aforementioned method. 
+We refer to them as simulations with viscosity or subgrid turbulence. 
 
 
 %
@@ -3121,60 +3133,65 @@ subgrid turbulence.
 
 \section{Simulations and postprocessing}
 
-%TODO add general description of runs / trajectories
-\textcolor{red}{Do I need some general information on runs? Overall trajectory, remnants, computational cost?}
-
 %\chapter{Binary Neutron Star merger simulations} \label{ch:bns_sims}
 
-With methods discussed in this chapter, incorporated in 
-the \ac{GRHD} code \wisky{} a a large set of \ac{BNS} merger 
-simulations was performed. We summarize their properties in the
+With the numerical code \wisky{} that incorporates methods, 
+discussed in this chapter, a large set of \ac{BNS} merger 
+simulations was performed. We summarize their properties in 
 Tab.~\ref{tab:sim}. 
 %
-The details on the numerical setup of \wisky{} 
-are reported in Appendix~\ref{app:whisky}.
+%The details on the numerical setup of \wisky{} 
+%are reported in Appendix~\ref{app:whisky}.
 
-%% --------------------------------
-%% TAB SIM SUMMARY
-\input{Tables/tabSim.tex}
-%% --------------------------------
 
-In total we analyze a sample of $37$ models of unique binaries with the 
-chirp mass $\mathcal{M}_c = 1.188\,\Msun$ that corresponds to the source of \GW{}.
+
+Each simulation was performed with at least two resolutions to assess the 
+finite-grid-size effects. We distinguish high, standard and low resolutions, 
+denoted as \texttt{HR}, \texttt{SR} and \texttt{LR} respectively. 
 %
-The total gravitational mass covers the range $M\in[2.73, 2.88]\,\Msun$, while the 
-mas ration $q=M_A/M_B\in[1,1.8]$. 
+%$16$ binaries are also simulated at high resolution, \texttt{HR}.
+In total $76$ \ac{BNS} merger simulations were computed and analyzed, 
+out of which $37$ unique simulations are presented in Tab.~\ref{tab:sim}. 
 %
-We show the masses and radii of computed models as markers in 
-Fig.~\ref{fig:method:tov_mr} and summarize their main properties, 
-and the dynamical ejecta properties in Tab.~\ref{tab:sim}.
+% and summarize their main properties, 
+%and the dynamical ejecta properties in Tab.~\ref{tab:sim}.
 %
-Most simulations are performed with at least two resolutions, 
-\texttt{LR} and \texttt{SR}. 
-$16$ binaries are also simulated at high resolution, \texttt{HR}.
-In total $76$ models are computed and studied.
+%Each simulation was performed with at least two resolutions to assess the 
+%finite-grid-size effects. We distinguish high, standard and low resolutions, 
+%denoted as \texttt{HR}, \texttt{SR} and \texttt{LR} respectively. 
+%%
+%%$16$ binaries are also simulated at high resolution, \texttt{HR}.
+%In total $76$ \ac{BNS} merger simulations were computed and analyzed.
 %
 Several binaries that resulted in a formation of a \ac{NS} remnant 
 that does not collapse to a \ac{BH} are evolved up to $100\,$ms \pmerg.
 %
 Most simulations include the effects of subgrid turbulence. 
-Those that are not are marked with ``*'' next to the equation of state name.
+Those that are not are marked with ``*'' next to the \ac{EOS} name.
 %
 The naming convention for simulations is the following: 
-the equation of state name, the mass ratio, and the resolution, \eg, 
-the ``BLh* $q=1.00$ (\texttt{SR})" would refer to the simulation of the equal mass
-binary performed with BLh \ac{EOS}, without subgrid turbulence and at standard resolution. 
+the \ac{EOS} name, the \mr{}, and the resolution, \eg, 
+the `` BLh* $q=1.00$ (\texttt{SR}) '' would refer to the simulation of an 
+equal mass binary performed with BLh \ac{EOS}, without subgrid 
+turbulence and at a standard resolution. 
 If resolution is not mentioned, \texttt{SR} is assumed.
 
+All simulations have chirp mass $\mathcal{M}_c = 1.188\,\Msun$ 
+that corresponds to the source of \GW{}. The total gravitational mass covers 
+the range $M\in[2.73, 2.88]\,\Msun$, while the \mr{} $q=[1,1.8]$. 
+%
+We show the masses and radii of computed models as markers in 
+Fig.~\ref{fig:method:tov_mr}.
 
-In order to analyze the output of the \wisky{} and compute 
-additional physical quantities, we employ the following methods. 
+In order to analyze the output of \wisky{} and compute 
+additional physical quantities, we employ the following 
+postprocessing methods. 
 
 
 %% -------------------------------------------------------------
 
-Describing the properties of matter, we make use of 
-mass-averaged quantities defined as 
+Describing a certain property of matter, $f$, we make use of 
+mass-averaging defined as 
 %
 \begin{equation}
 \label{eq:ppr:average}
@@ -3187,8 +3204,9 @@ where $m_i$ is the mass contained in the $i$-th bin.
 
 \subsection{Disk \& Remnant}\label{sec:bns_sims:method:disk}
 
-It is common to discuss the \pmerg{} state of the \ac{BNS} systems in terms 
-of the remnant, a \ac{NS} or a \ac{BH}, and a disk or torus surrounding it. 
+%It is common to discuss the \pmerg{} state of the \ac{BNS} systems in terms 
+%of the remnant, a \ac{NS} or a \ac{BH}, and a disk or torus surrounding it. 
+
 %However there is not unified convention in how to define the disk and separate it from the former. 
 
 %A disk around a \ac{BH} is the matter outside the apparent horizon 
@@ -3203,8 +3221,11 @@ showed that the angular velocity profiles become approximately Keplerian at this
 \citep[\eg][]{Shibata:2005ss,Shibata:2006nm,Hanauske:2016gia,Kastaun:2016elu}.
 This convention was adopted in several recent works 
 \citep{Radice:2018pdn,Kiuchi:2019lls,Vincent:2019kor}.
-The extraction time here is also important, but less so, 
-as we find that the accretion on the \ac{NS} is considerably slower.
+%
+%The extraction time, \ie, the time \pmerg{} when the disk mass is computed, 
+%is also important, but less so, as we find that the accretion on the 
+%\ac{NS} is considerably slower.
+%
 %In the case where the remnant is a neutron star, the disk definition usually includes 
 %the density cut. For instance, in \cite{Radice:2018pdn,Kiuchi:2019lls,Vincent:2019kor} 
 %the disk is assumed to encompass the matter with $\rho < 10^{13}$~\gcm. 
@@ -3222,15 +3243,17 @@ as we find that the accretion on the \ac{NS} is considerably slower.
 %(see section \ref{sec:theory:gr3p1}).
 
 We compute the disk baryonic mass evaluating
-the volume integral of the conserved rest-mass density, 
-$D=\sqrt{\gamma}~W\rho$,
+the volume integral of the conserved rest-mass density, $D$, as 
 %
 \begin{equation}
 \label{eq:method:mdisk}
-M_{\text{disk}} = \int D \dd^3 x\, 
+M_{\text{disk}} = \int \sqrt{\gamma}~W\rho \dd^3 x  = \int D \dd^3 x\, 
 \end{equation}
 %
 from $3$D snapshots of our simulations in postprocessing.
+%
+Here $\gamma$ is the trace of metric, $W$ is the Lorentz factor. 
+
 
 %% In \cite{Sekiguchi:2016bjd}, the disk mass is extracted at
 %% ${\approx} 30$~ms outside the AH. In \cite{Radice:2018pdn}, the disk mass is computed
@@ -3249,12 +3272,14 @@ from $3$D snapshots of our simulations in postprocessing.
 
 %% FROM THE LETTER 
 
-The hydrodynamic instabilities in newly formed \ac{NS} remnant 
-are monitored by a decomposition in Fourier modes
+We monitor the hydrodynamic instabilities in a newly formed \ac{NS} remnant 
+by a decomposition in Fourier modes
 $e^{- i m \phi}$ of the Eulerian rest-mass density on the equatorial plane 
 \citep[see Eq.~(1) in][]{Radice:2016gym} and characterized by the
 development of a $m=2$ followed by a $m=1$ mode 
-\citep{East:2015vix,Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,Bernuzzi:2013rza,Kastaun:2014fna}.
+\citep{East:2015vix,
+    Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,
+    Bernuzzi:2013rza,Kastaun:2014fna}.
 %In the short-lived remnant (LS220) the $m=1$ mode
 %is subdominant with respect to the $m=2$, and it reaches a maximum close to the collapse
 %\citep{Bernuzzi:2013rza}. Instead, in the long-lived remnant (DD2) the $m=1$
@@ -3325,8 +3350,7 @@ We note that the above quantities are gauge dependent.
 %
 %% FROM PAPER 
 
-The calculation of the fluid's angular momentum analysis in the remnant 
-and disk is done assuming axisymmetry,
+The calculation of the fluid's angular momentum is done assuming axisymmetry,
 %(see Appendix~\ref{app:ang} for derivation)
 that is, we assume $\phi^{\mu} = (\partial_{\phi})^{\mu}$ is a Killing
 vector. 
@@ -3341,6 +3365,7 @@ where $n^\mu$ is the normal vector to the spacelike hypersurfaces of
 the spacetime's $3+1$ decomposition.
 %
 The equation implies the conservation of the angular momentum, 
+defined as 
 \begin{equation}
 J = % \int j dV = 
 %- \int \, T_{\mu\nu}n^{\mu}\phi^{\nu}\,\dd ^3x = 
@@ -3348,7 +3373,7 @@ J = % \int j dV =
 T_{\mu\nu}n^{\mu}\phi^{\nu}\,\sqrt{\gamma}\, \dd^3 x\ .
 \end{equation}
 %
-In the cylindrical coordinates $x^i=(r,\phi,z)$ adapted to the symmetry, 
+In the cylindrical coordinates, $x^i=(r,\phi,z)$, adapted to the symmetry, 
 the angular momentum density is  
 %
 \begin{equation}
@@ -3373,7 +3398,7 @@ We evaluate these quantities from the $3$D snapshots of our simulations.
 
 %To model and study the electromagnetic counterparts to mergers, the amount and properties 
 %of the material leaving the system are needed.
-The matter expelled at high velocity during \ac{BNS} mergers 
+The matter, expelled at high velocities during \ac{BNS} mergers 
 may ultimately become unbound from the 
 central gravitational potential. 
 There are two indicators commonly adopted to mark the unbound matter.
@@ -3386,18 +3411,18 @@ is a constant of motion for geodesics.
 Additionally, if the space is asymptotically flat, at infinity the $u_t = -W$, 
 where $W$ is the fluid element Lorentz factor. 
 Then, if a fluid element has $u_t < -1$, it may be considered unbound 
-as it will retain the non-zero positive velocity at infinity. 
+as it will retain a non-zero positive velocity at infinity. 
 %
 The fluid asymptotic velocity reads 
 \begin{equation}
 \upsilon_{\infty} \simeq \sqrt{2E_{\infty}} = \sqrt{(1-u_t ^2)}.
 \end{equation}
 %
-This criterion can be thought of as assuming that the fluid to be made of isolated 
-particles that follow geodesics in the static spacetime. 
-Indeed, the effects of \acp{EOS} 
+This criterion can be thought of as assuming that the fluid 
+is be made of isolated particles that follow geodesics i
+n the static spacetime. Indeed, the effects of \acp{EOS} 
 (fluids pressure gradient, internal energy and heating) %(\eg, due to an $r$-process (\red{see section XXX})) 
-are neglected which might lead to 
+are neglected which might lead to an 
 underestimation in the ejecta mass. 
 %
 %The space time is also assumed to be static.
@@ -3413,8 +3438,8 @@ is widely used in the literature
 
 From the relativistic Bernoulli equation \citep{Rezzolla:2013}, it follows
 that for a stationary relativistic flow, the $hu_t$ is constant along the 
-fluid worldliens. Here $h$ is the (relativistic) enthalpy, which is
-defined up to a constant factor. 
+fluid worldliens. Here $h$ is the (relativistic) enthalpy. 
+%which is defined up to a constant factor. 
 %
 If at the spatial infinity the enthalpy is set so $h\rightarrow-1$, 
 %\red{in Vincent it is $h\leftarrow 1$}
@@ -3429,7 +3454,7 @@ The associated asymptotic velocity is calculated as
 \end{equation}
 %
 The criterion can be regarded as assuming all the internal energy of the fluid 
-gets added to the fluid kinetic energy, as the fluid decompresses.
+gets added to the fluid kinetic energy, as fluid decompresses.
 % \red{(pressure drops?)}.
 %
 %The $r$-process nucleosynthesis that occurs in the outflow deposits the energy.
@@ -3447,9 +3472,9 @@ if the estimation is done within a given volume \citep{Kastaun:2014fna}.
 
 
 
-We adopt the geodesic criterion to study the "burst-like", short outflows,
+We adopt the geodesic criterion to study the ``burst-like '', short outflows,
 such as \ac{DE}, where the pressure gradient is not expected to make a significant contribution.
-For the steady-state outflows, like \pmerg{} winds we adopt the Bernoulli criterion.
+For the steady-state outflows, like \pmerg{} winds, we adopt the Bernoulli criterion.
 %
 The term ejecta would refer to the material gravitationaly 
 unbound according to either of the criteria.
