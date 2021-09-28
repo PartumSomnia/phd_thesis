@@ -732,15 +732,27 @@ caused by the subgrid turbulence and by the finite grid \citep{Bernuzzi:2020txg,
     \centering
     \includegraphics[width=0.49\textwidth]{disk/final_structure/slice_xz_entr_ye_blh_q1_rl3.pdf}
     \includegraphics[width=0.49\textwidth]{disk/final_structure/slice_xy_entr_ye_blh_q1_rl3.pdf}
-    \caption{Entropy and electron fraction on the $(x,z)$ (top) and
-        $(x,y)$ planes (bottom) for the remnant of BL $q=1$ at the end
-        of the simulation. Each plot is divided vertically, with entropy
-        being color-coded on the left and electron fraction on the
-        right. Solid contours stand for rest muss density. Counting from
-        the center, the values are $[10^{13}, 10^{12}, 10^{11}, 10^{10},
-        10^{9}]$ g cm$^{-3}$, with the inner most contour encompassing
-        the remnant.
-        (Adapted from \citet{Nedora:2020pak})
+    \caption{
+        Snapshots of disk properties on $(x,z)$ \textit{left panel} and 
+        $(x,y)$ \textit{right panel} for BLh $q=1.00$ model, taken 
+        $88\,$ms \pmerg{}. 
+        %
+        On each panel, the entropy per baryon is shown on the left 
+        side of the panel, and the electron fraction -- on the right. 
+        %
+        Solid contours mark the rest mass density values, that from the 
+        innermost yellow contour, encompassing the remnant, read 
+        $[10^{13}, 10^{12}, 10^{11}, 10^{10}, 10^{9}]$ g cm$^{-3}$.
+        (Adapted from \citet{Nedora:2020pak}). 
+%        Entropy and electron fraction on the $(x,z)$ (top) and
+%        $(x,y)$ planes (bottom) for the remnant of BL $q=1$ at the end
+%        of the simulation. Each plot is divided vertically, with entropy
+%        being color-coded on the left and electron fraction on the
+%        right. Solid contours stand for rest muss density. Counting from
+%        the center, the values are $[10^{13}, 10^{12}, 10^{11}, 10^{10},
+%        10^{9}]$ g cm$^{-3}$, with the inner most contour encompassing
+%        the remnant.
+%        (Adapted from \citet{Nedora:2020pak})
     }  
     \label{fig:snapshots_xy_ye_entr}
 \end{figure}
@@ -748,12 +760,21 @@ caused by the subgrid turbulence and by the finite grid \citep{Bernuzzi:2020txg,
 \begin{figure*}[t]
     \centering 
     \includegraphics[width=0.95\textwidth]{disk/final_structure/disk_hist_shared.pdf}
-    \caption{Composition of the disks at the end of the long-lived
-        remnants simulations. The histograms refer to the temperature $T$
-        (left),
-        electron fraction $Y_e$
-        (middle) and entropy $s$ (right).
-        (Adapted from \citet{Nedora:2020pak})
+    \caption{
+        Disk properties in the form of mass histograms 
+        at the end of evolution for a set of simulations.
+        From left to right, panels depict the temperature, $T$, 
+        fraction $Y_e$ and entropy $s$. 
+        (Adapted from \citet{Nedora:2020pak}).
+%        \textit{Left panel} shows the temperature, $T$, 
+%        \textit{middle panel} depicts the, 
+%        
+%        Composition of the disks at the end of the long-lived
+%        remnants simulations. The histograms refer to the temperature $T$
+%        (left),
+%        electron fraction $Y_e$
+%        (middle) and entropy $s$ (right).
+%        (Adapted from \citet{Nedora:2020pak})
     }
     \label{fig:final_disk_struct_hist_long}
 \end{figure*}
@@ -764,7 +785,7 @@ caused by the subgrid turbulence and by the finite grid \citep{Bernuzzi:2020txg,
 %
 From the density contours in Fig.~\ref{fig:snapshots_xy_ye_entr}, 
 we observe that even at ${\sim}88\,$ms after merger the disk
-of BLh $q=1.00$ model remains geometrically thick. 
+of the BLh $q=1.00$ model remains geometrically thick. 
 %We find that the generally the disk is optically thick.
 Comparing with other models we note that 
 the disk' \ac{RMS} half-openning angle appears to be independent of the 
@@ -773,9 +794,22 @@ The radial extend of the disk, however increases with the \ac{EOS} softness and 
 %
 Similarly, the final disk mass is larger for the unequal mass binaries, 
 ranging overall between ${\sim}0.1\,M_{\odot}$ and ${\sim}0.4\,M_{\odot}$
-(see Tab.~\ref{tab:sim}) and is larger in case of long-lived remnants, 
-than short-lived ones as \ac{BH} accretion removes ${\sim}50\%$ 
-of the mass in the latter case.
+(see Tab.~\ref{tab:sim}) and is larger in the case of long-lived remnants.
+
+%
+We examine disk mass dependencies on binary parameters in Appendix~\ref{ch:stat}, 
+Sec.~\ref{sec:stat:remdisk}, where we combine our data with the data available in 
+the literature and show that the aforementioned dependencies on $q$ and $\tilde{\Lambda}$ 
+can be captured by a simple two parameter, second order polynomial in this quantities. 
+%
+The systematics in data, however, are large, and while in comparison with other fitting 
+formulae available in the literate, the polynomial performs better, 
+significantly larger sample of simulations with advanced physics and consistent method 
+of disk mass extraction is required for constraining the polynomial, especially at the 
+known boundaries of the parameter space, \eg, $\tilde{\Lambda}\rightarrow0$.
+
+%than short-lived ones as \ac{BH} accretion removes ${\sim}50\%$ 
+%of the mass in the latter case.
 %
 %Notably, for models with long-lived remnants the disk mass is larger,
 %that for the those with short-lived remnants. This can be attributed to the 
@@ -803,47 +837,41 @@ The mass-averaged temperature, electron fraction and entropy per baryon
 for several representative models are presented in Fig.~\ref{fig:final_disk_struct_hist_long}.
 %
 The plot shows that the mass-weighted distribution of the entropy and electron 
-fraction have a bimodal structure, more pronounced for the 
+fraction have a bimodal structure, more pronounced in the case of 
 equal mass binaries. 
-Regarding entropy, two peaks are present in the distribution:
-a low entropy peak, $s\sim5-10\,k_B/$baryon, that is largely independent of 
-\ac{EOS} and \mr{} and corresponds to the bulk, mildly shocked, material;
-and the higher entropy peak, $s\sim15-22\,k_B/$baryon that corresponds to 
-the strongly shocked material and is more prominent 
-in models with softer \ac{EOS}. 
+The low entropy, $s\sim5-10\,k_B/$baryon, peak corresponds to the bulk, mildly shocked, 
+material, while the higher entropy peak, $s\sim15-22\,k_B/$baryon, marks 
+the strongly shocked material. Notably, the former is largely independent of 
+\ac{EOS} and \mr{} while the latter is more pronounced in models with softer \ac{EOS}. 
+
 %
 %Notably, in models with higher \mr{}, 
 %the second peak is located at lower $s$. 
-
-The mass-weighted distribution 
-of the electron fraction displays a similar double-peak structure.
-The low $Y_e$ peak that corresponds to the neutrino-shielded part of the 
-disk, is located around the $Y_e\sim0.1$. The high $Y_e$ peak is located at 
-$Y_e\sim0.3-0.4$ and corresponds to the outer parts of the disk,
+%
+%The mass-weighted distribution 
+%of the electron fraction displays a similar double-peak structure.
+Similarly, the low $Y_e$ peak, $Y_e\sim0.1$, corresponds to the neutrino-shielded part of the 
+disk, while the high $Y_e$ peak, $Y_e\sim0.3-0.4$, marks the outer parts of the disk,
 where fluid is subjected to the strong neutrino irradiation.
 %
-In Fig.~\ref{fig:snapshots_xy_ye_entr} we show the electron fraction 
-and entropy per baryon on the $xy$ and $xz$ slices of the equal 
-mass model with BLh \ac{EOS}. The plot shows, that the two peaks in the 
-mass-weighted distribution of electron fraction and entropy correspond to 
-different regions within the disk.
-
-With respect to tempererature, we find that 
-most of the disk matter has temperature of $T\sim 1-10\,$MeV, with the 
-innermost parts being hotter then the outer outermost. 
-The disk temperature distribution appears to be largely 
-independent of the \ac{EOS} and \mr{}
-
+Comparing the disk properties with the 2D snapshots of the electron fraction 
+and density within the disk shown in Fig.~\ref{fig:snapshots_xy_ye_entr}, we observe, 
+that indeed, the two peaks in the mass-weighted distribution of these quantities 
+correspond to different regions within the disk.
 %
-We examine disk mass dependencies on binary parameters in Appendix~\ref{ch:stat}, 
-Sec.~\ref{sec:stat:remdisk}, where we combine our data with the data available in 
-the literature and show that the aforementioned dependencies on $q$ and $\tilde{\Lambda}$ 
-can be captured by a simple two parameter, second order polynomial in this quantities. 
-The systematics in data, however, are large, and while in comparison with other fitting 
-formulae available in the literate, the polynomial performs better, 
-significantly larger sample of simulations with advanced physics and consistent method 
-of disk mass extraction is required for constraining the polynomial, especially at the 
-known boundaries of the parameter space, \eg, $\tilde{\Lambda}\rightarrow0$.
+%In Fig.~\ref{fig:snapshots_xy_ye_entr} we show the electron fraction 
+%and entropy per baryon on the $xy$ and $xz$ slices of the equal 
+%mass model with BLh \ac{EOS}. The plot shows, that the two peaks in the 
+%mass-weighted distribution of electron fraction and entropy correspond to 
+%different regions within the disk.
+
+With respect to the temperature, we find that 
+most of the disk matter has temperature of $T\sim 1-10\,$MeV with the 
+innermost parts being hotter then the outermost ones. 
+The disk temperature distribution appears to be largely 
+independent of the \ac{EOS} and \mr{}.
+
+
 
 %% -----------------------------------------------
 %%
@@ -896,55 +924,65 @@ known boundaries of the parameter space, \eg, $\tilde{\Lambda}\rightarrow0$.
 \begin{figure}[t]
     \centering 
     \includegraphics[width=0.49\textwidth]{ejecta_sec/secular_j_mb_RNS_blh.pdf}
-    \caption{Baryon mass vs angular momentum diagram for the BLh $q=1$ remnant.
-        The colored diamond marks the baryonic mass and angular momentum at the end
-        of the dynamical gravitational-wave dominated phase.
-        After the GW phase, the evolution is driven by the massive outflows.
-        The solid black line is the $M_b$ and $J$ estimated from the 3D data
-        integrals under the assumption of axisymmetry.
+    \caption{
+        Evolution of the BLh $q=1.00$ \pmerg{} remnant $J$-$M_b$ space, where 
+        $J$ is the total angular momentum, $M_b$ is the baryonic mass, 
+        depicted with the solid black line. The evolution begins in the 
+        upper right corner and proceeds towards the lower left one, as the 
+        remnant looses, first angular momentum to \ac{GW} emission, than, 
+        both $J$ and $M_b$ to massive winds. The point where the \ac{GW}-phase 
+        ends is marked with yellow marker. 
+        The end of the black solid line indicates the end of our simulation. 
+        We linearly extrapolate the evolution trajectory, and plot it with black crosses. 
+%        Baryon mass vs angular momentum diagram for the BLh $q=1$ remnant.
+%        The colored diamond marks the baryonic mass and angular momentum at the end
+%        of the dynamical gravitational-wave dominated phase.
+%        After the GW phase, the evolution is driven by the massive outflows.
+%        The solid black line is the $M_b$ and $J$ estimated from the 3D data
+%        integrals under the assumption of axisymmetry.
         The green dashed line is a conservative estimate
         of the mass ejection and a possible trajectory for the viscous
-        evolution as estimated in \citet{Radice:2018xqa}. The crosses are
-        a linear extrapolation in time of the solid black line. The gray
-        shaded region is the region of stability of rigidly rotating NS equilibria,
-        computed via \texttt{RNS} code
-        Adopted from \cite{Nedora:2020pak}
+        evolution as estimated in \citet{Radice:2018xqa}. 
+%        The crosses are
+%        a linear extrapolation in time of the solid black line. 
+        The gray
+        shaded region is the region of stability of rigidly rotating \ac{NS} 
+        equilibria. 
+        (Adapted from \citet{Nedora:2020pak}).
     }
     \label{fig:total_j_mb_rns_blh}
 \end{figure}
 %        \footnote{
 %            \url{http://www.gravity.phys.uwm.edu/rns/#:~:text=RNS%20is%20a%20code%20written,are%20supplied%20by%20the%20user.}
 %        }
-Quantitative understanding of the \pmerg{} dynamics on the timescales 
-longer than those presented here requires ab-initio \ac{NR} simulations in 
-$(3+1)$D with compete physics.
+Quantitative understanding of the long-term \pmerg{} dynamics 
+requires ab-initio \ac{NR} simulations in $(3+1)$D with compete physics.
 %
-Here we asses the possible long term evolution via an indirect method, 
+Here we asses a possible long-term evolution via an indirect method, 
 focusing on the BLh $q=1.00$ (\texttt{SR}) model, one of the longest runs 
 performed. 
 
-After the merger, the \ac{NS} remnant is born with an excess in baryon mass
-with respect to the beta-equilibrium \ac{NS} configurations.
+In this simulation, after the merger, a \ac{NS} remnant is born with an excess 
+in baryon mass with respect to the beta-equilibrium \ac{NS} configurations.
 %
 In Fig.~\ref{fig:total_j_mb_rns_blh} we show the evolution of the 
-total baryon mass, $M_b$, and total angular momentum, $J$, of the remnant
-(black solid line) 
-with the starting point being the merger (upper right corner).
+total baryon mass, $M_b$, and total angular momentum, $J$, of this remnant
+(black solid line). 
 %
 The total $J$ and $M_b$ are evaluated in cylindrical coordinates assuming 
-axisymmetry and relaxing the rest-mass density criterion 
-(see Eq.~\eqref{eq:method:ang_mom} and Eq.~\eqref{eq:method:mdisk},
-in Sec.~\ref{sec:bns_sims:method:ang_mom} and Sec.~\ref{sec:bns_sims:method:disk} respectively for more details).
+axisymmetry, accounting for both matter in the remnant and the disk. 
+%(see Eq.~\eqref{eq:method:ang_mom} and Eq.~\eqref{eq:method:mdisk},
+%in Sec.~\ref{sec:bns_sims:method:ang_mom} and Sec.~\ref{sec:bns_sims:method:disk} respectively for more details).
 %
 %(for the definition of the latter see Sec.~\ref{sec:bns_sims:method:ang_mom}).
 %
-At early \pmerg{}, when no substantial outflow happened, the 
-evolution is governed by the emission of \acp{GW} and the remnant loses 
-angular momentum retaining constant baryonic mass, $M_b=\text{const}$ part.
+At early \pmerg{}, when no substantial mass-loss happened yet, the 
+evolution is governed by the emission of \acp{GW}. The remnant loses 
+angular momentum retaining constant baryonic mass.
 %
 In order to evaluate the total amount of angular momentum lost to 
 \acp{GW} we perform the frequency-domain integration of the \ac{GW} 
-strain with the extraction sphere of $R=400\,\Msun$, using the 
+strain with the extraction sphere of $R=400\,\Msun$ using the 
 \texttt{strain.py} module of the public library 
 \texttt{scidata}\footnote{\url{https://bitbucket.org/dradice/scidata}}.
 The method is discussed in 
@@ -966,8 +1004,9 @@ The method is discussed in
 %    The routines used for the calculation are taken from the scientific library
 %    \texttt{scidata}, available at \url{https://bitbucket.org/dradice/scidata}.
 %}.
-%
-Substructing it from the initial data, \ac{ADM} angular momentum,  %\red{(see \url{https://arxiv.org/pdf/1001.5429.pdf})} 
+
+Subtracting the angular momentum lost to \acp{GW} from the initial data, 
+%\ac{ADM} angular momentum,  %\red{(see \url{https://arxiv.org/pdf/1001.5429.pdf})} 
 we obtain the value that is left to the system after the \ac{GW} phase 
 (the yellow marker in Fig.~\ref{fig:total_j_mb_rns_blh}\footnote{
     Due to different assumptions in its calculation the agreement 
@@ -978,19 +1017,43 @@ We observe that at this stage the remnant still has an excess in angular momentu
 in comparison with the rigidly rotating \ac{NS} configurations with the same baryon mass 
 (gray triangular region in Fig.~\ref{fig:total_j_mb_rns_blh}).
 %
+The equilibria configurations were computed using the \texttt{RNS} code \footnote{
+    \texttt{RNS} is a code written by Nikolaos Stergioulas which constructs 
+    models of rapidly rotating, relativistic, compact stars using tabulated 
+    \ac{EOS} \url{http://www.gravity.phys.uwm.edu/rns/}.
+}.
+%
 %Similar situation is found for other 
 We observe the same situation in all our models.% \citep{Zappa:2017xba,Radice:2018xqa}.
 
-
-The \ac{NS} remnant of BLh $q=1.00$ model exceeds also the maximum mass 
-that a rigidly rotating 
-equilibria could have. Such remnant is generally referred to as a \ac{HMNS}
-(see Sec.~\ref{sec:intro:merg_pmerg}) \citep{Baumgarte:1999cq} 
+Notably, also the baryonic mass of the \pmerg{} remnant exceeds the 
+the maximum mass that a rigidly rotating equilibria could have. 
+As we mentioned in Sec.~\ref{sec:intro:merg_pmerg}, such remnant is generally referred 
+to as a \ac{HMNS} \citep{Baumgarte:1999cq} 
 % following the 
 %nomenclature introduced for zero-temperature \ac{EOS} equilibria \acp{NS} \citep{Baumgarte:1999cq}, 
 and is expected to collapse to a \ac{BH} shortly after formation. 
-Fig.~\ref{fig:total_j_mb_rns_blh} shows that a remnant can avoid the collapse by 
-efficiently removing angular momentum and mass, and can reach the rigidly rotating equilibria phase.% in a ${\sim}350\,$ms.
+%
+However, as Fig.~\ref{fig:total_j_mb_rns_blh} shows, a remnant that efficiently 
+looses mass sets on a trajectory towards the rigidly rotating, stable configuration. 
+%
+The extrapolation of the final trend of the mass and angular momentum loss shows that 
+if ${\approx}0.05\,\Msun$ (${\approx}40$\% of the final disk at the end of the simulation) is 
+ejected, the \ac{NS} remnant would approach the rigidly rotating equilibria region 
+at the mass-shedding limit (gray-shaded region in Fig.~\ref{fig:total_j_mb_rns_blh}). 
+%
+Extrapolation indicates, that if the ejecta mass flux does 
+not change, this would occur on a timescale of ${\sim}350$~ms \pmerg{}.
+%
+Thus, in principle, a \ac{HMNS} remnant can avoid the collapse. 
+This calls for a more detailed investigation with long-term \ac{NR} \ac{BNS} 
+merger simulations that employ advanced physics.
+
+%
+%However, as Fig.~\ref{fig:total_j_mb_rns_blh} shows, the remnant that efficiently 
+%losses mass, can avoid the collapse, if the \ac{RNS} concan avoid the 
+%collapse by efficiently removing angular momentum and mass, and can reach the 
+%rigidly rotating equilibria phase.% in a ${\sim}350\,$ms.
 %avoiding the collapse.
 %
 %
@@ -1005,25 +1068,19 @@ efficiently removing angular momentum and mass, and can reach the rigidly rotati
 %    axisymmetry are compatible within the errors made in the latter estimate.
 %}.
 
-We observed that after the \ac{GW} phase, the remnant continues to evolve, loosing the 
-angular momentum together with the baryon mass. 
-We call this outflow induced by the interaction between non-axisymmetric 
-remnant, sibjected to $m=1$ and $m=2$ instabilities, and the disk, 
-the \swind{}. 
+The massive outflow that starts to dominate the \pmerg{} dynamics after the \ac{GW}-phase 
+is driven by the interaction between non-axisymmetric 
+remnant, subjected to $m=1$ and $m=2$ instabilities, and the disk.
+We call this outflow \ac{SWW} and examine its properties in detail in the next section. 
+
 %
-The extrapolation of the final trend of the mass and angular momentum loss shows that 
-if ${\approx}0.05\,\Msun$ (${\approx}40$\% of the final disk at the end of a  simulation) is 
-ejected, the \ac{NS} remnant would approach the rigidly rotating equilibria region 
-at the mass-shedding limit (gray-shaded region in Fig.~\ref{fig:total_j_mb_rns_blh}). 
-Extrapolation indicates, that if the ejecta mass flux does 
-not change, this would occur on a timescale of ${\sim}350$~ms \pmerg{}.
 %
 %Similar results are obtained with the conservative upper bound estimate on the 
 %evolution of the long-lived remnant (Eq.~$2$ in \citet{Radice:2018xqa}) (green dashed line in 
 %the figure). 
 
-Following \citet{Radice:2018xqa} we estimate a conservative upper bound 
-evolution of the long-lived remnant based on the following considerations.
+Additionally, we estimate a conservative upper bound evolution of the 
+long-lived remnant based on the following considerations \citep{Radice:2018xqa}.
 %
 %%%% From Radice18 paper on ViscousEjecta
 %A more conservative estimate can be obtained assuming
@@ -1070,8 +1127,8 @@ evolution of the long-lived remnant based on the following considerations.
 %larger than what they estimated.
 The recombination of nucleons into nuclei and the subsequent 
 liberation of nuclear binding energy can be a driving force 
-of the massive outflows. Matter becomes unbound gravitationally 
-once it reaches a cylindrical radius $r^*$ at which the nuclear recombination energy 
+of massive outflows. Matter becomes unbound gravitationally 
+once it reaches cylindrical radius $r^*$ at which the nuclear recombination energy 
 equals the gravitational binding energy
 \citep[\eg][]{Fernandez:2013tya}, 
 %
@@ -1093,6 +1150,9 @@ the ring initially at $r$ is
 where $ r^{*} = 300 G / c^2 M \,$ is the fiducial value, corresponding
 to assumed total mass $M \approxeq 2.5M_{\odot}$ \citep{Radice:2018xqa}.
 The expected trajectory is shown as the green line in Fig.~\ref{fig:total_j_mb_rns_blh}.
+%
+This analysis further suggests, that sufficiently massive outflows 
+can bring \pmerg{} \ac{HMNS} remnant to stability. 
 
 %\red{WHAT the fuck is Keplerian limit, mass-shedding limit and rigidly rotating equilibria}
 %Additionally, while this simulation included the effects of turbulent viscosity on the
@@ -1100,14 +1160,14 @@ The expected trajectory is shown as the green line in Fig.~\ref{fig:total_j_mb_r
 %\citep{Metzger:2006mw,Bucciantini:2011kx,Siegel:2017nub,Fernandez:2018kax,Ciolfi:2020hgg}.
 %
 %
-Our other simulations also produce \ac{NS} remnants with a similar evolutionary paths. 
+Our other simulations also produce \ac{NS} remnants with similar evolutionary paths. 
 Models with DD2 \ac{EOS} however, are born with an excess in angular momentum but not in 
 baryon mass. They also evolve toward the rigidly rotating equilibria but slower.
 Models with $q>1.00$ produce remnants that generally have larger excess in angular momentum 
-and mass have how to shed a larger amount of mas to reach equilibrium configuration.
+and mass. They have to shed a larger amount of mas to reach an equilibrium configuration.
 %(\red{However we also show that these models tend to have stronger \swind{}, see sec.SPIRAL.WIND})
-Overall, we estimate that for models with $q=1.00$ need to shed ${\sim}0.05\,\Msun$ while 
-models with $q\eqsim 1.4$ need to remove $0.2\,\Msun$ to reach equilibrium configuration.
+Overall, we estimate that models with $q=1.00$ need to shed ${\sim}0.05\,\Msun$ while 
+models with $q\eqsim 1.4$ need to remove $0.2\,\Msun$ to reach such configuration.
 
 
 
@@ -1201,33 +1261,37 @@ models with $q\eqsim 1.4$ need to remove $0.2\,\Msun$ to reach equilibrium confi
 %velocity and mass, dependent on the parameters of the binary and \ac{NS} \ac{EOS}.
 %%% === ON THE FAST DYNAMICAL EJECTA IN PARTICULAR ===========
 
-We employ the geodesic criterion (See Sec.~\ref{sec:bns_sims:method:ejecta}) 
-to flag the \ac{DE}, extracting its properties at 
-$R=294\,$km from the remnant (unless specified otherwise).
-%We flag the matter as \ac{DE} that has $u_t < -1$, where $u_{\alpha}$ is the 
-%fluid four-velocity passing the extraction sphere located at $R=294\,$km 
-%from the remnant (unless specified otherwise).
-%See Sec.~\ref{sec:bns_sims:method:ejecta} for more details.
+We discussed the mechanisms behind \ac{DE} in Sec.~\ref{sec:intro:ejecta}. 
+Here we assess the properties of \ac{DE} in our simulations. These properties 
+are final, as the ejecta mass flux saturates ${\lesssim}20\,$ms after merger, 
+and all our simulations are longer than that. We extract them at $R=294\,$km 
+from the remnant (unless specified otherwise), using the geodesic criterion 
+(See Sec.~\ref{sec:bns_sims:method:ejecta}). 
+
 %
-The \ac{DE} mass flux saturates ${\lesssim}20\,$ms after merger.
-Thus, for all out simulations, the ejecta properties are final.
-%
-To perform quantitative analysis we compute mass-averaged quantities, such 
-as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$. 
-%(see App.~\ref{ch:ppr}, and Eq.~\ref{eq:ppr:average} there).
-%
-\begin{figure*}[t]
+\begin{figure*}[t!]
     \centering 
-    \includegraphics[width=0.32\textwidth]{statistics/ej_q_mej_our_poly22_cc.pdf}
-    \includegraphics[width=0.32\textwidth]{statistics/ej_q_vej_our_poly22_cc.pdf}
-    \includegraphics[width=0.32\textwidth]{statistics/ej_q_yeej_our_poly22_cc.pdf}
-    \caption{Dynamical ejecta properties as a function of mass ratio
-        and reduced tidal parameter. The dependency on the latter is
-        color coded. From left to right the main panels show the total
-        mass, the mass-averaged velocity and the electron fraction.
-        The bottom panels show the relative difference between the data
-        and the fit polynomial fit discussed in the text.
+    \includegraphics[width=0.45\textwidth]{statistics/ej_q_mej_our_poly22_cc.pdf}
+    \includegraphics[width=0.45\textwidth]{statistics/ej_q_vej_our_poly22_cc.pdf}
+    \includegraphics[width=0.45\textwidth]{statistics/ej_q_yeej_our_poly22_cc.pdf}
+    \caption{
+        Mass, mass-averaged velocity and electron fraction for \ac{DE} 
+        from our simulation as functions of binary parameters $q$ and $\tilde{\Lambda}$, 
+        on the \textit{first}, \textit{second} and \textit{third} \textit{panels} 
+        respectively. 
+        %
+        In each panel, the lower suplot shows the relative difference 
+        between the data and values inferred from the polynomial fitting 
+        formula (see the text). 
+        %
         (Adapted from \citet{Nedora:2020pak})
+%        Dynamical ejecta properties as a function of mass ratio
+%        and reduced tidal parameter. The dependency on the latter is
+%        color coded. From left to right the main panels show the total
+%        mass, the mass-averaged velocity and the electron fraction.
+%        The bottom panels show the relative difference between the data
+%        and the fit polynomial fit discussed in the text.
+%        (Adapted from \citet{Nedora:2020pak})
         %\red{Is not referenced in velocity and Ye sections!}
         %\red{but referenced in the afterglow section}
     }
@@ -1235,7 +1299,7 @@ as temperature, $T$, entropy per baryon, $s$, and electron fraction, $Y_e$.
 \end{figure*}
 %
 Comparing the ejecta properties between simulations with and 
-without subgrid turbilence (See Tab.~\ref{tab:sims}) we observe 
+without subgrid turbilence (See Tab.~\ref{tab:sim}) we observe 
 that the effect of subgrid turbulence on the dynamical 
 ejecta properties however, is rather week and comparable to the effects 
 of finite grid discretization 
@@ -1247,11 +1311,8 @@ reduced tidal deformability, $\tilde{\Lambda}$ for our models.
 The plot suggests that there are trends in data, relations between ejecta 
 parameters and binary parameter. 
 %
-
-
-
 In order to examine these relations in more details we enlarge the sample 
-of simulations, by collecting the published sets of \ac{BNS} merger models.
+of simulations by collecting the published sets of \ac{BNS} merger models.
 %
 %%
 %A specific goal of our analysis is the comparison with previous studies 
@@ -1278,14 +1339,13 @@ We group them with respect to the employed neutrino treatment:
     $M_{\rm tot}\in[2.52,2.88]$, 
     and $M_{\rm chirp}\in[1.10,1.25]$.
     %% ---
-    \item \DSrefset{} harbors models 
-    discussed in this thesis.
+    \item \DSrefset{} harbors our models. 
     %    with the same physical setup as 
     %    those models with leakage+M0 of \citet{Radice:2018pdn}, that are 
     %    part of the \DSheatcool{}. However, these models, presented in 
     %    \citet{Perego:2019adq,Nedora:2019jhl,Bernuzzi:2020txg,Nedora:2020pak}, 
     %    and disucssed in Ch.~\ref{ch:bns_sims}, 
-    For the reason that they are uniform in turns of the 
+    For the reason that they are uniform in terms of the 
     numerical setup, code and physics and have fixed chirp mass 
     we group them into a separate, reference dataset. 
     The models of this set span $q\in[1, 1.82]$, 
@@ -1295,7 +1355,7 @@ We group them with respect to the employed neutrino treatment:
     %% ---
     \item \DScool{} comprises models with leakage scheme as neutrino treatment and 
     microphysical \ac{EOS}. The dataset includes a subset of models from 
-    \citet{Radice:2018pdn} ($35$ runs denoted as LK),
+    \citet{Radice:2018pdn} %($35$ runs denoted as LK),
     and the set of models from \citet{Lehner:2016lxy}.
     The models in this dataset span $q\in[1, 1.31]$, 
     $\tilde{\Lambda}\in[116, 1688]$, 
@@ -1316,40 +1376,46 @@ We group them with respect to the employed neutrino treatment:
 \end{itemize}
 
 %% --- Overal dataseamble
-In total $324$ \ac{NR} models are collected.
-For each of which we compute the reduced tidal parameter, $\tilde{\Lambda}$, 
-Eq.~\eqref{eq:intro:Lambda} \red{MIGT BE MISSING}, 
-solving the \ac{TOV} equations for the corresponding 
-gravitational masses of the stars and \ac{EOS}.
+In total $324$ \ac{NR} models are collected. In cases where $\tilde{\Lambda}$ 
+is not available, we compute it by solving \ac{TOV} equations 
+for the corresponding gravitational masses of the stars and \ac{EOS}.
 % 
 For a subset of models with polytropic \acp{EOS} of \citet{Bauswein:2013jpa}
-and \citet{Kiuchi:2019lls}, however, the \ac{EOS} data are not available and, 
+and \citet{Kiuchi:2019lls}, however, the \ac{EOS} data are not available and 
 the $\tilde{\Lambda}$ cannot be estimated. We exclude these models from the 
 statistical analysis. Overall, out of $324$, we consider $271$ models for which 
-the required binary data is available/computed. For all $271$ of them the ejecta 
+the required binary data is available/computed. For all $271$ models the ejecta 
 mass, $\amd$, is present. The average velocity, $\avd$, is available for only $246$ 
 models, as a subset of models from \citet{Kiuchi:2019lls} does not contain this 
 information. The electron fraction is found for $99$ models, as we exclude the 
-subset of models with leakage scheme for which this data is not given in 
-\citet{Lehner:2016lxy}. 
+subset of models of \citet{Lehner:2016lxy} with leakage scheme for which this 
+data is not given. 
 %The \ac{RMS} half-opening angle around the orbital plane, 
 %$\athetarms$, of the ejecta is present for $76$ models and the mass of the disk, 
 %$M_{\rm disk}$, is given for $119$ models.
 
-\begin{figure*}[t]
+\begin{figure*}[t!]
     \centering 
-    \includegraphics[width=0.32\textwidth]{statistics/ej_mej_vej_groups.pdf}
-    \includegraphics[width=0.32\textwidth]{statistics/ej_mej_yeej_groups.pdf}
-    \includegraphics[width=0.32\textwidth]{statistics/ej_vej_yeej_groups.pdf}
-    \caption{Summary of dynamical ejecta properties used in this work.
-        Blue circles represent models of \DSrefset{}, 
-        red diamonds stands for models from \DSheatcool{}, 
-        green crosses are models from \DScool{}
-        and gray squares stand for models from \DSnone{}, 
-        %% 
-        We show for comparison the two-component fit to AT2017gfo as
-        colored patches from \cite{Villar:2017wcc,Siegel:2019mlp}.
-        (Adapted from \citet{Nedora:2020qtd})
+    \includegraphics[width=0.45\textwidth]{statistics/ej_mej_vej_groups.pdf}
+    \includegraphics[width=0.45\textwidth]{statistics/ej_mej_yeej_groups.pdf}
+    \includegraphics[width=0.45\textwidth]{statistics/ej_vej_yeej_groups.pdf}
+    \caption{
+        Properties of \ac{DE} for all datasets (Tab.~\ref{tab:data}), 
+        including total ejecta mass, $M_{\rm ej}$, mass-averaged electron 
+        fraction, $\langle Y_{\rm e;ej}$, and velocity 
+        $\lambda\upsilon_{\rm ej}\rangle$. 
+        The colored patches represent ranges inferred from \AT{} 
+        \ac{kN} models \citep{Villar:2017wcc,Siegel:2019mlp}  
+        (see Ch.~\ref{ch:kilonova} for the \ac{kN} discussion). 
+        (Adapted from \citet{Nedora:2020qtd}). 
+%        Summary of dynamical ejecta properties used in this work.
+%        Blue circles represent models of \DSrefset{}, 
+%        red diamonds stands for models from \DSheatcool{}, 
+%        green crosses are models from \DScool{}
+%        and gray squares stand for models from \DSnone{}, 
+%        We show for comparison the two-component fit to AT2017gfo as
+%        colored patches from \cite{Villar:2017wcc,Siegel:2019mlp}.
+%        (Adapted from \citet{Nedora:2020qtd})
     }
     \label{fig:ejecta:dyn:ds}
 \end{figure*}
@@ -1358,34 +1424,35 @@ The collected data is shown in Fig.~\ref{fig:ejecta:dyn:ds}. We note that the ov
 ejecta are similar between the \DSrefset{} and \DSheatcool{}. This is expected, as these 
 datasets include similar, albeit not the same, physics, regarding \ac{EOS} and neutrino treatment.
 %
-The important exceptions are the high \mr{} models of \DSrefset{} as their \ac{DE} of tidal 
-origin only \citep{Bernuzzi:2020txg}.
+The important exceptions are the high \mr{} models of \DSrefset{}, 
+that undergo \ac{PC}. The \ac{DE} ejecta from these models is of tidal origin only. 
+%\citep{Bernuzzi:2020txg}.
 %
 Comparing the properties of datasets with and without neutrino reabsorption, we observed 
 that the the inclusion of this effect leads to the \ac{DE} of higher mass, in addition to 
 the epxected increase in average electron fraction. This is especially noticeable when 
-comparing the models of \DSrefset{} and a subset of \citet{Radice:2018pdn} with leakage scheme only.
+comparing models of \DSrefset{} and a subset of \citet{Radice:2018pdn} with leakage scheme only.
 
 
 In Appendix \ref{app:coefs} we report the detailed statistical analysis, where we examine the 
 change in mean values of ejecta properties between different datasets and fit the 
-data with different fitting formelae, found in literature, as well as, applying simple 
-polynomials of $q$ and $\tilde{\Lambda}$ of first and second order,
-$P_2^1(q,\tilde{\Lambda})$ and $P_2^2(q,\tilde{\Lambda})$ respectively. 
+data with different fitting formelae found in literature, as well as, applying simple 
+polynomials of $q$ and $\tilde{\Lambda}$ of second order,
+$P_2^1(\tilde{\Lambda})$ and $P_2^2(q,\tilde{\Lambda})$, respectively. 
 The results of this analysis are the following. 
 
 %% --- Mej
-For the ejecta mass we observe 
-that the intrinsic scatter in the data hinders performance 
-of any smooth fitting formula. The inclusion of \mr{} is required to capture the leading 
-trends in data and the simple polynomial $P_2^2(q,\tilde{\Lambda})$ show a comparatively  
-good statistical performance.
+For the ejecta mass we observe that the inclusion of \mr{} is required 
+to capture the leading trends in data and the simple polynomial, 
+$P_2^2(q,\tilde{\Lambda})$, shows a comparatively good statistical performance.
 %\gray{We recomment the calibration based on the models with }
 %
-The statistical analysis for considered datasets suggests that the $\amd$ depends 
+The statistical analysis also suggests that the $\amd$ depends 
 sensibly on the physics input of the simulations: neutrino scheme and \ac{EOS} treatment.
-The magnitude of systematic uncertainties reduces the ability of any fitting formulae 
-to identify and capture leading trends.
+%
+The magnitude of systematic uncertainties, however, reduces the ability of any 
+fitting formulae to identify and quantitatively capture leading trends.
+%
 
 %% --- vej
 %We find that in our set of models, there is a correlation of $\avd$ with the 
@@ -1395,13 +1462,12 @@ to identify and capture leading trends.
 Considering the mass-averaged ejecta velocity, $\avd$, of the \DSrefset{}, we 
 find that it is in overall agreement with the dataset with neutrino leackage scheme 
 of \citet{Radice:2018pdn}, and ranges from $0.11\, c$ to $0.27\, c$. However, while in 
-that study there was no apparent correlation found between the velocity and binary 
-parameters upon visual inspection, we find that in models of \DSrefset{} the $\avd$ 
+that study there was no apparent correlation between the velocity and binary 
+parameters, upon visual inspection we find that in models of \DSrefset{} the $\avd$ 
 is correlated with $\tilde{\Lambda}$, as shown in Fig~\ref{fig:ejecta:dyn:dsfits}.
 %
-The best fitting formula to the $\avd$, among considered, is given by the 
-second order two-parameter polynomial $P_2^2(q,\tilde\Lambda)$ that appears to be able to capture 
-the leading trends in data. 
+The best fitting formula to the $\avd$, among considered, is $P_2^2(q,\tilde\Lambda)$, 
+that appears to be able to capture the leading trends in data. 
 %For its calibration, the dataset with the most advanced physics is 
 %recommended, \DSheatcool{} \& \DSrefset{}.
 %
@@ -1409,43 +1475,60 @@ The ejecta velocity shows a strong dependency on the neutrino treatment
 and binary parameters, specifically, the \mr{}.
 
 %% --- Yeej 
-Considering the average value of the mass-averaged electron fraction, $\ayd$, we find 
-that when models of \DSrefset{} only are considered, it varies from $0.03$ found in very high 
-\mr{} binaries, that produce cold, low-$Y_e$, tidal ejecta \citep{Bernuzzi:2020tgt} to $0.27$ in $q\sim1$ 
-binaries (see also Fig.~\ref{fig:ejecta:dyn:dsfits}).
-
+Considering the average value of mass-averaged electron fraction, $\ayd$, we find 
+that when only models of \DSrefset{} are considered, $\ayd$ varies 
+between $0.03$, found in very high \mr{} binaries, that produce cold, low-$Y_e$,
+tidal ejecta, and $0.27$ in $q\sim1$  % \citep{Bernuzzi:2020tgt}
+binaries, where the contribution from the shocked component is significant 
+(see also Fig.~\ref{fig:ejecta:dyn:dsfits}). 
+%
 Naturally, datasets that include the effects of neutrino absorption display 
 on average higher $\ayd$. 
 %
-Comparing the values of $\ayd$ from datasets and predicted by fitting formulae in 
-we find that for all datasets, the $P_2^2(q,\tilde\Lambda)$ is able to 
-reproduce both the low-$Y_e$ and high-$Y_e$ models of 
-\DSheatcool{} and \DSrefset{}.
+Here we only consider the polynomials as fitting formulae, 
+selecting $P_2^2(q,\tilde\Lambda)$ as the best fitting one, as it is able to 
+reproduce both the low-$Y_e$ and high-$Y_e$ models of \DSheatcool{} and \DSrefset{}.
+%Comparing the values of $\ayd$ from datasets and predicted by fitting formulae in 
+%we find that for all datasets, the $P_2^2(q,\tilde\Lambda)$ is able to 
+%reproduce both the low-$Y_e$ and high-$Y_e$ models of 
+%\DSheatcool{} and \DSrefset{}.
 
 %% --- theta_RMS
 %% THETA RMS [3 pandles REFSET]
 \begin{figure*}[t]
     \centering 
-    \includegraphics[width=0.32\textwidth]{statistics/ej_mej_theta_groups.pdf}
-    \includegraphics[width=0.32\textwidth]{statistics/ej_vej_theta_groups.pdf}
-    \includegraphics[width=0.32\textwidth]{statistics/ej_theta_yeej_groups.pdf}
+    \includegraphics[width=0.45\textwidth]{statistics/ej_mej_theta_groups.pdf}
+    \includegraphics[width=0.45\textwidth]{statistics/ej_vej_theta_groups.pdf}
+    \includegraphics[width=0.45\textwidth]{statistics/ej_theta_yeej_groups.pdf}
     \caption{
-        Relations between the ejecta $\theta_{\rm RMS}$ and other parameters of the dynamical
-        ejecta: mass, $\amd$, velocity, $\avd$, and electron fraction $\ayd$ for models from
-        \DSrefset{} and \cite{Radice:2018pdn} from \DScool{} and \DSheatcool{}.
-        Plots show that models with neutrino absorption have
-        higher $\amd$ and larger $\theta_{\rm RMS}$ as well as 
-        a clear correlation between $\theta_{\rm RMS}$ and $\ayd$.
-        (Adapted from \citet{Nedora:2020qtd})
+        Same as Fig.~\ref{fig:ejecta:dyn:ds}, but including also the 
+        mass-averaged \ac{RMS} half-opening angle about the orbital plane of the 
+        \ac{DE} distribution, $\athetarms$. The plotted 
+        data is limited to datasets in which this quantity is available. 
+        %
+        %The last panel shows a clear correlation between $\theta_{\rm RMS}$ and $\ayd$. 
+        (Adapted from \citet{Nedora:2020qtd}).
+%        Properties of \ac{DE} for all datasets (Tab.~\ref{tab:data}), 
+%        including total ejecta mass, $M_{\rm ej}$, mass-averaged electron 
+%        fraction, $\langle Y_{\rm e;ej}$, and velocity 
+%        $\lambda\upsilon_{\rm ej}\rangle$. 
+%        Relations between the ejecta $\theta_{\rm RMS}$ and other parameters of the dynamical
+%        ejecta: mass, $\amd$, velocity, $\avd$, and electron fraction $\ayd$ for models from
+%        \DSrefset{} and \cite{Radice:2018pdn} from \DScool{} and \DSheatcool{}.
+%        Plots show that models with neutrino absorption have
+%        higher $\amd$ and larger $\theta_{\rm RMS}$ as well as 
+%        a clear correlation between $\theta_{\rm RMS}$ and $\ayd$.
+%        (Adapted from \citet{Nedora:2020qtd})
     }
     \label{fig:ejecta:dynej_thetarms}
 \end{figure*}
 %
 The ejecta geometry has been shown to be very important for modeling \ac{EM} 
-counterparts to mergers (see chapters~\ref{ch:kilonova} and \ref{ch:afterglow}). %\citep[\eg][]{Perego:2017wtu}. 
-However, it is difficult statistically analyze. For the sake of simplicity 
+counterparts to mergers (see Chapter~\ref{ch:kilonova} and Chapter~\ref{ch:afterglow}). %\citep[\eg][]{Perego:2017wtu}. 
+However, it is non-trivial how to approach its statistical analysis. 
+For the sake of simplicity 
 we consider the mass-averaged \ac{RMS} half-opening 
-angle of the ejecta across the plane of the binary, $\athetarms$.
+angle of the ejecta about the plane of the binary, $\athetarms$.
 %% --- 
 We introduce the $\athetarms$ in accordance with \citet{Radice:2018pdn}, assuming 
 the axial symmetry and computing:
@@ -1457,8 +1540,8 @@ the axial symmetry and computing:
 where $\theta_i$ and $m_i$ are the angle (from the binary plane) and the mass of 
 the element of ejecta respectively.
 %
-Unfortunately, this quantity is available only for the \DSrefset{} and for the subset 
-of models of \citet{Radice:2018pdn}
+Unfortunately, this quantity is available only for the \DSrefset{} and for a subset 
+of models of \citet{Radice:2018pdn}. 
 % some of which are in \DScool{} and some are in \DSheatcool{} (see Tab~\ref{tab:data}). 
 Hence, the statistical analysis is limited 
 to a small sample of models. The dependency of the $\athetarms$ on other ejecta is shown in Fig.~\ref{fig:ejecta:dynej_thetarms}.
@@ -1469,10 +1552,12 @@ neutrino reabsorption leads to a more spherically distributed ejecta.
 %
 The third panel of Fig.~\ref{fig:ejecta:dynej_thetarms} shows a clear linear relation 
 between the $\athetarms$ and $\ayd$, that can be attributed to the \mr{} dependency of 
-ejecta properties. Binaries with large \mr{} have ejecta of mostly tidal origin that 
+ejecta properties observed before, that we extend as follows. 
+Binaries with large \mr{} have ejecta of mostly tidal origin that 
 is confined to the binary plane and characterized by low electron fraction. On the 
 contrary, binaries with $q\sim 1$ have ejecta of both tidal and shock origin that both 
-more spread out and more processed by shocks and neutrino irradiation, hence, higher $\ayd$.
+more spread out and more processed by shocks and neutrino irradiation having, thus,
+higher $\ayd$. 
 %
 Similar to the case of $\ayd$, we find that the \polql{} provides the best fit to the data.
 
@@ -1481,8 +1566,8 @@ Overall, we observe that the properties of the \ac{DE} depend on the \mr{} and
 polynomial in these two quantities show a comparable or better performance with 
 resepct to other fitting formulae available in the literature. 
 %
-However, larger sample of ab-initio simulations with complete physics and 
-publicly available data are required to refine these relations.
+However, larger sample of ab-initio \ac{NR} simulations with complete physics and 
+publicly available is are required to refine these relations.
 
 %We overview the overall properties of the dynamical ejecta in our simulations 
 %in in the chapter \ref{ch:stat}, placing them alongside the other available data 
