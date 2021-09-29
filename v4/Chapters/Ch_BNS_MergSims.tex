@@ -1301,15 +1301,16 @@ from the remnant (unless specified otherwise), using the geodesic criterion
 Comparing the ejecta properties between simulations with and 
 without subgrid turbilence (See Tab.~\ref{tab:sim}) we observe 
 that the effect of subgrid turbulence on the dynamical 
-ejecta properties however, is rather week and comparable to the effects 
+ejecta properties is rather week and comparable to the effects 
 of finite grid discretization 
 \citep{Bernuzzi:2020txg,Radice:2020ids}.
 
 In Fig.~\ref{fig:ejecta:dyn:dsfits} we show the ejecta mass, velocity and 
-electron fraction as a function of binary parameters: \mr{}, $q$ and 
-reduced tidal deformability, $\tilde{\Lambda}$ for our models. 
-The plot suggests that there are trends in data, relations between ejecta 
-parameters and binary parameter. 
+electron fraction as a function of binary parameters: \mr{}, $q$, and 
+reduced tidal deformability, $\tilde{\Lambda}$, for our models. 
+The plot shows that while there is a large degree of scatter, certain 
+overall trends can be deduced, and a relation between the ejecta and binary 
+parameters can be constructed. 
 %
 In order to examine these relations in more details we enlarge the sample 
 of simulations by collecting the published sets of \ac{BNS} merger models.
@@ -1378,7 +1379,7 @@ We group them with respect to the employed neutrino treatment:
 %% --- Overal dataseamble
 In total $324$ \ac{NR} models are collected. In cases where $\tilde{\Lambda}$ 
 is not available, we compute it by solving \ac{TOV} equations 
-for the corresponding gravitational masses of the stars and \ac{EOS}.
+for the corresponding gravitational masses and \acp{EOS}.
 % 
 For a subset of models with polytropic \acp{EOS} of \citet{Bauswein:2013jpa}
 and \citet{Kiuchi:2019lls}, however, the \ac{EOS} data are not available and 
@@ -1450,7 +1451,7 @@ $P_2^2(q,\tilde{\Lambda})$, shows a comparatively good statistical performance.
 The statistical analysis also suggests that the $\amd$ depends 
 sensibly on the physics input of the simulations: neutrino scheme and \ac{EOS} treatment.
 %
-The magnitude of systematic uncertainties, however, reduces the ability of any 
+The magnitude of systematic uncertainties in data, however, reduces the ability of any 
 fitting formulae to identify and quantitatively capture leading trends.
 %
 
@@ -1462,9 +1463,11 @@ fitting formulae to identify and quantitatively capture leading trends.
 Considering the mass-averaged ejecta velocity, $\avd$, of the \DSrefset{}, we 
 find that it is in overall agreement with the dataset with neutrino leackage scheme 
 of \citet{Radice:2018pdn}, and ranges from $0.11\, c$ to $0.27\, c$. However, while in 
-that study there was no apparent correlation between the velocity and binary 
+that study there was no apparent correlation observed between the velocity and binary 
 parameters, upon visual inspection we find that in models of \DSrefset{} the $\avd$ 
 is correlated with $\tilde{\Lambda}$, as shown in Fig~\ref{fig:ejecta:dyn:dsfits}.
+This might be attributed to the fact that the \DSrefset{} encompass models with fixed 
+chirp mass. 
 %
 The best fitting formula to the $\avd$, among considered, is $P_2^2(q,\tilde\Lambda)$, 
 that appears to be able to capture the leading trends in data. 
@@ -1485,9 +1488,10 @@ binaries, where the contribution from the shocked component is significant
 Naturally, datasets that include the effects of neutrino absorption display 
 on average higher $\ayd$. 
 %
-Here we only consider the polynomials as fitting formulae, 
-selecting $P_2^2(q,\tilde\Lambda)$ as the best fitting one, as it is able to 
-reproduce both the low-$Y_e$ and high-$Y_e$ models of \DSheatcool{} and \DSrefset{}.
+Here we only consider the polynomials as fitting formulae. 
+The analysis suggests that $P_2^2(q,\tilde\Lambda)$ is the best fitting one, 
+as it is able to reproduce both the low-$Y_e$ and high-$Y_e$ models of 
+\DSheatcool{} and \DSrefset{}.
 %Comparing the values of $\ayd$ from datasets and predicted by fitting formulae in 
 %we find that for all datasets, the $P_2^2(q,\tilde\Lambda)$ is able to 
 %reproduce both the low-$Y_e$ and high-$Y_e$ models of 
@@ -1522,11 +1526,57 @@ reproduce both the low-$Y_e$ and high-$Y_e$ models of \DSheatcool{} and \DSrefse
     }
     \label{fig:ejecta:dynej_thetarms}
 \end{figure*}
+
+\begin{figure*}[t!]
+    \centering 
+    \includegraphics[width=0.45\textwidth]{ejecta_dyn/fast_ejecta/BLh_q100_LK_SR.pdf}
+    \includegraphics[width=0.45\textwidth]{ejecta_dyn/fast_ejecta/SFHo_q100_LK_SR.pdf}
+    \includegraphics[width=0.45\textwidth]{ejecta_dyn/fast_ejecta/SFHo_q112_LK_SR.pdf}
+    %% \includegraphics[width=0.49\textwidth]{./figs/scatter_lambda_ekej_vej06.pdf}
+    %% \includegraphics[width=0.49\textwidth]{./figs/scatter_mej_vej06.pdf}
+    %% \includegraphics[width=0.49\textwidth]{./figs/scatter_total_kinetic_energy.pdf}
+    %%     \includegraphics[width=0.49\textwidth]{./figs/scatter_thetarms_vej06.pdf}
+    %%     \includegraphics[width=0.49\textwidth]{figs/scatter_lightcurve_peaks_vs_lambda.pdf}
+    \caption{
+        Time evolution of the fast tail of \ac{DE}, $\dot{M}(\upsilon_{\rm ej}>0.6\,c)$, 
+        alongside the time evolution of normalized central density $n_{\rm max}/n_{\rm nuc}$ 
+        for three simulations, BLh $q=1.00$, SFHo $q=1.00$ and SFHo $q=1.13$, one per panel. 
+        %
+        The lower subpanel on each panel depicts the time evolution of the fast tail of 
+        \ac{DE} angular distribution. 
+        %% \vn{[Might be removed, if needed]}
+        %        Ejection mechanism and properties of the fast tail of the ejecta shown for three simulations,
+        %        with two \acp{EOS}: BLh and SFHo and two \mr{}s: $q=1.00$ and $q=1.22$.
+        %        %% ---
+        %        The upper panel in each plot shows the time evolution of the maximum density 
+        %        in the simulation (green curves) and the mass flux of the ejecta with 
+        %        asymptotic velocities exceeding $0.6c$ (red curve).
+        %        %% --- 
+        %        The bottom panel shows the mass histogram of the fast ejecta tail as a function 
+        %        of time. 
+        %% --- 
+        In both panels the outflow rate and histograms are computed at a radius of 
+        $R = 443$~km and shifted in time by 
+        $R\langle\upsilon_{\rm fast}\rangle ^{-1}$, 
+        $\langle\upsilon_{\rm fast}\rangle$ being the mass averaged velocity of 
+        the fast tail at the radius $R$.
+        %% --- 
+        %        The plot shows that while in mist models the peak of the fast ejecta mass flux 
+        %        coincides with the first core \bnc{}, in agreement with \cite{Radice:2018pdn}, 
+        %        in the model with 
+        %        
+        %        The plot shows that most of the fast ejecta are generally produced at first core \bnc{} with a contribution from the second in models with soft \acp{EOS}.
+        (Adapted from \citet{Nedora:2021eoj}). 
+    } 
+    \label{fig:ejecta_v06_mech}
+\end{figure*}
+
+
 %
 The ejecta geometry has been shown to be very important for modeling \ac{EM} 
 counterparts to mergers (see Chapter~\ref{ch:kilonova} and Chapter~\ref{ch:afterglow}). %\citep[\eg][]{Perego:2017wtu}. 
-However, it is non-trivial how to approach its statistical analysis. 
-For the sake of simplicity 
+However, its statistical analysis is very non-trivial. 
+Because of the limited data and for the sake of simplicity 
 we consider the mass-averaged \ac{RMS} half-opening 
 angle of the ejecta about the plane of the binary, $\athetarms$.
 %% --- 
@@ -1544,7 +1594,8 @@ Unfortunately, this quantity is available only for the \DSrefset{} and for a sub
 of models of \citet{Radice:2018pdn}. 
 % some of which are in \DScool{} and some are in \DSheatcool{} (see Tab~\ref{tab:data}). 
 Hence, the statistical analysis is limited 
-to a small sample of models. The dependency of the $\athetarms$ on other ejecta is shown in Fig.~\ref{fig:ejecta:dynej_thetarms}.
+to a small sample of models. The dependency of the $\athetarms$ on other ejecta 
+properties discussed before is shown in Fig.~\ref{fig:ejecta:dynej_thetarms}.
 %
 With respect to the models of \citet{Radice:2018pdn}, we observe that the models of the 
 \DSrefset{} have overall larger $\athetarms$. This suggests that the inclusion of 
@@ -1554,20 +1605,20 @@ The third panel of Fig.~\ref{fig:ejecta:dynej_thetarms} shows a clear linear rel
 between the $\athetarms$ and $\ayd$, that can be attributed to the \mr{} dependency of 
 ejecta properties observed before, that we extend as follows. 
 Binaries with large \mr{} have ejecta of mostly tidal origin that 
-is confined to the binary plane and characterized by low electron fraction. On the 
-contrary, binaries with $q\sim 1$ have ejecta of both tidal and shock origin that both 
+is confined to the binary plane and characterized by low electron fraction. 
+Meanwhile, binaries with $q\sim 1$ have ejecta of both tidal and shock origin that both 
 more spread out and more processed by shocks and neutrino irradiation having, thus,
 higher $\ayd$. 
 %
 Similar to the case of $\ayd$, we find that the \polql{} provides the best fit to the data.
 
-Overall, we observe that the properties of the \ac{DE} depend on the \mr{} and 
+Overall, we observe that the properties of \ac{DE} depend on \mr{} and 
 \ac{EOS} softness that can be parameterized with $\tilde{\Lambda}$, and a simple 
 polynomial in these two quantities show a comparable or better performance with 
 resepct to other fitting formulae available in the literature. 
 %
 However, larger sample of ab-initio \ac{NR} simulations with complete physics and 
-publicly available is are required to refine these relations.
+publicly available data is are required to refine these relations.
 
 %We overview the overall properties of the dynamical ejecta in our simulations 
 %in in the chapter \ref{ch:stat}, placing them alongside the other available data 
@@ -1665,45 +1716,7 @@ publicly available is are required to refine these relations.
 
 \subsection{Fast tail of the dynamical ejecta} \label{sec:bns_sims:fast_de}
 
-\begin{figure*}
-    \centering 
-    \includegraphics[width=0.32\textwidth]{ejecta_dyn/fast_ejecta/BLh_q100_LK_SR.pdf}
-    \includegraphics[width=0.32\textwidth]{ejecta_dyn/fast_ejecta/SFHo_q100_LK_SR.pdf}
-    \includegraphics[width=0.32\textwidth]{ejecta_dyn/fast_ejecta/SFHo_q112_LK_SR.pdf}
-    %% \includegraphics[width=0.49\textwidth]{./figs/scatter_lambda_ekej_vej06.pdf}
-    %% \includegraphics[width=0.49\textwidth]{./figs/scatter_mej_vej06.pdf}
-    %% \includegraphics[width=0.49\textwidth]{./figs/scatter_total_kinetic_energy.pdf}
-    %%     \includegraphics[width=0.49\textwidth]{./figs/scatter_thetarms_vej06.pdf}
-    %%     \includegraphics[width=0.49\textwidth]{figs/scatter_lightcurve_peaks_vs_lambda.pdf}
-    \caption{
-        %% \vn{[Might be removed, if needed]}
-        Ejection mechanism and properties of the fast tail of the ejecta shown for three simulations,
-        with two \acp{EOS}: BLh and SFHo and two \mr{}s: $q=1.00$ and $q=1.22$.
-        %% ---
-        The upper panel in each plot shows the time evolution of the maximum density 
-        in the simulation (green curves) and the mass flux of the ejecta with 
-        asymptotic velocities exceeding $0.6c$ (red curve).
-        %% --- 
-        The bottom panel shows the mass histogram of the fast ejecta tail as a function 
-        of time. 
-        %% --- 
-        In both panels the outflow rate and histograms are computed at a radius of 
-        $R = 443$~km and shifted in time by 
-        $R\langle\upsilon_{\rm fast}\rangle ^{-1}$, 
-        $\langle\upsilon_{\rm fast}\rangle$ being the mass averaged velocity of 
-        the fast tail at the radius $R$.
-        %% --- 
-        The plot shows that most of the fast ejecta are generally produced at first core \bnc{} with a contribution from the second in models with soft \acp{EOS}.
-        (Adapted from \citet{Nedora:2021eoj})
-    } 
-    \label{fig:ejecta_v06_mech}
-\end{figure*}
-
-
-
-\red{\bnc{} is introduced in intro, Sec.~\ref{sec:intro:merg_pmerg}}
-
-
+%\red{\bnc{} is introduced in intro, Sec.~\ref{sec:intro:merg_pmerg}}
 
 In order to analyze the low mass, very fast compoent of the \ac{DE}, we 
 choose the furthest extraction sphere from the remnant, at 
@@ -1717,45 +1730,53 @@ comparisons with the results of \citet{Radice:2018pdn}.
 %We also limit the discussion to the simulations performed at a standard resolution
 %(ee Sec.~\ref{sec:bns_sims:setup}). Several available simulations that 
 %were performed at higher resolution are used to asses the errors.
-And following the authors, we define the fast ejecta component (tail) 
-as the one having $\upsilon_{\infty}\geq0.6\,c$.
+Following the authors, we define the fast ejecta component (tail) 
+as the ejecta with $\upsilon_{\infty}\geq0.6\,c$.
 
-We observe the presence of the fast tail in ejecta of all models except those 
-with very stiff \acp{EOS} ant relatively high \mr{}s.
+We find the non-negligible amount of fast ejecta in all our simulations 
+except for those with very stiff \acp{EOS} and high \mr{}s. 
 %We find that not all the simulation show the presence of the fast ejecta tail.
 %For instance, the fast ejecta component is absent in simulations with stiff \ac{EOS} 
 %and relatively high \mr{}, 
 %$q=M_1/M_2\geq1$ where $M_1$ and $M_2$ are the gravitational masses 
 %at infinity of the primary and secondary \acp{NS} respectively.
-The \ac{DE} velocity distribution from these models shows a sharp cut-off at ${\leq}0.5\,c$.
-The absence of fast tail can be explained by the fact that 
-at large \mr{}s the ejecta are dominated by the tidal component, whose speed 
-is largely set by the \acp{NS} velocities at the last orbit and the system escape velocity.
-Moreover, models with large $q$ in our set undergo prompt collapse 
-with no core bounce \citep{Bernuzzi:2020txg}.
+The \ac{DE} velocity distribution from these models shows a sharp cut-off at ${\leq}0.5\,c$, 
+that can be attributed to the fact that in these simulations, the \ac{DE} 
+is primarily of tidal origin and displays on average lower velocities, 
+that, in turn, is set mainly by the \acp{NS} velocities at 
+the last orbit and the system escape velocity. 
+%The absence of fast tail can be explained by the fact that 
+%at large \mr{}s the ejecta are dominated by the tidal component, whose speed 
+%is largely set by the \acp{NS} velocities at the last orbit and the system escape velocity.
+%Moreover, models with large $q$ in our set undergo prompt collapse 
+%with no core bounce \citep{Bernuzzi:2020txg}.
 
 We show the mechanism that is responsible for producing most of the fast ejecta in 
-Fig.~\ref{fig:ejecta_v06_mech}. Specifically, we find that the 
-ejection of mass with velocity $\upsilon>0.6\,c$ coincides with core \bnc{}s, 
-which was previously noted in \citet{Radice:2018pdn}.
+Fig.~\ref{fig:ejecta_v06_mech}. We find that the 
+ejection of mass with velocity $\upsilon>0.6\,c$ coincides with core \bnc{}s. 
+This was previously noted bu \citet{Radice:2018pdn}.
 Most of the ejecta originate at the first \bnc{} in models with moderately soft \acp{EOS} 
 or large \mr{}s, \eg, BLh $q=1.00$ model. % the equal mass BLh \ac{EOS} model. 
-Similar behaviour is observed in models with higher \mr{} and softer \ac{EOS}. 
+Similar behaviour is observed in models with higher \mr{}s and softer \acp{EOS}. 
 %\eg, SFHo \ac{EOS} model.
-In addition, we find that the mass ejection occurs at the second \bnc{} in models
-with very soft \acp{EOS} (and small \mr{}s), \eg, 
-SLy4* $q=1.00$ model.
+We also observe that in models with very soft \acp{EOS} 
+(and small \mr{}s), \eg, SLy4* $q=1.00$ model, a strong influx of fast ejecta 
+occurs during the second core \bnc{}.
 %equal mass SLy4 \ac{EOS} model.
-Notably, while the first-\bnc{} component is generally equatorial, the second-\bnc{} component 
-is more polar. The possible explanation might include the increase in baryon pollution
-of the low latitude region around the \pmerg{} remnant.
+Notably, while the first-\bnc{} component is generally equatorial, 
+the second-\bnc{} component is more polar. The possible explanation for this might 
+include the increase in baryon pollution of the low latitude region around 
+the \pmerg{} remnant.
 
 %% --- Paragraph on the resolution effects and error bars 
-The resolution of the simulation does not affect whether there is a fast tail 
-of the \ac{DE}, but it does affect its mass, $\md(\upsilon>0.6\, c)$.
-We find that the that $\md(\upsilon>0.6\, c)$ changes by a factor of a few
-between \texttt{SR} and \texttt{HR} simulations.
-A larger sample of simulations performed at high resolutions is required to asses this uncertainty more quantitatively.
+In our sample of simulations, the resolution does not affect whether there is a fast tail 
+of \ac{DE} or not, but it does affect its mass % $\md(\upsilon>0.6\, c)$. 
+as we find that  
+%$\md(\upsilon>0.6\, c)$ 
+it changes by a factor of a few
+between \texttt{SR} and \texttt{HR} simulations. 
+A larger sample of simulations performed at high resolutions
+is required to asses this uncertainty more quantitatively.
 %% --- Properties of the fast tail: ejecta mass
 %The mean value of the fast tail mass is
 %\begin{equation}
@@ -1766,14 +1787,14 @@ A larger sample of simulations performed at high resolutions is required to asse
 
 %% --- Properties of the fast tail: velocity, electron fraction
 Mass-averaged properties of the fast tail, such as velocity, electron fraction and 
-angular distribution, appear robust with resolution, similarly to what is observed for 
+angular distribution, appear robust with resolution, similarly to what was observed for 
 the total dynamical ejecta (see Tab.~\ref{tab:sim}).
 %% --- Table reference 
 %We report the properties of fast tail in Tab.~\ref{tab:sims}.
 %
 We find that the mass-averaged velocity % , 
 %$\vd(\upsilon>0.6\,c)$, 
-is close to $0.6c$,
+is close to $0.6\,c$,
 increasing with softness of the \ac{EOS}.
 %
 The mass-averaged electron
@@ -1782,7 +1803,7 @@ is generally above $0.25$,
 indicating that these ejecta were shock-heated and reprocessed by neutrinos. High 
 average electron fraction implies that only weak \rproc{} \nuc{} would 
 occur, producing elements up to the $2$nd $r$-process peak \citep{Lippuner:2015gwa} 
-(see also chapter~\ref{ch:nucleo}).
+(see also Chapter~\ref{ch:nucleo}).
 
 
 \begin{figure}%%[t]
@@ -1795,16 +1816,19 @@ occur, producing elements up to the $2$nd $r$-process peak \citep{Lippuner:2015g
     %%     \includegraphics[width=0.49\textwidth]{./figs/scatter_thetarms_vej06.pdf}
     %%     \includegraphics[width=0.49\textwidth]{figs/scatter_lightcurve_peaks_vs_lambda.pdf}
     \caption{
-        Properties of the fast tail of the dynamical ejecta:
-        total kinetic energy (\textit{top panel}) and 
-        half-\ac{RMS} angle around the binary plane (\textit{bottom panel})
-        from a selected set of simulations where this tail is present (see text).
-        We assume conservative uncertainties for the angle, $0.5$~deg, 
-        and half of the value for the kinetic energy. 
-        The top panel shows that only for some \acp{EOS} the 
-        total kinetic energy appear to depend on mass ration. Specifically, LS220m SFho and SLy4 \acp{EOS}.
-        The half-\ac{RMS} angle appears to depend more on \ac{EOS}, and to be overall larger for high-$q$ models.
-        (Adapted from \citet{Nedora:2021eoj})
+        Total kinetic energy (\textit{left panel}) and \ac{RMS} half-opening angle 
+        (\textit{right panel}) as a function of binary \mr{}, $q$, for the 
+        of the fast tail of \ac{DE}. 
+%        Properties of the fast tail of the dynamical ejecta:
+%        total kinetic energy (\textit{top panel}) and 
+%        half-\ac{RMS} angle around the binary plane (\textit{bottom panel})
+%        from a selected set of simulations where this tail is present (see text).
+%        We assume conservative uncertainties for the angle, $0.5$~deg, 
+%        and half of the value for the kinetic energy. 
+%        The top panel shows that only for some \acp{EOS} the 
+%        total kinetic energy appear to depend on mass ration. Specifically, LS220m SFho and SLy4 \acp{EOS}.
+%        The half-\ac{RMS} angle appears to depend more on \ac{EOS}, and to be overall larger for high-$q$ models.
+        (Adapted from \citet{Nedora:2021eoj}). 
     } 
     \label{fig:ejecta_v06}
 \end{figure}
@@ -1829,16 +1853,16 @@ increases by ${\sim3}\,$ orders of magnitude between $q=1$ and $q=1.7$.
 %does not change with the \mr{}.
 
 %% --- Angular distribution :: Fig.1 (bottom)
-In the lower panel of Fig.~\ref{fig:ejecta_v06} we show the \ac{RMS} 
-half-opening angle of the fast ejecta around the orbital plane. 
-The error of $5$~degrees is taken based on the comparison with higher resolution
+Considering the \ac{RMS} half-opening angle of the fast ejecta around the 
+orbital plane (Fig.~\ref{fig:ejecta_v06}, left panel) we set the conservative 
+error of $5$~degrees based on the comparison with higher resolution
 simulations. 
 %
 %The figure allows to gauge which ejection mechanism dominates in 
 %various simulation, as the ejecta angular distribution depends on it.
 %
 We observe that in models with stiff \acp{EOS}, \eg, DD2 \ac{EOS}, where the 
-core \bnc{} ejection mechanism dominate, the fast ejecta tail is generally equatorial.
+core first-\bnc{} ejection mechanism dominate, the fast ejecta tail is generally equatorial.
 Meanwhile, in simulations with soft \acp{EOS} and high \mr{}s, the fast ejecta shows 
 a more uniform angular distribution set by a combination of the core dynamics and 
 finite temperature effects.% driving shocked material.
@@ -1858,16 +1882,21 @@ orbital plane is changing by utmost ${\sim}50\%$.
 
 \begin{figure}%%[t]
     \centering 
-    \includegraphics[width=0.39\textwidth]{ejecta_dyn/fast_ejecta/kinetic_energy_struct_models.pdf}
+    \includegraphics[width=0.50\textwidth]{ejecta_dyn/fast_ejecta/kinetic_energy_struct_models.pdf}
     \caption{
-        Cumulative kinetic energy distribution for a selected set of models (\textit{top panel}) 
-        and its angular distribution for a BLh $q=1.00$ model (\textit{bottom panel}).
-        %% Also shown as a solid black line is the slow quasi-spherical model of \cite{Mooley:2017enz}.
-        The vertical light green line marks the $\upsilon_{\text{ej}}=0.6$.
-        The top panel shows that equal mass models have a more extend high energy tail,
-        while the bottom panel shows that the angular distribution of the ejecta is not 
-        uniform.
-        (Adapted from \citet{Nedora:2021eoj})
+        Cumulative kinetic energy distribution (\textit{top panel}) for a set of 
+        representative model and its angular dependence 
+        for BLh $q=1.00$ model (\textit{bottom panel}). 
+        %
+        The green line corresponds to $\upsilon_{\rm ej}=0.6$. 
+%        Cumulative kinetic energy distribution for a selected set of models (\textit{top panel}) 
+%        and its angular distribution for a BLh $q=1.00$ model (\textit{bottom panel}).
+%        %% Also shown as a solid black line is the slow quasi-spherical model of \cite{Mooley:2017enz}.
+%        The vertical light green line marks the $\upsilon_{\text{ej}}=0.6$.
+%        The top panel shows that equal mass models have a more extend high energy tail,
+%        while the bottom panel shows that the angular distribution of the ejecta is not 
+%        uniform.
+        (Adapted from \citet{Nedora:2021eoj}). 
     } 
     \label{fig:ejecta_vel_hist}
 \end{figure}
@@ -1888,21 +1917,24 @@ a certain value, and denoted as $E_k(>\Gamma\beta)$.
 Here $\beta$ is the ejecta velocity expressed in units of $c$ and 
 $\Gamma = 1/\sqrt{1-\beta^2}$ is the Lorentz factor.
 %
-For a subset of models the $E_k(>\Gamma\beta)$ is presented in Fig.~\ref{fig:ejecta_vel_hist}. 
+The result is shown in Fig.~\ref{fig:ejecta_vel_hist}. 
 %
-The plot shows that for all models the bulk of the kinetic energy is confined to 
-the low $\beta\Gamma$ matter.
-However, models with soft \ac{EOS}, (\eg, SLy4) and small \mr{} show an
+%For a subset of models the $E_k(>\Gamma\beta)$ is presented in Fig.~\ref{fig:ejecta_vel_hist}. 
+%
+We observe that for all models the bulk of the kinetic energy is confined to 
+the low $\Gamma\beta$ matter.
+However, models with soft \acp{EOS}, (\eg, SLy4) and small \mr{}s show an
 extended high $\Gamma\beta$ tail.
 %% The fast tail of the ejecta there is clearly seen for SLy4 $q=1.00$ model. 
 %% High $q$ models however, have more narrow distribution, with BLh $q=1.82$ 
+
 The bottom panel of Fig.~\ref{fig:ejecta_vel_hist} illustrates the 
-cumulative kinetic energy distribution in terms of the $\beta \Gamma$ and angle 
+cumulative kinetic energy distribution in terms of the $\Gamma\beta$ and angle 
 from the plane of the binary for the 
 BLh $q=1.00$ \texttt{SR} model.
 %$q=1.00$ model with BLh \ac{EOS}.
 The plot shows that the distribution is not uniform with respect to the angle.
-High velocity matter is more confined to the plane of the binary, however,
+High velocity matter is more confined to the plane of the binary, while,
 a large fraction of very energetic matter is channeled into polar region. 
 % \alp{This final sentence is not clear to me. Maybe do you mean:
 % "The distribution is not uniform with respect to the polar angle since the highly energetic components extends up to the polar region, but the highest $\Gamma\beta$ contribution is confined to an equatorial tail." or something similar?}
@@ -1998,20 +2030,24 @@ a large fraction of very energetic matter is channeled into polar region.
 
 \begin{figure}[t]
     \centering 
-    \includegraphics[width=0.40\textwidth]{ejecta_postdyn/wind_mass_flux.pdf}
-    \includegraphics[width=0.55\textwidth]{ejecta_postdyn/ejecta_profiles_dd2_ls220_long.pdf}
+    \includegraphics[width=0.55\textwidth]{ejecta_postdyn/wind_mass_flux.pdf}
+    %\includegraphics[width=0.55\textwidth]{ejecta_postdyn/ejecta_profiles_dd2_ls220_long.pdf}
     \caption{
-        \emph{Left panel}:
-        Cumulative mass of the \swind{} from long-lived
-        remnants. The wind persists on timescales of $\mathcal{O}(100)\,$ms with
-        mass fluxes ${\sim}0.33-1.23\,\Msun/s$.
-        Adapted from \citet{Nedora:2020pak}.
-        \emph{Right panel}:
-        Evolution of unbound mass for dynamical ejecta
-        (dashed lines)
-        and \swind{}
-        (solid lines). $t=0$ marks the moment of merger, the vertical
-        line marks the collapse time of the model with LS220 \ac{EOS}.
+        Time evolution of the cumulative \ac{SWW} mass for a set of 
+        simulations with long-lived remnants. 
+        Here $t_0$ indicates the moment of merger. The wind 
+        calculation starts when \ac{DE} saturates ${\gtrsim}10\,$ms \pmerg{}.
+%        \emph{Left panel}:
+%        Cumulative mass of the \swind{} from long-lived
+%        remnants. The wind persists on timescales of $\mathcal{O}(100)\,$ms with
+%        mass fluxes ${\sim}0.33-1.23\,\Msun/s$.
+%        Adapted from \citet{Nedora:2020pak}.
+%        \emph{Right panel}:
+%        Evolution of unbound mass for dynamical ejecta
+%        (dashed lines)
+%        and \swind{}
+%        (solid lines). $t=0$ marks the moment of merger, the vertical
+%        line marks the collapse time of the model with LS220 \ac{EOS}.
         Adapted from \citet{Nedora:2019jhl}.
     }
     \label{fig:mej:bern}
@@ -2032,16 +2068,20 @@ a large fraction of very energetic matter is channeled into polar region.
 
 \begin{figure*}[t]
     \centering 
-    \includegraphics[width=0.95\textwidth]{ejecta_postdyn/wind_hists_shared.pdf}
-    \caption{Mass-averaged histograms of the \swind{} for a selected
-        subset of long-lived remnant. From left to right: ejecta angular
-        distribution, ejecta terminal velocity and electron
-        fraction. Remnants from more asymmetric binaries produce winds
-        with broader angular distribution.
-        The \swind{} from the DD2 EOS remnants has larger velocities
-        then the winds from the softer BLh EOS. The electron fraction
-        peaks at ${\sim}0.3$ and it is distributed from $0.1$ to $0.4$.
-        Adapted from \citet{Nedora:2020pak}.
+    \includegraphics[width=0.99\textwidth]{ejecta_postdyn/wind_hists_shared.pdf}
+    \caption{
+        Properties of the \ac{SWW} from the set of simulations with long-lived 
+        remnants. From left tow right, the angular, velocity and electron fraction 
+        distributions are shown in a from of mass-histograms. 
+%        Mass-averaged histograms of the \swind{} for a selected
+%        subset of long-lived remnant. From left to right: ejecta angular
+%        distribution, ejecta terminal velocity and electron
+%        fraction. Remnants from more asymmetric binaries produce winds
+%        with broader angular distribution.
+%        The \swind{} from the DD2 EOS remnants has larger velocities
+%        then the winds from the softer BLh EOS. The electron fraction
+%        peaks at ${\sim}0.3$ and it is distributed from $0.1$ to $0.4$.
+        (Adapted from \citet{Nedora:2020pak}).
     }
     \label{fig:ejecta:bern:hist}
 \end{figure*}
@@ -2078,13 +2118,14 @@ a large fraction of very energetic matter is channeled into polar region.
 %% --------------------------------
 
 As was discussed above, the interaction between the \ac{NS} remnant and the disk 
-generates density waves, that propagating outwards through the disk and induces massive outflows, the \ac{SWW} (see Sec.~\ref{sec:bns_sims:remdisk}).
+generates density waves that propagate outwards through the disk and induce massive outflows, 
+the \ac{SWW} (see Sec.~\ref{sec:bns_sims:remdisk}).
 %
 We track the \ac{SWW} as the matter unbound according to the Bernoulli criterion 
 %$hu_t < -1$, with $h$ being the fluid enthalpy and $u_{\alpha}$ its four-velocity,
 (see Sec.~\ref{sec:bns_sims:method:ejecta}). 
 %
-The ejecta properties are extracted at the $R=294\,$km, after the \ac{DE} mass 
+The ejecta properties are extracted at $R=294\,$km, after the \ac{DE} mass 
 flux has saturated (\eg, ${\gtrsim}10\,$ms \pmerg{}).
 %
 %The ejecta calculation is turned on when
@@ -2094,11 +2135,12 @@ flux has saturated (\eg, ${\gtrsim}10\,$ms \pmerg{}).
 %\subsubsection{Spiral wave wind and the remnant lifetime}
 
 %
-We start by considering two representative models, 
-DD2 $q=1.00$ (\texttt{SR}) and LS220 $q=1.00$ (\texttt{SR}), that produce 
-long- and short-loved remnants respectively, 
-We find that if the remnant is long-lived, total \ac{SWW} mass exceeds that of 
-the \ac{DE}, as shown also in Fig.~\ref{fig:mej:bern}.
+
+%We start by considering two representative models, 
+%DD2 $q=1.00$ (\texttt{SR}) and LS220 $q=1.00$ (\texttt{SR}), that produce 
+%long- and short-loved remnants respectively, 
+%We find that if the remnant is long-lived, total \ac{SWW} mass exceeds that of 
+%the \ac{DE}. %  as shown also in Fig.~\ref{fig:mej:bern}.
 %
 %First we consider two representative models that produce long- and short-lived
 %remnants. Simulations have $q=1.00$ and DD2 and LS220 \acp{EOS} respectively.
@@ -2108,17 +2150,17 @@ the \ac{DE}, as shown also in Fig.~\ref{fig:mej:bern}.
 %This is a simple consequence of the fact the \ac{SWW} mass flux continues for as long as 
 %remnant survives.
 %
-The inclusion of turbulent viscosity alters all the ejecta masses with an
-additional component \citep{Radice:2018ghv} and, we observe that, it enhances the 
-\ac{SWW} mass by ${\sim}25$\% in the case of DD2 $q=1.00$ model,
-exceeding the finite resolution effects. 
-%\red{Letter stuff. Not sure if true}
-%ac factor that exceeds the resolution effects.
-%
-The latter are ${\sim}15\%$ and ${\sim}8\%$ for the \ac{SWW} mass when the 
-resolution increases from \texttt{SR} to \texttt{HR}.
-The resolution effects on other wind properties, \eg, velocity and $Y_e$, 
-is found to be within $4\%$.
+%The inclusion of turbulent viscosity alters all the ejecta masses with an
+%additional component \citep{Radice:2018ghv} and, we observe that, it enhances the 
+%\ac{SWW} mass by ${\sim}25$\% in the case of DD2 $q=1.00$ model,
+%exceeding the finite resolution effects. 
+%%\red{Letter stuff. Not sure if true}
+%%ac factor that exceeds the resolution effects.
+%%
+%The latter are ${\sim}15\%$ and ${\sim}8\%$ for the \ac{SWW} mass when the 
+%resolution increases from \texttt{SR} to \texttt{HR}.
+%The resolution effects on other wind properties, \eg, velocity and $Y_e$, 
+%is found to be within $4\%$.
 %
 %Specifically, we find that the \ac{SWW} mass increases by ${\sim}+15\%$ and
 % ${\sim}+8\%$, 
@@ -2173,51 +2215,102 @@ is found to be within $4\%$.
 
 % \subsubsection{Spiral wave wind for all models}
 
-We report the overall properties of the \ac{SWW} for all the models with the 
-long-lived \ac{NS} remnant that were also evolved for a sufficiently long time 
+We report the overall properties of the \ac{SWW} for all models with 
+long-lived \ac{NS} remnants that were also evolved for a sufficiently long time 
 in the Tab.~\ref{tab:spiralwavewind}. 
 %
 The time evolution of the total mass of the \ac{SWW} is shown in  Fig.~\ref{fig:mej:bern}.
-We observe that in all simulations \ac{SWW} persists till end without saturation.
+We observe that in all simulations \ac{SWW} persists till the time these simulations 
+were terminated at without saturation.
 This is the manifestation of the mechanism, driving the outflow: the 
 angular momentum and mass transport induced by the dynamical instabilities in the 
 remnant, the $m=1,2$ modes. And, as the $m=1$ modes are not efficiently damped \citep{Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,East:2016zvv},
 the \ac{SWW} could theoretically continue until the system collapses to a \ac{BH} 
-or reaches the equilibrium. % (Sec.~\ref{sec:bns_dynsmics_overview}).
+or reaches an equilibrium. % (Sec.~\ref{sec:bns_dynsmics_overview}).
 %
 The strongest \ac{SWW} is found in binaries with $q>1$, such as 
 BLh $q=1.43$ (\texttt{SR}) model. 
 With the mass-loss rate ${\sim}0.5\, \Msun/{\text{s}}$, these models can eject 
-${\sim}0.02\,\Msun$ within ${\sim}50\,$ms of \pmerg{} evolution.
+${\sim}0.02\,\Msun$ within ${\sim}50\,$ms of the \pmerg{} evolution.
 %
-We find that as the \ac{EOS} becomes softer, lower \mr{} is needed to achieve high  % contradiction with [1]
-mass flux. For instance, the \ac{SWW} mass flux for BLh* $q=1.66$ model is achieved by the 
-LS220* $q=1.22$ model. 
+Meanwhile, models with softer \acp{EOS} reach similarly high mass flux 
+at lower \mr{}s. For instance, the \ac{SWW} mass flux of BLh* $q=1.66$ model 
+is achieved by the LS220* $q=1.22$ model. 
 A possible explanation for this is that the models with softer \acp{EOS} have stronger 
 $m=1$ modes in the remnant (see Sec.~\ref{sec:bns_sims:remdisk}).
 
-When \ac{NS} remnant collapses to a \ac{BH} and the mechanism that injects angular 
-momentum into the disk shuts down, the \ac{SWW} mass flux subsides (right panel of  Fig.~\ref{fig:mej:bern}). 
+The inclusion of turbulent viscosity alters all the ejecta masses with an
+additional component \citep{Radice:2018ghv} and, we observe that, it enhances the 
+\ac{SWW} mass by ${\sim}25$\% in the case of DD2 $q=1.00$ model,
+exceeding the finite resolution effects. 
+%\red{Letter stuff. Not sure if true}
+%ac factor that exceeds the resolution effects.
+%
+The latter are ${\sim}15\%$ and ${\sim}8\%$ for the \ac{SWW} mass when the 
+resolution increases from \texttt{SR} to \texttt{HR}.
+The resolution effects on other wind properties, \eg, velocity and $Y_e$, 
+is found to be within $4\%$.
+
+When a \ac{NS} remnant collapses to a \ac{BH} and the mechanism that injects angular 
+momentum into the disk shuts down, the \ac{SWW} mass flux subsides.
+% (right panel of  Fig.~\ref{fig:mej:bern}). 
 Thus, the total ejected mass via \ac{SWW} is directly related to the lifetime of the 
 \ac{NS} remnant, in addition to the binary parameters, \ac{EOS} and \mr{}.
 %
-The \ac{SWW} mass flux depends on the disk configuration, as more extended disks 
+The \ac{SWW} mass flux depends on the disk configuration as more extended disks 
 have outer layers that are less gravitationally bound. In turn, the disk 
 configuration is dependent on the thermal effects. Higher temperature leads to 
 stronger thermal pressure that increases the disk size. 
 However, the dependency of the \ac{SWW} mass flux on the stiffness of the \ac{EOS} 
-appears to be stronger, as stiffer \acp{EOS} leads to more massive disks  % contradiction with [1]
-(Fig.~\ref{fig:disk_mass_evo}). More simulations with longer \pmerg{} evolution are needed 
+appears to be stronger, as stiffer \acp{EOS} lead to more massive disks, 
+as discussed in Sec.~\ref{sec:bns_sims:remdisk}.   % contradiction with [1]
+%(Fig.~\ref{fig:disk_mass_evo}). 
+More simulations with longer \pmerg{} evolution are needed 
 to make a quantitative assessment. 
 %Overall the \swind{} from the long-lived remnant has a mass flux $\geq 0.4\, \Msun/{\text{s}}$.
 
-We find that the properties of the \ac{SWW} depend only weakly on the binary parameters,
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.49\textwidth]{slices/slice_xz_ye_hu_1.pdf}
+    \includegraphics[width=0.49\textwidth]{slices/slice_xz_abs_energy_hu_3.pdf}
+    \includegraphics[width=0.49\textwidth]{slices/slice_xy_ye_hu_1.pdf}
+    \includegraphics[width=0.49\textwidth]{slices/slice_xy_abs_energy_hu_3.pdf}
+    \caption{
+        Snapshots of the BLh $q=1.00$ model taken $88\,$ms \pmerg{}, 
+        showing the distribution of electron fraction, $Y_e$, 
+        Bernoulli parameter, $-hu_t$, and electron anti-neutron 
+        absorption energy rate, $Q_{\text{abs};\:\bar{\nu}_e}$ 
+        normalized to the fluid density $D$. 
+        \textit{Top row of panels} displays these properties in $(x,z)$ plane, 
+        while the \textit{bottom row} shows $(x,y)$ slices. 
+%        Snapshots of the BLh $q=1.00$ model taken $88\,$ms \pmerg{}, 
+%        displaying the distribution of the electron fraction, $Y_e$, 
+%        (\textit{left side of each panel of the right column of panels}), 
+%        Bernoulli parameter, $-hu_t$,
+%        Snapshot of the $(x,z)$ and $(x,y)$ slices of the BLh $q=1$ model at 
+%        ${\sim}89\,$ms after merger. Left panels: electron fraction and
+%        $-hu_0$. High $Y_e$ values indicate neutrino
+%        postprocessing and irradiation. The $-hu_0>1$ indicates the
+%        material that gains enough energy to become unbound at
+%        infinity. 
+%        %
+%        Right: $-hu_0$ and the absorption energy rate $Q_{\text{abs};\:\bar{\nu}_e}$ 
+%        of electron antineutrinos normalized to the fluid density $D$.
+        %
+        (Adapted from \citet{Nedora:2020pak}).
+    }
+    %
+    \label{fig:slice:heating_hu}
+\end{figure*}
+
+We find that contrary to the mass flux, other properties of the \ac{SWW} 
+depend only weakly on the binary parameters,
 \mr{} and \ac{EOS}. Mass-histograms of the wind angular distribution, velocity and 
 electron fraction are displayed in Fig.~\ref{fig:ejecta:bern:hist} for representative models. 
 The angular distribution of the \ac{SWW} is similar to that of the \ac{DE}. The ejecta 
 has a broad distribution around the binary plane.
-The \ac{SWW} has a high average electron fraction, with the overall 
-broad distribution of $0.1\lesssim \ayw\lesssim0.4$ that peaks at ${\simeq}0.35$.
+The \ac{SWW} has high average electron fraction. Its overall broad distribution,  
+$0.1\lesssim \ayw\lesssim0.4$, peaks at ${\simeq}0.35$.
 The low electron fraction material originates primarily at early times, when the 
 material did not have enough time to be processed by neutrinos and before the 
 outflow reaches quasi-steady state.
@@ -2236,39 +2329,26 @@ required to confirm and quantitatively investigate these trends.
 
 \subsection{Neutrino-driven wind} \label{sec:bns_sims:nwind}
 
-\begin{figure*}[t]
-    \centering 
-    \includegraphics[width=0.49\textwidth]{slices/slice_xz_ye_hu_1.pdf}
-    \includegraphics[width=0.49\textwidth]{slices/slice_xz_abs_energy_hu_3.pdf}
-    \includegraphics[width=0.49\textwidth]{slices/slice_xy_ye_hu_1.pdf}
-    \includegraphics[width=0.49\textwidth]{slices/slice_xy_abs_energy_hu_3.pdf}
-    \caption{Snapshot of the $(x,z)$ and $(x,y)$ slices of the BLh $q=1$ model at 
-        ${\sim}89\,$ms after merger. Left panels: electron fraction and
-        $-hu_0$. High $Y_e$ values indicate neutrino
-        postprocessing and irradiation. The $-hu_0>1$ indicates the
-        material that gains enough energy to become unbound at
-        infinity. 
-        %
-        Right: $-hu_0$ and the absorption energy rate $Q_{\text{abs};\:\bar{\nu}_e}$ 
-        of electron antineutrinos normalized to the fluid density $D$.
-        %
-        (Adapted from \citet{Nedora:2020pak})
-    }
-    %
-    \label{fig:slice:heating_hu}
-\end{figure*}
+
 
 %In this section we focus on the high electron fraction, polar component of the 
 %\acp{SWW}. 
 
-We propose that this polar part of the \ac{SWW} ss mostly driven by the neutrino 
-reabsorption, rather than by the dynamical mechanism responsible for the bulk of the 
-\ac{SWW}. 
-We consider the feducial model BLh $q=1.00$ (\texttt{SR}). 
+In Sec.~\ref{sec:intro:ejecta} we discussed that in the presence of strong 
+neutrino fluxes, baryonic winds may emerge being driven by these neutrino fluxes.  
+Since the strongest source of neutrinos is \ac{NS} remnant, such an outflow,
+\nwind, is expected to be polar and characterized by elevated electron fraction 
+\citep[\eg][]{Perego:2014fma}. 
+%
+Having neutrino absorption included in our simulation setup (See 
+Sec.~\ref{sec:nr_methods:neut}), we assess whether there is \nwind{} in our 
+simulations. Naturally, we expect it to be a part 
+of the \ac{SWW}, polar and with high $Y_e$. 
+%
+For this analysis, for the sake of brevity, we focus on one 
+simulation, BLh $q=1.00$ (\texttt{SR}). 
 
-The presence of the baryonic winds developing on the timescale of $\mathcal{O}(10)\,$ms
-and driven by the neutrino absorption above the remnant, where the neutrino flux is the strongest, 
-is expected \citep[\eg][]{Perego:2014fma}. 
+
 %
 In the left column of plots in Fig.~\ref{fig:slice:heating_hu} we compare 
 the the Bernoulli parameter, $-hu_t$, 
@@ -2282,12 +2362,14 @@ $Q_{\text{abs};\:\bar{\nu}_e}$, computed by the M0 scheme
 normalized with fluid's conserved rest-mass density.
 % and divided by $D=W\rho\sqrt{\gamma}$ 
 %(fluid's conserved rest-mass density).
-We observe that the electron fraction in the polar region with angle 
-from binary plane $\theta>60^{\circ}$ reaches $Y_e\sim0.35$ due to the absorption of 
-electron-type neutrinos.
+We observe that the electron fraction in the polar region  
+($\theta>60^{\circ}$, where $\theta$ is the angle from the binary plane) 
+reaches $Y_e\sim0.35$ due to the absorption of 
+electron-type anti-neutrinos.
 The strongest neutrino heating occurs in the vicinity of the remnant at densities 
-$\rho\sim10^{11}$~\gcm, that roughly corresponds
-to the location of the neutrinosphere \citep{Endrizzi:2019trv}.
+$\rho\sim10^{11}$~\gcm{} that roughly correspond
+to the location of the neutrinosphere \citep{Endrizzi:2019trv}, 
+the region where neutrinos decouple from matter.
 %
 % to the region where neutrinos decouple,
 %the so-called neutrinosphere \citep{Endrizzi:2019trv}.
@@ -2304,34 +2386,36 @@ to the location of the neutrinosphere \citep{Endrizzi:2019trv}.
 Additionally, we found that if the neutrino absorption is not included into the 
 simulation, \eg, using leakage scheme only, the \nwind{} is significantly suppressed.  %\red{bullshit}
 %
-The collimated polar outflow can be further boosted and stabilized by the presence of the 
-strong magnetic fields \citep{Bucciantini:2011kx,Ciolfi:2020hgg,Mosta:2020hlh}.
+%The collimated polar outflow can be further boosted and stabilized by the presence of the 
+%strong magnetic fields \citep{Bucciantini:2011kx,Ciolfi:2020hgg,Mosta:2020hlh}.
 
-Notably, there is not clear distinction between the \nwind{} and \ac{SWW}, especially 
-at the intermediate latitudes ($\theta \sim 45^{\circ}$), where both mechanisms and 
+Notably, there is no clear distinction between the \nwind{} and \ac{SWW}, especially 
+at intermediate latitudes ($\theta \sim 45^{\circ}$) where both mechanisms and 
 types of ejecta are present.
 %, and both, neutrino absorption and dyanmical effects 
 %driving the \ac{SWW} are contributing. 
 %
 In order to compute the mass flux of the \nwind{} we impose an additional criteria.
 %to the Bernoulli, criteria.
-We consider two physically motivated options, the geometrical, flagging the part of the \ac{SWW} 
-as \nwind{} if it is polar, \ie, $\theta>60^{\circ}$, and the composition criterion,
-                                  \ie, if $Y_e > 0.35$.
+We consider two physically motivated options, the geometrical, flagging the part of 
+the \ac{SWW} as \nwind{} if it is polar, \ie, $\theta>60^{\circ}$, and the 
+composition criterion, \ie, if $Y_e > 0.35$.
 %
-We find that the \nwind{} is not a steady state outflow, contrary to the bulk of the \ac{SWW}.
-After the initial strong rise, the mass flux rapidly decays in time, and for most models stops 
-by the end of the simulations. This behaviour is independent of the criterion we use. 
-We attribute this to the rise of the baryon loading above the remnant as the material gets lifted 
-by thermal pressure from the disk.
-The total mass of the \nwind{} is ${\sim}10^{-3}-10^{-4}M_{\odot}$. Its properties resemble those 
-reported in \eg, \citet{Dessart:2008zd,Perego:2014fma,Fujibayashi:2020dvr}.
-Notably, in some of the works, the \nwind{} was found to require longer timescales to develop, 
-achieving the quasi-steady state. 
-This can be attributed to the strict criteria to isolate the \nwind{} and by the absence of the 
-\ac{SWW} in other works. 
-Additionally, our simulations might not be sufficiently long to achieve the conditions 
-sufficient for the development of the quasi-steady state \nwind{}.
+We find that the \nwind{} is not a steady state outflow, contrary to the 
+bulk of the \ac{SWW}. After the initial strong rise, the mass flux rapidly 
+decays in time, and for most models stops before the simulation is terminated. 
+This behaviour is independent of the criterion we use. We attribute this to the 
+rise of the baryon loading above the remnant as the material gets lifted 
+by the thermal pressure from the disk.
+The total mass of the \nwind{} is ${\sim}10^{-3}-10^{-4}M_{\odot}$. Its 
+properties resemble those reported in \eg, 
+\citet{Dessart:2008zd,Perego:2014fma,Fujibayashi:2020dvr}.
+Notably, in some of the works, the \nwind{} was found to require longer 
+timescales to develop. %, achieving the quasi-steady state. 
+This can be attributed to the strict criteria to isolate the \nwind{} and by 
+the absence of the \ac{SWW} in other works. 
+Additionally, our simulations might not be sufficiently long to achieve the 
+conditions sufficient for the development of the quasi-steady state \nwind{}.
 %% Additionally, as our models are at most $\sim100$~ms long, the conditions required for the steady 
 %% state \nwind{} might not been achieved.
 
