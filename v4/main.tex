@@ -68,7 +68,6 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 
 \usepackage{color}
 \usepackage{xcolor}
-\usepackage{acronym}
 \usepackage{booktabs}
 \usepackage{dcolumn}
 \usepackage{graphicx}
@@ -94,6 +93,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \usepackage{capt-of}% or use the larger `caption` package
 \usepackage{lipsum}% 
 \usepackage{adjustbox}
+\usepackage{ifthen}
 
 %----------------------------------------------------------------------------------------
 %    USER-SPECIFIC DECLARATIONS AND COMMANDS
@@ -118,8 +118,8 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 \newcommand{\red}[1]{\textcolor{red}{#1}} 
 \newcommand{\gray}[1]{\textcolor{gray}{#1}} 
 \newcommand{\magenta}[1]{\textcolor{magenta}{#1}} %% For terms/concepts to remember 
-\newcommand{\swind}{spiral-wave wind}
-\newcommand{\nwind}{$\nu$-driven wind}
+\newcommand{\swind}{spiral-wave winds}
+\newcommand{\nwind}{$\nu$-driven winds}
 %\newcommand{\nwind}{$\nu$-component}
 \newcommand{\gcm}{g cm$^{-3}$}
 \def\igscm{{\rm cm^{2}\,g^{-1}}}
@@ -200,130 +200,15 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %    USER-SPECIFIC ACRONYMS (IF ANY)
 %----------------------------------------------------------------------------------------
 %\newacro{KH}{Kelvin-Helmholtz} %% NEVER USE IT! WILL BREACK YOUR LATEX
-\newacro{KHI}{Kelvin-Helmholtz instability}
-\newacro{MRI}{magnetorotational instability}
 
-\newacro{BH}{black hole}
-\newacro{BBH}{binary black-hole}
-\newacro{BHNS}{black-hole neutron-star}
-\newacro{BNS}{binary neutron star}
-\newacro{EM}{electromagnetic}
-\newacro{EOS}{equation of state}
-\newacroplural{EOS}[EOSs]{equations of state}
-\newacro{GR}{general relativity}
-\newacro{HD}{hydrodynamics}
-\newacro{MHD}{magnetohydrodynamics}
-\newacro{GRLES}{general-relativistic large-eddy simulation}
-\newacro{GRHD}{general-relativistic hydrodynamics}
-\newacro{GRMHD}{general-relativistic magnetohydrodynamics}
-\newacro{GW}{gravitational wave}
-\newacroplural{GW}[GWs]{gravitational waves}
-\newacro{LES}{large-eddy simulation}
-\newacroplural{LES}[LES]{large-eddy simulations}
-\newacro{GRLES}{general-relativistic large-eddy simulation}
-\newacro{NR}{numerical relativity}
-\newacro{NS}{neutron star}
-\newacroplural{NS}[NSs]{neutron stars}
-\newacro{GRB}{gamma-ray bursts}%{$\gamma$-ray burst}
-\newacro{SGRB}{short \ac{GRB}}%{short $\gamma$-ray burst}
-\newacro{ISM}{interstellar medium}
-\newacro{MNS}{massive neutron star}
-\newacro{NSBH}{neutron star-black hole}
-\newacro{NSE}{nuclear statistical equilibrium}
-\newacro{SN}{supernova}
-\newacroplural{SN}[SNe]{supernovae}
-\newacro{CCSN}{core-collapse supernova}
-\newacroplural{CCSN}[CCSNe]{Core-collapse supernovae}
-\newacro{BBN}{Big Bang nucleosynthesis}
-\newacro{MP}{metal-poor}
-\newacro{AGB}{asymptotic giant branch}
-\newacro{UFG}{ultra-faint dwarf galaxy}
-\newacroplural{UFG}[UFGs]{ultra-faint dwarf galaxies}
-\newacro{NRN}{nuclear reaction network}
-\newacroplural{NRN}[NRNs]{nuclear reaction networks}
-\newacro{kN}{kilonova}
-\newacroplural{kN}[kNe]{kilonovae}
-\newacro{RR}{reaction rate}
-\newacroplural{RR}[RRs]{reaction rates}
-\newacro{MBD}{Maxwell-Boltzmann distribution}
-\newacro{CS}{cross-section}
-\newacro{ODE}{ordinary differential equation}
-\newacroplural{ODE}[ODEs]{ordinary differential equations}
-\newacro{RK}{Runge-Kutta}
-\newacro{SPH}{smoothed particle hydrodynamics}
-\newacro{IR}{infrared}
-\newacro{NIR}{near-infrared}
-\newacro{FIR}{far infrared}
-\newacro{LC}{light curve}
-\newacroplural{LC}[LCs]{light curves}
-\newacro{UV}{ultraviolet}
-\newacro{LTE}{local thermodynamic equilibrium}
-\newacro{TOV}{Tolman-Oppenheimer-Volkoff}
-\newacro{AH}{apparent horizon}
-\newacro{RMS}{root mean square}
-\newacro{MM}{multi-messenger}
-\newacro{LK}{light curve}
-\newacro{IC}{Inverse Compton}
-\newacro{CBM}{circumburst medium}
-\newacro{LF}{Lorentz factor}
-\newacro{DF}{Doppler factor}
-\newacro{SSC}{synchrotron self-Compton}
-\newacro{SSA}{synchrotron self-absorption}
-\newacro{CoE}{center of explostion}
-\newacro{FS}{forward shock}
-\newacro{RS}{reverse shock}
-\newacro{EFE}{Einstein’s field equations}
-\newacro{ADM}{Arnowitt, Deser and Misner}
-\newacro{IVP}{initial value problem}
-\newacro{RHS}{right hand side}
-\newacro{CTS}{conformal thin-sandwich} 
-\newacro{RMF}{relativistic mean-field}
-\newacro{BTE}{Boltzmann transport equation}
-\newacro{FV}{finite-volume}
-\newacro{FD}{finite-difference}%{finite-differencing}
-\newacro{HRSC}{high-resolution shock-capturing}
-\newacro{CFL}{Courant-Friedrichs-Lewy}
-\newacro{TVD}{total-variation diminishing}
-\newacro{BV}{bounded variation}
-\newacro{TV}{total variation}
-\newacro{PPM}{piecewise parabolic method}
-\newacro{PHM}{piecewise hyperbolic method}
-\newacro{ENO}{essentially non-oscillatory}
-\newacro{WENO}{weighted essentially non-oscillatory}
-\newacro{MP5}{monotonicity-preserving}
-\newacro{HLLE}{Harten, Lax, van Leer and Einfeldt}
-\newacro{HLLC}{Harten-Lax-van Leer-Contact}
-\newacro{LxF}{Lax and Friedrichs}
-\newacro{NT}{Nessyahu and Tadmor}
-\newacro{KT}{Kurganov and Tadmor}
-\newacro{AMR}{adaptive mesh refinement}
-\newacro{PPL}{positivity preserving limiter}
-\newacro{SSP}{strong stability preserving}
-\newacro{PDE}{partial differential equation}
-\newacroplural{PDE}[PDEs]{partial differential equations}
-\newacro{MOL}{method of lines}
-\newacro{EM}{electromagnetic}
-\newacro{HMNS}{hyper-massive neutron star}
-\newacro{SMNS}{supra-massive neutron star}
-\newacro{EATS}{equal time arrival surface}
-\newacroplural{EATS}[EATSs]{equal time arrival surfaces}
-\newacro{JWST}{James Webb Space Telescope}
-\newacro{QCD}{quantum-chromodynamic}
-\newacro{PN}{post-Newtonian}
-\newacro{EOB}{effective-one-body}
-\newacro{SNR}{signal-to-noise ratio}
-\newacro{PC}{prompt collapse}
-\newacro{LIGO}{Laser Interferometer Gravitational-Wave Observatory}
-\newacro{MF}{magentic field}
-\newacroplural{MF}[MFs]{magnetic fields}
-\newacro{AGN}{active galactic nucleus}
-\newacroplural{AGN}[AGNs]{active galactic nuclei}
-\newacro{MC}{Monte Carlo}
-\newacro{LOS}{line of sight}
+\newboolean{isdef}
+\setboolean{isdef}{true}
 
+\input{acronyms.tex}
 
-\newacro{DE}{dynamical ejecta}
-\newacro{SWW}{\swind{}}
+\setboolean{isdef}{false}
+
+%\loadglsentries[\acronymtype]{\jobname-acro}
 
 
 %----------------------------------------------------------------------------------------
@@ -374,22 +259,23 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %----------------------------------------------------------------------------------------
 
 \begin{titlepage}
-    
     \begin{center}
         \centering
         {\hrule width \hsize \kern 1mm \hrule width \hsize height 2pt}
         \vspace{5mm}
-        \Huge 
-        \textbf{Binary Neutron Star Merger Simulations:\\ Dynamics, Ejecta, And Electromagnetic Counterparts}
+        \huge 
+        \textbf{Binary Neutron Star Merger Simulations:}\\
+        \large
+        \textbf{Dynamics, Ejecta, And Electromagnetic Counterparts}
         \vspace{5mm}
         {\hrule width \hsize height 2pt \kern 1mm  \hrule width \hsize }
         
-        \vspace{1.5cm}
+        \vspace{1.4cm}
         
         \LARGE 
         \textbf{DISSERTATION} 
         
-        \vspace{0.70cm}
+        \vspace{0.60cm}
         
         \large
         zur Erlangung des akamedischen Grades\\
@@ -412,9 +298,9 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
         \vspace{0.3cm}
         von \\
         \vspace{0.3cm}
-        \bf{Vsevolod Nedora (MSc)} \\
+        \bf{Vsevolod Nedora (M.Sc.)} \\
         \vspace{0.3cm}
-        geboren am 03.13.1993 in Wladiwostok
+        geboren am 13.03.1993 in Wladiwostok
         
     \end{center}
     
@@ -468,21 +354,62 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %    \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 %    The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
 %\end{abstract}
-\begin{center}
-    \Large
-    \textbf{Ejecta and Electromagnetic Counterparts of BNS mergers}
-    
-    \vspace{0.4cm}
-    \large
-    Thesis Subtitle
-    
-    \vspace{0.4cm}
-    \textbf{Vsevolod Nedora}
-    
-    \vspace{0.9cm}
+%\begin{left}
+%    \Large
+%    \textbf{Ejecta and Electromagnetic Counterparts of BNS mergers}
+%    
+%    \vspace{0.4cm}
+%    \large
+%    Thesis Subtitle
+%    
+%    \vspace{0.4cm}
+%    \textbf{Vsevolod Nedora}
+%    
+%    \vspace{0.9cm}
     \textbf{Abstract}
-    To Be written\ldots
-\end{center}
+    
+    One of the fundamental unknowns in physics are the properties 
+    of matter at densities exceeding those found in nuclei. Such conditions are 
+    rare and can be found in remnants of dead stars, \acp{NS}. Hidden within 
+    their cold interiors they are difficult to study unless a certain event makes them exposed. 
+    
+    In August 2017, a merger of two neutron stars was detected for the first 
+    time. Observed in \acp{GW} as well as in \ac{EM} spectrum, the \GW{} marked the dawn of 
+    \ac{MM} astronomy and shed light on numerous astrophysical aspects of \ac{BNS} 
+    mergers and on the properties of matter at supranuclear densities. 
+    
+    And yet, many questions remain starting with the outcome of the merger. Was it a 
+    massive \ac{NS}, temporarily supported against collapse or a \ac{BH}? How important are 
+    \ac{BNS} mergers in cosmic chemical evolution? It is known, they enrich their 
+    surroundings with very heavy elements, but are they a dominant source of these elements?
+    Modeling these events on the computer, do we understand them correctly, meaning,  
+    do our predictions regarding the properties of the ejected matter and its \ac{EM} 
+    signatures agree with the newly gained data? And now, more than three years after the 
+    event, can the continuous observations give us new insights into the processes that 
+    governed the merger?
+    
+    This thesis is dedicated to addressing these questions by means of analyzing a 
+    large set of numerical simulations of \ac{BNS} mergers, performed with state-of-the-art 
+    numerical tools and targeted specifically to \GW{}. 
+    Employing a suite of postprocessing tools we study the matter dynamics, 
+    focusing on a small part of it, ejected from the system. With the help of parameterized 
+    \nuc{} model, we study the abundances of heavy elements in the ejected matter, 
+    comparing them to abundances found in solar system. 
+    and investigate the \ac{EM} emission, powered by the decay of newly synthesized heavy elements, 
+    comparing it to observations. 
+    Finally, we investigate the long-term emission of the ejected 
+    material as it propagates through \ac{ISM}, via our own numerical tools, 
+    comparing the results with recently detected change in the emission from \GW{}.
+    
+    %Armed with the results of our analysis, a
+    
+    %We find that finite temperature effects and non-axisymmetric dynamical interactions lead 
+    %to complex \pmerg{} evolution, that cannot be predicted from arguments based on equilibrium models. 
+    %
+    %The 
+    
+
+%\end{left}
 
 
 %----------------------------------------------------------------------------------------
@@ -514,7 +441,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES (if needed)
 %----------------------------------------------------------------------------------------
 
-% \tableofcontents % Prints the main table of contents
+\tableofcontents % Prints the main table of contents
 
 % \listoffigures % Prints the list of figures
 
@@ -524,10 +451,26 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 
+\newpage
+\begin{Huge}
+    \textbf{Abbreviations and Notation}
+\end{Huge}
+
+\vspace{1.5cm}
+
+We employ the geometric units, $c = G = \Msun = 1$, unless specified otherwise. 
+In several cases we write $c$, and $\Msun$ explicitly for clarity. 
+
+The following abbreviations are used (they are also introduced in the text 
+at their first appearance):
+
+%\printglossary[type=\acronymtype,style=long]
+\input{acronyms.tex} %% This will print the table only
+
 %\begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-%    
-%    \textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
-%    \textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
+%%    \textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
+%%    \textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
+%    \ac{BNS} & \ac{BNS} \\
 %    
 %\end{abbreviations}
 
@@ -564,7 +507,7 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 %	DEDICATION
 %----------------------------------------------------------------------------------------
 
-\dedicatory{I dedicate this work to my parents, whose love an support have never abandoned me} 
+\dedicatory{I dedicate this work to my parents, whose love and support have never abandoned me} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -608,13 +551,11 @@ uniquelist=true]{biblatex} % Use the bibtex backend with the (options:numeric-co
 
 
 %%% \part{Numerical relativity simulations of neutron star mergers}
-%\include{Chapters/Ch_Introduction_v3}
 \include{Chapters/Ch_Introduction_v4}
 \include{Chapters/Ch_NR_v3}
 \include{Chapters/Ch_BNS_MergSims}
 \include{Chapters/Ch_Nucleosynthesis}
 \include{Chapters/Ch_Kilonova_v2}
-%\include{Chapters/Ch_Afterglow_v2}
 \include{Chapters/Ch_Afterglow_v3}
 \include{Chapters/Ch_DiscConclusion}
 
