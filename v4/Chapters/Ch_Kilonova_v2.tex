@@ -23,7 +23,9 @@ developed by \cite{Perego:2017wtu} that was used in our analysis
 to produce synthetic light curves. 
 %
 Finally, in Sec.~\ref{sec:kilonova:result} 
-we report the results of our analysis.
+we report the results of our analysis, and in 
+Sec.~\ref{sec:kilonova:summary} we summarize the \ac{kN} signatures 
+from different types of ejecta and compare them with \AT{}.
 
 %% --------------------------
 %% M O D E L L I N G  K I L O N O V A
@@ -887,3 +889,230 @@ appears to be captured robustly.
 %the exact \ac{LC} model employed, this example suggests that the minimum systematic 
 %variations that are to be expected in synthetic \acp{LC} 
 %informed by our best fitting formulae.
+
+
+
+%% -----------------------------
+%% 
+%% -----------------------------
+
+\section{Summary of ejecta kilonova signatures}\label{sec:kilonova:summary}
+
+
+\begin{figure*}[t]
+    \centering 
+    \includegraphics[width=0.48\textwidth]{ejecta_dyn/summary/ej_mej_vej_our2.pdf}
+    \includegraphics[width=0.48\textwidth]{ejecta_dyn/summary/ej_mej_yeej_our2.pdf}
+    \caption{
+        Properties of various types of ejecta (indicated with different markers) 
+        for all our simulations alongside the regions inferred for \AT{} 
+        (colored patches) based on \citet{Siegel:2019mlp}. 
+        %
+        Ejecta types shown: \ac{DE} (diamond markers with error bars), 
+        \ac{DE} plus \ac{SWW} (solid cross markers), 
+        estimated secular ejecta assuming $40\%$ of the disk mass 
+        is unbounded on secular timescales with the velocity of \ac{SWW} 
+        (down triangle markers).
+        %
+        (Adapted from \citet{Nedora:2020pak}).
+        %        
+        %        Summary of the ejecta properties of our models.
+        %        %
+        %        Diamonds mark the dynamical ejecta, crosses include the
+        %        contribution of the \swind{} for the long-lived models, 
+        %        triangles are an estimate of the total ejecta mass on a secular
+        %        timescale, assuming $40\%$ of the disk mass is unbounded on
+        %        secular timescales.         
+        %        The ejecta mass is shown is terms of the mass-averaged velocity
+        %        (left) and of the averaged electron fraction (right).
+        %        %
+        %        The filled blue and red patches are the expected values of
+        %        ejecta mass and velocity for blue and red components of
+        %        AT2017gfo compiled by \cite{Siegel:2019mlp}, based on
+        %        \cite{Villar:2017wcc}. 
+        %        Adopted from \citet{Nedora:2020pak}.
+    }
+    %
+    \label{fig:ejecta:dyn:ds_sww}
+\end{figure*}
+
+%% from main paper, referencing the fitpaper Poly22 fits and SWW + DE
+%\red{THis can be augmented with Radio afterglow}
+
+%% === FROM DYNAMICAL EJECTA SECTION of MAIN PAPER
+%Here we discuss the application of our results to \GW{}.
+
+
+%\subsection{Dynamical Ejecta}
+
+%In Chapter~\ref{ch:bns_sims}, Sec~\ref{}
+
+%The properties of the dynamical ejecta from the \ac{BNS} mergers are of key 
+%importance to determine the properties of the \ac{EM} counterpart. 
+%%
+
+
+
+Observed data for \AT{} has been extensively studied and many \ac{kN} models, most of which were spherical, two-component \ac{kN} models, 
+were employed to infer the properties of ejecta that produced the observed 
+emission \citep[\eg][]{Villar:2017wcc}. 
+%
+Due to differences in physics input and modeling techniques, these methods gave 
+broad ranges of expected values for ejecta mass, velocity and composition 
+that read \citep{Siegel:2019mlp}:
+%
+$M_{\text{ej}}^{\text{red}}\in(4, 6)\times10^{-2}\,M_{\odot}$ and
+$\upsilon_{\text{ej}}^{\text{red}}\in(0.07, 0.14)\,c$ for the red component, and 
+$M_{\text{ej}}^{\text{blue}}\in(1, 2)\times10^{-2}\,M_{\odot}$ and 
+$\upsilon_{\text{ej}}^{\text{blue}}\in(0.2, 0.3)\,c$ for the blue component.
+%
+We show these ranges in Fig.~\ref{fig:ejecta:dyn:ds_sww}, alongside the 
+ejecta properties from our models. 
+
+
+With respect to the red component, we observe that \ac{DE} from our models 
+having too high average velocities and not nearly enough mass.
+This result suggests that an additional, low $Y_e$ ejecta component 
+is requiredin order to explain the \AT{} red component 
+\citep[\eg][]{Perego:2017wtu,Kawaguchi:2018ptg}.
+%
+
+As we showed in Chapter~\ref{ch:bns_sims}, Sec~\ref{sec:bns_sims:dyn}, 
+\ac{DE} properties can be mapped onto binary parameters, \eg, 
+\mr, $q$, and tidal deformability, $\tilde{\Lambda}$, via a simple 
+2nd order polynomial, \polql{}. 
+%
+The ranges in $q$ and $\tilde{\Lambda}$ inferred for \GW{} from \ac{GW} analysis 
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,De:2018uhw,Abbott:2018exr}, 
+\ie,  $90\%$ credible intervals, are 
+$\tilde{\Lambda}=300_{-190}^{+500}$ and $q\in[1., 1.37]$. 
+%
+Mapping them onto ejecta parameters via \polql{} we obtain 
+%
+$\amd \in [0.72, 7.52] \times 10^{-3}\, M_{\odot}$
+and
+$\avd \in [0.16, 0.39]\, c$
+and 
+$\ayd \in [0.11, 0.23]$.
+%
+Predictably, we observe that the obtained ranges do not agree with those 
+inferred for \AT{}. 
+Partially, this is due to simplified ejecta 
+geometry considered in many \ac{kN} models, but also because other 
+ejecta types most likely contributed to the observed emission.
+
+% when spherical, two-component \ac{kN} models are 
+%considered \citep{Villar:2017wcc}.
+%
+%Overall, we note that (i) other ejecta components are required to 
+%explain the red component of \AT{} and (ii) the non-trivial geometry of 
+%\ac{DE} ought to be taken into account in \ac{kN} modeling.
+
+
+%The analysis of the \ac{kN} non-thermal afterglow, cannot provide conclusive 
+%constraints on the properties of \ac{DE} yet. 
+%We can only note, that as the mild ejecta velocities seem to be preferred by the 
+%emerging new \GRB{} afterglow component, the emitting material had previously 
+%contributed to the red component of the \ac{kN} primarily. Such ejecta of 
+%mild velocities is found in \ac{BNS} merger simulations with moderately stiff 
+%\acp{EOS} and \mr{}s ${\leq}1.8$. 
+%%
+%Significantly more observational data is required for linking the \ac{kN} and 
+%its afterglow to ejecta properties and ultimately to the properties of the 
+%binary. 
+
+
+
+
+
+%\subsection{Spiral-wave wind}
+
+Discussing the \ac{BNS} models' merger dynamics and outflowing matter we 
+identified a new ejecta component, driven by interactions between the \ac{NS} 
+merger remnant and the disk, \ac{SWW}. % (Ch.~\ref{ch:bns_sims}, Sec.~\ref{sec:bns_sims:dyn}).
+%
+We showed that this ejecta is more massive than \ac{DE} if the \ac{NS} remnant 
+is long-lived, and has high electron fraction. % (Sec.~\ref{sec:bns_sims:sww}).
+%
+Thus, \ac{SWW} could be a significant contributor to \AT{}, assuming that 
+the \pmerg{} remnant of \GW{} survived for $\mathcal{O}(100)\,$ms.
+Specifically, we showed that \ac{SWW} properties are in line with 
+those requried to explane the early blue emission of \AT{}. 
+%in Ch.~\ref{ch:kilonova}, Sec.~\ref{sec:kilonova:result}.
+%
+Indeed, as we show in Fig.~\ref{fig:ejecta:dyn:ds_sww} (left panel)
+% we show the total ejecta properties 
+%(\ac{DE}+\ac{SWW}) for simulations with long-lived \ac{NS} remnants. 
+%
+the total ejecta (\ac{DE}+\ac{SWW}) mass from several of our models, \eg, 
+BLh $q=1.18$, BLh $q=1.42$ and DD2 $q=1.00$ 
+is sufficiently massive and proton-rich to account for the blue 
+\ac{kN} of \AT{}. Meanwhile the left panel of Fig.~\ref{fig:ejecta:dyn:ds_sww}, 
+displays that the total ejecta is slower than what is required. 
+%
+Notably, ejecta properties inferred from \AT{} change when sophisticated 
+radiation transport models that take into account ejecta geometry and cross-ejecta 
+interactions are considered. Furthermore, other proton-rich ejecta components are 
+expected on timescales larger than our simulations permit 
+\citep[\eg][]{Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa}.
+
+% in agreement 
+%with the expected values for the blue component of \AT{}. 
+%%(obtained using the two-component fit \citep{Villar:2017wcc})
+%
+%The high electron fraction of the \ac{SWW} %(see Sec.~\ref{sec:bns_sims:sww}) 
+%however would result in a lanthanides-poor composition of the outflow 
+%(Sec.~\ref{sec:nucleo:results}). Thus, the \ac{SWW} cannot explain the 
+%observed emission for the high opacity, lanthanides-rich material.
+%%
+%Simulations with advanced physics of a \ac{MNS} mergers on a timescales 
+%${>}100\,$ms are required to asses the contribution from other outflow mechanisms, 
+%\citep{Lee:2009uc,Fernandez:2015use,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa}.
+
+
+
+%\subsection{Secular Ejecta}
+On even longer timescales, 
+%On the timescale of seconds, much longer than the evolution of our simulations, 
+nuclear recombination can unbind a fraction of the disk.  
+%(See Sec.~\ref{sec:bns_sims:mj_loss} for more details). % See Mb-J plot for example
+%
+Analytical estimates and simulations with various approximations show that 
+up tp ${\sim}40\%$ of the disk can be ejected via viscous processes with an 
+typical velocity ${\lesssim}0.1\,c$ 
+\citep[\eg][]{Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,
+    Radice:2018xqa,Fujibayashi:2020dvr}. 
+%
+Considering disk masses of our \ac{BNS} merger simulations and 
+adapting the fix fraction of $40\%$ of the $M_{\rm disk}$, we estimate 
+that about ${\sim}0.05\, M_{\odot}$ would be ejected in a form of 
+secular winds. 
+%
+Plotting the expected masses of secular ejecta from our models with long-lived 
+remnants (lower triangles in Fig.~\ref{fig:ejecta:dyn:ds_sww})  
+we observe that they would sufficient to explain the red component of 
+\AT{}. 
+
+
+A more quantitative analysis requires ab-initio \ac{BNS} merger simulations, 
+that are sufficiently long and have sufficiently advanced physics input to 
+capture all the aforementioned ejection mechanisms. 
+
+
+
+
+
+
+
+
+%% ---------------------
+%Sources with time delay are preferred by studies of very metal poor stars that indluded the time delay for r-process elements
+%to diffuse through ISM, \citep{Tarumi:2021xvw}. 
+%A winds from proto-nuetron are also contributors to the $r$-process budget \cite{Vincenzo:2021rvw}
+%
+%\red{The remnant is losing anular momentum while disk gains on shortly after merger is due to gravitational torque \cite{Shibata:2019wef}}
+%
+
+
+
+
