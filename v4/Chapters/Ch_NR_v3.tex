@@ -47,7 +47,8 @@ G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} = 8\pi T_{\mu\nu}\, ,
 %(As an exercise we provide a short derivation of the 
 %\ac{EFE} from the variation of Hilbert action in Appendix~\ref{app:efe})
 %
-where $R_{\mu\nu}$ is the Ricci curvature tensor with its trace 
+where $G_{\mu\nu}$ is the Einstein tensor, 
+$R_{\mu\nu}$ is the Ricci curvature tensor with its trace 
 $R^{\nu}_{\nu} = R$, $g_{\mu\nu}$ is the metric tensor and 
 $T_{\mu\nu}$ is the stress-energy tensor.
 
@@ -55,7 +56,7 @@ For numerical applications it is desirable to represent Eq.~\eqref{eq:theory:EFE
 as an \ac{IVP} where once the initial data is specified at the time zero, 
 the evolution can be computed. 
 This is highly non-trivial task because of the complexity of objects entering 
-Eq.~\eqref{eq:theory:EFE}. One of the commonly used methods is to perform 
+Eq.~\eqref{eq:theory:EFE}. One of the common approaches, is to perform 
 \textit{$3+1$ decomposition}, where the $4$D manifold, representing the space-time, 
 is split into a foliation of $3$D spacelike hypersurfaces 
 \citep{Alcubierre:2008,Baumgarte:2010,Gourgoulhon:2007ue,Rezzolla:2013}.
@@ -69,12 +70,12 @@ is split into a foliation of $3$D spacelike hypersurfaces
         Visual representation of the $4$D manifold $\mathcal{M}$ by $3$D hypersurfaces 
         $\Sigma_t$. The lapse function $\alpha$ and shift vector $\beta^{\mu}$ describe the 
         coordinate change between hypersurfaces.
-        Adopted from \citet{Dietrich:2016phd}.
+        (Adapted from \citet{Dietrich:2016phd}).
     }
     \label{fig:theory:3p1}
 \end{figure}
 
-Eq.~\eqref{eq:theory:EFE} represent a set of $10$ non-linear \acp{PDE} 
+Eq.~\eqref{eq:theory:EFE} represents a set of $10$ non-linear \acp{PDE} 
 that can be defined on a whole manifold $\mathcal{M}$ or a domain $\Omega\subset\mathcal{M}$ 
 %where in the latter case, the boundary conditions on 
 with the boundary, $\partial\Omega$.% are required. 
@@ -105,8 +106,8 @@ is allowed, or in other words, that the spacetime is strongly hyperbolic.
 %}.% of the $\boldsymbol{q}$ along the vector $\vec{t}$.
 
 %Consider now two hypersurfaces $\Sigma_t$ and $\Sigma_{t+dt}$ (Fig.~\ref{fig:method:3p1}). 
-The transition between two hypersurfaces, $\Sigma_t$ and $\Sigma_{t+dt}$,
-where $t$ is the smooth scalar function on $\mathcal{M}$, can be decomposed 
+The transition between the two hypersurfaces, $\Sigma_t$ and $\Sigma_{t+dt}$,
+where $t$ is a smooth scalar function on $\mathcal{M}$, can be decomposed 
 into a part tangent to the hypersurface $\Sigma_{t+dt}$ and expressed as a vector,
 $\vec{\beta}$, and a part normal to the hypersurface $\Sigma_t$ in the direction of 
 $\Sigma_{t+dt}$, $\vec{n}$, as $\alpha \vec{n}$.
@@ -190,7 +191,10 @@ The correct choice is crucial for stable evolution
 %    \citep{Alcubierre:2002kk} 
 %    and slice stretching \citep{Reimann:2004pn,Reimann:2004yf}
 %}
-alongside the well-posedness of the system of \acp{PDE}.
+alongside the well-posedness of the system of \acp{PDE}\footnote{
+    Well-posedness means that (i) a solution exists, (ii) the solution is unique,
+    (iii) the solution's behaviour changes continuously with the initial conditions.
+}.
 %
 %Numerical simulations depend strongly on the its choice. An incorrect choice might result in development of 
 %gauge\footnote{Gauge shocks are coordinate singularities for which the lapse becomes discontinuous
@@ -210,7 +214,7 @@ alongside the well-posedness of the system of \acp{PDE}.
 %resembles the maximal slicing \citep{Baumgarte:2002jm}.
 %
 The choice of the lapse function is referred to as slicing condition, 
-while the choice of the shift vector -- spatial gauge condition. 
+while the choice of a shift vector -- spatial gauge condition. 
 In our simulations the so-called ``1+log'' slicing is used. %, when $f(\alpha) = 2/\alpha$.
 %
 The name stems from the fact that if $\beta^i = 0$, 
@@ -239,10 +243,10 @@ For the spatial gauge condition our simulations employ the Gamma-driver
 %where $\overline{\Gamma}^i$ is the conformal connector (discussed later), $\eta$ is the 
 %dampening parameter, and $\mu_s$ is the gauge parameter.
 The requirements for the spatial gauge are similar to those for 
-the slicing condition. 
+the slicing condition, 
 %as in the case of the one for $\alpha$, 
 namely, hyperbolicity and minimization of numerical distortions for more stable evolution. 
-It is preferred, that  gauge condition tries to decrease the coordinate stretching that occur in the 
+It is preferred, that a gauge condition tries to decrease the coordinate stretching that occurs in the 
 vicinity of a singularity. 
 %It was shown to be effective in numerical applications, 
 %in particular for a single moving black hole. However it has a zero-speed mode, 
@@ -268,7 +272,7 @@ it forms a strongly hyperbolic system of equations that can be solved numericall
 
 
 The dynamics of the gravitational field is embedded into \ac{EFE}. 
-Casting the \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, into the $3+1$ form results in a 
+Casting \ac{EFE}, Eq.~\eqref{eq:theory:EFE}, into the $3+1$ form results in a 
 system of \textit{evolution} and 
 a system of \textit{constraint} equations.
 %
@@ -294,7 +298,7 @@ a system of \textit{constraint} equations.
 %
 As such, the \ac{RHS} of Eq.~\eqref{eq:theory:EFE}, the energy-momentum tensor, 
 $T_{\mu\nu}$, in $3+1$ form can be written using the spatial projection operator, 
-that decompose $T_{\mu\nu}$ into its 
+that decomposes $T_{\mu\nu}$ into its 
 spatial part, $S_{\mu\nu}$, 
 momentum density, $S_{\mu}$, and 
 the energy density, $E=n^{\mu}n^{\nu}T_{\mu\nu}$, 
@@ -341,13 +345,13 @@ measured by an Eulerian observer with the four-velocity $n^{\nu}$.
 %\end{align}
 
 The set of constraint equations is derived by utilizing two relations.
-The first, called Gauss (Gauss-Codazzi) equations 
-connects the $3$D Riemann tensor on a hypersurface, $4$D Riemann tensor on the manifold, and the extrinsic curvature. The second, called 
-Codazzi (Codazzi-Mainardi) equations relates the $4$D Ricci tensor to the extrinsic curvature. 
+Gauss (Gauss-Codazzi) equations connect the $3$D Riemann tensor on a hypersurface, 
+$4$D Riemann tensor on the manifold, and the extrinsic curvature. 
+Codazzi (Codazzi-Mainardi) equations relate the $4$D Ricci tensor to the extrinsic curvature. 
 %
 %are called \textit{Hamiltonian} and \textit{momentum constraints}, respectively.
 %
-The derived system of constraint equations, called 
+The derived system of two constraint equations, called 
 \textit{Hamiltonian} and \textit{momentum constraints}, 
 represent a set of elliptic equations that must be satisfied on 
 every hypersurface $\Sigma_i$ of the foliation. 
@@ -355,7 +359,8 @@ every hypersurface $\Sigma_i$ of the foliation.
 It is however, possible to show that \ac{EFE} preserve the constraints, 
 meaning that if they are satisfied at the initial slice $\Sigma_0$ 
 they will be satisfied at any time in the future.
-
+%
+Constraint equations allow to construct initial data. 
 
 
 
@@ -429,9 +434,10 @@ known as \ac{ADM} system of equations \citep[\eg][]{Arnowitt:1962hi}.
 %% Strongly hyperbolic formulations of EFE
 It has been shown, that the \ac{ADM} system of equations in its original form 
 %% Eq.~\eqref{eq:theory:adm} 
-is only weekly hyperbolic \citep{Baumgarte:2002jm}. Specifically, it was shown that 
+is only weekly hyperbolic \citep{Baumgarte:2002jm}. 
+Specifically, it was shown that 
 the numerical errors tend to couple with zero-velocity modes \citep{Alcubierre:1999rt}. 
-In an attempt to tackle this problem, other formulations of the \ac{EFE} as \ac{IVP} 
+In order to address this problem, other formulations of \ac{EFE} as \ac{IVP} 
 were proposed. 
 %%%% === OTHER FOMULATIONS OF EFE 
 %In particular, the generalized-harmonic formulation \citep{Friedrich:1986,Garfinkle:2001ni,Pretorius:2004jg,Lindblom:2005qh}. 
@@ -462,10 +468,10 @@ that was developed in a series of works by
 \citet{Bernuzzi:2009ex,Ruiz:2010qj,Weyhausen:2011cg,Cao:2011fu,Hilditch:2012fp} 
 and is summarized in \citet{Hilditch:2012fp}. 
 %
-The idea behind the Z4 formulation is to derive a set of evolution equations that is 
+The idea behind the Z4c formulation is to derive a set of evolution equations that is 
 free from the zero-speed modes of the original \ac{ADM} and thus -- 
 strongly-hyperbolic, and also inherits the constraint violation dampening properties 
-of the original Z4 formulation, and retain the possibility to chose the gauge.
+of the original Z4 formulation, and retain the possibility to chose a gauge.
 
 %The \ac{EFE} equations in this formulation read 
 %%
@@ -580,8 +586,8 @@ of the original Z4 formulation, and retain the possibility to chose the gauge.
 %%%% ---------------------------------------------------------
 %%%%
 %%%% --- Kinematics
-In Newtonian physics, a fluid is an "entity" whose dynamics is described by flows of 
-quantities such as energy density, mass, momentum density. However, in general and 
+In Newtonian physics a fluid is an "entity" whose dynamics is described by flows of 
+quantities such as energy density, mass, and momentum density. However, in general and 
 special relativity, these quantities are not well defined and depend on the observer. 
 In other words, different observers perceive the same fluid as being in different thermodynamic 
 states. Hence, a description of the fluid dynamics in relativity requires 
@@ -590,7 +596,7 @@ that are observer-dependent, but implicitly by a "flow" in spacetime.
 These are flux-conservative formulations of \ac{HD}.
 %%
 
-next, consider classical density, scalar $\rho$, usually defined as the 
+Consider classical density, scalar $\rho$, usually defined as the 
 total umber of particles $N$ of rest-mass $m$ in the volume $V$. 
 Then, the total mass is given by the 
 spatial integral of $\rho \text{d}^3x = m\int_V n \text{d}^3 x = mN$. 
@@ -675,8 +681,8 @@ The foundation of \ac{HD} is the fluid kinematics, described by its
 stress-energy tensor. The latter can be obtained by considering the 
 conservation of the number of particles, flux, and the rest-mass density 
 four-vector, written in a form of a mixed tensor $\boldsymbol{T}$.
-We have already mentioned $\boldsymbol{T}$, describing the \ac{RHS} of the \ac{EFE}.
-There, if the \ac{EFE} are satisfied, the Bianchi identities dictate that 
+We have already mentioned $\boldsymbol{T}$, describing the \ac{RHS} of \ac{EFE}.
+There, if \ac{EFE} are satisfied, the Bianchi identities dictate that 
 covariant derivative, $\nabla_{\mu}$, of $\boldsymbol{T}$ must vanish \ie, 
 %For the sake of brevity we omit the discussion 
 %on the fluid kinematics and 
@@ -753,7 +759,8 @@ The latter is more complex, as there is still no consensus on the correct mathem
 %\label{eq:theory:stressenergytensor}
 %\end{equation}
 %%% ------------------------------------------------------------------------
-The stress-energy tensor of a perfect fluid in the comoving frame with the fluid
+The stress-energy tensor of a perfect fluid in the comoving frame 
+reads 
 %
 \begin{equation}
 T^{\mu\nu} = \rho h u^{\mu}n^{\nu} + p g^{\mu\nu}\, ,
@@ -775,14 +782,13 @@ and it reads
 \rho h n^{\nu} \nabla_{\nu}u^{\mu} = - (g^{\mu\nu} + u^{\mu}u^{\mu})\nabla_{\nu}p\, .
 \end{equation}
 %
-The continuity equation reads 
+From the rest-mass conservation, the continuity equation reads 
 %
 \begin{equation}
-\nabla_{\nu}(\rho u^{\nu}) = 0\, ,
+\nabla_{\nu}(\rho u^{\nu}) = 0\, .
 \label{eq:theory:contineq}
 \end{equation}
 %
-assuming the rest-mass is conserved.
 
 
 %%%% ---------------------------------------------------------
@@ -920,7 +926,7 @@ velocity $\upsilon_i$, and energy density $\epsilon$, as seen by a Lagrangian ob
 %(\red{moving with the fluid?}), 
 while the latter includes 
 the conserved rest-mass, $D$, momentum, $S_i$, and internal energy $E$
-density, as seen by the Eulerian observer.
+densities, as seen by the Eulerian observer.
 %
 It is convenient to combine them into state vectors 
 $\boldsymbol{w}=(\rho,\upsilon_i,\epsilon)$ and $\boldsymbol{q}=(D,S_i,E)$.
@@ -1141,66 +1147,67 @@ astrophysical constraints, \eg, LIGO/Virgo constrains from \GW{}
 %agreement with experimental limits. Notably, LS220 \ac{EOS} has a particularly steep 
 %dependency of its symmetry energy on density \citep[\eg][]{Lattimer:2012xj,Danielewicz:2013upa}. 
 %Thus, this \ac{EOS} might predict too low symmetry energy below the saturation density. 
-In the following we discuss the $5$ \acp{EOS} in more details.
 
-\begin{itemize}
-    %% ======================= LS220 =================
-    \item The LS220 \ac{EOS} is based on a non-relativistic (liquid droplet) Skyrme model.
-    The absolute value of the nuclear bulk incompressibility is set to $220$~MeV, hence, the name.
-    The \ac{EOS} includes surface effects and it models $\alpha$-particles as an ideal, classical
-    non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued. 
-    %    Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
-    %    particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
-    %    Heavy nuclei are considered with single nucleus approximation. 
-    %    The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
-    %    LS220 does not satisfy the constraints from Chiral effective field theory \citep{Hempel:2017ikt}.
-    %% ======================= DD2 \& SFHo ===================
-    \item DD2 (and SFHo) \acp{EOS} employ the statistical equilibrium to treat the ensemble of several thousands nuclei.
-    The high-density nuclear matter is treated via \ac{RMF} approach for unbound nucleons \citep{Hempel:2009mc}.
-    The excluded volume mechanism is utilized for the phase transition from nuclei to homogeneous
-    nuclear matter (when densities approach the nuclear saturation density).
-    DD2 \ac{EOS} employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions 
-    \citep{Typel:2009sy}.
-%    It was however noted that DD2 \ac{EOS} is not in a very good agreement with the so-called 
-%    flow-constraint \citep{Danielewicz:2002pu}.
-    %% SFHo [more rephrasing needed!]
-    %    Similar to DD2, SFHo combines a statistical ensemble of numerous nuclei, under the assumption of nuclear
-    %    statistical equilibrium (NSE) to treat the homogeneous matter, 
-    %    with the relativistic mean field approach for the unbound nucleons to treat high-density homogeneous nuclear matter.
-    %    It however employs a different parameterizations and values for modeling the mean-field nuclear interactions, 
-    %    which is motivated by neutron star radius measurements from low-mass X-ray
-    %    binaries (\cite{Steiner:2012rk} and references therein).
-    %% ===
-    The DD2 and SFHo \acp{EOS} are based on nuclear statistical equilibrium, but with 
-    different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
-    %    In these \acp{EOS} a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these \acp{EOS} mean-field nuclear interactions have different parameterizations and values.
-    The DD2 \ac{EOS} is the stiffest \ac{EOS} in our sample, giving the 
-    $\tilde{\Lambda}$ for an equal mass binary ${\simeq}850$. 
-    %% ======================= SLy4 ===================
-    \item The SLy4 \ac{EOS} employed in this work is the finite temperature extension \citep{daSilvaSchneider:2017jpg}
-    of the basic SLY4 Skryme parametrisation for cold nuclear \ac{NS} matter \citep{Douchin:2001sv}.
-    The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
-    treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
-    %    Which is a more advanced version of LS220 \ac{EOS} treatment (model).
-    %    When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
-    %    free energy is chosen (first order transition).
-    The SLy4 \ac{EOS} is the softest \ac{EOS} in our sample, 
-    giving the $\tilde{\Lambda}$ for an equal mass binary ${\simeq}400$. 
-    %% ======================= BLh ===================
-    \item BLh \ac{EOS} \citep{Logoteta:2020yxf} is the
-    finite temperature extension of the cold, $\beta$-equilibrium \ac{EOS}, \citep{Bombaci:2018ksa}
-    that was applied to model the \ac{BNS} merger in \citet{Endrizzi:2018uwl}.
-    The \ac{EOS} is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach,
-    where homogeneous nuclear phase is modeled via 
-    microphysical approach based on a specific nuclear interaction.
-    The interactions between nucleons are described through a potential derived perturbatively 
-    in Chiral-Effective-Field theory \citep{Machleidt:2011zz}.
-    %The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
-    %Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
-    %The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
-    The non-homogeneous phase of the \ac{EOS} is treated by smoothly connecting the high density part of 
-    BLh \ac{EOS} to the low-density part of the SFHo \ac{EOS}.
-\end{itemize}
+%In the following we discuss the $5$ \acp{EOS} in more details.
+
+%\begin{itemize}
+%    %% ======================= LS220 =================
+%    \item The LS220 \ac{EOS} is based on a non-relativistic (liquid droplet) Skyrme model.
+%    The absolute value of the nuclear bulk incompressibility is set to $220$~MeV, hence, the name.
+%    The \ac{EOS} includes surface effects and it models $\alpha$-particles as an ideal, classical
+%    non-relativistic gas. For heavy nuclei, the single nucleus approximation is sued. 
+%    %    Thus, the the compressible, liquid-drop model with surface effects and composed of ideal gas of 
+%    %    particles and heavy nuclei is used to represent the non-homogeneous nuclear matter.
+%    %    Heavy nuclei are considered with single nucleus approximation. 
+%    %    The Gibbs construction is used to model the transition between homogeneous and non-homogeneous matter.
+%    %    LS220 does not satisfy the constraints from Chiral effective field theory \citep{Hempel:2017ikt}.
+%    %% ======================= DD2 \& SFHo ===================
+%    \item DD2 (and SFHo) \acp{EOS} employ the statistical equilibrium to treat the ensemble of several thousands nuclei.
+%    The high-density nuclear matter is treated via \ac{RMF} approach for unbound nucleons \citep{Hempel:2009mc}.
+%    The excluded volume mechanism is utilized for the phase transition from nuclei to homogeneous
+%    nuclear matter (when densities approach the nuclear saturation density).
+%    DD2 \ac{EOS} employs the linear, but density dependent coupling for modeling the mean-field nuclear interactions 
+%    \citep{Typel:2009sy}.
+%%    It was however noted that DD2 \ac{EOS} is not in a very good agreement with the so-called 
+%%    flow-constraint \citep{Danielewicz:2002pu}.
+%    %% SFHo [more rephrasing needed!]
+%    %    Similar to DD2, SFHo combines a statistical ensemble of numerous nuclei, under the assumption of nuclear
+%    %    statistical equilibrium (NSE) to treat the homogeneous matter, 
+%    %    with the relativistic mean field approach for the unbound nucleons to treat high-density homogeneous nuclear matter.
+%    %    It however employs a different parameterizations and values for modeling the mean-field nuclear interactions, 
+%    %    which is motivated by neutron star radius measurements from low-mass X-ray
+%    %    binaries (\cite{Steiner:2012rk} and references therein).
+%    %% ===
+%    The DD2 and SFHo \acp{EOS} are based on nuclear statistical equilibrium, but with 
+%    different parameterizations of the covariant Lagrangian which models the mean-field nuclear interactions.
+%    %    In these \acp{EOS} a finite volume correction coupled to a relativistic mean field theory for treating high-density nuclear matte. However, between these \acp{EOS} mean-field nuclear interactions have different parameterizations and values.
+%    The DD2 \ac{EOS} is the stiffest \ac{EOS} in our sample, giving the 
+%    $\tilde{\Lambda}$ for an equal mass binary ${\simeq}850$. 
+%    %% ======================= SLy4 ===================
+%    \item The SLy4 \ac{EOS} employed in this work is the finite temperature extension \citep{daSilvaSchneider:2017jpg}
+%    of the basic SLY4 Skryme parametrisation for cold nuclear \ac{NS} matter \citep{Douchin:2001sv}.
+%    The extension includes the non-local isospin asymmetric terms as well as more sophisticated 
+%    treatment of nuclear surface properties and consistent treatment of heavy nuclei size. 
+%    %    Which is a more advanced version of LS220 \ac{EOS} treatment (model).
+%    %    When the phase transition, between the uniform and non-uniform phases, occurs, the phase with lowest 
+%    %    free energy is chosen (first order transition).
+%    The SLy4 \ac{EOS} is the softest \ac{EOS} in our sample, 
+%    giving the $\tilde{\Lambda}$ for an equal mass binary ${\simeq}400$. 
+%    %% ======================= BLh ===================
+%    \item BLh \ac{EOS} \citep{Logoteta:2020yxf} is the
+%    finite temperature extension of the cold, $\beta$-equilibrium \ac{EOS}, \citep{Bombaci:2018ksa}
+%    that was applied to model the \ac{BNS} merger in \citet{Endrizzi:2018uwl}.
+%    The \ac{EOS} is derived in the framework of non-relativistic Brueckner-Hartree-Fock approach,
+%    where homogeneous nuclear phase is modeled via 
+%    microphysical approach based on a specific nuclear interaction.
+%    The interactions between nucleons are described through a potential derived perturbatively 
+%    in Chiral-Effective-Field theory \citep{Machleidt:2011zz}.
+%    %The two body interactions are modeled up to second (from the leading term) order, that are used to calculate the local potential. This potential includes $\Delta$-resonances possible excitation. 
+%    %Further, the potential is augmented with the three-nucleon force, with the addition of $\Delta$-excitations.
+%    %The three-nucleon force was calibrated to reproduce the symmetric nuclear matter at saturatuin density \cite{Logoteta:2016nzc}.
+%    The non-homogeneous phase of the \ac{EOS} is treated by smoothly connecting the high density part of 
+%    BLh \ac{EOS} to the low-density part of the SFHo \ac{EOS}.
+%\end{itemize}
 
 
 
@@ -1262,16 +1269,17 @@ which in turn requires, the effective in-medium nuclear interactions to be defin
 %    account the Pauli principle.
 %}).
 %
-Then, the nucleon single particle potentials are evaluated %(via integration of the on-shell effective interaction matrix),
+Then, the nucleon single particle potentials %(via integration of the on-shell effective interaction matrix),
 that represent the mean field that a nucleon with a certain momentum experiences, 
-surrounded by other nucleons. From nucleon single particle potentials, the free energy 
+surrounded by other nucleons, are evaluated. 
+rom nucleon single particle potentials, the free energy 
 is then evaluated, and subsequently, other thermodynamic quantities. 
 A notable difference 
 with other \acp{EOS} discussed here is that the many-body correlations extend beyond the 
 mean field approximation. % , and are not present in other \acp{EOS}. 
 %
-This \acp{EOS} was first employed for the \ac{BNS} merger 
-simulations for the first time in \citet{Bernuzzi:2020txg}.
+%This \ac{EOS} was first employed for the \ac{BNS} merger 
+%simulations for the first time in \citet{Bernuzzi:2020txg}.
 
 
 
@@ -1294,7 +1302,7 @@ the cold, non-rotating \acp{NS} by solving the \ac{TOV} equations.
 The results are shown in Fig~\ref{fig:method:tov_mr}, where we also place 
 the primary of our \ac{BNS} models, that we discuss in details in the next Chapter. 
 %
-The maximum \ac{TOV} mass supported by these \ac{EOS} span  
+The maximum \ac{TOV} mass supported by these \acp{EOS} span  
 $\Mmax \sim 2.06-2.10\,\Msun$, while the predicted radii of a $1.4\,\Msun$ 
 \ac{NS} lay in the range $R_{1.4}\sim 11.78-12.74$ km. 
 More specifically, LS220, SFHo, SLy4, BLh and DD2 \acp{EOS} have 
@@ -1378,7 +1386,7 @@ Neutrino transport is of prime importance for recovering the composition of matt
 ejected at mergers  \citep{Wanajo:2014wha,Sekiguchi:2015dma,Foucart:2015vpa,Foucart:2015gaa},
 affecting the \nuc{} in ejecta \citep{Wanajo:2014wha,Goriely:2015fqa} 
 (See also Ch.~\ref{ch:nucleo})
-and ultimately electromagnetic counterparts 
+and ultimately \ac{EM} counterparts 
 \citep{Metzger:2014ila,Lippuner:2015gwa} (See also Ch.~\ref{ch:kilonova} \& Ch.~\ref{ch:afterglow}).
 
 %%%% -----------------------------------------------------
@@ -1386,15 +1394,15 @@ and ultimately electromagnetic counterparts
 %%%% -----------------------------------------------------
 Neutrino interactions depend on matter composition, density and temperature, 
 and neutrino energies. For instance, at rest-mass density $10^{12}$\gcm{} 
-and temperature $\sim10$~MeV, the neutrino scattering on matter becomes so efficient, 
+and temperature $\sim10$~MeV, the neutrino scattering on matter becomes so efficient 
 that neutrinos fall into the thermal equilibrium with it. Their mean free path 
 becomes of order of $\sim 50\,$m. These neutrinos are considered \textit{trapped}.
 %
-At low densities, $<10^{11}\,$\gcm, neutrinos with energies $<10\,$MeV 
+At densities below $10^{11}\,$\gcm, neutrinos with lower than $10\,$MeV 
 are no longer coupled to matter and their mean free path can reach tens 
 of kilometers. Such neutrinos are considered \textit{free-streaming}.
 %
-If there is a sharp density gradient present, \eg, a \ac{NS} surface 
+If there is a sharp density gradient, \eg, a \ac{NS} surface 
 where density falls by several orders of magnitude, than neutrinos can be effectively 
 divided into trapped and free-streaming. The transition region, however, 
 is more difficult to treat.
@@ -1403,9 +1411,9 @@ is more difficult to treat.
 
 Radiation-transport equations are complex and expensive to solve numerically. 
 %The main reasons for that are the following. First, is the high dimensionality of the problem. 
-Radiation carriers are described by their location in space, which generally is comprised 
-of $3$D space, momenta, which requires $2$ additional components, angles, and finally one 
-component for energy of the carrier. 
+Radiation carriers are described by their location in space, \ie, $3$D space, 
+momenta, which requires $2$ additional components, angles, and finally one 
+component for the energy of carriers. 
 %
 Thus, with an addition of time there are $(6+1)$ dimensions for the problem. 
 Moreover, radiation transport depends strongly on the optical depth of matter, 
@@ -1430,7 +1438,7 @@ reducing the number of spatial dimensions by assuming certain symmetries.
 %Examples are axial or spherical symmetry. And while this have shown to be a reasonable approximation for many astrophysical models, in cases where the system itself does not exhibit any spatial symmetries, 
 %such simplification cannot be done. 
 %%
-Anther approach is to simplify the momentum space. 
+Another possibility is to simplify the momentum space. 
 %An example of such approach, that allows to reduce the computational cost considerably, is the approximation of transport equations with diffusion equations \citep{Pomraning:1973,Roe:1981}. 
 %And while in the opaque regions (with high optical depth) this approximation is reasonable, it becomes much less 
 %so in the transparent regions where the anisotropy of radiation has to be taking into account \citep{Ott:2008jb}.
@@ -1649,13 +1657,14 @@ so-called ``leakage scheme''
 %\citet{vanRiper:1981mko,Ruffert:1995fs,Rosswog:2003rv,OConnor:2009iuz,Sekiguchi:2010ep,
 %    Neilsen:2014hha,Perego:2015agy,Ardevol-Pulpillo:2018btx}.
 %
-The method approximates the radiation transport evaluating the instantaneous energy loss 
-via neutrino emission and evolution of the composition of the nuclear matter.
+The method approximates the radiation transport by considering 
+the instantaneous energy loss via neutrino emission and evolution of the 
+composition of the nuclear matter.
 The particular advantage of the method is its computational efficiency and 
 its ability to account for non-trivial geometries of emitting regions.
 %
 It was first proposed by \citet{vanRiper:1981mko} to study the neutrino cooling through 
-weak interaction in the \ac{CCSN}. The leakage scheme is popular to model neutrino 
+weak interactions in the \acp{CCSN}. The leakage scheme is popular to model neutrino 
 effects in \acp{CCSN} and compact object mergers.
 %
 A modified version of \citet{Galeazzi:2013mia} scheme is implemented in 
@@ -1672,7 +1681,7 @@ A modified version of \citet{Galeazzi:2013mia} scheme is implemented in
 %
 The goal of the scheme is to describe the series of effective emissivities, 
 $R_{\nu}^{\text{eff}}$, and $Q_{\nu}^{\text{eff}}$ for electron neutrinos, $\nu_e$, 
-anti-electron neutrinos, $\bar{\nu}_e$, and the heavy-lepton neutrinos, 
+anti-electron neutrinos, $\bar{\nu}_e$, and heavy-lepton neutrinos, 
 which are collectively labeled as $\nu_x$.
 %
 Here, $R_{\nu}^{\text{eff}}$ describes the the number of neutrinos emitted per second and baryon,
@@ -1695,7 +1704,7 @@ Neutrinos are assumed to be massless and in thermal equilibrium with the surroun
 %\end{equation}
 %
 %where $\mu_e$, $\mu_n$, $\mu_p$ are the relativistic chemical potentials including the rest-mass of the particle. 
-The $R_{\nu}^{\text{eff}}$, and $Q_{\nu}^{\text{eff}}$ can be evaluated from various 
+The effective emissivites can be evaluated from various 
 weak-interaction processes that are present in the hot and dense \pmerg{} environment. 
 %The definitions are: the $Q_{\nu_{i}}$ is the energy emitted via neutrinos per second and baryon;
 %the $R_{\nu_{i}}$ is the number of neutrinos emitted per second and baryon.
@@ -1712,18 +1721,18 @@ listed in Tab.~\ref{tab:leakage}.
 %
 
 It is possible to evaluate the emission rates corresponding to these processes 
-using only the quantities provided by the \ac{EOS} tables.
+using only the quantities provided by \ac{EOS} tables.
 %
 %%%% === URCA PROCESS
 For instance, consider the strong neutrino emitting process, the direct Urca process, 
 that consists of the $\beta$-decay, $e^+ + n \rightarrow p + \bar{\nu}_e$, 
-and the electron capture on the free nucleons (n), $e^{-} + p \rightarrow n + \nu_e$ 
+and the electron capture on free nucleons (n), $e^{-} + p \rightarrow n + \nu_e$ 
 (the first two reactions Tab.~\ref{tab:leakage}). 
 This process moves matter to the $\beta$-equilibrium, in which the rates 
 of both reactions are the same, and the chemical potentials $\mu_{\nu_e,\bar{\nu}_e}=0$.
 %
-For both, $\beta$-decay, labeled, \textit{pc}, and electron capture, \textit{ec}, 
-the emiissivities 
+For both, $\beta$-decay (labeled, \textit{pc}), and electron capture, 
+(\textit{ec}), the emissivities 
 have strong temperature, $T$, dependence \citep{Galeazzi:2013mia}, 
 %\begin{equation}
 %\begin{aligned}
@@ -1767,24 +1776,24 @@ highlighting the importance of both.
 
 %%% ==== SCATTERING
 In addition to the emission of neutrinos, the leakage scheme considers the neutrino absorption 
-and scattering, (see "A" and "S" entries in the Tab.~\ref{tab:leakage}).
+and scattering, (see ``A'' and ``S'' entries in Tab.~\ref{tab:leakage}).
 %$\nu+A\rightarrow\nu+A$ is the coherent neutrino 
 %scattering on heavy nuclei (with atomic mass number $A$), and $\nu+N\rightarrow\nu+N$ 
 %is the neutrino scattering on free nucleons).
 %
 Of particular importance are the neutrino scattering on heavy nuclei and on free nucleons, 
-as well as electron-flavor neutrinos absorption on free nucleons. 
+as well as electron-flavor neutrino absorption on free nucleons. 
 For mathematical formulation of these opacities see \citet{Galeazzi:2013mia} 
 and their Appendix A.
 %
-The neutrino scattering on nuclei becomes the dominant opacity source 
+The neutrino scattering on nuclei becomes the dominant source of opacity 
 at sufficiently low temperatures, $<15\,$MeV, and at densities below 
 the saturation, when such nuclei become abundant \citep{Rosswog:2003rv}.
 
-Taking the required scattering and absorption processes, the local mean 
+Considering scattering and absorption processes, the local mean 
 free-path for each neutrino species can be computed. From it, the 
 energy-independent mean free path can be derived, that in turn depends 
-only on the local thermodynamic condition. This allows to evaluate the 
+only on local thermodynamic conditions. This allows to evaluate the 
 energy-independent part of the optical depth and diffusion rates.
 %
 The optical depth, in turn, allows to asses the extend of the optically thick region 
@@ -1818,15 +1827,17 @@ for neutrinos to diffuse out of the dense matter -- the diffusion timescale.
 %for absorption and scattering respectively are evaluated, where the 
 %thermodynamical equilibrium chemical potential is assumed for neutrinos.
 %
-In \wisky{} the opacities are split into two types: density weighted 
-opacities $\kappa_{\nu;a}^0$ and $\kappa_{\nu;s}^0$ and energy density 
-weighted opacities $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$. 
+In \wisky{} both, absorption, ``$a$'', and scattering, ``$s$'', opacities are split 
+into two types: density weighted 
+opacities, $\kappa_{\nu;a}^0$ and $\kappa_{\nu;s}^0$, and energy density 
+weighted opacities, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$. 
 The former are related to the rate at which neutrinos escape the material, 
 while the latter set the rate at which energy escapes the material 
-as neutrinos escape \citep{Ruffert:1995fs}.
+\citep{Ruffert:1995fs}.
 %
-The optical depth, $\tau_{\nu}^{\alpha}$ is computed taking into account 
-total neutrino opacities $\kappa_{\nu;a}^j + \kappa_{\nu;s}^j$ \citep{Neilsen:2014hha}.
+The optical depth, $\tau_{\nu}^{\alpha}$, is computed taking into account 
+total neutrino opacities, 
+$\kappa_{\nu;a}^j + \kappa_{\nu;s}^j$, \citep{Neilsen:2014hha}.
 %
 Optical depth is then used to estimate the effective emission rates \citep{Ruffert:1995fs} as 
 %
@@ -1854,13 +1865,13 @@ where $t_{\text{diff}}$ and $t_{\text{loss}}$ are the neutrino diffusion time an
 %
 %
 Similarly, the effective energy emission rate $Q_{\nu}^{\text{eff}}$ 
-is computed with $\tau_{\nu}^1$, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$.
+is computed using $\tau_{\nu}^1$, $\kappa_{\nu;a}^1$ and $\kappa_{\nu;s}^1$.
 
 %Notably, the effect of trapped neutrinos was shown to be weak in the \ac{NS} conditions 
 %\citep{Galeazzi:2013mia} and thus neglected here.
-The neutrinos that escape according to the effective rate $R_{\nu}^{\text{eff}}$ 
+The neutrinos that escape according to the effective rate, $R_{\nu}^{\text{eff}}$, 
 %with the average energy $U_{\nu}^{\text{eff}}/R_{\nu}^{\text{eff}}$ 
-comprise the free streaming neutrinos with $n_{\nu}^{\text{fs}}$. 
+comprise the free streaming neutrinos with number density $n_{\nu}^{\text{fs}}$. 
 %
 These neutrinos are treated afterwards according to the 
 M0 scheme in the optically thin region \citep{Radice:2016dwd}.
@@ -1945,9 +1956,9 @@ M0 scheme in the optically thin region \citep{Radice:2016dwd}.
 %the M0 scheme \citep{Radice:2016dwd,Radice:2018pdn}.
 Computation of the free-streaming neutrino number density and energy evolution is 
 %$n_{\nu_e}$, $n_{\bar{n}_e}$, $E_{\nu_e}$ and $E_{\bar{\nu}_e}$ is 
-done via the zeroth momentum (M0) of the free-streaming neutrino distribution 
-function on a set of individual radial rays, with the closure adopted 
-to the post-merger geometry \citep{Radice:2016dwd,Radice:2018pdn}.
+done considering the zeroth momentum (M0) of the free-streaming neutrino distribution 
+function on a set of individual radial rays, with the closure adapted 
+to the \pmerg{} geometry \citep{Radice:2016dwd,Radice:2018pdn}.
 
 %% M0 Appendix A from Radice:2016dwd, Neutrin transport details
 %\subsubsection{The Boltzmann equations for Free-Streaming Neutrinos}
@@ -2026,8 +2037,8 @@ is the ``collisional operator'' that describes the interactions.
 %
 %Boltzmann equation, Eq.~\eqref{eq:method:whisky:neut:bolzeq}, allows to describe
 %the evolution of the free-steaming neutrinos and track their average energy.
-%
-The source of neutrinos are taken from the effective emissivities computed 
+
+Sources of neutrinos are taken from the effective emissivities computed 
 with the leakage scheme.
 %The source terms in the equation can be computed by taking the effective emissivities 
 %from the leakage scheme.
@@ -2108,7 +2119,7 @@ with the speed of light, %, $\partial_t$ is a Killing vector.
 %Then the free-streaming neutrino energy satisfies 
 \citep{Radice:2016dwd,Radice:2018pdn}.
 
-The M0 scheme was included in all \ac{BNS} merger 
+Both, leakage and M0 schemes were included in all \ac{BNS} merger 
 simulations discussed in this thesis.
 
 %\begin{subequations}
@@ -2282,10 +2293,10 @@ simulations discussed in this thesis.
 
 %
 Magnetic field induced turbulence is important for 
-self-consistent treatment of the angular momentum transport in the merger
-\citep{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}
-and for magnetically driven winds and collimated jets 
-\citep{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}.
+self-consistent treatment of the angular momentum transport in 
+\ac{BNS} mergers \citep{Duez:2006qe,Kiuchi:2014hja,Guilet:2016sqd,Kiuchi:2017zzg}. 
+%and for magnetically driven winds and collimated jets 
+%\citep{Rezzolla:2011da,Bucciantini:2011kx,Siegel:2014ita,Ruiz:2016rai,Metzger:2018uni}%
 %
 Such effects are studied with high-resolution \ac{GRMHD} simulations. 
 However, despite rapid progress in these methods 
@@ -2293,10 +2304,10 @@ However, despite rapid progress in these methods
 the degree to which the magnetoturbulence affects the structure and the 
 lifetime of the \pmerg{} \ac{NS} remnant before collapse is still poorly constrained.
 %
-Specifically, while the \ac{MRI} are believed to be present within the 
-remnant, and are responsible for the redistribution of angular 
-momentum, affecting 
-its lifetime, \citep[\eg][]{Duez:2006qe,Siegel:2013nrw}, 
+Specifically, while \ac{MRI} are believed to be present within the 
+remnant and are responsible for the redistribution of angular 
+momentum affecting the remnant's lifetime 
+\citep[\eg][]{Duez:2006qe,Siegel:2013nrw}, 
 the fastest growing modes of \ac{MRI} remain beyond the 
 reach of even very high resolution simulations \citep[\eg][]{Kiuchi:2014hja}.
 %%%% ------------------
@@ -2461,12 +2472,12 @@ turbulence \citep{Radice:2017zta,Radice:2020ids}.
 %and $\sqrt{\gamma}$ is the spatial volume element.
 %%%%%%%%%%%%%%%%
 %
-The approach considers the \ac{GRHD} equations in the conservative form 
+The approach considers \ac{GRHD} equations in the conservative form 
 without neutrino source terms, 
 % Eq.~\eqref{eq:theory:valencia}, 
 %
-which are closed with a given \ac{EOS} and Euler equation for conservation of 
-baryon and lepton numbers.
+which are closed with a given \ac{EOS} and Euler equations for 
+the conservation of baryon and lepton numbers.
 %
 Importantly, while modes of all scales are present in these equations, 
 %Eq.~\eqref{eq:theory:whisky:emomcons_lk}, 
@@ -2577,7 +2588,7 @@ so-called subgrid-scale turbulence tensor \citep{Radice:2017zta}.
 
 The turbulence tensor can, in tern, be expressed as a function of 
 turbulent viscosity, $\nu_T = l_{\text{mix}}c_s$, where $l_{\text{mix}}$,
-is the mixing length which is characteristic length scale of turbulence, 
+is the mixing length which is a characteristic length scale of turbulence and 
 $c_s$ is the sound speed.
 %
 %
@@ -2592,7 +2603,7 @@ $c_s$ is the sound speed.
 %The $D_i$ here are the \red{covariant derivatives compatible with spatial metric}. 
 %
 The mixing length parameter, $l_{\text{mix}}$, is related to the length 
-over which the effects of turbulence are present. 
+over which effects of turbulence are present. 
 %
 %Together, enegery and momenta consideration equations with averaging operator, 
 %subgrid-scale turbulence tensor, equation for $l_{\text{mix}}$, \ac{EOS} and continuity equations 
@@ -2609,34 +2620,33 @@ over which the effects of turbulence are present.
 %
 %For now $l_{\text{mix}}$ is free parameter.
 %
-With respect to the \ac{MRI}, it is natural to set 
+With respect to \ac{MRI}, it is natural to set 
 $l_{\text{mix}} \sim \lambda_{\text{MRI}}$, where 
 $\lambda_{\text{MRI}} \sim \Omega^{-1}B$ with $\Omega$ 
-being the angular velocity and $B$ is the magnetic
+being the angular velocity of the fluid and $B$ is the magnetic
 field strength \citep{Duez:2006qe}.
 %Here $\lambda_{\text{MRI}}$ describes the scale over which turbulence is 
 %predominantly driven according to linear theory.
 
 Viscous flows in accretion disks are often described in terms of a dimensionless 
 constant $\alpha$ (so-called $\alpha$-viscosity model) that is related to the 
-mixing length as 
+mixing length as \citep{Shakura:1972te} 
 %
 %% \begin{equation}
-$ l_{\text{mix}} = \alpha c_s \Omega^{-1} $, 
+$ l_{\text{mix}} = \alpha c_s \Omega^{-1}\, . $ 
 %% \end{equation}
 %
-where $\Omega$ is the angular velocity of the fluid \citep{Shakura:1972te}.
 %
 The value of $\alpha$ can be constrained by very high resolution 
-\ac{GRMHD} simulations with seed magnetic field 
+\ac{GRMHD} simulations with the seed magnetic field 
 %$(10^{15}~G)$ 
-strong enough that the \ac{MRI} within the remnant \ac{NS} are resolved. 
+strong enough that \ac{MRI} within the remnant \ac{NS} are resolved. 
 This was done in \citet{Radice:2020ids} (see their Fig.~71) 
 using \ac{GRMHD} simulation of \citet{Kiuchi:2017zzg}.
 
 
 A subset of our \ac{BNS} merger simulations was computed 
-with the aforementioned method. 
+with the above described method. 
 We refer to them as simulations with viscosity or subgrid turbulence. 
 
 
@@ -3135,16 +3145,16 @@ We refer to them as simulations with viscosity or subgrid turbulence.
 
 %\chapter{Binary Neutron Star merger simulations} \label{ch:bns_sims}
 
-With the numerical code \wisky{} that incorporates methods, 
-discussed in this chapter, a large set of \ac{BNS} merger 
-simulations was performed. We summarize their properties in 
-Tab.~\ref{tab:sim}. 
+With the \ac{NR} code \wisky{} that incorporates methods discussed in 
+previous sections, a large set of \ac{BNS} merger simulations was performed.
+Some of them have been analyzed and presented before \citep{Perego:2019adq}, 
+but most of these simulations are new. 
+%
+We summarize their properties in Tab.~\ref{tab:sim}. 
 %
 %The details on the numerical setup of \wisky{} 
 %are reported in Appendix~\ref{app:whisky}.
-
-
-
+%
 Each simulation was performed with at least two resolutions to assess the 
 finite-grid-size effects. We distinguish high, standard and low resolutions, 
 denoted as \texttt{HR}, \texttt{SR} and \texttt{LR} respectively. 
@@ -3164,14 +3174,14 @@ out of which $37$ unique simulations are presented in Tab.~\ref{tab:sim}.
 %In total $76$ \ac{BNS} merger simulations were computed and analyzed.
 %
 Several binaries that resulted in a formation of a \ac{NS} remnant 
-that does not collapse to a \ac{BH} are evolved up to $100\,$ms \pmerg.
+that does not collapse to a \ac{BH} were evolved up to ${\sim}100\,$ms \pmerg.
 %
 Most simulations include the effects of subgrid turbulence. 
 Those that are not are marked with ``*'' next to the \ac{EOS} name.
 %
 The naming convention for simulations is the following: 
 the \ac{EOS} name, the \mr{}, and the resolution, \eg, 
-the `` BLh* $q=1.00$ (\texttt{SR}) '' would refer to the simulation of an 
+`` BLh* $q=1.00$ \texttt{SR} '' would refer to the simulation of an 
 equal mass binary performed with BLh \ac{EOS}, without subgrid 
 turbulence and at a standard resolution. 
 If resolution is not mentioned, \texttt{SR} is assumed.
@@ -3196,14 +3206,15 @@ If resolution is not mentioned, \texttt{SR} is assumed.
 The novelty of our set of simulations with 
 respect to the previous study by \citet{Radice:2018pdn} where the same code,
 similar numerical setup and same \acp{EOS} (except BLh \ac{EOS}) were used, 
-is that all our models include the neutrino heating via 
+is that all our simulations include the neutrino heating via 
 M0 scheme in addition to the neutrino cooling 
 %(as discussed in Sec.~\ref{sec:nr_methods:neut}), 
 and for most models the effects of subgrid turbulence  
 are included.  %(as discussed in Sec.~\ref{sec:nr_methds:visc}). 
 Additionally, all our models are targeted to the \GW{} 
-with chirp mass, $\mathcal{M}_c = 1.188\,\Msun$,  
-corresponding to the source of \GW{}. The total gravitational mass covers 
+with chirp mass, $\mathcal{M}_c = 1.188\,\Msun$.   
+%corresponding to the source of \GW{}. 
+The total gravitational mass covers 
 the range $M\in[2.73, 2.88]\,\Msun$, while the \mr{} $q=[1,1.8]$. 
 %
 We show the masses and radii of computed models as markers in 
@@ -3216,8 +3227,8 @@ postprocessing methods.
 
 %% -------------------------------------------------------------
 
-Describing a certain property of matter, $f$, we make use of 
-mass-averaging defined as 
+Describing a certain property of matter, $f$, we bin the 
+$f$ mass distribution and make use of mass-averaging defined as 
 %
 \begin{equation}
 \label{eq:ppr:average}
@@ -3278,7 +3289,7 @@ M_{\text{disk}} = \int \sqrt{\gamma}~W\rho \dd^3 x  = \int D \dd^3 x\,
 %
 from $3$D snapshots of our simulations in postprocessing.
 %
-Here $\gamma$ is the trace of metric, $W$ is the Lorentz factor. 
+Here $\gamma$ is the trace of the metric, $W$ is the Lorentz factor. 
 
 
 %% In \cite{Sekiguchi:2016bjd}, the disk mass is extracted at
@@ -3300,12 +3311,12 @@ Here $\gamma$ is the trace of metric, $W$ is the Lorentz factor.
 
 We monitor the hydrodynamic instabilities in a newly formed \ac{NS} remnant 
 by a decomposition in Fourier modes
-$e^{- i m \phi}$ of the Eulerian rest-mass density on the equatorial plane 
-\citep[see Eq.~(1) in][]{Radice:2016gym} and characterized by the
-development of a $m=2$ followed by a $m=1$ mode 
-\citep{East:2015vix,
-    Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,
-    Bernuzzi:2013rza,Kastaun:2014fna}.
+$e^{- i m \phi}$ the Eulerian rest-mass density on the equatorial plane 
+\citep[see Eq.~(1) in][]{Radice:2016gym}.
+We focus on the development and evolution of $m=2$ and $m=1$ modes. 
+%\citep{East:2015vix,
+%    Paschalidis:2015mla,Radice:2016gym,Lehner:2016wjg,
+%    Bernuzzi:2013rza,Kastaun:2014fna}.
 %In the short-lived remnant (LS220) the $m=1$ mode
 %is subdominant with respect to the $m=2$, and it reaches a maximum close to the collapse
 %\citep{Bernuzzi:2013rza}. Instead, in the long-lived remnant (DD2) the $m=1$
@@ -3328,7 +3339,7 @@ development of a $m=2$ followed by a $m=1$ mode
 %or, in other words, we perform the complex azimuthal mode decomposition of,
 %the conserved rest-mass density.
 For the data availability reasons we consider only $\rho(x,y,z=0,t)$, 
-\ie{} restricting our analysis to the orbital plane $z=0$, and computing 
+\ie{} restricting our analysis to the equatorial plane, $z=0$, and compute 
 
 %\red{DOUBLE check the presence of Gamma and W}
 %% \begin{equation}
@@ -3376,21 +3387,22 @@ We note that the above quantities are gauge dependent.
 %
 %% FROM PAPER 
 
-The calculation of the fluid's angular momentum is done assuming axisymmetry,
+The calculation of the fluid's angular momentum is done assuming axisymmetry.
 %(see Appendix~\ref{app:ang} for derivation)
-that is, we assume $\phi^{\mu} = (\partial_{\phi})^{\mu}$ is a Killing
+That is, we assume $\phi^{\mu} = (\partial_{\phi})^{\mu}$ is a Killing
 vector. 
-Accordingly, the conservation law, Eq.~\eqref{eq:theory:tmunu_eq_0} reads
+Accordingly, the conservation law, Eq.~\eqref{eq:theory:tmunu_eq_0}, 
+in $3+1$ decomposition formalism reads
 %
 \begin{equation}
 \partial_t(T^{\mu\nu}\phi_{\nu}n_{\nu}\sqrt{\gamma}) -
 \partial_i(\alpha T^{i \nu}\phi_{\nu}\sqrt{\gamma}) = 0 \ ,
 \end{equation}
 %
-where $n^\mu$ is the normal vector to the spacelike hypersurfaces of
-the spacetime's $3+1$ decomposition.
+where $n^\mu$ is the normal vector to the spacelike hypersurfaces.
+%of the spacetime's $3+1$ decomposition.
 %
-The equation implies the conservation of the angular momentum, 
+The equation implies a conservation of the angular momentum, 
 defined as 
 \begin{equation}
 J = % \int j dV = 
@@ -3399,7 +3411,7 @@ J = % \int j dV =
 T_{\mu\nu}n^{\mu}\phi^{\nu}\,\sqrt{\gamma}\, \dd^3 x\ .
 \end{equation}
 %
-In the cylindrical coordinates, $x^i=(r,\phi,z)$, adapted to the symmetry, 
+In cylindrical coordinates, $x^i=(r,\phi,z)$, adapted to the symmetry, 
 the angular momentum density is  
 %
 \begin{equation}
@@ -3431,12 +3443,13 @@ There are two indicators commonly adopted to mark the unbound matter.
 
 \subsubsection{The Geodesic criterion}
 
-Assuming that the spacetime is stationary, ($\partial_t$ is the Killing vector) % \red{confirm}, 
-the four-velocity, $u_t$, (along the time-like killing vector), 
-is a constant of motion for geodesics. 
-Additionally, if the space is asymptotically flat, at infinity the $u_t = -W$, 
-where $W$ is the fluid element Lorentz factor. 
-Then, if a fluid element has $u_t < -1$, it may be considered unbound 
+Assuming that the spacetime is stationary ($\partial_t$ is the Killing vector), % \red{confirm}, 
+the four-velocity, $u_t$, is a constant of motion for geodesics 
+(along the time-like killing vector). 
+%
+Additionally, if the space is asymptotically flat, $u_t = -W$ at spatial infinity, 
+where $W$ is the fluid element Lorentz factor, 
+than if a fluid element has $u_t < -1$, it may be considered unbound 
 as it will retain a non-zero positive velocity at infinity. 
 %
 The fluid asymptotic velocity reads 
@@ -3447,16 +3460,16 @@ The fluid asymptotic velocity reads
 where $E_{\infty} = -u_t - 1$.
 %
 This criterion can be thought of as assuming that the fluid 
-is be made of isolated particles that follow geodesics i
-n the static spacetime. Indeed, the effects of \acp{EOS} 
+is made of isolated particles that follow geodesics in
+a static spacetime. Indeed, the effects of an \ac{EOS} 
 (fluids pressure gradient, internal energy and heating) %(\eg, due to an $r$-process (\red{see section XXX})) 
 are neglected which might lead to an 
 underestimation in the ejecta mass. 
 %
 %The space time is also assumed to be static.
 %
-Strictly speaking, none of these assumptions is 
-fulfilled in the \ac{BNS} \pmerg{} environment. However, this criterion 
+Strictly speaking, none of the assumptions made here is 
+fulfilled in a \ac{BNS} \pmerg{} environment. However, this criterion 
 is widely used in the literature 
 \citep[\eg][]{Radice:2018pdn,Vincent:2019kor}.
 
@@ -3469,7 +3482,7 @@ that for a stationary relativistic flow, the $hu_t$ is constant along the
 fluid worldliens. Here $h$ is the (relativistic) enthalpy. 
 %which is defined up to a constant factor. 
 %
-If at the spatial infinity the enthalpy is set so $h\rightarrow-1$, 
+If, at the spatial infinity the enthalpy is set so $h\rightarrow-1$, 
 %\red{in Vincent it is $h\leftarrow 1$}
 the condition $hu_t < -1$ would mark the unbound matter 
 (as in the assymptotically flat space-time the 
@@ -3481,8 +3494,9 @@ The associated asymptotic velocity is calculated as
 \upsilon_{\infty} \simeq \sqrt{2 (h (E_{\infty}+1)-1)}. 
 \end{equation}
 %
-The criterion can be regarded as assuming all the internal energy of the fluid 
-gets added to the fluid kinetic energy, as fluid decompresses.
+The criterion can be regarded as assuming that all the internal energy of 
+the fluid gets added to the fluid kinetic energy as fluid decompresses from 
+the \pmerg{} environment. 
 % \red{(pressure drops?)}.
 %
 %The $r$-process nucleosynthesis that occurs in the outflow deposits the energy.
@@ -3494,15 +3508,15 @@ gets added to the fluid kinetic energy, as fluid decompresses.
 %
 This criterion has been reported to estimate the amount of unbound material more accurately
 \citep{Foucart:2015gaa}. 
-Moreover, it was reported that the Bernoulli criterion leads to up to twice 
-the amount of ejecta detected in comparison with the geodesic criterion, 
+Moreover, it was reported that when Bernoulli criterion is used, 
+up to twice the amount of ejecta can be detected,  
 if the estimation is done within a given volume \citep{Kastaun:2014fna}.
 
 
 
 We adopt the geodesic criterion to study the ``burst-like '', short outflows,
 such as \ac{DE}, where the pressure gradient is not expected to make a significant contribution.
-For the steady-state outflows, like \pmerg{} winds, we adopt the Bernoulli criterion.
+For steady-state outflows, like \pmerg{} winds, we adopt the Bernoulli criterion.
 %
 The term ejecta would refer to the material gravitationaly 
 unbound according to either of the criteria.
