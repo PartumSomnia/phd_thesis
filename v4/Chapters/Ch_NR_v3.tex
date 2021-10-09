@@ -3181,7 +3181,7 @@ Those that are not are marked with ``*'' next to the \ac{EOS} name.
 %
 The naming convention for simulations is the following: 
 the \ac{EOS} name, the \mr{}, and the resolution, \eg, 
-`` BLh* $q=1.00$ \texttt{SR} '' would refer to the simulation of an 
+`` BLh* $q=1.00$ (\texttt{SR}) '' would refer to the simulation of an 
 equal mass binary performed with BLh \ac{EOS}, without subgrid 
 turbulence and at a standard resolution. 
 If resolution is not mentioned, \texttt{SR} is assumed.
@@ -3444,12 +3444,12 @@ There are two indicators commonly adopted to mark the unbound matter.
 \subsubsection{The Geodesic criterion}
 
 Assuming that the spacetime is stationary ($\partial_t$ is the Killing vector), % \red{confirm}, 
-the four-velocity, $u_t$, is a constant of motion for geodesics 
-(along the time-like killing vector). 
+the four-velocity, $u_t$, is a constant of motion for geodesics. 
+%(along the time-like killing vector). 
 %
-Additionally, if the space is asymptotically flat, $u_t = -W$ at spatial infinity, 
-where $W$ is the fluid element Lorentz factor, 
-than if a fluid element has $u_t < -1$, it may be considered unbound 
+Additionally, if the space is asymptotically flat, 
+$u_t = -W$ at spatial infinity, where $W$ is the fluid element Lorentz factor. 
+Than, if a fluid element has $u_t < -1$, it may be considered unbound 
 as it will retain a non-zero positive velocity at infinity. 
 %
 The fluid asymptotic velocity reads 
@@ -3462,14 +3462,15 @@ where $E_{\infty} = -u_t - 1$.
 This criterion can be thought of as assuming that the fluid 
 is made of isolated particles that follow geodesics in
 a static spacetime. Indeed, the effects of an \ac{EOS} 
-(fluids pressure gradient, internal energy and heating) %(\eg, due to an $r$-process (\red{see section XXX})) 
+(fluid's pressure gradient, internal energy and heating) %(\eg, due to an $r$-process (\red{see section XXX})) 
 are neglected which might lead to an 
 underestimation in the ejecta mass. 
 %
 %The space time is also assumed to be static.
 %
-Strictly speaking, none of the assumptions made here is 
-fulfilled in a \ac{BNS} \pmerg{} environment. However, this criterion 
+Strictly speaking, none of the assumptions made here are 
+fulfilled in a \ac{BNS} \pmerg{} environment. However, due to its 
+simplicity and versatility, this criterion 
 is widely used in the literature 
 \citep[\eg][]{Radice:2018pdn,Vincent:2019kor}.
 
@@ -3482,11 +3483,12 @@ that for a stationary relativistic flow, the $hu_t$ is constant along the
 fluid worldliens. Here $h$ is the (relativistic) enthalpy. 
 %which is defined up to a constant factor. 
 %
-If, at the spatial infinity the enthalpy is set so $h\rightarrow-1$, 
+Since $h$ is defined up to a constant factor which can be set such 
+that $h \leftarrow 1$ at spatial infinity, 
 %\red{in Vincent it is $h\leftarrow 1$}
-the condition $hu_t < -1$ would mark the unbound matter 
-(as in the assymptotically flat space-time the 
-$u_t = -W$ for the flow particles following geodesics).
+the condition $hu_t < -1$ would mark the unbound matter. 
+%(as in the assymptotically flat space-time the 
+%$u_t = -W$ for the flow particles following geodesics).
 %
 The associated asymptotic velocity is calculated as 
 %
@@ -3508,9 +3510,13 @@ the \pmerg{} environment.
 %
 This criterion has been reported to estimate the amount of unbound material more accurately
 \citep{Foucart:2015gaa}. 
-Moreover, it was reported that when Bernoulli criterion is used, 
-up to twice the amount of ejecta can be detected,  
-if the estimation is done within a given volume \citep{Kastaun:2014fna}.
+The difference was found to reach a 
+factor of two in terms of ejecta mass, estimated with these 
+two criteria applied to matter within 
+a given volume \citep{Kastaun:2014fna}. 
+%, it was reported that when Bernoulli criterion is used, 
+%up to twice the amount of ejecta can be detected,  
+%if the estimation is done within a given volume \citep{Kastaun:2014fna}.
 
 
 
