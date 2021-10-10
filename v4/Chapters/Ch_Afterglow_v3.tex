@@ -33,7 +33,7 @@ simulations and compare them with observations.
 
 The theory of relativist shocks with applications to \acp{AGN} jets was 
 developed by \citet{Blandford:1976} 
-and further expanded by \citep{vanEerten:2011bf,Nava:2013,Peer:2012}. 
+and further expanded by, \eg, \citet{vanEerten:2011bf,Nava:2013,Peer:2012}. 
 The theory was successfully applied to \ac{GRB} afterglows 
 \citep[\eg][]{Costa:1997cg,vanParadijs:1997wr,Lamb:2017ych}
 (see \citet{Kumar:2014upa} for a review) 
@@ -62,7 +62,7 @@ A universal part of the afterglow theory is the dynamics of a
 \blast{} propagating through the \ac{ISM}, that is also called ``fireball''.
 
 Analytical studies and numerical simulations showed that an 
-expanding into \ac{ISM} a \blast{} generates a pair of shocks: a forward shock, that 
+expanding into the \ac{ISM} \blast{} generates a pair of shocks: a forward shock, that 
 propagates through the upstream \ac{ISM}, and a reverse shock that moves black, 
 through ejecta \citep[\eg][]{Blandford:1976,Ayache:2021six}. 
 %%
@@ -83,14 +83,15 @@ through ejecta \citep[\eg][]{Blandford:1976,Ayache:2021six}.
 %%
 In Fig.~\ref{fig:aafg:theory:sr8}, this pair of shocks is schematically depicted as 
 boundaries between regions $1-2$ and $3-4$ respectively. 
-Overall, there are four district regions: unshocked and shocked \ac{ISM} (regions $1$ and $2$), 
-and shocked and unshocked \ac{GRB} or \ac{kN} ejecta (regions $3$ and $4$).
-The comoving- and observer-frame quantities are marked with and without a superscript prime ($'$) 
-respectively. 
+Overall, there are four district regions: unshocked and shocked \ac{ISM} 
+(regions $1$ and $2$), and shocked and unshocked \ac{GRB} or \ac{kN} ejecta 
+(regions $3$ and $4$).
+The comoving- and observer-frame quantities are marked with and 
+without superscript prime ($'$) respectively. 
 
 The evolution of physical properties of a shock is governed by three conservation laws: 
 baryon number, and energy and momentum fluxes across the shock front. 
-The latter two are a embedded into the fluid energy momentum tensor, Eq.~\eqref{eq:theory:tmunu_perf}. 
+The latter two are embedded into the fluid energy momentum tensor, Eq.~\eqref{eq:theory:tmunu_perf}. 
 
 Neglecting the internal structure of the \blast{} it is possible to express 
 these conservation laws as \citep{Blandford:1976,Rezzolla:2013} 
@@ -102,7 +103,7 @@ these conservation laws as \citep{Blandford:1976,Rezzolla:2013}
 \label{eq:afterglow:blast}
 \end{equation}
 %%
-where subscripts $2$ and $1$ stand for downstream and upstream respectively, 
+where subscripts $2$ and $1$ stand for the downstream and upstream respectively, 
 shown in Fig.~\ref{fig:aafg:theory:sr8}, 
 $e'$ is the internal energy density, $n'$ is the proton number density, 
 $\gamma_{21}$ is the relative \ac{LF} of a fluid in region $2$ with respect to region $1$, 
@@ -110,8 +111,9 @@ $\gamma_{1s}$ is the relative \ac{LF} of a fluid in region $1$ with respect to t
 $\hat{\gamma}$ is the adiabatic index of a fluid, which is $\hat{\gamma}=4/3$ 
 for the ideal relativistic fluid and $\hat{\gamma}=5/3$ for a subrelativisitc fluid.
 
-Solving the system Eq.~\eqref{eq:afterglow:blast} for the 
-forward and reverse shocks gives the full evolution of the quantities describing the \blast{}. 
+Solving the system of equations, Eq.~\eqref{eq:afterglow:blast}, for the 
+forward and reverse shocks gives the full evolution of 
+quantities describing the \blast{}. 
 
 A shock propagating through \ac{ISM} compresses it. 
 For a relativistic case with $\hat{\gamma}=4/3$, the compression ratio in downstream fluid is 
@@ -125,9 +127,10 @@ unchanged.
 \subsection{Electron distribution}
 
 As the shock compresses the fluid and amplifies random magnetic fields, it accelerates the 
-inbound particles into a power-law distribution in energy space. 
+inbound particles into a power-law distribution in energy space 
+\citep[\eg][]{Kumar:2014upa}. 
 %
-The continuity equation for electrons in this space reads \citep{Kumar:2014upa} 
+The continuity equation for electrons in this space reads 
 %%
 \begin{equation}
 \label{eq:intro:electron_dist_cont_eq}
@@ -136,23 +139,27 @@ The continuity equation for electrons in this space reads \citep{Kumar:2014upa}
 %
 where $dn/d\gamma_e$ is the electron distribution function, 
 $\dot{\gamma_e} = -\sigma_T B'^2 \gamma_e^2 / (6\pi m_e c)$ is the rate at 
-which electron \ac{LF} changes due to energy losses, $S(\gamma_e)$ is the injection 
+which the electron \ac{LF} changes due to energy losses, 
+and $S(\gamma_e)$ is the injection 
 rate of electrons into the system.
 
+Consider a characteristic \ac{LC}, $\gamma_c$. 
 Electrons with \acp{LF} $\gamma_e > \gamma_c$ can efficiently loose their energy to 
-synchrotron radiation. Then, after a certain characteristic time, $t_0$, 
-their $\gamma_e$ drops below $\gamma_c$, 
+synchrotron radiation. Than, after a certain characteristic time, $t_0$, 
+their $\gamma_e$ drops below $\gamma_c$, which can be expressed as
 %
 \begin{equation}
-c^2 \frac{dm_e}{dt} \gamma_e = -\frac{\sigma_T}{6\pi} B^2 \gamma_e^2 c
+c^2 \frac{dm_e}{dt} \gamma_e = -\frac{\sigma_T}{6\pi} B^2 \gamma_e^2 c\, ,
 \hspace{5mm}
 \gamma_c \sim \frac{6 \pi m_e c}{\sigma_T B^2 t_0}.
 \end{equation}
+%
+where $\sigma_T = 8\pi q^4 / (3m_e^2c^4)$ is the Thompson cross section.
 
 
 Assuming that the injection of electrons is constant (steady-state solution,
 $\partial_t = 0$), and has a minimum, $\gamma_m$, such that, 
-$S(\gamma_e) = 0$ for $\gamma_e < \gamma_m$, the solutions to the Eq.~\eqref{eq:intro:electron_dist_cont_eq} reads 
+$S(\gamma_e) = 0$ for $\gamma_e < \gamma_m$, the solution to  Eq.~\eqref{eq:intro:electron_dist_cont_eq} reads 
 %
 \begin{equation}
 \frac{dn_e}{d\gamma_e} \propto 
@@ -189,14 +196,13 @@ P'_{syn} = \frac{\sigma_T B'^2\gamma_e^2\upsilon_e^2}{4\pi c},
 \hspace{5mm} 
 \nu'_{syn} \sim \frac{q B' \gamma_e^2}{2\pi m_e c},
 \hspace{5mm}
-P'_{syn}(\nu_{syn}') \sim \frac{\sigma_T B' m_e c^2}{2 q},
+P'_{syn}(\nu_{syn}') \sim \frac{\sigma_T B' m_e c^2}{2 q}.
 \end{equation}
 %
-where $\sigma_T = 8\pi q^4 / (3m_e^2c^4)$ is the Thompson cross section.
 
 
 The synchrotron radiation spectrum, emitted by an ensemble of electrons that have a 
-distribution function $dn_e/d\gamma_e$ 
+distribution function $dn_e/d\gamma_e$, 
 %(with $\gamma_e$ being the electron \ac{LF}), 
 is given by convolving the distribution function with the power spectrum of a single 
 electron, $P_{syn}(\nu)$, as 
@@ -221,10 +227,10 @@ Its axis coincides with $\theta = 0$.
 The observer lies on the $\phi = \pi / 2$, and the $\theta_{\rm obs}$ is 
 the angle between \ac{LOS} and remnant axis. 
 
-For a fluid element on moving with velocity $\upsilon$ (and \ac{LF}, $\Gamma$) 
+For a fluid element moving with velocity, $\upsilon$ (and \ac{LF}, $\Gamma$), 
 and emitting photons at angle, $\theta$, from the \ac{LOS}, the time between 
 two consecutive emissions in the observer frame, $\delta t_{\rm obs}$, 
-and in the comoving frame, $\delta t'$, is related via the Lorentz transformation as 
+and in the comoving frame, $\delta t'$, are related via the Lorentz transformation as 
 %
 \begin{equation}
 \delta t_{\rm obs} = \frac{\delta t'}{\mathcal{D}}, \hspace{3mm}
@@ -246,8 +252,8 @@ t_{\rm obs} = t - \frac{r \cos(\theta)}{c} = t\Big(1-\frac{\upsilon\cos(\theta)}
 \label{eq:afterglow:tobs}
 \end{equation}
 %
-Then, the total emission at a given, doppler shifted frequency, from the entire 
-shell at the observer frame is obtained by integrated over all elements with the 
+Than, the total emission at a given, doppler shifted frequency, from the entire 
+shell at the observer frame is obtained by integrating over all elements with the 
 same $t_{obs}$.
 
 Finally, the observed flux at a frequency $\nu_{\rm obs}$ from a spherical thin shell
@@ -276,16 +282,20 @@ $D_L$ is the luminosity distance.
 %radiation arising from the dynamical ejecta propagating into the cold \ac{ISM} 
 %with the semi-analytic code \texttt{PyBlastAfterglow}. 
 
+We design a code, \texttt{PyBlastAfterglow}, to numerically compute 
+the synchrotron emission from arbitrary structured \blast{}, employing 
+the following methods.
+
 Considering the spherical coordinates we introduced in the previous section, 
 we discretize it into $[N_{\theta},N_{\phi}]$ elements.
 %
 Extracted from \ac{BNS} merger simulations (Chapter~\ref{ch:bns_sims}), 
-\ac{DE} angular profiles are then mapped onto this grid to provide the 
+\ac{DE} angular profiles are than mapped onto this grid to provide the 
 initial conditions for the evolution. 
 %
-Each element of this structured \blast{} is then evolved independently 
+Each element of this structured \blast{} is evolved independently 
 as follows. 
-%
+
 We adopt the \blast{} dynamics formalism developed by \citet{Nava:2013} that casts 
 Eqs.~\eqref{eq:afterglow:blast} into a set of \acp{ODE} for the \blast{} \ac{LF}, 
 energy and swept-up mass that read 
@@ -334,14 +344,14 @@ It smoothly connects the
 $\hat{\gamma}=4/3$ and $\hat{\gamma}=5/3$ regimes. 
 
 
-We adopt a common assumption that a fixed fraction of the \blast{} 
-energy, $E'_{\rm int},$ is being deposited into the electrons, 
-$\varepsilon_e$, and magnetic field, $\varepsilon_B$, \citep[\eg][]{Dermer:1997pv}. 
+We adopt a common assumption that fixed fractions of the shock  
+energy, $\varepsilon_e$ and $\varepsilon_B$, are deposited into electrons, 
+and magnetic field respectively \citep[\eg][]{Dermer:1997pv}. 
 %
 We adopt the power-law electron distribution, Eq.~\eqref{eq:afterglow:elec_dist}, 
 with $p$, the spectral index, being a free parameter.
 %
-We compute the characteristic \acp{LF}, $\gamma_c$ and $\gamma_m$ using the standard
+We compute the characteristic \acp{LF}, $\gamma_c$ and $\gamma_m$, using the standard
 prescriptions \citep[\eg][]{Dermer:2008ev}
 %\citep[\eqs~A3 and A4 in][respectively]{Johannesson:2006zs}.
 %
@@ -350,7 +360,7 @@ prescriptions \citep[\eg][]{Dermer:2008ev}
 \gamma_{min} = \frac{p - 2}{p - 1}  \varepsilon_e (\Gamma - 1) , \hspace{5mm} \gamma_c = \frac{6 \pi m_e c }{\sigma_T \Gamma B^{'2} t_{\rm obs}}\, 
 \end{equation}
 %
-where where $t_{obs} = \int dr / (\beta c)$ is the time in the 
+where $t_{obs} = \int dr / (\beta c)$ is the time in the 
 observer frame and $B'$ is the magnetic field strength.
 
 %
@@ -372,11 +382,31 @@ $P_{\rm max;\, i}'$ are the maximum values of the power density,
 %
 \begin{align}
 P' _{\rm max;\, f} &= 2.234 \phi_p \frac{q_e^3 n' B'}{m_e c^2}, \\
-P' _{\rm max;\, s} &= 11.17 \phi_p \frac{p-1}{3p-1}\frac{e^3 n' B'}{m_e c^2}.
+P' _{\rm max;\, s} &= 11.17 \phi_p \frac{p-1}{3p-1}\frac{e^3 n' B'}{m_e c^2},
 \end{align}
 %
-The, $\phi_p$, $\chi_p$, and $\kappa_i$ are polynomials that 
+where, $\phi_p$, $\chi_p$, and $\kappa_i$ are polynomials that 
 describe the $p$-dependence \citep{Johannesson:2006zs}.
+
+
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=0.70\textwidth]{ejecta_afterglow_vs_hotokezaka.png}
+    \caption{
+        Comparison between \ac{kN} afterglow \acp{LC} computed with 
+        \pyblast{} and the code of \citep{Hotokezaka:2015eja} for \ac{DE}
+        from a set of \ac{BNS} merger models of \citep{Radice:2018pdn}. 
+        %        (see their Fig.~$30$ and Fig.~$31$). 
+        %        Cumulative kinetic energy distribution for a selected set of models (\textit{top panel}) 
+        %        and its angular distribution for a BLh $q=1.00$ model (\textit{bottom panel}).
+        %        %% Also shown as a solid black line is the slow quasi-spherical model of \cite{Mooley:2017enz}.
+        %        The vertical light green line marks the $\upsilon_{\text{ej}}=0.6$.
+        %        The top panel shows that equal mass models have a more extend high energy tail,
+        %        while the bottom panel shows that the angular distribution of the ejecta is not 
+        %        uniform.
+    } 
+    \label{fig:afg_test}
+\end{figure}
 
 %\citep[\eqs~A2 and A6 in][respectively]{Johannesson:2006zs}, and the 
 %the characteristic frequencies are obtained from the characteristic \acp{LF} 
@@ -388,8 +418,9 @@ describe the $p$-dependence \citep{Johannesson:2006zs}.
 %\citep[\eg][]{Piran:2012wd}.
 %
 
-The flux in the observer frame is obtained by integrating over the \ac{EATS}, 
-Eq.~\eqref{eq:afterglow:sync_power_obs}.
+The flux density in the observer frame at a given time 
+is obtained by integrating over the \ac{EATS}, 
+Eq.~\eqref{eq:afterglow:sync_power_obs}. 
 %that are obtained by comping the $t_{obs}$, \ie, Eq.~\eqref{eq:afterglow:tobs} 
 %for each segment. The relativist effects are taken into account via 
 %Doppler factor, Eq.~\eqref{eq:afterglow:dop_fac}.
@@ -402,32 +433,14 @@ Eq.~\eqref{eq:afterglow:sync_power_obs}.
 
 \subsection{Method validation}
 
-We verify the performance of \pyblast{} by comparing the synthetic \acp{LC} to 
+We verify the performance of \pyblast{} by comparing synthetic \acp{LC} to 
 those available in the literature. Specifically, we consider the \ac{kN} afterglow 
-light curves presented in \citet{Radice:2018pdn} (see their Fig.~$30$ and Fig.~$31$) 
+\acp{LC} presented in \citet{Radice:2018pdn} (see their Fig.~$30$ and Fig.~$31$) 
 computed for \ac{DE} from a set of \ac{BNS} merger models. As we aim to conduct a 
 similar study, and our \ac{BNS} merger simulations were computed with the same 
 \ac{NR} code, this gives us a natural point of comparison. 
 %
-\begin{figure}[t]
-    \centering 
-    \includegraphics[width=0.70\textwidth]{ejecta_afterglow_vs_hotokezaka.png}
-    \caption{
-        Comparison between \ac{kN} afterglow \acp{LC} computed with 
-        \pyblast{} and the code of \citep{Hotokezaka:2015eja} for \ac{DE}
-        from a set of \ac{BNS} merger models of \citep{Radice:2018pdn}. 
-%        (see their Fig.~$30$ and Fig.~$31$). 
-%        Cumulative kinetic energy distribution for a selected set of models (\textit{top panel}) 
-%        and its angular distribution for a BLh $q=1.00$ model (\textit{bottom panel}).
-%        %% Also shown as a solid black line is the slow quasi-spherical model of \cite{Mooley:2017enz}.
-%        The vertical light green line marks the $\upsilon_{\text{ej}}=0.6$.
-%        The top panel shows that equal mass models have a more extend high energy tail,
-%        while the bottom panel shows that the angular distribution of the ejecta is not 
-%        uniform.
-    } 
-    \label{fig:afg_test}
-\end{figure}
-%
+
 The result is shown in Fig.~\ref{fig:afg_test}. Overall, in most cases we observe 
 a good agreement between our results and those shown in \citep{Radice:2018pdn}. 
 %
@@ -448,7 +461,7 @@ and ejecta properties (discussed below).
 
 
 
-\section{\ac{kN} afterglow for \GRB{} rebrightening} \label{sec:afterglow:results}
+\section{Kilonova afterglow and changes in \GRB{}} \label{sec:afterglow:results}
 
 
 %Fig.~\ref{fig:ejecta_vel_hist}. 
@@ -517,7 +530,7 @@ and ejecta properties (discussed below).
 %            Other parameters, such as observational angle, are the same everywhere (see text).
             (Adapted from \citet{Nedora:2021eoj})
         } \label{tab:pars}
-        \scalebox{0.70}{
+        \scalebox{0.80}{
             \begin{tabular}{l | l l l l}
                 Fig~\ref{fig:lightcurves} & $p$ & $\epsilon_e$ & $\epsilon_b$ & $n_{\text{ISM}}$ \\ \hline 
                 BLh q=1.00    & 2.05 & 0.1          & 0.002        & 0.005            \\
@@ -538,10 +551,10 @@ and ejecta properties (discussed below).
 
 In order to compute \ac{kN} afterglow \acp{LC}, 
 several free parameters of the model need to be set. 
-Ideally, these parameters have to be obtained by fitting the \acp{LC} to the 
+Ideally, these parameters have to be obtained by fitting synthetic \acp{LC} to  
 observational data via \eg{}, Bayesian methods. Instead we opt to consider the 
 parameters inferred for \GRB{} afterglow by prior studies and investigate, whether 
-within their range of uncertainty they can lead to \acp{LC} compatible with observations, 
+within their ranges of uncertainty they can lead to \acp{LC} compatible with observations, 
 leaving the more rigorous analysis to future works.
 
 Specifically, we consider the \ac{ISM} density to be uniform with 
@@ -559,7 +572,7 @@ was detected \citep{Hajela:2021faz}.
 %
 We consider 
 $\varepsilon_e\in(0.1, 0.2)$,
-$\varepsilon_B\in(10^{-3}, 10^{-2})$, 
+$\varepsilon_B\in(10^{-3}, 10^{-2})$, and 
 $p\in[2.05,2.15]$.
 
 %/bns_em_prj/scripts/afterglow.py
@@ -573,7 +586,7 @@ $p\in[2.05,2.15]$.
         \includegraphics[scale=0.51]{kn_afterglow/KN-afterglow-NR-equalmass.pdf}
         \caption{
             The effect of the cahnging $p$ from $2.15$ (lower boundary of colored bands) to 
-            $2.05$ (upper boundary of colored bands) shown in a set of \ac{kN} afterglow 
+            $2.05$ (upper boundary of colored bands) shown for a set of \ac{kN} afterglow 
             X-ray \acp{LC} for \ac{DE} from a sample of \ac{NR} \ac{BNS} merger simulations.
             %% ---
             In \emph{upper panel} the models with different \mr{} are shown and the 
@@ -586,23 +599,23 @@ $p\in[2.05,2.15]$.
             $\nism\sim 6\times 10^{-3}, 5\times 10^{-3},5\times 10^{-3}\,\rm{cm^{-3}}$
             $\varepsilon_{\rm B}\sim 10^{-2},2\times 10^{-3},10^{-3}$ for models with 
             LS220, BLh and SFHo \acp{EOS} respectively.
-            (Adapted from \citet{Hajela:2021faz})\red{rephrased}
+            (Adapted from \citet{Hajela:2021faz}).
         } \label{fig:kn_afterglow}
     \end{center}
 \end{figure}
 
-In Chapter~\ref{ch:bns_sims}, Sec.~\ref{sec:bns_sims:fast_de}, we discussed the properties 
-of the fast tail of \ac{DE}. Here we examine how these properties translate to \ac{kN} 
+In Chapter~\ref{ch:bns_sims}, Sec.~\ref{sec:bns_sims:ejecta}, we discussed the properties of \ac{DE}. Here we examine how these properties translate to \ac{kN} 
 afterglow signatures. 
 %
-Fig.~\ref{fig:lightcurves} shows the \acp{LC} in X-ray and radio bands for several 
-representative \ac{BNS} merger models together with the latest \GRB{} data. 
+Fig.~\ref{fig:lightcurves} shows synthetic \acp{LC} in X-ray and radio bands 
+for several representative \ac{BNS} merger models together with the latest 
+\GRB{} data. 
 %% --- lightcurve shape
-We observe, that ejecta velocity and angular distribution defines primarily the shape of 
+We observe that ejecta velocity and angular distribution defines primarily the shape of 
 afterglow \acp{LC}. 
 Specifically, broad velocity distribution found in equal mass \ac{BNS} models 
-with soft \ac{EOS}, (\eg, SLy4 $q=1.00$ model, shown in Fig.~\ref{fig:ejecta_vel_hist}) 
-translates into wide \acp{LC}, with an early rise time, comaptible with that of the early \GRB{} afterglow. 
+with soft \acp{EOS} (\eg, SLy4 $q=1.00$ model, shown in Fig.~\ref{fig:ejecta_vel_hist}) 
+translates into wide \acp{LC} with an early rise time, comaptible with that of the early \GRB{} afterglow. 
 This behaviour is guverned by the deceleration of the fastest ejecta shells, 
 emission from which peaks early. If the velocity distribution is rather narrow, with most of the 
 material moving at ${\leq}0.2\,c$ (\eg, LS220 $q=1.43$ model) 
@@ -618,10 +631,10 @@ Specifically, this agreement is particularly good for models with moderately sti
 \acp{EOS} and $1.00<q<1.82$, considering the \ac{LC} peak time.
 
 Spectral analysis of the changing behaviour of \GRB{} indicated a possible 
-change in electron distribution index $p$ \citep{Hajela:2021faz}. Specifically, 
+change in electron distribution index \citep{Hajela:2021faz}. Specifically, 
 while previous \GRB{} analysis suggested $p=2.15$ with high degree of confidence 
-\citep[\eg][]{Hajela:2019mjy}, the latest observations suggest lower value of $p$, 
-$p=2.05$ \citep{Hajela:2021faz}. 
+\citep[\eg][]{Hajela:2019mjy}, the latest observations suggest lower value, 
+$p\leq2.05$ \citep{Hajela:2021faz}. 
 %
 %From \GRB{} model fitting the electron power law index $p$ is well constrain to $p=2.15$
 %\citep[\eg][]{Hajela:2019mjy}. The new emergent comonent in \GRB{} was found to have a lower 
@@ -631,7 +644,7 @@ Fig.~\ref{fig:kn_afterglow}. Notably, the parameters $p$, $\varepsilon_e$. $\var
 $\nism$ are very degenerate, meaining that the change in one can be offset by the change in 
 another withing these parameters' ranges of credibility inferred for \GRB{}. 
 
-\begin{figure}%%[t]
+\begin{figure}[t]
     \centering 
     %%     \includegraphics[width=0.49\textwidth]{./figs/scatter_thetarms_vej06.pdf}
     %% \includegraphics[width=0.49\textwidth]{figs/scatter_lightcurve_peaks_vs_lambda.pdf}
@@ -735,7 +748,7 @@ uncertain microphysical parameters.
 %% as their $F_{\nu,p}$ is lower then the observations.
 %% However, an increase in $\epsilon_B$ by a factor of $2$ changes this result.
 The condition (i), however, is more robust from that point of view and allows to 
-asses, afterglow from which models is in a better agreement with observations.
+asses, afterglow from what models is in a better agreement with observations.
 
 %% --- PEAK TIME 
 We show the peak time of afterglow \acp{LC} of our \ac{BNS} merger models in 
@@ -750,11 +763,11 @@ The latter, (BLh $q=1.82$ model) produces massive and
 slow ejecta that is characterized by the late afterglow 
 with \ac{LC} peak of ${\sim}10^4\,$days.
 %
-Otherwise, we find $t_{p}<10^3\,$days for models with $q\sim1$ and 
+Otherwise, we find $t_{p}<10^3\,$days for models with $q\sim1$, and 
 $t_p>10^3$~days for models with larger \mr{}. 
 %
 This relation appears more prominent for 
-models with soft \acp{EOS}, as the ejecta in these models has a strong contribution from 
+models with soft \acp{EOS}, as ejecta in these models has a strong contribution from 
 shocked, fast component of \ac{DE} (when \mr{} is small), and the 
 kinetic energy of the ejecta fast tail increases with 
 growing contribution from the shocked component (see Fig.~\ref{fig:ejecta_v06}). 

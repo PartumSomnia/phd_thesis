@@ -7,11 +7,15 @@
 \chapter{Kilonova} \label{ch:kilonova} 
 
 In Sec.~\ref{sec:intro:kilonova} we discussed the thermal \ac{EM} 
-counterpart to \ac{BNS} mergers, powered by the decay of the newly 
-sythesized heavy elements. Now, having elaborated on the 
-\rproc{} yields in ejecta from our simulations (Chapter~\ref{ch:nucleo}), 
-we proceed with discussing the \ac{kN} light curves. 
-
+counterpart to \ac{BNS} mergers, powered by the decay of newly 
+synthesized heavy elements, \acl{kN} (\acs{kN}). 
+%Now, having elaborated on the 
+%\rproc{} yields in ejecta from our simulations (Chapter~\ref{ch:nucleo}), 
+%we proceed with discussing the \ac{kN} light curves. 
+In this Chapter we expand upon this discussion computing 
+\ac{kN} models for ejecta from our \ac{BNS} merger simulations and comparing 
+synthetic \acp{LC} to observations.
+%
 First, in Sec.~\ref{sec:kilonova:modeling} we overview the basic 
 concepts behind modeling the \ac{kN} emission. 
 %, the energy release in nuclear heating, 
@@ -22,7 +26,7 @@ Then, in Sec.~\ref{sec:kilonova:albino} we describe a particular model
 developed by \cite{Perego:2017wtu} that was used in our analysis 
 to produce synthetic light curves. 
 %
-Finally, in Sec.~\ref{sec:kilonova:result} 
+Finally, in Sec.~\ref{sec:kilonova:result} and Sec.~\ref{sec:kilonova:fitinformed}
 we report the results of our analysis, and in 
 Sec.~\ref{sec:kilonova:summary} we summarize the \ac{kN} signatures 
 from different types of ejecta and compare them with \AT{}.
@@ -40,15 +44,15 @@ from different types of ejecta and compare them with \AT{}.
 
 
 
-\section{Overview of \ac{kN} modeling} \label{sec:kilonova:modeling}
+\section{Overview of kilonova modeling} \label{sec:kilonova:modeling}
 
 In general, ejecta from \ac{BNS} mergers is stratified and non-axisymmetric. 
 A way to compute \ac{EM} emission from such ejecta is to perform 
 multi-dimensional, 
-multi-group radiative transfer simulation coupled to \ac{HD} (or \ac{MHD}) 
-simulation of the ejecta itself \citep[\eg][]{Bulla:2019muo}.
+multi-group radiative transfer simulation coupled to a \ac{HD} (or \ac{MHD}) 
+simulation of ejecta itself. % \citep[\eg][]{Bulla:2019muo}.
 %
-It is however possible to compute the bolometric\footnote{
+It is however possible to compute bolometric\footnote{
     Related to the total emitted radiation at all wavelengths. 
 } properties considering only the total amount 
 of energy released and emitted by radioactive decay within the ejecta. 
@@ -73,7 +77,7 @@ Let the radioactive decay of a newly synthesized heavy isotope, $i$, release
 $\dot{Q}_i \propto \exp(-t/\tau_i)$ energy, with $\tau_i$ being its half-life.
 Then, assuming equal distribution of $\tau_i$ per logarithmic time, 
 %(at any $t$ the dominant species have $\tau\sim t$), 
-the heating rate of the ejecta at time $t$ is 
+the heating rate of ejecta at time $t$ is 
 $\dot{Q}_{LP} = f M c^2 / t$,
 where $f$ is a free parameter and $M$ is the ejecta mass\footnote{
     In general heating is time-dependent as thermodynamic histories of the expanding 
@@ -108,7 +112,8 @@ given by the specific heating, $\dot{e}_r(t)$, and can be approximated as
 \end{equation}
 %
 
-The optical depth and the radiation diffusion timescale are  
+The optical depth $\tau$, and the 
+radiation diffusion timescale $t_{\rm diff}$, are  
 %
 \begin{equation}
 \tau = \rho \kappa R = \frac{3}{4}\frac{\dd M\kappa}{\pi R^2}, \hspace{5mm} 
@@ -118,9 +123,9 @@ t_{\rm diff} \approx \frac{R}{c}\tau = \frac{3}{4}\frac{\dd M\kappa}{\pi c R} = 
 where 
 %$M$ is the ejecta mass, 
 $\kappa$ is the opacity (cross section per unit mass), 
-$\rho$ is the density, \eg, $\rho=3 \dd M/(4\pi R^3)$ is the mean density.
+$\rho$ is the mean density, \ie, $\rho=3 \dd M/(4\pi R^3)$.
 %
-As ejecta expands and cools (via adiabatic losses) its opacity decreases, 
+As ejecta expands and cools (via adiabatic losses), its opacity decreases, 
 and so does the diffusion timescale. 
 When $t_{\rm diff}$ reaches $t$, the radiation can escape the ejecta \citep{Arnett:1982}. 
 Hence, the characteristic timescale of the peak of the emitted radiation is 
@@ -299,9 +304,9 @@ within the ejecta, as described by the \textit{Arnett's Law}
 %%
 %% =====================================================================================
 
-\section{Semi-analytic \ac{kN} model}\label{sec:kilonova:albino}
+\section{Semi-analytic kilonova model}\label{sec:kilonova:albino}
 
-We compute the \ac{kN} light curves using 
+We compute the \ac{kN} light curves using a 
 semi-analytic, multi-component, asnisotropic code \mkn{} 
 \citep{Perego:2017wtu,Barbieri:2019sjc,Breschi:2021wzr}. 
 %from the brief description of which we begin the chapter.
@@ -315,8 +320,8 @@ The method can be summarized as follows.
 
 
 Each ejecta component (\eg, \ac{DE}, \ac{SWW}) is described through 
-the angular distribution of its ejected mass, $M_{\text{ej}}(\theta)$, 
-velocity $\upsilon_{\text{ej}}(\theta)$, and opacity, $\kappa_{\text{ej}}(\theta)$.
+the angular distribution of its mass, $M_{\text{ej}}(\theta)$, 
+velocity, $\upsilon_{\text{ej}}(\theta)$, and opacity, $\kappa_{\text{ej}}(\theta)$.
 %
 The polar angle, $\theta$, measured from the rotational axis, is discretized in 
 $N_\theta=30$ angular bins evenly spaced in $\cos{(\theta)}$.
@@ -331,10 +336,10 @@ $\xi(\upsilon) \propto (1 - (\upsilon / \upsilon_{\text{max}})^2)^3$,
 where $\xi(\upsilon) \dd \upsilon$ is the matter contained in an infinitesimal layer of speed 
 $\left[\upsilon,\upsilon+\dd \upsilon\right]$, and 
 $\upsilon_{\text{max}}=\upsilon_{\text{max}}(\upsilon_{\text{RMS}})$ 
-is the maximum velocity at the outermost edge of the component.
+is the maximum velocity at the outermost edge of the ejecta component.
 %
-The characteristic quantities are then evaluated for every bin according 
-to the assumed input profiles. 
+%The characteristic quantities are then evaluated for every bin according 
+%to the assumed input profiles. 
 %Then the emitted luminocity is evaluated for every bin 
 %using the radial model described in \citet{Perego:2017wtu}, and in 
 %\S{4} of \citet{Barbieri:2019kli}.
@@ -343,9 +348,10 @@ to the assumed input profiles.
 The emitted luminosity from every bin is evaluated according to the following model. 
 %
 The model assumes that the thermal radiation is emitted at the photosphere, located at 
-$R_{\text{ph}}$, with effective emission temperature $T_{\text{eff}}$, evaluated with the 
-Stefan-Boltzmann law, \ie, assuming the black-body radiation. This assumption is justified 
-when modeling early emission, when the ejecta is hot and opaque. 
+$R_{\text{ph}}$, with effective emission temperature, $T_{\text{eff}}$, 
+is evaluated with the Stefan-Boltzmann law, \ie, assuming the 
+black-body radiation. This assumption is justified 
+for modeling the early emission when ejecta is hot and opaque. 
 %However, at later 
 %times, as ejecta falls out of \ac{LTE} with its radiation, the assumption breaks.
 %
@@ -391,7 +397,7 @@ when modeling early emission, when the ejecta is hot and opaque.
 
 %% FROM Breschi et al (from perego et al)
 
-The time-dependent nuclear heating rate $\epsilon_{\text{nuc}}$ 
+Time-dependent nuclear heating rates, $\epsilon_{\text{nuc}}$, 
 %\red{assert notations} 
 are approximated via an analytic fitting formula, derived from detailed 
 nucleosynthesis calculations~\citep{Korobkin:2012uy}  
@@ -408,10 +414,11 @@ $\epsilon_{\text{th}}(t)$ is the
 thermalization efficiency tabulated according to \citet{Barnes:2016umi}.
 %
 For a neutron-rich ejecta, $Y_e\leq 0.2$, the heating rate is dominated by a large statistical 
-ensemble of nuclei, however at higher $Y_e\gtrsim 0.2$ corrections are required. 
+ensemble of nuclei, however, at higher $Y_e\gtrsim 0.2$ corrections are required. 
 %
-These corrections are introduced in a form of time-dependent heating factor, adjusted 
-roughly to the regime of mildly neutron-rich matter \citep{Perego:2017wtu}.
+These corrections are introduced in a form of time-dependent heating factor, 
+$\epsilon_{\text{nr}}(t)$, adjusted 
+roughly to the regime of mildly neutron-rich matter \citep{Perego:2017wtu}. 
 
 %The heating factor $\epsilon_{\text{nr}}(t) $ is introduced as in \citet{Perego:2017wtu} 
 %to roughly adjust the Eq.~\eqref{eq:kilonova:eps_korob} tp the regime of mildly 
@@ -438,12 +445,13 @@ roughly to the regime of mildly neutron-rich matter \citep{Perego:2017wtu}.
 % Opacity 
 %%%% --------------
 %
-The mean plank opacities for the hot ejecta are adopted from the recent systematic study 
-\citep{Tanaka:2019iqp}.
+The mean plank opacities for the hot ejecta are adopted from the recent systematic study by \citet{Tanaka:2019iqp}.
 %Notably, the atomic opacity depends on its ionization state. %\red{might reference Barns work}.
-Notably, when temperature drops and atoms become neutral, the photon opacity sharply decreases. 
-This was shown to have a strong effect on \acp{LC} in high-frequency bands, 
-\eg, $V$, $U$, $B$ and $g$ \citep{Villar:2017oya}. In order to account 
+Notably, when a temperature drops and atoms become neutral, 
+the photon opacity sharply decreases. 
+This was shown to have a strong effect on \acp{LC} in high-frequency bands 
+%\eg, $V$, $U$, $B$ and $g$ 
+\citep{Villar:2017oya}. In order to account 
 for the drop in opacity when the temperature falls below a certain value that 
 corresponds to the full 
 recombination, the $T_{\text{floor}}$ is introduced  
@@ -472,13 +480,14 @@ radial coordinate of the photospheric surface, and $B_{\nu}(T_{\rm eff})$
 is the spectral radiance at frequency $\nu$ for a surface with temperature $T_{\text{eff}}$. 
 %
 % ---- Magnitudes
-We also make use of the apparent AB magnitude mag$_b$ in a given photometric band $b$, defined as:
+We also make use of the apparent AB magnitude, mag$_b$, 
+in a given photometric band, $b$, defined as:
 %
 \begin{equation}
 \label{eq:mag}
 \text{mag}_b(\mathbf{n},t) = -2.5 \log_{10}\left( F_{\nu_b}(\mathbf{n},t) \right)-48.6\,,
 \end{equation}
-where $\nu_b$ is the effective central frequency of band $b$.
+where $\nu_b$ is the effective central frequency of the band $b$.
 
 %\begin{figure}
 %    \centering 
@@ -512,7 +521,7 @@ where $\nu_b$ is the effective central frequency of band $b$.
 
 
 We consider \ac{DE} ejecta and \ac{SWW} geometries directly imported from 
-our \ac{BNS} merger simulations in a form of the angular profiles 
+our \ac{BNS} merger simulations in a form of angular profiles 
 (assuming axisymmetry). We refer to such \ac{kN} models as \ac{NR}-informed. 
 %with 
 %respect to the polar angle and averaging over the azimuthal angle.
@@ -520,7 +529,7 @@ In several cases we also use analytical ejecta profiles, with
 either smooth of step-like dependency on the polar angle.
 %
 The viewing angle, $\theta_{\text{obs}}$, is measured as the angle between the 
-polar axis and the line of sight of the observer.
+polar axis and the \ac{LOS} of the observer.
 
 
 
@@ -545,7 +554,7 @@ polar axis and the line of sight of the observer.
     \centering
     \includegraphics[width=0.80\textwidth]{kilonova/mkn_dd2_band.pdf}
     \caption{
-        Bolometric \acp{LC} in three bands (one per panel) for 
+        Bolometric \acp{LC} in three photometric bands (one per panel) for 
         ejecta from two \ac{BNS} merger models, 
         DD2 $q=1.00$ and LS220 $q=1.00$. \acp{LC} corresponding to 
         \ac{DE} only are shown with solid lines, while the red color gradient 
@@ -573,8 +582,8 @@ polar axis and the line of sight of the observer.
 
 
 
-\section{\ac{SWW} for the blue component of \AT{}}\label{sec:kilonova:result}
-
+%\section{\ac{SWW} for the blue component of \AT{}}\label{sec:kilonova:result}
+\section{Numerical relativity informed kilonova models}\label{sec:kilonova:result}
 %The \ac{BNS} merger ejecta consists of several anisotropic components with different 
 %properties (see the discussion in Sec.~\ref{sec:intro:ejecta} and Chapter~\ref{ch:bns_sims}).
 %
@@ -612,48 +621,55 @@ polar axis and the line of sight of the observer.
 
 
 
-We begin by considering two equal mass \ac{NR} \ac{BNS} merger models with LS220 
-and DD2 \acp{EOS}, that produce short and long-lived \ac{NS} remnant respectively
-(Chapter~\ref{ch:bns_sims}). 
-Using the \texttt{MKN} code, discussed above, we construct \ac{NR}-informed 
-\acp{LC} for both, using \ac{DE} only and the combination of \ac{DE} and \ac{SWW}\footnote{
-    The \texttt{MKN} code does not include the effects of multiple ejecta component 
+We begin by considering two equal mass \ac{BNS} merger models with LS220 
+and DD2 \acp{EOS}, that produce short and long-lived \pmerg{} remnants respectively
+(see Chapter~\ref{ch:bns_sims}). 
+Using the \texttt{MKN} code, discussed above, we compute \ac{NR}-informed 
+\acp{LC} for both \ac{DE} only, and the combination of \ac{DE} and \ac{SWW}\footnote{
+    The \texttt{MKN} code does not include the effects of ejecta component 
     iteration. We leave this to future works.
 }. 
 %%% ---
 %For both models we produce \ac{NR}-informed \acp{LC}, using both the \ac{DE} and \ac{SWW} for the model with the long-lived \ac{MNS} remnant, and \ac{DE} only for the model with the short-lived one.
 %% ---
-The result is shown in Fig.~\ref{fig:knlc}. We observe, that between the two 
-\ac{BNS} models, when only \ac{DE} is considered, the \ac{kN} emission is 
-significantly dimmer in the case of LS220 $q=1.00$ model, that produce a 
-short-lived remnant.
+The result is shown in Fig.~\ref{fig:knlc}. We observe that
+%between the two \ac{BNS} models, 
+when only \ac{DE} is considered, the \ac{kN} emission is 
+significantly dimmer in the case of LS220 $q=1.00$ model.
+%
 And while the amount of mass ejected by both models is rather similar,  
 \ac{DE} from DD2 $q=1.00$ model is faster and less neutron-rich, hence, 
 have lower photon opacities. 
 
-However, \ac{DE} alone does not produce emission bright enough to 
-match \AT{}, especially at early times in g band and at late times in Ks band. 
+However, \ac{DE} alone do not produce emission bright enough to 
+match \AT{}, especially at early times in $g$ band and at late times in $K_s$ band. 
 The latter can be attributed to the absence of low-$Y_e$ secular ejecta in 
-our simulations (see Sec.~\ref{sec:intro:kilonova}). The former, however, 
+our simulations. 
+%(see Sec.~\ref{sec:intro:kilonova}). 
+The former, however, 
 suggests the need of a low-$Y_e$, massive ejecta component. 
 %
 It is natural to consider, whether \ac{SWW} can account for this early 
-blue emission. Since the total mass of \ac{SWW} is depends on the 
-lifetime of the remnant, $t_{\rm coll}$, (see Sec.~\ref{sec:bns_sims:sww}) 
+blue emission. Since the total mass of \ac{SWW} depends on the 
+lifetime of a remnant, $t_{\rm coll}$, (see Sec.~\ref{sec:bns_sims:sww}) 
 and the remnant of DD2 $q=1.00$ model does not collapse till the end of 
 the simulation (${\sim}100\,$ms \pmerg{}), we extrapolate the \ac{SWW} mass, 
 considering a range of $t_{\rm coll}$ up to $250\,$ms \pmerg{}. The range of 
 associated \ac{kN} \acp{LC} is shown in Fig.~\ref{fig:knlc} as red color gradient. 
 %
-The analysis suggests, that sufficiently massive \ac{SWW} can indeed 
+The analysis suggests that sufficiently massive \ac{SWW} can indeed 
 account for the early blue emission of \AT{}. However, the emission 
-in other bands, \eg, z band, becomes significantly brighter than what is 
-inferred for \AT{}. 
+in other bands, \eg, $z$ band, becomes significantly brighter than 
+what was observed. 
 
-
+Our results, however, have uncertainties related to our simplified calculation 
+of \ac{kN} \acp{LC} which is expected to be less accurate at late times when 
+absorption features and deviations from \ac{LTE} become more relevant 
+\citep[see \eg][]{Smartt:2017fuw}. 
+%
 A more detailed analysis of \acp{kN} produced by \ac{DE} and \ac{SWW}, that 
-takes into account change ejecta properties with binary parameters 
-and interactions between these ejecta components to draw a more solid conclusion. 
+considers various ejecta profiles and cross-ejecta interactions, dynamical as 
+well as radiative, is required to draw a more solid conclusion. 
 %
 %The result is shown in Fig.~\ref{fig:knlc}. 
 %We observe, that emission from \ac{DE} alone cannot explain \AT{} in 
@@ -672,9 +688,10 @@ and interactions between these ejecta components to draw a more solid conclusion
 %early emission in high frequency bands, a combination of the \ac{SWW} and 
 %viscous ejecta from the disintegration of the disk are required.
 %% --- 
-Additionally results, however, have uncertainties related to our simplified calculation of
-\ac{kN} \acp{LC} which is expected to be less accurate at late times when absorption 
-features and deviations from \ac{LTE} become more relevant \citep[see \eg][]{Smartt:2017fuw}.
+
+%Additionally results, however, have uncertainties related to our simplified calculation of
+%\ac{kN} \acp{LC} which is expected to be less accurate at late times when absorption 
+%features and deviations from \ac{LTE} become more relevant \citep[see \eg][]{Smartt:2017fuw}.
 %
 %To model the \ac{kN} emission more robustly, the time- and energy-dependent 
 %photon radiation transport models are required 
@@ -751,7 +768,7 @@ features and deviations from \ac{LTE} become more relevant \citep[see \eg][]{Sma
 %\citep{Siegel:2017nub,Fujibayashi:2017puw,Radice:2018xqa,Radice:2018pdn,Miller:2019dpt}. 
 
 
-\section{Fit-informed kilonova models}
+\section{Fit-informed kilonova models}\label{sec:kilonova:fitinformed}
 
 
 
@@ -828,7 +845,7 @@ ejecta properties of \ac{BNS} mergers.
 %
 Here we compare the \ac{kN} \acp{LC} informed by these fitting 
 formulae against \ac{NR}-informed \ac{kN} models. 
-We consider one- and two-component \acp{kN} models. 
+We employ one- and two-component \acp{kN} models. 
 %
 %We employ the semi-analytic \ac{kN} model of \citet{Perego:2017wtu} discussed 
 %above and consider either one or two ejecta components.
@@ -837,7 +854,7 @@ We consider one- and two-component \acp{kN} models.
 %
 When one component \ac{kN} is considered, only \ac{DE} ejecta properties are used, 
 such as mass, velocity, and \ac{RMS} half-opening angle separating the low opacity 
-polar outflow and high opacity equatorial one. 
+polar outflow and the high opacity equatorial one. 
 %The angular distributions of mass and 
 %velocity are assumed to be the same as in \citet{Perego:2017wtu}.
 When two component \ac{kN} is considered, in addition to \ac{DE} we include the 
@@ -847,57 +864,8 @@ become unbound.
 The angular distributions of mass, velocity and opacity
 are assumed to be uniform. 
 Comparing the properties of \ac{NR}-informed and fit-informed \ac{kN} \acp{LC} we 
-maintain all the other parameters fixed.
+maintain all other parameters fixed.
 %
-
-In Fig.~\ref{fig:mkn_example} we show the result of our analysis. For clarity we 
-show the differences $\Delta t_{\rm peak} = t_{\rm peak; NR} - t_{\rm peak; fit}$, 
-and $\Delta m_{\rm peak} = m_{\rm peak; NR} - m_{\rm peak; fit}$ for peak times, 
-$t_p$, and magnitudes, $m_{\rm AB}$, respectively. 
-The comparison is shown for $3$ different bands, $g$, $z$, $K_s$ (indicated by 
-different markers) and for a range of representative \ac{BNS} merger simulations.
-
-Considering the one-component \ac{kN} \acp{LC}, (top panel), we note that the $t_p$ is 
-recovered with an error margin of ${\sim}0.2\,$days in $g$ and $z$ bands, and within 
-$0.5\,$day margin in $k_s$ band. Notably, fit-informed \acp{LC} 
-systematically underestimate $t_p$ in the $K_s$ band. 
-%
-The largest deviation is found for the 
-model with \mr{} of $1.8$ and BLh \ac{EOS}. This highlights limitations of our 
-fitting formula that is not able to reproduce the \ac{PC} model properties well.
-
-Comparing peak magnitudes, $m_{\rm AB}$, we observe that differences 
-between \ac{NR}- and fit-informed \acp{LC} are on average ${\sim}0.5$~mag. 
-In $g$ band, however, the deviations are ${\sim}1\,$mag.
-Considering two-component \ac{kN} models, we observe that the 
-$t_p$ in $K_s$ band differ between the fit- and \ac{NR}-informed \acp{LC} by 
-${\sim}2\,$days. The $m_{\rm AB}$ is reproduced within the ${\pm}0.5\,$mag 
-on average in $z$ and $K_s$ bands.
-%
-The larger differences in $m_{\rm AB}$ for one component \ac{kN} \acp{LC} 
-can be attributed to the influence of the ejecta geometry that is not 
-fully accounted for by a single parameter, $\athetarms$, that we use to 
-separate low and high opacity material. 
-
-Overall we observe that while there are considerable deviations between fit- and 
-\ac{NR}-informed \acp{LC} that can be attributed to the limitations of 
-our fitting formula as well as the specifics of the \ac{kN} model used for the 
-analysis, certain \ac{kN} properties, \eg, peak time in high-frequency bands, 
-appears to be captured robustly. 
-
-%Overall, we note that while the exact reasons for deviations can be attributed to 
-%the exact \ac{LC} model employed, this example suggests that the minimum systematic 
-%variations that are to be expected in synthetic \acp{LC} 
-%informed by our best fitting formulae.
-
-
-
-%% -----------------------------
-%% 
-%% -----------------------------
-
-\section{Summary of ejecta kilonova signatures}\label{sec:kilonova:summary}
-
 
 \begin{figure*}[t]
     \centering 
@@ -936,6 +904,59 @@ appears to be captured robustly.
     \label{fig:ejecta:dyn:ds_sww}
 \end{figure*}
 
+In Fig.~\ref{fig:mkn_example} we show the result of our analysis. For clarity we 
+show the differences, $\Delta t_{\rm peak} = t_{\rm peak; NR} - t_{\rm peak; fit}$, 
+and $\Delta m_{\rm peak} = m_{\rm peak; NR} - m_{\rm peak; fit}$, for peak times, 
+$t_p$, and magnitudes, $m_{\rm AB}$, respectively. 
+The comparison is shown for $3$ different photometric bands, 
+$g$, $z$, and $K_s$ (indicated by different markers) 
+and for a set of representative \ac{BNS} merger simulations.
+
+Considering one-component \ac{kN} \acp{LC}, (top panel), we observe 
+that the $t_p$ is recovered with an error margin of ${\sim}0.2\,$days 
+in $g$ and $z$ bands, and within $0.5\,$day margin in $k_s$ band. 
+Notably, fit-informed \acp{LC} systematically underestimate $t_p$ in the 
+$K_s$ band. 
+%
+The largest deviation is found for the 
+model with $q=1.8$ and BLh \ac{EOS}. This highlights limitations of our 
+fitting formula that is not able to reproduce \ac{PC} model properties well.
+
+Comparing peak magnitudes, $m_{\rm AB}$, we observe that differences 
+between \ac{NR}- and fit-informed \acp{LC} are on average ${\sim}0.5$~mag. 
+In $g$ band, however, the deviations are ${\sim}1\,$mag.
+Considering two-component \ac{kN} models, we observe that the 
+$t_p$ in $K_s$ band differ between the fit- and \ac{NR}-informed \acp{LC} by 
+${\sim}2\,$days. The $m_{\rm AB}$ is reproduced within ${\pm}0.5\,$mag 
+on average in $z$ and $K_s$ bands.
+%
+The larger differences in $m_{\rm AB}$ for one component \ac{kN} \acp{LC} 
+can be attributed to the influence of the ejecta geometry that is not 
+fully accounted for by a single parameter, $\athetarms$, that we use to 
+separate low and high opacity material. 
+
+Overall we observe that while there are considerable deviations between fit- and 
+\ac{NR}-informed \acp{LC} that can be attributed to the limitations of 
+our fitting formula as well as the specifics of the \ac{kN} model used for the 
+analysis, certain \ac{kN} properties, \eg, peak time in high-frequency bands, 
+appear to be captured robustly. 
+
+%Overall, we note that while the exact reasons for deviations can be attributed to 
+%the exact \ac{LC} model employed, this example suggests that the minimum systematic 
+%variations that are to be expected in synthetic \acp{LC} 
+%informed by our best fitting formulae.
+
+
+
+%% -----------------------------
+%% 
+%% -----------------------------
+
+\section{Summary of ejecta kilonova signatures}\label{sec:kilonova:summary}
+
+
+
+
 %% from main paper, referencing the fitpaper Poly22 fits and SWW + DE
 %\red{THis can be augmented with Radio afterglow}
 
@@ -971,9 +992,9 @@ ejecta properties from our models.
 
 
 With respect to the red component, we observe that \ac{DE} from our models 
-having too high average velocities and not nearly enough mass.
+have too high average velocities and not nearly enough mass.
 This result suggests that an additional, low $Y_e$ ejecta component 
-is requiredin order to explain the \AT{} red component 
+is required in order to explain the \AT{} red component 
 \citep[\eg][]{Perego:2017wtu,Kawaguchi:2018ptg}.
 %
 
@@ -987,7 +1008,7 @@ The ranges in $q$ and $\tilde{\Lambda}$ inferred for \GW{} from \ac{GW} analysis
 \ie,  $90\%$ credible intervals, are 
 $\tilde{\Lambda}=300_{-190}^{+500}$ and $q\in[1., 1.37]$. 
 %
-Mapping them onto ejecta parameters via \polql{} we obtain 
+Mapping them onto ejecta parameters via \polql{}, we obtain 
 %
 $\amd \in [0.72, 7.52] \times 10^{-3}\, M_{\odot}$
 and
@@ -999,7 +1020,7 @@ Predictably, we observe that the obtained ranges do not agree with those
 inferred for \AT{}. 
 Partially, this is due to simplified ejecta 
 geometry considered in many \ac{kN} models, but also because other 
-ejecta types most likely contributed to the observed emission.
+ejecta types besides \ac{DE} contributed to the observed emission.
 
 % when spherical, two-component \ac{kN} models are 
 %considered \citep{Villar:2017wcc}.
@@ -1027,14 +1048,15 @@ ejecta types most likely contributed to the observed emission.
 
 %\subsection{Spiral-wave wind}
 
-Discussing the \ac{BNS} models' merger dynamics and outflowing matter we 
-identified a new ejecta component, driven by interactions between the \ac{NS} 
-merger remnant and the disk, \ac{SWW}. % (Ch.~\ref{ch:bns_sims}, Sec.~\ref{sec:bns_sims:dyn}).
+%Discussing the \ac{BNS} models' merger dynamics and outflowing matter we 
+%identified a new ejecta component, driven by interactions between the \ac{NS} 
+%merger remnant and the disk, \ac{SWW}. % (Ch.~\ref{ch:bns_sims}, Sec.~\ref{sec:bns_sims:dyn}).
+%%
+%We showed that this ejecta is more massive than \ac{DE} if the \ac{NS} remnant 
+%is long-lived, and has high electron fraction. % (Sec.~\ref{sec:bns_sims:sww}).
 %
-We showed that this ejecta is more massive than \ac{DE} if the \ac{NS} remnant 
-is long-lived, and has high electron fraction. % (Sec.~\ref{sec:bns_sims:sww}).
-%
-Thus, \ac{SWW} could be a significant contributor to \AT{}, assuming that 
+As we showed in Sec.~\ref{sec:kilonova:result}, \ac{SWW} could be 
+a significant contributor to \AT{}, assuming that 
 the \pmerg{} remnant of \GW{} survived for $\mathcal{O}(100)\,$ms.
 Specifically, we showed that \ac{SWW} properties are in line with 
 those requried to explane the early blue emission of \AT{}. 
@@ -1072,26 +1094,31 @@ expected on timescales larger than our simulations permit
 
 
 %\subsection{Secular Ejecta}
-On even longer timescales, 
+%On even longer timescales, 
 %On the timescale of seconds, much longer than the evolution of our simulations, 
-nuclear recombination can unbind a fraction of the disk.  
+%nuclear recombination can unbind a fraction of the disk.  
 %(See Sec.~\ref{sec:bns_sims:mj_loss} for more details). % See Mb-J plot for example
 %
-Analytical estimates and simulations with various approximations show that 
-up tp ${\sim}40\%$ of the disk can be ejected via viscous processes with an 
-typical velocity ${\lesssim}0.1\,c$ 
+
+Nuclear recombination and viscous processes are expected to unbind 
+${\sim}40\%$ of a disk in a form of outflows with typical velocity 
+${\lesssim}0.1\,c$ on a secular timescale 
 \citep[\eg][]{Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,
     Radice:2018xqa,Fujibayashi:2020dvr}. 
 %
+%Analytical estimates and simulations with various approximations show that 
+%up tp ${\sim}40\%$ of the disk can be ejected via viscous processes with an 
+%typical velocity ${\lesssim}0.1\,c$ 
+%\citep[\eg][]{Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax,
+%    Radice:2018xqa,Fujibayashi:2020dvr}. 
+%
 Considering disk masses of our \ac{BNS} merger simulations and 
 adapting the fix fraction of $40\%$ of the $M_{\rm disk}$, we estimate 
-that about ${\sim}0.05\, M_{\odot}$ would be ejected in a form of 
-secular winds. 
+that about ${\sim}0.05\, M_{\odot}$ would be ejected in a form of secular winds. 
 %
 Plotting the expected masses of secular ejecta from our models with long-lived 
 remnants (lower triangles in Fig.~\ref{fig:ejecta:dyn:ds_sww})  
-we observe that they would sufficient to explain the red component of 
-\AT{}. 
+we observe that they would be sufficient to explain the red component of \AT{}. 
 
 
 A more quantitative analysis requires ab-initio \ac{BNS} merger simulations, 
