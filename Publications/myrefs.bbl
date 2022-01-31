@@ -1,0 +1,93 @@
+\begin{thebibliography}{1}
+
+\bibitem{Nedora:2021}
+\textbf{V. Nedora}, D.~Radice, S.~Bernuzzi, A.~Perego, B.~Daszuta, A.~Endrizzi,
+  A.~Prakash, and F.~Schianchi.
+\newblock {Dynamical ejecta synchrotron emission as possible contributor to the
+  rebrightening of GRB170817A}.
+\newblock 4 2021.
+\newblock \href{https://arxiv.org/abs/2104.04537}{\texttt{arXiv:2104.04537}} \\
+  \textit{ I wrote $95\%$ of the text, performed all the postprocessing of
+  numerical relativity simulations, and computed kilonova afterglow models. I
+  created all the figures. I also wrote all of the \texttt{PyBlastAfterglow}
+  code}.
+
+\bibitem{Nedora:2020qtd}
+\textbf{V. Nedora}, F.~Schianchi, S.~Bernuzzi, D.~Radice, B.~Daszuta,
+  A.~Endrizzi, A.~Perego, A.~Prakash, and F.~Zappa.
+\newblock {Mapping dynamical ejecta and disk masses from numerical relativity
+  simulations of neutron star mergers}.
+\newblock {\em Classical and Quantum Gravity}, 11 2021.
+\newblock \href{https://arxiv.org/abs/2011.11110}{\texttt{arXiv:2011.11110}} \\
+  \textit{ I wrote $95\%$ of the text, compiled the datasets available in the
+  literature and performed the statistical analysis. I created all the
+  figures}.
+
+\bibitem{Nedora:2020pak}
+\textbf{V. Nedora}, S.~Bernuzzi, D.~Radice, B.~Daszuta, A.~Endrizzi, A.~Perego,
+  A.~Prakash, M.~Safarzadeh, F.~Schianchi, and D.~Logoteta.
+\newblock {Numerical Relativity Simulations of the Neutron Star Merger
+  GW170817: Long-Term Remnant Evolutions, Winds, Remnant Disks, and
+  Nucleosynthesis}.
+\newblock {\em Astrophys. J.}, 906(2):98, 2021.
+\newblock \href{https://arxiv.org/abs/2008.04333}{\texttt{arXiv:2008.04333}} \\
+  \textit{ I wrote $75\%$ of the text, performed all the postprocessing of
+  numerical relativity simulations. I created all the figures}.
+
+\bibitem{Nedora:2019jhl}
+\textbf{V. Nedora}, S.~Bernuzzi, D.~Radice, A.~Perego, A.~Endrizzi, and
+  N.~Ortiz.
+\newblock {Spiral-wave wind for the blue kilonova}.
+\newblock {\em Astrophys. J.}, 886(2):L30, 2019.
+\newblock \href{https://arxiv.org/abs/1907.04872}{\texttt{arXiv:1907.04872}} \\
+  \textit{ I wrote $50\%$ of the text, performed all the postprocessing of
+  numerical relativity simulations. I created all the figures}.
+
+\bibitem{Prakash:2021}
+A.~Prakash, D.~Radice, D.~Logoteta, A.~Perego, \textbf{V. Nedora}, I.~Bombaci,
+  R.~Kashyap, S.~Bernuzzi, and A.~Endrizzi.
+\newblock {Signatures of deconfined quark phases in binary neutron star
+  mergers}.
+\newblock 6 2021.
+\newblock \href{https://arxiv.org/abs/2106.07885}{\texttt{arXiv:2106.07885}} \\
+  \textit{ I wrote the kilonova afterglow section $(15\%$ of the paper text$)$
+  and produced the related figures. I also helped with running some of the
+  binary neutron star merger simulations used in this paper}.
+
+\bibitem{Hajela:2021}
+A.~Hajela, R.~Margutti, J.~S. Bright, K.~D. Alexander, B.~D. Metzger,
+  \textbf{V. Nedora}, A.~Kathirgamaraju, B.~Margalit, D.~Radice, E.~Berger,
+  A.~MacFadyen, D.~Giannios, R.~Chornock, I.~Heywood, L.~Sironi, O.~Gottlieb,
+  D.~Coppejans, T.~Laskar, Y.~Cendes, R.~Barniol~Duran, T.~Eftekhari, W.~Fong,
+  A.~McDowell, M.~Nicholl, X.~Xie, J.~Zrake, S.~Bernuzzi, F.~S. Broekgaarden,
+  C.~D. Kilpatrick, G.~Terreran, V.~A. Villar, P.~K. Blanchard, S.~Gomez,
+  G.~Hosseinzadeh, D.~J. Matthews, and J.~C. Rastinejad.
+\newblock {The emergence of a new source of X-rays from the binary neutron star
+  merger GW170817}.
+\newblock Apr. 2021.
+\newblock \href{https://arxiv.org/abs/2104.02070}{\texttt{arXiv:2104.02070}} \\
+  \textit{ I wrote the section on the numerical relativity informed kilonova
+  afterglow models, $(5\%$ of the paper text$)$, and produced the related
+  figures}.
+
+\bibitem{Bernuzzi:2020txg}
+S.~Bernuzzi, M.~Breschi, B.~Daszuta, A.~Endrizzi, D.~Logoteta, \textbf{V.
+  Nedora}, A.~Perego, D.~Radice, F.~Schianchi, F.~Zappa, I.~Bombaci, and
+  N.~Ortiz.
+\newblock {Accretion-induced prompt black hole formation in asymmetric neutron
+  star mergers, dynamical ejecta and kilonova signals}.
+\newblock {\em Mon. Not. Roy. Astron. Soc.}, June 2020.
+\newblock \href{https://arxiv.org/abs/2003.06015}{\texttt{arXiv:2003.06015}} \\
+  \textit{ I helped with the postprocessing of numerical relativity
+  simulations}.
+
+\bibitem{Breschi:2021tbm}
+M.~Breschi, A.~Perego, S.~Bernuzzi, W.~Del~Pozzo, \textbf{V. Nedora},
+  D.~Radice, and D.~Vescovi.
+\newblock {AT2017gfo: Bayesian inference and model selection of multi-component
+  kilonovae and constraints on the neutron star equation of state}.
+\newblock 1 2021.
+\newblock \href{https://arxiv.org/abs/2101.01201}{\texttt{arXiv:2101.01201}} \\
+  \textit{ I helped with setting up the kilonova model selection runs}.
+
+\end{thebibliography}

@@ -1,0 +1,2143 @@
+\chapter{Introduction} \label{ch:intro}
+
+%% =====================================================================================
+%%
+%%              G E N E R A L  I N T R O D U C T I O N
+%%
+%% =====================================================================================
+
+%% From Just
+At the end of their evolution, pairs of massive stars undergo \acp{SN} explosions, leaving a pair of compact objects orbiting each other, if the progenitors were sufficiently massive.
+Of particular interest is a pair of \acp{NS}, compact, heavy objects sustained 
+against gravitational collapse by the neutron degeneracy pressure. 
+The theory of \ac{GR} predicts that the orbit of these \acp{NS} shrinks as the system 
+loses energy and angular momentum to \acp{GW}. 
+The stars inspiral until they merge at the last orbit. 
+%ejecting a small fraction of matter into the Universe, leaving a \pmerg{} remnant.
+
+
+The high compactness of \acp{NS} leads to an energetic, explosive merger, where a small 
+fraction of \ac{NS} matter is ejected from the system at mildly relativistic 
+velocities. 
+Additionally, the massive \pmerg{} remnant and gravitationally bound 
+matter surrounding it are subjected to complex dynamical interactions, weak processes and magnetically induced 
+turbulence, that might cause further matter outflows. This makes \ac{BNS} mergers 
+strong contributors to the cosmic chemical evolution. 
+The matter ejected at/after mergers, \ie, ejecta, has unique properties rarely found in other 
+astrophysical sites. Specifically, the abundance of free neutrons allows for the so-called 
+rapid neutron capture process (\rproc{}).
+The \rproc{} is responsible for the production of the heaviest elements in the 
+Universe: lanthanides and actinides. 
+
+%Mergers of \acp{BNS} are at the center of a variety of physical processes in astrophysics.
+The wide range of possible types and properties of ejecta leads to a similarly broad range of 
+possible \ac{EM} counterparts to \ac{BNS} mergers. For instance, heavy elements 
+produced via \rproc{} \nuc{} eventually decay, powering the quasi-thermal \ac{EM} 
+counterpart, \ac{kN}, that can be observed from days to weeks after the merger. 
+Additionally, \ac{BNS} mergers are expected to produce 
+powerful jets that can be observed as \acp{SGRB}, whose afterglow lasts for hundreds of days. 
+Furthermore, expanding into the \ac{ISM}, mildly relativistic ejecta is expected 
+to generate non-thermal afterglow emission that can be observed years after a merger. 
+%Perhaps, two of the most 
+%well studied ones are the \ac{kN}, a thermal counterpart powered by the decay of 
+%newly synthesized heavy elements in the ejecta, and \acp{SGRB}, generally non-thermal 
+%emission from the ultrarelativistic collimated outflow, formed after the merger. 
+Together with \ac{GW} emission, these signals allow us to study the processes occurring 
+at mergers in great detail. Studies of \ac{BNS} mergers are crucial for 
+investigating the origin of \acp{SGRB} and cosmic chemical evolution. 
+Perhaps most importantly, they provide unique constraints on the 
+theory of gravity and properties of matter at densities 
+many times that of the nuclear saturation. 
+%high density part of \ac{NS} \ac{EOS}.
+%Study of these \ac{EM} counterparts in conjuncture with \acp{GW} emission allows to 
+%gain unique insigts into the inner workings of the \ac{BNS} merger and previously 
+%unobtainable constraints on the theory of gravity, the properties of matter at 
+%supranuclear densities, origin of the \ac{SGRB}, cosmic chemical evolution. 
+
+
+
+In August 2017, the first \ac{BNS} merger was observed 
+as a source of \acp{GW} by \ac{LIGO}/Virgo, \GW{}. The unprecedented \ac{EM} 
+follow-up campaign, spanning hundreds of observatories across the world, led to 
+the identification of the merger \ac{EM} counterparts: \ac{kN}, \AT{} and 
+\ac{SGRB}, \GRB{} 
+%and compilation of the large amount of data
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,GBM:2017lvd}. 
+Notably, the observations continue to this day \citep{Hajela:2021faz}.
+%
+% And while \acp{GW} had shed light on the properties of cold,
+% $\mathcal{O}(\text{keV})$, \ac{NS} matter 
+% %at supernuclear densities, the \ac{NS} \ac{EOS} 
+% \citep{Hinderer:2009ca,Damour:2012yf,DelPozzo:2013ala}, 
+% the properties of matter at densities several times that of the 
+% nuclear matter, as well as astrophysical implications of the merger 
+% were investigated employing \ac{EM} data, performing \ac{MM} studies 
+% \citep{Villar:2017wcc,Hajela:2019mjy,Radice:2018ozg,LIGOScientific:2017ync}.
+
+Studies of \acp{GW} from \GW{} together with its \ac{EM} counterparts (so-called \ac{MM} studies) allowed to put constraints 
+on the properties of matter at densities several times that of the 
+nuclear matter, and investigate astrophysical implications of \ac{BNS} mergers \citep{Villar:2017wcc,Hajela:2019mjy,Radice:2018ozg,LIGOScientific:2017ync}.
+
+The complexity, non-linearity, non-stationarity and multidimensionality of physical 
+processes operating at \ac{BNS} mergers on a wide range of scales of length and time 
+imply that self-consistent, quantitative studies are only possible with numerical 
+simulations 
+\citep{Sekiguchi:2011zd,Wanajo:2014wha,Foucart:2015gaa,Palenzuela:2015dqa,
+    %Sekiguchi:2016bjd,Kiuchi:2017zzg,
+    Radice:2017zta,Fujibayashi:2017puw,Radice:2018pdn}.
+%
+These simulations, performed with \ac{NR} codes that took years or even 
+decades to develop and test, are very computationally expensive, rare, and require detailed 
+postprocessing and analysis. 
+%
+Moreover, the self-consistent modeling of a \ac{BNS} merger and its \ac{EM} counterparts 
+is still beyond the reach of modern methods. Generally, the short-term (hundreds of milliseconds) 
+evolution of the merger itself is handled with \ac{NR} codes while the 
+\nuc{} and \ac{EM} emission are computed after, in postprocessing. 
+%Strengthening the connection between these methods is one of the goals of this thesis. 
+%
+%In the following sections we sketch the astrophysical background to clarify the 
+%context of our study and we conclude the chapter by summarizing the main points of 
+%motivation for this thesis and its structural arrangement.
+
+%In this thesis we postprocess a large set of \ac{NR} \ac{BNS} merger simulations, 
+%performed with the state-of-the-art \ac{NR} code, \wisky{}, and targeted to the 
+%\GW{} (with corresponding binary parameters).
+%%
+%We focus on the \pmerg{} matter dynamics and properties of ejecta. 
+%We asses the nucleosynthetic yields in the ejecta, placing them into astrophysical 
+%context. Using the \ac{kN} model, developed by \citet{Perego:2017wtu}, we analyze 
+%the \ac{EM} signatures of our \ac{BNS} merger models, comparing them with \AT{}. 
+%Additionally, we develop a new code to model non-thermal emission from ejecta 
+%expanding into \ac{ISM}, apply it to the outcome of the merger simulations and 
+%compare the results with recently observed change in \ac{SGRB} emission. 
+%
+The main goal of this thesis is to strengthen the link between the ab-inito 
+numerical relativity simulations of \ac{BNS} mergers and their 
+\ac{EM} signatures, 
+and in doing so, provide better constraints on the properties of \GW{} 
+and ultimately, the \ac{NS} \ac{EOS}. 
+We expand upon this at the end of this Chapter, after we introduce the necessary 
+concepts and discuss the current state of the field. 
+
+
+
+%Single \acp{NS} are very compact but massive objects, 
+%%where compactness $C_{i} = GM_i/R_i^2c^2\propto0.15$ and 
+%for description of which the effects of \ac{GR} cannot be neglected. 
+%%
+%A pair of \acp{NS} orbiting each other slowly loses its 
+%angular momentum to \acp{GW}. 
+%%The timescale for the radiation reaction, however, 
+%%is much longer than the orbital period for most of the inspiral and the 
+%%system evolution can be considered adiabatic. 
+%%For instance, the inspiral can be considered as a sequence of circular orbits. 
+%%However, during last orbits before merger, the finite size (tides) and \ac{HD}
+%%effects starts to become important. 
+%The inspiral ends at the onset of the Roche lobe overflow, when the binary 
+%reaches the mass-shedding limit \citep{Bejger:2004zx}.
+%
+%%% <<< From Radice Review >>>
+%Mergers of \acp{BNS} are at the center of a variety of physical processes 
+%in astrophysics.
+%The first ever detection of such event by \ac{LIGO}/Virgo, \GW{}, 
+%followed up by detections across \ac{EM} spectrum 
+%have significantly advanced our understanding 
+%of gravity, physics of dense matter, origins of \acp{SGRB} and \rproc{} elements 
+%\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,GBM:2017lvd}. 
+%%
+%Specifically, while \acp{GW} shed light on the properties of cold matter 
+%at supernuclear densities, the \ac{NS} \ac{EOS} 
+%\citep{Hinderer:2009ca,Damour:2012yf,DelPozzo:2013ala}, 
+%the properties of matter at densities several times that of the 
+%nuclear matter, as well as the astrophysical implications of the merger 
+%were largely derived from the \ac{EM} signals. 
+%
+%%Emitted during the inspiral, \acp{GW} delivered a plethora of information about  
+%%\ac{NS} \ac{EOS} at supernuclear densities 
+%%\citep{Hinderer:2009ca,Damour:2012yf,DelPozzo:2013ala}. 
+%%%
+%%The properties of matter at densities several times that of the 
+%%nuclear matter, however, were not well constrained, as the \pmerg{} \ac{GW} 
+%%was not detected. Future observations of the high frequency \pmerg{} signal 
+%%will shed more light on these properties 
+%%\citep{Sekiguchi:2011mc,Radice:2017lry,Most:2018eaw,Bauswein:2018bma}, 
+%%constraining one of the main quantities, the tidal deformability.
+%
+%The \ac{EM} signal originates from the matter ejected during or after 
+%the merger by a variety of physical processes, the so-called, ejecta.
+%%
+%The conditions within ejecta, are such that the rapid neutron capture (\rproc{}) 
+%\nuc{}, responsible for the production of the heaviest elements in the Universe
+%such as gold can take place \citep{Cowan:2019pkx}.
+%%
+%Notably, whether \acp{BNS} mergers are the prime source of this material is still unknown.
+%% This was confirmed by \ac{MM} observations of \GW{} \cite{12}. 
+%% however, it is unclear whether \ac{BNS} mergers is the dominant source of 
+%% \rproc{} elements in the universe, or if other \rproc{} cites are required to 
+%% explain the observed abundances in the oldest stars, \ac{UFG} and our solar system. 
+%
+%
+%
+%In order to study the dynamical phase of \ac{BNS} mergers and \pmerg{} evolution, 
+%sophisticated \ac{NR} simulations are required. Modern, state-of-the-art methods 
+%include full \ac{GR}; composition-dependent nuclear \ac{EOS} with finite-temperature 
+%effects, \ac{GRMHD} and advanced neutrino transport with varying degree of approximation,
+%\citep{Sekiguchi:2011zd,Wanajo:2014wha,Foucart:2015gaa,Palenzuela:2015dqa,Sekiguchi:2016bjd,Kiuchi:2017zzg,Radice:2017zta,Fujibayashi:2017puw}.
+%
+%%In this thesis we perform \ac{NR} simulations of \ac{BNS} mergers, report on their 
+%%qualitative and quantitative picture and its implication for the \ac{EM} signatures.
+%%We focus on the nuclear astrophsyics aspect of the mergers, and on the comparison 
+%%between theoretical predictions and observations of \GW{}, discussing the 
+%%\rproc{} \nuc{}, thermal \ac{EM} transient, and non-thermal \ac{EM} afterglow. 
+
+
+%% =====================================================================================
+%%
+%%              T H E O R E T I C A L  P I C 
+%%
+%% =====================================================================================
+
+\section{Theoretical picture of \ac{BNS} mergers}
+
+In this section we provide a brief summary of the current picture of 
+\ac{BNS} mergers, which has been largely derived from \ac{NR} simulations.
+We also overview their impact on the galactic chemical evolution, and their 
+\ac{EM} counterparts. 
+%
+The section is largely based on the recent reviews from 
+different leading groups working on \ac{BNS} merger simulations 
+\citep{Shibata:2019wef,Bernuzzi:2020tgt,Radice:2020ddv} 
+and their \ac{EM} signatures 
+\citep{Kumar:2014upa,Fernandez:2015use,Metzger:2019zeh}.
+%to which we refer to for more details and references.
+%
+For the sake of brevity we omit most of the technical details, 
+and we refer the interested reader to the aforementioned  
+reviews and references therein.
+
+
+\subsection{Inspiral}\label{sec:intro:inspiral}
+
+The inspiral phase of a \ac{BNS} system is primarily governed by the emission 
+of \acp{GW}. Several approximations exists to describe this phase.
+When stars are sufficiently far apart, the \ac{PN} approximation to \ac{GR} 
+(the expansion in $\upsilon/c$, with $\upsilon/c\ll 1$, $\upsilon$ 
+being the speed of matter) can be used. 
+%The dynamics of two stars, that are sufficiently separated to have relatively small 
+%angular velocity can be described via the \ac{PN} approximation to \ac{GR} 
+%(the expansion in $\upsilon/c$, with $\upsilon/c\ll 1$). 
+%In reality, however, \acp{NS} are not point-masses. The finite size (tidal) effects 
+%modify the inspiral and, consequently, emitted \acp{GW}. 
+Another approximation of the two-body dynamics in \ac{GR} is the \ac{EOB} formalism,
+which is a Hamiltonian formalism, applicable to all stages of the binary evolution.
+%
+The latter has the advantage of taking into account the finite size of \acp{NS}, \ie, 
+how the gravitational field of one star affects another. 
+These are the so-called tidal effects. 
+Their description involves the stars' dimensionless relativistic Love numbers \citep{Damour:2009vw,Binnington:2009bb} which,  
+%in the case of quasi-static external field 
+if the stars are sufficiently far apart, 
+can be computed by considering stationary perturbations 
+of a spherical relativistic star, \ie, solving the stellar structure, 
+\ac{TOV} equations in \ac{GR}.
+% taking into account the strong dependency of the 
+%tidal coefficients on the star compactness, defined as $C_{i} = GM_i/R_i^2c^2$. 
+These Love numbers carry the imprint of \ac{NS} \ac{EOS} on the \ac{BNS} dynamics.
+%
+The inclusion of tidal effects manifests as a faster inspiral and merger at higher 
+frequencies of \acp{GW} \citep{Damour:2009wj}.
+%
+The effects of tides appear in \ac{GW} waveform calculations as radiation reaction 
+complimenting the conservative dynamics of the binary \citep{Damour:2008gu}. 
+%%(see also \citet{Damour:2012yf,Banihashemi:2018xfb}).
+
+
+%We label the two NSs with subscripts $A$, $B$. 
+%The individual gravitational masses are indicated as $M_A$, $M_B$, 
+%the baryonic masses as $M_{b~A}$, $M_{b~B}$, 
+%the total mass as $M = M_A + M_B$, 
+%and the mass ratio $q=M_A/M_B\geq1$. 
+%% ---
+Discussing the tidal effects, it is convenient to introduce the 
+reduced tidal parameter \citep{Favata:2013rwa} as, 
+%
+\begin{equation}
+\tilde\Lambda = \frac{16}{13}\frac{(M_A+12 M_B)M_A^4 \Lambda_A}{M^5}+(A\leftrightarrow B)\, ,
+\label{eq:intro:Lambda}
+\end{equation}
+%
+where $\Lambda_i \equiv 2/3\, C_i^{-5} k^{(2)}_i$ are the quadrupolar tidal parameters, 
+$k_i^{(2)}$ are the dimensionless gravitoelectric Love numbers \citep{Damour:2009vw}, 
+$C_i \equiv GM_A/(c^2R_A)$ are the compactness parameters, and $i=A,B$.
+%
+Here $A$, $B$ subscripts are used to label individual stars with 
+individual gravitational masses $M_A$ and $M_B$, 
+baryonic masses as $M_{b~A}$ and $M_{b~B}$.
+The total mass is $M = M_A + M_B$, and the \mr{} $q=M_A/M_B\geq1$. 
+%
+Masses and velocities are given in units of $\Msun$ and $c$, respectively.
+%Otherwise, except stated explicitly, we use CGS units. 
+%
+%
+%
+%For a \ac{BNS} system it is common to introduce the 
+%\textit{reduced tidal deformability} as 
+%%
+%\begin{equation}
+%\label{eq:intro:Lambda}
+%\tilde{\Lambda} = \frac{16}{13}\frac{(M_A + 12M_B)M_A^4}{M^5}\Lambda_A + (A\leftrightarrow B), 
+%\end{equation}
+%%
+%where $\Lambda_2^i = 2/3 k_2^i (c^2 R_i/GM_i)^5$,
+%with $k_2^i$ being the multipolar tidal polarizability coupling constants; 
+%$R_i$ and $M_i$ are the star's radius and gravitational mass respectively,
+%$i\in\{A,B\}$, and $M$ is the total gravitational mass of the system.
+%
+
+
+
+From the analysis of \acp{GW}, \GW{} was interpreted as a \ac{BNS} merger with total mass of
+${\simeq}2.7\,\Msun$, chirp mass $\mathcal{M}=( (M_A M_B)^{3/5} / (M_A + M_B)^{1/5} ) = 1.186(1)\,\Msun$, \mr{} $q\in[1,1.34]$ 
+and $\tilde{\Lambda}\simeq300$ (with an upper bound of ${\sim}800$)
+\citep{TheLIGOScientific:2017qsa,Abbott:2018wiz,LIGOScientific:2018mvr}.
+%Inclusion of the \ac{EM} counterparts into the analysis resulted in higher $\tilde{\Lambda}$ being 
+%more favored \citep{Radice:2017lry,Radice:2018ozg,Breschi:2021tbm}.
+
+
+\subsection{Merger and \pmerg{}}\label{sec:intro:merg_pmerg}
+
+%% --------------------------------------------------------------------------
+%%               P O S T - M E R G E R
+%% --------------------------------------------------------------------------
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.80\textwidth]{Fig_3_Rad.pdf}
+    \caption{
+        Schematic picture of a \ac{BNS} merger with relative timescales. 
+        After the inspiral \acp{NS} merger forming a massive object, the early evolution of 
+        which is governed primarily by 
+        hydrodynamics and by \ac{GW} emission. 
+        %
+        If a \ac{BH} does not form after ${\sim}10-20\,$ms, \ac{GW} emission subsides and other physical processes start affecting the evolution. These processes include angular momentum redistribution (due to viscous effects) and neutrino emission. 
+        %
+        This phase proceeds on a timescale of 
+        seconds, but can be interacted at any point by a \ac{BH} formation. 
+        %
+        On even longer timescale the postmerger remnant continues to spin down due to \ac{MHD} effects. 
+        (Adapted from \citet{Radice:2020ddv}).
+        % Overview of the different phases in an \ac{NS} merger and the relative timescales. 
+        % The inspiral ends with the merger, when the two stars start to fuse together. 
+        % The early \pmerg{} evolution is entirely driven by hydrodynamics and by \ac{GW} emission. 
+        % If the remnant does not collapse within ${\sim}10-20\,$ms, \ac{GW} losses
+        % subside and other physical processes become more important: 
+        % Angular momentum redistribution (which is due to turbulent viscosity) 
+        % and neutrino losses operate over a timescale of a tenth of a second to a few
+        % seconds. This is also the characteristic timescale for the evolution of the remnant disk. 
+        % If the remnant does not collapse over a timescale of a few seconds, then it will 
+        % spin down because of \ac{MHD} effects over a possibly much longer timescale 
+        % of several seconds to a few hours. 
+        % (Adapted from \citet{Radice:2020ddv}).
+    }
+    \label{fig:intro:RadFig1}
+\end{figure}
+
+%\footnote{
+%    The orbital speed can be written as $\upsilon_{orb}\eqsim\Omega r\eqsim\sqrt{GM/(R_A + R_B)}$
+%    that for equal mass binary is $\upsilon_{orb}/c\eqsim\sqrt{C}\eqsim0.39(C/0.15)^{1/2}$.
+%    The radial velocity is beven by the evolution of the orbital frequency, as 
+%    $\omega_r \eqsim 2\Omega r \dot{\Omega}/(3\Omega^2)$. The $\dot{\Omega}$ can be 
+%    estimated from the fact, that orbital frequency satisfies 
+%    $\dot{\Omega}_{GW}\sim(3456/125)(G\mathcal{M}/c^3)^5\Omega_{GW}^{11}$ during the 
+%    inspiral. Then, the radial velocity reads 
+%    \begin{equation}
+%    \upsilon_r/c\eqsim\frac{192\pi}{15}\frac{G^3 M^3}{c^5(R_A + R_B)^3}\frac{q}{(1+q)^2}
+%    \end{equation}
+%    that for equal mass gives $\upsilon_r/c \eqsim 0.0034 (C/0.15)^3$.
+%}.
+%Merger time, $t_{merg}$, estimated from the \ac{GW} frequency at \acp{NS} collisition 
+%for comparable \ac{NS} masses is given by 
+%\begin{equation}
+%    t_{merg}\eqsim\frac{1}{2f_{GW}^{contact}}\eqsim1.50\text{ms}\Big(\frac{M}{2.8\,\Msun}\Big)^{1}
+%\end{equation}
+%where the frequency of \acp{GW} when \acp{NS} come into contact, \ie, when the distance 
+%between them, $r = R_A + R_B$ can be evaluated from the Kepler law, given by 
+%the quadrupolar gravitoelectric term, % Eq.~7
+%$2GM\Omega \eqsim 2(M_B/(MC_B) + M_B/(MC_B))^{-3/2}$ \cite{29},
+%as 
+%\begin{equation}
+%    f_{GW}^{contact} \eqsim 1.327 \Big(\frac{C}{0.15}\Big)^{3/2}\Big( \frac{M}{2.8\,\Msun} \Big) \text{ kHz}
+%\end{equation}
+
+At the end of the inspiral, \acp{NS} merge. 
+%the dynamics of the system becomes significantly 
+%more complex, as temperature and density rise by orders of magnitude and new 
+%physical effects, \eg, magnetic fields and weak interaction, start to influence the evolution. 
+%The \pmerg{} phase is not well understood and mainly explored with miltiphsyics \ac{NR} 
+%simulations with various degrees of sophistication and resolution.
+The system's subsequent evolution can take one of the possible trajectories 
+depicted in Fig.~\ref{fig:intro:RadFig1}. Overall, the early \pmerg{} phase is 
+charaterized by strong \ac{GW} emission and hydrodynamic effects. 
+On a longer timescale, \ac{MHD} stresses contribute to angular momentum redistribution, 
+while neutrino emission alters the matter composition and cools it.
+%
+If a \ac{BH} does not form, the \ac{MHD} torques and residual \ac{GW} 
+emission spin down the \ac{NS} remnant. 
+
+
+%\subsection{Dynamics and Thermodynamics Conditions} \label{sec:intro:remnant}
+More specifically, the dynamics of the system at merger is governed by the star's 
+orbital motion, and more compact stars (with lower $\tilde{\Lambda}$), 
+experience more violent mergers. 
+%
+At collision, the \acp{NS} cores plunge into the lower density matter of the companion, 
+squeezing past each other and inducing the first wave of gravity-driven compression. 
+The maximum values of temperatures and densities are reached at this point \citep{Perego:2019adq}. 
+As nuclear and centrifugal forces start to dominate, the cores bounce back until gravity 
+takes over once again. This is referred to as core \bnc{} \citep[\eg][]{Radice:2018pdn}. 
+%
+%Notably, formed in the violent, fast collision, the remnant core, while being far from 
+%hydrodynamic equilibrium, does not exhibit shocks. This is due to high speed of sound 
+%of nuclear matter at supra-nuclear densities.
+
+%Formed at the remnant \ac{NS} surface, shocks are able to accelerate a fraction of matter 
+%to mildly-relativistic velocities. 
+While shocks do form at the remnant \ac{NS} surface, inside the remnant 
+the speed of sound is too high for shock formation. There,  
+matter remains cold throughout the merger with 
+the exception of the interface between 
+two merged cores, where compression and shear dissipation raises the temperature 
+to $\mathcal{O}(100\,\text{MeV})$. 
+%This is accompanied by the formation of the generic structure, described
+%by a pair of rotating hot regions, offset by $\sim\pi/2$ with 
+%respect to dense cold regions \citep{Kastaun:2016yaf}.
+%
+
+The newly born \ac{NS} remnant is not hydrodynamically stable. 
+Its dynamics are characterized by $m=2$ bar- and $m=1$ one-armed-
+deformations \citep[\eg][]{Radice:2016gym}.
+%
+Notably, the former leads to the strong \ac{GW} emission 
+in ${\sim}10-20$~ms \pmerg{}. The backreaction from the energy and angular momentum 
+loss dumps the $m=2$ mode efficiently and \ac{GW} emission subsides. 
+%
+This phase of evolution is sometimes referred to as the \ac{GW}-dominated \pmerg{} phase.
+
+
+After the emission of \acp{GW} subsides, the \ac{NS} remnant may still have an excess 
+in angular momentum and gravitational mass with respect to a cold, 
+rigidly rotating equilibrium with the same baryonic mass \citep{Radice:2018xqa}. 
+In other words, such an object is supported against collapse artificially, 
+\eg, by differential rotation. 
+%
+Its subsequent evolution proceeds towards a more axisymmetric configuration 
+close to the limit that a rigidly rotating \ac{NS} can have.  
+However, it can be interrupted at any moment by a \ac{BH} formation
+as shown in Fig.~\ref{fig:intro:RadFig1}.  %, the mass-shedding limit. 
+Depending on the lifetime of \pmerg{} remnants,
+\ie, whether the collapse occurred during the 
+\ac{GW}-dominated phase or not, we distinguish \textit{short-lived}
+and \textit{long-lived} ones respectively. 
+%However, would a \ac{NS} remnant reach a stable state 
+%or collapse to a \ac{BH} depends on the 
+%details of \pmerg{} conditions and on the temperature and composition effects.
+
+
+%%%% Disk Foramtion
+The matter outside the bouncing cores, lifted by tidal torques and squeezed out at the 
+collisional interface, forms a disk (or a torus). 
+%
+This is gravitationally bound matter that can be distinguished 
+from the remnant by a sharp change in hydrodynamic quantities.
+%
+%Due to various contributions with different properties, the disk is highly non-uniform.
+%The overall properties of the disk, such as mass, have complex dependency on 
+%binary parameters, that can be expressed, at a first approximation, via fitting 
+%formulae to \ac{NR} simulations \citep{Radice:2017lry,Radice:2018xqa,Radice:2018ozg}. 
+The evolution of the disk as it interacts with the \ac{NS} remnant consists of a
+quasi-adiabatic expansion of its outer layers 
+%with $T^3/\rho^3\sim\text{const}$ as the \ac{EOS} is dominated by non-relativisitc baryons
+and a cooling of the inner regions. 
+%
+Additionally, the dynamical instabilities in the remnant inject energy and 
+angular momentum into the disk, -- a process that manifests itself in the 
+form of spiral waves, propagating through the disk. 
+
+
+%%%% Disk Settling down 
+Within the conditions of the \pmerg{}, weak processes take place. 
+Together with spiral density waves they cool and periodically shock the 
+fluid, bringing the disk to a configuration with an overall smooth 
+temperature profile 
+%from $\sim10\,$MeV at $\rho\eqsim10^{13}$\gcm to $\sim0.1\,$MeV at $\rho\eqsim10^4$\gcm
+%with entropy $\in(3,10)$ $k_B$/baryon
+and quasi-Keplerian orbit.
+%
+%%%% IF BH forms
+Notably, if a \ac{BH} does form, the densest part of the disk is 
+accreted on a dynamical timescale, shrinking the disk and reducing its total mass by half
+%and the disk maxiumum density to $\sim10^{12}\,$\gcm,
+\citep{Perego:2019adq}.
+
+
+%%%% Magnetic fields
+%While \acp{MF} are not expected to affect the \ac{BNS} inspiral, their influence 
+%on the \pmerg{} evolution can be strong \citep{Duez:2006qe,Kiuchi:2017zzg}, as they get amplified 
+%to the values exceeding that of a magnetar 
+%%$10^{16}\,$Gauss, 
+%by a variety of processes, 
+%\eg, flux freezing and compression, \ac{KHI} at the collisional interface \citep{Kiuchi:2015sga},
+%\ac{MRI}, \citep{Duez:2006qe,Kiuchi:2017zzg} and \ac{MF} winding \citep{Duez:2006qe},
+Whether ordered, large-scale \acp{MF} can form in a \pmerg{} environment 
+via dynamo processes is presently unknown. They are important in producing 
+polar collimated outflows, jets \citep{Bucciantini:2011kx,Ruiz:2016rai} and mildly relativistic 
+outflows \citep{Metzger:2018qfl,Fernandez:2018kax}. Random magnetic fields are also 
+relevant for the \pmerg{} evolution, as they generate stresses, enhancing angular momentum transport. 
+Presently, these processes are not well understood, as seed \ac{MHD} instabilities operate 
+on small scales (centimeters) and cannot be resolved in global \ac{MHD} \ac{BNS} merger 
+simulations.
+%with reslistic initial condiitons
+%To be able to resolve the instabilities (to increase their scale), the seed \acp{MF} are 
+%artificially enhanced to the magnetar-strength \citep{Kiuchi:2015sga,Kiuchi:2017zzg}.
+
+
+%%%%% Alpha-viscosity model
+%The effect of \acp{MF} on the angular momentum transport can be approximated via 
+%the $\alpha$-viscosity model \citep{Shakura:1972te}, calibrated 
+%with very high resolution \ac{MHD} simulations \citep{Radice:2017zta,Radice:2020ids}. 
+%%\red{More on it? For the theiry and GRLESS model?}
+%These effects are important 
+%in determining the remnant structure, lifetime and hence, the \pmerg{} \acp{GW} 
+%\citep{Radice:2017zta,Shibata:2017xht} 
+%%The timescale for the angular momentum redistribution in the remnant \cite{80} 
+%%\begin{equation}
+%%    t_{rem} \eqsim \alpha^{-1}R_{rem}^2\Omega_{rem}c_s^{-2}\eqsim 0.56\,s\Big(\frac{\alpha}{0.001}\Big)^{-1}\Big(\frac{R_{rem}}{15\,\text{km}}\Big)^2 \Big( \frac{\Omega_{rem}}{10^4\,\text{kHz}} \Big) \Big(\frac{c_s}{0.2\,c}\Big)^{-2}
+%%\end{equation}
+%%where $\Omega_{rem}$ and $c_s$ are the angular momentum and sound speed respectively.
+%as the loss of angular momentum brings the remnant closer to either stable, 
+%rigidly rotating configuration or collapse \citep{Hotokezaka:2013iia}. 
+%%
+%The \acp{MF} effects within the Keplerian disk facilitate accretion 
+%\citep{Fernandez:2015use,Fujibayashi:2017puw,Fernandez:2018kax,Miller:2019dpt}.
+%%on a timescale
+%%\begin{equation}
+%%    t_{disk} = \alpha^{-1}\Big(\frac{H}{R}\Big)^{-2}\Omega^{-1}_K \eqsim 0.78 \Big(\frac{\alpha}{0.02}\Big)^{-1}\Big(\frac{H/R}{1/3}\Big)^{-2}\Big(\frac{M_{rem}}{2.5\,\Msun}\Big)^{-1/2}\Big(\frac{R_{disk}}{100\,\text{km}}\Big)^{3/2}
+%%\end{equation}
+%%where $M_{rem}$ is the mass of the central remnant and $R_{disk}$ is the radial 
+%%scale of the disk.
+
+
+%%%% Neutrinos
+The primary cooling mechanism in the post-\ac{GW}-dominated phase is the emission of 
+neutrinos produced in hot, dense areas of the disk and remnant, and that are 
+able to escape \citep{Eichler:1989ve,Rosswog:2003rv,Sekiguchi:2011zd}. 
+%The typical neutrino mean free path is 
+%\begin{equation}
+%    \lambda_{\nu} = \Big(n_B\sigma_0(E_{\nu}/m_e c^2)^2\Big)^{-1}\simeq 24.6\,\text{m}\,(\rho/10^{14}\,\text{g}\,\text{cm}^{-3})^{-1}(E_{\nu}/10\,\text{MeV})^{-2},
+%\end{equation}
+%where $n_B$ is the density of baryons, and 
+%\begin{equation}
+%    \sigma_0 \simeq 4G_{F}^2 (m_e c^2)^2 / (\pi(\hbar c)^4)\simeq 1.76\times 10^{-44} \, \text{cm}^2
+%\end{equation}
+%is the typical neutrino cross section scale, and $E_{\nu}$ is the neutrino energy.
+%Considering the charactersitic remnant temperature as  $T_{rem}\simeq20\,$MeV 
+%energy of the thermal neutrinos then $E_{\nu}\simeq 3.15T_{rem}$ and optical depth 
+%$\tau_{\nu}\simeq R_{rem}/\lambda_{\nu}=\mathcal{O}(10^{4})$.
+The neutrinos are radiated on the diffusion timescale \citep{Perego:2014fma}.
+%\begin{equation}
+%    t_{diff} \simeq \frac{\tau_{\nu}R_{rem}}{c}\simeq 4.28\,s\Big( \frac{R_{rem}}{15\,\text{km}} \Big)^{-1}\Big(\frac{M_{rem}}{2.5\,\Msun}\Big)\Big(\frac{T_{rem}}{20\,\text{MeV}}\Big)^2.
+%\end{equation}
+%
+%
+%%%% neutrinos in the remnant and disk
+Within the remnant \ac{NS}, neutrinos are in a weak and thermal equilibrium with matter. 
+%due to charged current reactions. 
+There, the production of electron neutrinos, $\nu_e$,
+is suppressed by degeneracy, and 
+%as chemical potential $\mu_n-\mu_p+\mu_e<0$ at high temperatures, 
+electron anti-neutrinos, $\bar{\nu}_{e}$, dominate. 
+Within the optically thick environment of the remnant, the effect of these neutrinos 
+on the remnant evolution was found to be comparatively weak 
+\citep{Foucart:2015gaa,Perego:2019adq}.
+%
+Within the disk, however, the optical depth for neutrinos is ${\simeq}1$, 
+allowing neutrinos to diffuse out on a timescale of milliseconds, 
+lowering the disk temperature 
+%The cooling rate is controlled by the degeneracy state of neutrinos 
+%that is kept at mild values by the feedback negative effect, higher 
+%values have on the cooling rate.
+%\citep{Beloborodov:2008nx}.
+\citep{Beloborodov:2008nx}.
+
+
+During the early \pmerg{}, the luminosity of the electron antineutrinos 
+exceeds that of the electron neutrinos, 
+%$L_{\bar{\nu}_e} \gtrsim L_{\nu_e}$, 
+as the 
+free neutrons are abundant in the disk and the absorption opacity for $\nu_e$ 
+exceeds that of $\bar{\nu}_e$. 
+%
+The maximum values of fluid temperature in the disk are reached within 
+the spiral waves. During the \pmerg{} evolution, the disk expands and 
+cools via neutrino emission.
+High temperatures lead to electron-positron pair creation, 
+%% [added from Shibata Review paper]
+facilitating positron capture by free neutrons 
+%$n+e^+ \rightarrow p +\bar{\nu}_e$ 
+in the disk.
+%
+The average energy of a particle is large, close to the mass difference between 
+a neutron and a proton 
+%The entropy per baryon varies between $3$ and 
+%$\lesssim  10\,$$k_{B}$/baryon 
+\citep{Perego:2019adq}. 
+In combination with the high $\nu_e$ and $\bar{\nu}_e$ luminosities, the large number 
+of available positrons leads to an increase in the average charge per baryon, 
+\ie, electron fraction $Y_e$\footnote{
+    $Y_e = 1/(1 + N_n/N_p)$, where $N_n$ and $N_p$ are the total proper 
+    number density of neutrons and protons respectively 
+}, of the fluid in relation to the initially 
+neutron-rich material \citep{Qian:1996xt}.
+%
+This process is called deleptonization. %\citep[\eg][]{Perego:2014fma,Endrizzi:2019trv}
+
+Additionally, a \ac{NS} remnant itself is a major emitter of neutrinos. 
+The neutrino irradiation of the surrounding area alters its composition, 
+as neutrons and protons absorb the neutrinos,
+$n+\nu_e\rightarrow p + e^{-}$ and $p + \bar{\nu}_e\rightarrow n + e^+$.
+This drives the neutron and proton fraction towards an equilibrium, 
+raising the $Y_e$.
+%\red{paper says: 
+%    The electron fraction is reset by an initial excess of electron antineutrino emission
+%    and electron neutrino absorption,}
+%% ---
+If a \ac{NS} remnant collapses to a \ac{BH}, the main source of neutrinos shuts down.  
+%the inner part of the disk accrets rapidly, and the disk itself settles onto 
+%quasi-steady state with axisymmetric, approximately Keplerian profile. 
+
+
+
+
+
+%Thus, alongside heating and decompression, the initially cold matter in weak 
+%equilibrium, undergoes \textit{leptonization} 
+%The heavy neutrinos, $\nu_{\mu,\tau}$, are balanced by pair processes and 
+%decouple from matter at higher densities and temperatures within the remnant
+%namely $\rho\gtrsim10^{13}$\gcm and $T\gtrsim8\,$MeV 
+%\citep{Perego:2014fma,Endrizzi:2019trv},
+%The, BNS simulations including
+%neutrino transport predict the mean neutrino energies at infinity
+%$E_{\nu_{e}}(\sim 10\,\text{MeV})\lesssim E_{\bar{\nu}_e}(\sim 15\,\text{MeV}) \lesssim E_{\nu_{\mu,\tau}}(\sim 20\,\text{MeV})$. Notably, binaries with higher mass 
+%show higher neutrino energies \cite{14,86}.
+%\ie, $n+\nu_e\rightarrow p + e^-$, 
+%where $n$ is a neutron, $p$ is a proton and $e^{-}$ is an electron. 
+%\red{check that, from Wiki}
+
+
+%Neutrinos with different energies decouple from matter in different regions.
+%%due to the stron dependency of the cross section on the incoming neutrino energy.
+%Mildly energetic $\nu_{e}$ and $\bar{\nu}_e$ decouple at ${\sim}10^{11}\,$\gcm, found 
+%in the disk, while low energy neutrinos decouple at higher ${\sim}10^{13}\,$\gcm.
+%The geometric surface along which neutrinos decouple is usually called ``neutrino 
+%surface'' \citep{Perego:2014fma,Endrizzi:2019trv}.
+%%The dependency of the location and the geometry of this surface on the thermodynamics 
+%%conditions and neutrino energy facilitates the need to coherent treatment of the 
+%%strong and weak interactions over a broad span of densities and temepratures.
+%%The energy dependent (spectral) neutrino radiation trasport is required in 
+%%\ac{BNS} merger simulations
+
+
+%%%%% Neutrino oscillations
+%While it has been shown that neutrino flavor conversions may occur in the \ac{BNS} 
+%\pmerg{} environment, \eg, the matter-neutrino oscillations, induced by the 
+%the fact that $\bar{\nu}_e$ decouple at smaller radii then $\nu_{e}$ 
+%\citep[\eg][]{Zhu:2016mwa,Tian:2017xbr}, and fast-flavor conversions above the 
+%neutrino surface \citep{Wu:2017drk}, their impact on the properties of the ejected 
+%material remains largely unexplored.
+%%More works of neutrino quantum kinetics equations \cite{90,91}, that include 
+%%collisional integral and angular and energy distributions of neutrinos are required.
+
+
+%%%% EOS 
+The \pmerg{} dynamics and, ultimately, the remnant's fate, depend strongly on the 
+\ac{NS} \ac{EOS}, and especially on its 
+high density part. 
+%
+The \ac{NS} \ac{EOS} is currently not well constrained. For instance, it is unknown 
+whether during the merger new particle species can form, changing the \ac{EOS}
+\citep[\eg][]{Fore:2019wib,Vidana:2010ip}. 
+%One of the main unknowns with respect to \ac{BNS} mergers, is the high density part, 
+%%$\rho \gtrsim \rho_0$ 
+%of the \ac{NS} \ac{EOS} \citep[\eg][]{Hebeler:2013nza,Oertel:2016bki}, that corresponds to the 
+%relevant thermodynamic degrees of freedom and nucleonic interactions. 
+%For instance, 
+%the emergence of the new species, \eg, hyperons, pions, muons, and nuclear 
+%resonances, would lower the matter degeneracy, and thus, soften the \ac{EOS} \citep[\eg][]{Fore:2019wib,Vidana:2010ip}.
+%Additionally, the emergence of the deconfined quark matter, due to \ac{QCD} phase transition,
+%would alter \ac{EOS} at very high temperatures and densities,
+%the effect that is not well understood \citep{Busza:2018rrf}.
+The \ac{EOS} effects on the system's dynamics can be quantified with $\tilde{\Lambda}$, 
+and it is common to discuss the \ac{EOS} in this context as being 
+\textit{softer} or \textit{stiffer} if the $\tilde{\Lambda}$ is 
+larger or smaller (we discuss this more in Sec.~\ref{sec:nr_methods:eos}). 
+%
+%\subsubsection{Fate of the Remnant}
+%
+Another quantity describing the \ac{EOS} is the maximum supported mass of a 
+non-rotating \ac{NS}, $M_{\rm max}^{\rm TOV}$ \citep{Shibata:2016}.
+%
+Thus, the remnant fate depends on the binary parameters, $\tilde{\Lambda}$, 
+$M_{\rm max}^{\rm TOV}$, 
+and finite temperature and non-equilibrium\footnote{ 
+    Beta-equilibrium is the condition when $\mu_n = \mu_p+\mu_e$, where  
+    $\mu_n$, $\mu_p$, and $\mu_e$ are the chemical potentials of neutrons, 
+    protons and electrons respectively. 
+} composition effects. 
+%non-beta-equilibrium composition effects 
+%(beta-equilibrium is the condition at which $\mu_n = \mu_p+\mu_e$).
+
+
+\ac{BH} formation directly at merger is usually referred to as \ac{PC}. 
+The conditions for it are not well understood. 
+Simulations show that in equal mass binaries, \ac{PC} occurs if the total mass 
+exceeds a certain fraction, $1.3-1.7$, of the $M_{\rm max}^{\rm TOV}$ 
+\citep{Shibata:2005ss,Shibata:2006nm,Hotokezaka:2011dh,Bauswein:2013jpa}.
+%Meanwhile, simulations of unequal mass binaries show that the threshold is 
+%lower \citep{Bauswein:2017vtn}, and $k_{thr}\propto C_{1.6}$, with $C_{1.6}$ 
+%being the compactness of the $1.6\,\Msun$ 
+%\ac{NS} \citep{Hotokezaka:2011dh,Bauswein:2013jpa,Bauswein:2017vtn}. 
+%
+%As \ac{PC} cases are 
+%not expected to ejecta large amount of material and be \ac{EM}-loud (in case of 
+%comparable mass binary), the \GW{} is believed to be not a \ac{PC} case, 
+%\cite{Margalit:2017dij,Bauswein:2017vtn}. 
+%
+%Notably, \ac{BNS} mergers that experience \ac{PC} are not expected to eject large 
+%amount of material and are generally though of as being \ac{EM}-quiet 
+%\citep{Margalit:2017dij,Bauswein:2017vtn}. 
+
+
+A remnant that does not undergo \ac{PC} is a massive \ac{NS}, temporarily supported 
+against collapse by fast rotation  \citep{Baumgarte:1999cq,Rosswog:2001fh,Shibata:2006nm,Bernuzzi:2015opx}.
+Its lifetime depends on the \ac{EOS}, finite temperature effects and viscosity,
+and is currently very uncertain.
+A commonly adopted classification based on the properties of equilibrium models (neglecting the 
+dynamical, finite temperature, and magnetic effects), \ie, considering only 
+$M_{\rm max}^{\rm TOV}$ and $M_{\rm max}^{\rm RNS}$\footnote{
+    $M_{\rm max}^{\rm RNS}$ is the maximum mass of a rigidly rotating \ac{NS} (no differential 
+    rotation) supported by zero-temperature (cold) \ac{EOS}. 
+    Also sometimes referred as mass-shedding limit.
+    % $M_{max}^{TOV}$ and $M_{max}^{RNS}$ are agnostic to thermal or magnetic eects 
+    %which can impact the stability of the remnant in nontrivial ways (108, 72)
+}, 
+distinguishes between 
+(i) \ac{HMNS} if $M>M_{\rm max}^{\rm RNS}$, 
+(ii) \ac{SMNS} if $M_{\rm max}^{\rm TOV} < M <  M_{\rm max}^{\rm RNS}$,
+and 
+(iii) stable \ac{MNS} if $M < M_{\rm max}^{\rm TOV}$ \citep[\eg][]{Baumgarte:1999cq}.
+A \ac{HMNS} is supported by differential rotation that viscosity reduces with time,  
+and it is expected to collapse to a \ac{BH}. A \ac{SMNS} can avoid the collapse 
+even after reaching rigidly rotating configuration. The lifetimes of a \ac{HMNS} and 
+a \ac{SMNS} depend on the efficiency of mass and angular momentum loss 
+due to, \eg, \acp{GW} and massive winds 
+%and finite temperature effects 
+\citep{Radice:2018xqa}. 
+%
+%Discussing the \ac{NR} simulations we shall distinguish between \textit{short-lived} remnants, 
+%that collapse to \ac{BH} during \ac{GW}-dominated phase, 
+%% taht correspods to ${\sim}10-20\,$ms after merger \cite{107,60}
+%and \textit{long-lived} remnants otherwise.
+
+%If a remnant can achieve rigid rotation, its evolution then is characterized by the emission 
+%of \acp{GW} (due to residual asphericity) and magnetic braking, reducing further its 
+%angular momentum, until either a \ac{BH} forms, or a stable non-rotating equilibrium is reached.
+%The observations of \acp{SGRB} with X-ray plateu 
+%\citep{Zhang:2000wx,Lasky:2015lej,Fan:2013cra}, which if indeed is a consequence of 
+%a magnetar activity\footnote{
+%    There are other possible explanations behind the X-ray plateu emission of \acp{SGRB} 
+%    \citep{Oganesyan:2019jij}
+%}, suggest that the remnant may survive from seconds to hours \citep{Fan:2013cra,Ravi:2014gxa}.
+%Most of the energy, ${\sim}10^{52}\,$erg, that a remnant needs to lose before collapsing, if indeed \ac{SGRB} is powered by the accretion onto a \ac{BH}, 
+%is believed to be carried away in form of \acp{GW}, as \ac{EM} observations of \GW{} suggest.
+%%This emission can be observed for the nearby event \cite{111}, priding direct information 
+%%on the remnant fate. However this emission was not observed for \GW{} \cite{67,68}
+
+
+%
+%\citet{Margalit:2017dij} suggested that the remnant was short-lived, on account of 
+%the non-detection of the expected ${\sim}10^{52}\,$erg, 
+%from the spin-down of the long-lived one. Assuming thus that \GW{} produced a \ac{HMNS}, 
+%allows to put a constraint $M_{max}^{TOV} \lesssim 2.2\,\Msun$ \citep{Margalit:2017dij}.
+%
+%On the other hand, if the magnetar model of \acp{SGRB} is applied to \GW{} 
+%\citep{Ai:2018jtv,Li:2018hzy,Piro:2018bpl}, the remnant is required to be long-lived
+%(${\sim}$months) and exhibit weak dipol \acp{MF} \citep{Ai:2018jtv}, leading to a different 
+%constraint on the maximum mass of the non-rotating star, $M_{max}^{TOV} \gtrsim 2.2\,\Msun$. 
+%
+%%and up to an order of magnitude lower ejecta mass ${\sim}10^{-3}\,\Msun$, that is attributed 
+%%to reducied amount of emergy from radioactive decay is required to explain the observed 
+%%UV/optical/infrared observations \cite{16}. 
+%%There have been indications of the X-ray flaring activity in \GRB{} \cite{117}, but 
+%%follow-up observations did not confirm it \cite{118}
+
+
+%\subsection{Ejecta, \nuc{}, electromagnetic counterparts}
+
+%% -------------------------------
+\subsection{Ejecta}\label{sec:intro:ejecta}
+
+%%%% Ejecta
+%Generally, the ejecta is classified based on the timescale over which it occurs. 
+%The \textit{dynamical ejecta} is generally divided into 
+%the cold, low-$Y_e$, \textit{tidal}, produced by strong tidal torques at merger 
+%and prominent in very assymetric binaries
+%\citep{Rosswog:1998hy,Radice:2016dwd,Dietrich:2016hky},
+%and shock-heated, high-$Y_e$, \textit{shocked}, produced 
+%by the core \bnc{} induced shock waves, propagating through the \pmerg{} debris 
+%\citep{Radice:2018pdn}. %Hotokezaka:2013b, Bauswein:2013yna, Sekiguchi:2016bjd, Dietrich:2016hky,
+%
+%The ejecta mass and velocity, as estimated by \ac{NR} simulations, lie in 
+%$(10^{-4}-10^{-2})\,\Msun$ and $(0.1-0.3)\,c$ respectively 
+%\citep{Hotokezaka:2013b,Bauswein:2013yna,Sekiguchi:2016bjd,Radice:2018pdn}.
+% Depending on the binary \mr{} (that determins the relative controbutions of two
+%components of the dynamical ejecta The outcome of the \rproc{} in the dynamical ejecta is 
+%broadly consistent with the solar \rproc{} abundances.
+
+%%%% Secular ejecta
+%On a longer, \textit{secular}, timescale additional matter is ejected in a form of 
+%massive winds \citep{Lee:2009,Perego:2014fma,Fernandez:2015use,Siegel:2017nub,
+%    Fujibayashi:2017puw,Fernandez:2018kax,Miller:2019dpt}, % & Nedora V, et al. Astrophys. J. 886:L30 (2019)
+%that could could be more massive than dynamical one, liberating $(10-40)\%$ of the disk mass. 
+%%according to the numerical simulations of the disk evolution 
+%%(see \eg, \citet{Radice:2018xqa} for estimates). 
+%Various mechanisms contribute to 
+%the matter ejection, \eg, neutrino irradiation of the polar region, generating high-$Y_e$, 
+%low-mass winds \citep{Perego:2014fma,Miller:2019dpt}; nuclear recombination in the outer 
+%part of the disk (after it expanded due to viscous and thermal processes) that can eject 
+%${\sim}(10-20)\%$ of the disk mass at ${\sim}0.1\,c$ \citep{Lee:2009,Fernandez:2015use,Fahlman:2018llv};
+%and \ac{MHD} effects facilitating matter ejection \citep{Fujibayashi:2017puw,Radice:2018xqa}.
+%% & 141 Nedora V, et al. Astrophys. J. 886:L30 (2019)
+
+%%%% Ejecta -> EM signal
+%The \pmerg{} disk and remnant properties, and the lifetime of the latter, set by the 
+%binary parameters and \ac{EOS} (see Sec.~\ref{sec:intro:remnant}) \citep{Radice:2018xqa,Perego:2019adq} 
+%determine the properties of the secular ejecta and hence, the \ac{kN} signal 
+%\citep[\eg][]{Radice:2018pdn}.
+%%The disk mass dependency on the \ac{EOS} and the remnant lifetime was examined in \cite{72,70},
+%%where it was pointed out that short-lived remnant is usually associated with less massive disk.
+%Additionally, the presence of the remnant modifies the ejected material by means of 
+%neutrino irradiation \citep{Fernandez:2015use}, providing a possibility to infer the nature of 
+%the remnant from \ac{EM} observations. Modeling this process, however, requires very long-term 
+%$3$D ab-initio \ac{BNS} merger simulations with complete physics, that are absent in presence.
+
+%%%% GW170817 EM signature
+%\ac{EM} followup of \GW{} showed the presence of both blue and red \acp{kN}\footnote{
+%    See, however, \citet{Waxman:2017sqv} for a different interpretation
+%} \citep{Villar:2017wcc}.
+%Simplified \ac{kN} fitting models suggest that former requires ${\sim}0.02\,\Msun$ of high-$Y_e$ 
+%material ejected at ${\sim}0.25\,c$, and the latter requires ${\sim}0.04\,\Msun$ of low-$Y_e$ 
+%material ejected at ${\sim}0.1\,c$. Due to its large mass, the red component is 
+%generally thought to originate in secular ejecta with the contribution from the dynamical, while 
+%the origin of the blue component is less clear. Specifically, the required amount of high-$Y_e$,
+%material (that is somewhat lower if sophisticated radiation transport \ac{kN} models are considered),
+%is in tension with the \ac{NR} \ac{BNS} merger simulations 
+%\citep{Sekiguchi:2016bjd,Siegel:2019mlp,Perego:2017wtu,Kawaguchi:2018ptg}.
+%Additional ejection mechanisms have been proposed to address the discrepancy, \eg, 
+%magnetic effects prior to merger \citep{Metzger:2018qfl,Fernandez:2018kax,Radice:2018ghv}. 
+%%\gray{spiral waves shocking the accretion 
+%%    disk by a long-lived \ac{NS} remnant \cite{141 Nedora V, et al. Astrophys. J. 886:L30 (2019)}}. 
+%Future observations and long-term multiphysics \ac{NR} models will undoubtedly shed more light on this tension \citep{Metzger:2018qfl}.
+
+%%%% Fast tail of the ejecta -- UV precourser
+%\ac{NR} simulations show that within the velocity distribution of the dynamical ejecta, 
+%there is ${\sim}(10^{-6}-10^{-5})\,\Msun$ of matter ejected at ${\sim}0.8\,c$ 
+%\citep{Metzger:2014yda,Hotokezaka:2018gmo,Radice:2018pdn,Radice:2018ghv}, due to shocks launched 
+%at core bounces \citep{Radice:2018pdn}.
+%This matter is sufficiently fast to avoid the neutron capture on seed nuclei 
+%%(see Sec.~\ref{sec:intro:nucleo}) 
+%and will eventually undergo free-neutron decay, emitting 
+%\ac{UV} radiation on a timescale of hours \citep{Metzger:2014yda}. 
+
+%%%% Synchrotron remnant
+%Expanding into the \ac{ISM}, \ac{BNS} merger ejecta generates shocks that amplify 
+%random magnetic fields and accelerates electrons that in turn emit non-thermal radiation 
+%via synchrotron mechanism (see Sec.~\ref{sec:intro:afterglows}). This \ac{kN} afterglow 
+%can be observed on a very long, 
+%moths to years, timescale \citep{Nakar:2011cw,Hotokezaka:2018gmo} and provide information 
+%about merger dynamics and ejecta properties quasi-independent of uncertainty in \rproc{} \nuc{} 
+%affecting the thermal, \ac{kN}, emission. 
+%%
+%Since ${\sim}160\,$days after the merger the non-thermal emission from \GW{} have been 
+%consistent with \ac{SGRB} afterglow. However, ${\simeq}1243\,$days after the merger, a 
+%change in spectral and temporal behaviour of the afterglow was observed, one of the 
+%possible explanations of which is the emergence of the \ac{kN} afterglow\footnote{
+%    See however \citet{Troja:2021xsw} for the alternative explanation
+%} \citep{Hajela:2021faz}.
+%The exact nature of this change remains at present unclear. 
+
+
+
+
+%%%% DYNAMICAL EJECTA
+Tidal interactions and shocks exerted upon \acp{NS} at merger trigger the 
+ejection of material on a dynamical timescale. This is called \ac{DE} \citep[\eg][]{Hotokezaka:2013b,Bauswein:2013yna,Radice:2016dwd,Radice:2018pdn},
+composed of a tidal and shocked components as follows. 
+%
+Shortly before and during a merger, the outer parts 
+of the \acp{NS}, opposite to the collisional interface, are stripped 
+away by tidal torques and centrifugal forces, forming the tidal 
+component of \ac{DE}. This is more massive in binaries with a
+larger \mr{} and is maximum in those that experience tidal disruption 
+\citep[\eg][]{Radice:2018pdn,Bernuzzi:2020txg}.
+%%
+%Such ejecta is neutron rich, confined largely to the orbital plane and exhibits 
+%a crescent-like azimuthal structure \citep{Bernuzzi:2020txg}.
+%
+Overall, the tidal ejecta component is mostly equatorial and its 
+velocity is related to the \acp{NS}' velocity at merger. 
+%and the system's escape velocity, and is $\sim0.2$~c.
+%
+\ac{NR} simulations suggest that the ejecta mass and velocity 
+lie in $(10^{-4}-10^{-2})\,\Msun$ and $(0.1-0.3)\,c$ respectively 
+\citep{Hotokezaka:2013b,Bauswein:2013yna,Sekiguchi:2016bjd,Radice:2018pdn}.
+%
+When \acp{NS}' cores collide and \bnc{}, shocks propagate outwards, inducing 
+matter ejection. Additionally, a small amount of material at the 
+\acp{NS}' collisional interface is shock-heated and launched into the polar 
+direction. This comprises the shocked component of \ac{DE} 
+\citep{Bauswein:2013yna,Radice:2018pdn}.
+%
+It is more massive and faster if \acp{NS} are more compact and they collide 
+at higher velocities \citep[\eg][]{Radice:2018pdn}. 
+
+
+\ac{DE} has a broad distribution in terms of composition, 
+velocity and mass, that is dependent on the parameters of the binary and 
+\ac{NS} \ac{EOS}. 
+%
+However, due to large numerical and systematic uncertanties, 
+the relation between the binary parameters and ejecta properties 
+is still largely unconstrained \citep{Dietrich:2016fpt,Kruger:2020gig}. 
+
+\ac{NR} simulations show that within the velocity distribution of \ac{DE}, 
+there is ${\sim}(10^{-6}-10^{-5})\,\Msun$ of matter ejected at ${\sim}0.8\,c$ 
+\citep{Metzger:2014yda,Hotokezaka:2018gmo,Radice:2018pdn,Radice:2018ghv}, 
+due to shocks launched at core bounces \citep{Radice:2018pdn}. 
+This sometimes referred to as the fast tail of \ac{DE}.
+%This matter is sufficiently fast to avoid the neutron capture on seed nuclei 
+%%(see Sec.~\ref{sec:intro:nucleo}) 
+%and will eventually undergo free-neutron decay, emitting 
+%\ac{UV} radiation on a timescale of hours \citep{Metzger:2014yda}. 
+
+
+%%%% WINDS
+%Various mechanisms contribute to 
+%the matter ejection, \eg, neutrino irradiation of the polar region, generating high-$Y_e$, 
+%low-mass winds \citep{Perego:2014fma,Miller:2019dpt}; nuclear recombination in the outer 
+%part of the disk (after it expanded due to viscous and thermal processes) that can eject 
+%${\sim}(10-20)\%$ of the disk mass at ${\sim}0.1\,c$ \citep{Lee:2009,Fernandez:2015use,Fahlman:2018llv};
+%and \ac{MHD} effects facilitating matter ejection \citep{Fujibayashi:2017puw,Radice:2018xqa}.
+As the disk expands and cools, the recombination of nucleons into alpha particles 
+starts to take place. The energy released in recombination might be sufficient 
+for the outermost layers to become unbound, leading to a massive outflow  
+\citep{Beloborodov:2008nx,Lee:2009uc,Fernandez:2013tya}. 
+%\citep{Lee:2009uc,Fernandez:2015use,
+%    Wu:2016pnw,Siegel:2017nub,
+%      Fujibayashi:2017puw,Fernandez:2018kax,Radice:2018xqa,Fujibayashi:2020dvr}.
+%
+Furthermore, strong neutrino irradiation can drive low-mass outflows,
+so-called neutrino-driven winds (\nwind{}; \citet{Dessart:2008zd,Perego:2014fma,Just:2014fka}). 
+%
+Winds and outflows occurring on a secular timescale sometimes 
+referred to as secular ejecta.
+
+
+The presence of the remnant modifies properties of the ejected material by means of 
+neutrino irradiation \citep{Fernandez:2015use}, providing a possibility to infer the nature of 
+the remnant from \ac{EM} observations. Modeling this process, however, requires very long-term 
+$3$D ab-initio \ac{BNS} merger simulations with complete physics, that are currently unavailable.
+%
+Overall, analytical estimates and simulations with various approximations show that 
+up to ${\sim}40\%$ of the disk can be ejected via viscous processes with a 
+typical velocity ${\lesssim}0.1\,$c \citep{Fernandez:2018kax,Radice:2018xqa}.
+The ejecta is expected to be relatively slow and neutron-rich. 
+%Importantly, these processes are expected to take place on timescales exceeding 
+%those of our simulations. 
+
+
+
+\subsection{$R$-process \nuc{}} \label{sec:intro:nucleo}
+%\red{introduce weak and full r-process}
+%\red{Add info on r-process trajecotry, including what are the (i) seed nuclei, }
+
+Nuclides with atomic number  $A\geq 56$ cannot be synthesized via nuclear burning 
+due to their large Coulomb barriers. They are produced via 
+neutron capture processes \citep{Burbidge:1957}.
+%%%% Nucleosynthesis Cites
+The maximum $A$ of a nuclide is limited by its binding energy, $Q_n$, as 
+at $Q_n \simeq1 \,$MeV photodisintegration starts breaking nuclides apart. 
+The place in the parameter space of temperature and density where this occurs 
+is called \textit{neutron drip line} \citep{Rolfs:1988}.
+
+%%%%% Fast and Slow
+Nuclides produced via neutron capture are generally unstable to $\beta$-decay, 
+and depending on whether the timescale for the decay is slower 
+or faster than the timescale of neutron capture, one can distinguish between rapid and slow processes respectively,  where the former is called \rproc{} and the latter is called \sproc{}.
+%
+The \sproc{} moves along the valley of stability\footnote{
+    The valley of stability is the region in nuclides chart 
+    where nuclides are stable to radioactive decay based on 
+    their binding energy. 
+}, while the \rproc{} moves along the 
+neutron drip line. 
+
+When a nuclide reaches a closed neutron shell configuration, the cross-section 
+for the subsequent neutron capture shrinks, and capture processes suspend until 
+several $\beta$-decays take place. This results in an overproduction of nuclides 
+that are located at the intersection between the neutron drip line and the closed 
+neutron shell for the \rproc{}. This manifests as ``peaks'' in the final abundance 
+pattern at $A$ corresponding to these configurations.
+Closed shell nuclides are located at $N=50,\: 82, \: 126$ and 
+corresponding abundance peaks $A=80,\:130,\:194$ for \rproc{} 
+(see \eg, \citet{Arnould:2007gh}).
+
+%%%% R-process mechanism
+The outcome of the \rproc{} \nuc{} depends strongly on the hydrodynamic properties 
+of matter and its composition. 
+A particularly important quantity is the ratio between the number of free neutrons and 
+the number of seed nuclides: the neutron-to-seed ratio. 
+%Such parameterized model of \citet{Lippuner:2018phd} (see their Figure 3.1) 
+%allows to deduce several important trends.
+%
+At high entropy, where the neutron-to-seed ratio is high, 
+even if seed nuclei are light, \textit{full} (or \textit{main}) \rproc{} 
+can occur, producing elements at abundance peaks at $A = 130$ and $195$.
+%
+At low entropy, the \rproc{} is jugged as there are not many free neutrons available,
+but the presence of very heavy seed nuclei still allows for the \nuc{} to proceed. 
+%
+At high $Y_e$, where ejecta is less neutron rich, the full \rproc{} no longer occurs  
+as there are not enough neutrons per seed nucleus to reach the third peak.
+The \nuc{} that results in the production of only the lightest \rproc{} nuclei, 
+up to $A \sim 125$, is generally referred as \textit{weak} \rproc{}. 
+%
+However, at high entropy and low $Y_e$ the $3$rd peak elements can be synthesized because, 
+while there are few seed nuclei, the neutron-to-seed ratio is high.
+%
+It was pointed out that the main quantity defining the final abundances is  
+electron fraction, $Y_e$ \citep{Lippuner:2015gwa}.
+
+%%%% R-proces cites
+Conditions for the \rproc{} can be achieved in different astrophysical sites, \eg, 
+certain types of \acp{SN} and \ac{BNS} mergers where very neutron rich (\ie, low 
+$Y_e$ fraction) conditions can be reached
+\citep{Mathews:1990,Thielemann:2011,Lippuner:2015gwa,Siegel:2019mlp}. 
+
+%% --- BNS :: other ejecta types
+The \rproc{} is expected to take place in different types of ejecta from \ac{BNS} mergers.
+In \nwind{} the neutrino irradiation can significantly increase the electron 
+fraction, which, depending on the ejecta velocity, can reach 
+${\leq}0.45$ \citep{Qian:1996xt}. 
+%
+At this point the equilibrium sets in between the ejecta and neutrinos.
+High electron fraction implies that only light elements will be produced.
+The numerical studies indeed support this picture 
+\citep{Dessart:2008zd,Perego:2014fma,Just:2014fka,Martin:2015hxa,Foucart:2016rxm}. 
+
+The bulk of the ejecta from \ac{BNS} mergers is expected to come in the form of 
+viscous- and recombination-driven winds. 
+%These processes are expected to take 
+%place over long timescales, ${\simeq}1\,$s. 
+Studies have shown that these ejecta have a broad distribution of $Y_e$, and the \rproc{}
+\nuc{} within it produces light as well as heavy elements
+\citep[\eg][]{Just:2014fka,Wu:2016pnw,Fernandez:2018kax}. 
+%\citep{Fernandez:2013tya,Just:2014fka,Wu:2016pnw,Siegel:2017nub,Fujibayashi:2017puw,Fernandez:2018kax}.
+The production of very heavy \rproc{} elements, however, might be supressed in 
+these ejecta if a long-lived \ac{NS} remnant is present 
+\citep{Metzger:2014ila,Lippuner:2017bfm}.
+
+%% --- other types
+Regarding the \acp{SN}, winds driven by strong neutrino fluxes from the hot, deleptonized
+core \citep{Qian:1996xt} were suggested as a promising site of \rproc{} \nuc{}  \citep{Woosley:2002,Wanajo:2006mq}.
+However, high $Y_e$ found in such winds does not allow for the full \rproc{} 
+and only ``light'' heavy nuclide, up to $A\sim130$, can be synthesized 
+\citep[\eg][]{Qian:1996xt,
+    %Thompson:2001ys,Fischer:2010,Roberts:2010,
+    MartinezPinedo:2012rb,Wanajo:2013} 
+%
+A full \rproc{} can be achieved in so-called magnetorotationally driven \ac{CCSN},
+a rare type of \ac{CCSN} with a rapidly spinning strongly magnetized core, 
+initiated by \ac{MRI} and accompanied by the % magnetorotational processes \eg, 
+formation of a collimated bipolar jet 
+\citep{Wheeler:2000,Akiyama:2003,Burrows:2007yx,Mosta:2014jaa,Mosta:2015ucs,Siegel:2019mlp}.
+Conditions within such a jet were found to be suffient for full \rproc{} \nuc{} 
+\citep{Winteler:2012,Nishimura:2015nca}.
+%The rarity of this type of \acp{SN}, 
+%however, might not allow for them to be the dominant source or \rproc{} material 
+%\citep{Nishimura:2015nca} 
+
+%Neutron-rich ejecta from \ac{BNS} and \ac{NSBH} mergers are regarded as one of 
+%the main cites or \rproc{} \nuc{}.
+%
+%Mergers of two \acp{NS} or a \ac{NS} and a \ac{BH} are regarded as one of the main cites 
+%of \rproc{} material.% (See Sec.~\ref{sec:intro:bns_merg}). 
+
+%%%% Fission cycling
+Under very neutron-rich conditions, 
+nuclides beyond $A=300$ can be produced. Being unstable to fission, they 
+decay into seed nuclides shortly after formation.
+However, before they reach the valley of stability, neutron capture occurs again, and the cycle repeats.
+This is so-called \textit{fission cycling}.
+It is maintained as long as there are free neutrons, after which nuclides decay 
+for the last time, forming a remarkably robust abundance pattern independent from the 
+number of cycles (and thus from the exact matter conditions) 
+(see Figure 4 in \citet{Korobkin:2012uy}). 
+
+%%%% Cites
+There is no consensus yet on what is the main source of \rproc{} material in the 
+Universe. 
+Observed \rproc{} abundances in \ac{MP} stars, formed early in the Galactic history, 
+point towards a source that was active in the early Universe, which is in tension with the long, 
+$10^{6} - 10^{9}$ years, delay time required for compact object inspiral 
+\citep{DeDonder:2004cx,Dominik:2012kk}. This estimate, however, depends strongly on the 
+uncertain common envelop evolution phase of the massive binary (progenitors)
+\citep[\eg][]{Dominik:2012kk}.
+%
+Observations of certain \acp{UFG} suggest that stars there have been enriched by rare, 
+high-yield events (\eg, \ac{UFG} Reticulum II showed abundances similar to solar, 
+while other \ac{UFG} galaxies show $2-3$ times lower abundances) \citep{Ji:2016}.
+%
+Earth crust and meteorites $^{244}$Pu studies also point towards rare, high-yield 
+events \citep{Wallner:2015,Tsujimoto:2017}. This estimation has been confirmed with 
+models of galactic mixing \citep{Hotokezaka:2015zea}.
+%
+It is, however, difficult to explain the observed uniform distribution of \rproc{} 
+elements in the Galaxy with such events \citep{Argast:2003he}.
+%
+Population synthesis models have indicated that with a contribution from 
+magnetorotationally driven \acp{CCSN}, the compact object mergers can account for the 
+observed distribution \citep{Ishimaru:2015,Cescutti:2015,Wehmeyer:2015,VanDeVoort:2015}.
+
+
+
+%% ----------------------------------
+\subsection{Kilonova}\label{sec:intro:kilonova}
+
+
+\citet{Li:1998bw} suggested that 
+radioactive decay of material enriched with \rproc{} elements,
+ejected in \ac{BNS} or \ac{NSBH} mergers, can power an \ac{EM} transient.
+%
+The authors showed that, contrary to the normal \acp{SN}, 
+the ejecta would quickly become transparent to its own emission, 
+which would reach its peak on a timescale of around a few days. 
+%
+The main difficulty in this pioneering work was the lack of \nuc{}
+models to estimate the radioactive heating in ejecta. 
+
+
+The first self-consistent estimation of heating rates based on 
+\ac{NRN} calculations of the \rproc{} in ejecta, were carried out by  \citet{Metzger:2010}. 
+The authors showed that based only on \ac{DE}, the \ac{EM} 
+transient is ${\sim}10^3$ times brighter than Novae -- hence, the term 
+kilonova was coined. 
+%
+%It was also shown the ejecta electron fraction does not affect the heating rates
+%considerably, and performed the first estimations of the thermalization 
+%efficiency of decay products.
+%
+%The term macronova was however coind by \citet{Kulkarni:2005jw} who considered a 
+%transient powered by the decay of radioactive $^{56}$Ni and free neutrons. 
+%However, as it was shown later, $^{56}$Ni can only be formed in small quantities on 
+%the outskirts of the ejecta.
+
+%%------------
+%% OPACITIES
+%%-----------
+The main components of the \ac{kN} modeling include: 
+%\begin{itemize}
+%\item
+(i) ejecta geometry and properties, %: $M$, $\upsilon$, $Y_e$; 
+%\item 
+(ii) composition of the expanding ejecta and its optical opacity, 
+%\item 
+(iii) dominant sources of energy within ejecta % , heating rate %$\dot{Q}(t)$, 
+and how efficiently this energy thermalizes.
+%\end{itemize}
+%
+%We discuss the properties of the ejecta from \ac{BNS} mergers in the chapter~\ref{ch:bns_sims}.
+%Here we focus on two other ingredients.
+
+Regarding opacity, there are several sources of opacity that affect photons with
+different energies. These include: 
+(i) free-free transitions, 
+(ii) bound-bound transitions, 
+(iii) certain optically thick lines, 
+(iv) ejecta clumping, 
+(v) ejecta re-ionisation by \eg, high energy photons from the central engine. 
+%%%% --- free-free opacities
+%For the photons of the lowest energy (frequency), \ac{FIR}, the free-free absorption 
+%in the ionized gas is the dominant source of opacity. Expansion, the recombination removes 
+%free $e$, also decreases $\rho$, and thus $\kappa_{ff}$.
+% (i) free-free transitions, especially in lanthanides and actinides with their 
+% valence, partially filled $f$-shell, affecting photons of the lowest energies, 
+% \ac{FIR} photons; 
+%%%% --- bound-bound opacities
+%For \ac{NIR}/optical photons, the bound-bound transitions are the main source of opacity. 
+%Here the dependency on the ejecta composition strongly affects the \textit{effective} 
+%continuum opacity. If most complex atoms in the ejecta belong to the iron group, with 
+%valence $d$-shell electrons, then the opacity is moderate. However, if elements with 
+%valence, partially filled $f$-shell, (lanthinides \& actinides), are present, then the 
+%opacity increases by up to two orders of magnitude
+%\citep{Kasen:2013xka,Tanaka:2013ana,Fontes:2015,Fontes:2017zfb}. 
+%Bound-bound opacity rises with photon $\nu$ (as the number of lines).
+%
+%The \textit{plank mean expansion opacity} can be approximated as 
+%$\kappa_r = 200 (T/4000K)^{5.5}$ cm$^2$g$^{-1}$ for $T\in(1-4)\times10^3$~K and just 
+%$\kappa_r = 200$ cm$^2$g$^{-1}$ for $T\in(4-10)\times10^{3}$~k, motivated by 
+%Figure~10 it \citet{Kasen:2013xka}. More accurate opacity estimations are plagued by the 
+%complexity of the atomic structure. The quantum mechanics models of high-$Z$ atoms exists, 
+%but has to be calibrated to the so far absent experimental data.
+% (ii) bound-bound transitions, that are the main source of opacities for 
+% \ac{NIR}/optical photons; 
+%%%% --- Line opacity -> Effectve continoum opacity
+%Additional complexity arises in approximation the line opacities to the effective opacity.
+%One common way is to consider the line expansion opacity formalism \citep{Pinto:2000}, that is 
+%based on the Sobolev approximation. This method was applied to \acp{kN} modeling by 
+%\citet{Barnes:2013wka} and \citet{Tanaka:2013ana}. However, it is unreliable if line width is 
+%large \ie, if line spacing of strong lines become comparable to the intrinsic thermal line width 
+%\citep{Kasen:2013xka,Fontes:2015,Fontes:2017zfb}. 
+% (iii) certain optically thick lines, broadened by relativistic effects; 
+%%%% --- clumping
+%In addition, clumping that might occur when $T\leq10^3$~K might affect escaping 
+%emission \citep{Takami:2014oqa}. The formation of the ``\rproc{} dust'' may have a complex 
+%effect on optical/\ac{UV} opacity. The process of dust formation is complex and not 
+%well understood in general \citep{Cherchneff:2009sj,Lazzati:2016}
+% (iv) ejecta clumping; 
+%%%% --- Ejecta re-ionisation
+%For higher energy photos, \ac{UV}/X-ray, bound-free transitions dominate the opacity. 
+%For that ejecta ought to become mostly neutral, which occures naturally as it cools, unless 
+%there is a source of ionizing radiation, \eg, the remnant. 
+%See for details in \eg, \citet{Metzger:2013cha}. 
+%Even though very large luminocities are required from the engine initially, 
+%they decrease rapidly as ejecta expands. Thus, at late times it is possible that ejecta would be 
+%re-ionized, especially in case of a long-lived remnant \citep{Metzger:2013cha}. The re-ionisation 
+%can reduce the optical opacity, reducing the prominence of \ac{FIR} peak, 
+%a generally regarded distingushed feature of a Kilonova.
+% and (v) ejecta re-ionisation by \eg, high energy photons from the central engine
+% \ie, \pmerg{} remnant.
+%%%% --- X-ray,. Gamma-rays, thermalization
+%At even higher energies, hard X-ray photons, an important source of opacity is the 
+%electron scattering with Klein-Nishina corrections. Notably, if the wavelength of photons 
+%become smaller then the scale of an atom, the contribution from both, free and bound into 
+%nuclei electrons ought to be considered. At high energies, the scattering of photons is inelastic. 
+%However, these processes are important as ejecta opacity to very high energy photons, 
+%$\gamma$-rays with energy in order of MeVs, determines the thermalisation of the \rproc{} 
+%decay products.
+%%
+%%% pair-creation
+%For extremely high photon energies $h\nu \gg m_e c^2$a pair creation becomes important. 
+%In particular this is so if remnant is a magnetar with large spin-down luminosity. 
+%Then, the at peak of the \ac{kN} emission, the pair creation might prevent pair-creation 
+%photons from escaping the kilonova. 
+%
+%The calculation of opacities is complicated by the fact that the 
+%Additional complexity arises in approximation the line opacities to the effective opacity.
+%
+%%%% --- compliecations in calculations 
+An additional complication in opacity calculations arises from the 
+fact that the ejecta is rapidly expanding, which implies that the 
+matter ``sees'' incoming radiation as Doppler shifted. 
+%
+When considering frequency-integrated intensities, 
+frequency independent, gray opacities are employed.  
+For example, Plank mean opacity is used when computing 
+integrated thermal emission for an optically thin plasma.
+% For example, Rosseland mean opacity is used in optically thick medium 
+% and Plank mean opacity for the
+% integrated thermal emission for an optically thin plasma
+%\red{in MKN it is mean plank opacities} 
+%that for 
+%$\kappa_r = 200 (T/4000K)^{5.5}$ cm$^2$g$^{-1}$ for $T\in(1-4)\times10^3$~K and just 
+%$\kappa_r = 200$ cm$^2$g$^{-1}$ for $T\in(4-10)\times10^{3}$~k, motivated by 
+%Figure~10 it \citet{Kasen:2013xka}.
+The calculation of mean opacities, however, still requires complex 
+atomic models. 
+%
+Another approach to account for the matter dynamics is to consider 
+line expansion opacity, often estimated under the Sobolev approximation 
+\citep{Pinto:2000}.
+%
+This method was applied to \acp{kN} modeling by \citet{Barnes:2013wka} 
+and \citet{Tanaka:2013ana}. 
+However, it becomes increasingly inaccurate, as lines broaden 
+% unreliable if line width is large 
+\ie, if the line spacing of strong lines becomes comparable to the intrinsic 
+thermal line width \citep{Kasen:2013xka,Fontes:2015,Fontes:2017zfb}. 
+
+
+
+Generally speaking, calculations of \ac{kN} emission are complicated by the %ejecta opacity, 
+%as there is a 
+lack of experimental data and numerical models of the optical opacity 
+of matter enriched with singly and doubly ionized heavy \rproc{} elements. 
+Iron-group gray opacities were initially considered \citep{Roberts:2011}, 
+but were later found to severely underestimate those of 
+lanthanides and actinides with their 
+complex atomic structures \citep{Kasen:2013xka,Tanaka:2013ana}. 
+%
+Higher opacities shift light curve peak time by ${\sim}1\,$week \citep{Barnes:2013wka} 
+and shift the spectral peak from optical/\ac{UV} to \ac{NIR}.
+
+%% ----------------------------
+%% \paragraph{\rproc{} heating}
+%% ----------------------------
+The heating in ejecta occurs through a combination of $\beta$- and $\alpha$-decays, 
+and fission \citep{Metzger:2010,Barnes:2016umi,Hotokezaka:2017dbk}. 
+%
+Decay products then thermalize with a certain efficiency % $\varepsilon_{th,\upsilon}$, 
+that depends on interactions between them and the thermal plasma. 
+Notably, neutrinos escape the ejecta freely. 
+Very high energy photons (gamma rays), are also free after about 
+${\sim}1$~day as the Klein-Nishina opacity decreases 
+\citep{Hotokezaka:2017dbk,Barnes:2016umi}.
+%
+The $\alpha$ and $\beta$ particles, however, interact efficiently 
+with the matter via ionization 
+\citep{Barnes:2016umi} and Coulumb scattering \citep{Metzger:2010}.
+%\red{Here it repeats the Barns et al findings on thermalization efficiency}
+For a fixed energy, $\alpha$-particles thermalize more efficiently than 
+$\beta$-particles. For charged particles, the thermalization processes 
+depend on the magnetic field strength and 
+its configuration \citep{Barnes:2016umi}. 
+%
+Additionally, if actinides are synthesized in the \rproc{}, their decay products, \eg,
+$\alpha$-particles, thermalize with high efficiency. 
+%\red{double check with before, Barnes}. 
+% Nuclear physics inputs that determine the amount of actinides, 
+% have a strong effect on the thermalization efficiency of \rproc{} 
+% elements in the ejecta \citep{Barnes:2020nfi}.
+%
+%For a neutron-rich ejecta, $Y_e\leq0.2$, the heating rate is dominated by a large statistical 
+%ensemble of nuclei, and the following can be assumed \citep{Korobkin:2012uy},
+%%
+%\begin{equation}
+%\dot{e}_r = 4\times 10^{18} \varepsilon_{th,\upsilon}(0.5 - \pi^{-1} \arctan[(t-t_0)/\sigma])^{1.3} \text{ erg } \text{s}^{-1} \text{g}^{-1}
+%\label{eq:kilonova:heat_korob}
+%\end{equation}
+%%
+%Here $t_0=1.3$~s, $\sigma=0.11$~s constants. 
+%The $\varepsilon_{th,m}$ is the thermalisation efficiency.
+%In general, both $\varepsilon_{th,\upsilon}$ and 
+%%
+%The heating rate prescribed by this equation has first a constant segment, $\propto1$~s, 
+%(depletion of free neutrons by $r$-process) and a decrease segment $\propto t^{-1.3}$, 
+%(when heavy nuclei decay to stability) \citep{Metzger:2010,Roberts:2011}. 
+%Notably, at higher $Y_e$, the nuclear heating is dominated by specific nuclei and has a complex form.
+%%
+%It was shown however, that on a timescale relevant for \ac{kN}, and $Y_e$ present in \ac{BNS} 
+%($Y_e\leq0.4$), the heating rate can be assumed constant within the accuracy of a few.
+%(see \eg, Fig.~7 in \citet{Lippuner:2015gwa}).
+%%
+%The dependency of $\dot{Q}_{r.\upsilon}$ on the nuclear physics models was shown to be week, 
+%unlike the $r$-process abundances themselves \citep{Eichler:2014kma,Wu:2016pnw,Mumpower:2015ova}.
+%See however \citet{Barnes:2020nfi} for a more recent assessment.
+%
+%Regarding the thermalization efficiency of the energy released, \citep{Barnes:2016umi} provides 
+%a recipe that sets the $\varepsilon_{th,\upsilon}$ decreasing from $\sim0.5$ at around 
+%$1$~day to $\sim0.1$ at around $1$~week. 
+%
+%\begin{equation}
+%\varepsilon_{th,\upsilon}(t) = 0.36 \Bigg[ \exp(-a_{\upsilon}, t_{day}) + \frac{\ln(1+2b_{\upsilon} 
+%    t_{day}^{d_{\upsilon}})}{2b_{\upsilon}t_{day}^{d_{\upsilon}}} \Bigg]
+%\end{equation}
+%
+%where $t_{day}$ is the time in days, ${a_{\upsilon}, b_{\upsilon}, d_{\upsilon}}$ are the constants that 
+%depend on the ejecta layer properties, mass and velocity. 
+
+%%%% -------------------------------
+%\subsection{\ac{kN} properties}
+%%%% -------------------------------
+%
+%From a simple, toy model \citep{Metzger:2016pju}, the ejecta properties can be translated 
+%into the properties of light curves. 
+%%
+%Consider the case where the lanthanides-rich ejecta is present, \eg, in tidal outflows of 
+%\ac{BNS} and \ac{NSBH} mergers. There a toy model predicts a light curve from such low-$Y_e$ 
+%ejecta that peaks in \ac{NIR} (in relatively good agreement with radiation transport model of 
+%\citet{Barnes:2016umi}) on a timescale of several days (week). This is so-called ``red \ac{kN}''.
+%The disagreement with radiation transfer models most noticeable in the post-peak period, 
+%where toy model predicts sharp decay, while the radiation transport models predict smooth decline. 
+%The reason for it is the toy model's assumption of optically thick black-body emission. 
+%As ejecta expands cools and become optically thin, this assumption breaks down.
+%It is important to note, that the toy model does not take into account other emergent sources 
+%of opacity at late times, such as clumping, dust formation, photo-ionization from central engine. 
+%These may smooth the post-peak light curves.
+%
+%Next, consider the ejecta with high electron fraction, \eg, \nwind, or \ac{SWW}, reprocessed by neutrinos.
+%Such ejecta would have negligible amount of elements of lanthanides group \citep{Metzger:2014ila} 
+%and thus have a different \ac{EM} signature. The emission from such ejecta peaks in optical/\ac{IR} 
+%bands on a time scale of days. It is $2-3$ magnitudes brighter then red \ac{kN}. This component is called ``blue \ac{kN}''
+%This emission is assumed to be of polar origin and contribute to the total \ac{EM} signature of the BNS ejecta. 
+
+
+%\subsection{Other \ac{EM} counterparts}
+%\red{commented}
+%\subsubsection{Free Neutron Precursor}
+%
+%The sufficiently high density and low veloicyt of the bulk of the ejecta assures that there is enough time for the $r$
+%-process to remove free neutrons. However, a small fraction of the ejecta was shown to have hight enough velocity to retain its free neutrins and escape the dens slow part, \textit{e.g.,} \cite{(Bauswein et al 2013a)}. The origin of this component is the shock-heated intefrace between two neutron stars as they collide. 
+%The outer layers of the ejecta then can be \red{superheated} by this \red{'neutron skin'}, modifying the Kiloniva signal. \cite{(Metzger et al 2015a; Lippuner and Roberts 2015)}
+%
+%Here we consider such ejecta, that contains free neutrons. 
+%Consider layer $dM_{\upsilon}$, that contain a fraction $X_{n;\upsilon}$ of free neutons, specific heating rate of which $\dot{e}_n(t)$. Then, the heating rate in the layer reads 
+%
+%\begin{equation}
+%\dot{Q}_{r;\upsilon} = dM_{\upsilon} X_{n,\upsilon}\dot{e}_n(t).
+%\end{equation}
+%
+%The initial mass fraction of neutrons $X_{n,\upsilon}$ is defined as 
+%
+%\begin{equation}
+%X_{n,\upsilon} = \frac{2}{\pi}(1 - Y_e)\arctan\Big(\frac{M_{n}}{M_{\upsilon}}\Big),
+%\end{equation}
+%
+%is an arbitrary assumed interpolation between the neutron rich ($M\ll M_{n}$) inner layers with $X_{n} = 1-2Y_e$ and neutron-free ($M\gg M_n$) layers.
+%
+%Assuming the averabe neutron half-0ife of $900$~s, the specific heating rate $\dot{e}_{n}$ is 
+%
+%\begin{equation}
+%\dot{e}_n = 3.2 \times 10^{14} \exp[-t/\tau_n] \text{ erg } \text{s}^{-1} \text{g}^{-1},
+%\end{equation}
+%
+%Simultaneously, as fraction of free neutrons increases in outermost layrs, the fraction of $r$-process elements decreases as $X_{r,\upsilon} = 1 - X_{n.\upsilon}$, which has to be accounted for in Eq.~\eqref{eq:theory:mkn:energ}.
+%
+%The effect of free neutrons on Kilonova lightcurves is the following.
+%Even for a very small mass, $\sim 10^{-4}M_{\odot}$ of freen-nutron ejecta, with $Y_e\sim0.1$, the UVR luminocities are increased considerably, in the first hours after merger.
+%The reason for that is, $\dot{e}_{n} > \dot{e}_r$ by at loeast an order of magnitude on a tiemscales up to 1 hour postmerger. Also, this timescale is comaprable with the diffusion time scale for the neutron mass layer. 
+%
+%\begin{equation}
+%t_{peak,\upsilon} \approx \Bigg(\frac{M_{\upsilon}^{4/3}\kappa_{\upsilon}}{4\pi M^{1/3}\upsilon_0 c}\Bigg)^{1/2} \sim 3.7 \text{ hours}.
+%\end{equation}
+%
+%And 
+%
+%\begin{equation}
+%L_{peak} \approx \frac{E_n \tau_n}{t_{peak;\upsilon}^2} \propto 3\times10^{41}
+%\end{equation}
+%
+%which is insensitive to the mass of the layer itself. 
+%This emission is expected to peak in optical/UV band due to the high ejecta temperature during the first hours after merger. 
+%
+%%%
+%
+%\subsection{Engine Power}
+%
+%Additional heating for kilonova might come from the object, left after the merger. In case of BNS it might be the MNS. In case of NSBH it is a BH with accretion disk. This is expected to make Kilonova more luminous than what $r$-porcess products decay might produce.
+%
+%A large fraction of Short GRB, $\sim(15-25)\%$ is followed by the prolonged ($10-100$~s) hump of $X$-ray emission, \cite{Norris and Bonnell 2006; Perley et al 2009 Kagawa et al 2015}
+%
+%It is however uncertain, how much energy does the central engine provides. Here some examples are considered.
+%
+%\subsubsection{Fall-Back Accretion}
+%
+%A merger leaves a finite amount of mass bound gravitationally to the central object, that falls back of a time timescale of seconds to days \cite{(Rosswog 2007; Rossi and Begelman 2009; Chawla et al 2010; Kyutoku et al 2015)}.
+%
+%\gray{This is a part of the outflow that was not energetic enough to leave the system. It eventually falls back on the central object. This is not the disk itself...}
+%
+%The rate of fall-back at late timnes $t\gg 1$~s can be approximated by a power law 
+%
+%\begin{equation}
+%\dot{M}_{fb} \approx \Bigg( \frac{\dot{M}_{fb}(t=0.1~\text{s})}{10^{-3}M_{\odot}\text{s}^{-1}} \Bigg) \Bigg( \frac{t}{0.1 \text{s}} \Bigg)^{-5/3}
+%\end{equation}
+%
+%The value $10^{-3}M_{\odot}\text{s}^{-1}$ is the normalization chosen for BNS. For NSBH it be different by an order of magnitude \cite{(Rosswog 2007)}. 
+%
+%Notably, the fall-back of the material removed on a dynamical timescales, can be stalled by the continous winds from the disk \cite{(Fernandez et al 2015b)}
+%
+%Additionally an onset of $r$-process heating in the disk might provide an additional source of outflow that would stall the fall-back on a seconds to minutes timescale \cite{Metzger et al 2010a)}.
+%
+%On a longer timescale, days to weeks, there seems to be no mechansm that can suppress the fall back completely. This it might still be a relevant source of energy for Kilonva.
+%
+%The matter that reaches the central objects accrets. This is super-Eddington accetion that releases energy, $L_{acc} \propto \dot{M}_{fb} c^2$ that can heat the ejecta and enhance  the Kilonova emission. Additionally, the accretion might result in the formation of a relativistc jet (similar to GRB) that might account for the extended $X$-ray emission that sometiems follow the GRB.
+%As accretion flow subsides, the jet power decreases and it becomes unstable to the magnetic Kink instability \cite{(Bromberg and Tchekhovskoy 2016)}. Then the energy is dissipated pramarely via heating up the ejecta, by magnetic reconnections instead of non-thermal emission. 
+%
+%The fall-back acctretion can power a mildly relativist, wide-angle disk wind. As the wind collides with the (ejected prior) ejecta shells, its energy thermalizes. 
+%
+%Overall, the ejecta heating rate due to fall-back accretion can be described as 
+%
+%\begin{equation}
+%\dot{Q}_{fb} = \varepsilon_{j}\dot{M}_{fb}c^2
+%\end{equation}
+%
+%where $\varepsilon_{j}$ is the jet/disk wind efficiency factor. See \cite{Tchekhovskoy et al 2011). Kisaka and Ioka (2015)} for the discussion of efficiency.
+%
+%For instace the 130603B, was detected with an \ac{NIR} excess. It was initially attributed t othe radiactive heating \cite{Tanvir et al (2013)} \cite{Berger et al (2013)}. On the contrary, \cite{Kisaka et al (2016)} suggested that it might be attributed to the absorbed and re-emitted (reprocessed) $X$-ray emission. 
+%
+%%%
+%
+%\subsubsection{Magnetar Remantns}
+%
+%The outcome of the NSBH merger is always a black hole. Meanwhile an outcome of the BNS merger depends sensetively on the maximum allowed mass for a non-rotating NS ($M_{max}(\Omega=0)$). 
+%This value is bounded, \textit{e.g.,} $\geq 2M_{\odot}$ \cite{(Demorest et al 2010; Antoniadis et al 2013)} and $< 3M_{\odot}$, where the upper limit is given by the casuality constrants on the EOS. 
+%Withing this boundaries the fate of the remnant is uncertain. Incidently, the observations shows that NS has mass $\sim 1.4M_{\odot}$. Merger of two of this objects thus result in a remnant of mass $\sim2.5M_{\odot}$ ($\approx7.5\%$ of the mass was lost to GW and neutrinos \cite{(Timmes et al 1996)}). If the resulting mass is lower then $M_{max}(\Omega=0)$, it promptly collapses. Otherwise a stable (short- or long-lived) remnant can be formed.
+%
+%Consider a rotating remnant. An upper limit on a rotating object, is the object that is rotating close to the mass-shedding limit. 
+%
+%Given the remnant's moment of inertia $I$ and \red{angular velocity} $\Omega$, then rotational period $P = 2\pi / \Omega$. 
+%
+%Such object has energy 
+%
+%\begin{equation}
+%E_{rot} = \frac{1}{2}I\Omega^2 \approx 10^{53} \Big(\frac{I}{I_{LS}}\Big)\Big(\frac{M_{ns}}{2.3M_{\odot}}\Big)^{3/2}\Big(\frac{P}{0.7\text{ms}}\Big)^{-2} \text{ ergs }
+%\end{equation}
+%
+%Here the remnatn's moment of inertial, $I$ is normmalized to $I_{LS} \approx 1.3\times 10^{45}(M_{NS}/1.4M_{\odot})^{3/2}$ g cm$^{2}$ (motivated by Fig.1 \cite{Lattimer and Schutz (2005}).
+%
+%This energy exceeds by a factor of $10^3$ the ejecta kinetic energy of radioactive decay energy.
+%If this energy can be extracted via channels other then GW (\textit{e.g.,} EM torques), then the EM signal accompanying the merger would be significantly enhanced, \cite{(Gao et al 2013; Metzger and Piro 2014; Gao et al 2015; Siegel and Ciolfi 2016a)}. For a remnant that is supported by the differential roatation, only a part of the ritational energy is availalbe (as the rmenant would eventually collapse loosing it). The Fig.8 shows the dependency of the \textit{extractable} rotational energy as a function of the remnants mass.
+%
+%The electromagnetic tourques allows to extract the totatinal energy from a remnant with strong magnetic fields. Such fies are expected for the merging NS, due to amplifications, reaching values found in galactic magnetars \cite{(Price and Rosswog 2006; Zrake and Mac-Fadyen 2013; Kiuchi et al 2014)}. However, this amplification occures at small scats and at early times post merger, producing a complex field topology, that evolves with time \cite{(Siegel et al 2014)}. The magnetic field strength at the end of the differential rotation phase is however uncertain. There are speculations that it might remain at $10^{15-16}$~G.
+%
+%Consider an aligned dipole rotator (different from a vacuum the vacuum dipole). Its spin-down luminocity is \cite{Spitkovsky (2006); Philippov et al (2015)} 
+%
+%\begin{equation}
+%L_{sd} = 
+%\begin{cases}
+%\frac{\mu^2 \Omega^4}{c^3} = \frac{(B R_{ns}^3)^2 \Omega^4}{c^3} &\text{ if } t< t_{coll} \\
+%0 &\text{ if } t> t_{coll}
+%\end{cases}
+%\end{equation}
+%
+%The charactersitic 'spin-down timescale' over which an order of unity fraction of the rotational energy is removed is 
+%
+%\begin{equation}
+%t_{sd} = \frac{E_{rot}}{L_{sd}}\Bigg|_{t=0}
+%\end{equation}
+%
+%which is of an order of $\sim 150$~ms for a remnant of the mass $M=2.3M_{\odot}$, $I=I_{LS}$, $B=10^{15}$~G and $P_0=0.7$~ms, 
+%
+%where $P_0$ is the initial spin-period.
+%The mass-shedding limit of this remnant is $P=0.7$~ms. 
+%
+%The lifetime of the unstable remanant can be estimated as 
+%
+%\begin{equation}
+%L_{extract} = \int_0^{t_{coll}} L_{sd} dt
+%\end{equation}
+%
+%where $t_{coll}$ is the time of the collpase, that marks olse the end of the extraction of the rotational energy. $L_{extract}$ is the total amount of energy extracted from rotation.
+%The $t_{coll}$ falls rapidly with the remnant mass, after it passes the stale NS upper limit.
+%
+%Long-lived magnetar can power the 'prompt-like' X-ray emission (found in sGRB \textit{e.g.,} \cite{(Gao and Fan 2006)Metzger et al (2008b); Bucciantini et al (2012)} ). Additionally, the sGRB with extended emission were explaiend by phenomenological models of magnetar spind-down \cite{(Gompertz et al 2013)}. The observed X-ray and optical plateus were discusssed in \cite{(Rowlinson et al 2010, 2013; Gompertz et al 2015)} and the late-time excess emission was adressed in \cite{(Fan et al 2013; Fong et al 2014a)}. Notably, all models requrie rather large magnetic fields of $\sim 10^{16}$~G.
+%
+%The formation of the jet and sGRB is subjected to uncertainties. 
+%It was argues that magnetar model is not viable due to heavy baryonic pollution in the polar region above the surface \cite{(Murguia-Berthier et al 2014, 2016).}. This led to the develpment of the model, in which GRB is generated after the remnant collapse to a BH, which might happen minutes after the merger. And while this still allow to explain the extended X-ray emission (magnetar spin-down and radiation diffussion through the ejecta). 
+%However, if in spin-down the remnant raches a solid-body rotation, a collapse of such a remnatn is not predicted to leave a massive disk, sufficient to power the GRB \cite{Margalit et al (2015)}. The disk that was formed after the merger is expected to be either accreted or spread out (via ) too much for short GRB to be generated. 
+%
+%There are observational evidences that BH is not mandatory for producing a jet. For instance, the (e.g., Circinus X-1; \cite{Fender et al 2004}), galactic acretring NS.
+%While indeed the region above the neutron star is polluted by neutrino-driven wind on a time scale of seconds postmerger \cite{(Dessart et al 2009; Murguia-Berthier et al 2014, 2016)}, the expected strong magnetic field $B\gg 10^{15}$~G, small scale magnetic flux bundles (that dominate dynamically over the thermal or ram pressure of the wind) could confine the plasma \cite{(Thompson 2003)}. Then, originating from the disk open field lines, carrying the Poyntim flux of the GRB jet, would be relatively free of baryonic matter due to centrifugal barrier. 
+%Note, that sheer rotation of the NS would result in periodicity in openning of the polar field lines. This, in turn, might lead to a variability in the transinet (without requiring baryon pollution at all). 
+%The presence of the NS \textit{after} the GRB is suported by observations: extended X-ray emission that does not follow the model of the fall-back accreting BH. 
+%\gray{the early X-ray varaiablility is sometimes attributed to the afterglow phase, \cite{(Holcomb et al 2014)}, but it is too rapid for a foward or reverse shocks}
+%
+%Magnetic spind-down power, injected into the merger ejecta (behind it) could enhance the Kilonova emission (\cite{Yu et al (2013)}). Similar mechanism was considered for the SLSN \cite{(Kasen and Bildsten 2010; Woosley 2010; Metzger et al 2014)}. This in essence, reminds one of a fall-black powered emission considered before.
+%
+%A pulsar injects a relativistc wind of $e^{\pm}$ pairs into the surrounding environment (\textit{e.g.,} Crab Nebula). Near the termination shock, wind undegoes the shock dissipation, forming the so-called 'magnetar wind nebulae' of relativistic particles \cite{(Kennel and Coroniti 1984)}. The high density of the BNS merger environment assures a rapid cooling of these pairs (via synchrotron or inverse-compton emission) \cite{(Metzger et al 2014; Siegel and Ciolfi2016a,b)} generating the broadband emission (akin the emission from pulsar wind nebulae \textit{e.g.,} \cite{Gaensler and Slane 2006)}). The inner walls of the expanding ejecta would absorb, UV and X-ray photons, reprocess and emit in optical/IR \cite{(Metzger et al 2014)} contributing and enahncing Kilonova.
+%
+%Notably, the magnetar wind-nebulae emission does not necessarly undergoes thermalization within the ejecta. If the spectral windows allow, \textit{e.g.,} for instance for hard X-ray
+%\footnote{where the bound-free transitions lie at lower energies. Additionally this is possible for hight enerngy $\gg$ MeV photons, that fall into the gap between declining Klein-Nishina cross-section and before the rise of $\gamma-\gamma$ opacities}
+%, the emission will escape the ejecta without being reprocessed.
+%Additionally, low-mass ejecta can undergo complete ionsiation and allow even lowere energies photones to pass without thermalization. This 'leaking radiation' might be an important EM signal to mergers \cite{(Metzger and Piro 2014; Siegel and Ciolfi 2016a,b; Wang et al 2016).}. 
+%
+%consider the ejecta heating rate provided by the magnetar spin-down as 
+%
+%\begin{equation}
+%\dot{Q}_{sd} = \varepsilon_{th}L_{sd}
+%\end{equation}
+%
+%where $\varepsilon_{th}$ is the thermalization efficiency, that ranges between $1$ when the ejecta is very opaque (hearly times) to a low value, for low opacities.
+%
+%Notably, there is another sink for spin-down radiation that is of it utmost importance at early times, where high energy $\gamma$-rays are present in the nebula behind the ejecta \cite{Metzger and Piro (2014)}. These $\gamma$-rays create $e^{\pm}$ pairs (when compactness of the cloud is high). Coming in 'seed photons' can then be compton up-scattered on these particles, becoming energetic enought to produce a new $e^{\pm}$ pair. This initializes a 'pair cascade'. High fraction ($\leq 0.1$) of puslar spin-down power $L_{sd}$ falls into the rest pass of the $e^{\pm}$ pairs \cite{(Svensson 1987; Lightman et al 1987)}. Hence, for the spind-down radaition to reach (and theramlize within) the ejecta, it must diffuse through the 'pair cloud', experiencing $PdV$ adiabatic losses.
+%To paramterize the effect, introduce the Thompson optical depth of the pair cloud $\tau_{es}^n$. If This optical depth exceeds the optical depth of the ejecta itslef, then only a fraction of the actual magnetar spin-down power can be thermalzied within the ejecta. 
+%This effect of 'pair cloud' can be approximated by suppressing the observed luminosity. Floowing \cite{Metzger and Piro (2014) and Kasen et al (2015),} 
+%
+%\begin{equation}
+%L_{obs} = \frac{L}{1 + (t_{life}/t)}
+%\end{equation}
+%
+%where $L$ is the Kilonova luminocity, computed from the energy equation \eqref{eq:theory:mkn:energ} (with magnetar heat source).
+%The $t_{life}/t$ is the caracteristic 'lifetime' of a non-thermal photon in the nebula, relative to the ejecta expansion timescale, written as
+%
+%\begin{equation}
+%\frac{t_{life}}{t} = \frac{\tau_{es}^{n} \upsilon}{c(1 - A)}
+%\end{equation}
+%
+%where $\tau_{es}^n\propto Y L_{sd}$ and $A$ is the frequency averaged albedo of the ejecta ($A\propto 0.5$).
+%
+%Overall, the pair trapping is able to reduce the effective luminocity of the magnetar powered kilonova by several orders of magnitude (due to reduce thermalization efficenty) at early times.
+%
+%Energy input from the magnetar spind down, can in itself raise the observed peak luminocities. Note however, that in case of the only temporarly stable remnant, the energy import would be terminated at collapse.
+%
+%%%
+%
+%\subsection{Implications}
+%
+%sGRB is a good smoking gun for Kilonova searches.
+%However, it, and its afterglow should not outshine the Kilonova. For instance, in GRB 130603B \cite{(Berger et al 2013; Tanvir et al 2013)} the observed \ac{NIR} excess would require ejecta of $0.05-0.1M_{\odot}$ to be explaiend. This is generally too high for dynamical ejecta only \cite{(Hotokezaka et al 2013b; Tanaka et al 2014; Kawaguchi et al 2016).}, but might be achieved with winds from the disk and remnant \cite{(Metzger and Fernandez 2014)} see also \cite{Kasen et al 2015)}. However, high observed high luminocity might not be a result of radioactive heating alone, but hits towards the contribution from the central engine, fall-back accretion or spin-down luminocity.
+%
+%Discussion on how different properties of the Kilonova affect detection possibilities and different biasas might araise.
+%
+%\red{This might serve as a gread introduction to the thesis!}
+
+
+
+%%%% -------------
+%% AT2017gfo
+%%%% -------------
+
+%The final composition of the ejecta determines its optical opacity, that vary by orders of 
+%magnitude if $3$rd peak elements, lanthanides $(58\leq Z \leq71)$ and actinides 
+%$(90\leq Z \leq 103)$, are present due to their open $f$-shell and hence a plethora of 
+%absorption lines \citep{Tanaka:2013ana,Kasen:2013xka}.
+%\red{WHATCH FOR REPETITION WITH INTRODUCTION}
+%
+%The properties and geometry of different \ac{BNS} merger ejecta 
+%that have various optical opacities and heating rates, determining the \ac{kN}, 
+%emission \citep{Metzger:2019zeh}.
+%%
+%Generalizing, two main \ac{kN} components can be distinguished: 
+%``blue'' and ``red'' depending on whether the fraction of 
+%lanthanides and actinides is low or high.
+%%
+%The former corresponds to the high $Y_e$ material that produces emission 
+%that peaks in \ac{UV}/optical bands on a timescale of hours-days, 
+%while the latter is related to low-$Y_e$ material that generates the 
+%emission peaking on a significantly 
+%longer timescale, tens of days, in \ac{IR} and \ac{NIR} bands
+%\citep{Barnes:2013wka,Grossman:2013lqa,Lippuner:2015gwa}.
+%
+%Both ``blue \ac{kN}'' and ``red \ac{kN}'' were observed for \GW{}, confirming the general 
+%picture and implying a diverse composition of the ejected material
+%\citep{Arcavi:2017xiz,Coulter:2017wya,Drout:2017ijr,Evans:2017mmy,Hallinan:2017woc,
+%    Kasliwal:2017ngb,Nicholl:2017ahq,Smartt:2017fuw,Soares-santos:2017lru,Tanvir:2017pws,
+%    Troja:2017nqp,Mooley:2018dlz,Ruan:2017bha,Lyman:2018qjg}.
+%
+%%%%% <<< Also mentioned in the End of Ejecta paragraph >>>
+%%However, estimated mass of the ejecta required to explain 
+%%the red component is larger then what is predicted by numerical relativity simulations \red{refs}. 
+%%%It is believed that the most contribution to this component comes from the low $Y_e$, slow but 
+%%%massive outflow from the degenrate disk on a secular timescale \red{refs}.
+%%%
+%%Semi-analytic two-components (red and blue) spherical \ac{kN} models to the \AT{} observations 
+%%provided estimates for the ejecta properties for these two components. 
+%%%
+%%Specifically, for the langhinide poor (rich) \ie, blue (red) components, the required mass is 
+%%$2.5\times10^{-2}M_{\odot}$ ($5.0\times10^{-2}M_{\odot}$) and velocity $0.27$c ($0.15$c)
+%%\citep{Cowperthwaite:2017dyu,Villar:2017wcc}. 
+%%See however \citep{Waxman:2017sqv} for an alternative interpretation.
+%%See also \citep{Siegel:2019mlp} for the compiled data on the \ac{kN} models.
+%%%
+%%Similar estimates are obtained with $1$D radiation transport \ac{kN} models
+%%\citep{Tanvir:2017pws,Tanaka:2017qxj}.
+%%
+%%A very high energy emission from the non-thermalized radiation is weak and can be 
+%%detected only for a sufficiently close event \cite{Hotokezaka:2015cma}.
+%% 
+%Notably, prior to \AT{}, there were other candidates based on the detection of \ac{SGRB}, 
+%with infrared excess \eg, 
+%GRB130603B, \citep{Berger:2013wna,Tanvir:2013pia}, 
+%GRB060614 \citep{Jin:2015txa,Yang:2015pha}, 
+%GRB050709 \citep{Jin:2016pnm}.
+%%GRB200522A \citep{WRONG}  Bruni:2021ilp
+%However the exact nature of the observed signals were not well constrained. 
+%%
+%%The search for \ac{EM} counterparts to mergers continues, involving observatories around the world 
+%%\citep{Law:2009,Singer:2014qca,Bellm:2014,Kasliwal:2016uhu}.
+%
+%
+%
+
+
+
+%
+
+
+%%%%%%%%%% BNS MERGER -> Kilonova
+%since then
+%\citep[\eg][]{Kulkarni:2005jw,Metzger:2010,Roberts:2011,Metzger:2016pju,Wollaeger:2017ahm} 
+%and advanced even further with the detection of \AT{} \citep[\eg][]{Metzger:2019zeh}.
+%
+%The final composition of the ejecta determines its optical opacity 
+%which can vary by orders of magnitude if $3$rd peak elements, 
+%lanthanides 
+%%$(58\leq Z \leq71)$ 
+%and actinides, 
+%%$(90\leq Z \leq 103)$, 
+%are present 
+%due to their open $f$-shells and, thus, a plethora of 
+%absorption lines \citep{Tanaka:2013ana,Kasen:2013xka}.
+%
+The properties of the \ac{kN} emission have strong 
+dependency on the properties and geometry of 
+\ac{BNS} merger ejecta \citep{Metzger:2019zeh}.
+%
+Describing the complex \ac{kN} signature, it is common to 
+generalize it into two main components, ``blue'' and ``red'', 
+depending on whether the fraction of lanthanides and actinides is low or high.
+%
+The former corresponds to the high $Y_e$ material that produces emission 
+that peaks in \ac{UV}/optical bands on a timescale of hours-days, 
+while the latter is related to low-$Y_e$ material that generates the 
+emission peaking on a significantly 
+longer timescale, tens of days, in \ac{IR} and \ac{NIR} bands
+\citep{Barnes:2013wka,Grossman:2013lqa,Lippuner:2015gwa}.
+
+
+%% from remnant section
+Notably, \ac{BNS} mergers that experience \ac{PC} are not expected to eject large 
+amounts of material and are generally thought of as being \ac{EM}-quiet 
+\citep{Margalit:2017dij,Bauswein:2017vtn}. 
+From \ac{EM} observations of a merger, the fate of the remnant can be inferred, 
+albeit in a model-dependent way. 
+
+%% --- Modelling
+To model the \ac{kN} emission robustly, time- and energy-dependent 
+photon radiation transport models are required 
+\citep{Kasen:2017sxr,Tanaka:2017qxj,Miller:2019dpt,Bulla:2019muo}.
+%
+Meanwhile, semi-analytic one- or multi-component spherical \ac{kN} models 
+are often employed due to their simplicity and high computation speed.
+%
+Notably, systematic uncertainties in
+nuclear physics (\eg, mass models, fission fragments and $\beta$-decay
+rates) and atomic physics (\eg, detailed wavelength dependent opacities for
+\rproc{} elements) enter all the current \ac{kN} models 
+\citep{Eichler:2014kma,Rosswog:2016dhy,Gaigalas:2019ptx}.
+%
+%The properties of the original \ac{BNS} can be inferred by fitting the 
+%ejecta properties obtained with \ac{kN} models, 
+%\red{from KN section}
+%Fitting formulae to the ejecta and remnant parameters are often used to predict the 
+%properties of \ac{EM} counterparts to mergers and to infer the properties of the 
+%binary from the observations of \ac{EM} counterparts, often as a part of \ac{MM} studies 
+%\citep{Dietrich:2020efo,Breschi:2021tbm,Nicholl:2021rcr,Dietrich:2020efo}.
+
+
+Our understanding of \ac{kN} has significantly improved after 
+the detection of \AT{} \citep[\eg][]{Metzger:2019zeh}.
+%
+Both ``blue \ac{kN}'' and ``red \ac{kN}'' were observed, 
+confirming the qualitative picture and implying a diverse composition 
+of the ejected material \citep[\eg][]{Villar:2017wcc}.
+%\citep{
+%    Arcavi:2017xiz,Coulter:2017wya,Drout:2017ijr,Evans:2017mmy,Hallinan:2017woc,
+%    Kasliwal:2017ngb,Nicholl:2017ahq,Smartt:2017fuw,Soares-santos:2017lru,Tanvir:2017pws,
+%    Troja:2017nqp,Mooley:2018dlz,Ruan:2017bha,
+%    Lyman:2018qjg
+%}.
+%
+%The quantitative analysis -- the comparsion between the ejecta properties 
+%inferred from the \ac{kN} models and those seen in \ac{BNS} merger simulations,
+%however, showed substantial disagreement. Specifically, the \ac{BNS} merger 
+%simulations under-predict the amount of ejecta. The discrepancy is attributed 
+%to the insufficient length of those simulations, which does not capture long-term 
+%secular ejecta. 
+%Semi-analytic two-component spherical \ac{kN} models to 
+%the \AT{} observations provided estimates for the ejecta properties. 
+%%for these two components. 
+%%
+%For the langhinide poor (rich) \ie, blue (red) ejecta components, 
+%the required mass is $2.5\times10^{-2}M_{\odot}$ ($5.0\times10^{-2}M_{\odot}$) 
+%and velocity $0.27\, c$ ($0.15\, c$) \citep{Cowperthwaite:2017dyu,Villar:2017wcc}. 
+%
+The presence of \ac{EM} counterparts strongly disfavors \ac{PC} in the case of \GW{} 
+\citep{Margalit:2017dij,Bauswein:2017vtn,Radice:2017lry}. However, the 
+question of whether it was \ac{HMNS} or \ac{SMNS} remains open 
+\citep{Margalit:2017dij,Ai:2018jtv}. 
+
+
+%See however \citep{Waxman:2017sqv} for an alternative interpretation.
+%See also \citep{Siegel:2019mlp} for the compiled data on the \ac{kN} models.
+%
+%%%% Issue with blue Kilonova
+
+The outflow properties inferred for \AT{} using multi-component semi-analytic and 
+2D radiation transport \ac{kN} models, including ejecta anisotropy and 
+cross-component irradiation, are broadly compatible with the results from 
+merger simulations \citep[\eg][]{Kawaguchi:2018ptg}. % see also Sec.~\ref{sec:intro:kilonova}. 
+%
+%\ac{EM} followup of \GW{} showed the presence of both blue and red \acp{kN}
+%%\footnote{
+%%    See, however, \citet{Waxman:2017sqv} for a different interpretation
+%%} 
+%\citep{Villar:2017wcc}.
+%However, simplified \ac{kN} fitting models suggest that former requires ${\sim}0.02\,\Msun$ of high-$Y_e$ 
+%material ejected at ${\sim}0.25\,c$, and the latter requires ${\sim}0.04\,\Msun$ of low-$Y_e$ 
+%material ejected at ${\sim}0.1\,c$. Due to its large mass, the red component is 
+%generally thought to originate in secular ejecta with the contribution from the dynamical, while 
+%the origin of the blue component is less clear. 
+%
+However, certain disagreements remain. 
+For instance, the required amount of low-$Y_e$, material 
+(which is somewhat lower if sophisticated radiation transport 
+\ac{kN} models are considered), is in tension with \ac{NR} \ac{BNS} merger simulations 
+\citep{Sekiguchi:2016bjd,Siegel:2019mlp,Perego:2017wtu,Kawaguchi:2018ptg}.
+%
+%Additional ejection mechanisms have been proposed to address the discrepancy, \eg, 
+%magnetic effects prior to merger \citep{Metzger:2018qfl,Fernandez:2018kax,Radice:2018ghv}. 
+%
+%
+%\gray{spiral waves shocking the accretion 
+%    disk by a long-lived \ac{NS} remnant \cite{141 Nedora V, et al. Astrophys. J. 886:L30 (2019)}}. 
+%Future observations and long-term multiphysics \ac{NR} models 
+%will undoubtedly shed more light on this tension \citep{Metzger:2018qfl}.
+%% ---
+Moreover, it is difficult to reproduce the early blue emission that requires 
+low opacity and massive ejecta, that is not generally found in \ac{NR} 
+simulations \citep{Fahlman:2018llv}. 
+%% ---
+Notably, the early blue component can be explained by the emission arising 
+from the interaction between a relativistic jet and the ejecta
+\citep{Lazzati:2016yxl,Bromberg:2017crh,Piro:2017ayh}.
+However, simulations show that successful jets do not deposit a sufficient amount of thermal energy in ejecta for this mechanism to work \citep{Duffell:2018iig}. 
+Other possibilities include the presence of highly magnetized winds \citep{Metzger:2018uni,Fernandez:2018kax},
+or the presence of the so-called viscous dynamical ejecta \citep{Radice:2018ghv}.
+These explanations, however, require the development of large-scale strong 
+magnetic fields.
+
+%% --- Kilonova
+Prior to \AT{}, there were other \ac{kN} candidates based on the 
+detection of \acp{SGRB}, with infrared excess \eg, 
+GRB130603B, \citep{Berger:2013wna,Tanvir:2013pia}, 
+GRB060614 \citep{Jin:2015txa,Yang:2015pha}, 
+GRB050709 \citep{Jin:2016pnm}.
+%GRB200522A \citep{WRONG}  Bruni:2021ilp
+However the exact nature of observed signals was not well constrained. 
+
+
+
+%% ------------------------------------------------
+\subsection{Non-thermal afterglows}\label{sec:intro:afterglow}
+
+Observed since 1967, \acp{GRB} are irregular pulses of gamma-ray radiation with 
+broken power-law (non-thermal) spectrum, peaking at KeV-MeV 
+\citep{Band:1993,Kouveliotou:1993,Meegan:1992xg}.
+%
+With respect to the duration, \acp{GRB} are split into two categories: \acp{SGRB} 
+that last ${\leq}2\,$s, and long \acp{GRB} that last ${\gtrsim}2\,$s. 
+%
+It is generally accepted that the latter are the 
+result of the collapse of massive ${\geq}15\,M_{\odot}$ stars,
+ while the former, at least in part, are attributed to mergers of compact objects. 
+%
+However, the exact physical origin of different duration 
+\acp{GRB} is not fully understood.
+%
+%%%% LGRB
+%Indications that long \ac{GRB} are associated with core-collapse supernovae, \acp{SN}, 
+%are two fold. These \acp{GRB} are typically observed in star-forming regions of their 
+%host galaxies \citep[\eg][]{Bloom:2000pq,Bloom:2002hc,Fruchter:2006py,Christensen:2004yx,CastroCeron:2006jh} 
+%and several \acp{GRB} are spectroscopically associated with Type Ic \acp{SN}, albeit 
+%these \acp{GRB} were significantly less bright and might not be typical \acp{GRB} 
+%\citep[\eg][]{Liang:2006ci,Bromberg:2011fm}. Additionally, the late time behaviour 
+%of some \acp{GRB} includes a \acp{SN}-like "bump" in the optical and spectral changes 
+%that might imply that underlying \acp{SN} flux becomes dominant over \acp{GRB} 
+%\citep[\eg][]{Bloom:1999,Woosley:2006fn}.
+
+%%%% Cosmology implications
+\acp{GRB} are distant events, most of which were localized to outside the Local Group 
+\citep[\eg][]{Mao:1992,Piran:1992,Fenimore:1993}. 
+%
+Particularly useful for distance estimations are the observations of \ac{GRB} afterglows 
+(fading X-ray, optical and radio emission), 
+that allow the estimation of redshift \citep[\eg][]{Costa:1997cg,Frontera:1997ae}.
+
+%%%% Mechanism of radiaiton
+Analysis of the multi-wavelength afterglow data of \acp{GRB} 
+\citep[\eg][]{Panaitescu:2001bx} suggested that the mechanism behind the afterglow 
+emission is non-thermal. Specifically, the afterglow is attributed to the 
+synchrotron emission coming from the external forward-shock, which forms 
+when \ac{GRB}-ejecta sweeps-up the \ac{ISM} medium\footnote{
+    The specific indications for the non-thermal origin of the emission 
+    are the power law decay of light curves, and the power-law spectrum. 
+%    with flux decaying as, $F_{\nu}\propto \nu^{-1}$ 
+%    and power-law spectrum $F_{\nu}\propto \nu^{-0.9\pm 0.5}$.
+} 
+\citep{Rees:1992ek,Paczynski:1993gz,Meszaros:1993ju,Meszaros:1996sv}.
+%
+
+%%%% Jet break
+%The temporal behavior of many (but not all) \acp{GRB} shows a change, a steepening 
+%of the light-curve (to $F_{\nu}\propto t^{-2.2}$) at $\sim 1$~day after the burst. 
+%This is usually attributed to the 
+%%\gray{deceleration of the colimated GRB-outflow, jet, and decrease on the realtivisitc beaming. This in turn makes the edge of the jet visible to an observer.} 
+%finite angular extend of the \ac{GRB}-ejecta, jet \citep[\eg][]{Rhoads:1999wm,Sari:1999mr}. 
+%When jet decelerates and relativistic beaming decreases (and the jet edge becomes visible), 
+%the optical and X-ray lightcurves decay achromatically faster. This achromatic transition 
+%from slow to faster decay is called "jet-break".
+%
+%%% PROBLEMO -- jet-break is not a universal feature.
+%Notably, this jet-break is not observed in all \acp{GRB} for the reason that is not fully 
+%understood \citep[\eg][]{Fan:2006pj,Panaitescu:2006,Liang:2007ti,Sato:2006jg,Liang:2007rn,Curran:2007cp,Racusin:2008bx}
+%%
+%%% PROBLEMO -- GRB density seems uniform, but SSE models predict wind-like profile
+%Models of the broadband emission of \acp{GRB} with jet-break showed that the 
+%\ac{CBM}, is uniform with number density \red{$\sim 10^{-3}$} \citep{Panaitescu:2001bx}. 
+%If \acp{GRB} produced in collapse of massive stars \citep{Woosley:1993,Paczynski:1997yg}, 
+%this contradicts the expected density profile from stellar winds, \eg, $\rho\propto r^{-2}$ 
+%\citep[\eg][]{Dai:1998iz,Chevalier:1999jy,Chevalier:1999mi,Ramirez-Ruiz:2001} 
+%\red{this might be very outdated.}
+%
+%% sGRB
+The origin of \acp{SGRB} was first linked to elliptical galaxies with dominant 
+older stellar population 
+\citep[\eg][]{Gehrels:2005qk,
+%    Fox:2005kv,Barthelmy:2005bx,Berger:2005dr,Panaitescu:2005er,Bloom:2005qx,Guetta:2005bb,
+    Nakar:2007yr}, 
+and thus with \ac{BNS} mergers. 
+%
+A more direct evidence came with the detection of \ac{SGRB}, \GRB{}, 
+\citep{
+    %Savchenko:2017ffs,
+    Alexander:2017aly,Troja:2017nqp,
+    %Monitor:2017mdv,Nynka:2018vup,
+    Hajela:2019mjy}, 
+detected by the space observatories Fermi 
+\citep{TheFermi-LAT:2015kwa} and INTEGRAL \citep{Winkler:2011}, one 
+of the counterparts of \GW{} \citep{TheLIGOScientific:2017qsa}.
+%
+%Generally \acp{SGRB} show a complex time behavior of early afterglow X-ray emission, 
+%in particular a presence of a plateau ($F_{x}\propto t^{-1/2}$), after the initial sharp 
+%decrease ($F_{x}\propto t^{-3}$) which a standard forward shock model does not predict. 
+%This implies that early X-ray afterglow is shaped by a variety of physical processes 
+%\citep{Zhang:2005fa}.
+%
+%
+%%%% EARLY emission problem
+%Two main questions stem from these observations: is the mechanism behind the prompt 
+%$\gamma$-ray emission and early afterglow emission is the same (or do they originate from 
+%the same outflow), and is the early X-ray radiation produced by the external shock (just a 
+%blast wave takes long time to become self-similar) or does it originate from an internal 
+%shock? An indication that the long-lived central engine activity might affect the 
+%afterglow came from the observed sharp increase in X-ray flux (flares) on a 
+%scale of minutes to hours after the end of the \ac{GRB}
+%\citep{Burrows:2005ww,Chincarini:2007fp,Chincarini:2010,Margutti:2011}, 
+%which could not be attributed to the inhomogeneities in the \ac{CBM}.
+%%% PROBLEMO!
+%Thus, the early X-ray behaviour of \acp{GRB} $t < 10^{4}$~s post-burst is not well 
+%understood and seems to be in tension with standard afterglow forward shock emission model.
+%
+%\textcolor{red}{
+%    One of the foremost unanswered questions about GRBs is the physical mechanism
+%    by which prompt $\gamma$-rays the radiation that triggers detectors on board
+%    GRB satellites are produced. Is the mechanism the popular internal shock
+%    model 6 \cite{(Rees and Meszaros, 1994)}, the external shock model, or something
+%    entirely different? Are $\gamma$-ray photons generated via the synchrotron process
+%    or inverse-Compton process, or by a different mechanism? Answers to these
+%    questions will help us address some of the most important unsolved problems
+%    in GRBs  how is the explosion powered in these bursts? Does the relativistic
+%    jet produced in these explosions consist of ordinary baryonic matter, electron positron
+%    pairs, or is the energy primarily in magnetic fields?
+%}
+%
+%Once again, while it is suggested that the high energy emission, after the propmt phase is produced 
+%by the synchrotron process in the external forward shock, \citep{Kumar:2009,Ghisellini:2010}, 
+%the mechanism behind the high and low energy $\gamma$-ray emission in the prompt phase remains unknown. 
+%Possible mechanisms include: inverse Compton and synchrotron emission in internal and external shocks
+%\citep[\eg][]{Rees:1992ek,Dermer:1998py,Lyutikov:2003ih,Zhang:2011} and 
+%photospheric radiation with contribution from multiple \ac{IC} scatterings
+%\citep[\eg][]{Thompson:1994zh,Ghisellini:1998jy,Meszaros:1999gb,Peer:2005qoc,Peer:2008udu,Giannios:2006jb,Ioka:2007qk,Asano:2009gi,Lazzati:2010,Beloborodov:2010,Toma:2011}.
+%
+However, while the \GRB{} has confirmed that \ac{BNS} mergers are responsible 
+for at least some \acp{SGRB}, it was dimmer than any other event of its class. 
+%Different interpretations for its dimness and slow rising flux were proposed including 
+%Different interpretations for this included off-axis jet, cocoon and structured jet. 
+The unusual signature of \GRB{} is now commonly attributed to the
+fact that it was a structured jet\footnote{
+    A structured jet, contrary to a top-hat jet, has an angular dependency of the 
+    matter energy and Lorentz factor. Such structure is believed to appear 
+    when a jet drills its way through the merger ejecta \citep{Lamb:2017ych}.
+}, which was also observed off-axis \citep[\eg][]{Ghirlanda:2018uyx}. 
+%    Fong:2017ekk,Troja:2017nqp,Margutti:2018xqd,Lamb:2017ych,Lamb:2018ohw,
+%    Ryan:2019fhz,Alexander:2018dcl,Mooley:2018dlz,
+%    Ghirlanda:2018uyx
+%}.
+%
+The \GRB{} late emission, the afterglow, provided information on the energetics of the 
+event and on the properties of the \ac{ISM} \citep[\eg][]{Hajela:2019mjy}. 
+
+%% ---------------
+%% Kilonova Afterglow
+%% ---------------
+
+
+In addition to the \ac{GRB} beamed emission, more isotropic non-thermal
+emission is expected to arise from 
+%electrons accelerated in shocks formed between the 
+mildly relativistic ejecta expanding into the \ac{ISM} \citep{Nakar:2011cw}. 
+Called \ac{kN} afterglow, it is expected to peak in radio band and continue 
+to be observable on a time scale of years 
+after a merger, providing a source of information that is largely free 
+from uncertainties in the nuclear and atomic physics of \ac{kN} models. 
+%
+Notably, all ejecta components contribute to the emission, 
+but depending on the ejecta velocities and kinetic energy, 
+the brightness in different frequencies varies. 
+%
+The mechanism behind this emission is phenomenologically similar to the one 
+responsible for the \ac{GRB} afterglow. Specifically, as various ejecta components 
+interact with each other and with the \ac{ISM}, a
+long-lived \blast{} is generated.  
+The formed shock, propagating upstream, amplifies random magnetic fields and accelerates 
+electrons that subsequently emit synchrotron radiation \citep{Kumar:2014upa}. % and \ac{SN} early remnants. 
+
+As \ac{NR} simulations showed the presence of mildly relativistic ejecta, 
+\eg, from core \bnc{}s, such emission was studied in previous works 
+\citep[\eg][]{Piran:2012wd,Hotokezaka:2015eja,Hotokezaka:2018gmo,Radice:2018pdn} 
+and was expected in the case of \GW{} \citep[\eg][]{Kathirgamaraju:2018mac}.
+
+Since ${\sim}160\,$days after the merger the non-thermal emission from \GW{} has been 
+consistent with \ac{SGRB} afterglow \citep{Troja:2020pzf,Hajela:2019mjy}. 
+However, ${\simeq}1243\,$days after the merger, a 
+change in spectral and temporal behaviour of the afterglow was observed.
+A change that is not compatible with the afterglow from a structured jet. 
+While the exact nature of this change remains at present unclear, one 
+of the possible explanations is the emergence of the 
+\ac{kN} afterglow\footnote{
+    See, however, \citet{Troja:2021xsw} for an alternative explanation
+} \citep{Hajela:2021faz}.
+
+%Notably, the observed non-thermal emission from \GW{}, was first interpreted 
+%as the non-thermal emission from the ejecta \citep{Mooley:2017enz}.
+%This interpretation was however disproved by the emergence of jet break
+%
+%
+%Specifically, a strong radio emission is expected from \ac{BNS} ejecta \citep{Piran:2012wd,Hotokezaka:2015eja}. 
+%The \ac{BNS} merger radio remnant is expected to peak on a time-scale 
+%of ${\sim}$years after the merger.% and be visible over a similar timescale. Notably, this is 
+%Assuming that the ejecta is expanding into the unshocked \ac{ISM}, as it was shown 
+%that if the \ac{ISM} is pre-shocked by the jetted outflow, and the \ac{ISM} density is 
+%reduced, the kilonova afterglow would be delayed. 
+%
+%In \citet{Piran:2012wd}, the synthetic \ac{kN} afterglow \acp{LC} are calculated 
+%for a set of \ac{NR} \ac{BNS} merger simulation with properties typical to the 
+%Galactic binary population and \ac{ISM} density usually found in the Galactic disk, 
+%$\nism{\sim1}\ccm$. Authors showed that the from a binary of two $1.4\,\Msun$ \acp{NS}, 
+%the kilonova afterglow would peak $\sim10$~years after the merger if $\nism = 0.1\,\ccm$ 
+%and $\sim3$~years if $\nism = 1\,\ccm$ in radio bands, $\nu=1.4$~GGz and $\nu=150\,$MGz. 
+%Notably, both values of the \ac{ISM} density are larger than what is inferred for \GW{}. 
+%Indeed, jet fitting models and dependent analysis of the diffuse emission suggest 
+%$\nism\in(10^{-4},10^{-2})\,$\gcm \citep{Hajela:2019mjy}.
+%In \citet{Piran:2012wd} authors focus on the observational prospects of this afterglow 
+%and compare it to other \ac{EM} emission expected for \ac{BNS}. 
+
+
+%% =====================================================================================
+%%
+%%              O R G A N I S A T I O N
+%%
+%% =====================================================================================
+
+\section{Aims and organization of this thesis}
+
+\ac{BNS} mergers are at the center of a variety of 
+physical processes in astrophysics. And while significant work 
+has been done to advance our understanding of these events, many 
+fundamental questions remain. 
+%
+The foundation of \ac{BNS} merger research are \ac{NR} simulations.
+However, most \ac{BNS} \ac{NR} simulations available in the literature 
+are either short, typically ${\lesssim}10\,$ms \pmerg, but with 
+advanced physics \citep[\eg][]{Vincent:2019kor}, 
+or neglect important physics, \eg, neutrino reabsorption 
+and effects of the \ac{MF}-induced turbulence \citep[\eg][]{Lehner:2016lxy}. 
+% \citep[\eg][] \citep[\eg][]{Kawaguchi:2020vbf}. \cite{Lehner:2016lxy}
+
+In this thesis we postprocess and analyze a large sample of new 
+\ac{NR} simulations performed using \wisky{} \ac{NR} code.
+Our simulations include \ac{GR}, microphysical \acp{EOS} with finite-temperature 
+effects, neutrino emission and reabsorption, and effects of 
+\acp{MF} on the angular momentum transport. Some of 
+our simulations have been continued till ${\gtrsim}100\,$ms \pmerg{}. 
+All our simulations have chirp-mass, equal to that inferred for 
+\GW{}. 
+%
+Postprocessing and analyzing these simulations, 
+computing \rproc{} nucleosynthetic yields, 
+and thermal and non-thermal \ac{EM} counterparts to mergers, 
+we aim to investigate the following questions:
+
+\begin{itemize}
+    \item What is the evolutionary trajectory of a \ac{NS} remnant born with 
+    an excess in mass and angular momentum with respect to the mass-shedding 
+    limit, \ie, \ac{HMNS}? Does it collapse to a \ac{BH}?
+    \item 
+%    How the physics input of our simulations affects the ejecta properties and 
+%    the resulted nucleosynthetic yields?
+    Based on the abundance pattern in ejecta, can \ac{BNS} mergers be considered 
+    the prime source of \rproc{} elements in the Universe?
+    \item How do the statistical properties of \ac{DE} of our simulations 
+    differ with respect to other published models? What is the 
+    up-to-date relation between binary parameters and ejecta properties? 
+    %How strongly it depends on systematics?
+    \item Can the \ac{kN} produced by ejecta from our long simulations 
+    provide better explanations to \AT{}? 
+    \item Is the \ac{kN} afterglow from our models consistent 
+    with the changing behaviour of \GRB{} afterglow? 
+\end{itemize}
+
+Ultimately, we aim to find a possibility for further constraining 
+the properties of \GW{} and \ac{NS} \ac{EOS}.
+
+
+%\ac{BNS} mergers and especially the \pmerg{} evolution hosts a number of interesting 
+%and yet poorly understood physics. 
+%Although there are published \ac{NR} simulations of \ac{BNS} mergers, 
+%most of them are either very short, or neglect important physics, \eg, 
+%neutrino reabsorption, and effects of the \ac{MF}-induced turbulence. 
+%Thus, \ac{EM}
+%Moreover, the statistical analysis of up-to-date sample of thesis 
+%simulations is a pending task.
+%%
+%We intend to improve upon this situation by performing a large number of long-term ab-initio 
+%\ac{NR} \ac{BNS} simulations with neutrino reabsorption and viscosity, focusing on the 
+%\pmerg{} evolution of the remnant and astrophysical aspects, \ie, matter ejection, 
+%\rproc{} \nuc{} and \ac{EM} signals.
+%%
+%All simulations have chirp masses targeted to \GW{}, and with this work we aim to further 
+%constrain the \ac{NS} \ac{EOS} and the properties of the binary and shed light on 
+%some of the aforementioned discrepancies, namely the 
+%\begin{itemize}
+%    \item what is the long-term evolutionary trajectory of the \ac{HMNS} merger remnant
+%    \item whether the \ac{BNS} mergers are dominant cite of \rproc{}, 
+%    \item what is the additional ejecta component required to explain the blue \ac{kN} of \AT{}, 
+%    \item whether \ac{kN} afterglow from the ejecta of ab-initio \ac{NR} models is consistent with \GRB{} rebrightening.
+%\end{itemize}
+
+
+The thesis is organized as follows.
+%
+In Chapter \ref{ch:nr_methods} we provide a brief overview 
+of the methods used to model \ac{BNS} mergers and implemented in \wisky{},
+and techniques we used to postprocess these simulations. 
+%
+In Chapter \ref{ch:bns_sims} we present the results of simulation 
+postprocessing and discuss the \pmerg{} dynamics and ejecta.
+%
+In Chapter \ref{ch:nucleo} we overview a method to compute \rproc{} 
+\nuc{} final abundances in ejecta, and compare these abundances in ejecta 
+from our simulations with solar ones. 
+%
+In Chapter \ref{ch:kilonova} we overview a method to compute \ac{kN} emission. 
+Then, we apply a previously developed model to ejecta from our simulations  
+and compare the result with observations of \AT{}.
+%
+In Chapter \ref{ch:afterglow} we overview a method to compute synchrotron 
+radiation from ejecta, focusing on particular techniques that we implement 
+numerically. Then we apply our new tool to the ejecta from our simulations and 
+compare the result with the \GRB{} afterglow.
+%
+Finally, in Chapter \ref{ch:conclusion} 
+we conclude our work and provide an outlook.

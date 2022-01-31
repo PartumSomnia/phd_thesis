@@ -1,1 +1,0 @@
-git add *.txt; git add *.tex; git add Figures/*; git add Appendices/*.ted; git add Chapters/*.tex; git add Tables/*.tex; git add *.cls; git commit -m "update for v4"; git pull; git push;

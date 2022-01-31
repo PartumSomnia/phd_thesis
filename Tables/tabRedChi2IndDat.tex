@@ -1,0 +1,55 @@
+%% Ejecta 
+
+\begin{table}[t]
+    \caption{
+        Dataset-vise 
+        reduced $\chi$-squared $\chi^2 _{\nu}$ for different
+        fitting models for the dynamical ejecta properties
+        and disk mass. $N$ is the number of models in the dataset.
+        Mean is the simulation
+        average, $P_n(x,y)$ is a polynomial of order $n$ in the variables $x,y$. 
+        %% The best fitting model is characterized by the lowest value of $\chi_{\nu}^2$.
+    }
+    \label{tbl:fit:ejecta:chi2dofsallInd}
+    \scalebox{0.86}{
+        \begin{tabular}{l|l|cccccc}
+            \hline\hline
+            $\log_{10}(\md)$ & Dataset & $N$ & Mean & Eq.~\eqref{eq:fit_Mej} & Eq.~\eqref{eq:fit_Mej_Kruger} & $P_2^1(\tilde{\Lambda})$ & $P_2^2(q,\tilde{\Lambda})$ \\ \hline
+            & \DSrefset{} & 34 & 3.84 & 2.23 & 1.58 & 3.03 & 1.55 \\ 
+            %% & \DSrefset{} & 34 & 3.38 & 2.04 & 1.72 & 2.70 & 1.44 \\ 
+            &  \DSheatcool{}  & 30 & 70.46 & 15.82 & 121.76 & 232.66 & 156.87 \\ 
+            &  \DScool{}  & 42 & 23.37 & 9.89 & 6.35 & 8.55 & 7.63 \\ 
+            &  \DSnone{}  & 165 & 118.11 & 31.38 & 24.64 & 76.82 & 26.39 \\ 
+            \hline\hline
+            $\langle v_{\rm ej}\rangle$ & Dataset & $N$ & Mean & Eq.~\eqref{eq:fit_vej} & & $P_2^1(\tilde{\Lambda})$ & $P_2^2(q,\tilde{\Lambda})$ \\ \hline
+            %% & \DSrefset{} & 34 & 3.30 & 1.23 & & 2.92 & 0.92 \\ 
+            & \DSrefset{}  & 34 & 3.76 & 1.51 & & 3.24 & 1.05 \\
+            &  \DSheatcool{}  & 27 & 3.68 & 3.41 & & 2.93 & 2.63 \\
+            &  \DScool{}  & 42 & 10.33 & 10.97 & & 10.13 & 9.99 \\ 
+            &  \DSnone{}  & 143 & 6.98 & 5.39 & & 5.98 & 5.34 \\
+            \hline\hline
+            $\langle Y_{\rm e}\rangle$ & Dataset & $N$ & Mean &  & & $P_2^1(\tilde{\Lambda})$ & $P_2^2(q,\tilde{\Lambda})$ \\ \hline
+            %% & \DSrefset{} & 34 & 41.74  & &  & 42.66 & 8.73 \\ 
+            & \DSrefset{} & 34 & 42.49 &  & & 43.69 & 9.07 \\ 
+            &  \DSheatcool{}  & 30 & 16.81  & &  & 17.83 & 8.73 \\  
+            &  \DScool{}  & 35 & 12.74  & &  & 13.64 & 12.69 \\
+            \hline\hline
+            $\langle \theta_{\rm RMS}\rangle$ & Dataset & $N$ & Mean & & & $P_2^1(\tilde{\Lambda})$ & $P_2^2(q,\tilde{\Lambda})$ \\ \hline
+            %% & \DSrefset{} & 34 & 20.41 & & & 21.22 & 4.45 \\ 
+            & \DSrefset{} & 31 & 20.68 & & & 21.66 & 4.55 \\ 
+            &  \DSheatcool{}  & 7 & 1.96 & & & 3.11 & 7.54 \\ 
+            &  \DScool{} & 35 & 9.68 & & & 8.19 & 7.27 \\ 
+            \hline\hline
+            $M_{\text{disk}}$ & Dataset & $N$ & Mean & Eq.~\eqref{eq:fit_Mdisk} & Eq.~\eqref{eq:fit_Mdisk_Kruger} & $P_2^1(\tilde{\Lambda})$ & $P_2^2(q,\tilde{\Lambda})$ \\ \hline
+            %% & \DSrefset{} & 31 & 2896.33 & 1927.20 & 363.14 & 2541.76 & 354.31 \\ 
+            & \DSrefset{} & 31 & 2956.22 & 1927.27 & 2198.85 & 2574.14 & 425.41 \\ 
+            &  \DSheatcool{} & 23 & 16.74 & 8.53 & 4.43 & 7.79 & 1.51 \\ 
+            &  \DScool{}  & 26 & 2920.32 & 42.18 & 3.24 & 296.48 & 260.77 \\
+            &  \DSnone{}  & 39 & 1671.69 & 101.97 & 23.62 & 166.21 & 42.33 \\
+            \hline\hline
+        \end{tabular}
+    }%scalebox
+\end{table}
+
+
+
