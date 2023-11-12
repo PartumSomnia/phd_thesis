@@ -2,7 +2,7 @@
 
 This is my PhD thesis was written in 2019-2021 and defended in 2022. 
 
-The thesis focuses on binary __neutron star mergers__ (BNS), and 
+The thesis focuses on binary __neutron star mergers__ (BNS) and 
 specifically on the analysis of the BNS merger simulations performed 
 with numerical relativity, i.e.,g general relativistic hydrodynamic 
 code [WhiskiTHC](https://personal.science.psu.edu/dur566/whiskythc.html) 
